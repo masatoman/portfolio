@@ -102,13 +102,6 @@ export default function Portfolio() {
       <section className="pt-32 pb-20 px-6 bg-gradient-to-br from-brand-primary to-brand-primary/90 text-white">
         <div className="container mx-auto text-center">
           <div className="mb-8">
-            <Image
-              src="/images/profile.jpeg"
-              alt="井原誠斗のプロフィール写真"
-              width={150}
-              height={150}
-              className="rounded-full mx-auto mb-6 border-4 border-white shadow-lg"
-            />
             <h1 className="text-5xl font-bold mb-4">
               井原 誠斗
               <span className="block text-lg font-normal text-blue-200 mt-2">いはら　まさと</span>
