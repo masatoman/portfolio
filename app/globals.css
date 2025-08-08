@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* パフォーマンス最適化 */
+html {
+  font-display: swap;
+  scroll-behavior: smooth;
+}
+
+/* CLS対策 */
+img, 
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+/* LCP最適化 */
+.hero-section {
+  contain: layout style paint;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

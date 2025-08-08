@@ -99,7 +99,7 @@ export default function Portfolio() {
       </header>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 bg-gradient-to-br from-brand-primary to-brand-primary/90 text-white">
+      <section className="hero-section pt-32 pb-20 px-6 bg-gradient-to-br from-brand-primary to-brand-primary/90 text-white">
         <div className="container mx-auto text-center">
           <div className="mb-8">
             <h1 className="text-5xl font-bold mb-4">
@@ -173,6 +173,10 @@ export default function Portfolio() {
                 width={500}
                 height={400}
                 className="rounded-lg shadow-lg"
+                priority={true}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkbHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               />
             </div>
           </div>
