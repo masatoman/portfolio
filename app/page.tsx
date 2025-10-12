@@ -183,16 +183,16 @@ export default function Portfolio() {
                     <span className="text-sm font-semibold text-brand-primary">5年以上</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">AI統合プロジェクト</span>
-                    <span className="text-sm font-semibold text-brand-primary">10件以上</span>
-                  </div>
-                  <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">対応企業規模</span>
                     <span className="text-sm font-semibold text-brand-primary">スタートアップ〜大手</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">技術スタック</span>
                     <span className="text-sm font-semibold text-brand-primary">15+ 技術</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-600">Webアプリ開発</span>
+                    <span className="text-sm font-semibold text-brand-primary">多数実装</span>
                   </div>
                 </div>
               </div>
