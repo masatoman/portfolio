@@ -66,24 +66,33 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Header */}
-      <header className="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b z-50">
-        <nav className="container mx-auto px-6 py-4">
+      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b z-50 shadow-sm">
+        <nav className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-brand-primary">
-              井原 誠斗<span className="text-sm font-normal ml-2 text-slate-500">いはら　まさと</span>
+            <div className="text-lg sm:text-2xl font-bold text-brand-primary">
+              井原 誠斗<span className="hidden sm:inline text-sm font-normal ml-2 text-slate-500">いはら　まさと</span>
             </div>
-            <div className="hidden md:flex space-x-8">
-              <a href="#about" className="text-slate-600 hover:text-brand-primary transition-colors">
+            <div className="hidden md:flex space-x-6 lg:space-x-8">
+              <a href="#about" className="text-slate-600 hover:text-brand-primary transition-colors font-medium">
                 About
               </a>
-              <a href="#services" className="text-slate-600 hover:text-brand-primary transition-colors">
+              <a href="#services" className="text-slate-600 hover:text-brand-primary transition-colors font-medium">
                 Services
               </a>
-              <a href="#skills" className="text-slate-600 hover:text-brand-primary transition-colors">
+              <a href="#skills" className="text-slate-600 hover:text-brand-primary transition-colors font-medium">
                 Skills
               </a>
-              <a href="#portfolio" className="text-slate-600 hover:text-brand-primary transition-colors">
+              <a href="#portfolio" className="text-slate-600 hover:text-brand-primary transition-colors font-medium">
                 Portfolio
+              </a>
+              <a href="#contact" className="text-slate-600 hover:text-brand-primary transition-colors font-medium">
+                Contact
+              </a>
+            </div>
+            {/* モバイルメニュー */}
+            <div className="md:hidden flex space-x-4 text-sm">
+              <a href="#about" className="text-slate-600 hover:text-brand-primary transition-colors">
+                About
               </a>
               <a href="#contact" className="text-slate-600 hover:text-brand-primary transition-colors">
                 Contact
@@ -94,22 +103,24 @@ export default function Portfolio() {
       </header>
 
       {/* Hero Section */}
-      <section className="hero-section pt-32 pb-20 px-6 bg-gradient-to-br from-brand-primary to-brand-primary/90 text-white">
+      <section className="hero-section pt-24 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 bg-gradient-to-br from-brand-primary to-brand-primary/90 text-white">
         <div className="container mx-auto text-center">
-          <div className="mb-8">
-            <h1 className="text-5xl font-bold mb-4">
+          <div className="mb-6 sm:mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
               井原 誠斗
-              <span className="block text-lg font-normal text-blue-200 mt-2">いはら　まさと</span>
+              <span className="block text-base sm:text-lg font-normal text-blue-200 mt-2">いはら　まさと</span>
             </h1>
-            <div className="flex items-center justify-center mb-4">
-              <Zap className="h-6 w-6 mr-2 text-brand-accent" />
-              <p className="text-2xl font-semibold">Webサイト・アプリ開発 × AI</p>
+            <div className="flex items-center justify-center mb-4 sm:mb-6">
+              <Zap className="h-5 w-5 sm:h-6 sm:w-6 mr-2 text-brand-accent flex-shrink-0" />
+              <p className="text-lg sm:text-xl md:text-2xl font-semibold">
+                Webサイト・アプリ開発 × AI
+              </p>
             </div>
-            <p className="text-lg text-blue-100 max-w-2xl mx-auto mb-8">
-              最新のAI技術を活用したWebソリューションを提供します
+            <p className="text-sm sm:text-base md:text-lg text-blue-100 max-w-2xl mx-auto mb-6 sm:mb-8 px-2">
+              最新のAI技術を活用した<br className="sm:hidden" />Webソリューションを提供します
             </p>
-            <div className="flex justify-center space-x-4">
-              <Button asChild className="bg-brand-accent hover:bg-brand-accent/90 text-white border-0">
+            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 max-w-md sm:max-w-none mx-auto px-4 sm:px-0">
+              <Button asChild className="bg-brand-accent hover:bg-brand-accent/90 text-white border-0 h-12 sm:h-10 text-base sm:text-sm w-full sm:w-auto">
                 <Link href="#contact">
                   <Mail className="mr-2 h-4 w-4" />
                   お問い合わせ
@@ -118,7 +129,7 @@ export default function Portfolio() {
               <Button
                 variant="outline"
                 asChild
-                className="border-white text-white hover:bg-white hover:text-brand-primary bg-transparent"
+                className="border-white text-white hover:bg-white hover:text-brand-primary bg-transparent h-12 sm:h-10 text-base sm:text-sm w-full sm:w-auto"
               >
                 <Link href="#services">
                   <Zap className="mr-2 h-4 w-4" />
@@ -131,43 +142,45 @@ export default function Portfolio() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-6 bg-white">
+      <section id="about" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center text-brand-primary mb-12">About Me</h2>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h3 className="text-2xl font-semibold text-brand-primary mb-4">AI × Web開発のスペシャリスト</h3>
-              <p className="text-slate-600 mb-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-brand-primary mb-8 sm:mb-12">About Me</h2>
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+            <div className="order-2 md:order-1">
+              <h3 className="text-xl sm:text-2xl font-semibold text-brand-primary mb-3 sm:mb-4">
+                AI × Web開発のスペシャリスト
+              </h3>
+              <p className="text-sm sm:text-base text-slate-600 mb-4 sm:mb-6 leading-relaxed">
                 5年以上のフロントエンド開発経験を持ち、React・Next.jsを中心としたモダンなWeb開発と最新のAI技術の統合を専門としています。
                 HTML/CSS/JavaScriptの基礎から、TypeScript、各種フレームワーク、テスト・開発ツールまで幅広い技術スタックを活用し、
                 高品質で保守性の高いWebアプリケーションを開発します。
               </p>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <div className="flex items-center space-x-3">
-                  <Zap className="h-5 w-5 text-brand-accent" />
-                  <span className="text-slate-700">AI技術の実装・統合</span>
+                  <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-brand-accent flex-shrink-0" />
+                  <span className="text-sm sm:text-base text-slate-700">AI技術の実装・統合</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Code className="h-5 w-5 text-brand-accent" />
-                  <span className="text-slate-700">React・Next.js専門開発</span>
+                  <Code className="h-4 w-4 sm:h-5 sm:w-5 text-brand-accent flex-shrink-0" />
+                  <span className="text-sm sm:text-base text-slate-700">React・Next.js専門開発</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Palette className="h-5 w-5 text-brand-accent" />
-                  <span className="text-slate-700">Figma・UI/UXデザイン</span>
+                  <Palette className="h-4 w-4 sm:h-5 sm:w-5 text-brand-accent flex-shrink-0" />
+                  <span className="text-sm sm:text-base text-slate-700">Figma・UI/UXデザイン</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Globe className="h-5 w-5 text-brand-accent" />
-                  <span className="text-slate-700">テスト駆動開発・品質保証</span>
+                  <Globe className="h-4 w-4 sm:h-5 sm:w-5 text-brand-accent flex-shrink-0" />
+                  <span className="text-sm sm:text-base text-slate-700">テスト駆動開発・品質保証</span>
                 </div>
               </div>
             </div>
-            <div>
+            <div className="order-1 md:order-2">
               <Image
                 src="/images/about-photo.jpeg"
                 alt="AI×Web開発のワークスペース"
                 width={500}
                 height={400}
-                className="rounded-lg shadow-lg"
+                className="rounded-lg shadow-lg w-full h-auto"
                 priority={true}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
                 placeholder="blur"
@@ -179,9 +192,9 @@ export default function Portfolio() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 px-6 bg-slate-50">
+      <section id="services" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-slate-50">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center text-brand-primary mb-12">Services</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-brand-primary mb-8 sm:mb-12">Services</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow border-l-4 border-l-brand-accent">
@@ -199,9 +212,9 @@ export default function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-6 bg-white">
+      <section id="skills" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center text-brand-primary mb-12">Skills</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-brand-primary mb-8 sm:mb-12">Skills</h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* 言語・マークアップ */}
@@ -314,9 +327,9 @@ export default function Portfolio() {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-20 px-6 bg-slate-50">
+      <section id="portfolio" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-slate-50">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center text-brand-primary mb-12">Portfolio</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-brand-primary mb-8 sm:mb-12">Portfolio</h2>
           <div className="text-center">
             <Card className="max-w-2xl mx-auto border-2 border-dashed border-slate-300">
               <CardContent className="py-16">
@@ -336,61 +349,39 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 bg-brand-primary text-white">
+      <section id="contact" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-brand-primary text-white">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8">Contact</h2>
-          <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto text-center">
-            AI技術を活用したWeb開発について、お気軽にご相談ください。
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">Contact</h2>
+          <p className="text-base sm:text-lg md:text-xl text-blue-100 mb-8 sm:mb-12 max-w-2xl mx-auto text-center px-2">
+            AI技術を活用したWeb開発について、<br className="sm:hidden" />お気軽にご相談ください。
           </p>
 
           <div className="max-w-3xl mx-auto">
             {/* Contact Methods */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 mb-8">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
               <h3 className="text-2xl font-semibold mb-6 text-center">お問い合わせ方法</h3>
               
               <div className="space-y-6">
                 {/* LINE Official Account */}
-                <div className="bg-white/5 rounded-lg p-6 border border-white/20">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-3">
-                      <MessageCircle className="h-6 w-6 text-green-400" />
-                      <div>
-                        <h4 className="text-lg font-semibold">LINE公式アカウント</h4>
-                        <p className="text-sm text-blue-100">最も早く返信できます（推奨）</p>
-                      </div>
+                <div className="bg-white/5 rounded-lg p-6 sm:p-8 border border-white/20">
+                  <div className="flex flex-col items-center text-center mb-6">
+                    <div className="bg-green-500/20 p-4 rounded-full mb-4">
+                      <MessageCircle className="h-10 w-10 sm:h-12 sm:w-12 text-green-400" />
                     </div>
+                    <h4 className="text-xl sm:text-2xl font-semibold mb-2">LINE公式アカウント</h4>
+                    <p className="text-sm sm:text-base text-blue-100">
+                      お気軽にご相談ください。<br className="sm:hidden" />最も早く返信できます
+                    </p>
                   </div>
                   <Button
                     asChild
-                    className="w-full bg-green-500 hover:bg-green-600 text-white border-0"
+                    className="w-full bg-green-500 hover:bg-green-600 text-white border-0 h-14 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
                     size="lg"
                   >
                     <Link href="https://lin.ee/aHMYDKEu" target="_blank" rel="noopener noreferrer">
-                      <MessageCircle className="mr-2 h-5 w-5" />
+                      <MessageCircle className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
                       LINEで相談する
                       <ExternalLink className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
-
-                {/* Email */}
-                <div className="bg-white/5 rounded-lg p-6 border border-white/20">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <Mail className="h-6 w-6 text-brand-accent" />
-                    <div>
-                      <h4 className="text-lg font-semibold">メールでのお問い合わせ</h4>
-                      <p className="text-sm text-blue-100">24時間以内にご返信いたします</p>
-                    </div>
-                  </div>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="w-full border-white/20 text-white hover:bg-white/10"
-                    size="lg"
-                  >
-                    <Link href="mailto:info@ihara-frontend.com">
-                      <Mail className="mr-2 h-5 w-5" />
-                      info@ihara-frontend.com
                     </Link>
                   </Button>
                 </div>
