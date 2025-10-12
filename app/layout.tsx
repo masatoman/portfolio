@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import './globals.css'
-import ClientLayout from '@/components/ClientLayout'
 
 export const metadata: Metadata = {
   title: '井原誠斗 | AI×Web開発 フリーランスエンジニア',
@@ -53,9 +52,7 @@ html {
         className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}
         suppressHydrationWarning={true}
       >
-        <ClientLayout>
-          {children}
-        </ClientLayout>
+        {children}
       </body>
     </html>
   )
