@@ -353,46 +353,33 @@ export default function Portfolio() {
         <div className="container mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">Contact</h2>
           <p className="text-base sm:text-lg md:text-xl text-blue-100 mb-8 sm:mb-12 max-w-2xl mx-auto text-center px-2">
-            AI技術を活用したWeb開発について、<br className="sm:hidden" />お気軽にご相談ください。
+            プロジェクトのご相談、技術的なお問い合わせ、お見積もりなど、<br className="sm:hidden" />
+            どのようなことでもお気軽にご連絡ください。
           </p>
 
           <div className="max-w-3xl mx-auto">
-            {/* Contact Methods */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
-              <h3 className="text-2xl font-semibold mb-6 text-center">お問い合わせ方法</h3>
-              
-              <div className="space-y-6">
-                {/* LINE Official Account */}
-                <div className="bg-white/5 rounded-lg p-6 sm:p-8 border border-white/20">
-                  <div className="flex flex-col items-center text-center mb-6">
-                    <div className="bg-green-500/20 p-4 rounded-full mb-4">
-                      <MessageCircle className="h-10 w-10 sm:h-12 sm:w-12 text-green-400" />
-                    </div>
-                    <h4 className="text-xl sm:text-2xl font-semibold mb-2">LINE公式アカウント</h4>
-                    <p className="text-sm sm:text-base text-blue-100">
-                      お気軽にご相談ください。<br className="sm:hidden" />最も早く返信できます
-                    </p>
-                  </div>
-                  <Button
-                    asChild
-                    className="w-full bg-green-500 hover:bg-green-600 text-white border-0 h-14 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
-                    size="lg"
-                  >
-                    <Link href="https://lin.ee/aHMYDKEu" target="_blank" rel="noopener noreferrer">
-                      <MessageCircle className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
-                      LINEで相談する
-                      <ExternalLink className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
+            {/* LINE Official Account */}
+            <div className="bg-white/5 rounded-lg p-6 sm:p-8 border border-white/20">
+              <div className="flex flex-col items-center text-center mb-6">
+                <div className="bg-green-500/20 p-4 rounded-full mb-4">
+                  <MessageCircle className="h-10 w-10 sm:h-12 sm:w-12 text-green-400" />
                 </div>
-              </div>
-
-              <div className="mt-8 text-center">
-                <p className="text-blue-100 text-sm">
-                  プロジェクトのご相談、技術的なお問い合わせ、お見積もりなど、<br />
-                  どのようなことでもお気軽にご連絡ください。
+                <h3 className="text-xl sm:text-2xl font-semibold mb-2">LINE公式アカウント</h3>
+                <p className="text-sm sm:text-base text-blue-100">
+                  お気軽にご相談ください。<br className="sm:hidden" />最も早く返信できます
                 </p>
               </div>
+              <Button
+                asChild
+                className="w-full bg-green-500 hover:bg-green-600 text-white border-0 h-14 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+                size="lg"
+              >
+                <Link href="https://lin.ee/aHMYDKEu" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
+                  LINEで相談する
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
