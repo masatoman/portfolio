@@ -1,16 +1,11 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Mail, Code, Palette, Smartphone, Globe, Zap, Monitor, Database, Layers, Bot } from "lucide-react"
+import { Mail, Code, Palette, Smartphone, Globe, Zap, Monitor, Database, Layers, Bot, MessageCircle, ExternalLink } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { submitContactForm } from "./actions/contact"
-import { useActionState } from "react"
 
 export default function Portfolio() {
-  const [state, formAction, isPending] = useActionState(submitContactForm, null)
 
   const skills = [
     { name: "HTML", level: 98 },
@@ -348,68 +343,65 @@ export default function Portfolio() {
             AI技術を活用したWeb開発について、お気軽にご相談ください。
           </p>
 
-          <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            {/* Contact Info */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">お問い合わせ先</h3>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Mail className="h-5 w-5 text-brand-accent" />
-                  <span>info@ihara-frontend.com</span>
+          <div className="max-w-3xl mx-auto">
+            {/* Contact Methods */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 mb-8">
+              <h3 className="text-2xl font-semibold mb-6 text-center">お問い合わせ方法</h3>
+              
+              <div className="space-y-6">
+                {/* LINE Official Account */}
+                <div className="bg-white/5 rounded-lg p-6 border border-white/20">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <MessageCircle className="h-6 w-6 text-green-400" />
+                      <div>
+                        <h4 className="text-lg font-semibold">LINE公式アカウント</h4>
+                        <p className="text-sm text-blue-100">最も早く返信できます（推奨）</p>
+                      </div>
+                    </div>
+                  </div>
+                  <Button
+                    asChild
+                    className="w-full bg-green-500 hover:bg-green-600 text-white border-0"
+                    size="lg"
+                  >
+                    <Link href="https://lin.ee/aHMYDKEu" target="_blank" rel="noopener noreferrer">
+                      <MessageCircle className="mr-2 h-5 w-5" />
+                      LINEで相談する
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
+
+                {/* Email */}
+                <div className="bg-white/5 rounded-lg p-6 border border-white/20">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <Mail className="h-6 w-6 text-brand-accent" />
+                    <div>
+                      <h4 className="text-lg font-semibold">メールでのお問い合わせ</h4>
+                      <p className="text-sm text-blue-100">24時間以内にご返信いたします</p>
+                    </div>
+                  </div>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="w-full border-white/20 text-white hover:bg-white/10"
+                    size="lg"
+                  >
+                    <Link href="mailto:info@ihara-frontend.com">
+                      <Mail className="mr-2 h-5 w-5" />
+                      info@ihara-frontend.com
+                    </Link>
+                  </Button>
                 </div>
               </div>
-              <div className="mt-8">
-                <p className="text-blue-100 mb-4">
-                  プロジェクトのご相談、技術的なお問い合わせ、お見積もりなど、
+
+              <div className="mt-8 text-center">
+                <p className="text-blue-100 text-sm">
+                  プロジェクトのご相談、技術的なお問い合わせ、お見積もりなど、<br />
                   どのようなことでもお気軽にご連絡ください。
                 </p>
-                <p className="text-blue-100">24時間以内にご返信いたします。</p>
               </div>
-            </div>
-
-            {/* Contact Form */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">お問い合わせフォーム</h3>
-              <form action={formAction} className="space-y-4">
-                <div>
-                  <Input
-                    name="name"
-                    placeholder="お名前"
-                    required
-                    className="bg-white/10 border-white/20 text-white placeholder:text-blue-200"
-                  />
-                </div>
-                <div>
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="メールアドレス"
-                    required
-                    className="bg-white/10 border-white/20 text-white placeholder:text-blue-200"
-                  />
-                </div>
-                <div>
-                  <Textarea
-                    name="message"
-                    placeholder="お問い合わせ内容"
-                    rows={5}
-                    required
-                    className="bg-white/10 border-white/20 text-white placeholder:text-blue-200"
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  disabled={isPending}
-                  className="w-full bg-brand-accent hover:bg-brand-accent/90 text-white"
-                >
-                  {isPending ? "送信中..." : "送信する"}
-                </Button>
-                {state && (
-                  <div className={`text-center ${state.success ? "text-green-300" : "text-red-300"}`}>
-                    {state.message}
-                  </div>
-                )}
-              </form>
             </div>
           </div>
         </div>
@@ -422,3 +414,5 @@ export default function Portfolio() {
     </div>
   )
 }
+
+
