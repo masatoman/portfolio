@@ -1,7 +1,8 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mail, Code, Palette, Smartphone, Globe, Zap, Monitor, Database, Layers, Bot, MessageCircle, ExternalLink } from "lucide-react"
+import { Mail, Code, Palette, Smartphone, Globe, Zap, Monitor, Database, Layers, Bot, MessageCircle, ExternalLink, ChefHat, ShoppingCart, BookOpen, Rocket } from "lucide-react"
+import { ContactForm } from "@/components/contact-form"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -353,18 +354,119 @@ export default function Portfolio() {
       <section id="portfolio" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-slate-50">
         <div className="container mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-center text-brand-primary mb-8 sm:mb-12">Portfolio</h2>
-          <div className="text-center">
-            <Card className="max-w-2xl mx-auto border-2 border-dashed border-slate-300">
-              <CardContent className="py-16">
-                <div className="text-brand-accent mb-4">
-                  <Code className="h-16 w-16 mx-auto" />
+          <p className="text-center text-sm sm:text-base text-slate-600 mb-8 sm:mb-12 max-w-2xl mx-auto">
+            個人開発で実際にリリース・運用しているプロダクトです。
+          </p>
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
+            {/* recipe-ai */}
+            <Card className="border-l-4 border-l-brand-accent hover:shadow-lg transition-shadow flex flex-col">
+              <CardHeader>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-brand-accent"><ChefHat className="h-8 w-8" /></div>
+                    <CardTitle className="text-xl text-brand-primary">recipe-ai</CardTitle>
+                  </div>
+                  <span className="text-xs font-semibold px-2 py-1 bg-emerald-100 text-emerald-700 rounded">運用中</span>
                 </div>
-                <h3 className="text-2xl font-semibold text-brand-primary mb-4">ポートフォリオ作品は準備中です</h3>
-                <p className="text-slate-600">
-                  現在、最新のプロジェクト事例を準備しております。
-                  <br />
-                  近日中に公開予定ですので、今しばらくお待ちください。
-                </p>
+                <CardDescription className="text-slate-600">
+                  YouTube の料理動画から AI が自動でレシピを抽出する Web アプリ。Shorts / 通常動画両対応、PWA・Wake Lock クッキングモード搭載。
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex flex-col flex-grow">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {["Next.js", "TypeScript", "Supabase", "Anthropic API", "Stripe"].map((t) => (
+                    <span key={t} className="inline-block bg-slate-100 text-slate-700 px-2 py-1 rounded text-xs">{t}</span>
+                  ))}
+                </div>
+                <Button asChild variant="outline" className="mt-auto w-full">
+                  <Link href="https://recipe-ai-opal.vercel.app/ja" target="_blank" rel="noopener noreferrer">
+                    サイトを見る <ExternalLink className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* kore-katte-kite */}
+            <Card className="border-l-4 border-l-brand-accent hover:shadow-lg transition-shadow flex flex-col">
+              <CardHeader>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-brand-accent"><ShoppingCart className="h-8 w-8" /></div>
+                    <CardTitle className="text-xl text-brand-primary">これ買ってきて</CardTitle>
+                  </div>
+                  <span className="text-xs font-semibold px-2 py-1 bg-amber-100 text-amber-700 rounded">検証中</span>
+                </div>
+                <CardDescription className="text-slate-600">
+                  共働き家族向けの「買い物依頼」アプリ。リアルタイム同期で依頼側・実行側のすれ違いを解消する。Phase 0 ユーザー検証中。
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex flex-col flex-grow">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {["Next.js", "TypeScript", "Supabase", "Tailwind CSS"].map((t) => (
+                    <span key={t} className="inline-block bg-slate-100 text-slate-700 px-2 py-1 rounded text-xs">{t}</span>
+                  ))}
+                </div>
+                <Button asChild variant="outline" className="mt-auto w-full">
+                  <Link href="https://kore-katte-kite.vercel.app" target="_blank" rel="noopener noreferrer">
+                    サイトを見る <ExternalLink className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* masatoman.net */}
+            <Card className="border-l-4 border-l-brand-accent hover:shadow-lg transition-shadow flex flex-col">
+              <CardHeader>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-brand-accent"><BookOpen className="h-8 w-8" /></div>
+                    <CardTitle className="text-xl text-brand-primary">masatoman.net</CardTitle>
+                  </div>
+                  <span className="text-xs font-semibold px-2 py-1 bg-emerald-100 text-emerald-700 rounded">運用中</span>
+                </div>
+                <CardDescription className="text-slate-600">
+                  個人開発の検証〜収益化を実体験で公開する技術ブログ。MDX ベースで 70 本以上の記事を運用、SEO・OGP 動的生成・有料記事まで自前実装。
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex flex-col flex-grow">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {["Next.js 16", "MDX", "TypeScript", "Tailwind CSS"].map((t) => (
+                    <span key={t} className="inline-block bg-slate-100 text-slate-700 px-2 py-1 rounded text-xs">{t}</span>
+                  ))}
+                </div>
+                <Button asChild variant="outline" className="mt-auto w-full">
+                  <Link href="https://masatoman.net" target="_blank" rel="noopener noreferrer">
+                    サイトを見る <ExternalLink className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* LaunchKit */}
+            <Card className="border-l-4 border-l-brand-accent hover:shadow-lg transition-shadow flex flex-col">
+              <CardHeader>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-brand-accent"><Rocket className="h-8 w-8" /></div>
+                    <CardTitle className="text-xl text-brand-primary">LaunchKit</CardTitle>
+                  </div>
+                  <span className="text-xs font-semibold px-2 py-1 bg-emerald-100 text-emerald-700 rounded">運用中</span>
+                </div>
+                <CardDescription className="text-slate-600">
+                  Next.js + Supabase + Stripe を組み合わせた SaaS スターターキット。認証・課金・ダッシュボードを最短で立ち上げる土台として実プロダクトに展開。
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex flex-col flex-grow">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {["Next.js", "TypeScript", "Supabase", "Stripe", "Tailwind CSS"].map((t) => (
+                    <span key={t} className="inline-block bg-slate-100 text-slate-700 px-2 py-1 rounded text-xs">{t}</span>
+                  ))}
+                </div>
+                <Button asChild variant="outline" className="mt-auto w-full">
+                  <Link href="https://launchkit.jp" target="_blank" rel="noopener noreferrer">
+                    サイトを見る <ExternalLink className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
               </CardContent>
             </Card>
           </div>
@@ -380,25 +482,41 @@ export default function Portfolio() {
             どのようなことでもお気軽にご連絡ください。
           </p>
 
-          <div className="max-w-3xl mx-auto">
-            {/* LINE Official Account */}
-            <div className="bg-white/5 rounded-lg p-6 sm:p-8 border border-white/20">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 sm:gap-8 items-start">
+            {/* メールフォーム（法人向け） */}
+            <ContactForm />
+
+            {/* LINE Official Account（個人・即時相談向け） */}
+            <div className="bg-white/5 rounded-lg p-6 sm:p-8 border border-white/20 flex flex-col">
               <div className="flex flex-col items-center text-center mb-6">
                 <div className="bg-green-500/20 p-4 rounded-full mb-4">
                   <MessageCircle className="h-10 w-10 sm:h-12 sm:w-12 text-green-400" />
                 </div>
                 <h3 className="text-xl sm:text-2xl font-semibold mb-2">LINE公式アカウント</h3>
                 <p className="text-sm sm:text-base text-blue-100">
-                  お気軽にご相談ください。<br className="sm:hidden" />最も早く返信できます
+                  カジュアル相談・スピード重視向け
                 </p>
               </div>
+              <ul className="text-sm text-blue-100 space-y-2 mb-6 flex-grow">
+                <li className="flex items-start gap-2">
+                  <span className="text-green-400 flex-shrink-0">✓</span>
+                  <span>初回ヒアリング・概算見積もり</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-400 flex-shrink-0">✓</span>
+                  <span>技術的な質問・カジュアル相談</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-400 flex-shrink-0">✓</span>
+                  <span>すばやくレスポンスが欲しい方向け</span>
+                </li>
+              </ul>
               <Button
                 asChild
-                className="w-full bg-green-500 hover:bg-green-600 text-white border-0 h-14 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
-                size="lg"
+                className="w-full bg-green-500 hover:bg-green-600 text-white border-0 h-12 text-base font-semibold shadow-lg hover:shadow-xl transition-all"
               >
                 <Link href="https://lin.ee/aHMYDKEu" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
+                  <MessageCircle className="mr-2 h-5 w-5" />
                   LINEで相談する
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </Link>
@@ -410,7 +528,7 @@ export default function Portfolio() {
 
       {/* Footer */}
       <footer className="py-8 px-6 bg-slate-900 text-slate-400 text-center">
-        <p>&copy; 2024 井原誠斗 (Masato Ihara). All rights reserved.</p>
+        <p>&copy; 2026 井原誠斗 (Masato Ihara). All rights reserved.</p>
       </footer>
     </div>
   )

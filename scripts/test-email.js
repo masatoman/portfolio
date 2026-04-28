@@ -18,7 +18,7 @@ const testEmail = async () => {
 
     // テストメール送信
     const result = await resend.emails.send({
-      from: 'contact@ihara-frontend.com',
+      from: '井原誠斗 ポートフォリオ <contact@send.ihara-frontend.com>',
       to: 'info@ihara-frontend.com',
       subject: 'テスト: メール送信機能確認',
       html: `

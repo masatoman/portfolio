@@ -46,16 +46,18 @@ export async function submitContactForm(formData: FormData) {
 
       // 管理者へのシンプル通知メール
       const adminResult = await resend.emails.send({
-        from: "contact@ihara-frontend.com",
+        from: "井原誠斗 ポートフォリオ <contact@send.ihara-frontend.com>",
         to: "info@ihara-frontend.com",
+        replyTo: email,
         subject: `新しいお問い合わせ: ${name}様より`,
         text: getAdminNotificationTemplate(contactData),
       })
 
       // 自動返信メール（シンプルテキスト）
       const autoReplyResult = await resend.emails.send({
-        from: "noreply@ihara-frontend.com",
+        from: "井原誠斗 <noreply@send.ihara-frontend.com>",
         to: email,
+        replyTo: "info@ihara-frontend.com",
         subject: "お問い合わせを受け付けました - 井原誠斗",
         text: getAutoReplyTemplate(contactData),
       })
