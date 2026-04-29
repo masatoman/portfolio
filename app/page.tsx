@@ -166,30 +166,22 @@ const pricing = [
   {
     badge: "Small",
     title: "LP / 小規模サイト",
-    price: "10万円",
-    suffix: "〜",
     desc: "サービス紹介・問い合わせ導線・基本的な SEO 設計を含む小規模サイト制作。",
   },
   {
     badge: "Popular",
     title: "WebアプリMVP",
-    price: "30万円",
-    suffix: "〜",
     desc: "認証・ DB ・主要画面・デプロイまで含めた最小構成の Web アプリ開発。",
     featured: true,
   },
   {
     badge: "AI",
     title: "AI機能追加",
-    price: "10万円",
-    suffix: "〜",
     desc: "既存アプリへの要約・生成・分類・抽出など AI 機能の実装。",
   },
   {
     badge: "Monthly",
     title: "保守・改善",
-    price: "5万円",
-    suffix: "〜 / 月",
     desc: "公開後の改善、軽微な修正、 UI 改善、機能追加を継続支援。",
   },
 ]
@@ -540,34 +532,40 @@ export default function Portfolio() {
         {/* Pricing */}
         <section id="price" className="py-14 sm:py-20 px-4 sm:px-6 bg-white border-y border-slate-200">
           <div className="container mx-auto">
-            <SectionHead label="Price" title="料金目安" text="内容・納期・仕様により変動します。まずは現状と目的を伺い、必要な範囲に絞ってご提案します。" />
+            <SectionHead
+              label="Service Menu"
+              title="対応プランとお見積もり"
+              text="内容・納期・仕様により価格は大きく変動します。まずは目的・現状・予算感を伺ったうえで、必要な範囲に絞ってご提案・お見積もりをお出しします。"
+            />
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
               {pricing.map((p) => (
                 <article
                   key={p.title}
-                  className={`rounded-2xl bg-white border p-6 shadow-sm hover:shadow-md transition-shadow ${
+                  className={`rounded-2xl bg-white border p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col ${
                     p.featured ? "border-brand-accent/50 shadow-md ring-1 ring-brand-accent/20" : "border-slate-200"
                   }`}
                 >
                   <span
-                    className={`inline-block px-2.5 py-1 rounded-full text-xs font-black mb-3 ${
+                    className={`inline-block px-2.5 py-1 rounded-full text-xs font-black mb-3 self-start ${
                       p.featured ? "bg-brand-accent/15 text-brand-accent" : "bg-brand-primary/10 text-brand-primary"
                     }`}
                   >
                     {p.badge}
                   </span>
                   <h3 className="font-black text-lg text-brand-primary tracking-tight">{p.title}</h3>
-                  <div className="mt-3 mb-3 text-2xl font-black tracking-tight text-slate-900">
-                    {p.price}
-                    <span className="text-sm text-slate-500 font-bold ml-1">{p.suffix}</span>
+                  <div className="mt-3 mb-3 text-base font-black tracking-tight text-brand-accent">
+                    お見積もり
+                    <span className="text-xs text-slate-500 font-bold ml-1">/ 規模により応相談</span>
                   </div>
-                  <p className="text-sm text-slate-600 leading-relaxed">{p.desc}</p>
+                  <p className="text-sm text-slate-600 leading-relaxed flex-grow">{p.desc}</p>
                 </article>
               ))}
             </div>
-            <p className="mt-6 text-xs text-slate-500 text-center">
-              ※ 表示価格はあくまで目安です。仕様確定後に正式なお見積もりをお出しします。
-            </p>
+            <div className="mt-8 max-w-2xl mx-auto rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6">
+              <p className="text-sm text-slate-700 leading-relaxed">
+                <strong className="text-brand-primary">ご相談時にお聞きすること</strong>: 目的 / 現状 / 期待する成果 / 納期 / ご予算感の 5 つ。仕様が固まっていない段階でも、お話ししながら必要な範囲と費用感を一緒に整理します。
+              </p>
+            </div>
           </div>
         </section>
 
