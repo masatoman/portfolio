@@ -16,6 +16,11 @@ import {
   Settings,
   CheckCircle2,
   Github,
+  Bot,
+  Lightbulb,
+  Network,
+  TrendingDown,
+  Eye,
 } from "lucide-react"
 import { ContactForm } from "@/components/contact-form"
 import Image from "next/image"
@@ -52,32 +57,53 @@ const services = [
     tags: ["Anthropic", "OpenAI", "Cloudflare Workers"],
   },
   {
-    icon: <CreditCard className="h-5 w-5" />,
+    icon: <Bot className="h-5 w-5" />,
     no: "03",
+    title: "AI業務自動化・エージェント設計",
+    desc: "Claude Code・複数エージェント・scheduled task を組み合わせ、執筆・SNS・運用業務を自動化するパイプラインを設計します。",
+    tags: ["Claude Code", "Multi-Agent", "Automation"],
+  },
+  {
+    icon: <CreditCard className="h-5 w-5" />,
+    no: "04",
     title: "Stripe決済・課金導線",
     desc: "サブスク、買い切り、有料記事など、スモールビジネス向けの課金導線を整えます。",
     tags: ["Stripe", "Webhook", "Auth"],
   },
   {
-    icon: <LayoutDashboard className="h-5 w-5" />,
-    no: "04",
-    title: "既存サービスのUI改善",
-    desc: "見た目だけでなく、問い合わせ・購入・登録につながる導線を意識して画面を改善します。",
-    tags: ["Tailwind", "Figma", "UI/UX"],
-  },
-  {
-    icon: <FileText className="h-5 w-5" />,
+    icon: <Lightbulb className="h-5 w-5" />,
     no: "05",
-    title: "技術ブログ・メディア構築",
-    desc: "MDX、SEO、OGP、有料記事、タグ管理など、個人メディアの運用基盤を作ります。",
-    tags: ["MDX", "SEO", "Content"],
+    title: "個人開発スタート支援 / 検証伴走",
+    desc: "Mom Test・Lean Validation を踏まえ、アイデア検証から MVP・媒体立ち上げ・撤退判断までを伴走します。",
+    tags: ["Mom Test", "MVP", "Validation"],
   },
   {
     icon: <Settings className="h-5 w-5" />,
     no: "06",
-    title: "運用改善・保守",
-    desc: "公開後の改善、軽微な修正、計測、機能追加などを継続的にサポートします。",
-    tags: ["Analytics", "GitHub", "改善"],
+    title: "保守・改善・グロース",
+    desc: "公開後の UI 改善・速度改善・計測・機能追加を継続支援。SEO 流入や CV 改善まで含めて見ます。",
+    tags: ["UI/UX", "Analytics", "SEO"],
+  },
+]
+
+const strengths = [
+  {
+    icon: <Network className="h-6 w-6" />,
+    title: "AIワークフロー設計",
+    desc: "「Claude Code を使う」を超えて、複数エージェント・scheduled task・特化 skill を目的別に組み合わせ、執筆・SNS・運用業務を恒常的に自動化するパイプラインを構築できます。",
+    tags: ["Multi-Agent", "Skill 設計", "Scheduled"],
+  },
+  {
+    icon: <TrendingDown className="h-6 w-6" />,
+    title: "月¥5,000の不死戦略",
+    desc: "複数 SaaS・複数ブログ・複数自動化を月¥5,000以下で運用する「壊れない構成」の実体験。技術選定・アーキテクチャ・運用設計の合わせ技で、スモールビジネスの最小コスト立ち上げに直結します。",
+    tags: ["Cost-Optimized", "Lean", "Reliable"],
+  },
+  {
+    icon: <Eye className="h-6 w-6" />,
+    title: "Build in Public検証ノウハウ",
+    desc: "失敗・数字・判断理由を構造化して公開する運用力。Mom Test や 4 LLM 連携レビュー等のフレームワークを実装に組み込み、「何が刺さるか・何が無駄か」を実体験ベースで判断できます。",
+    tags: ["Build in Public", "Mom Test", "Iteration"],
   },
 ]
 
@@ -460,6 +486,7 @@ export default function Portfolio() {
               </p>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-2">
                 仕様整理から実装、デプロイ、改善まで一気通貫で対応できるため、まだアイデア段階のご相談も歓迎です。
+                自分自身が複数プロダクトを Build in Public で公開・運用しており、失敗・数字・判断理由を含めた実体験ベースで提案できます。
               </p>
               <div className="mt-7 grid gap-0">
                 {profileRows.map((r) => (
@@ -473,8 +500,45 @@ export default function Portfolio() {
           </div>
         </section>
 
+        {/* Strengths */}
+        <section className="py-14 sm:py-20 px-4 sm:px-6">
+          <div className="container mx-auto">
+            <SectionHead
+              label="Strengths"
+              title="エンジニア × 個人開発者だからこその価値"
+              text="フレームワークが書けるエンジニアは多くいます。差がつくのは、自動化設計・コスト最適化・検証ノウハウなどの「運用知見」です。実体験ベースで提供できる差別化ポイントを 3 つに絞りました。"
+            />
+            <div className="grid md:grid-cols-3 gap-4 sm:gap-5">
+              {strengths.map((s) => (
+                <article
+                  key={s.title}
+                  className="rounded-2xl bg-gradient-to-br from-brand-primary/[0.03] to-brand-accent/[0.04] border border-slate-200 p-6 sm:p-7 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="grid place-items-center w-12 h-12 rounded-xl bg-brand-accent/10 text-brand-accent mb-4">
+                    {s.icon}
+                  </div>
+                  <h3 className="font-black text-lg sm:text-xl text-brand-primary tracking-tight mb-3">
+                    {s.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed mb-4">{s.desc}</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {s.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="px-2.5 py-1 rounded-full bg-white border border-slate-200 text-xs font-bold text-slate-600"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Pricing */}
-        <section id="price" className="py-14 sm:py-20 px-4 sm:px-6">
+        <section id="price" className="py-14 sm:py-20 px-4 sm:px-6 bg-white border-y border-slate-200">
           <div className="container mx-auto">
             <SectionHead label="Price" title="料金目安" text="内容・納期・仕様により変動します。まずは現状と目的を伺い、必要な範囲に絞ってご提案します。" />
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
@@ -508,7 +572,7 @@ export default function Portfolio() {
         </section>
 
         {/* Flow */}
-        <section className="py-14 sm:py-20 px-4 sm:px-6 bg-white border-y border-slate-200">
+        <section className="py-14 sm:py-20 px-4 sm:px-6">
           <div className="container mx-auto">
             <SectionHead label="Flow" title="ご相談の流れ" text="いきなり契約ではなく、まずは目的・予算・納期を整理し、必要な範囲を明確にします。" />
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
@@ -526,7 +590,7 @@ export default function Portfolio() {
         </section>
 
         {/* FAQ */}
-        <section className="py-14 sm:py-20 px-4 sm:px-6">
+        <section className="py-14 sm:py-20 px-4 sm:px-6 bg-white border-y border-slate-200">
           <div className="container mx-auto">
             <SectionHead label="FAQ" title="よくある質問" />
             <div className="grid md:grid-cols-2 gap-4 sm:gap-5">
