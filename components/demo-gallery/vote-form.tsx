@@ -67,6 +67,31 @@ export function DemoVoteForm({ demos }: { demos: Demo[] }) {
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [copied, setCopied] = useState(false)
+
+  async function copyUrl() {
+    const url = "https://ihara-frontend.com/demo-gallery"
+    try {
+      await navigator.clipboard.writeText(url)
+    } catch {
+      const ta = document.createElement("textarea")
+      ta.value = url
+      ta.style.position = "fixed"
+      ta.style.opacity = "0"
+      document.body.appendChild(ta)
+      ta.select()
+      try {
+        document.execCommand("copy")
+      } finally {
+        document.body.removeChild(ta)
+      }
+    }
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  const lineShareText = `工務店の業務改善ツール、 「これあったら絶対使う」 を 1〜3 つ選ぶ投票ページです。 1〜2 分で済みます。\nhttps://ihara-frontend.com/demo-gallery`
+  const lineShareUrl = `https://line.me/R/share?text=${encodeURIComponent(lineShareText)}`
 
   function toggleDemo(slug: string) {
     setError(null)
@@ -176,6 +201,42 @@ export function DemoVoteForm({ demos }: { demos: Demo[] }) {
         <p className="mt-2 text-sm leading-6 text-gray-600">
           いただいた意見を踏まえて、 実装の優先順位を決めます。 もしお知り合いの工務店関係者がいれば、 このページの URL を共有していただけると助かります。
         </p>
+
+        <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:gap-3">
+          <a
+            href={lineShareUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-md bg-[#06C755] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#05B048]"
+          >
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19.365 9.89c.50 0 .906.41.906.91 0 .5-.406.91-.906.91h-2.628v1.68h2.628c.5 0 .906.41.906.91 0 .5-.406.91-.906.91h-3.534a.91.91 0 0 1-.91-.91v-7.07c0-.5.41-.91.91-.91h3.534c.5 0 .906.41.906.91s-.406.91-.906.91h-2.628v1.86h2.628zm-5.405 4.42a.91.91 0 0 1-.91.91.93.93 0 0 1-.737-.36l-3.62-4.92v4.37a.91.91 0 0 1-.91.91.91.91 0 0 1-.91-.91v-7.07c0-.39.249-.74.617-.86a.74.74 0 0 1 .286-.05c.275 0 .56.13.74.36l3.63 4.93v-4.37c0-.5.41-.91.91-.91s.91.41.91.91v7.07h-.006zM7.31 14.31c0 .5-.41.91-.91.91s-.91-.41-.91-.91v-7.07c0-.5.41-.91.91-.91s.91.41.91.91v7.07zm-2.96 0c0 .5-.41.91-.91.91H.91A.91.91 0 0 1 0 14.31v-7.07c0-.5.41-.91.91-.91s.91.41.91.91v6.16h2.62c.5 0 .91.41.91.91M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.815 4.27 8.846 10.035 9.608.39.085.923.258 1.058.59.121.301.079.776.039 1.08l-.171 1.027c-.053.302-.241 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967C23.18 14.393 24 12.458 24 10.314"/>
+            </svg>
+            LINE で送る
+          </a>
+          <button
+            type="button"
+            onClick={copyUrl}
+            className="inline-flex items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-900 transition hover:bg-gray-50"
+          >
+            {copied ? (
+              <>
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                コピーしました
+              </>
+            ) : (
+              <>
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2m-6 12h8a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2z" />
+                </svg>
+                URL をコピー
+              </>
+            )}
+          </button>
+        </div>
+
         <button
           type="button"
           onClick={reset}
