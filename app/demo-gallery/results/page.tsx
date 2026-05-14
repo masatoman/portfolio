@@ -38,9 +38,12 @@ const DEMO_NAMES: Record<string, string> = {
 }
 
 const REJECT_LABELS: Record<string, string> = {
+  "existing-tool-enough": "既存ツール (ANDPAD 等) で間に合う",
+  "line-enough": "結局 LINE で足りてる",
   "fine-as-is": "今のやり方で十分",
   "pc-difficult": "パソコンが苦手",
   "input-burden": "入力するのが面倒",
+  "no-input-time": "入力する時間がない",
   "boss-wont-adopt": "社長 / 会社が導入しない",
   "unusable-onsite": "現場で使える気がしない",
   "other": "その他",

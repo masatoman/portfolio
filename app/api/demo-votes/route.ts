@@ -20,9 +20,12 @@ const CONTACT_INTERESTS = [
 ] as const
 
 const REJECT_REASONS = [
+  "existing-tool-enough", // ANDPAD など既存のツールで間に合っている
+  "line-enough", // 結局 LINE で足りてる
   "fine-as-is", // 今のやり方で十分
   "pc-difficult", // パソコン苦手
-  "input-burden", // 入力が面倒
+  "input-burden", // 入力するのが面倒
+  "no-input-time", // 入力する時間がない
   "boss-wont-adopt", // 社長が導入しない
   "unusable-onsite", // 現場で使えない
   "other", // その他
@@ -42,7 +45,7 @@ const voteSchema = z
     contact_value: z.string().max(200).optional().nullable(),
     reject_reasons: z
       .array(z.enum(REJECT_REASONS))
-      .max(6)
+      .max(9)
       .optional()
       .default([]),
     comment: z.string().max(1000).optional().nullable(),

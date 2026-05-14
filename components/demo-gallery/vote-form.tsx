@@ -27,18 +27,33 @@ const ROLES = [
 ]
 
 const REJECT_OPTIONS: { value: string; label: string }[] = [
+  { value: "existing-tool-enough", label: "ANDPAD など既存のツールで間に合っている" },
+  { value: "line-enough", label: "結局 LINE で足りてる" },
   { value: "fine-as-is", label: "今のやり方で十分" },
   { value: "pc-difficult", label: "パソコンが苦手" },
   { value: "input-burden", label: "入力するのが面倒" },
+  { value: "no-input-time", label: "入力する時間がない" },
   { value: "boss-wont-adopt", label: "社長 / 会社が導入しない" },
   { value: "unusable-onsite", label: "現場で使える気がしない" },
   { value: "other", label: "その他 (コメント欄に記入)" },
 ]
 
-const CONTACT_OPTIONS: { value: string; label: string }[] = [
-  { value: "want-results", label: "投票結果を先に教えてほしい" },
-  { value: "want-test", label: "リリース前にテストしてみてもいい" },
-  { value: "want-launch", label: "リリースしたら連絡してほしい" },
+const CONTACT_OPTIONS: { value: string; label: string; note: string }[] = [
+  {
+    value: "want-results",
+    label: "投票結果を先に教えてほしい",
+    note: "集計が落ち着いた頃に 1 回だけ連絡します",
+  },
+  {
+    value: "want-test",
+    label: "リリース前にテストしてみてもいい",
+    note: "β 版ができたタイミングで案内します",
+  },
+  {
+    value: "want-launch",
+    label: "リリースしたら連絡してほしい",
+    note: "本リリース時に 1 回だけ連絡します",
+  },
 ]
 
 export function DemoVoteForm({ demos }: { demos: Demo[] }) {
@@ -447,9 +462,12 @@ export function DemoVoteForm({ demos }: { demos: Demo[] }) {
         <div className="mt-6 space-y-5">
           {/* 役職 (任意) */}
           <div>
-            <label htmlFor="voter_role" className="mb-1.5 block text-sm font-medium text-gray-900">
+            <label htmlFor="voter_role" className="mb-1 block text-sm font-medium text-gray-900">
               お立場 / 役職 <span className="ml-1 text-xs font-normal text-gray-500">(任意)</span>
             </label>
+            <p className="mb-1.5 text-xs text-gray-500">
+              役職によって「欲しいツール」 の傾向が違うので、 教えてもらえると優先順位の判断に使えます。
+            </p>
             <select
               id="voter_role"
               value={voterRole}
@@ -463,9 +481,6 @@ export function DemoVoteForm({ demos }: { demos: Demo[] }) {
                 </option>
               ))}
             </select>
-            <p className="mt-1.5 text-xs text-gray-500">
-              役職によって「欲しいツール」 の傾向が違うので、 教えてもらえると優先順位の判断に使えます。
-            </p>
           </div>
 
           {/* コメント */}
@@ -497,14 +512,19 @@ export function DemoVoteForm({ demos }: { demos: Demo[] }) {
                 const isChecked = contactInterest.has(opt.value)
                 return (
                   <li key={opt.value}>
-                    <label className="flex cursor-pointer items-center gap-2.5 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 transition hover:border-gray-400">
+                    <label className="flex cursor-pointer items-start gap-2.5 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 transition hover:border-gray-400">
                       <input
                         type="checkbox"
                         checked={isChecked}
                         onChange={() => toggleContact(opt.value)}
-                        className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+                        className="mt-0.5 h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
                       />
-                      <span>{opt.label}</span>
+                      <span className="flex-1">
+                        <span className="block">{opt.label}</span>
+                        <span className="mt-0.5 block text-[11px] text-gray-500">
+                          {opt.note}
+                        </span>
+                      </span>
                     </label>
                   </li>
                 )
@@ -525,7 +545,7 @@ export function DemoVoteForm({ demos }: { demos: Demo[] }) {
                   className="block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
                 />
                 <p className="mt-1 text-xs text-gray-500">
-                  ※ 連絡先は masatoman 本人のみ参照、 第三者に共有しません。
+                  ※ 上のチェック内容以外で連絡することはありません。 勧誘や営業電話には一切使いません。 連絡先は masatoman 本人のみ参照、 第三者に共有しません。
                 </p>
               </div>
             )}
