@@ -26,11 +26,29 @@ const ROLES = [
   "その他",
 ]
 
+const REJECT_OPTIONS: { value: string; label: string }[] = [
+  { value: "fine-as-is", label: "今のやり方で十分" },
+  { value: "pc-difficult", label: "パソコンが苦手" },
+  { value: "input-burden", label: "入力するのが面倒" },
+  { value: "boss-wont-adopt", label: "社長 / 会社が導入しない" },
+  { value: "unusable-onsite", label: "現場で使える気がしない" },
+  { value: "other", label: "その他 (コメント欄に記入)" },
+]
+
+const CONTACT_OPTIONS: { value: string; label: string }[] = [
+  { value: "want-results", label: "投票結果を先に教えてほしい" },
+  { value: "want-test", label: "リリース前にテストしてみてもいい" },
+  { value: "want-launch", label: "リリースしたら連絡してほしい" },
+]
+
 export function DemoVoteForm({ demos }: { demos: Demo[] }) {
   const [selected, setSelected] = useState<Set<string>>(new Set())
   const [paidDemos, setPaidDemos] = useState<Set<string>>(new Set())
   const [voterRole, setVoterRole] = useState("")
   const [comment, setComment] = useState("")
+  const [rejectReasons, setRejectReasons] = useState<Set<string>>(new Set())
+  const [contactInterest, setContactInterest] = useState<Set<string>>(new Set())
+  const [contactValue, setContactValue] = useState("")
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -64,12 +82,33 @@ export function DemoVoteForm({ demos }: { demos: Demo[] }) {
     setPaidDemos(next)
   }
 
+  function toggleReject(value: string) {
+    setError(null)
+    const next = new Set(rejectReasons)
+    if (next.has(value)) {
+      next.delete(value)
+    } else {
+      next.add(value)
+    }
+    setRejectReasons(next)
+  }
+
+  function toggleContact(value: string) {
+    const next = new Set(contactInterest)
+    if (next.has(value)) {
+      next.delete(value)
+    } else {
+      next.add(value)
+    }
+    setContactInterest(next)
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
 
-    if (selected.size === 0) {
-      setError("少なくとも 1 つ選択してください")
+    if (selected.size === 0 && rejectReasons.size === 0) {
+      setError("ツールを 1 つ以上選ぶか、 「全部いらない」 の理由を 1 つ以上選んでください")
       return
     }
 
@@ -83,6 +122,9 @@ export function DemoVoteForm({ demos }: { demos: Demo[] }) {
           voter_role: voterRole || null,
           selected_demos: Array.from(selected),
           paid_demos: Array.from(paidDemos),
+          contact_interest: Array.from(contactInterest),
+          contact_value: contactValue.trim() || null,
+          reject_reasons: Array.from(rejectReasons),
           comment: comment.trim() || null,
         }),
       })
@@ -103,6 +145,9 @@ export function DemoVoteForm({ demos }: { demos: Demo[] }) {
     setPaidDemos(new Set())
     setVoterRole("")
     setComment("")
+    setRejectReasons(new Set())
+    setContactInterest(new Set())
+    setContactValue("")
     setSubmitted(false)
     setError(null)
   }
@@ -233,12 +278,14 @@ export function DemoVoteForm({ demos }: { demos: Demo[] }) {
           選んだツールを送る
         </h2>
         <p className="mt-2 text-sm leading-6 text-gray-600">
-          {selected.size === 0 ? (
-            <>気になるツールを <strong>最大 {MAX_SELECTIONS} つ</strong>選んでから、 こちらに情報を入れて送信してください。</>
-          ) : selected.size < MAX_SELECTIONS ? (
+          {selected.size === 0 && rejectReasons.size === 0 ? (
+            <>気になるツールを <strong>最大 {MAX_SELECTIONS} つ</strong>選ぶか、 「全部いらない」 場合は下の理由欄から選んでください。</>
+          ) : selected.size > 0 && selected.size < MAX_SELECTIONS ? (
             <>現在 <strong>{selected.size} つ</strong>選択中 (あと {remaining} つまで選べます)。</>
-          ) : (
+          ) : selected.size === MAX_SELECTIONS ? (
             <><strong>{selected.size} つ選択完了</strong>。 下のフォームを記入して送信してください。</>
+          ) : (
+            <><strong>「全部いらない」 として送信できます。</strong> 理由を {rejectReasons.size} つ選択中。</>
           )}
         </p>
 
@@ -312,6 +359,36 @@ export function DemoVoteForm({ demos }: { demos: Demo[] }) {
                     </li>
                   )
                 })}
+            </ul>
+          </div>
+        )}
+
+        {/* 「全部いらない」 拒否理由 (投票 0 件の場合のみ表示) */}
+        {selected.size === 0 && (
+          <div className="mt-5 rounded-md border border-amber-200 bg-amber-50 p-4">
+            <p className="mb-3 text-sm font-medium text-gray-900">
+              「全部いらない」 場合は、 理由を 1 つ以上選んでください
+            </p>
+            <p className="mb-3 text-xs leading-5 text-gray-600">
+              ピンとくるものが無くても OK。 「なぜ刺さらなかったか」 が一番ありがたい情報です。
+            </p>
+            <ul className="space-y-2">
+              {REJECT_OPTIONS.map((opt) => {
+                const isChecked = rejectReasons.has(opt.value)
+                return (
+                  <li key={opt.value}>
+                    <label className="flex cursor-pointer items-center gap-2.5 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 transition hover:border-gray-400">
+                      <input
+                        type="checkbox"
+                        checked={isChecked}
+                        onChange={() => toggleReject(opt.value)}
+                        className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+                      />
+                      <span>{opt.label}</span>
+                    </label>
+                  </li>
+                )
+              })}
             </ul>
           </div>
         )}
@@ -400,11 +477,58 @@ export function DemoVoteForm({ demos }: { demos: Demo[] }) {
               id="comment"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-              placeholder="例: 「現場写真の整理が特に欲しい」 「みつも郎との連携があれば最高」 「全部いらない」 など"
+              placeholder="例: 「現場写真の整理が特に欲しい」 「みつも郎との連携があれば最高」 「いま自分はこうしてる」 など"
               rows={4}
               maxLength={1000}
               className="block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
             />
+          </div>
+
+          {/* 継続接触 (任意) */}
+          <div>
+            <p className="mb-1.5 text-sm font-medium text-gray-900">
+              結果や進捗を受け取りたい方へ <span className="ml-1 text-xs font-normal text-gray-500">(任意)</span>
+            </p>
+            <p className="mb-2.5 text-xs leading-5 text-gray-500">
+              チェックすると、 投票結果・テスト・リリース時に連絡できるようになります。
+            </p>
+            <ul className="space-y-2">
+              {CONTACT_OPTIONS.map((opt) => {
+                const isChecked = contactInterest.has(opt.value)
+                return (
+                  <li key={opt.value}>
+                    <label className="flex cursor-pointer items-center gap-2.5 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 transition hover:border-gray-400">
+                      <input
+                        type="checkbox"
+                        checked={isChecked}
+                        onChange={() => toggleContact(opt.value)}
+                        className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+                      />
+                      <span>{opt.label}</span>
+                    </label>
+                  </li>
+                )
+              })}
+            </ul>
+            {contactInterest.size > 0 && (
+              <div className="mt-3">
+                <label htmlFor="contact_value" className="mb-1 block text-xs font-medium text-gray-700">
+                  LINE ID または メールアドレス
+                </label>
+                <input
+                  id="contact_value"
+                  type="text"
+                  value={contactValue}
+                  onChange={(e) => setContactValue(e.target.value)}
+                  placeholder="例: yamada@example.com / LINE: @abc123"
+                  maxLength={200}
+                  className="block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                />
+                <p className="mt-1 text-xs text-gray-500">
+                  ※ 連絡先は masatoman 本人のみ参照、 第三者に共有しません。
+                </p>
+              </div>
+            )}
           </div>
 
           {/* エラー */}
@@ -417,10 +541,16 @@ export function DemoVoteForm({ demos }: { demos: Demo[] }) {
           {/* 送信ボタン */}
           <button
             type="submit"
-            disabled={submitting || selected.size === 0}
+            disabled={submitting || (selected.size === 0 && rejectReasons.size === 0)}
             className="inline-flex w-full items-center justify-center rounded-md bg-gray-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:bg-gray-300"
           >
-            {submitting ? "送信中…" : `${selected.size} 件で送信する`}
+            {submitting
+              ? "送信中…"
+              : selected.size > 0
+              ? `${selected.size} 件で送信する`
+              : rejectReasons.size > 0
+              ? `「全部いらない」 で送信する`
+              : "ツールを選ぶか、 「全部いらない」 理由を選んでください"}
           </button>
         </div>
       </section>

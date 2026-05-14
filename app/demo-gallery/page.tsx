@@ -14,7 +14,7 @@ const demos = [
     name: "見積 PDF 整理ツール",
     oneLiner: "PDF をアップしたら自動で項目テーブルに整理",
     description:
-      "外注先 (設備・電気・水道業者など) から PDF で受け取った見積書を、 ファイルアップすると AI が自動で項目・数量・単価を抽出して表に整理します。 みつも郎 17 への二重入力で潰れる時間を解消します。",
+      "外注先 (設備・電気・水道業者など) から PDF で受け取った見積書を、 ファイルをアップすると項目・数量・単価が自動で表に整理されます。 みつも郎 17 への二重入力で潰れる時間を解消します。",
     hypothesis: "② みつも郎 17 二重入力",
     imagePath: "/images/demo-mocks/estimate-organizer.png",
     orientation: "desktop" as const,
@@ -36,7 +36,7 @@ const demos = [
     name: "現場写真自動整理",
     oneLiner: "撮りためた写真を現場名・工程・日付で自動分類",
     description:
-      "現場で撮った大量の写真をアップロードすると、 AI が「現場名 / 工程 (基礎・配筋・上棟…) / 撮影日」 で自動仕分け。 「あの配筋の写真どこ」 で 30 分探す手間がなくなります。",
+      "現場で撮った大量の写真をアップロードすると、 「現場名 / 工程 (基礎・配筋・上棟…) / 撮影日」 で自動仕分けされます。 「あの配筋の写真どこ」 で 30 分探す手間がなくなります。",
     hypothesis: "④ 移動深夜 / 現場完結",
     imagePath: "/images/demo-mocks/site-photo-organizer.png",
     orientation: "desktop" as const,
@@ -47,7 +47,7 @@ const demos = [
     name: "音声日報投稿",
     oneLiner: "車中で話した内容が、 家に着く頃には日報になっている",
     description:
-      "現場の帰り道で話した内容を音声録音すると、 AI が日報フォーマットに整えてくれます。 「事務所に戻ってからの日報書きで残業」 を解消する仕組み。",
+      "現場の帰り道で話した内容を音声録音すると、 日報フォーマットに自動で整います。 「事務所に戻ってからの日報書きで残業」 を解消する仕組み。",
     hypothesis: "④ 移動深夜 / 現場完結",
     imagePath: "/images/demo-mocks/voice-daily-report.png",
     secondaryImagePath: "/images/demo-mocks/voice-daily-report-history.png",

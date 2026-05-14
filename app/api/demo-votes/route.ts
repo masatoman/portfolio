@@ -13,12 +13,38 @@ const VALID_SLUGS = [
   "website-refresh",
 ] as const
 
+const CONTACT_INTERESTS = [
+  "want-results", // 投票結果を先に教えてほしい
+  "want-test", // リリース前にテスト協力 OK
+  "want-launch", // リリースしたら連絡してほしい
+] as const
+
+const REJECT_REASONS = [
+  "fine-as-is", // 今のやり方で十分
+  "pc-difficult", // パソコン苦手
+  "input-burden", // 入力が面倒
+  "boss-wont-adopt", // 社長が導入しない
+  "unusable-onsite", // 現場で使えない
+  "other", // その他
+] as const
+
 const voteSchema = z
   .object({
     voter_name: z.string().max(50).optional().nullable(),
     voter_role: z.string().max(50).optional().nullable(),
-    selected_demos: z.array(z.enum(VALID_SLUGS)).min(1).max(3),
+    selected_demos: z.array(z.enum(VALID_SLUGS)).max(3).optional().default([]),
     paid_demos: z.array(z.enum(VALID_SLUGS)).max(3).optional().default([]),
+    contact_interest: z
+      .array(z.enum(CONTACT_INTERESTS))
+      .max(3)
+      .optional()
+      .default([]),
+    contact_value: z.string().max(200).optional().nullable(),
+    reject_reasons: z
+      .array(z.enum(REJECT_REASONS))
+      .max(6)
+      .optional()
+      .default([]),
     comment: z.string().max(1000).optional().nullable(),
   })
   .refine(
@@ -27,6 +53,15 @@ const voteSchema = z
     {
       message: "paid_demos must be subset of selected_demos",
       path: ["paid_demos"],
+    }
+  )
+  .refine(
+    // 投票 1 件以上 OR 拒否理由 1 件以上 のどちらかが必要
+    (data) =>
+      data.selected_demos.length >= 1 || data.reject_reasons.length >= 1,
+    {
+      message: "either selected_demos or reject_reasons must have at least 1 item",
+      path: ["selected_demos"],
     }
   )
 
@@ -65,6 +100,9 @@ export async function POST(req: NextRequest) {
     voter_role: parsed.data.voter_role || null,
     selected_demos: parsed.data.selected_demos,
     paid_demos: parsed.data.paid_demos,
+    contact_interest: parsed.data.contact_interest,
+    contact_value: parsed.data.contact_value || null,
+    reject_reasons: parsed.data.reject_reasons,
     comment: parsed.data.comment || null,
     ip_address: ipAddress,
     user_agent: userAgent,
