@@ -1,0 +1,92 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="28" fill="#FDF2F8"/>
+  <rect x="48" y="48" width="1104" height="624" rx="24" fill="white" stroke="#FDD6E6" stroke-width="4"/>
+
+  <!-- Right: filter chips + counts -->
+  <rect x="510" y="110" width="558" height="148" rx="22" fill="#FFF5FA" stroke="#FDD6E6" stroke-width="4"/>
+  <text x="544" y="174" fill="#071B49" font-size="40" font-weight="900" font-family="Arial, sans-serif">撮るだけで 仕分け済み</text>
+  <text x="544" y="220" fill="#5F6F89" font-size="22" font-weight="700" font-family="Arial, sans-serif">現場名 × 工程 × 撮影日 で タブ切替</text>
+
+  <!-- Stage counts row -->
+  <rect x="510" y="288" width="130" height="80" rx="18" fill="#FCE7F3"/>
+  <text x="575" y="320" fill="#BE185D" font-size="14" font-weight="800" letter-spacing="3" text-anchor="middle" font-family="Arial, sans-serif">配筋</text>
+  <text x="575" y="354" fill="#071B49" font-size="28" font-weight="900" text-anchor="middle" font-family="Arial, sans-serif">8枚</text>
+
+  <rect x="650" y="288" width="130" height="80" rx="18" fill="#FCE7F3"/>
+  <text x="715" y="320" fill="#BE185D" font-size="14" font-weight="800" letter-spacing="3" text-anchor="middle" font-family="Arial, sans-serif">断熱</text>
+  <text x="715" y="354" fill="#071B49" font-size="28" font-weight="900" text-anchor="middle" font-family="Arial, sans-serif">6枚</text>
+
+  <rect x="790" y="288" width="130" height="80" rx="18" fill="#FCE7F3"/>
+  <text x="855" y="320" fill="#BE185D" font-size="14" font-weight="800" letter-spacing="3" text-anchor="middle" font-family="Arial, sans-serif">防水</text>
+  <text x="855" y="354" fill="#071B49" font-size="28" font-weight="900" text-anchor="middle" font-family="Arial, sans-serif">5枚</text>
+
+  <rect x="930" y="288" width="138" height="80" rx="18" fill="#FCE7F3"/>
+  <text x="999" y="320" fill="#BE185D" font-size="14" font-weight="800" letter-spacing="3" text-anchor="middle" font-family="Arial, sans-serif">仕上げ</text>
+  <text x="999" y="354" fill="#071B49" font-size="28" font-weight="900" text-anchor="middle" font-family="Arial, sans-serif">5枚</text>
+
+  <!-- Sub filter chips -->
+  <rect x="510" y="404" width="100" height="42" rx="21" fill="#BE185D"/>
+  <text x="560" y="432" fill="white" font-size="18" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">山田邸</text>
+  <rect x="624" y="404" width="100" height="42" rx="21" fill="white" stroke="#FDD6E6" stroke-width="3"/>
+  <text x="674" y="432" fill="#33496D" font-size="18" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">田中邸</text>
+  <rect x="738" y="404" width="100" height="42" rx="21" fill="white" stroke="#FDD6E6" stroke-width="3"/>
+  <text x="788" y="432" fill="#33496D" font-size="18" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">鈴木邸</text>
+
+  <text x="510" y="498" fill="#071B49" font-size="22" font-weight="800" font-family="Arial, sans-serif">「あの配筋写真どこ」</text>
+  <text x="510" y="528" fill="#BE185D" font-size="22" font-weight="800" font-family="Arial, sans-serif">で 30分 行方不明、をなくす。</text>
+
+  <!-- Left: photo grid mock -->
+  <rect x="88" y="110" width="380" height="500" rx="24" fill="#FFF5FA" stroke="#FDD6E6" stroke-width="4"/>
+
+  <!-- 12 photo tiles -->
+  <rect x="116" y="138" width="100" height="76" rx="12" fill="#1F3B66"/>
+  <rect x="116" y="148" width="68" height="20" rx="10" fill="#FCE7F3"/>
+  <text x="150" y="164" fill="#1F3B66" font-size="14" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">配筋</text>
+
+  <rect x="226" y="138" width="100" height="76" rx="12" fill="#1F3B66"/>
+  <rect x="226" y="148" width="68" height="20" rx="10" fill="#FCE7F3"/>
+  <text x="260" y="164" fill="#1F3B66" font-size="14" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">配筋</text>
+
+  <rect x="336" y="138" width="100" height="76" rx="12" fill="#D97706"/>
+  <rect x="336" y="148" width="68" height="20" rx="10" fill="#FFF7ED"/>
+  <text x="370" y="164" fill="#D97706" font-size="14" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">断熱</text>
+
+  <rect x="116" y="226" width="100" height="76" rx="12" fill="#D97706"/>
+  <rect x="116" y="236" width="68" height="20" rx="10" fill="#FFF7ED"/>
+  <text x="150" y="252" fill="#D97706" font-size="14" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">断熱</text>
+
+  <rect x="226" y="226" width="100" height="76" rx="12" fill="#0E7490"/>
+  <rect x="226" y="236" width="68" height="20" rx="10" fill="#ECFEFF"/>
+  <text x="260" y="252" fill="#0E7490" font-size="14" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">防水</text>
+
+  <rect x="336" y="226" width="100" height="76" rx="12" fill="#0E7490"/>
+  <rect x="336" y="236" width="68" height="20" rx="10" fill="#ECFEFF"/>
+  <text x="370" y="252" fill="#0E7490" font-size="14" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">防水</text>
+
+  <rect x="116" y="314" width="100" height="76" rx="12" fill="#7C3AED"/>
+  <rect x="116" y="324" width="68" height="20" rx="10" fill="#FAF5FF"/>
+  <text x="150" y="340" fill="#7C3AED" font-size="14" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">仕上げ</text>
+
+  <rect x="226" y="314" width="100" height="76" rx="12" fill="#7C3AED"/>
+  <rect x="226" y="324" width="68" height="20" rx="10" fill="#FAF5FF"/>
+  <text x="260" y="340" fill="#7C3AED" font-size="14" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">仕上げ</text>
+
+  <rect x="336" y="314" width="100" height="76" rx="12" fill="#7C3AED"/>
+  <rect x="336" y="324" width="68" height="20" rx="10" fill="#FAF5FF"/>
+  <text x="370" y="340" fill="#7C3AED" font-size="14" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">仕上げ</text>
+
+  <rect x="116" y="402" width="100" height="76" rx="12" fill="#1F3B66"/>
+  <rect x="116" y="412" width="68" height="20" rx="10" fill="#FCE7F3"/>
+  <text x="150" y="428" fill="#1F3B66" font-size="14" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">配筋</text>
+
+  <rect x="226" y="402" width="100" height="76" rx="12" fill="#D97706"/>
+  <rect x="226" y="412" width="68" height="20" rx="10" fill="#FFF7ED"/>
+  <text x="260" y="428" fill="#D97706" font-size="14" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">断熱</text>
+
+  <rect x="336" y="402" width="100" height="76" rx="12" fill="#0E7490"/>
+  <rect x="336" y="412" width="68" height="20" rx="10" fill="#ECFEFF"/>
+  <text x="370" y="428" fill="#0E7490" font-size="14" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">防水</text>
+
+  <text x="278" y="538" fill="#071B49" font-size="22" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">12枚 / 全24枚</text>
+  <text x="278" y="572" fill="#BE185D" font-size="18" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">タブで 一発呼び出し</text>
+</svg>

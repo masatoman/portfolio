@@ -1,0 +1,59 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="28" fill="#FFFBEB"/>
+  <rect x="48" y="48" width="1104" height="624" rx="24" fill="white" stroke="#FDE68A" stroke-width="4"/>
+
+  <!-- Left: receipt photo mock -->
+  <rect x="88" y="110" width="440" height="500" rx="24" fill="#FEF3C7" stroke="#FDE68A" stroke-width="4"/>
+  <text x="120" y="160" fill="#B45309" font-size="14" font-weight="800" letter-spacing="3" font-family="Arial, sans-serif">受け取った 領収書</text>
+
+  <!-- Receipt paper -->
+  <rect x="160" y="190" width="296" height="380" rx="6" fill="white" stroke="#FDE68A" stroke-width="3"/>
+  <text x="308" y="240" fill="#071B49" font-size="24" font-weight="900" text-anchor="middle" font-family="Arial, sans-serif">コーナン 西宮店</text>
+  <line x1="180" y1="262" x2="436" y2="262" stroke="#FDE68A" stroke-width="2" stroke-dasharray="4 4"/>
+
+  <text x="180" y="296" fill="#5F6F89" font-size="16" font-weight="700" font-family="Menlo, monospace">2026/5/8</text>
+  <text x="436" y="296" fill="#5F6F89" font-size="16" font-weight="700" text-anchor="end" font-family="Menlo, monospace">15:42</text>
+
+  <text x="180" y="334" fill="#33496D" font-size="16" font-weight="700" font-family="Menlo, monospace">石膏ボード 12.5mm</text>
+  <text x="436" y="334" fill="#33496D" font-size="16" font-weight="700" text-anchor="end" font-family="Menlo, monospace">¥2,480</text>
+
+  <text x="180" y="362" fill="#33496D" font-size="16" font-weight="700" font-family="Menlo, monospace">下地 木材</text>
+  <text x="436" y="362" fill="#33496D" font-size="16" font-weight="700" text-anchor="end" font-family="Menlo, monospace">¥4,200</text>
+
+  <text x="180" y="390" fill="#33496D" font-size="16" font-weight="700" font-family="Menlo, monospace">クロス糊</text>
+  <text x="436" y="390" fill="#33496D" font-size="16" font-weight="700" text-anchor="end" font-family="Menlo, monospace">¥1,800</text>
+
+  <text x="180" y="418" fill="#33496D" font-size="16" font-weight="700" font-family="Menlo, monospace">ビス・釘 各種</text>
+  <text x="436" y="418" fill="#33496D" font-size="16" font-weight="700" text-anchor="end" font-family="Menlo, monospace">¥4,000</text>
+
+  <line x1="180" y1="450" x2="436" y2="450" stroke="#FDE68A" stroke-width="2"/>
+  <text x="180" y="486" fill="#071B49" font-size="22" font-weight="900" font-family="Menlo, monospace">合計</text>
+  <text x="436" y="486" fill="#071B49" font-size="22" font-weight="900" text-anchor="end" font-family="Menlo, monospace">¥12,480</text>
+
+  <text x="308" y="538" fill="#5F6F89" font-size="14" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">ありがとうございました</text>
+
+  <!-- Right: auto-extracted form -->
+  <rect x="570" y="110" width="498" height="148" rx="22" fill="#FFFBEB" stroke="#FDE68A" stroke-width="4"/>
+  <text x="600" y="170" fill="#071B49" font-size="40" font-weight="900" font-family="Arial, sans-serif">撮るだけで 経費に</text>
+  <text x="600" y="218" fill="#5F6F89" font-size="22" font-weight="700" font-family="Arial, sans-serif">日付・金額・取引先 が 自動で 入力されます</text>
+
+  <rect x="570" y="288" width="498" height="80" rx="18" fill="#F9FBFF" stroke="#D8E3F2" stroke-width="3"/>
+  <text x="600" y="316" fill="#5F6F89" font-size="12" font-weight="800" letter-spacing="3" font-family="Arial, sans-serif">日付</text>
+  <rect x="668" y="298" width="78" height="22" rx="11" fill="#DCFCE7"/>
+  <text x="707" y="313" fill="#15803D" font-size="11" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">自動入力</text>
+  <text x="600" y="354" fill="#071B49" font-size="22" font-weight="900" font-family="Menlo, monospace">2026-05-08</text>
+
+  <rect x="570" y="386" width="498" height="80" rx="18" fill="#F9FBFF" stroke="#D8E3F2" stroke-width="3"/>
+  <text x="600" y="414" fill="#5F6F89" font-size="12" font-weight="800" letter-spacing="3" font-family="Arial, sans-serif">取引先</text>
+  <rect x="690" y="396" width="78" height="22" rx="11" fill="#DCFCE7"/>
+  <text x="729" y="411" fill="#15803D" font-size="11" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">自動入力</text>
+  <text x="600" y="452" fill="#071B49" font-size="22" font-weight="800" font-family="Arial, sans-serif">コーナン 西宮店</text>
+
+  <rect x="570" y="484" width="498" height="80" rx="18" fill="#FEF3C7" stroke="#FDE68A" stroke-width="3"/>
+  <text x="600" y="512" fill="#B45309" font-size="12" font-weight="800" letter-spacing="3" font-family="Arial, sans-serif">金額</text>
+  <rect x="666" y="494" width="78" height="22" rx="11" fill="#DCFCE7"/>
+  <text x="705" y="509" fill="#15803D" font-size="11" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">自動入力</text>
+  <text x="600" y="552" fill="#071B49" font-size="32" font-weight="900" font-family="Menlo, monospace">¥12,480</text>
+
+  <text x="570" y="600" fill="#B45309" font-size="16" font-weight="800" font-family="Arial, sans-serif">電子帳簿保存法 (電帳法) にも 自動対応</text>
+</svg>

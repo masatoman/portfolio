@@ -1,0 +1,24 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="28" fill="#F4F8FF"/>
+  <rect x="48" y="48" width="1104" height="624" rx="24" fill="white" stroke="#D8E3F2" stroke-width="4"/>
+  <rect x="92" y="110" width="220" height="280" rx="20" fill="#FFF8ED" stroke="#D8E3F2" stroke-width="4"/>
+  <rect x="132" y="146" width="108" height="68" rx="16" fill="#F47B20"/>
+  <text x="186" y="190" fill="white" font-size="40" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">PDF</text>
+  <rect x="420" y="110" width="640" height="280" rx="22" fill="#FBFDFF" stroke="#D8E3F2" stroke-width="4"/>
+  <text x="476" y="180" fill="#071B49" font-size="54" font-weight="800" font-family="Arial, sans-serif">見積項目を整理</text>
+  <rect x="478" y="228" width="118" height="72" rx="18" fill="#EEF4FF"/>
+  <rect x="624" y="228" width="118" height="72" rx="18" fill="#EEF4FF"/>
+  <rect x="770" y="228" width="118" height="72" rx="18" fill="#EEF4FF"/>
+  <rect x="916" y="228" width="92" height="72" rx="18" fill="#EEF4FF"/>
+  <text x="537" y="274" fill="#5F6F89" font-size="28" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">項目</text>
+  <text x="683" y="274" fill="#5F6F89" font-size="28" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">数量</text>
+  <text x="829" y="274" fill="#5F6F89" font-size="28" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">単価</text>
+  <text x="962" y="274" fill="#5F6F89" font-size="28" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">金額</text>
+  <rect x="478" y="326" width="530" height="30" rx="15" fill="#EFF3F9"/>
+  <rect x="478" y="372" width="456" height="30" rx="15" fill="#EFF3F9"/>
+  <path d="M326 240H392" stroke="#F47B20" stroke-width="10" stroke-linecap="round"/>
+  <path d="M378 214L416 240L378 266" fill="#F47B20"/>
+  <rect x="92" y="454" width="968" height="160" rx="22" fill="#F9FBFF" stroke="#D8E3F2" stroke-width="4"/>
+  <text x="148" y="520" fill="#071B49" font-size="34" font-weight="800" font-family="Arial, sans-serif">確認や転記に使いやすい一覧へ</text>
+  <text x="148" y="572" fill="#5F6F89" font-size="26" font-weight="700" font-family="Arial, sans-serif">外注先ごとに違う見積書を、読みやすい形へ整理するデモ</text>
+</svg>

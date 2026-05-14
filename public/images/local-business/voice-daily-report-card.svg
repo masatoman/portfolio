@@ -1,0 +1,32 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="28" fill="#F4FBF8"/>
+  <rect x="48" y="48" width="1104" height="624" rx="24" fill="white" stroke="#CFEADC" stroke-width="4"/>
+
+  <!-- Left: recording state -->
+  <rect x="88" y="110" width="380" height="500" rx="24" fill="#ECFDF5" stroke="#CFEADC" stroke-width="4"/>
+  <text x="278" y="194" fill="#0A8259" font-size="22" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">録音中…</text>
+  <circle cx="278" cy="320" r="86" fill="#10B981"/>
+  <rect x="252" y="294" width="52" height="52" rx="6" fill="white"/>
+  <text x="278" y="450" fill="#0A8259" font-size="40" font-weight="900" text-anchor="middle" font-family="Menlo, monospace">00:47</text>
+  <text x="278" y="498" fill="#5F6F89" font-size="20" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">タップで 録音停止</text>
+  <rect x="138" y="540" width="280" height="48" rx="12" fill="white" stroke="#CFEADC" stroke-width="3"/>
+  <text x="278" y="572" fill="#0A8259" font-size="20" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">現場 A の状況 (47秒)</text>
+
+  <!-- Right: formatted report -->
+  <rect x="510" y="110" width="558" height="148" rx="22" fill="#F9FBFF" stroke="#D8E3F2" stroke-width="4"/>
+  <text x="554" y="170" fill="#071B49" font-size="40" font-weight="900" font-family="Arial, sans-serif">話した内容を 日報に変える</text>
+  <text x="554" y="218" fill="#5F6F89" font-size="22" font-weight="700" font-family="Arial, sans-serif">車中で1分話せば、家に着く頃に出来上がっている</text>
+
+  <rect x="510" y="288" width="558" height="322" rx="22" fill="white" stroke="#CFEADC" stroke-width="4"/>
+  <text x="540" y="332" fill="#5F6F89" font-size="14" font-weight="800" letter-spacing="3" font-family="Arial, sans-serif">現場名</text>
+  <text x="540" y="364" fill="#071B49" font-size="22" font-weight="800" font-family="Arial, sans-serif">山田邸 新築工事</text>
+
+  <text x="540" y="408" fill="#5F6F89" font-size="14" font-weight="800" letter-spacing="3" font-family="Arial, sans-serif">今日の進捗</text>
+  <text x="540" y="440" fill="#071B49" font-size="20" font-weight="700" font-family="Arial, sans-serif">基礎コンクリート 打設 完了</text>
+
+  <text x="540" y="484" fill="#B9460A" font-size="14" font-weight="800" letter-spacing="3" font-family="Arial, sans-serif">課題・不安</text>
+  <text x="540" y="516" fill="#B9460A" font-size="20" font-weight="700" font-family="Arial, sans-serif">打設後 24時間 の天気が不安定</text>
+
+  <text x="540" y="560" fill="#0A8259" font-size="14" font-weight="800" letter-spacing="3" font-family="Arial, sans-serif">明日の段取り</text>
+  <text x="540" y="592" fill="#0A8259" font-size="20" font-weight="700" font-family="Arial, sans-serif">朝一で 山田邸 養生確認 → 田中邸へ移動</text>
+</svg>

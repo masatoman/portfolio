@@ -1,0 +1,27 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="28" fill="#F5F9FF"/>
+  <rect x="58" y="58" width="492" height="604" rx="24" fill="#FFF7F6" stroke="#F0D8D5" stroke-width="4"/>
+  <text x="102" y="128" fill="#C26B64" font-size="30" font-weight="800" font-family="Arial, sans-serif">Before</text>
+  <rect x="102" y="166" width="404" height="92" rx="20" fill="white"/>
+  <text x="132" y="220" fill="#071B49" font-size="28" font-weight="700" font-family="Arial, sans-serif">古いデザインで相談導線が弱い</text>
+  <rect x="102" y="294" width="404" height="262" rx="24" fill="#F6EFEF"/>
+  <rect x="130" y="328" width="180" height="18" rx="9" fill="#E6D7D6"/>
+  <rect x="130" y="364" width="250" height="18" rx="9" fill="#E6D7D6"/>
+  <rect x="130" y="418" width="330" height="18" rx="9" fill="#E6D7D6"/>
+  <rect x="130" y="454" width="280" height="18" rx="9" fill="#E6D7D6"/>
+  <rect x="648" y="58" width="494" height="604" rx="24" fill="#F7FBFF" stroke="#D6E9FF" stroke-width="4"/>
+  <text x="692" y="128" fill="#2F6FB6" font-size="30" font-weight="800" font-family="Arial, sans-serif">After</text>
+  <rect x="692" y="166" width="406" height="248" rx="28" fill="#071B49"/>
+  <text x="734" y="242" fill="white" font-size="46" font-weight="800" font-family="Arial, sans-serif">相談につながる</text>
+  <text x="734" y="304" fill="white" font-size="46" font-weight="800" font-family="Arial, sans-serif">工務店サイトへ刷新</text>
+  <rect x="734" y="344" width="220" height="58" rx="29" fill="white"/>
+  <text x="844" y="381" fill="#071B49" font-size="26" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">無料相談</text>
+  <rect x="692" y="450" width="264" height="170" rx="28" fill="white" stroke="#D8E3F2" stroke-width="4"/>
+  <rect x="734" y="476" width="180" height="30" rx="15" fill="#EEF6FF"/>
+  <rect x="734" y="524" width="170" height="54" rx="18" fill="#FFF5E8"/>
+  <text x="822" y="557" fill="#071B49" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">スマホ導線</text>
+  <rect x="988" y="450" width="110" height="170" rx="28" fill="#0D2B66"/>
+  <rect x="1012" y="486" width="62" height="18" rx="9" fill="#9DC3FF"/>
+  <rect x="1012" y="520" width="62" height="18" rx="9" fill="#FFFFFF"/>
+  <rect x="1012" y="554" width="62" height="18" rx="9" fill="#FFF3DC"/>
+</svg>

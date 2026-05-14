@@ -1,0 +1,38 @@
+<svg width="1440" height="960" viewBox="0 0 1440 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1440" height="960" rx="48" fill="#F4F8FF"/>
+  <rect x="48" y="48" width="1344" height="864" rx="40" fill="#FFF9F0" stroke="#D9E6F5" stroke-width="6"/>
+  <rect x="112" y="128" width="280" height="360" rx="28" fill="white" stroke="#D4DEED" stroke-width="6"/>
+  <rect x="156" y="172" width="116" height="76" rx="18" fill="#FF6122"/>
+  <text x="214" y="222" fill="white" font-size="48" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">PDF</text>
+  <rect x="162" y="304" width="176" height="176" rx="26" fill="#FFF9F0" stroke="#D4DEED" stroke-width="6"/>
+  <text x="162" y="564" fill="#1A2559" font-size="42" font-weight="700" font-family="Arial, sans-serif">見積書.pdf</text>
+  <rect x="472" y="128" width="508" height="360" rx="32" fill="white" stroke="#D4DEED" stroke-width="6"/>
+  <text x="536" y="226" fill="#1A2559" font-size="76" font-weight="800" font-family="Arial, sans-serif">見積データ</text>
+  <rect x="540" y="310" width="112" height="88" rx="20" fill="#EEF3FF"/>
+  <rect x="692" y="310" width="112" height="88" rx="20" fill="#EEF3FF"/>
+  <rect x="844" y="310" width="112" height="88" rx="20" fill="#EEF3FF"/>
+  <text x="596" y="368" fill="#657595" font-size="32" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">項目</text>
+  <text x="748" y="368" fill="#657595" font-size="32" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">数量</text>
+  <text x="900" y="368" fill="#657595" font-size="32" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">金額</text>
+  <rect x="1036" y="128" width="284" height="360" rx="32" fill="white" stroke="#D4DEED" stroke-width="6"/>
+  <text x="1092" y="226" fill="#1A2559" font-size="72" font-weight="800" font-family="Arial, sans-serif">進捗管理</text>
+  <rect x="1098" y="310" width="168" height="76" rx="18" fill="#EDF8F3"/>
+  <rect x="1098" y="420" width="168" height="76" rx="18" fill="#EDF8F3"/>
+  <text x="1182" y="360" fill="#1A2559" font-size="32" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">見積確認</text>
+  <text x="1182" y="470" fill="#1A2559" font-size="32" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">資料送付</text>
+  <rect x="112" y="564" width="360" height="260" rx="28" fill="white" stroke="#D4DEED" stroke-width="6"/>
+  <text x="166" y="646" fill="#1A2559" font-size="68" font-weight="800" font-family="Arial, sans-serif">電話メモ</text>
+  <text x="166" y="728" fill="#1A2559" font-size="36" font-weight="700" font-family="Arial, sans-serif">○○建設 商談中</text>
+  <text x="166" y="786" fill="#1A2559" font-size="36" font-weight="700" font-family="Arial, sans-serif">5/20 14:30</text>
+  <rect x="520" y="564" width="800" height="260" rx="28" fill="white" stroke="#D4DEED" stroke-width="6"/>
+  <rect x="520" y="564" width="800" height="86" rx="28" fill="#FFFDFC"/>
+  <text x="580" y="620" fill="#1A2559" font-size="56" font-weight="800" font-family="Arial, sans-serif">株式会社 OO工務店</text>
+  <rect x="580" y="706" width="520" height="90" rx="28" fill="white"/>
+  <text x="626" y="760" fill="#1A2559" font-size="44" font-weight="800" font-family="Arial, sans-serif">地域の暮らしをつくる、確かなお家づくり。</text>
+  <rect x="580" y="818" width="250" height="66" rx="33" fill="#18255C"/>
+  <text x="705" y="862" fill="white" font-size="34" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">お問い合わせ</text>
+  <path d="M392 246H448" stroke="#FF7B24" stroke-width="12" stroke-linecap="round"/>
+  <path d="M438 220L478 246L438 272" fill="#FF7B24"/>
+  <path d="M980 354H1024" stroke="#2D63C8" stroke-width="12" stroke-linecap="round"/>
+  <path d="M1010 328L1046 354L1010 380" fill="#2D63C8"/>
+</svg>

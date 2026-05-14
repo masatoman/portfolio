@@ -1,0 +1,24 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="28" fill="#F7FBFF"/>
+  <rect x="48" y="48" width="1104" height="624" rx="24" fill="white" stroke="#D8E3F2" stroke-width="4"/>
+  <rect x="88" y="110" width="332" height="500" rx="24" fill="#FBFDFF" stroke="#D8E3F2" stroke-width="4"/>
+  <text x="144" y="182" fill="#071B49" font-size="48" font-weight="800" font-family="Arial, sans-serif">電話メモ</text>
+  <text x="144" y="246" fill="#071B49" font-size="28" font-weight="700" font-family="Arial, sans-serif">株式会社 OO建設</text>
+  <text x="144" y="294" fill="#5F6F89" font-size="24" font-weight="700" font-family="Arial, sans-serif">5/20 14:30 / 山田様</text>
+  <rect x="136" y="334" width="236" height="74" rx="18" fill="#FFF8ED"/>
+  <text x="254" y="381" fill="#071B49" font-size="26" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">追加見積の相談</text>
+  <rect x="476" y="110" width="584" height="148" rx="24" fill="#F9FBFF" stroke="#D8E3F2" stroke-width="4"/>
+  <text x="530" y="172" fill="#071B49" font-size="44" font-weight="800" font-family="Arial, sans-serif">履歴と次アクションを整理</text>
+  <text x="530" y="220" fill="#5F6F89" font-size="24" font-weight="700" font-family="Arial, sans-serif">誰が・何を話したかを残して、共有漏れを防ぐ</text>
+  <rect x="476" y="290" width="584" height="144" rx="22" fill="white" stroke="#D8E3F2" stroke-width="4"/>
+  <rect x="510" y="326" width="108" height="42" rx="21" fill="#EEF6FF"/>
+  <rect x="638" y="326" width="108" height="42" rx="21" fill="#FFF5E8"/>
+  <rect x="766" y="326" width="92" height="42" rx="21" fill="#EDF8F3"/>
+  <text x="564" y="354" fill="#2F6FB6" font-size="20" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">未対応</text>
+  <text x="692" y="354" fill="#F47B20" font-size="20" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">対応中</text>
+  <text x="812" y="354" fill="#279A6A" font-size="20" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">完了</text>
+  <rect x="510" y="386" width="506" height="18" rx="9" fill="#EFF3F9"/>
+  <rect x="510" y="414" width="430" height="18" rx="9" fill="#EFF3F9"/>
+  <rect x="476" y="468" width="584" height="142" rx="22" fill="#071B49"/>
+  <text x="530" y="530" fill="white" font-size="30" font-weight="800" font-family="Arial, sans-serif">次アクションが残るので、言った言わないを減らせる</text>
+</svg>
