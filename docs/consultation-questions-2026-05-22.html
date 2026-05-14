@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北原氏面談 質問リスト v2 / 2026-05-22 東京創業ステーション</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --accent: #b85c3a;
+  --warn: #c34a1f;
+  --good: #2d6a4f;
+  --card: #ffffff;
+  --border: #e4ddd1;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.7;
+  font-size: 14px;
+}
+.container { max-width: 820px; margin: 0 auto; padding: 24px 20px 60px; }
+
+header { border-bottom: 2px solid var(--fg); padding-bottom: 14px; margin-bottom: 24px; }
+header .tag { display: inline-block; font-size: 11px; letter-spacing: .15em; background: var(--fg); color: var(--bg); padding: 3px 10px; border-radius: 2px; margin-bottom: 8px; }
+header h1 { font-size: 22px; margin: 0 0 4px; font-weight: 700; }
+header .meta { color: var(--muted); font-size: 12px; }
+
+.intro {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.intro p { margin: 4px 0; }
+
+h2 {
+  font-size: 16px;
+  margin: 28px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+h2 .pri {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: .1em;
+  padding: 3px 8px;
+  border-radius: 2px;
+  font-weight: 700;
+}
+h2 .pri.must { background: var(--warn); color: white; }
+h2 .pri.head { background: var(--accent); color: white; }
+h2 .pri.open { background: var(--good); color: white; }
+h2 .time { font-size: 11px; color: var(--muted); font-weight: 400; margin-left: auto; }
+
+.q {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  padding: 12px 18px;
+  margin-bottom: 10px;
+}
+.q.must { border-left-color: var(--warn); }
+.q.head { border-left-color: var(--accent); }
+.q.open { border-left-color: var(--good); }
+.q .num {
+  font-size: 11px;
+  letter-spacing: .15em;
+  color: var(--accent);
+  font-weight: 700;
+}
+.q.must .num { color: var(--warn); }
+.q.open .num { color: var(--good); }
+.q .text {
+  font-weight: 700;
+  font-size: 14px;
+  margin: 2px 0 6px;
+  line-height: 1.5;
+}
+.q .reason {
+  font-size: 12px;
+  color: var(--muted);
+  background: #fdfbf6;
+  padding: 6px 10px;
+  border-radius: 3px;
+  margin-bottom: 4px;
+}
+.q .expect {
+  font-size: 12px;
+  color: var(--muted);
+}
+.q .expect strong { color: var(--good); }
+
+.forbidden {
+  background: #fdf0eb;
+  border-left: 3px solid var(--warn);
+  padding: 10px 14px;
+  margin: 20px 0;
+  font-size: 13px;
+  color: #5a2e1f;
+  border-radius: 0 4px 4px 0;
+}
+.forbidden strong { color: var(--warn); }
+.forbidden ul { margin: 6px 0 0; padding-left: 20px; }
+
+.checklist {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-top: 20px;
+}
+.checklist h3 { margin: 0 0 8px; font-size: 14px; }
+.checklist ul { margin: 0; padding-left: 22px; font-size: 13px; }
+.checklist li { margin-bottom: 3px; }
+.check { display: inline-block; width: 13px; height: 13px; border: 1.5px solid var(--muted); margin-right: 6px; vertical-align: middle; border-radius: 2px; }
+
+.note {
+  background: #fff8ea;
+  border-left: 3px solid #d4a72c;
+  padding: 10px 14px;
+  margin: 16px 0;
+  font-size: 13px;
+  color: #5a4a1f;
+  border-radius: 0 4px 4px 0;
+}
+.note strong { color: #1f1c18; }
+
+.toc {
+  background: #f4ede0;
+  padding: 10px 16px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.toc strong { color: var(--fg); }
+.toc a { color: var(--accent); text-decoration: none; }
+.toc .badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 2px;
+  font-size: 10px;
+  letter-spacing: .1em;
+  font-weight: 700;
+  margin-right: 4px;
+  color: white;
+}
+.toc .badge.must { background: var(--warn); }
+.toc .badge.head { background: var(--accent); }
+.toc .badge.open { background: var(--good); }
+
+@media print {
+  body { background: white; font-size: 11px; }
+  .container { max-width: none; padding: 8mm; }
+  .q { break-inside: avoid; }
+  h2 { break-after: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="tag">CONSULTATION QUESTIONS v2</div>
+  <h1>北原氏 (東京創業ステーション) 面談 質問リスト</h1>
+  <div class="meta">2026-05-22 / masatoman / 工務店 SaaS 事業計画相談 / 30〜40 分</div>
+</header>
+
+<div class="intro">
+  <p><strong>面談の位置付け</strong>: 友人ヒアリング (現場監督) とは別軸。 主顧客本人ではなく業界俯瞰視点。 ヒアリング雪だるま 5 件の 2 件目候補。 北原氏は<strong>建設業の許可申請支援が本業</strong>のため、 業界実務に精通。</p>
+  <p><strong>絞り込み方針 (2026-05-13)</strong>: 必達 2 テーマ + 頭出し 2 テーマ + 自由質問 1 + デモ評価で 10 問構成。 「風呂敷を広げすぎない」 を意識。</p>
+  <p><strong>具体物 (2026-05-14 動作確認 + 投票ページ公開)</strong>: <strong>8 デモ実装済</strong> (call-memo-board / estimate-organizer / website-refresh + 既存 5 デモ) + <strong>https://ihara-frontend.com/demo-gallery で投票ページ公開済</strong>。 業界仮説 4 つ全部に対応。 面談冒頭で iPad ライブ表示 + 投票 UI も触ってもらえる。 戦略相談を「空中戦」 から「具体物 + 需要計測ベース」 に転換する。</p>
+  <p style="margin-top:6px;"><strong>3 AI レビュー 2 回済</strong>: ChatGPT / Gemini / Claude (別チャット) に投げて、 共通指摘 6 点のうち 4 点を反映 (継続接触の導線 / 拒否理由 9 択 / 「AI」 用語削除 / 役職 select promotion)。 残る構造的指摘 2 点 (「便利そう」 vs 「毎日困ってる」 混在 / 有料トグルの弱さ) は wontfix で運用、 友人ヒアリング後再判断。</p>
+</div>
+
+<div class="toc">
+  <strong>進行表 (合計 50 分目安):</strong>
+  <span><span class="badge must">デモ</span><a href="#part-0">0. 8 デモ評価 (10 分)</a></span>
+  <span><span class="badge must">必達 1</span><a href="#part-a">A. 法人化 + IT 導入支援 (15 分)</a></span>
+  <span><span class="badge must">必達 2</span><a href="#part-b">B. 経営者アプローチ・紹介 (10 分)</a></span>
+  <span><span class="badge head">頭出し</span><a href="#part-c">C. 業界慣習 (5 分)</a></span>
+  <span><span class="badge head">頭出し</span><a href="#part-d">D. 補助金タイミング (5 分)</a></span>
+  <span><span class="badge open">自由</span><a href="#part-e">E. リスク (5 分)</a></span>
+</div>
+
+<!-- ====================================================== -->
+<h2 id="part-0"><span class="pri must">デモ</span>0. 8 デモ評価 + 機能仮説 (面談冒頭) <span class="time">10 分目安</span></h2>
+
+<div class="note" style="margin-bottom:14px;">
+  <strong>進行 (オンライン版)</strong>: PC 画面共有でブラウザを共有。 各デモを 1 分ずつ動かして見せる。 北原氏が触れないので、 <strong>自分で操作しながら「ここがポイント」 と説明する形式</strong>に。 全 8 個を一気に見せると散漫なので、 まず業界仮説に直結する <strong>① estimate-organizer ② call-memo-board ③ site-photo-organizer ④ voice-daily-report</strong> の 4 個を優先表示。 残り 4 個 (client-progress-page / receipt-expense-camera / drawing-quick-viewer / website-refresh) は時間あれば。
+</div>
+
+<div class="q must">
+  <div class="num">Q0-a (デモ評価)</div>
+  <div class="text">実は 8 つのデモを<strong>実装済</strong>です (iPad で見ていただきます、 各 1 分):<br>
+  ① <strong>estimate-organizer</strong> (見積整理 / みつも郎 17 二重入力対策)<br>
+  ② <strong>call-memo-board</strong> (通話メモ構造化 / 情報散逸対策)<br>
+  ③ <strong>site-photo-organizer</strong> (現場写真整理 / 現場完結)<br>
+  ④ <strong>voice-daily-report</strong> (日報音声投稿 / 移動時間活用)<br>
+  ⑤〜⑧ receipt-expense-camera / drawing-quick-viewer / client-progress-page / website-refresh<br>
+  <br>
+  工務店オーナー / 現場監督に見せたとして、 <strong>どれが最も刺さりますか?</strong> 逆に「これは要らない」 「優先度が低い」 のはどれですか?</div>
+  <div class="reason">→ 戦略相談を「空中戦」 から「具体物ベース」 に転換する起点。 北原氏の建設業実務感覚で「業界が本当に欲しがる順」 を引き出す。</div>
+  <div class="expect"><strong>期待する回答パターン:</strong> 「estimate-organizer は即売れる、 みつも郎の二重入力は実際の現場の不満」 / 「voice-daily-report は IT 弱者には逆に難しい、 単純な call-memo-board の方が」 など、 業界実務に根ざした評価</div>
+</div>
+
+<div class="q must">
+  <div class="num">Q0-b (未実装案の評価)</div>
+  <div class="text">8 デモ以外で「これあったら工務店刺さりますよ」 という機能仮説はありますか? 例えば「補助金申請書の下書き自動生成」 「建設業許可関連の書類管理」 「下請け業者との発注連絡」 等を検討中ですが、 北原さんの実務感覚で「これは作る価値ある / 作る価値ない」 を教えてください。</div>
+  <div class="reason">→ 北原さん本業 (建設業許可申請) との隣接領域を聞き出す。 紹介経路 (Q5) の前段として「相談者の専門領域に寄せた質問」 で関係構築。</div>
+  <div class="expect"><strong>期待する回答パターン:</strong> 「許可更新の期限管理は需要ある」 / 「下請け発注は ANDPAD と被るので避けた方がいい」 / 「補助金申請書下書きは私の本業と被るので一緒にやるなら可能性ある」</div>
+</div>
+
+<div class="q must">
+  <div class="num">Q0-c (投票ページの活用 / Part B 紹介依頼への前フリ)</div>
+  <div class="text">8 デモは <strong>https://ihara-frontend.com/demo-gallery</strong> で投票ページ化して公開済です。 主顧客 40-60 代向けに「3 AI レビュー 2 回」 で UI 調整しました (最大 3 つ選択 / 拒否理由 9 択 / 連絡先任意入力 / LINE 共有ボタン 等)。 X 告知はターゲット外混入を避けて wontfix、 <strong>友人経由の LINE 拡散で増やす方針</strong>です。<br>
+  <br>
+  <strong>① このページ設計、 40-60 代 IT 弱者の心理と合ってますか? 改善点ありますか?<br>
+  ② 北原さんの顧問先 (工務店オーナー) で投票してくれそうな方を紹介可能ですか? (= Q5 紹介依頼の前フリ)<br>
+  ③ 票数より「拒否理由分布」 「連絡先取得率」 を主軸に相談に持ち込む方針、 違和感ありますか?</strong></div>
+  <div class="reason">→ 3 AI 共通助言「数字より痛みの強さ / なぜ既存ツールでダメか を主軸に」 を北原氏で再検証。 Part B (Q5) 紹介依頼の自然な前フリにする。</div>
+  <div class="expect"><strong>期待する回答パターン:</strong> 「拒否理由分布の方が説得力ある」 / 「顧問先に LINE で送るのは OK」 / 「役職別の傾向の方が業界実務で重要」 等。</div>
+</div>
+
+<!-- ====================================================== -->
+<h2 id="part-a"><span class="pri must">必達 1</span>A. 法人化判断 + IT 導入支援事業者登録 <span class="time">15 分目安</span></h2>
+
+<div class="note" style="margin-bottom:14px;">
+  <strong>前提 (2026-05-13 方針転換)</strong>: 当初「2026/6 マイクロ法人設立予定」 だったが、 検討の結果<strong>当面は個人事業主のまま継続</strong>する方針に転換。 法人固定費 (年 7 万円〜) より検証フェーズの現金優先、 工務店 SaaS が軌道に乗ってから (所得 900 万超目安) 改めて法人化を検討する形に。 小規模企業共済 (月 7 万 = 年 84 万控除) は実施済。
+</div>
+
+<div class="q must">
+  <div class="num">Q1 (判断基準)</div>
+  <div class="text">「工務店 SaaS が軌道に乗ったら法人化する」 という方針です。 この<strong>「軌道に乗った」 のベストな判断基準</strong>は何でしょうか? 例えば「月商 X 万円」 「顧客 X 社」 「所得 X 万円」 「PMF 後」 など、 北原さんの経験から見て決め手にすべき指標を教えてください。</div>
+  <div class="reason">→ 相談予約 #3 法人化のベストタイミング。 軌道指標を確定したい。</div>
+</div>
+
+<div class="q must">
+  <div class="num">Q2 (信用度)</div>
+  <div class="text">工務店オーナーから見て、 取引相手が<strong>個人事業主か法人か</strong>で信用度や決裁プロセスに差が出ますか? 当面は個人事業主のまま工務店ビジネスを進める予定ですが、 これが <strong>受注機会を逃す要因</strong>になることはありますか? 信用度を補強するために個人事業主としてできる工夫はありますか?</div>
+  <div class="reason">→ 相談予約 #3。 個人事業主継続の妥当性確認。</div>
+</div>
+
+<div class="q must">
+  <div class="num">Q3 (IT 導入支援事業者)</div>
+  <div class="text">個人事業主のまま <strong>IT 導入支援事業者登録</strong>するには、 既存事業者のコンソーシアムに構成員参画する形になると理解しています。 北原さんの感覚で、 個人事業主が構成員参画して実際に補助金訴求できるようになるまで、 どの程度の現実性 / 期間 / 販売実績ハードルがありますか?</div>
+  <div class="reason">→ 相談予約 #4。 個人事業主前提の現実的な進め方を確認。 memory <code>subsidies-positioning</code> で「販売実績 1 社以上必須」 「法人(単独)ルートは個人事業主不可」 は既知。</div>
+</div>
+
+<!-- ====================================================== -->
+<h2 id="part-b"><span class="pri must">必達 2</span>B. 工務店経営者へのアプローチ・紹介 <span class="time">10 分目安</span></h2>
+
+<div class="q must">
+  <div class="num">Q4 (アプローチ)</div>
+  <div class="text">工務店経営者にアプローチする際の<strong>業界マナー・注意点</strong>はありますか? 「個人開発者だが本気で工務店業務改善を支援したい」 と伝える際、 やってはいけない切り出し方や、 逆に効果的な前置きを教えていただきたいです。</div>
+  <div class="reason">→ 相談予約 #2。 接触初期での失敗パターンを潰す。</div>
+</div>
+
+<div class="q must">
+  <div class="num">Q5 (紹介)</div>
+  <div class="text">北原さんの建設業顧問先で、 <strong>業務改善や IT 化に課題感のある方</strong>をご紹介いただけますか? まずは売り込みではなくヒアリング (現状の課題感を聞きたい) からお願いできれば。 1 件でもご紹介いただけると、 私の側で雪だるまを転がせます。</div>
+  <div class="reason">→ 相談予約 #6。 ヒアリング雪だるま 5 件の 2-3 件目開拓。 「ヒアリング」 という低圧力な提案で受け入れやすく。</div>
+</div>
+
+<!-- ====================================================== -->
+<h2 id="part-c"><span class="pri head">頭出し</span>C. 業界慣習・決裁プロセス <span class="time">5 分目安</span></h2>
+
+<div class="q head">
+  <div class="num">Q6 (頭出し)</div>
+  <div class="text">工務店業界特有の<strong>決裁プロセス・商習慣</strong>で、 個人開発者の私が知らないとハマりそうなポイントを 1〜2 つだけ教えていただけますか? (例: 見積もり 3 社体勢の作法、 工期・支払いサイトの慣習、 反社チェック等)</div>
+  <div class="reason">→ 相談予約 #1。 時間があれば深掘り、 なければ「後日メールで補足質問」 でも OK。</div>
+</div>
+
+<!-- ====================================================== -->
+<h2 id="part-d"><span class="pri head">頭出し</span>D. 補助金活用タイミング戦略 <span class="time">5 分目安</span></h2>
+
+<div class="q head">
+  <div class="num">Q7 (頭出し)</div>
+  <div class="text">現在は補助金訴求を<strong>控えめ</strong>にして、 GビズID プライム取得・IT 導入支援事業者登録完了後にガッツリ訴求へ昇格する方針です。 この昇格タイミングの<strong>ベストプラクティス</strong>はありますか? 何の実績 (申請件数・採択件数等) ができたら前面に出すべき?</div>
+  <div class="reason">→ 相談予約 #5。 controlled な質問 (memory [[subsidies-positioning]] の方針を維持しつつタイミングだけ聞く)。</div>
+</div>
+
+<!-- ====================================================== -->
+<h2 id="part-e"><span class="pri open">自由</span>E. 見落としているリスク <span class="time">5 分目安</span></h2>
+
+<div class="q open">
+  <div class="num">Q8 (オープン)</div>
+  <div class="text">最後に、 ここまでお話しを聞いていただいて、 私が<strong>見落としているリスク</strong>や<strong>先に潰しておくべき仮説</strong>があれば率直に教えてください。 半年前に Froski (英語×フリーランス) で「市場前提が崩れる」 失敗をしているので、 同じ轍を踏まない判断軸を取りに来ています。</div>
+  <div class="reason">→ オープン質問で「想定外」 を取りに行く。 経験豊富な専門家ほど良い回答が出る。</div>
+  <div class="expect"><strong>期待する回答パターン:</strong> 「主顧客の請求書発行頻度を確認していますか?」 「廃業率の高い業界で 5 年継続できる事業者の割合は?」 「副業のままで耐えられる売上水準は?」 など、 自分の盲点</div>
+</div>
+
+<!-- ====================================================== -->
+<div class="forbidden">
+  <strong>禁止訴求 (memory 整合)</strong>
+  <ul>
+    <li>「AI で何でもできる」 → memory <code>ai-positioning</code>: AI を前面に出さない、 機能訴求で</li>
+    <li>「補助金で 9 割引」 → memory <code>subsidies-positioning</code>: 控えめ訴求を維持 (Q7 でタイミング相談する形)</li>
+    <li>マイクロ法人を「節税自慢」 として話さない → 相談として聞く姿勢 (Q1)</li>
+  </ul>
+</div>
+
+<!-- ====================================================== -->
+<div class="checklist">
+  <h3>当日準備チェックリスト (オンライン面談用)</h3>
+
+  <h4 style="margin-top:8px;font-size:13px;color:var(--accent);">📅 事前 (5/20 頃)</h4>
+  <ul>
+    <li><span class="check"></span>business-summary を PDF 化して北原氏に事前送付 (Chrome で「印刷」 → 「PDF として保存」)</li>
+    <li><span class="check"></span>Zoom URL / 会議ツール確認 (届いたら早めに動作テスト)</li>
+    <li><span class="check"></span>マイク・カメラ・スピーカー動作確認</li>
+    <li><span class="check"></span>画面共有テスト (1 回練習推奨)</li>
+  </ul>
+
+  <h4 style="margin-top:8px;font-size:13px;color:var(--accent);">🕐 当日 (面談 30 分前から)</h4>
+  <ul>
+    <li><span class="check"></span>PC 起動 + ヘッドホン or 外部マイク準備</li>
+    <li><span class="check"></span><code>cd ~/home_work/portfolio && npx next dev</code> で localhost:3000 起動</li>
+    <li><span class="check"></span>各デモが HTTP 200 で開けるか軽く確認</li>
+    <li><span class="check"></span>ブラウザで <strong>business-summary</strong> と <strong>このページ (質問リスト)</strong> を別タブで開いておく</li>
+    <li><span class="check"></span>Obsidian を起動して <code>reports/2026-05-22-kitahara-consultation.md</code> を新規作成 (メモ用)</li>
+    <li><span class="check"></span>商談ペライチ 2 版・Google マップ分析レポートも別タブで (時間あれば共有)</li>
+    <li><span class="check"></span>Zoom (or 指定ツール) で会議室入室テスト</li>
+  </ul>
+
+  <h4 style="margin-top:8px;font-size:13px;color:var(--accent);">🔁 オフライン→オンライン置換</h4>
+  <ul style="font-size:12px;">
+    <li>❌ 印刷物 → ✅ PDF 事前送付 + 画面共有</li>
+    <li>❌ iPad で触ってもらう → ✅ PC 画面共有 (自分で操作しながら説明)</li>
+    <li>❌ 物理名刺 → ✅ <code>ihara-frontend.com</code> URL をチャットに投げる</li>
+    <li>❌ メモ用紙 + ペン → ✅ Obsidian で直接記録 (ショートカット <code>⌘N</code> で即書き出し)</li>
+  </ul>
+</div>
+
+<div class="note" style="margin-top:20px;">
+  <strong>面談後にやること</strong>: 結果メモを <code>docs/consultation-result-2026-05-22.md</code> に書き出し。 Q1 で得た「軌道判断指標」 を memory [[business-form-roadmap]] に記録 (個人事業主継続の解除条件として)。 Q3 で得たコンソーシアム参画ルートの現実性を踏まえて、 既存 IT 導入支援事業者へのリサーチを開始 (memory [[subsidies-positioning]] 推奨動き #4)。 Q5 で紹介経路が得られたら memory [[friend-hearing-may-2026]] と同じ形式でヒアリング memo を新規作成。
+</div>
+
+</div>
+</body>
+</html>

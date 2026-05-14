@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>friend (現場監督) ヒアリング チェックリスト</title>
+  <style>
+    :root {
+      --ink: #071b49;
+      --sub: #33496d;
+      --muted: #5f6f89;
+      --line: #d8e3f2;
+      --bg: #fbfcfe;
+      --panel: #ffffff;
+      --accent: #f47b20;
+      --accent-soft: #fff4e9;
+      --good: #15803d;
+      --good-soft: #dcfce7;
+      --warn: #b45309;
+      --warn-soft: #fef3c7;
+      --bad: #b91c1c;
+      --bad-soft: #fee2e2;
+      --info: #1d4ed8;
+      --info-soft: #dbeafe;
+    }
+    * { box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--ink); margin: 0; padding: 0; }
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.75;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 920px; margin: 0 auto; padding: 48px 24px 96px; }
+    header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 24px;
+      margin-bottom: 36px;
+    }
+    header .eyebrow {
+      display: inline-block;
+      background: var(--info-soft);
+      color: var(--info);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 28px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      font-weight: 900;
+    }
+    header .meta {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    h2 {
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      margin: 56px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--line);
+      font-weight: 900;
+    }
+    h2 .num {
+      display: inline-block;
+      background: var(--ink);
+      color: white;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-right: 12px;
+      vertical-align: 3px;
+      font-weight: 800;
+    }
+    h3 {
+      font-size: 16px;
+      margin: 28px 0 10px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    p { margin: 0 0 14px; color: var(--sub); }
+    p strong { color: var(--ink); }
+    ul, ol { margin: 0 0 16px; padding-left: 24px; color: var(--sub); }
+    li { margin-bottom: 6px; }
+
+    .summary {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--info);
+      padding: 24px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+    .summary h3 {
+      margin-top: 0;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--info);
+      text-transform: uppercase;
+    }
+    .summary p {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .summary p:last-child { margin-bottom: 0; }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 16px 0 24px;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      background: #f4f7fc;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    tr:last-child td { border-bottom: none; }
+
+    .pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .pill-good { background: var(--good-soft); color: var(--good); }
+    .pill-warn { background: var(--warn-soft); color: var(--warn); }
+    .pill-bad  { background: var(--bad-soft);  color: var(--bad);  }
+    .pill-info { background: var(--info-soft); color: var(--info); }
+
+    .quote {
+      background: #f7faff;
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      margin: 10px 0;
+      font-size: 14px;
+      color: var(--ink);
+      border-radius: 0 8px 8px 0;
+    }
+    .quote .source {
+      display: block;
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .qa {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .qa.priority {
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px -8px rgba(244, 123, 32, 0.3);
+    }
+    .qa .qno {
+      display: inline-block;
+      background: var(--ink);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-right: 8px;
+      letter-spacing: 0.05em;
+    }
+    .qa.priority .qno { background: var(--accent); }
+    .qa .qtext {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      display: inline;
+    }
+    .qa .why {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      padding-left: 32px;
+    }
+    .qa .why strong { color: var(--sub); }
+
+    .group-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin: 24px 0 8px;
+    }
+
+    .checkbox {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--muted);
+      border-radius: 3px;
+      vertical-align: -2px;
+      margin-right: 8px;
+    }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media print {
+      body { font-size: 11px; }
+      .page { padding: 16px; max-width: 100%; }
+      h2 { page-break-after: avoid; margin: 24px 0 8px; }
+      .qa { page-break-inside: avoid; }
+      table { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <header>
+      <span class="eyebrow">HEARING CHECKLIST</span>
+      <h1>friend (現場監督) ヒアリング<br />事前メモ整理 + 当日 質問チェックリスト</h1>
+      <p class="meta">2026-05-11 作成 / 当日: 5 月中〜6 月前半 / Mac で 印刷 (Cmd+P) で A4 持参可</p>
+    </header>
+
+
+    <section class="summary">
+      <h3>このペーパー の 目的</h3>
+      <p>前回 友人 (現場監督) から 聞いた 散文メモ を <strong>カテゴリ別 に 構造化</strong> し、 Deep Research の 仮説 と 照合。 当日 確認 する 質問 を <strong>25 個</strong> 用意 (印刷 して 当日 チェック)。 最優先 は <strong>住宅デー (6/25) への 経路</strong> と <strong>主顧客 (一人親方) と どこで 出会える か</strong> の 体感 検証。 さらに <strong>demo-gallery 投票ページ (2026-05-14 公開) を実際に見てもらい、 主顧客視点で UI 評価 + LINE 拡散依頼</strong>を 5 問追加 (X 告知は wontfix、 友人経由の LINE 雪だるまで増やす方針)。</p>
+    </section>
+
+
+    <h2><span class="num">01</span>前回 メモ から 既に 分かった こと</h2>
+
+    <p>カテゴリ別 に 整理。 これは <strong>これ以上 聞かなくて OK</strong> な 確定事項 として、 当日 は 「念のため 確認」 程度 に。</p>
+
+    <h3>現場監督 の 1 日</h3>
+    <ul>
+      <li>現場 と 事務所 が <strong>片道 2 時間 以上</strong> (現場事務所 なし)</li>
+      <li>業務: 図面 / 工程表 / 見積書 作成、 現場で 使える ツール が欲しい</li>
+      <li>大工 / 電気 / 水道 / ガス の 各業者 を 取りまとめ = 「人と人 を 取り持つ 仕事」</li>
+      <li>大工 と は <strong>上下関係 発生 (ほぼ言いなり)</strong>、 監督 が 我慢する 構図</li>
+      <li>区役所・警察署 への 申請 = 根回し が 必須 (コロナ 以降 一部 郵送 化)</li>
+    </ul>
+
+    <h3>受発注 の 構造</h3>
+    <ul>
+      <li><strong>料金表 なし、 坪単価 で 話す</strong> (200 万 で 「安い」 の 感覚)</li>
+      <li>3 社 見積もり 慣習 → 「他社 より 高い と やだ」 の プレッシャー</li>
+      <li>客 が 「1 億 で 」 と 上限 指定 → 設計が グレード を 下げて 調整</li>
+      <li>「便器 を 交換」 みたい な 単純発注 = ものを 買う 値段 で 終わる ケース</li>
+      <li>3 ルート: 客 → 設計事務所 / 客 → 工務店 / 客 → ハウスメーカー</li>
+    </ul>
+
+    <h3>業界 の 構造</h3>
+    <ul>
+      <li>プロジェクト 種類: 住宅 (メイン) / マンション / アパート / 神社 / 病院 / リフォーム</li>
+      <li>設計事務所 = ハブ。 コンペ で 選ばれる、 長い 付き合い と 毎回違う が 混在</li>
+      <li>大工 にも 専門分野 (床だけ / 内装 / 全部できる) が 存在</li>
+      <li>木造 = 大工、 鉄筋コンクリート = 内装 にだけ 大工 が 入る</li>
+    </ul>
+
+    <h3>IT 受容性 / 業務ツール</h3>
+    <ul>
+      <li><strong>みつもろう 17</strong> を 使用、 PDF → 手動で 入力し直し (二重作業)</li>
+      <li><strong>LINE 通話</strong> を 業務で 普通に 使う</li>
+      <li>090 → 文字起こし テスト を 試した こと あり (関心 度 高い)</li>
+    </ul>
+
+
+    <h2><span class="num">02</span>Deep Research 仮説 と の 照合</h2>
+
+    <p>Deep Research (#1 + #2 計 182 件) の 結論 が 友人 メモ と <strong>どの くらい 一致 する か</strong> を 当日 検証。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 30%">Deep Research の 結論</th>
+          <th style="width: 20%">友人メモ と の 整合</th>
+          <th>当日 確認 すべき こと</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background: var(--good-soft);">
+          <td>主顧客 は 「ものを 買う 値段」 で 動く (補助金 = 「金 もらえる」 動機)</td>
+          <td><span class="pill pill-good">◎ 一致</span> 「便器 を 交換します = ものを 買う 値段」</td>
+          <td>補助金 案件 で 一人親方 が 集まる 場 は 実際 ある?</td>
+        </tr>
+        <tr style="background: var(--good-soft);">
+          <td>LINE が 業務 の 中心 (SNS 利用率 86.8% は LINE 中心)</td>
+          <td><span class="pill pill-good">◎ 一致</span> LINE 通話 を 業務で 使う</td>
+          <td>親方たち は LINE で どんな グループ に いる? 元請け / 同業者 / 妻 ?</td>
+        </tr>
+        <tr style="background: var(--warn-soft);">
+          <td>主顧客 は Web で イベント を 探さない</td>
+          <td><span class="pill pill-warn">△ 未検証</span></td>
+          <td>親方 の 中で Peatix / こくちーず / connpass を 開く 人 いる? (たぶん いない)</td>
+        </tr>
+        <tr style="background: var(--warn-soft);">
+          <td>商工会議所 異業種交流会 には 来ない (中堅以上 のみ)</td>
+          <td><span class="pill pill-warn">△ 未検証</span></td>
+          <td>あなた (現場監督) の 周りで 商工会議所 行く 人 いる? 印象 は?</td>
+        </tr>
+        <tr style="background: var(--good-soft);">
+          <td>建設組合 (東京土建 / 全建総連) は アクティブ</td>
+          <td><span class="pill pill-info">△ 未検証</span> 友人 メモ に なし</td>
+          <td>あなた や 周り の 親方 で 東京土建 入って る 人 いる? 集会 行く?</td>
+        </tr>
+        <tr style="background: var(--good-soft);">
+          <td>業界紙 (新建ハウジング) は 紙 で 読む</td>
+          <td><span class="pill pill-info">△ 未検証</span></td>
+          <td>あなた や 親方 は 新建ハウジング / 日刊建設工業 読む?</td>
+        </tr>
+        <tr style="background: var(--good-soft);">
+          <td>飛び込み 営業 は 信用 されない、 紹介 が 圧倒的 (51.5%)</td>
+          <td><span class="pill pill-warn">△ 未検証</span></td>
+          <td>あなた (監督) は 業者 を どう 探して る? 紹介 経由 が 多い?</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <h2><span class="num">03</span>当日 質問 チェックリスト (20 個)</h2>
+
+    <p>順番 は 重要 度 で ソート 済み。 最優先 (オレンジ枠) から 聞く。 当日 印刷 して チェック しながら 進める。</p>
+
+    <div class="group-label">A. 住宅デー (6/25) と 組合活動 (最優先 / 4 問)</div>
+
+    <div class="qa priority">
+      <span class="qno">Q1</span><span class="qtext">あなた や 周り の 親方 で <strong>東京土建 一般労働組合</strong> に 入って る 人 いる? (組合員 率 が 知りたい)</span>
+      <div class="why"><strong>狙い</strong>: 多摩西部 支部 へ の 入り口 を 探す。 friend 経由 で 紹介 もらえる か</div>
+    </div>
+
+    <div class="qa priority">
+      <span class="qno">Q2</span><span class="qtext">毎年 <strong>6/25 の 「住宅デー」</strong> (全建総連 主催 で 地域住民 向け 無料 住宅相談) を 知って いる? 親方 が 関わって る?</span>
+      <div class="why"><strong>狙い</strong>: 2026/6/25 に masatoman が IT サポート 視点 で 関われる か の 当日 検証</div>
+    </div>
+
+    <div class="qa priority">
+      <span class="qno">Q3</span><span class="qtext">組合 の 新年会 / 春闘旗開き / バスツアー って 親方 はちゃんと 行く? どんな 雰囲気?</span>
+      <div class="why"><strong>狙い</strong>: 組合 イベント が 主顧客 と 会える 場 として 機能 する か 体感 確認</div>
+    </div>
+
+    <div class="qa priority">
+      <span class="qno">Q4</span><span class="qtext">建材屋 / ジャパンホームショー / 建築建材展 みたい な 業界展示会 に 親方 は 行く? あなた 自身 は?</span>
+      <div class="why"><strong>狙い</strong>: 2026 年 10 月 ジャパンホームショー 訪問 の 価値 判断</div>
+    </div>
+
+
+    <div class="group-label">B. 主顧客 の 接触経路 (高 / 5 問)</div>
+
+    <div class="qa">
+      <span class="qno">Q5</span><span class="qtext">あなた (監督) は 新しい 業者 (大工・電気・水道 等) を どう 探して る? <strong>紹介</strong>? <strong>飛び込み 営業</strong>? <strong>ネット</strong>?</span>
+      <div class="why"><strong>狙い</strong>: Deep Research の 「紹介 51.5%」 仮説 を 体感 で 検証</div>
+    </div>
+
+    <div class="qa">
+      <span class="qno">Q6</span><span class="qtext">親方 が 「<strong>IT に 詳しい 人 知らない?</strong>」 と あなた に 聞いて くる こと ある? どんな 場面?</span>
+      <div class="why"><strong>狙い</strong>: masatoman が 「IT 兄ちゃん」 ポジ で 紹介 されうる 可能性</div>
+    </div>
+
+    <div class="qa">
+      <span class="qno">Q7</span><span class="qtext">親方 と 顔合わせ する 場 で 一番 多い のは どこ? <strong>現場 / 飲み会 / 商工会議所 / 組合 / 建材屋</strong>?</span>
+      <div class="why"><strong>狙い</strong>: 接点 マトリクス の 1 位 を 確定 する</div>
+    </div>
+
+    <div class="qa">
+      <span class="qno">Q8</span><span class="qtext">商工会議所 の 異業種交流会 に 行った こと ある 親方 いる? 印象 は?</span>
+      <div class="why"><strong>狙い</strong>: Deep Research 仮説 A 「来ない」 を 体感 で 確認</div>
+    </div>
+
+    <div class="qa">
+      <span class="qno">Q9</span><span class="qtext">補助金 (IT 導入補助金 / 持続化補助金) を 取った こと ある 親方 いる? どこ で 知った?</span>
+      <div class="why"><strong>狙い</strong>: 補助金 経路 = 商工会議所窓口 / 税理士 / 支援事業者 の どれ か</div>
+    </div>
+
+
+    <div class="group-label">C. SaaS 案 の 反応 検証 (高 / 6 問)</div>
+
+    <div class="qa priority">
+      <span class="qno">Q10</span><span class="qtext"><strong>PDF を みつもろう 17 に 自動入力</strong> させる 仕組み (OCR + AI) が あったら 月いくら なら 使う? 0 円 / 1,000 / 3,000 / 5,000 / 10,000?</span>
+      <div class="why"><strong>狙い</strong>: 一番 即効性 ある SaaS の WTP 上限 を 知る</div>
+    </div>
+
+    <div class="qa priority">
+      <span class="qno">Q11</span><span class="qtext">PDF → 入力 し直し の 二重作業 を <strong>1 件 で 何分</strong> 短縮 できる? 月 何回 ある? = 月 何時間 浮く?</span>
+      <div class="why"><strong>狙い</strong>: ROI 計算用 = 月 X 時間 × 時給 換算 で 即決 価格 を 算出</div>
+    </div>
+
+    <div class="qa">
+      <span class="qno">Q12</span><span class="qtext"><strong>090 の 電話 を 自動 文字起こし</strong> が あったら 使う? どんな 場面 で?</span>
+      <div class="why"><strong>狙い</strong>: 文字起こし SaaS の 切実度 と シーン を 特定</div>
+    </div>
+
+    <div class="qa">
+      <span class="qno">Q13</span><span class="qtext"><strong>LINE 通話 で 業務指示</strong> を AI で 要約 / 録音 する アプリ が 欲しい?</span>
+      <div class="why"><strong>狙い</strong>: LINE 通話 中心 文化 を IT で 補強 できる か</div>
+    </div>
+
+    <div class="qa">
+      <span class="qno">Q14</span><span class="qtext">片道 2 時間 の 移動 中 に スマホ で 完結 できる と 一番 嬉しい 業務 は?</span>
+      <div class="why"><strong>狙い</strong>: モバイル ファースト で 攻める 業務 を 特定</div>
+    </div>
+
+    <div class="qa">
+      <span class="qno">Q15</span><span class="qtext">親方 が 「<strong>これ AI で できないの?</strong>」 と 言って た 業務 ある? 写真台帳 / 工程表 / 見積 / 役所申請 / 等</span>
+      <div class="why"><strong>狙い</strong>: 親方側 から 出た ニーズ を 拾う (= 主顧客 視点 の 確実 な 種)</div>
+    </div>
+
+
+    <div class="group-label">D. 値付け 検証 (中 / 3 問)</div>
+
+    <div class="qa">
+      <span class="qno">Q16</span><span class="qtext">親方 が IT 系 サービス に 出せる 月額 は? 1,000 / 3,000 / 5,000 / 10,000 / それ以上?</span>
+      <div class="why"><strong>狙い</strong>: WTP 上限 ヒアリング (saas-pricing.md Q1)</div>
+    </div>
+
+    <div class="qa">
+      <span class="qno">Q17</span><span class="qtext">「<strong>初期 10 万 + 月 5,000</strong>」 と 「<strong>初期 0 + 月 1 万</strong>」、 親方 は どっち が マシ?</span>
+      <div class="why"><strong>狙い</strong>: キャッシュフロー 耐性 ヒアリング (saas-pricing.md Q2)</div>
+    </div>
+
+    <div class="qa">
+      <span class="qno">Q18</span><span class="qtext">「<strong>補助金 で 実質 1/3 になる</strong>」 と 言われたら 動く? 「補助金 申請 を こっち で やる」 まで 必要?</span>
+      <div class="why"><strong>狙い</strong>: 補助金 訴求 の 効き目 と、 申請代行 まで 込み の 必要性</div>
+    </div>
+
+
+    <div class="group-label">E. アンチパターン 検証 (中 / 2 問)</div>
+
+    <div class="qa">
+      <span class="qno">Q19</span><span class="qtext">親方 が 「<strong>これ は ダメ</strong>」 と 即拒否 する IT サービス の 特徴 ある? (Zoom NG / 電子契約 NG / クラウド 月額 NG 等)</span>
+      <div class="why"><strong>狙い</strong>: 設計時 に 避ける べき UI / 商習慣 を 特定</div>
+    </div>
+
+    <div class="qa">
+      <span class="qno">Q20</span><span class="qtext">IT 営業マン で 「<strong>こいつ ダメ</strong>」 と 思った パターン ある? (横文字 / スーツ / 若手 / 上から目線 等)</span>
+      <div class="why"><strong>狙い</strong>: masatoman 自身 の 振る舞い 設計 (アンチパターン 回避)</div>
+    </div>
+
+
+    <div class="group-label">F. demo-gallery 投票ページ 評価 + LINE 拡散 (最重要 / 5 問)</div>
+
+    <p style="margin: 8px 0; font-size: 13px; color: var(--muted);"><strong>事前準備</strong>: スマホで <strong>https://ihara-frontend.com/demo-gallery</strong> を開いて見せる (LINE の URL から も OK)。 「8 個のツールから あなたが 欲しい もの を 選ぶ ページ。 1〜2 分で 済む」 と 説明。</p>
+
+    <div class="qa priority">
+      <span class="qno">Q21</span><span class="qtext">この ページ を スマホで 開いて、 <strong>8 デモ から 最大 3 つ</strong> 選んで みて。 「これあったら 絶対 使う」 と 思う もの だけ で OK。 0 個でも OK (= 全部いらない場合は 拒否理由 を 選ぶ)。</span>
+      <div class="why"><strong>狙い</strong>: friend 自身の 投票 = N=1 だが「現場監督 本人」 の生データ。 投票後の挙動 (LINE 共有 / 連絡先入力) も観察</div>
+    </div>
+
+    <div class="qa priority">
+      <span class="qno">Q22</span><span class="qtext">投票 中に <strong>「意味分からない」 「読みにくい」 「これ 何?」 と 思った 箇所</strong> を 教えて。 タイトル / 説明文 / モック画像 / ボタン文言 全部 OK。</span>
+      <div class="why"><strong>狙い</strong>: 3 AI が指摘した「便利そう vs 毎日困ってる 混在」 「タイトルのベネフィット動詞化」 を 主顧客本人の感覚で検証</div>
+    </div>
+
+    <div class="qa priority">
+      <span class="qno">Q23</span><span class="qtext">「<strong>全部いらない</strong>」 の 9 択 (既存ツール / LINE で十分 / 入力時間ない / 入力面倒 等) を 見て、 親方 や 周りの 監督 仲間 が 「これだ!」 と 選びそう な もの 上位 3 つ は どれ?</span>
+      <div class="why"><strong>狙い</strong>: 拒否理由分布 = 「なぜ既存ツール (ANDPAD 等) で ダメ か」 を 5/22 北原氏面談で主軸にできるか体感確認</div>
+    </div>
+
+    <div class="qa priority">
+      <span class="qno">Q24</span><span class="qtext">投票後 に 「投票結果 を 先に 教えてほしい / β テスト OK / リリース時 連絡」 の <strong>3 チェック + LINE/メール 任意入力</strong> がある。 親方 や 監督 仲間 で <strong>これ チェック して 連絡先 出す 人 いる?</strong> どれ が 一番 押されそう?</span>
+      <div class="why"><strong>狙い</strong>: 連絡先取得率 = 票数より事業性指標として強い (Claude 助言)。 friend の 感覚で 取得率予想を確認</div>
+    </div>
+
+    <div class="qa priority">
+      <span class="qno">Q25</span><span class="qtext">この URL を <strong>LINE で 親方 / 監督 仲間 数人 に 送って</strong> もらえる? 「工務店の業務改善ツール、 8 つから 欲しい もの を 1〜3 個 選ぶ 投票ページ。 1〜2 分で 済む」 と 添えて。 X 告知は ターゲット外混入避けたい ので、 LINE 拡散 が 一番 効く と 思って る。</span>
+      <div class="why"><strong>狙い</strong>: <strong>雪だるま 拡散の起点</strong>。 投票完了画面に LINE 共有ボタン あり (ワンタップで 自動 で 説明文 入る)。 N=1 → N=5-10 への拡張</div>
+    </div>
+
+
+    <h2><span class="num">04</span>会話 の 進め方 メモ</h2>
+
+    <h3>順番</h3>
+    <ol>
+      <li><strong>近況 雑談 5 分</strong> (いきなり 質問 連発 は NG、 「最近 どう?」 から)</li>
+      <li><strong>F. demo-gallery 投票 + 拡散 (5 問)</strong> = スマホ で 即 投票 してもらう、 「触りながら 話す」 で 自然に C/B/D へ橋渡し</li>
+      <li><strong>A. 住宅デー / 組合 (4 問)</strong> = 緊急性 高い (6/25 まで 1.5 ヶ月)</li>
+      <li><strong>C. SaaS 反応 (6 問)</strong> = friend の 切実度 が 一番 高い、 自然な 流れ で 聞ける</li>
+      <li><strong>B. 接触経路 (5 問)</strong> = friend が SaaS の 話 で 乗ってきた タイミング で 滑り込ませる</li>
+      <li><strong>D. 値付け (3 問)</strong> = SaaS の 話の 流れ で</li>
+      <li><strong>E. アンチパターン (2 問)</strong> = 最後 に お互い の 愚痴 で 締める</li>
+    </ol>
+
+    <h3>注意</h3>
+    <ul>
+      <li><strong>メモ は 後で OK</strong>: 会話 中 は 録音 (本人 同意 必須) か、 当日 終わって すぐ メモ書き</li>
+      <li><strong>「DX」「SaaS」「AI」 は 使わない</strong>: 「アプリ」 「ツール」 「自動で やる やつ」 等 平易語 に</li>
+      <li><strong>SaaS の 機能 説明 は 30 秒 で 切る</strong>: 「便利な やつ」 程度 で 「いる? いらない?」 を 聞く</li>
+      <li><strong>友人 の 答え は そのまま 録る</strong>: 私 (masatoman) の 解釈 を 入れない、 後で 整理</li>
+    </ul>
+
+
+    <h2><span class="num">05</span>当日 持っていく もの</h2>
+
+    <ul>
+      <li><span class="checkbox"></span>この HTML を A4 印刷 (Cmd+P で 印刷可)</li>
+      <li><span class="checkbox"></span>ボールペン (チェック 記入用)</li>
+      <li><span class="checkbox"></span>スマホ (録音、 LINE で 友人 と 連絡)</li>
+      <li><span class="checkbox"></span><strong>demo-gallery URL を LINE で 友人に 事前 送信</strong> (https://ihara-frontend.com/demo-gallery 当日 すぐ 開ける ように)</li>
+      <li><span class="checkbox"></span>名刺 / 連絡先 (友人 が 親方 に 「あいつに 聞いて」 と 言える 形)</li>
+    </ul>
+
+
+    <h2><span class="num">06</span>ヒアリング 後 の アクション</h2>
+
+    <ol>
+      <li>当日 中 に <strong>25 問 の 回答 を メモ書き</strong> (記憶 が 鮮明 な うち に)</li>
+      <li>3 日以内 に <strong>memory に 反映</strong>: <code>friend-hearing-may-2026.md</code> + <code>komuten-channel-strategy.md</code> を 更新</li>
+      <li>Q2 (住宅デー) で 関われる と 判明 したら → <strong>東京土建 多摩西部 支部 に 即連絡</strong></li>
+      <li>Q10-15 (SaaS 反応) で 1 件 でも 「使う」 が 出たら → <strong>5 デモ の 値付け 確定 + LP 作成 開始</strong></li>
+      <li>Q5-8 (接触経路) の 結果 を Deep Research 仮説 と 照合 → <strong>komuten-channel-strategy.md の 接点 マトリクス 確定 版 に 更新</strong></li>
+      <li><strong>Q25 (LINE 拡散) で 何人 に 送って くれた か 翌日 LINE で 確認</strong> → 投票数 が 増えたら <code>/demo-gallery/results</code> で 拒否理由分布 / 連絡先取得率 を 集計、 <strong>5/22 北原氏 面談 の 持参 資料 に 反映</strong> (間に合うかは ヒアリング 日時 次第)</li>
+      <li>連絡先 入力者 が 出たら <strong>1 週間以内 に 1 人ずつ 直接 連絡</strong> = 温度感が 高い うちに 動く (3 AI 共通助言)</li>
+    </ol>
+
+
+    <footer>
+      <p>📍 friend (現場監督) ヒアリング チェックリスト — 2026-05-11 作成</p>
+      <p>関連: <code>memory/friend-hearing-may-2026.md</code> / <code>memory/komuten-channel-strategy.md</code> / <code>memory/saas-pricing.md</code> / <code>docs/komuten-channel-strategy.html</code></p>
+    </footer>
+
+  </main>
+</body>
+</html>
