@@ -26,3 +26,17 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts.serena/
 .env*.local
+
+# 工務店レビュー収集スクリプトの出力 / キャッシュ
+/koumuten_reviews.json
+/.cache/
+
+# デバッグスクショ / Playwright MCP 生成物 (再発防止)
+# - ルート直下の PNG は手元検討用、 git には入れない (public/images/ 配下は別途活かす)
+# - .playwright-mcp/ は MCP の作業ディレクトリ
+# - /issue-finder-*.yml は Playwright が一時生成する空ファイル等
+/*.png
+.playwright-mcp/
+/issue-finder-*.yml
+/.serena/
+/.email-previews/
