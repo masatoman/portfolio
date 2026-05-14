@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>たましん 経営支援部 電話 + 訪問 台本 (2026-05-15/16) — 軸 B 接点ハブ起動</title>
+  <style>
+    :root {
+      --ink: #071b49;
+      --sub: #33496d;
+      --muted: #5f6f89;
+      --line: #d8e3f2;
+      --bg: #fbfcfe;
+      --panel: #ffffff;
+      --accent: #f47b20;
+      --accent-soft: #fff4e9;
+      --good: #15803d;
+      --good-soft: #dcfce7;
+      --warn: #b45309;
+      --warn-soft: #fef3c7;
+      --bad: #b91c1c;
+      --bad-soft: #fee2e2;
+      --info: #1d4ed8;
+      --info-soft: #dbeafe;
+    }
+    * { box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--ink); margin: 0; padding: 0; }
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.75;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 920px; margin: 0 auto; padding: 48px 24px 96px; }
+    header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 24px;
+      margin-bottom: 36px;
+    }
+    header .eyebrow {
+      display: inline-block;
+      background: var(--bad-soft);
+      color: var(--bad);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 26px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      font-weight: 900;
+    }
+    header .meta {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    h2 {
+      font-size: 19px;
+      letter-spacing: -0.01em;
+      margin: 48px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--line);
+      font-weight: 900;
+    }
+    h2 .num {
+      display: inline-block;
+      background: var(--ink);
+      color: white;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-right: 12px;
+      vertical-align: 3px;
+      font-weight: 800;
+    }
+    h3 {
+      font-size: 15px;
+      margin: 22px 0 8px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    p { margin: 0 0 12px; color: var(--sub); }
+    p strong { color: var(--ink); }
+    ul, ol { margin: 0 0 14px; padding-left: 24px; color: var(--sub); }
+    li { margin-bottom: 4px; }
+
+    .summary {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--bad);
+      padding: 22px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+    .summary h3 {
+      margin-top: 0;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--bad);
+      text-transform: uppercase;
+    }
+    .summary p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .summary p:last-child { margin-bottom: 0; }
+
+    .script {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+    .script .speaker {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .script .speaker.them {
+      background: var(--info);
+    }
+    .script p {
+      margin: 4px 0;
+      color: var(--ink);
+    }
+    .script .line {
+      background: #fffaf3;
+      border-left: 3px solid var(--accent);
+      padding: 10px 14px;
+      margin: 6px 0;
+      border-radius: 0 8px 8px 0;
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .script .line.them {
+      background: #f4f7fc;
+      border-left-color: var(--info);
+    }
+
+    .branch {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 10px 0;
+    }
+    .branch .head {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .branch .if {
+      font-size: 14px;
+      color: var(--ink);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .branch .then {
+      font-size: 13px;
+      color: var(--sub);
+      padding-left: 16px;
+      border-left: 2px solid var(--line);
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 12px 0 20px;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      background: #f4f7fc;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    tr:last-child td { border-bottom: none; }
+    td.num {
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .pill-good { background: var(--good-soft); color: var(--good); }
+    .pill-warn { background: var(--warn-soft); color: var(--warn); }
+    .pill-bad  { background: var(--bad-soft);  color: var(--bad);  }
+    .pill-info { background: var(--info-soft); color: var(--info); }
+
+    .qa {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+    }
+    .qa .q {
+      font-size: 14px;
+      color: var(--ink);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .qa .q::before {
+      content: "Q ";
+      color: var(--info);
+      font-weight: 900;
+      letter-spacing: 0.1em;
+    }
+    .qa .a {
+      font-size: 13px;
+      color: var(--sub);
+      padding-left: 22px;
+      border-left: 2px solid var(--good);
+      padding: 8px 12px;
+      background: var(--good-soft);
+      border-radius: 0 6px 6px 0;
+    }
+    .qa .a::before {
+      content: "A ";
+      color: var(--good);
+      font-weight: 900;
+      letter-spacing: 0.1em;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 20px;
+    }
+    .checklist li {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 6px;
+      font-size: 13px;
+      color: var(--sub);
+      position: relative;
+      padding-left: 38px;
+    }
+    .checklist li::before {
+      content: "□";
+      position: absolute;
+      left: 14px;
+      top: 8px;
+      font-size: 18px;
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .checklist li strong { color: var(--ink); }
+
+    .crit {
+      background: var(--bad-soft);
+      border-left: 4px solid var(--bad);
+      padding: 14px 18px;
+      border-radius: 0 12px 12px 0;
+      color: var(--ink);
+      font-weight: 600;
+      margin: 16px 0 24px;
+      font-size: 14px;
+    }
+    .crit strong { color: var(--bad); }
+
+    .note {
+      background: var(--warn-soft);
+      border-left: 4px solid var(--warn);
+      padding: 14px 18px;
+      border-radius: 0 12px 12px 0;
+      color: var(--ink);
+      font-weight: 600;
+      margin: 16px 0 24px;
+      font-size: 14px;
+    }
+    .note strong { color: var(--warn); }
+
+    .fail {
+      background: #fafbfd;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--sub);
+    }
+    .fail .x { color: var(--bad); font-weight: 900; margin-right: 6px; }
+    .fail strong { color: var(--ink); }
+
+    footer {
+      margin-top: 56px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <header>
+      <span class="eyebrow">🔥 単独最大ボトルネック · 今週最重要</span>
+      <h1>たましん 経営支援部 電話 + 訪問 台本<br />— 2026-05-15 (木) 電話 / 5-16 (金) 訪問</h1>
+      <p class="meta">2026-05-14 作成 / 軸 B 接点ハブ起動 / masatoman 本人用 / 公開しない</p>
+    </header>
+
+    <section class="summary">
+      <h3>1 行サマリ</h3>
+      <p>5/15 (木) AM に 多摩信用金庫 府中支店 経営支援部 へ 電話、 5/16 (金) に 試作品 iPad ライブ訪問。 目的は <strong>取引先工務店 5-10 社 紹介依頼</strong> + <strong>「たましん指定 SaaS」 ポジション 担当者口約束</strong> 取得。 これが 動けば 7 月末月次 5-10 万 が 見える、 動かなければ 商工会議所 + 北原氏 + 友人 LINE で 必死補完。</p>
+    </section>
+
+    <h2><span class="num">01</span>電話前 準備 (5/15 朝)</h2>
+
+    <p>電話 は <strong>9:30-10:00 の 間</strong> が ベスト (営業開始直後で 担当者 が 落ち着いて 話を 聞ける 時間帯)。</p>
+
+    <ul class="checklist">
+      <li><strong>5/15 朝</strong>: 試作品 (iPad / ノート PC) 動作確認 — demo-gallery <code>ihara-frontend.com/demo-gallery</code> + 商談ペライチ <code>/report</code> + <code>/report/komuten</code></li>
+      <li><strong>5/15 朝</strong>: たましん 府中支店 電話番号 確認 (公式サイト or 通帳)</li>
+      <li><strong>5/15 朝</strong>: 担当者名 が 分かれば 名前指定 で 取り次ぎ依頼、 不明なら 「経営支援部 の どなたか」 で OK</li>
+      <li><strong>5/15 朝</strong>: 自分の 口座番号 (取引者 として 名乗る 補強材料、 メモして 手元に)</li>
+      <li><strong>5/15 朝</strong>: この台本 と 想定 Q&A を 印刷 or 別タブ で 開いて 手元に</li>
+    </ul>
+
+    <h2><span class="num">02</span>電話台本 (5/15 9:30-10:00)</h2>
+
+    <h3>取り次ぎ依頼</h3>
+
+    <div class="script">
+      <span class="speaker">SELF</span>
+      <div class="line">
+        お世話に なって おります、 分倍河原 在住の 個人事業主 井原 と 申します。 経営支援部 の ご担当者 お願い できますか。
+      </div>
+    </div>
+
+    <h3>経営支援部 担当者 が 出た 時</h3>
+
+    <div class="script">
+      <span class="speaker">SELF</span>
+      <div class="line">
+        お忙しい ところ 失礼します、 個人事業主 で フロントエンド開発 を して おります 井原 と 申します。 たましん さん に 口座 を 持って おり (取引者 です)、 今回 ご相談 と お願い が あって お電話 しました。<br /><br />
+        実は <strong>工務店向け SaaS の 試作品</strong> を 作って おりまして、 IT が 苦手な 工務店オーナー 向けに 設計 しています。 <strong>たましん さん の 取引先 で、 IT が 苦手で 業務効率化 に 困って いる 工務店オーナー</strong> を 数社 ご紹介 いただけ ない か、 ご相談 したく ご連絡 しました。<br /><br />
+        補助金活用 (IT 導入補助金 / 東京都 DX 推進助成金) で 工務店側の 負担を <strong>実質 1/8 まで 圧縮</strong> できる 設計に なって おりまして、 たましん さん が 普段 補助金相談 を 受けて いる 工務店 とも 相性が 良い はずです。<br /><br />
+        試作品 を 直接 見て いただく の が 一番 早い ので、 来週中 (5/16 金 or 来週どこか) に <strong>30 分ほど 府中支店 へ 試作品 持参 で 訪問</strong> させて いただく の は 可能でしょうか?
+      </div>
+    </div>
+
+    <h3>分岐 (担当者の 反応別)</h3>
+
+    <div class="branch">
+      <div class="head">分岐 A: 「いいですよ、 訪問日時 調整します」</div>
+      <div class="if">→ 5/16 (金) AM or PM で 30 分枠 確定</div>
+      <div class="then">「ありがとうございます。 当日は iPad で 試作品 と 業界分析データ を 見て いただきます。 30 分で 収まります」 / 訪問前 に メール で 訪問目的 を 送る (担当者 が 取引先候補 を 事前に 1-2 社 思い浮かべて おける と 訪問効率 が 上がる)</div>
+    </div>
+
+    <div class="branch">
+      <div class="head">分岐 B: 「制度として 取引先紹介 は ビジネスフェア (10 月) で やって ます」</div>
+      <div class="if">→ 制度ルート に 誘導 された 場合</div>
+      <div class="then">「ビジネスフェア の 出展 も 検討 します。 ただ <strong>10 月 だと 検証 サイクル に 合わない</strong> ので、 担当者さん 個人の 感覚 で 『この 工務店 に 試作品 見せたら 反応 ありそう』 という 1-2 社 だけ でも 思い当たり ない でしょうか? まず 1 社 で 始めて 反応見て から 制度ルート に 進む 形が 自分には 合って ます」</div>
+    </div>
+
+    <div class="branch">
+      <div class="head">分岐 C: 「担当者 から 取引先 紹介 は 難しい (守秘義務 / 制度の壁)」</div>
+      <div class="if">→ 個別紹介 NG の 場合</div>
+      <div class="then">「承知しました。 ではこちら から お伺い する 形 で、 <strong>試作品 を 見て いただいて 『どんな 工務店 に 刺さりそう か』 アドバイス いただく</strong> だけ でも 助かります。 紹介ではなく 業界知見の 共有 という 形 で 訪問 させて いただけ ない でしょうか?」 / 訪問 自体は 取りに 行く、 訪問後 の 関係性で 後日 紹介に つながる ことを 狙う</div>
+    </div>
+
+    <div class="branch">
+      <div class="head">分岐 D: 「日程 来週 取れない、 再来週 で どうか」</div>
+      <div class="if">→ 訪問遅延 (1 週間スリップ) 受容判断</div>
+      <div class="then">5/16 (金) 訪問 が 5/23 (金) に なって も OK。 ただし 5/22 北原氏面談 (5/22 木) より <strong>前</strong> に 訪問できる か は こだわる。 北原氏面談で 「たましん訪問 既済 / 担当者 X さん の 感触は…」 と 言える かどうか で 北原氏側の 紹介熱量も 変わる</div>
+    </div>
+
+    <div class="branch">
+      <div class="head">分岐 E: 「ちょっと 上に 確認しないと…」</div>
+      <div class="if">→ 担当者 単独判断 NG / 上長確認 必要</div>
+      <div class="then">「承知しました、 ご検討 よろしく お願いします。 急がせる つもり は ない ので、 来週 中 で お返事 いただければ 助かります」 / メール アドレス を 伝えて 後日 連絡 を もらう / 並行で 商工会議所 + 北原氏 を 動かす</div>
+    </div>
+
+    <div class="crit">
+      <strong>クリティカル:</strong> 電話 で 完結 させない。 「訪問日程 を 取る」 が 電話の 唯一の 目的。 取引先 詳細 / 補助金 詳細 は 訪問時に 話す。 電話で 全部 話そうと すると 「資料を メール で 送って」 で 流される。
+    </div>
+
+    <h2><span class="num">03</span>想定 Q&A (担当者からの 質問)</h2>
+
+    <div class="qa">
+      <div class="q">どんな SaaS なんですか? 既存サービス (ANDPAD 等) と 何が 違うんですか?</div>
+      <div class="a">IT が 苦手な 60 代 工務店オーナー が 触れる レベルに 振り切った 設計です。 ANDPAD は 多機能で 値段も 月 数万 ですが、 こちらは <strong>「見積整理」 「現場写真整理」 「日報音声入力」 等の 1 機能特化 で 月 1 万円台</strong>。 補助金で 実質負担 1/8 まで 圧縮 できる ので、 工務店側の 導入ハードル が 段違いに 低い です。 試作品 を 見て いただく のが 一番 早い ので 訪問させて ください。</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">補助金で 1/8 って、 ほんとに そんな ことできるんですか?</div>
+      <div class="a">IT 導入補助金 (国、 3/4 補助) + 東京都 DX 推進助成金 (都、 残り部分の 1/2) を 別経費 で 同時申請 する 設計です。 同一経費 への 二重補助 は 不可なので、 SaaS 本体 = 国 / 運用・サーバー = 都 で 分けます。 同時申請 可否の 最終確認 は 5/22 に 東京創業ステーション の 北原氏 (中小企業診断士) に 確認予定 です。 たましん さん の 補助金担当 と 連携 できる と 工務店側 の 採択率も 上がる はず です。</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">井原さん は どこ で 開発 やってる 方 ですか? 実績は?</div>
+      <div class="a">個人事業主 で フロントエンド開発 を 10 年弱 やって おります。 自社サイト <code>ihara-frontend.com</code> で 8 つの 工務店向けデモ を 公開済 で、 業界 SNS / ブログ / Google マップレビュー 計 1,029 件 の 痛み分析 も 一次情報 として 持って います。 訪問時に お見せ します。 取引先 では ない ですが、 たましん さん の 口座 を 長く 使わせて いただいて おり、 多摩地区 に 根を 張って 工務店 さん の DX を 支援したい と 考えて います。</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">どんな 工務店 を 紹介すれば いい ですか?</div>
+      <div class="a">5-30 人規模 の 中小工務店 で、 オーナー さんが 60 代前後 で IT は 苦手だが <strong>「業務改善 したい 気持ちは ある」</strong> という 方 が 一番 刺さります。 2 代目・3 代目 の アトツギ が いて、 父親 を 説得する 材料 を 欲しがって いる パターン も 大歓迎 です。 補助金 を 真面目に 申請 する 工務店 さん は たいてい 当てはまります。</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">うち の 取引先 で 興味 ありそうな 1 社 思い当たる けど、 まだ 紹介 して いい か 分から ない…</div>
+      <div class="a">ありがとう ございます。 まずは <strong>紹介ではなく、 たましん さん 経由で 試作品 を 見て いただく 形</strong> でも OK です。 「分倍河原 の 個人事業主 が 工務店向け SaaS の 試作品 作った ので、 30 分だけ 見て もらえ ません か」 と 担当者さん から 仲介 して いただければ。 工務店オーナー が 興味なければ そこで 終わる ので、 たましん さん の 立場 を 損な わない 形です。</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">資料 を メール で 先に 送って もらえる?</div>
+      <div class="a">承知しました。 商談ペライチ 2 版 (中間業者向け + 工務店オーナー向け) + 業界分析サマリ + デモ URL を まとめて 本日中 (5/15) に お送り します。 ただ <strong>iPad で 動く 試作品 を 見て いただく のが 一番 早い</strong> ので、 資料確認後 で 構い ません ので 訪問 アポ を 検討 いただければ 助かります。</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">手数料 や 紹介料 は どうなる?</div>
+      <div class="a">紹介料 を お支払い する 形 でも 結構 です。 ただ 工務店 さん から いただく 月額 が 1 万円台 から で 個別 利益率も 低い ので、 <strong>初年度 月額 の 10% 程度</strong> が 妥当 か なと 思って います。 たましん さん が 普段 取引先 マッチング で どう され ている か 教えて いただければ、 それに 合わせ ます。 もちろん 紹介料なし で OK で あれば こちら からは 一切 こだわり ません。</div>
+    </div>
+
+    <h2><span class="num">04</span>訪問前 準備 (5/16 朝)</h2>
+
+    <h3>持参物</h3>
+
+    <ul class="checklist">
+      <li><strong>iPad</strong> (試作品 demo-gallery ライブ + 8 デモ 個別 動作確認済)</li>
+      <li><strong>ノート PC バックアップ</strong> (iPad ネット切断 リスク 対策、 ローカル サーバー or 動画録画)</li>
+      <li><strong>商談ペライチ 2 版 印刷</strong> (中間業者向け <code>/report</code> + 工務店オーナー向け <code>/report/komuten</code>、 各 1 部)</li>
+      <li><strong>demo-gallery QR コード 印刷</strong> (担当者 が 後日 自分で 触れる)</li>
+      <li><strong>業界分析サマリ 1 枚 印刷</strong> (issue-finder 235 件 / 7 クラスタ + レビュー 794 件 / 7 クラスタ の 要約)</li>
+      <li><strong>名刺 5-10 枚</strong> (個人事業主、 多摩信用金庫取引者 と 書ければ強い)</li>
+      <li><strong>筆記用具</strong> (メモ取り用、 タブレットメモ より アナログ の 方が 多摩地区 信金 で 安心感)</li>
+      <li><strong>履歴書 / 略歴 1 枚</strong> (聞かれる かも しれない)</li>
+    </ul>
+
+    <h3>事前メール (5/15 夜)</h3>
+
+    <p>電話で 訪問日時 が 決まったら、 同日中 に メール 1 通:</p>
+
+    <div class="script">
+      <span class="speaker">SELF</span>
+      <div class="line">
+        本日 お電話 した 井原 です、 5/16 (金) XX 時 から の 訪問 ありがとう ございます。<br /><br />
+        訪問前 に 試作品 と 資料 を お送りします。<br /><br />
+        - 試作品 (8 デモ + 投票ページ): <code>https://ihara-frontend.com/demo-gallery</code><br />
+        - 商談ペライチ: 中間業者向け <code>/report</code> / 工務店オーナー向け <code>/report/komuten</code><br />
+        - 業界分析サマリ: PDF 添付 (issue-finder 235 件 + レビュー 794 件 の 痛み 一覧)<br /><br />
+        当日 は iPad で 試作品 を 触りながら、 <strong>『どんな 工務店 に 刺さりそうか』</strong> アドバイス いただければ 助かります。 30 分で 収まる ように 進行します。<br /><br />
+        お忙しい ところ 恐縮 ですが、 よろしく お願いいたします。
+      </div>
+    </div>
+
+    <h2><span class="num">05</span>訪問時 の 流れ (5/16、 30 分構成)</h2>
+
+    <table>
+      <thead>
+        <tr><th>時間</th><th>内容</th><th>ねらい</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">0-3 分</td><td>挨拶 + 名刺交換 + たましん 取引者 アピール</td><td>関係性の 確認 (取引者 = 部外者ではない)</td></tr>
+        <tr><td class="num">3-10 分</td><td>業界分析サマリ 1 枚 で 工務店業界 の 痛み 提示</td><td>担当者の 業界知見 を 引き出す + 自分の 一次情報量 を 示す</td></tr>
+        <tr><td class="num">10-20 分</td><td>iPad で 試作品 4 つ ライブ (estimate / call-memo / site-photo / voice-daily)</td><td>「IT 弱者 でも 触れる」 を 体感 してもらう</td></tr>
+        <tr><td class="num">20-25 分</td><td>補助金 1/8 訴求 + 価格モデル説明</td><td>工務店側の 導入ハードル の 低さ を 説明</td></tr>
+        <tr><td class="num">25-30 分</td><td><strong>紹介依頼 (5-10 社)</strong> + 「たましん指定 SaaS」 ポジション 打診</td><td>本題、 担当者の 口約束を 取る</td></tr>
+      </tbody>
+    </table>
+
+    <h3>「たましん指定 SaaS」 打診の セリフ</h3>
+
+    <div class="script">
+      <span class="speaker">SELF</span>
+      <div class="line">
+        図々しい お願い なんですが、 もし 紹介していただける 工務店 さん が 出てきたら、 「<strong>たましん の 経営支援部 さんから ご紹介 いただいた 井原 です</strong>」 と 自己紹介 させて いただいて よろしい でしょうか? たましん さん の お名前 を お借り する 形 に なるので、 担当者さん の OK を いただいた 範囲 で だけ 名乗ります。<br /><br />
+        正式な 「提携」 という 形では なく、 「紹介経由」 という 程度の 表現 で 問題ない でしょうか?
+      </div>
+    </div>
+
+    <p>担当者 が 「OK」 と 言って くれたら、 訪問後 メールで <strong>「本日 ご了承 いただいた 通り、 ご紹介 工務店 様 への 自己紹介で 『たましん 経営支援部 ご紹介』 と 名乗らせて いただきます」</strong> と 文面化 する。 これで 信用補完レイヤー B-1 (`[[credit-augmentation-dual-layer]]`) 取得。</p>
+
+    <h2><span class="num">06</span>訪問後 フォロー (5/16 夜 - 5/22 まで)</h2>
+
+    <ul class="checklist">
+      <li><strong>5/16 夜</strong>: 訪問お礼 メール + 「たましん指定 SaaS」 文面化 (B-1 取得)</li>
+      <li><strong>5/17-18</strong>: 紹介工務店 が 出てきたら 即 連絡 / 出てこなければ 1 週間 様子見</li>
+      <li><strong>5/20-21</strong>: 北原氏面談 準備に 「たましん訪問 既済」 を 反映 (商談ペライチ 信用補完欄に 追記)</li>
+      <li><strong>5/22</strong>: 北原氏面談 で 「たましん さん にも 訪問済 で、 多摩地区の 認定支援機関税理士 紹介 を Q9 で お願い予定」 と 二重ハブ感 を 演出</li>
+      <li><strong>5/23-31</strong>: たましん紹介 工務店 へ 初回連絡 5-10 件</li>
+      <li><strong>6/1-15</strong>: 並行 商談 5 件 (たましん経由 + 北原氏経由 + 商工会議所経由 + 友人経由 + 建材屋経由)</li>
+    </ul>
+
+    <h2><span class="num">07</span>失敗パターン (回避リスト)</h2>
+
+    <div class="fail"><span class="x">✕</span>電話 で 試作品の 詳細 / 補助金の 詳細 を 全部 話す → 「資料 送って」 で 流される。 電話の 目的 は <strong>訪問アポ 取得 のみ</strong></div>
+    <div class="fail"><span class="x">✕</span>担当者 を 個人名 で 呼ばない / 名前 を 聞き 忘れる → 訪問時 に 「先日 お電話 した 井原 です」 と 切り出せ ない。 必ず 電話冒頭 で 担当者名 を メモ</div>
+    <div class="fail"><span class="x">✕</span><strong>「DX コンサル」 「AI 活用」 等 カタカナ語 を 使う</strong> → 信金担当 は 工務店 と 同じ 感覚 で 嫌う。 「業務改善」 「効率化」 「補助金活用」 の 平易日本語</div>
+    <div class="fail"><span class="x">✕</span>iPad ネット切断 で 試作品 動かず → 訪問前に <strong>ローカル動画録画 バックアップ</strong> を ノート PC に 持参</div>
+    <div class="fail"><span class="x">✕</span>紹介料 を 「もちろん お支払い します」 で 先に 出しすぎる → たましん は 制度として 紹介料 受け取り 不可 の 場合あり、 こちらから 押し付けると 担当者 が 困る。 <strong>担当者 から 「うちは 紹介料 不要 ですよ」 と 言わせる</strong> 流れに</div>
+    <div class="fail"><span class="x">✕</span><strong>「補助金代行業者」 と 誤認 される</strong> → 補助金は あくまで 「導入時の 負担軽減 ツール」 と 説明、 自分は SaaS 提供者で あって 申請代行業 では ない こと を 強調</div>
+    <div class="fail"><span class="x">✕</span>訪問時 提案書を 完璧に 作り込む → 30 分 で 全部 説明 しようと して 早口に なる。 <strong>「触って もらう」 「業界知見 を 引き出す」 が 主役</strong>、 提案は 5 分以内</div>
+    <div class="fail"><span class="x">✕</span>担当者 異動の リスク を 忘れる → 信金 は 2-3 年で 異動 ある。 メール で 関係性を 文書化 して おく、 上司 にも 顔つなぎ できる か 訪問時 に 聞く</div>
+
+    <h2><span class="num">08</span>「動かない」 シナリオ への 備え</h2>
+
+    <p>たましん が 動かない (制度の壁 / 担当者 NG / 上長承認 取れず) 場合の 補完経路:</p>
+
+    <table>
+      <thead>
+        <tr><th>補完経路</th><th>動作</th><th>期待接触数</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>府中商工会議所 経営指導員 (同 5/15-16)</td><td>持続化補助金 対象工務店 紹介依頼 + 「IT 化推進パートナー」 打診</td><td>2-3 件</td></tr>
+        <tr><td>北原氏 (5/22 面談)</td><td>顧問先工務店 紹介依頼 (Q5 + Q11)</td><td>3-5 件</td></tr>
+        <tr><td>友人 (現場監督) ヒアリング → LINE 拡散</td><td>Q25 で LINE 拡散依頼、 雪だるま起点</td><td>5-8 件</td></tr>
+        <tr><td>建材屋営業マン 巡回 (5/20-31)</td><td>LIXIL 多摩 / ナフコ / 地元卸、 「IT 兄ちゃん」 認知</td><td>3-5 件</td></tr>
+        <tr><td>たましん ビジネスフェア (10-11 月)</td><td>制度ルート、 ただし 検証サイクルに 合わない</td><td>(参考、 採用せず)</td></tr>
+        <tr><td><strong>合計 (たましん 抜き)</strong></td><td>—</td><td><strong>13-21 件</strong></td></tr>
+      </tbody>
+    </table>
+
+    <p>たましん 抜き でも 13-21 件接触 → 商談 4-8 件 → 並行 5 件 ギリギリ 確保 可能。 ただし <strong>1 件あたり の 単価交渉力 は 落ちる</strong> (たましん紹介 = 信用補完が 効く ので 価格が 通りやすい)。</p>
+
+    <div class="note">
+      <strong>シナリオ B (たましん 動かない) 受容判断</strong>: 5/16 訪問の 結果が 「制度ルート 強制 / 個別紹介 NG」 と 確定 したら、 5/17-18 で 商工会議所 + 北原氏 + 建材屋 + 友人 の 4 経路 を 同時並行で 最大化。 たましん は 後追い 経路 (10 月 ビジネスフェア) に 格下げ。
+    </div>
+
+    <h2><span class="num">09</span>1 行 まとめ</h2>
+
+    <div class="summary">
+      <p>電話 9:30、 訪問 5/16、 目的は <strong>訪問アポ取得 + 紹介依頼 + 「たましん指定」 口約束</strong>。 全部 話そうと しない、 試作品 で 触って もらう、 担当者の 業界知見 を 引き出す、 紹介料 は 押し付けない、 カタカナ語 禁止。 <strong>動けば 5-10 件接触、 動かなくても 補完経路 で 13-21 件 確保可能</strong>。</p>
+    </div>
+
+    <footer>
+      たましん 電話 + 訪問 台本 2026-05-15/16 / 軸 B 接点ハブ起動 / portfolio (ihara-frontend.com) / docs/tamashin-call-script-2026-05-15.html
+      <br />
+      <strong>関連 docs</strong>: docs/komuten-fast-track-strategy-2026-05-14.html (ultrathink 戦略) / docs/business-summary-2026-05-22.html / docs/consultation-questions-2026-05-22.html (5/22 北原氏)
+      <br />
+      <strong>関連 portfolio memory</strong>: tamashin-keiei-shien-bottleneck.md / user-living-area-tamashin.md / credit-augmentation-dual-layer.md / subsidy-1-8th-burden-pitch.md / customer-target.md
+    </footer>
+
+  </main>
+</body>
+</html>

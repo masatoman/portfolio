@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>工務店プロジェクト 爆速ルート — Ultrathink 戦略 (2026-05-14)</title>
+  <style>
+    :root {
+      --ink: #071b49;
+      --sub: #33496d;
+      --muted: #5f6f89;
+      --line: #d8e3f2;
+      --bg: #fbfcfe;
+      --panel: #ffffff;
+      --accent: #f47b20;
+      --accent-soft: #fff4e9;
+      --good: #15803d;
+      --good-soft: #dcfce7;
+      --warn: #b45309;
+      --warn-soft: #fef3c7;
+      --bad: #b91c1c;
+      --bad-soft: #fee2e2;
+      --info: #1d4ed8;
+      --info-soft: #dbeafe;
+    }
+    * { box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--ink); margin: 0; padding: 0; }
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.75;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 920px; margin: 0 auto; padding: 48px 24px 96px; }
+    header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 24px;
+      margin-bottom: 36px;
+    }
+    header .eyebrow {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 28px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      font-weight: 900;
+    }
+    header .meta {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    h2 {
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      margin: 56px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--line);
+      font-weight: 900;
+    }
+    h2 .num {
+      display: inline-block;
+      background: var(--ink);
+      color: white;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-right: 12px;
+      vertical-align: 3px;
+      font-weight: 800;
+    }
+    h3 {
+      font-size: 16px;
+      margin: 28px 0 10px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    p { margin: 0 0 14px; color: var(--sub); }
+    p strong { color: var(--ink); }
+    ul, ol { margin: 0 0 16px; padding-left: 24px; color: var(--sub); }
+    li { margin-bottom: 6px; }
+
+    .summary {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      padding: 24px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+    .summary h3 {
+      margin-top: 0;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    .summary p {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .summary p:last-child { margin-bottom: 0; }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 16px 0 24px;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      background: #f4f7fc;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    tr:last-child td { border-bottom: none; }
+    td.num {
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    td.center { text-align: center; font-weight: 800; font-size: 16px; }
+
+    .pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .pill-good { background: var(--good-soft); color: var(--good); }
+    .pill-warn { background: var(--warn-soft); color: var(--warn); }
+    .pill-bad  { background: var(--bad-soft);  color: var(--bad);  }
+    .pill-info { background: var(--info-soft); color: var(--info); }
+    .pill-accent { background: var(--accent-soft); color: var(--accent); }
+
+    .insight {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--info);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .insight .label {
+      display: inline-block;
+      background: var(--info);
+      color: white;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .insight h3 {
+      margin: 0 0 10px;
+      font-size: 17px;
+    }
+    .insight .body p { font-size: 14px; color: var(--sub); }
+    .insight .body p strong { color: var(--ink); }
+
+    .schedule {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin: 16px 0 24px;
+    }
+    .schedule .phase {
+      margin-bottom: 20px;
+    }
+    .schedule .phase:last-child { margin-bottom: 0; }
+    .schedule .phase-head {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed var(--line);
+    }
+    .schedule ul {
+      margin: 0;
+      padding-left: 22px;
+      font-size: 14px;
+    }
+    .schedule li { color: var(--sub); }
+    .schedule li strong { color: var(--ink); }
+
+    .note {
+      background: var(--warn-soft);
+      border-left: 4px solid var(--warn);
+      padding: 14px 18px;
+      border-radius: 0 12px 12px 0;
+      color: var(--ink);
+      font-weight: 600;
+      margin: 16px 0 24px;
+      font-size: 14px;
+    }
+    .note strong { color: var(--warn); }
+
+    .crit {
+      background: var(--bad-soft);
+      border-left: 4px solid var(--bad);
+      padding: 14px 18px;
+      border-radius: 0 12px 12px 0;
+      color: var(--ink);
+      font-weight: 600;
+      margin: 16px 0 24px;
+      font-size: 14px;
+    }
+    .crit strong { color: var(--bad); }
+
+    .fail {
+      background: #fafbfd;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: var(--sub);
+    }
+    .fail .x {
+      color: var(--bad);
+      font-weight: 900;
+      margin-right: 8px;
+    }
+    .fail strong { color: var(--ink); }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+    .checklist li {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--sub);
+      position: relative;
+      padding-left: 38px;
+    }
+    .checklist li::before {
+      content: "□";
+      position: absolute;
+      left: 14px;
+      top: 10px;
+      font-size: 18px;
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .checklist li strong { color: var(--ink); }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <header>
+      <span class="eyebrow">⚡ ULTRATHINK · STRATEGY 反映済</span>
+      <h1>工務店プロジェクト 爆速ルート<br />— 公的施設・サービス × 紹介ハブ × 補助金 で 7 月末月次 5-10 万 を 取りに行く</h1>
+      <p class="meta">2026-05-14 / Ultrathink セッション / STRATEGY.md + MEMORY.md 反映済 / masatoman 本人用 / 公開しない</p>
+    </header>
+
+    <section class="summary">
+      <h3>1 行サマリ</h3>
+      <p>爆速 = <strong>たましん経営支援部 5/15-16 電話</strong> × <strong>アトツギ窓口化</strong> × <strong>補助金 1/8 訴求</strong> × <strong>並行 5 件商談</strong> × <strong>二重信用補完</strong>。 このうち <strong>「たましん 5/15-16 電話」</strong> が単独最大ボトルネック。 今週ここを動かせるかで 7 月末月次 5-10 万が決まる。</p>
+    </section>
+
+    <h2><span class="num">01</span>クリティカルパス 逆算</h2>
+
+    <p>工務店契約サイクル の 典型:</p>
+    <ul>
+      <li>初回接触 (1 週) → 1 次商談 (1 週) → demo 持ち込み (1-2 週) → 社内検討 (2-3 週) → 契約 (1 週)</li>
+      <li><strong>合計: 6-8 週間</strong></li>
+    </ul>
+
+    <p>7 月末契約 から 逆算 すると:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>マイルストーン</th>
+          <th>期日</th>
+          <th>並行件数</th>
+          <th>状態</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>初回接触 完了</td><td class="num">5/31</td><td class="center">5 件</td><td><span class="pill pill-bad">分水嶺</span></td></tr>
+        <tr><td>1 次商談 完了</td><td class="num">6/15</td><td class="center">5 件</td><td><span class="pill pill-warn">並行維持</span></td></tr>
+        <tr><td>demo 持ち込み</td><td class="num">6/30</td><td class="center">3-5 件</td><td><span class="pill pill-warn">絞り込み</span></td></tr>
+        <tr><td>1 社目 契約</td><td class="num">6/30</td><td class="center">1 件</td><td><span class="pill pill-good">目標</span></td></tr>
+        <tr><td>2-3 社目 契約</td><td class="num">7/30</td><td class="center">2-3 件</td><td><span class="pill pill-good">月次 5-10 万</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="crit">
+      <strong>クリティカル:</strong> 5/31 までに「初回接触 5 件並行」 状態 を 作れ ない と、 1 社の遅延 で 全体 が 止まる。 接触 → 商談 コンバージョン 30-40% を 前提 に 接触 機会 <strong>15-25 件</strong> が 必要。
+    </div>
+
+    <h2><span class="num">02</span>即効 ハブ × 3 + 武器化 × 1 (ROI 順)</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>優先</th>
+          <th>機関</th>
+          <th>依頼内容</th>
+          <th>即効性</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="center">★★★</td>
+          <td><strong>東京創業ステーション (北原氏)</strong></td>
+          <td>5/22 面談 で 工務店 3-5 社 紹介依頼</td>
+          <td><span class="pill pill-good">1-2 週</span></td>
+        </tr>
+        <tr>
+          <td class="center">★★★</td>
+          <td><strong>多摩信用金庫 (たましん)</strong></td>
+          <td>経営支援部 に 「取引先工務店 紹介してほしい」</td>
+          <td><span class="pill pill-good">1-2 週</span></td>
+        </tr>
+        <tr>
+          <td class="center">★★★</td>
+          <td><strong>府中商工会議所</strong></td>
+          <td>経営指導員 に 持続化補助金 対象工務店 紹介依頼</td>
+          <td><span class="pill pill-good">2-3 週</span></td>
+        </tr>
+        <tr>
+          <td class="center">★★</td>
+          <td><strong>IT 導入支援事業者 登録</strong></td>
+          <td>補助金訴求 を 武器化 (1/2-3/4 出ますよ)</td>
+          <td><span class="pill pill-warn">1-2 ヶ月</span></td>
+        </tr>
+        <tr>
+          <td class="center">★</td>
+          <td>多摩産業支援センター (立川)</td>
+          <td>専門家派遣 で 販路開拓相談 (副次的)</td>
+          <td><span class="pill pill-info">1-2 ヶ月</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>masatoman さん は <strong>分倍河原 + たましん取引あり</strong> という 地理的アドバンテージ。 多摩地区 は 中小工務店 の 密度 が 東京で 最も高い エリア の 一つ。 これを 使い倒すのが 最短ルート。</p>
+
+    <h2><span class="num">03</span>盲点 5 つ — Ultrathink で 見えてきた もう 1 階層</h2>
+
+    <p>前回 の 答え (紹介ハブ 多重化) は 正しい方向 だが、 さらに 深掘り すると 5 つ の 盲点 が 浮かぶ。 順に 潰す。</p>
+
+    <section class="insight">
+      <span class="label">盲点 01</span>
+      <h3>工務店 の 真の意思決定者 は 「アトツギ」 = 2 代目 3 代目</h3>
+      <div class="body">
+        <p>家族経営 が 大半 で、 意思決定 は <strong>3 層</strong> 構造:</p>
+        <table>
+          <thead>
+            <tr><th>層</th><th>人物</th><th>IT</th><th>masatoman さん の 位置</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>決裁</td><td>社長 (60 代)</td><td><span class="pill pill-bad">弱</span></td><td>説得対象</td></tr>
+            <tr><td>経理</td><td>社長 の 妻 (60 代)</td><td><span class="pill pill-warn">中</span></td><td>金銭面 で 味方化</td></tr>
+            <tr><td><strong>推進</strong></td><td><strong>2 代目・3 代目 (30-40 代)</strong></td><td><span class="pill pill-good">強</span></td><td><strong>真の キーパーソン</strong></td></tr>
+          </tbody>
+        </table>
+        <p>アトツギ は 「父親 を 説得 する 材料」 として SaaS を 欲しがる。 IT 弱者 なのは 社長 だけで、 アトツギ は 普通に LINE 以外 も 使える。</p>
+        <h3>使う べき 公的プログラム</h3>
+        <ul>
+          <li><strong>アトツギ甲子園</strong> (中小企業庁、 毎年 3 月決勝、 地域予選あり) — 多摩地区 アトツギ が 集まる、 工務店 割合 高い</li>
+          <li><strong>東京都事業承継・引継ぎ支援センター</strong> (東京商工会議所内) — アトツギ向け 相談窓口、 紹介ハブ として 強い</li>
+          <li><strong>後継者人材バンク</strong> (東京商工会議所) — アトツギ × 専門家 マッチング枠 で 潜入可能</li>
+          <li><strong>アトツギベンチャー</strong> (中小企業基盤整備機構) — DX 系 アトツギ の LinkedIn 的 コミュニティ</li>
+        </ul>
+        <p><strong>5/22 北原氏面談</strong> で 「父親世代 の 社長 より、 2 代目 を 窓口 に したい 工務店 ありませんか」 と <strong>質問 の 角度 を 変える</strong> と 刺さりが 変わる。</p>
+      </div>
+    </section>
+
+    <section class="insight">
+      <span class="label">盲点 02</span>
+      <h3>信用補完 は 「二重化」 が 必須</h3>
+      <div class="body">
+        <p>個人事業主 の 最大の敵 = 「この人 で 大丈夫?」。 信用補完 は 1 つ だと 足りない。 <strong>2 経路 の 権威 を 借りる</strong>。</p>
+        <h3>レイヤー A: 公的認定 (中期、 6-7 月)</h3>
+        <ul>
+          <li><strong>認定経営革新等支援機関</strong> — 自身は取りにくいが、 多摩地区 の 認定支援機関 税理士 と 業務提携 → 「補助金申請 まで 一気通貫」 を 共同提案</li>
+          <li><strong>DX 認定事業者</strong> (経産省) — 個人事業主 取得可、 書類重い が 取れれば 名刺武器</li>
+          <li><strong>IT 導入支援事業者</strong> — 6 月公募 で 登録</li>
+        </ul>
+        <h3>レイヤー B: 地域ブランド (短期、 5-6 月)</h3>
+        <ul>
+          <li><strong>「たましん指定 SaaS」 / 「府中商工会議所 IT 化推進パートナー」</strong> という 肩書き を 取りに行く</li>
+          <li>正式 認定制度 では なく、 <strong>担当者ベース の 口約束 で 先行</strong> する のが コツ</li>
+          <li>「府中商工会議所 さんから 紹介 いただいた」 と 次の 工務店 に 言える 状態 を 作る</li>
+        </ul>
+        <p>A + B の 二重化 で 「信用補完 の 壁」 が 崩れる。 A 単独 = 補助金代行業者 と 同じ で 競合多すぎ、 B 単独 = フリーランス で 信用不足。</p>
+      </div>
+    </section>
+
+    <section class="insight">
+      <span class="label">盲点 03</span>
+      <h3>クリティカルパス = 「並行 5 件」 を 5/31 までに 作れるか</h3>
+      <div class="body">
+        <p>5/22 - 5/31 の 10 日間 で 接触 15-25 件 を 作る 経路:</p>
+        <table>
+          <thead>
+            <tr><th>ハブ</th><th>期待接触数</th><th>確度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>友人 LINE 拡散 (Q25)</td><td class="center">5-8 件</td><td><span class="pill pill-warn">中</span></td></tr>
+            <tr><td>北原氏紹介 (5/22 当日依頼)</td><td class="center">3-5 件</td><td><span class="pill pill-good">高</span></td></tr>
+            <tr><td><strong>たましん経営支援部</strong> (5/15-16 電話)</td><td class="center"><strong>5-10 件</strong></td><td><span class="pill pill-good"><strong>高</strong></span></td></tr>
+            <tr><td>府中商工会議所 (5/15-16 電話)</td><td class="center">2-3 件</td><td><span class="pill pill-warn">中</span></td></tr>
+            <tr><td>建材屋営業マン 巡回 (5/20-31)</td><td class="center">3-5 件</td><td><span class="pill pill-warn">中</span></td></tr>
+            <tr><td><strong>合計</strong></td><td class="center"><strong>18-31 件</strong></td><td>—</td></tr>
+          </tbody>
+        </table>
+        <p>接触 18-31 件 → 商談 6-12 件 → 並行 5 件確保。 計算上 は ギリギリ成立。</p>
+        <div class="crit">
+          <strong>ボトルネック:</strong> たましん経営支援部 が 動くか。 ここが 本気で 動けば 1 社あたり 単価 最大化 も 可能。 動かなければ 商工会議所 + 友人 + 北原氏 で 必死に 補完 する 形。 <br />→ <strong>たましん 5/15-16 電話 の 準備 = 今週最重要 タスク</strong>。 試作品 ライブ持参 で 支店訪問 が 最短。
+        </div>
+      </div>
+    </section>
+
+    <section class="insight">
+      <span class="label">盲点 04</span>
+      <h3>補助金 の 解像度 — 実質負担 1/8 訴求 が 武器 (5/22 Q10)</h3>
+      <div class="body">
+        <p>工務店オーナー が 申請者 に なり、 自身 が 支援者 に なる 補助金:</p>
+        <table>
+          <thead>
+            <tr><th>補助金</th><th>上限</th><th>補助率</th><th>使い道</th><th>主管</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>東京都 DX 推進助成金</strong></td><td class="num">100-300 万</td><td class="center">1/2</td><td>クラウド SaaS 導入</td><td>東京都中小企業振興公社</td></tr>
+            <tr><td>長期優良住宅化リフォーム推進事業</td><td class="num">100-250 万</td><td class="center">1/3</td><td>図面管理 IT 経費</td><td>国交省</td></tr>
+            <tr><td>地域型住宅グリーン化事業</td><td class="num">100-400 万</td><td class="center">—</td><td>グループ内 IT 共有</td><td>国交省</td></tr>
+            <tr><td>小規模事業者持続化補助金</td><td class="num">50-200 万</td><td class="center">2/3</td><td>HP + SaaS</td><td>商工会議所</td></tr>
+            <tr><td>IT 導入補助金 2026</td><td class="num">5-450 万</td><td class="center">1/2-3/4</td><td>SaaS 単体</td><td>経産省</td></tr>
+            <tr><td>中小企業成長加速化補助金 (事業再構築 後継)</td><td class="num">100-1500 万</td><td class="center">1/2</td><td>業態転換 + DX</td><td>経産省</td></tr>
+          </tbody>
+        </table>
+        <div class="note">
+          <strong>盲点:</strong> <strong>東京都 DX 推進助成金</strong> が 前回回答 で 欠落 していた。 都内工務店専用、 1/2 上限 300 万、 SaaS 直接対象。 <strong>5/22 北原氏 Q10</strong> に 「都の助成金 スケジュール」 確認 を 追加 すべき。
+        </div>
+        <h3>主顧客向け の 決まり文句</h3>
+        <div class="summary" style="border-left-color: var(--good); margin-bottom: 12px;">
+          <p style="color: var(--good); font-size: 14px; letter-spacing: 0.1em;">「IT 導入補助金 で 3/4 + 東京都 DX 助成金 で 1/2 残り = <strong>実質負担 1/8 で 導入 できます</strong>」</p>
+        </div>
+        <p>これが 言える と 商談 コンバージョン <strong>30 → 60%</strong> に 跳ねる 可能性。</p>
+      </div>
+    </section>
+
+    <section class="insight">
+      <span class="label">盲点 05</span>
+      <h3>業界紙 の 権威借用 (公的に近い)</h3>
+      <div class="body">
+        <p>工務店業界 には 強い 業界紙 がある。 取材露出 → 信用補完 → 紹介自動化 の 三段ロケット。</p>
+        <table>
+          <thead>
+            <tr><th>媒体</th><th>読者層</th><th>取材依頼 の 角度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>新建ハウジング</strong></td><td>工務店経営者 (週刊)</td><td>「IT 弱者工務店向け SaaS で 8 デモ 需要計測 した 個人事業主」</td></tr>
+            <tr><td>リフォーム産業新聞</td><td>リフォーム工務店</td><td>同上</td></tr>
+            <tr><td>建築知識 (エクスナレッジ)</td><td>設計事務所 中心</td><td>設計事務所経由ルート に 直結</td></tr>
+            <tr><td>日経ホームビルダー</td><td>大手寄り</td><td>信用補完 の 最強パッチ</td></tr>
+          </tbody>
+        </table>
+        <p>取材 は 無料、 自薦可能。 <strong>demo-gallery + issue-finder 235 件分析</strong> = 記事ネタ として 強い。 5 月中 に 1-2 媒体 に PR の 連絡 を 入れる 価値あり。</p>
+        <p>即効性 は 中程度 (取材 → 掲載 2-3 ヶ月)。 7 月末契約 には 間に合わない が、 <strong>8-9 月 の 2 社目以降 の 加速材料</strong> として 効く。</p>
+      </div>
+    </section>
+
+    <h2><span class="num">04</span>統合 スケジュール (5/14 - 7/30)</h2>
+
+    <div class="schedule">
+
+      <div class="phase">
+        <div class="phase-head">今週 (5/14 - 5/21) — 接触ハブ の 活性化</div>
+        <ul>
+          <li><strong>5/15 (木) AM</strong>: 府中商工会議所 経営指導員 に 電話 → 持続化補助金 対象工務店 紹介 + 「IT 化推進パートナー」 肩書き 打診</li>
+          <li><strong>5/15 (木) PM</strong>: たましん 府中支店 経営支援部 に 電話 → 取引先工務店 紹介 + 「たましん指定 SaaS」 ポジション 打診 + 試作品ライブ訪問 日程</li>
+          <li><strong>5/16 (金)</strong>: たましん 訪問 (試作品 iPad ライブ)</li>
+          <li>5/17-19: 友人ヒアリング 日時確定 + LINE 拡散文面確定</li>
+          <li>5/20-21: 5/22 北原氏面談 Q0-Q5 確定 (Q4 都 DX 助成金、 Q5 アトツギ窓口 を 追加)</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">5/22 (木) 北原氏面談 — 紹介ハブ 確定</div>
+        <ul>
+          <li>Q0-a/b/c: 8 デモ評価 + 機能仮説 + 投票ページ評価 (既存)</li>
+          <li>Q1: 軌道判断指標 / 法人化タイミング (既存)</li>
+          <li>Q2: 個人事業主 vs 法人 信用度 (既存)</li>
+          <li>Q3: IT 導入支援事業者 コンソーシアム参画 (既存)</li>
+          <li>Q4-Q5: アプローチ + 紹介 (既存)</li>
+          <li>Q6-Q8: 業界慣習 + 補助金タイミング + リスク (既存)</li>
+          <li><strong>Q9: 認定支援機関 税理士 紹介</strong> (← Ultrathink 追加)</li>
+          <li><strong>Q10: 東京都 DX 推進助成金 + 同時申請可否</strong> (← Ultrathink 追加)</li>
+          <li><strong>Q11: アトツギ世代 を 窓口 に したい 工務店</strong> (← Ultrathink 追加)</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">5/23 - 5/31 — 接触 15 件 作る</div>
+        <ul>
+          <li>北原氏紹介 3-5 社 へ 初回連絡</li>
+          <li>たましん紹介 5-10 社 へ 初回連絡</li>
+          <li>商工会議所紹介 2-3 社 へ 初回連絡</li>
+          <li>友人ヒアリング 実施 → LINE 拡散 起動</li>
+          <li>建材屋営業マン (LIXIL 多摩 / ナフコ / 地元卸) 巡回開始</li>
+          <li>新建ハウジング / リフォーム産業新聞 取材依頼 (5/30 まで)</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">6/1 - 6/15 — 並行 5 件 商談</div>
+        <ul>
+          <li>1 次商談 5-7 社</li>
+          <li>demo 持ち込み 3-5 社</li>
+          <li>東京都 DX 推進助成金 申請伴走 パッケージ化</li>
+          <li>IT 導入支援事業者 コンソーシアム参画 手続き</li>
+          <li>アトツギ甲子園 地域予選 参加検討 (時期合えば)</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">6/16 - 6/30 — 1 社目契約</div>
+        <ul>
+          <li>社内検討フェーズ 3-5 社</li>
+          <li><strong>1 社目 契約完了 (6/30 目標)</strong></li>
+          <li>6/25 住宅デー (全建総連 多摩西部支部) — 顔売り + IT 相談ブース</li>
+          <li>信用度ルート (合同会社) 設立 (必要なら)</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">7 月 — 2-3 社目 + 月次売上ライン</div>
+        <ul>
+          <li>2 社目 契約 (7/15 目標)</li>
+          <li>3 社目 契約 (7/30 目標)</li>
+          <li>IT 導入補助金 武器化 (登録完了)</li>
+          <li><strong>月次売上 5-10 万円 達成</strong></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <h2><span class="num">05</span>失敗パターン (回避 リスト)</h2>
+
+    <p>Ultrathink で 見えてくる 「爆速 の 罠」 を 列挙。 これらに 引っかかると 7 月末 が 来ない。</p>
+
+    <div class="fail"><span class="x">✕</span><strong>公的施設 の セミナー 受講 で 時間 を 溶かす</strong> — 学習 &lt; 実践 &lt; 売る の 原則 (STRATEGY.md §4)</div>
+    <div class="fail"><span class="x">✕</span><strong>補助金代行業 に 流れる</strong> — 現金回収サイクル が 長すぎ、 元請け が 他社 に 奪われる</div>
+    <div class="fail"><span class="x">✕</span><strong>IT 導入支援事業者 登録待ち で 動き を 止める</strong> — 登録前 から 「6 月公募予定」 で 商談に 入る</div>
+    <div class="fail"><span class="x">✕</span><strong>demo 8 個 全部 出す</strong> — 投票結果 で 2-3 個 に 絞る (5/22 までに demo-gallery 暫定集計 を 見る)</div>
+    <div class="fail"><span class="x">✕</span><strong>提案書 を 作り込み すぎる</strong> — 1 枚 A3 で 十分、 詳細 は 商談 で</div>
+    <div class="fail"><span class="x">✕</span><strong>契約書 の 自前作成</strong> — 業界テンプレ (中小機構公開) で いい</div>
+    <div class="fail"><span class="x">✕</span><strong>主顧客像 から 外れた 工務店 に 時間 使う</strong> — 10 人超え・年商 5 億超 は 時間泥棒、 二代目 の DX 提案 で 別世界</div>
+    <div class="fail"><span class="x">✕</span><strong>「父親社長」 単独説得 を 狙う</strong> — 必ず アトツギ を 巻き込む</div>
+
+    <h2><span class="num">06</span>やらない 方が いい 公的サービス (時間泥棒)</h2>
+
+    <p>memory + Deep Research で 既に 否定済 の 領域。 確認 のため 列挙。</p>
+
+    <table>
+      <thead>
+        <tr><th>機関・場</th><th>否定理由</th><th>根拠</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>商工会議所異業種交流会</td><td>IT 弱者 の 工務店オーナー は 来ない</td><td>Deep Research #1+#2</td></tr>
+        <tr><td>経済同友会 / JC (青年会議所)</td><td>同上、 業種ミスマッチ</td><td>Deep Research #1+#2</td></tr>
+        <tr><td>Peatix / connpass の Web イベント</td><td>主顧客 は 使わない</td><td><code>feedback_verify_target_actually_uses.md</code></td></tr>
+        <tr><td>全国組織 (日商 / 全建総連本部 / 日建連)</td><td>個人事業主 に 敷居 が 高すぎる、 ROI 極小</td><td>戦略整合</td></tr>
+        <tr><td>公的施設 の セミナー 受講</td><td>学習 &lt; 実践 &lt; 売る 原則</td><td>STRATEGY.md §4</td></tr>
+      </tbody>
+    </table>
+
+    <h2><span class="num">07</span>今週 の アクションアイテム</h2>
+
+    <ul class="checklist">
+      <li><strong>5/15 (木) AM</strong> 府中商工会議所 経営指導員 に 電話 (持続化補助金 + IT 化推進パートナー 打診)</li>
+      <li><strong>5/15 (木) PM</strong> たましん 府中支店 経営支援部 に 電話 (取引先工務店 紹介 + たましん指定 SaaS 打診)</li>
+      <li><strong>5/16 (金)</strong> たましん 訪問 (試作品 iPad ライブ)</li>
+      <li><strong>5/17-19</strong> 友人ヒアリング 日時確定 + LINE 拡散文面 確定</li>
+      <li><strong>5/20-21</strong> 北原氏面談 Q0-Q5 確定 (Q4 都 DX 助成金、 Q5 アトツギ窓口 追加)</li>
+      <li><strong>5/22 (木)</strong> 北原氏面談 — 工務店 3-5 社 紹介依頼 + アトツギ窓口 工務店 確認</li>
+      <li><strong>5/30 まで</strong> 新建ハウジング / リフォーム産業新聞 取材依頼 メール</li>
+    </ul>
+
+    <h2><span class="num">08</span>1 行 まとめ</h2>
+
+    <div class="summary">
+      <p>爆速 = <strong>たましん 5/15-16 電話</strong> が 今週 単独最大 ボトルネック。 ここを 動かせるかで 7 月末月次 5-10 万 が 決まる。 並行 5 件商談 を 5/31 までに 作れれば、 残り は アトツギ窓口化 + 補助金 1/8 訴求 + 二重信用補完 で 押し切れる。</p>
+    </div>
+
+    <footer>
+      Ultrathink セッション 2026-05-14 / portfolio (ihara-frontend.com) 軸 B 工務店プロジェクト / 5/22 北原氏面談前 / docs/komuten-fast-track-strategy-2026-05-14.html
+      <br />
+      <strong>反映先</strong>: STRATEGY.md §4 Month 1/2 + Appendix A 短期判定スケジュール (5/15-16 たましん / 5/22 Q3-Q5 追加 / 5/30 業界紙 / 6 月認定支援機関 / 8-9 月業界紙効果) + ブラウザ版 Claude メモリ同期チェックリスト
+      <br />
+      <strong>関連 docs</strong>: docs/business-summary-2026-05-22.html / docs/consultation-questions-2026-05-22.html / docs/komuten-channel-strategy.html / docs/komuten-stakeholder-strategy.html / docs/saas-pricing-strategy.html / docs/friend-hearing-checklist.html
+      <br />
+      <strong>関連 portfolio memory (5 件、 2026-05-14 追加)</strong>: atotsugi-decision-maker.md / credit-augmentation-dual-layer.md / tamashin-keiei-shien-bottleneck.md / subsidy-1-8th-burden-pitch.md / industry-press-authority-borrow.md
+    </footer>
+
+  </main>
+</body>
+</html>
