@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>デザインブリーフ: トップページ (/) リデザイン — Ihara Frontend</title>
+  <style>
+    :root {
+      --ink: #071b49;
+      --sub: #33496d;
+      --muted: #5f6f89;
+      --line: #d8e3f2;
+      --bg: #fbfcfe;
+      --panel: #ffffff;
+      --accent: #f47b20;
+      --accent-soft: #fff4e9;
+      --good: #15803d;
+      --good-soft: #dcfce7;
+      --warn: #b45309;
+      --warn-soft: #fef3c7;
+      --bad: #b91c1c;
+      --bad-soft: #fee2e2;
+      --required: #dc2626;
+      --required-soft: #fef2f2;
+    }
+    * { box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--ink); margin: 0; padding: 0; }
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.75;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 880px; margin: 0 auto; padding: 48px 24px 96px; }
+    header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 24px;
+      margin-bottom: 36px;
+    }
+    header .eyebrow {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 30px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      font-weight: 900;
+    }
+    header .meta { color: var(--muted); font-size: 13px; }
+    .lede {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin: 20px 0 0;
+      font-size: 14px;
+      color: var(--sub);
+    }
+    h2 {
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      margin: 56px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--line);
+      font-weight: 900;
+    }
+    h2 .num {
+      display: inline-block;
+      background: var(--ink);
+      color: white;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-right: 12px;
+      vertical-align: 3px;
+      font-weight: 800;
+    }
+    h2 .req {
+      display: inline-block;
+      background: var(--required);
+      color: white;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+      vertical-align: 3px;
+      font-weight: 800;
+    }
+    h3 {
+      font-size: 16px;
+      margin: 28px 0 8px;
+      color: var(--sub);
+      font-weight: 800;
+    }
+    p { margin: 8px 0 12px; color: var(--sub); }
+    ul, ol { margin: 8px 0 16px; padding-left: 22px; color: var(--sub); }
+    li { margin: 4px 0; }
+    li > ul, li > ol { margin: 4px 0; }
+    strong { color: var(--ink); font-weight: 700; }
+    a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+    a:hover { background: var(--accent-soft); }
+    code {
+      font-family: "SFMono-Regular", "Menlo", monospace;
+      font-size: 13px;
+      background: #f1f5f9;
+      color: var(--ink);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+      margin-right: 4px;
+    }
+    .badge.revise { background: var(--warn-soft); color: var(--warn); }
+    .badge.ok { background: var(--good-soft); color: var(--good); }
+    .badge.req { background: var(--required-soft); color: var(--required); }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 14px 0;
+      box-shadow: 0 2px 8px rgba(7, 27, 73, 0.04);
+    }
+    .panel.callout {
+      border-left: 4px solid var(--accent);
+      background: var(--accent-soft);
+    }
+    .panel.warn {
+      border-left: 4px solid var(--warn);
+      background: var(--warn-soft);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 14px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      background: #f1f5f9;
+      font-weight: 800;
+      color: var(--ink);
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+    tr:last-child td { border-bottom: none; }
+    .pill {
+      display: inline-block;
+      background: var(--ink);
+      color: white;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      margin-right: 6px;
+    }
+    .pill.accent { background: var(--accent); }
+    .pill.good { background: var(--good); }
+    .pill.warn { background: var(--warn); }
+    .meta-list {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 8px 18px;
+      margin: 14px 0;
+      font-size: 14px;
+    }
+    .meta-list dt { color: var(--muted); font-weight: 600; }
+    .meta-list dd { margin: 0; color: var(--ink); }
+    .ng {
+      display: inline-block;
+      background: var(--bad-soft);
+      color: var(--bad);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin: 2px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .request-box {
+      background: linear-gradient(180deg, var(--accent-soft), #fff8f0);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 22px 26px;
+      margin: 24px 0;
+    }
+    .request-box .title {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .request-box .body {
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.9;
+      font-weight: 600;
+    }
+    .toc {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px 22px;
+      margin: 0 0 24px;
+      font-size: 13px;
+    }
+    .toc strong { display: block; margin-bottom: 8px; color: var(--ink); }
+    .toc ol { margin: 0; padding-left: 18px; columns: 2; column-gap: 24px; }
+    .toc li { color: var(--sub); break-inside: avoid; }
+    @media print {
+      body { font-size: 12px; }
+      .page { padding: 16px; }
+      h2 { page-break-after: avoid; }
+      .panel, table, .request-box { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <span class="eyebrow">DESIGN BRIEF</span>
+    <h1>トップページ (<code>/</code>) リデザイン</h1>
+    <div class="meta">作成日 2026-05-10 / 担当 masatoman + Claude (Code) / 関連 STRATEGY §3 軸 B / 5 日後 = 5/15 友人ヒアリング</div>
+    <div class="lede">
+      叩き台です。 masatoman が読んで <span class="badge revise">REVISE</span> で書き換え、 確定箇所には <span class="badge ok">OK</span> を残してください。 ★は最低限項目。
+    </div>
+  </header>
+
+  <div class="toc">
+    <strong>目次</strong>
+    <ol>
+      <li>改善対象 ★</li>
+      <li>ターゲットペルソナ ★</li>
+      <li>ゴール / 行動誘導 ★</li>
+      <li>訴求軸 (3〜5 個) ★</li>
+      <li>避けたい印象 / NG ワード ★</li>
+      <li>参考デザイン</li>
+      <li>トーン &amp; ムード ★</li>
+      <li>制約 ★</li>
+      <li>成功の基準 ★</li>
+      <li>これまでの試行 / 経緯</li>
+      <li>Claude への 1 行依頼 ★</li>
+      <li>メタ情報</li>
+      <li>付録 A: セクション構成提案</li>
+      <li>付録 B: 画像差し替え プロンプト案</li>
+      <li>付録 C: 進め方の選択肢</li>
+    </ol>
+  </div>
+
+  <h2><span class="num">01</span>改善対象<span class="req">必須</span></h2>
+  <dl class="meta-list">
+    <dt>対象 URL</dt>
+    <dd><code>/</code> (warm editorial 工務店向け LP、 2026-05-10 にペルソナ別分離して新トップ化)</dd>
+    <dt>改善範囲</dt>
+    <dd>ページ全体、 重点は <strong>Hero / Examples / Pricing</strong> の 3 セクション</dd>
+    <dt>現状スクショ</dt>
+    <dd><code>new-top-warm.png</code> (リポジトリ直下、 5/10 撮影)</dd>
+  </dl>
+
+  <h2><span class="num">02</span>ターゲットペルソナ<span class="req">必須</span></h2>
+  <h3>役職 / 立場</h3>
+  <ul>
+    <li><strong>主</strong>: masatoman の友人 (工務店現場監督、 30〜40 代、 男性、 LINE と Excel と電話が業務 IT の全部)</li>
+    <li><strong>副</strong>: 友人紹介で広がる 5〜30 人の中堅工務店オーナー (社長 + 息子 + 職人 5〜10 人)</li>
+  </ul>
+  <h3>流入経路</h3>
+  <ol>
+    <li>masatoman が個別に LINE / 名刺 / Google Meet で URL を渡す (5/15 ヒアリング含む)</li>
+    <li>中期的に SEO + Google ビジネスプロフィール (まだ未着手)</li>
+    <li>工務店向け業界誌・展示会 (将来)</li>
+  </ol>
+  <h3>見た瞬間の心理</h3>
+  <ul>
+    <li>「Web 屋 多すぎる、 みんな同じに見える」</li>
+    <li>「ANDPAD は高すぎ、 freee は工務店向けじゃない」</li>
+    <li>「自分の現場、 分かってくれる人いるんかな」</li>
+  </ul>
+  <h3>このページで判断したいこと</h3>
+  <ul>
+    <li>「この masatoman って人は工務店のこと分かってる人か?」</li>
+    <li>「自分の現場の困りごと (日報 / 写真 / 図面 / 領収書) に効くか?」</li>
+    <li>「予算的に頼めるか? (5 万までなら即決、 30 万以上は社長相談)」</li>
+  </ul>
+
+  <h2><span class="num">03</span>ゴール / 行動誘導<span class="req">必須</span></h2>
+  <table>
+    <thead><tr><th style="width:120px">タイミング</th><th>取らせたい反応</th></tr></thead>
+    <tbody>
+      <tr><td>30 秒以内</td><td>「お、 工務店向けだ」 と認識してスクロール継続</td></tr>
+      <tr><td>2 分以内</td><td>制作例 (Examples) を 1 つ以上クリックして詳細に進む</td></tr>
+      <tr><td>5 分以内 <br/><span class="pill accent">GOAL</span></td><td>LINE 追加 (摩擦小) もしくは 問い合わせフォーム送信 (本気度高)</td></tr>
+    </tbody>
+  </table>
+  <div class="panel">
+    <strong>離脱して OK な人</strong>: 法人本社の Web 担当者、 大手ゼネコンの DX 推進部 (= ANDPAD で十分の層)
+  </div>
+
+  <h2><span class="num">04</span>訴求軸 (3〜5 個)<span class="req">必須</span></h2>
+  <p>順序が重要 (上ほど見出し / 太字に近い扱い)。 saas-pricing.md と customer-target.md を踏まえた訴求。</p>
+  <table>
+    <thead><tr><th style="width:50px">順</th><th>軸</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill accent">1</span></td><td><strong>「工務店専門の Web + 業務改善 を 一人で全部」</strong> — ANDPAD 入れるほどじゃない 5〜30 人規模に絞り、 masatoman 個人が直接サポート</td></tr>
+      <tr><td><span class="pill">2</span></td><td><strong>「価格は 初期 10 万 + 月 1 万 から」</strong> — 業界相場 (ANDPAD 数十万 + 月 3 万、 KENTEM 系 月 2 万) より下、 個人親方でも続けられる</td></tr>
+      <tr><td><span class="pill">3</span></td><td><strong>「8 種類の 触れる制作例」</strong> — 抽象論なし、 全部 dev で動くデモ。 友人ヒアリング 5/15 用</td></tr>
+      <tr><td><span class="pill">4</span></td><td><strong>「現場の言葉でしか書かない」</strong> — 「DX」「SaaS」「アジャイル」 ゼロ。 「日報」「電話」「写真」「領収書」「図面」 で話す</td></tr>
+      <tr><td><span class="pill">5</span></td><td><strong>「公開後も ずっと面倒みる」</strong> — 受託で売り逃げではなく、 月額で関係継続</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">05</span>避けたい印象 / NG ワード<span class="req">必須</span></h2>
+  <h3>避けたい印象</h3>
+  <ul>
+    <li>Y2K / ゲーム会社風 (= <code>/portfolio</code> の世界、 トップに混ぜない)</li>
+    <li>大企業向け SaaS の整いすぎた感じ (= ANDPAD 風、 個人親方が萎縮する)</li>
+    <li>「AI で全自動」 を匂わせる (= ai-positioning.md、 工務店オーナーは流行り物に距離を置く)</li>
+    <li>補助金で半額を強調 (= subsidies-positioning.md、 IT 導入支援事業者未登録なので)</li>
+  </ul>
+  <h3>NG ワード</h3>
+  <p>
+    <span class="ng">DX</span><span class="ng">アジャイル</span><span class="ng">スプリント</span>
+    <span class="ng">SaaS</span><span class="ng">MVP</span><span class="ng">SDK</span>
+    <span class="ng">API</span><span class="ng">認証</span><span class="ng">DB</span>
+    <span class="ng">Next.js</span><span class="ng">Supabase</span>
+    <span class="ng">モバイルデバイス</span><span class="ng">ソリューション</span>
+    <span class="ng">オンボーディング</span>
+  </p>
+  <h3>触れない方が良いこと</h3>
+  <ul>
+    <li>「他の Web 屋が高い」 を直接言わない</li>
+    <li>マイクロ法人設立 (2026/6) は社員を持たない零細工務店オーナーの感性に合わない</li>
+    <li>個人開発作品 (recipe-ai 等) は <code>/lab</code> 送り、 トップから見せない (= works-strategy.md)</li>
+  </ul>
+
+  <h2><span class="num">06</span>参考デザイン</h2>
+  <table>
+    <thead><tr><th>サイト</th><th>状態</th><th>何が良いか</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><a href="https://hiraomakoto.jp" target="_blank">hiraomakoto.jp</a></td>
+        <td><span class="badge ok">OK</span></td>
+        <td>Hero + Works + About だけで成立 / 自分は何屋かを 1 行で済ませる / 装飾より作品の純度</td>
+      </tr>
+      <tr>
+        <td><a href="https://bokoko33.me" target="_blank">bokoko33.me</a></td>
+        <td><span class="badge ok">OK</span></td>
+        <td>作品大きく、 静かに、 一覧で / CTA をしつこく繰り返さない</td>
+      </tr>
+      <tr>
+        <td>ANDPAD トップ</td>
+        <td>追加検討</td>
+        <td>工務店業界の語彙・写真の方向感の参考。 ただし整いすぎ、 個人感ゼロは反面教師</td>
+      </tr>
+      <tr>
+        <td>KENTEM トップ</td>
+        <td>追加検討</td>
+        <td>写真と用語の使い方</td>
+      </tr>
+      <tr>
+        <td>地元工務店の HP (素朴な施工事例サイト)</td>
+        <td>追加検討</td>
+        <td>主顧客が「これが普通」と感じるレベル感</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">07</span>トーン &amp; ムード<span class="req">必須</span></h2>
+  <dl class="meta-list">
+    <dt>言葉のトーン</dt>
+    <dd>丁寧 + やわらかい + 業界語ゼロ。 「現場でよくある困りごと」 を主語にする</dd>
+    <dt>色のムード</dt>
+    <dd>暖色低彩度 (現状の brown <code>#7a5c38</code> + ベージュ <code>#f3efe7</code> 維持)。 黒は文字以外で使わない</dd>
+    <dt>書体の方向</dt>
+    <dd><strong>明朝メイン</strong> (Noto Serif JP、 落ち着き) + ゴシック (Inter / Noto Sans JP、 本文)</dd>
+    <dt>写真 / イラスト</dt>
+    <dd>
+      <strong>写真メイン推奨</strong>: 現場写真 (現場監督手元の図面、 木材積んだ作業場、 タブレットで写真確認している手元) → 「自分のためだ」 が一目<br/>
+      現状は SVG イラストカードが多い → リアル写真に置き換える方向で検討<br/>
+      <strong>画像生成は Gemini nanobanana2 / ChatGPT image2 で外部生成</strong> (確定方針)
+    </dd>
+  </dl>
+
+  <h2><span class="num">08</span>制約<span class="req">必須</span></h2>
+  <h3>技術制約</h3>
+  <ul>
+    <li>Next.js 15 + Tailwind 3</li>
+    <li>既存 Server Component (<code>app/page.tsx</code>) の構造維持 (Hero は Image 優先表示で SSG)</li>
+    <li><code>BusinessContactForm</code> (Resend 連携済み) を Contact セクションで使う</li>
+    <li><code>/local-business/&lt;demo&gt;</code> への内部リンク 8 本は変更しない</li>
+  </ul>
+  <h3>ブランド制約</h3>
+  <ul>
+    <li>屋号: <strong>Masato Works</strong> (ヘッダーロゴ)</li>
+    <li>個人名: 井原誠斗 (ihara masato)</li>
+    <li>メインカラー: brown <code>#7a5c38</code>、 アクセント <code>#a88456</code>、 背景 <code>#f3efe7</code> / <code>#f8f5ee</code>、 テキスト <code>#1f2a37</code></li>
+    <li>フォント: Noto Serif JP (見出し)、 Inter (本文)</li>
+    <li>既存ロゴ「M」は丸い白背景 + brown 文字 (現状維持)</li>
+  </ul>
+  <h3>法令 / 規約 / 倫理</h3>
+  <ul>
+    <li>補助金訴求は「採択保証なし」を必ず明記 (今回は控えめなので不要かも)</li>
+    <li>価格は「初期 10 万 + 月 1 万 から」 と書き、 「内容により応相談」 を併記</li>
+    <li>「全自動」「AI で完璧」 のような誇大訴求 NG</li>
+  </ul>
+  <h3>データ制約</h3>
+  <ul>
+    <li>savings-simulation の数字は「概算」表記。 5/15 友人ヒアリング後に実測値で差し替え予定 (今回 LP リデザインの範疇外)</li>
+  </ul>
+
+  <h2><span class="num">09</span>成功の基準<span class="req">必須</span></h2>
+  <h3>数値で測るもの</h3>
+  <ul>
+    <li>5/15 友人ヒアリング時の反応 (「これ何屋?」 を言わせない / 制作例を 1 つ以上見たくなる)</li>
+    <li>Vercel Analytics: スクロール 50% 到達率 / <code>#contact</code> セクション到達率</li>
+    <li>中期 (1 ヶ月後): LINE 追加数、 問い合わせフォーム送信数</li>
+  </ul>
+  <h3>感覚で測るもの</h3>
+  <ul>
+    <li>友人 (5/15 ヒアリング対象、 工務店現場監督) に見せて 30 秒で「自分のための Web 屋」 と分かる</li>
+    <li>masatoman 自身が「これなら名刺の QR に貼れる」 と思える</li>
+    <li>「派手」「ITっぽい」 と思われない (反面教師: 旧 Y2K トップ)</li>
+  </ul>
+
+  <h2><span class="num">10</span>これまでの試行 / 経緯</h2>
+  <table>
+    <thead><tr><th style="width:110px">日付</th><th>出来事</th></tr></thead>
+    <tbody>
+      <tr><td>2026-05-09</td><td>Y2K デザイン化 (4 バリアント比較の末、 masatoman が y2k 選択)。 当時の主顧客像とは合うが、 工務店ペルソナと衝突</td></tr>
+      <tr><td>2026-05-10</td><td>ペルソナ別 LP 完全分離。 旧 Y2K → <code>/portfolio</code>、 旧 <code>/local-business</code> の warm editorial を <code>/</code> に昇格。 これが現状</td></tr>
+    </tbody>
+  </table>
+  <h3>没にした案</h3>
+  <ul>
+    <li>ヘッダーに「LOCAL-BUSINESS↗」リンクを足して Y2K トップから誘導する案 (= 工務店オーナーが 3 秒で離脱するリスクが高すぎ、 入り口分割に切替)</li>
+  </ul>
+  <h3>既に決まっていること (動かさない)</h3>
+  <ul>
+    <li>warm editorial 路線 (<code>/</code> のデザイン方向)</li>
+    <li>8 デモの URL (<code>/local-business/&lt;slug&gt;</code>)</li>
+    <li><code>BusinessContactForm</code> の Resend 連携</li>
+    <li>価格 4 パターン (saas-pricing.md)、 トップは A 案「初期 10 万 + 月 1 万」 を主軸</li>
+  </ul>
+
+  <h2><span class="num">11</span>Claude への 1 行依頼<span class="req">必須</span></h2>
+  <p>ここを <span class="badge revise">REVISE</span> で書き換えると、 後段の作業の方向が変わる最重要セクション。</p>
+  <div class="request-box">
+    <div class="title">// 1-LINE REQUEST</div>
+    <div class="body">
+      「<code>/</code> トップページを、 工務店現場監督 45 歳 (5/15 ヒアリング対象) に 30 秒で『自分のための Web 屋』 と認識させる構成に刷新。
+      既存 warm editorial を維持しつつ、
+      (1) <strong>Hero に価格 (初期 10 万 + 月 1 万) と一人親方感</strong>を明示、
+      (2) <strong>Examples の見せ方を hiraomakoto.jp 風に『大きく・静かに・一覧』</strong>へ、
+      (3) <strong>Pricing を 4 パターンの A 案前面で 1 段組に圧縮</strong>、
+      (4) <strong>Contact 直前に LINE 一発追加 CTA を追加</strong>。
+      写真は外部生成 (Gemini nanobanana2 / ChatGPT image2) で差し替え予定なので image src の placeholder と推奨プロンプトを残す。」
+    </div>
+  </div>
+
+  <h2><span class="num">12</span>メタ情報</h2>
+  <dl class="meta-list">
+    <dt>作成日</dt><dd>2026-05-10</dd>
+    <dt>担当</dt><dd>masatoman + Claude (Code)</dd>
+    <dt>関連 STRATEGY</dt><dd>§3 軸 B / §4 Month 1 / §7 portfolio 格上げ</dd>
+    <dt>関連 memory</dt><dd>twin-axis-status / friend-hearing-may-2026 / saas-pricing / customer-target / design-references / works-strategy / ai-positioning / subsidies-positioning</dd>
+    <dt>友人ヒアリングまで</dt><dd><span class="pill warn">5 日</span> (5/15)</dd>
+  </dl>
+
+  <h2><span class="num">A</span>付録 A: 推奨セクション構成 (現状 vs 提案)</h2>
+  <table>
+    <thead>
+      <tr><th style="width:40px">順</th><th>現状</th><th>提案</th><th>変更理由</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Hero (画像 + テキスト + CTA 2 個)</td>
+        <td><strong>Hero (写真 + 価格バッジ + 1 行訴求 + LINE/相談 CTA)</strong></td>
+        <td>価格を Hero に出すと工務店オーナーが即判定可、 3 秒で「自分のため」を加速</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Problems (4 個)</td>
+        <td>Problems (3 個に圧縮、 イラストではなく現場写真)</td>
+        <td>hiraomakoto 流の純度、 4 → 3 で軽量化</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Services (3 個)</td>
+        <td><strong>Services 削除</strong> or 簡素化</td>
+        <td>Examples が実物で語るので Services は重複</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Examples (8 デモ、 1 個だけ大きい)</td>
+        <td><strong>Examples (3 主役 + 5 補欠の 2 段構成)</strong></td>
+        <td>hiraomakoto 風「作品が主役」、 友人ヒアリング 5 デモを主役に</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Process (3 ステップ)</td>
+        <td>Process (3 ステップ、 視覚化軽め)</td>
+        <td>維持</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Pricing (4 ティア横並び)</td>
+        <td><strong>Pricing (A 案 1 つを大きく + B/C/D を小さく)</strong></td>
+        <td>「初期 10 万 + 月 1 万」 を主軸、 他は補助</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>GoodFit (4 ケース)</td>
+        <td>GoodFit (3 ケースに圧縮)</td>
+        <td>4 → 3 で軽量化</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Contact</td>
+        <td><strong>Contact + LINE 大型 CTA</strong></td>
+        <td>LINE 追加が摩擦最小、 主顧客の習慣に合致</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">B</span>付録 B: 画像差し替え (外部生成) のプロンプト案</h2>
+  <p>Gemini nanobanana2 / ChatGPT image2 に投げる用。 全画像とも実写風 + 高彩度避け + 暖色照明。</p>
+  <h3>1. Hero 画像</h3>
+  <div class="panel">
+    日本の工務店の作業場で、 現場監督 (40 代男性、 ヘルメットなし) がタブレットを片手に図面と見比べている。 木材と道具が背景。 朝の暖色光、 ナチュラル、 ANDPAD のような整いすぎた CG ではなく実写風
+  </div>
+  <h3>2. Problems 用 (3 枚)</h3>
+  <div class="panel">机に山積みの紙の見積書と Excel 画面、 黄色いマーカーで印が付いている</div>
+  <div class="panel">電話を肩で挟みながらノートにメモする現場監督の手元、 暖色光</div>
+  <div class="panel">古い工務店ホームページ (2010 年代風) を笑顔で困惑して見ている社長、 50 代</div>
+  <h3>3. Examples カード用 (デモごと、 既存 SVG 置き換え)</h3>
+  <table>
+    <thead><tr><th>デモ</th><th>プロンプト</th></tr></thead>
+    <tbody>
+      <tr><td>voice-daily-report</td><td>車のハンドル横にスマホ、 録音中の波形が表示されている、 夕方のオレンジ光</td></tr>
+      <tr><td>site-photo-organizer</td><td>タブレットに現場写真がきれいにフォルダ別に並んでいる、 サムネイル形式</td></tr>
+      <tr><td>client-progress-page</td><td>施主夫婦 (60 代) がスマホで自分の家の建築進捗を見て笑顔、 日常的なリビング</td></tr>
+      <tr><td>receipt-expense-camera</td><td>軽トラの助手席で領収書をスマホで撮影している手元、 ガソリンスタンド</td></tr>
+      <tr><td>drawing-quick-viewer</td><td>現場の足場の上で手袋した手がタブレットの図面を拡大している</td></tr>
+    </tbody>
+  </table>
+  <h3>4. OG 画像 (1200×630)</h3>
+  <div class="panel">
+    Masato Works のロゴ M (左上、 brown) + キャッチコピー「現場と事務の流れを、 落ち着いて整える。」 + 工務店現場の暖色写真の半透明オーバレイ
+  </div>
+
+  <h2><span class="num">C</span>付録 C: 進め方の選択肢 (Brief 確定後)</h2>
+  <ol>
+    <li>Brief を masatoman が修正 (<span class="badge revise">REVISE</span> 注記)</li>
+    <li>確定後、 私が「3 案 + Why」 を Markdown で出す (各案に Tailwind モック JSX)</li>
+    <li>採用案を Claude Code で実装、 Figma MCP でカンプも作る</li>
+    <li>画像 placeholder を残し、 masatoman が外部生成 (Gemini / ChatGPT) で差し替え</li>
+    <li>ローカル dev で確認 → 5/15 友人ヒアリングに使う</li>
+  </ol>
+
+  <div class="panel callout">
+    <strong>このページの開き方</strong>: ブラウザで <code>file:///Users/master/home_work/portfolio/docs/design-brief-2026-05-10-top.html</code> を直接開く、 もしくは VS Code の Live Preview / "Open with Live Server" 拡張で。 印刷時は @media print で軽量レイアウトに切り替わります。
+  </div>
+
+</div>
+</body>
+</html>

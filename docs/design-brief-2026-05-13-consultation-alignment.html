@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>設計ブリーフ v4 / 北原氏面談 相談予約との整合性確保</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --accent: #b85c3a;
+  --warn: #c34a1f;
+  --good: #2d6a4f;
+  --card: #ffffff;
+  --border: #e4ddd1;
+  --code-bg: #f4ede0;
+  --gyousha: #eaf2f8;
+  --seshu: #f5ecf5;
+  --confirmed: #e6f0ea;
+  --pending: #fef5e7;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.75;
+  font-size: 15px;
+}
+.container { max-width: 960px; margin: 0 auto; padding: 32px 20px 100px; }
+
+header { border-bottom: 2px solid var(--fg); padding-bottom: 16px; margin-bottom: 32px; }
+header .tag { display: inline-block; font-size: 11px; letter-spacing: .15em; background: var(--fg); color: var(--bg); padding: 3px 10px; border-radius: 2px; margin-bottom: 8px; }
+header h1 { font-size: 26px; margin: 0 0 6px; font-weight: 700; line-height: 1.4; }
+header .version { display: inline-block; font-size: 11px; background: var(--warn); color: white; padding: 2px 8px; border-radius: 2px; margin-left: 8px; vertical-align: middle; }
+header .meta { color: var(--muted); font-size: 13px; }
+
+h2 { font-size: 20px; margin: 44px 0 14px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+h3 { font-size: 16px; margin: 24px 0 10px; }
+
+p { margin: 0 0 12px; }
+ul, ol { padding-left: 22px; margin: 0 0 14px; }
+li { margin-bottom: 4px; }
+
+code { font-family: "SF Mono", Menlo, monospace; font-size: 13px; background: var(--code-bg); padding: 1px 6px; border-radius: 3px; }
+pre { background: var(--code-bg); padding: 14px 16px; border-radius: 4px; font-size: 13px; overflow-x: auto; font-family: "SF Mono", Menlo, monospace; line-height: 1.6; }
+
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 18px 22px; margin-bottom: 14px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; background: var(--card); }
+th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { background: var(--code-bg); font-weight: 600; }
+table.compact th, table.compact td { padding: 6px 10px; }
+
+.alert-critical {
+  background: #fdf0eb;
+  border-left: 4px solid var(--warn);
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 14px;
+  color: #5a2e1f;
+  border-radius: 0 4px 4px 0;
+}
+.alert-critical strong { display: block; margin-bottom: 4px; color: var(--warn); font-size: 12px; letter-spacing: .1em; }
+
+.note { background: #fff8ea; border-left: 3px solid #d4a72c; padding: 10px 14px; margin: 12px 0; font-size: 13px; color: #5a4a1f; border-radius: 0 4px 4px 0; }
+.note strong { color: #1f1c18; }
+
+.viewpoint {
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  border-left: 4px solid;
+}
+.viewpoint.gyousha { background: var(--gyousha); border-left-color: #4a6fa5; }
+.viewpoint.seshu { background: var(--seshu); border-left-color: #885a8b; }
+.viewpoint .label { font-size: 11px; letter-spacing: .1em; color: var(--muted); font-weight: 700; margin-bottom: 4px; }
+.viewpoint .name { font-weight: 700; font-size: 16px; margin-bottom: 6px; }
+.viewpoint .examples { font-size: 13px; background: rgba(255,255,255,0.6); padding: 8px 12px; border-radius: 3px; }
+.viewpoint .examples ul { margin: 4px 0; padding-left: 18px; }
+
+.status-card {
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border-left: 4px solid;
+}
+.status-card.confirmed { background: var(--confirmed); border-left-color: var(--good); }
+.status-card.pending { background: var(--pending); border-left-color: #b8862e; }
+.status-card .badge {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: .1em;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.status-card.confirmed .badge { background: var(--good); color: white; }
+.status-card.pending .badge { background: #b8862e; color: white; }
+.status-card .title { font-weight: 700; margin-bottom: 4px; }
+.status-card .body { font-size: 13px; }
+
+.q {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  padding: 12px 18px;
+  margin-bottom: 10px;
+}
+.q .num { font-size: 11px; letter-spacing: .15em; color: var(--accent); font-weight: 700; }
+.q .text { font-weight: 700; font-size: 14px; margin: 2px 0 6px; line-height: 1.5; }
+.q .reason { font-size: 12px; color: var(--muted); }
+
+.match-ok { color: var(--good); font-weight: 700; }
+.match-partial { color: #b8862e; font-weight: 700; }
+.match-ng { color: var(--warn); font-weight: 700; }
+
+.toc { background: var(--card); border: 1px solid var(--border); padding: 14px 20px; border-radius: 6px; margin-bottom: 24px; }
+.toc ol { margin: 0; padding-left: 22px; }
+.toc a { color: var(--accent); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+
+.changelog { background: var(--code-bg); padding: 12px 16px; border-radius: 4px; font-size: 13px; margin-bottom: 24px; border-left: 3px solid var(--warn); }
+.changelog strong { display: block; margin-bottom: 4px; color: var(--warn); }
+
+.question-decision { background: #f0f4fa; border-left: 3px solid #4a6fa5; padding: 12px 16px; margin: 16px 0; font-size: 14px; color: #2c3e60; border-radius: 0 4px 4px 0; }
+.question-decision strong { color: #1a2b4a; display: block; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="tag">DESIGN BRIEF</div>
+  <h1>北原氏面談 相談予約との整合性確保<span class="version">v4</span></h1>
+  <div class="meta">2026-05-13 / masatoman / 用意した資料と相談予約の方向性がズレていた問題への対応</div>
+</header>
+
+<div class="changelog">
+  <strong>v3 → v4 の経緯</strong>
+  v3 (scoring 多軸化) は overkill と判断して案 X (集中版) を採用。
+  その後、 ユーザーが共有してくれた相談予約の本文を見て、 私が用意していた質問リスト・business-summary が<strong>相談予約 6 項目とズレている</strong>ことが判明。
+  さらに法人形態 (マイクロ法人 vs 合同会社) の方針も精緻化が必要と判明。
+  本ブリーフは、 これらを整合させるための修正方針。
+</div>
+
+<!-- 目次 -->
+<div class="toc">
+  <strong style="font-size:13px;">目次</strong>
+  <ol>
+    <li><a href="#shock">致命的な発見: 視点の違い</a></li>
+    <li><a href="#consultation">相談予約の内容</a></li>
+    <li><a href="#viewpoints">2 つの視点: 業者側 4 仮説 vs 施主側 7 クラスタ</a></li>
+    <li><a href="#mismatch">整合性チェック (相談予約 vs 私の質問リスト)</a></li>
+    <li><a href="#reframe">7 クラスタの再フレーム (業者仮説の裏付け)</a></li>
+    <li><a href="#houjin">法人化論点の整理 (2 論点)</a></li>
+    <li><a href="#q4">質問 Q4 の 3 分割案</a></li>
+    <li><a href="#tasks">修正タスク一覧</a></li>
+    <li><a href="#memory">memory 更新方針</a></li>
+    <li><a href="#decision">判定</a></li>
+  </ol>
+</div>
+
+<!-- 致命的な発見 ===================================================== -->
+<h2 id="shock">// 01 / 致命的な発見: 視点の違い</h2>
+
+<div class="alert-critical">
+  <strong>CRITICAL</strong>
+  私が大量に作った Google マップ 7 クラスタ (アフター放置・連絡途絶・施工品質…) は <strong>施主視点の不満</strong>。<br>
+  ユーザーの本来の SaaS 仮説は <strong>業者側 (現場監督・経営者) の業務効率</strong>。<br>
+  視点が完全に違う。 北原氏面談で 7 クラスタを「主役」 として見せると、 ユーザー自身の SaaS 仮説と話がズレる。
+</div>
+
+<!-- 相談予約 ======================================================== -->
+<h2 id="consultation">// 02 / 相談予約の内容 (北原氏が事前に見る情報)</h2>
+
+<div class="card">
+  <h3 style="margin-top:0;">事業概要 (相談予約より抜粋)</h3>
+  <p>工務店向け BtoB 型 SaaS を準備中。 対象は小〜中規模工務店、 現場監督 1〜数名規模を想定。</p>
+
+  <p><strong>業界の課題仮説 (4 つ)</strong>:</p>
+  <ol>
+    <li>ANDPAD が高機能すぎて現場で使われていない</li>
+    <li>PDF 見積書をみつも郎 17 に手入力する二重作業</li>
+    <li>電話や LINE の通話記録が残らず情報散逸</li>
+    <li>遠現場の片道 2 時間移動で帰宅後深夜作業</li>
+  </ol>
+
+  <p><strong>方針</strong>: 既存大手 SaaS と正面衝突せず、 現場の人が使えるシンプルさで隙間を狙う。 価格 月 5,000〜10,000 円。<br>
+  <strong>開発体制</strong>: フリーランスエンジニア 1 人、 本業継続しながら副業。<br>
+  <strong>初期マイルストーン</strong>: 月 30 万円売上達成。</p>
+
+  <h3>相談したい内容 (6 項目)</h3>
+  <ol>
+    <li>建設業界の慣習・工務店の決裁プロセス</li>
+    <li>工務店経営者へのアプローチ方法</li>
+    <li>法人化 (合同会社) のベストタイミング</li>
+    <li>IT 導入支援事業者登録の最適な進め方</li>
+    <li>デジタル化・AI 導入補助金活用の戦略</li>
+    <li>北原氏の建設業顧問先で課題感のある方の紹介</li>
+  </ol>
+
+  <h3>背景</h3>
+  <p>半年前に TAMA で Froski (英語 × フリーランス事業) を相談したが、 Upwork 市場の競合過多で前提が崩れ撤退。 その学びを基に工務店向け BtoB SaaS を準備中。</p>
+</div>
+
+<!-- 視点 =========================================================== -->
+<h2 id="viewpoints">// 03 / 2 つの視点 (業者側 vs 施主側)</h2>
+
+<div class="viewpoint gyousha">
+  <div class="label">PRIMARY VIEWPOINT</div>
+  <div class="name">業者側 4 仮説 (相談予約の事業概要に明記)</div>
+  <div class="examples">
+    <strong>SaaS の対象痛点:</strong>
+    <ul>
+      <li>① ANDPAD 高機能すぎて使われない (= 既存大手 SaaS のシンプル化代替)</li>
+      <li>② みつも郎 17 二重入力 (= PDF → 構造化データの自動化)</li>
+      <li>③ 電話 / LINE 通話記録散逸 (= 通話録音 + 文字起こし保存)</li>
+      <li>④ 遠現場移動による深夜作業 (= 現場で完結する記録ツール)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="viewpoint seshu">
+  <div class="label">SUPPORTING DATA</div>
+  <div class="name">施主側 7 クラスタ (Google マップ レビュー 543 件分析)</div>
+  <div class="examples">
+    <strong>業者側仮説の<u>裏付け</u>として使うべき:</strong>
+    <ul>
+      <li>アフター放置 / 連絡途絶 / 施工品質 / 現場マナー / 支店ガチャ / 個情ハラ / 契約圧力</li>
+    </ul>
+    これらは「業者側の業務効率問題が、 結果として施主にこう見えている」 という<strong>裏付けデータ</strong>。 議論の主役ではない。
+  </div>
+</div>
+
+<!-- 整合性 ========================================================== -->
+<h2 id="mismatch">// 04 / 整合性チェック</h2>
+
+<p>私が用意した質問リスト (consultation-questions-2026-05-22.html) を相談予約 6 項目と照合:</p>
+
+<table>
+  <thead>
+    <tr><th>相談予約 #</th><th>内容</th><th>私の質問</th><th>整合性</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>#1</td><td>建設業界の慣習・工務店の決裁プロセス</td><td>(該当質問なし)</td><td class="match-ng">❌ 抜けている</td></tr>
+    <tr><td>#2</td><td>工務店経営者へのアプローチ方法</td><td>Q7-Q9 (紹介経路) で部分カバー</td><td class="match-partial">△ 部分的</td></tr>
+    <tr><td>#3</td><td>法人化 (合同会社) のベストタイミング</td><td>Q4 (マイクロ法人 vs IT 導入支援) 名称ズレ</td><td class="match-partial">△ ズレ</td></tr>
+    <tr><td>#4</td><td>IT 導入支援事業者登録の進め方</td><td>Q4 で一部触れている</td><td class="match-partial">△ 部分的</td></tr>
+    <tr><td>#5</td><td>補助金活用の戦略</td><td>Q5, Q6</td><td class="match-ok">⭕ 整合</td></tr>
+    <tr><td>#6</td><td>顧問先の紹介可能性</td><td>Q7</td><td class="match-ok">⭕</td></tr>
+    <tr><td>-</td><td>(相談予約に記載なし)</td><td>Q1 4 価格パターン評価</td><td class="match-partial">❓ 相談予約に未記載</td></tr>
+    <tr><td>-</td><td>(相談予約に記載なし)</td><td>Q3 クラスタリング妥当性</td><td class="match-partial">❓ 相談予約に未記載</td></tr>
+  </tbody>
+</table>
+
+<div class="note">
+  <strong>結論</strong>: 整合性が完璧なのは 2 項目のみ。 抜け 1 項目、 部分一致 3 項目、 未対応 2 項目。 北原氏が事前に相談予約を見て準備してくる前提だと、 議論が噛み合わない恐れあり。
+</div>
+
+<!-- 再フレーム ====================================================== -->
+<h2 id="reframe">// 05 / 7 クラスタの再フレーム (業者仮説の裏付け)</h2>
+
+<p>7 クラスタを <strong>業者側 4 仮説の証拠データ</strong>として再配置する。 1 対 1 対応ではないが、 因果関係は説明可能:</p>
+
+<table>
+  <thead>
+    <tr><th>業者側仮説 (相談予約)</th><th>関連する施主側クラスタ</th><th>因果関係の説明</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>① ANDPAD 高機能すぎて使われない</td>
+      <td>支店ガチャ / 連絡途絶</td>
+      <td>現場が ANDPAD を使えていない → 顧客対応の質が支店ごとにばらつく / 連絡が来ない</td>
+    </tr>
+    <tr>
+      <td>② みつも郎 17 二重入力</td>
+      <td>(直接対応するクラスタなし)</td>
+      <td>業者内部の問題で、 施主側からは見えにくい</td>
+    </tr>
+    <tr>
+      <td>③ 通話記録散逸</td>
+      <td><strong>連絡途絶</strong> / 顧客情報ずさん</td>
+      <td>業者が通話内容を記録せず管理 → 「言った言わない」 が発生 → 施主は「連絡が来ない」 と感じる</td>
+    </tr>
+    <tr>
+      <td>④ 移動 + 深夜作業</td>
+      <td><strong>アフター放置</strong> / 現場マナー</td>
+      <td>業者の業務時間が逼迫 → アフター対応や現場マナーまで手が回らない</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="note">
+  <strong>再フレームのメリット</strong>: 「業者側仮説」 が抽象的に見えるところに、 「施主の実際の声」 が具体的な数値・引用として裏付ける構造になる。 北原氏に「なぜこの 4 仮説に絞ったか」 を聞かれた時に、 543 件の具体データで答えられる。
+</div>
+
+<!-- 法人化 ========================================================== -->
+<h2 id="houjin">// 06 / 法人化論点の整理 (2 論点に分離)</h2>
+
+<p>「マイクロ法人 vs 合同会社」 は実は対立軸ではなく、 <strong>独立した 2 つの論点</strong>:</p>
+
+<div class="status-card confirmed">
+  <span class="badge">✅ 確定済み</span>
+  <div class="title">論点 1: マイクロ法人の設立 (2026/6 予定)</div>
+  <div class="body">
+    既存フリーランス本業 (英語等) の節税目的。 合同会社で設立、 役員報酬は社会保険最低限。
+    memory <code>business-form-roadmap</code> の方針通り。 これは確定。
+    <br><br>
+    重要: <strong>マイクロ法人は工務店ビジネスとは無関係</strong>。 既存本業の節税専用。
+  </div>
+</div>
+
+<div class="status-card pending">
+  <span class="badge">⏳ 検討中</span>
+  <div class="title">論点 2: 工務店ビジネスの法人化</div>
+  <div class="body">
+    元々は「工務店相手に商売する想定なし」 だった (= マイクロ法人を考え始めた時)。
+    最近「工務店相手に仕事できるかも」 と思い始めた → 新しい論点として浮上。
+    <br><br>
+    <strong>選択肢:</strong>
+    <ul style="margin:6px 0;">
+      <li><strong>A. 個人事業主のまま</strong> 工務店ビジネスを続ける (現傾向)</li>
+      <li><strong>B. 別の合同会社</strong> を工務店ビジネス専用に設立</li>
+      <li><strong>C. マイクロ法人を工務店ビジネス用に転用</strong> (節税専用スキームは崩れる)</li>
+    </ul>
+    現傾向: A (マイクロ法人 = 節税専用 / 工務店ビジネス = 個人事業主) の分離運用。
+    ただし工務店オーナーから見て個人事業主だと信用度に問題が出ないか不安 → 北原氏に相談。
+  </div>
+</div>
+
+<!-- Q4 分割案 ====================================================== -->
+<h2 id="q4">// 07 / 質問 Q4 を 3 分割 (相談予約 #3 #4 に対応)</h2>
+
+<div class="q">
+  <div class="num">Q4-a (運用)</div>
+  <div class="text">既存本業の節税目的でマイクロ法人 (合同会社) を 2026/6 に設立予定です。 工務店向け SaaS / 受託は別収入源として個人事業主のまま続ける想定ですが、 この<strong>分離運用</strong>に実務上の問題点 (経費按分・社会保険・税務調査リスク等) はありますか?</div>
+  <div class="reason">→ 相談予約 #3 法人化のタイミングに対応。 現傾向 A 案の妥当性確認。</div>
+</div>
+
+<div class="q">
+  <div class="num">Q4-b (信用)</div>
+  <div class="text">工務店オーナーから見て、 取引相手が<strong>個人事業主か法人か</strong>で信用度や決裁プロセスに差が出ますか? 工務店ビジネスを伸ばすなら、 個人事業のままより別の合同会社化を急ぐべきでしょうか? (= 論点 2 の選択肢 B 案)</div>
+  <div class="reason">→ 相談予約 #1 (決裁プロセス) + #3 (法人化タイミング) に対応。</div>
+</div>
+
+<div class="q">
+  <div class="num">Q4-c (補助金)</div>
+  <div class="text">「マイクロ法人 (節税専用) + 個人事業主 (工務店ビジネス)」 という分離運用の場合、 <strong>IT 導入支援事業者登録</strong>はどちらの主体で可能ですか? 個人事業主のままで申請できる仕組みはありますか?</div>
+  <div class="reason">→ 相談予約 #4 IT 導入支援事業者登録に直接対応。 memory <code>business-form-roadmap</code> の「マイクロ法人とは矛盾」 という現状記述を事実確認。</div>
+</div>
+
+<!-- タスク ========================================================== -->
+<h2 id="tasks">// 08 / 修正タスク一覧</h2>
+
+<table>
+  <thead>
+    <tr><th>#</th><th>タスク</th><th class="num">工数</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>memory <code>business-form-roadmap.md</code> 更新 (論点 1 確定 / 論点 2 検討中、 工務店ビジネス浮上で再考の経緯を追記)</td>
+      <td class="num">5 分</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>memory <code>tokyo-startup-station-may-2026.md</code> 更新 (Froski 撤退の学び背景、 相談予約 6 項目との対応を追記)</td>
+      <td class="num">10 分</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>memory <code>koumuten-reviews-pipeline.md</code> 更新 (業者側 4 仮説と施主側 7 クラスタの対応関係を追記)</td>
+      <td class="num">10 分</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>新規 memory <code>komuten-saas-4-hypotheses.md</code> 作成 (業者側 4 仮説を独立 memory として保存。 今後の判断基準)</td>
+      <td class="num">10 分</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>consultation-questions-2026-05-22.html を全面書き直し: Q1-Q15 を相談予約 6 項目に整合させて再構成、 Q4 は a/b/c 3 分割、 4 仮説の優先順位を聞く質問を冒頭に</td>
+      <td class="num">40 分</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>business-summary-2026-05-22.html を書き直し: 主戦場セクションを「4 仮説 + 価格戦略」 主軸に、 7 クラスタは「施主視点での裏付け」 副、 法人化記述は「論点 1 確定 + 論点 2 検討中」 に、 Froski 撤退の学びを冒頭に</td>
+      <td class="num">40 分</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>レポート HTML (koumuten-reviews-2026-05-13.html) の使い方セクションを微修正 (UC-E の用途を「業者側 4 仮説の裏付けデータ」 として明示)</td>
+      <td class="num">10 分</td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="text-align:right;font-size:13px;color:var(--muted);">合計: 約 2 時間</p>
+
+<!-- memory =========================================================== -->
+<h2 id="memory">// 09 / memory 更新方針 (整合性確保)</h2>
+
+<div class="card">
+  <h3 style="margin-top:0;">既存 memory への変更</h3>
+  <table class="compact">
+    <thead><tr><th>ファイル</th><th>変更内容</th></tr></thead>
+    <tbody>
+      <tr><td><code>business-form-roadmap.md</code></td><td>論点 2 (工務店ビジネスの法人化) を「検討中」 として追記</td></tr>
+      <tr><td><code>tokyo-startup-station-may-2026.md</code></td><td>相談予約本文 + Froski 撤退の学び背景を追記</td></tr>
+      <tr><td><code>koumuten-reviews-pipeline.md</code></td><td>業者側 4 仮説と 7 クラスタの対応関係を追記</td></tr>
+    </tbody>
+  </table>
+
+  <h3>新規 memory</h3>
+  <table class="compact">
+    <thead><tr><th>ファイル</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td><code>komuten-saas-4-hypotheses.md</code></td><td>業者側 4 仮説 (ANDPAD / みつも郎 / 通話記録 / 移動) を独立 memory として保存。 SaaS 戦略の核として参照</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 判定 ============================================================ -->
+<h2 id="decision">// 10 / 判定</h2>
+
+<div class="question-decision">
+  <strong>このブリーフ v4 への判定 3 択:</strong>
+  <ul>
+    <li>① <strong>OK、 修正タスク 1〜7 を全部実行</strong> (約 2 時間で完了)</li>
+    <li>② 一部だけ修正したい (例: タスク 4 の新規 memory は不要、 タスク 7 のレポート HTML 修正は後回し等)</li>
+    <li>③ もう一歩設計を詰めたい (例: 業者側 4 仮説の優先順位を先に決めたい、 価格戦略との関係を整理したい等)</li>
+  </ul>
+</div>
+
+<div class="note">
+  <strong>緊急性</strong>: 5/22 まで残 9 日。 北原氏が事前に相談予約を見て準備してくる可能性が高いので、 紙資料の整合性は早期に確保したい。
+</div>
+
+</div>
+</body>
+</html>

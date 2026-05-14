@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>設計ブリーフ v2 / 工務店 Google マップ レビュー収集 × 仮説検証ストア</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --accent: #b85c3a;
+  --warn: #c34a1f;
+  --good: #2d6a4f;
+  --card: #ffffff;
+  --border: #e4ddd1;
+  --code-bg: #f4ede0;
+  --layer1: #eaf2f8;
+  --layer2: #f5ecf5;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.75;
+  font-size: 15px;
+}
+.container { max-width: 960px; margin: 0 auto; padding: 32px 20px 100px; }
+
+header { border-bottom: 2px solid var(--fg); padding-bottom: 16px; margin-bottom: 32px; }
+header .tag { display: inline-block; font-size: 11px; letter-spacing: .15em; background: var(--fg); color: var(--bg); padding: 3px 10px; border-radius: 2px; margin-bottom: 8px; }
+header h1 { font-size: 26px; margin: 0 0 6px; font-weight: 700; line-height: 1.4; }
+header .meta { color: var(--muted); font-size: 13px; }
+header .version { display: inline-block; font-size: 11px; background: var(--accent); color: white; padding: 2px 8px; border-radius: 2px; margin-left: 8px; vertical-align: middle; }
+
+h2 { font-size: 20px; margin: 44px 0 14px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+h3 { font-size: 16px; margin: 24px 0 10px; }
+
+p { margin: 0 0 12px; }
+ul, ol { padding-left: 22px; margin: 0 0 14px; }
+li { margin-bottom: 4px; }
+
+code { font-family: "SF Mono", Menlo, monospace; font-size: 13px; background: var(--code-bg); padding: 1px 6px; border-radius: 3px; }
+pre { background: #f4ede0; padding: 14px 16px; border-radius: 4px; font-size: 13px; overflow-x: auto; font-family: "SF Mono", Menlo, monospace; line-height: 1.6; }
+
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 18px 22px; margin-bottom: 14px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; background: var(--card); }
+th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { background: var(--code-bg); font-weight: 600; }
+table.compact th, table.compact td { padding: 6px 10px; }
+
+/* 2 層モデル図 */
+.architecture {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 24px;
+  margin: 16px 0;
+}
+.layer {
+  border-radius: 6px;
+  padding: 18px 22px;
+  margin-bottom: 14px;
+  position: relative;
+}
+.layer.l1 { background: var(--layer1); border-left: 4px solid #4a6fa5; }
+.layer.l2 { background: var(--layer2); border-left: 4px solid #885a8b; }
+.layer .label { font-size: 11px; letter-spacing: .1em; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
+.layer .title { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+.layer .summary { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+.layer .detail { background: rgba(255,255,255,0.6); padding: 10px 14px; border-radius: 4px; font-size: 13px; }
+.arrow-down { text-align: center; color: var(--muted); font-size: 20px; margin: -4px 0; }
+
+/* ユースケース */
+.usecases { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 16px 0; }
+.usecase { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; }
+.usecase .id { font-size: 11px; letter-spacing: .1em; color: var(--accent); font-weight: 700; }
+.usecase .name { font-weight: 700; margin: 4px 0 6px; font-size: 14px; }
+.usecase .desc { font-size: 12px; color: var(--muted); margin-bottom: 10px; line-height: 1.5; }
+.usecase .source-tag { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 10px; margin-right: 4px; margin-top: 2px; }
+.usecase .source-tag.l1 { background: var(--layer1); color: #2c4a73; }
+.usecase .source-tag.l2 { background: var(--layer2); color: #5a3e60; }
+
+/* オプション */
+.option {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+.option.recommended { border-color: var(--good); box-shadow: 0 0 0 1px var(--good); }
+.option .head {
+  padding: 12px 18px;
+  background: #f4ede0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.option.recommended .head { background: #e6f0ea; border-bottom-color: #c4dccc; }
+.option .badge {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: .1em;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.option.recommended .badge { background: var(--good); }
+.option .title { font-weight: 700; font-size: 15px; }
+.option .body { padding: 14px 20px 16px; }
+
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+.pros, .cons { padding: 10px 14px; border-radius: 4px; font-size: 13px; }
+.pros { background: #eaf4ee; border-left: 3px solid var(--good); }
+.cons { background: #fdf0eb; border-left: 3px solid var(--warn); }
+.pros strong, .cons strong { display: block; font-size: 11px; letter-spacing: .1em; margin-bottom: 6px; }
+.pros ul, .cons ul { margin: 0; padding-left: 16px; }
+
+.note { background: #fff8ea; border-left: 3px solid #d4a72c; padding: 10px 14px; margin: 12px 0; font-size: 13px; color: #5a4a1f; border-radius: 0 4px 4px 0; }
+.note strong { color: #1f1c18; }
+.principle { background: #ebf0e8; border-left: 3px solid var(--good); padding: 12px 16px; margin: 12px 0; font-size: 14px; color: #1f3623; border-radius: 0 4px 4px 0; }
+.principle strong { display: block; margin-bottom: 4px; font-size: 12px; letter-spacing: .1em; color: #2d6a4f; }
+
+.toc { background: var(--card); border: 1px solid var(--border); padding: 14px 20px; border-radius: 6px; margin-bottom: 24px; }
+.toc strong { font-size: 13px; }
+.toc ol { margin: 0; padding-left: 22px; }
+.toc a { color: var(--accent); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+
+.changelog { background: #f4ede0; padding: 12px 16px; border-radius: 4px; font-size: 13px; margin-bottom: 24px; border-left: 3px solid var(--accent); }
+.changelog strong { display: block; margin-bottom: 4px; }
+
+.phase {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+}
+.phase .phase-tag { display: inline-block; font-size: 11px; background: var(--fg); color: var(--bg); padding: 2px 8px; border-radius: 2px; margin-right: 8px; }
+.phase .phase-title { font-weight: 700; }
+.phase .phase-desc { font-size: 13px; color: var(--muted); margin: 6px 0 8px; }
+
+.question { background: #f0f4fa; border-left: 3px solid #4a6fa5; padding: 12px 16px; margin: 16px 0; font-size: 14px; color: #2c3e60; border-radius: 0 4px 4px 0; }
+.question strong { color: #1a2b4a; display: block; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="tag">DESIGN BRIEF</div>
+  <h1>工務店 Google マップ レビュー収集 × 仮説検証ストア<span class="version">v2</span></h1>
+  <div class="meta">2026-05-13 / masatoman / 「どう使うか」 起点で 2 層モデルに再設計</div>
+</header>
+
+<div class="changelog">
+  <strong>v1 → v2 の変更点</strong>
+  v1 は 「issue-finder にどう繋ぐか」 という実装手段の話だった。
+  ユーザー指摘により 「どう使うか」 が先という原則に立ち戻り、 ユースケース A〜D 全部に対応できる<strong>「raw レビュー保存 + クラスタリング」 の 2 層モデル</strong>に再設計した。
+</div>
+
+<!-- 目次 -->
+<div class="toc">
+  <strong>目次</strong>
+  <ol>
+    <li><a href="#principle">設計原則: ユースケース起点</a></li>
+    <li><a href="#usecases">想定ユースケース A〜D</a></li>
+    <li><a href="#architecture">アーキテクチャ: 2 層モデル</a></li>
+    <li><a href="#layer1">Layer 1: raw レビューストア (テーブル設計)</a></li>
+    <li><a href="#layer2">Layer 2: クラスタリング (既存 if_issues 流用)</a></li>
+    <li><a href="#dataflow">データフロー</a></li>
+    <li><a href="#mvp">ユースケース別 MVP マップ</a></li>
+    <li><a href="#viewing">見る場所の 3 候補 と 最初に作るもの</a></li>
+    <li><a href="#phases">実装フェーズ</a></li>
+    <li><a href="#open">未決事項</a></li>
+    <li><a href="#decision">判定</a></li>
+  </ol>
+</div>
+
+<!-- 設計原則 ============================================================ -->
+<h2 id="principle">// 01 / 設計原則: ユースケース起点</h2>
+
+<div class="principle">
+  <strong>原則</strong>
+  「どこに保存するか」 を決める前に、 「何の意思決定に使うか」 を全列挙する。 ユースケースの幅広さによって、 単層構造か 2 層構造かが決まる。
+</div>
+
+<p>今回のヒアリングで判明したこと:</p>
+<ul>
+  <li>ユースケースは A〜D <strong>全部</strong> (1 つに絞らない、 仮説検証フェーズ全体の素材)</li>
+  <li>取得頻度は <strong>スポット追加</strong> (1 回限りでも cron 自動化でもない / コマンド 1 本で増やせる粒度)</li>
+  <li>見る場所は <strong>未定</strong> (将来 HTML / Web ダッシュボード / ペライチ埋め込みなど複数想定)</li>
+</ul>
+
+<p>この 3 つから自動的に出る結論: <strong class="callout-warn">データを 1 つの形に正規化して貯めておき、 用途に応じてビューを切り替える構造</strong>でなければ詰む。 1 回ごとの JSON でも、 issue-finder の if_issues 単層でも、 ユースケース A (ペライチ引用) と C (機能優先順位) は両立しない。</p>
+
+<!-- ユースケース ========================================================= -->
+<h2 id="usecases">// 02 / 想定ユースケース A〜D</h2>
+
+<div class="usecases">
+  <div class="usecase">
+    <div class="id">A</div>
+    <div class="name">ペライチ訴求の裏付け</div>
+    <div class="desc">中間業者 / 工務店オーナー向けペライチ 2 版に 「実際の声」 として引用。 引用本文 + 出典 URL + 匿名化が必要。</div>
+    <span class="source-tag l1">Layer 1 (raw) を直接使用</span>
+  </div>
+  <div class="usecase">
+    <div class="id">B</div>
+    <div class="name">友人ヒアリングの仮説リスト</div>
+    <div class="desc">6 月予定の友人 (現場監督) ヒアリングで 「これを語らせたい」 論点を事前に並べる。 痛点クラスタが必要。</div>
+    <span class="source-tag l2">Layer 2 (clusters) を使用</span>
+  </div>
+  <div class="usecase">
+    <div class="id">C</div>
+    <div class="name">SaaS 機能・価格戦略の根拠</div>
+    <div class="desc">4 パターン価格戦略のどれを取るか判断する材料。 痛点クラスタ × 解決可能性 × 深さ。</div>
+    <span class="source-tag l2">Layer 2 (clusters + scores) を使用</span>
+  </div>
+  <div class="usecase">
+    <div class="id">D</div>
+    <div class="name">受託提案スライド素材</div>
+    <div class="desc">B2B 受託提案時に 「あなたの業界の不満トップ N」 を見せる。 集計 + 代表引用。</div>
+    <span class="source-tag l1">Layer 1 (集計)</span><span class="source-tag l2">Layer 2 (クラスタ)</span>
+  </div>
+</div>
+
+<!-- アーキテクチャ ========================================================= -->
+<h2 id="architecture">// 03 / アーキテクチャ: 2 層モデル</h2>
+
+<div class="architecture">
+
+  <div class="layer l1">
+    <div class="label">LAYER 1</div>
+    <div class="title">raw レビューストア (新テーブル)</div>
+    <div class="summary">Google Places API から取得した個別レビューを、 不変・追記のみで蓄積。 1 レビュー = 1 行。</div>
+    <div class="detail">
+      <strong>役割</strong>: 一次情報の原本保存。 「同じデータから別の切り口」 を後から再実行可能にする。<br>
+      <strong>用途</strong>: ユースケース A (引用) と D の集計部分はここを直接 SELECT。<br>
+      <strong>追加方法</strong>: <code>scripts/koumuten-review-collector.js --submit</code> で取得と同時に INSERT。 重複は <code>(place_id, publish_time, author_name)</code> で吸収。
+    </div>
+  </div>
+
+  <div class="arrow-down">↓ SKILL で論点分解 + クラスタリング</div>
+
+  <div class="layer l2">
+    <div class="label">LAYER 2</div>
+    <div class="title">クラスタ化された痛点 (既存 if_issues 流用)</div>
+    <div class="summary">raw から論点を抽出し、 SKILL でクラスタリング → 既存 issue-finder の if_issues に投入。</div>
+    <div class="detail">
+      <strong>役割</strong>: 「複数レビューを跨いだ共通の不満」 を浮かび上がらせる。 issueScore で動くべき度を算出。<br>
+      <strong>用途</strong>: ユースケース B / C と D のクラスタ部分。 既存 matrix / cards UI で可視化済み。<br>
+      <strong>追加方法</strong>: <code>/issue-finder process</code> SKILL で raw → クラスタリング → if_issues INSERT。 任意のタイミングで実行可能 (raw の追加と切り離されている)。
+    </div>
+  </div>
+
+</div>
+
+<div class="note">
+  <strong>2 層に分ける本質的な理由</strong>: クラスタリングは「圧縮」 (5 件のレビュー → 1 つの痛点要約) なので、 引用本文の生々しさが失われる。 A (ペライチ引用) は生々しさが命なので raw が必須。 一方 B / C はクラスタの方が判断に使いやすい。 両方を別ストアで持つことで、 ユースケースごとに最適な解像度を選べる。
+</div>
+
+<!-- Layer 1 詳細 ======================================================== -->
+<h2 id="layer1">// 04 / Layer 1: raw レビューストア (テーブル設計)</h2>
+
+<p>新規 Supabase テーブル <code>koumuten_reviews_raw</code> を作成する。</p>
+
+<table>
+  <thead><tr><th>カラム</th><th>型</th><th>意味 / 用途</th></tr></thead>
+  <tbody>
+    <tr><td><code>id</code></td><td>uuid PK</td><td>自動採番</td></tr>
+    <tr><td><code>place_id</code></td><td>text</td><td>Google Places ID (店舗識別子)</td></tr>
+    <tr><td><code>place_name</code></td><td>text</td><td>店舗名 (例: 蓮川工務店)</td></tr>
+    <tr><td><code>place_area</code></td><td>text</td><td>区名 / 市町村名 (例: 葛飾区)</td></tr>
+    <tr><td><code>place_rating</code></td><td>numeric</td><td>店舗の総合評価 (★)</td></tr>
+    <tr><td><code>place_user_rating_count</code></td><td>int</td><td>店舗のレビュー総数 (n)</td></tr>
+    <tr><td><code>place_address</code></td><td>text</td><td>所在地</td></tr>
+    <tr><td><code>place_google_maps_uri</code></td><td>text</td><td>Google マップ URL</td></tr>
+    <tr><td><code>place_website_uri</code></td><td>text</td><td>公式サイト URL (存在すれば)</td></tr>
+    <tr><td><code>review_rating</code></td><td>smallint</td><td>★1〜5</td></tr>
+    <tr><td><code>review_text</code></td><td>text</td><td>レビュー本文 (翻訳済み)</td></tr>
+    <tr><td><code>review_original_text</code></td><td>text</td><td>原文 (日本語以外の場合)</td></tr>
+    <tr><td><code>review_author_name</code></td><td>text</td><td>投稿者表示名</td></tr>
+    <tr><td><code>review_publish_time</code></td><td>timestamptz</td><td>投稿日時</td></tr>
+    <tr><td><code>review_relative_time</code></td><td>text</td><td>「2 年前」 等の相対表記</td></tr>
+    <tr><td><code>collected_at</code></td><td>timestamptz</td><td>こちらが取得した日時</td></tr>
+    <tr><td><code>collected_run_id</code></td><td>uuid</td><td>同一バッチ追跡 (1 回の <code>--submit</code> 実行で 1 つ)</td></tr>
+    <tr><td><code>processed_in_cluster_job_id</code></td><td>uuid NULL</td><td>Layer 2 でクラスタリング済みなら if_jobs.id を記録</td></tr>
+    <tr><td><code>created_at</code> / <code>updated_at</code></td><td>timestamptz</td><td>標準</td></tr>
+  </tbody>
+</table>
+
+<h3>制約・インデックス</h3>
+<ul>
+  <li><strong>UNIQUE</strong> <code>(place_id, review_publish_time, review_author_name)</code> → 同一レビューの重複 INSERT を防止</li>
+  <li><strong>INDEX</strong> <code>(place_area)</code>, <code>(review_rating)</code>, <code>(review_publish_time DESC)</code>, <code>(processed_in_cluster_job_id) WHERE NULL</code> (未クラスタリング検出用)</li>
+</ul>
+
+<!-- Layer 2 ============================================================ -->
+<h2 id="layer2">// 05 / Layer 2: クラスタリング (既存 if_issues 流用)</h2>
+
+<div class="card">
+  <p>既存 issue-finder のスキーマと SKILL を <strong>そのまま流用</strong>。 perspective は <code>komuten / 施主 (顧客側)</code> で OK (前回ブリーフからの結論を維持)。</p>
+  <p>変更点は 1 つだけ:</p>
+  <ul>
+    <li>SKILL の入力ソースが <code>if_jobs.raw_input_text</code> の文字列ブロックから、 <strong>raw テーブルへの SELECT</strong> に変わる。 具体的には、 if_jobs に投入する代わりに、 SKILL が直接 <code>koumuten_reviews_raw</code> から <code>processed_in_cluster_job_id IS NULL</code> の行を読んでクラスタリング → if_issues INSERT → raw 側に job_id を書き戻し。</li>
+  </ul>
+  <p>これにより、 「同じ raw データから何度でも再クラスタリング可能」 になる (job_id を NULL に戻すか、 別ロジックを足せば)。</p>
+</div>
+
+<!-- データフロー ========================================================= -->
+<h2 id="dataflow">// 06 / データフロー</h2>
+
+<pre>[1] 取得
+node scripts/koumuten-review-collector.js --limit 20 --submit
+  ├ Google Places API 叩く (キャッシュあれば省略)
+  ├ レビューを正規化
+  └ koumuten_reviews_raw に INSERT (重複は UNIQUE で吸収)
+
+[2] (任意のタイミングで) クラスタリング
+/issue-finder process (SKILL)
+  ├ koumuten_reviews_raw WHERE processed_in_cluster_job_id IS NULL を SELECT
+  ├ 論点分解 (ルールベース or LLM)
+  ├ クラスタリング (LLM)
+  ├ if_issues に INSERT (source_type='review')
+  └ raw 側に job_id を書き戻し (再処理防止)
+
+[3] 用途別に取り出す
+A (ペライチ引用)  → koumuten_reviews_raw を SELECT で抜粋
+B (ヒアリング仮説) → if_issues を perspective=施主 + source_type=review で SELECT
+C (機能優先順位)   → if_issues + issueScore で並び替え
+D (受託資料)       → 集計 SQL + クラスタ要約を組み合わせる</pre>
+
+<!-- MVP マップ ============================================================ -->
+<h2 id="mvp">// 07 / ユースケース別 MVP マップ</h2>
+
+<table>
+  <thead><tr><th>UC</th><th>名前</th><th>必要レイヤー</th><th>MVP の形</th><th>追加実装</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>A</strong></td><td>ペライチ引用</td><td>Layer 1</td>
+      <td>raw から ★3 以下の引用を匿名化 + 出典 URL 付きで HTML 抜粋エクスポート</td>
+      <td>軽い CLI スクリプト 1 本</td>
+    </tr>
+    <tr>
+      <td><strong>B</strong></td><td>ヒアリング仮説</td><td>Layer 2</td>
+      <td>クラスタ上位 10 を 「ヒアリング論点シート」 HTML として出力</td>
+      <td>既存 SKILL + 出力テンプレ</td>
+    </tr>
+    <tr>
+      <td><strong>C</strong></td><td>機能優先順位</td><td>Layer 2</td>
+      <td>クラスタ × issueScore を価格戦略 HTML (saas-pricing-strategy.html) に注入</td>
+      <td>SQL 1 本 + 既存 HTML に追記</td>
+    </tr>
+    <tr>
+      <td><strong>D</strong></td><td>受託資料素材</td><td>L1 + L2</td>
+      <td>集計 (エリア別件数 / 評価分布) + 代表引用 + クラスタ要約を 1 枚 HTML に</td>
+      <td>レンダラ追加</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="note">
+  <strong>MVP の共通点</strong>: いずれも「最小成果物 = HTML 1 枚」 で済む。 Web ダッシュボード / 専用ページは MVP 段階では不要。 後から欲しくなったら Layer 1 / Layer 2 を SELECT すれば作れる。
+</div>
+
+<!-- 見る場所 ============================================================ -->
+<h2 id="viewing">// 08 / 見る場所の 3 候補 と 最初に作るもの</h2>
+
+<div class="option recommended">
+  <div class="head"><span class="badge">最初に作る</span><span class="title">候補 1. HTML レポート再生成 (今日作ったやつの発展形)</span></div>
+  <div class="body">
+    <p>すでに <code>docs/koumuten-reviews-2026-05-13.html</code> がある。 これを Layer 1 (Supabase) から再生成するレンダラに置き換える。 ユースケース A / D の MVP がここでカバーされる。</p>
+    <div class="pros-cons">
+      <div class="pros"><strong>メリット</strong><ul>
+        <li>既存資産流用 (今日作ったレポートが土台)</li>
+        <li>静的 HTML なので商談相手にメールで送れる</li>
+        <li>実装一番軽い</li>
+      </ul></div>
+      <div class="cons"><strong>デメリット</strong><ul>
+        <li>インタラクティブなフィルタはできない</li>
+        <li>毎回コマンド再実行で再生成</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<div class="option">
+  <div class="head"><span class="badge">次に検討</span><span class="title">候補 2. issue-finder ダッシュボード統合</span></div>
+  <div class="body">
+    <p>Layer 2 のクラスタが if_issues に投入された時点で、 既存の matrix / cards / keywords タブで自動的に見える。 追加実装ゼロ。</p>
+    <div class="pros-cons">
+      <div class="pros"><strong>メリット</strong><ul>
+        <li>追加実装ゼロ</li>
+        <li>web_search 由来と Google マップ由来を横並びで比較できる</li>
+        <li>perspective 切り替えで切り出せる</li>
+      </ul></div>
+      <div class="cons"><strong>デメリット</strong><ul>
+        <li>商談相手には見せにくい (ローカル前提)</li>
+        <li>個別レビュー本文の生々しさは見えない (クラスタ要約のみ)</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<div class="option">
+  <div class="head"><span class="badge">後回し</span><span class="title">候補 3. 専用ページ <code>/lab/tools/koumuten-reviews</code></span></div>
+  <div class="body">
+    <p>商談相手にも URL で見せたくなったら作る。 Layer 1 + Layer 2 を統合表示する Next.js ページ。</p>
+    <div class="pros-cons">
+      <div class="pros"><strong>メリット</strong><ul>
+        <li>商談相手と画面共有しながら見せられる</li>
+        <li>フィルタ / 検索が動的にできる</li>
+        <li>受託提案スライドのライブ版になる</li>
+      </ul></div>
+      <div class="cons"><strong>デメリット</strong><ul>
+        <li>実装一番重い (page + auth + UI コンポーネント)</li>
+        <li>今すぐは要らない (見せる相手が固まっていない)</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- 実装フェーズ ========================================================= -->
+<h2 id="phases">// 09 / 実装フェーズ (段階的に進める)</h2>
+
+<div class="phase">
+  <span class="phase-tag">PHASE 1</span><span class="phase-title">Layer 1 (raw ストア) を建てる</span>
+  <div class="phase-desc">取得 → Supabase に貯まる経路を完成させる。 ここで止まっても A と D の MVP は動く。</div>
+  <ol>
+    <li>Supabase migration <code>20260513_koumuten_reviews_raw.sql</code> を作成 → 適用</li>
+    <li><code>scripts/koumuten-review-collector.js</code> に <code>--submit</code> フラグ追加 (Supabase クライアントで INSERT)</li>
+    <li>24 件 (キャッシュ済み) を再 submit して動作確認</li>
+    <li><code>scripts/render-koumuten-reviews-html.js</code> を Supabase 読み出し版に書き換え</li>
+  </ol>
+</div>
+
+<div class="phase">
+  <span class="phase-tag">PHASE 2</span><span class="phase-title">Layer 2 (クラスタリング) を建てる</span>
+  <div class="phase-desc">B と C の MVP に必要。 既存 SKILL を流用しつつ raw → クラスタの経路を作る。</div>
+  <ol>
+    <li>SKILL の入力ソースを <code>if_jobs.raw_input_text</code> から <code>koumuten_reviews_raw</code> 読み出しに拡張</li>
+    <li>論点分解ロジック追加 (ルールベースから始める)</li>
+    <li>クラスタリング実行 → if_issues に投入されることを確認</li>
+    <li>issue-finder ダッシュボードで perspective=施主 をフィルタしてクラスタが見えるか確認</li>
+  </ol>
+</div>
+
+<div class="phase">
+  <span class="phase-tag">PHASE 3</span><span class="phase-title">フル取得 + ユースケース別レンダラ</span>
+  <div class="phase-desc">8 区 × 20 件のフル取得を行い、 ユースケース別の HTML レンダラを揃える。</div>
+  <ol>
+    <li><code>--limit 20</code> で本番取得 + raw に追加蓄積 (≈ $3.50)</li>
+    <li>クラスタリング再実行</li>
+    <li>UC-A: 引用エクスポートレンダラ</li>
+    <li>UC-B: ヒアリング論点シートレンダラ</li>
+    <li>UC-C: saas-pricing-strategy.html に注入</li>
+    <li>UC-D: 集計ダッシュボードレンダラ</li>
+  </ol>
+</div>
+
+<div class="phase">
+  <span class="phase-tag">PHASE 4 (条件付き)</span><span class="phase-title">専用ページ <code>/lab/tools/koumuten-reviews</code></span>
+  <div class="phase-desc">商談相手に見せる場面が具体化したら作る。 それまでは静的 HTML で十分。</div>
+</div>
+
+<!-- 未決 ============================================================ -->
+<h2 id="open">// 10 / 未決事項 (Phase 1 で詰める)</h2>
+
+<div class="card">
+  <ul>
+    <li><strong>raw テーブル名</strong>: <code>koumuten_reviews_raw</code> でいいか / <code>if_</code> プレフィックスに合わせて <code>if_external_reviews</code> 等にして他業界も同じテーブルで持つ可能性も。 → 今回は工務店専用で割り切る案を提示</li>
+    <li><strong>論点分解の精度</strong>: ルールベースで十分か LLM 必要か。 24 件で実測してから判断</li>
+    <li><strong>匿名化ルール</strong>: ペライチ引用時に投稿者名は隠す前提だが、 店舗名は出すか伏せるか。 工務店業界の場合は実名出すと風評リスクあり → 「都内 A 区の工務店」 表記に変える案</li>
+    <li><strong>取得対象拡張</strong>: 8 区 → 23 区全体 / 地方都市まで。 主顧客 (中小工務店) の声を厚く集めるなら地方データの方が高品質な可能性</li>
+    <li><strong>API キーローテーション</strong>: 今回のチャットで Google Places API キーがログに露出。 動作確認終わったら Google Cloud Console で再生成</li>
+  </ul>
+</div>
+
+<!-- 判定 ============================================================ -->
+<h2 id="decision">// 11 / 判定</h2>
+
+<div class="question">
+  <strong>このブリーフ v2 への判定 4 択:</strong>
+  <ul>
+    <li>① <strong>OK、 Phase 1 (Layer 1 構築) から実装開始</strong></li>
+    <li>② 骨格 (2 層モデル) は OK だが、 Phase 1 の前にもう少し詰めたい論点がある → 内容を指定</li>
+    <li>③ MVP マップ (A〜D) の優先順位を変えたい → どれを先 / どれを後にしたいか</li>
+    <li>④ そもそも 2 層モデルではなく単層 (raw のみ / クラスタのみ) に変えたい</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>

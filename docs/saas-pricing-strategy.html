@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>工務店向け業務ツール 価格戦略メモ — Ihara Frontend</title>
+  <style>
+    :root {
+      --ink: #071b49;
+      --sub: #33496d;
+      --muted: #5f6f89;
+      --line: #d8e3f2;
+      --bg: #fbfcfe;
+      --panel: #ffffff;
+      --accent: #f47b20;
+      --accent-soft: #fff4e9;
+      --good: #15803d;
+      --good-soft: #dcfce7;
+      --warn: #b45309;
+      --warn-soft: #fef3c7;
+      --bad: #b91c1c;
+      --bad-soft: #fee2e2;
+    }
+    * { box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--ink); margin: 0; padding: 0; }
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.75;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 880px; margin: 0 auto; padding: 48px 24px 96px; }
+    header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 24px;
+      margin-bottom: 36px;
+    }
+    header .eyebrow {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 30px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      font-weight: 900;
+    }
+    header .meta {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    h2 {
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      margin: 56px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--line);
+      font-weight: 900;
+    }
+    h2 .num {
+      display: inline-block;
+      background: var(--ink);
+      color: white;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-right: 12px;
+      vertical-align: 3px;
+      font-weight: 800;
+    }
+    h3 {
+      font-size: 17px;
+      margin: 32px 0 12px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    p { margin: 0 0 14px; color: var(--sub); }
+    p strong { color: var(--ink); }
+    ul, ol { margin: 0 0 16px; padding-left: 24px; color: var(--sub); }
+    li { margin-bottom: 6px; }
+    .summary {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      padding: 24px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+    .summary h3 { margin-top: 0; font-size: 14px; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; }
+    .summary p { font-size: 17px; line-height: 1.85; color: var(--ink); font-weight: 700; }
+    .summary p:last-child { margin-bottom: 0; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 16px 0 24px;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      background: #f4f7fc;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    tr:last-child td { border-bottom: none; }
+    td.num { font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 700; color: var(--ink); }
+    td.tag-good { color: var(--good); font-weight: 700; }
+    td.tag-bad { color: var(--bad); font-weight: 700; }
+    td.tag-warn { color: var(--warn); font-weight: 700; }
+    .pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+    }
+    .pill-good { background: var(--good-soft); color: var(--good); }
+    .pill-warn { background: var(--warn-soft); color: var(--warn); }
+    .pill-bad { background: var(--bad-soft); color: var(--bad); }
+    .pill-info { background: #dbeafe; color: #1d4ed8; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0 24px;
+    }
+    @media (max-width: 700px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .card .label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .card .value {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin: 4px 0 6px;
+    }
+    .card .body { font-size: 13px; color: var(--sub); line-height: 1.7; }
+
+    .quote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 16px 0 24px;
+    }
+
+    .scenario {
+      background: #f7faff;
+      border: 1px solid var(--line);
+      padding: 18px 20px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+    .scenario .label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .scenario .head {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .scenario .arith {
+      font-family: "SF Mono", Menlo, monospace;
+      font-size: 14px;
+      color: var(--ink);
+      background: white;
+      padding: 6px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      border: 1px solid var(--line);
+    }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media print {
+      body { background: white; }
+      .page { padding: 24px; }
+      .summary, .card, .scenario, table { box-shadow: none; }
+      h2 { page-break-after: avoid; }
+      table { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <span class="eyebrow">PRICING STRATEGY MEMO</span>
+      <h1>工務店向け 業務ツールの 売り方・値付け戦略</h1>
+      <div class="meta">
+        作成: 2026-05-10 ／ Ihara Frontend (個人事業主 → 2026/6 マイクロ法人) ／ 主顧客: 5〜30 人の小規模工務店
+      </div>
+    </header>
+
+    <section class="summary">
+      <h3>結論</h3>
+      <p>
+        SaaS (Web) として売る。 exe / デスクトップアプリは ターゲット (現場監督 = スマホ中心 + IT 弱者) の利用シーンに合わない。
+        値付けは <strong>「初期 10〜30 万 + 月 1 万」</strong> の王道路線で、 5〜30 人の中堅工務店を主ターゲットに置く。
+        IT 弱者向け 1 機能特化 (月 1,500〜3,000 円) を捨て案として持ち、 ヒアリング結果で振り分ける。
+      </p>
+    </section>
+
+    <h2><span class="num">01</span>形態の選定: なぜ Web か</h2>
+
+    <p>
+      ポートフォリオ内 5 デモのうち <strong>4 つ (音声日報・写真整理・領収書・図面ビューワー)</strong> は
+      「現場でスマホを使う」前提で設計されている。 残る 1 つの <strong>施主向け工程進捗ページ</strong> は
+      施主に URL を渡す機能なので Web 必須。 exe にする物理的な理由が無い。
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>観点</th>
+          <th>exe (デスクトップアプリ)</th>
+          <th>Web (SaaS)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>現場監督の使う場所</td><td class="tag-bad">事務所 PC のみ</td><td class="tag-good">スマホ・PC・タブレット</td></tr>
+        <tr><td>インストール作業</td><td class="tag-bad">DL → ダブルクリック → 警告解除 (IT 弱者 不可)</td><td class="tag-good">URL 踏むだけ</td></tr>
+        <tr><td>施主向け公開ページ (#3)</td><td class="tag-bad">不可能</td><td class="tag-good">URL 1 つで完結</td></tr>
+        <tr><td>アップデート</td><td class="tag-bad">各 PC で再インストール</td><td class="tag-good">サーバ側で 1 度</td></tr>
+        <tr><td>データ消失リスク</td><td class="tag-bad">PC 壊れたら全消失</td><td class="tag-good">サーバ側 自動バックアップ</td></tr>
+        <tr><td>配布の手間</td><td class="tag-bad">Win / Mac それぞれ署名 (年 約 10 万)</td><td class="tag-good">デプロイ 1 回</td></tr>
+        <tr><td>複数人で共有</td><td class="tag-bad">1 ライセンス 1 PC</td><td class="tag-good">同じ URL を共有</td></tr>
+        <tr><td>月額課金の組みやすさ</td><td class="tag-warn">ライセンスサーバ別途必要</td><td class="tag-good">Stripe + Supabase で即実装</td></tr>
+      </tbody>
+    </table>
+
+    <p>
+      <span class="pill pill-info">補足</span>
+      「データは手元に置きたい」要望には、 利用規約に <strong>「お客様のデータはいつでも CSV / PDF で書き出せる」</strong>
+      を 明記すれば SaaS でも信頼を取れる。 これは memory にある 「全部まる投げで OK」 「ずっと面倒みる」 と整合。
+    </p>
+
+    <h2><span class="num">02</span>業界の価格相場</h2>
+
+    <p>工務店向け業務 SaaS は、 顧客層によって 大きく 3 階層に分かれている。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>プレイヤー</th>
+          <th>初期</th>
+          <th>月額</th>
+          <th>主ターゲット</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>ANDPAD</td><td class="num">数十万円</td><td class="num">月 1〜3 万 / 人</td><td>10〜100 人 ゼネコン・中堅</td></tr>
+        <tr><td>Photoruction</td><td class="num">30〜50 万</td><td class="num">月 5 万 〜</td><td>中堅以上</td></tr>
+        <tr><td>KENTEM 系</td><td class="num">10 万 〜</td><td class="num">月 1〜2 万</td><td>中小〜中堅</td></tr>
+        <tr style="background: #fff8ef;"><td><strong>Ihara Frontend (本案)</strong></td><td class="num">10〜30 万</td><td class="num">月 1 万</td><td><strong>5〜30 人 工務店</strong></td></tr>
+        <tr><td>freee / マネフォ / LINE WORKS</td><td class="num">0</td><td class="num">月 千〜数千</td><td>1〜5 人 事業所</td></tr>
+      </tbody>
+    </table>
+
+    <div class="quote">
+      「ANDPAD 入れるほどじゃない / でも freee より専門的」 の <strong>すきま</strong> を 取る。
+      機能を 5 デモぶんに絞り、 直接サポート (LINE 即レス) で差別化。
+    </div>
+
+    <h2><span class="num">03</span>価格パターンの 3〜4 案</h2>
+
+    <p>顧客の キャッシュフロー 耐性 と 規模感 に応じて、 3〜4 パターンを 並べて提案する構造を取る。</p>
+
+    <h3>A. 王道型 — 初期 10 万 + 月 1 万</h3>
+    <ul>
+      <li>ターゲット: 5〜30 人 の 中堅工務店 (社長が「1 件契約取れれば回収」と感じられる規模)</li>
+      <li>初期費用の中身: ヒアリング 30 分 + データ移行 + 操作レクチャー 1 時間 + 初月 LINE サポート (= 1 日仕事の 人件費換算)</li>
+      <li>月額の中身: サーバ稼働 + 月 1 回のサポート + アップデート</li>
+      <li>狙い: 「人件費換算 = 1 日 5 万 × 2 日」 と 説明できると 説得力が出る</li>
+    </ul>
+
+    <h3>B. キャッシュ前倒し型 — 初期 30 万 + 月 5,000</h3>
+    <ul>
+      <li>ターゲット: 「月のランニングを とにかく 抑えたい」 オーナー</li>
+      <li>初期で 1 年分回収、 月額は サーバ代 + 軽サポート 程度の薄利</li>
+      <li>狙い: 「年 36 万 → 翌年 6 万」 で 年次比較で安く 見せる。 銀行融資・補助金 と相性 良い</li>
+    </ul>
+
+    <h3>C. 1 機能特化 サブスク — 月 1,500 〜 3,000 円</h3>
+    <ul>
+      <li>ターゲット: 1〜5 人 工事業者 / 個人親方</li>
+      <li>5 デモのうち 1 つだけ (例: 音声日報 のみ) を 単体販売</li>
+      <li>狙い: ANDPAD は機能多すぎで使いこなせない 個人事業主に 「これだけ」 で刺す</li>
+      <li>制約: 1 件あたり粗利 薄い → 100 件 集めて月 30 万 を 狙う スケール構造</li>
+    </ul>
+
+    <h3>D. 受託 + 月額 ハイブリッド型 — 個別カスタム 50 万 + 月 3,000 保守</h3>
+    <ul>
+      <li>ターゲット: 既存 ホームページ 受託 案件の 業務改善 アップセル</li>
+      <li>「ホームページ作り直しと一緒に 業務ツールも」 の流れで 受注</li>
+      <li>狙い: 既存 portfolio (memory) との 自然な 延長線。 関係構築重視で LTV 最大化</li>
+    </ul>
+
+    <h2><span class="num">04</span>memory との整合性チェック</h2>
+
+    <table>
+      <thead>
+        <tr><th>memory 制約</th><th>本戦略との整合</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>主顧客 = IT に極端に弱い 小規模事業オーナー</td>
+          <td class="tag-good">A 案 (5〜30 人) と C 案 (1〜5 人) で カバー。 D 案 で 既存受託層と接続。</td>
+        </tr>
+        <tr>
+          <td>AI を 前面に出さない / ひとりで全部作れる職人</td>
+          <td class="tag-good">SaaS の オーナー = 本人 → 「直接サポート」 が 大手にできない 強み。 AI は 中で動く道具のまま。</td>
+        </tr>
+        <tr>
+          <td>補助金訴求は 控えめ (IT導入支援事業者 登録は 当面棚上げ)</td>
+          <td class="tag-good">価格設計は 補助金 前提 にしない。 登録後は 「補助金で実質 1/3」 の 訴求を 後乗せ。</td>
+        </tr>
+        <tr>
+          <td>毎月 ¥5,000 で うごく作り (memory: strengths)</td>
+          <td class="tag-good">Vercel + Supabase 無料枠 で 月 数百 〜 数千円。 月額 1 万 × 10 件 = 月 10 万 売上 で 粗利 9 割。</td>
+        </tr>
+        <tr>
+          <td>2026/6 マイクロ法人設立 (年商 1,000 万未満)</td>
+          <td class="tag-good">月 10 万 SaaS + 既存 受託 (月 30〜50 万) = 年商 480〜720 万 で 法人内に収まる。 月額請求は 法人で発行が楽。</td>
+        </tr>
+        <tr>
+          <td>メイン Works は B2B 実用デモのみ / AI は /lab に退避</td>
+          <td class="tag-good">SaaS 商品ページ は メイン Works の 実装版として 自然に拡張可能。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2><span class="num">05</span>5 デモの 商品化 優先順位</h2>
+
+    <p>同時に 5 個 売り出すのは 工数的に無理。 ペイン強度 × 実装容易さ × 友人ヒアリング検証 で 着手順を絞る。</p>
+
+    <table>
+      <thead>
+        <tr><th>順位</th><th>商品候補</th><th>初動の値付け</th><th>判断軸</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>音声日報ツール</strong></td><td>月 1,500 〜 1 万</td><td>Hero catchphrase 「残業の原因を IT で撃退」 と直結。 効果が定量的に説明可能 (1 時間 → 5 分)。</td></tr>
+        <tr><td>2</td><td>現場写真自動仕分け</td><td>月 2,000 〜 1 万</td><td>視覚インパクト大。 サンプル素材で デモ完結 → 営業しやすい。</td></tr>
+        <tr><td>3</td><td>施主向け 工程進捗ページ</td><td>初期 10 万 + 月 3,000</td><td>既存 ホームページ受託の アップセル。 D 案 と相性 最良。</td></tr>
+        <tr><td>4</td><td>領収書 経費自動入力</td><td>月 2,000 〜 5,000</td><td>電帳法 追い風。 競合 (freee) が強いが 工務店特化で差別化可能。</td></tr>
+        <tr><td>5</td><td>図面ビューワー</td><td>初期 10 万 + 月 1 万</td><td>OCR 自動検出 → 画像入れ替え対応で ツール感 強い。 ただし 友人ヒアリングで 使用頻度 要検証。</td></tr>
+      </tbody>
+    </table>
+
+    <h2><span class="num">06</span>友人 (現場監督) ヒアリングで 値付けを 確認する</h2>
+
+    <p>ご友人 (現場監督) に デモを見せた 直後に、 値付けの 上限・下限・キャッシュフロー耐性を 把握する 2 問。</p>
+
+    <div class="scenario">
+      <div class="label">ヒアリング Q1 — 値付けの 上限・下限</div>
+      <div class="head">「もし この音声日報ツールが SaaS だったら、 月いくらまでなら 使う？」</div>
+      <p>
+        「<strong>1,000 円なら？</strong> 」 → 即 使う ／ 「<strong>5,000 円なら？</strong>」 → 効果次第 ／
+        「<strong>1 万円なら？</strong>」 → 社長と相談、 という 3 段階で 反応を聞く。
+      </p>
+      <p style="margin: 0; color: var(--muted); font-size: 13px;">
+        値付けの心理的 天井 (= WTP) と、 即決ライン が分かる。 5 デモで 各 1 回 聞くと データが集まる。
+      </p>
+    </div>
+
+    <div class="scenario">
+      <div class="label">ヒアリング Q2 — キャッシュフロー 耐性</div>
+      <div class="head">「初期 10 万 + 月 5,000 と、 初期 0 + 月 1 万 の どっちが マシ？」</div>
+      <p>
+        年間総額は 同じ (12 万) でも、 オーナーの 資金繰り感覚 で 答えが 変わる。
+        前者を選ぶ → A / B 案 が刺さる。 後者を選ぶ → C / D 案 で キャッシュ平準化。
+      </p>
+      <div class="arith">
+        合計コスト 比較: 1 年目 10 万 + 6 万 = <strong>16 万</strong> ／ 2 年目 〜 6 万/年
+        ── vs ── 1 年目 12 万 ／ 2 年目 〜 12 万/年
+      </div>
+    </div>
+
+    <h2><span class="num">07</span>次のアクション</h2>
+
+    <ol>
+      <li><strong>音声日報ツール (#1) を SaaS として 動く 状態にする</strong> ─ Hero catchphrase 直結 + サポート工数 軽い</li>
+      <li>ご友人 (現場監督) に 上記 ヒアリング Q1 / Q2 を 実施 ─ WTP と キャッシュフロー耐性 を 一次情報で 取る</li>
+      <li>友人 1 件は <strong>無料モニタ</strong> で 1 ヶ月使ってもらい、 「ここがダメ・ここをこうしたい」 を 集める</li>
+      <li>Stripe + Supabase で 月額課金を 実装 (受託案件の 月額保守 と 同じ仕組み を 流用)</li>
+      <li>2026/6 マイクロ法人設立後、 法人 名義で 請求書 発行 (節税・経費計上の 受け皿)</li>
+      <li>3 件目以降の 顧客獲得は <strong>友人の紹介</strong> + ポートフォリオ の Works 経由 (営業せず インバウンド狙い)</li>
+    </ol>
+
+    <h2><span class="num">08</span>失敗の落とし穴 (リスク)</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="label">リスク 1</div>
+        <div class="value">機能を増やしすぎる</div>
+        <div class="body">
+          ANDPAD と 同じ 道を 歩むと 個人事業主では サポートしきれない。
+          5 デモ それぞれを <strong>1 機能 1 商品</strong> として 区切って売る。
+        </div>
+      </div>
+      <div class="card">
+        <div class="label">リスク 2</div>
+        <div class="value">無料プランに引きずられる</div>
+        <div class="body">
+          freee / LINE WORKS が 月数百円で 似た機能を提供する 領域は 避ける。
+          工務店 特化の 文脈 (配筋 / 床伏 / 施主対応) で 差別化。
+        </div>
+      </div>
+      <div class="card">
+        <div class="label">リスク 3</div>
+        <div class="value">サポート工数が 売上を超える</div>
+        <div class="body">
+          1 件 月 1 万 × 10 件 = 月 10 万。 1 件 月 2 時間 で 月 20 時間 まで。
+          それ以上は 既存受託 と 競合。 11 件目以降は 値上げ or サポート時間 制限。
+        </div>
+      </div>
+      <div class="card">
+        <div class="label">リスク 4</div>
+        <div class="value">買い切り要望に 折れる</div>
+        <div class="body">
+          「月額 嫌だから 買い切り 30 万 で」 は 一見良さそうだが、 アップデートやサポート の 報酬が 入らなくなる。
+          買い切り は 提示しない。 D 案 (受託 + 月額保守) で 代替提案する。
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      Ihara Frontend / Pricing Strategy Memo v1.0 ／ memory: customer-target.md, business-form-roadmap.md, strengths と 整合済み ／ 次回更新: ご友人ヒアリング 結果 反映後
+    </footer>
+  </div>
+</body>
+</html>

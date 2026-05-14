@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>設計ブリーフ v3 / scoring 多軸化 (DX 解決可能性 + 将来拡張)</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --accent: #b85c3a;
+  --warn: #c34a1f;
+  --good: #2d6a4f;
+  --card: #ffffff;
+  --border: #e4ddd1;
+  --code-bg: #f4ede0;
+  --axis-current: #eaf2f8;
+  --axis-new: #f5ecf5;
+  --axis-future: #fef5e7;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.75;
+  font-size: 15px;
+}
+.container { max-width: 960px; margin: 0 auto; padding: 32px 20px 100px; }
+
+header { border-bottom: 2px solid var(--fg); padding-bottom: 16px; margin-bottom: 32px; }
+header .tag { display: inline-block; font-size: 11px; letter-spacing: .15em; background: var(--fg); color: var(--bg); padding: 3px 10px; border-radius: 2px; margin-bottom: 8px; }
+header h1 { font-size: 26px; margin: 0 0 6px; font-weight: 700; line-height: 1.4; }
+header .version { display: inline-block; font-size: 11px; background: var(--accent); color: white; padding: 2px 8px; border-radius: 2px; margin-left: 8px; vertical-align: middle; }
+header .meta { color: var(--muted); font-size: 13px; }
+
+h2 { font-size: 20px; margin: 44px 0 14px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+h3 { font-size: 16px; margin: 24px 0 10px; }
+
+p { margin: 0 0 12px; }
+ul, ol { padding-left: 22px; margin: 0 0 14px; }
+li { margin-bottom: 4px; }
+
+code { font-family: "SF Mono", Menlo, monospace; font-size: 13px; background: var(--code-bg); padding: 1px 6px; border-radius: 3px; }
+pre { background: var(--code-bg); padding: 14px 16px; border-radius: 4px; font-size: 13px; overflow-x: auto; font-family: "SF Mono", Menlo, monospace; line-height: 1.6; }
+
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 18px 22px; margin-bottom: 14px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; background: var(--card); }
+th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { background: var(--code-bg); font-weight: 600; }
+table.compact th, table.compact td { padding: 6px 10px; }
+td.num { text-align: right; }
+
+.axis {
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  border-left: 4px solid;
+}
+.axis.current { background: var(--axis-current); border-left-color: #4a6fa5; }
+.axis.new { background: var(--axis-new); border-left-color: #885a8b; }
+.axis.future { background: var(--axis-future); border-left-color: #b8862e; opacity: 0.7; }
+.axis .name { font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+.axis .desc { font-size: 13px; color: var(--fg); }
+.axis .formula { background: rgba(255,255,255,0.6); padding: 6px 10px; border-radius: 3px; font-family: "SF Mono", Menlo, monospace; font-size: 12px; margin-top: 6px; }
+
+.principle { background: #ebf0e8; border-left: 3px solid var(--good); padding: 12px 16px; margin: 12px 0; font-size: 14px; color: #1f3623; border-radius: 0 4px 4px 0; }
+.principle strong { display: block; margin-bottom: 4px; font-size: 12px; letter-spacing: .1em; color: #2d6a4f; }
+
+.note { background: #fff8ea; border-left: 3px solid #d4a72c; padding: 10px 14px; margin: 12px 0; font-size: 13px; color: #5a4a1f; border-radius: 0 4px 4px 0; }
+.note strong { color: #1f1c18; }
+
+.question { background: #f0f4fa; border-left: 3px solid #4a6fa5; padding: 12px 16px; margin: 16px 0; font-size: 14px; color: #2c3e60; border-radius: 0 4px 4px 0; }
+.question strong { color: #1a2b4a; display: block; margin-bottom: 6px; }
+
+.changelog { background: var(--code-bg); padding: 12px 16px; border-radius: 4px; font-size: 13px; margin-bottom: 24px; border-left: 3px solid var(--accent); }
+.changelog strong { display: block; margin-bottom: 4px; }
+
+.toc { background: var(--card); border: 1px solid var(--border); padding: 14px 20px; border-radius: 6px; margin-bottom: 24px; }
+.toc ol { margin: 0; padding-left: 22px; }
+.toc a { color: var(--accent); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+
+.diff-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; margin: 4px 0; font-size: 13px; }
+.diff-row .before { color: var(--muted); text-align: right; }
+.diff-row .arrow { color: var(--accent); font-weight: 700; }
+.diff-row .after { color: var(--fg); font-weight: 700; }
+
+.value-row {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin-bottom: 6px;
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  align-items: center;
+  gap: 12px;
+}
+.value-row .label { font-weight: 700; font-size: 13px; }
+.value-row .score {
+  text-align: center;
+  background: var(--code-bg);
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-weight: 700;
+}
+.value-row .score.high { background: #c4dccc; color: #1f3623; }
+.value-row .score.low { background: #fdf0eb; color: #5a2e1f; }
+.value-row .reason { font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="tag">DESIGN BRIEF</div>
+  <h1>scoring 多軸化: DX 解決可能性 + 将来の視点拡張<span class="version">v3</span></h1>
+  <div class="meta">2026-05-13 / masatoman / イシュー度は純粋に保ち、 解決視点をフィルタで切り替える構造</div>
+</header>
+
+<div class="changelog">
+  <strong>v2 → v3 の関係</strong>
+  v2 は「raw + clusters」 の 2 層データアーキテクチャの話だった。 v3 は scoring の「軸」 を多軸化する話で、 領域が異なる。 v2 のデータ構造を前提に scoring を拡張する位置付け。
+</div>
+
+<div class="toc">
+  <strong style="font-size:13px;">目次</strong>
+  <ol>
+    <li><a href="#bg">背景: なぜ多軸化が必要か</a></li>
+    <li><a href="#principle">設計原則: イシュー度の純粋性 + 視点フィルタ</a></li>
+    <li><a href="#current">現状の scoring 軸 (5 軸)</a></li>
+    <li><a href="#missing">抜けていた軸: DX 解決可能性</a></li>
+    <li><a href="#new">新設計: dxFeasibility 軸追加</a></li>
+    <li><a href="#extensibility">拡張性: 中小企業診断士視点・補助金支援視点</a></li>
+    <li><a href="#values">既存 7 クラスタへの暫定値</a></li>
+    <li><a href="#ranking">dxOpportunity ランキングの予測</a></li>
+    <li><a href="#impl">実装ステップ</a></li>
+    <li><a href="#scope">影響範囲</a></li>
+    <li><a href="#decision">判定</a></li>
+  </ol>
+</div>
+
+<!-- 背景 ============================================================ -->
+<h2 id="bg">// 01 / 背景: なぜ多軸化が必要か</h2>
+
+<div class="card">
+  <p><strong>ユーザー指摘 (2026-05-13)</strong>: 「issue-finder は僕視点でイシュー度をつけてる? 僕視点というのは僕が DX で解決できる範囲で見てる?」</p>
+
+  <p>scoring.ts を厳密に確認すると、 既存スコアはすべて以下のどちらかで、 「masatoman が DX で解決できる範囲か」 を直接測る指標が<strong>存在しなかった</strong>:</p>
+
+  <ul>
+    <li><code>issue_score</code> = 業界全体での重要度 (頻度 × インパクト × 感情)</li>
+    <li><code>solvability_score</code> = <strong>業界一般の技術で</strong>解決可能か (masatoman 個人の手で、 ではない)</li>
+    <li><code>personalFit</code> = 個人事業との「適合度」 (補助金 / 工務店ターゲット / 技術キーワードの存在)</li>
+    <li><code>opportunity_score</code> = 上記の合成 (DX 視点の判定ではない)</li>
+  </ul>
+
+  <p>つまり「アフター放置 (solvability=55)」 という値は、 「ANDPAD 等の業界ツールで概念的には解決可能」 という業界視点であって、 「masatoman が Next.js + Supabase + Claude API で実装可能か」 という個人視点ではなかった。 結果として「即動け」 ラベルも業界視点の重要度に基づくもので、 個人が今動くべきかとは別物だった。</p>
+</div>
+
+<!-- 設計原則 ======================================================== -->
+<h2 id="principle">// 02 / 設計原則: イシュー度の純粋性 + 視点フィルタ</h2>
+
+<div class="principle">
+  <strong>原則 1: イシュー度は業界視点で純粋に保つ</strong>
+  issue_score は「業界全体での痛点の深さ」 だけを測る。 解決者が誰か (masatoman / 中小企業診断士 / 補助金支援者) は混ぜない。
+</div>
+
+<div class="principle">
+  <strong>原則 2: 解決視点はフィルタとして後から掛ける</strong>
+  「DX で解決できるか」 「経営支援で解決できるか」 「補助金で解決できるか」 は別軸として記録し、 ランキングや UI でフィルタとして適用する。
+</div>
+
+<div class="principle">
+  <strong>原則 3: 視点は N 個に拡張可能な構造</strong>
+  将来 masatoman が中小企業診断士の資格を取れば「経営支援視点」 が増える。 IT 導入支援事業者になれば「補助金支援視点」 が増える。 同じパターンで <code>shindansiFeasibility</code> や <code>subsidyFeasibility</code> を追加できる。
+</div>
+
+<!-- 現状 ============================================================ -->
+<h2 id="current">// 03 / 現状の scoring 軸 (5 軸)</h2>
+
+<div class="axis current">
+  <div class="name">issue_score (業界視点)</div>
+  <div class="desc">「業界全体での頻度 × インパクト × 感情強度」。 解決者は問わない。</div>
+  <div class="formula">issue_score = (clusterSize / samplingTotal) × 1.5 × 100 + industryImpact + (emotion-50)/5</div>
+</div>
+
+<div class="axis current">
+  <div class="name">solvability_score (業界視点 / 技術的解決可能性)</div>
+  <div class="desc">「業界一般の SaaS / 技術で解決可能か」。 masatoman 個人の手では、 ではない。</div>
+  <div class="formula">[SKILL or 人手で 0-100 の直接入力]</div>
+</div>
+
+<div class="axis current">
+  <div class="name">personalFit (個人事業適合度)</div>
+  <div class="desc">補助金親和性 / 主顧客業界マッチ / ツール愚痴 / 技術キーワード / solv 高さ で +20 ずつ。 「やる意味があるか」 を測る。</div>
+  <div class="formula">personalFit = subsidyMatch(20) + industryMatch(20) + toolMatch(20) + techKeyword(20) + (solv≥65)(20)</div>
+</div>
+
+<div class="axis current">
+  <div class="name">competitorDensity (競合密度)</div>
+  <div class="desc">クラスタ内に ANDPAD / freee / kintone 等の固有名がいくつ出るか。 多いほど競合占有度高。</div>
+  <div class="formula">0 ツール = 15、 1 ツール = 40、 2 ツール = 65、 3+ ツール = 85</div>
+</div>
+
+<div class="axis current">
+  <div class="name">salesChannelDifficulty (販売チャネル難易度)</div>
+  <div class="desc">industryTags から業種別の売りにくさを判定。 工務店 = 80 (対面営業必須)、 個人事業主 = 35 (Web 完結)。</div>
+  <div class="formula">industryTags に応じた固定値 (30-85)</div>
+</div>
+
+<p style="font-size:13px;color:var(--muted);">合成: <code>opportunity_score = issue × 0.25 + solvability × 0.30 + personalFit × 0.20 + (100-competitor) × 0.15 + (100-salesDiff) × 0.10</code></p>
+
+<!-- 抜け ============================================================ -->
+<h2 id="missing">// 04 / 抜けていた軸: DX 解決可能性</h2>
+
+<div class="card">
+  <p><strong>solvability_score と何が違うか</strong>:</p>
+  <table class="compact">
+    <thead><tr><th>軸</th><th>聞く相手</th><th>例: アフター放置</th></tr></thead>
+    <tbody>
+      <tr><td>solvability_score</td><td>業界一般 (SaaS 業界全体)</td><td>55 (ANDPAD 等のアフター管理機能で技術的には可能)</td></tr>
+      <tr><td><strong>dxFeasibility (新)</strong></td><td>masatoman の手</td><td>60 (機能実装は可能、 ただし入力ハードルは技術じゃ越えられない)</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:8px;">solvability=55 と dxFeasibility=60 は近い値だが、 意味が違う。 例えば「施工品質不良」 では solvability=25 (業界として品質検査 SaaS は存在しない) / dxFeasibility=10 (masatoman の手では特に無理) と差が出る。</p>
+</div>
+
+<!-- 新設計 ========================================================== -->
+<h2 id="new">// 05 / 新設計: dxFeasibility 軸追加</h2>
+
+<div class="axis new">
+  <div class="name">dxFeasibility (masatoman 視点 / DX 解決可能性) <strong style="color:#885a8b;">NEW</strong></div>
+  <div class="desc">「masatoman の技術スタック (Next.js + Supabase + Claude API + Vercel + Resend) で実装+運用できるか」 を 0-100 で。</div>
+  <div class="formula">[人手で 0-100 の直接入力。 将来 LLM で自動推定可能]</div>
+</div>
+
+<h3>値域の意味</h3>
+<table class="compact">
+  <thead><tr><th>値域</th><th>意味</th></tr></thead>
+  <tbody>
+    <tr><td>90-100</td><td>1〜2 週間で MVP 可能、 既存 lab tools と接続可能</td></tr>
+    <tr><td>70-89</td><td>1〜2 ヶ月で実装可能、 既存スタックで完結</td></tr>
+    <tr><td>50-69</td><td>実装可能だが運用負荷高い or 周辺技術習得必要</td></tr>
+    <tr><td>30-49</td><td>技術スタックの大幅拡張必要 (ネイティブアプリ等)</td></tr>
+    <tr><td>10-29</td><td>DX で部分支援は可能だが本質解決は別領域</td></tr>
+    <tr><td>0-9</td><td>DX では解決不可能 (規制・物理・体制・体質問題)</td></tr>
+  </tbody>
+</table>
+
+<h3>新合成スコア: dxOpportunity</h3>
+<div class="card">
+  <p>既存 <code>opportunity_score</code> を「DX で解決できる範囲に絞った場合の動くべき度」 にスケーリング:</p>
+  <pre>dxOpportunity = opportunity_score × (dxFeasibility / 100)</pre>
+  <p>dxFeasibility=0 → dxOpportunity=0 (完全に除外)<br>
+  dxFeasibility=100 → 元の opportunity_score</p>
+</div>
+
+<div class="note">
+  <strong>既存スコアは触らない</strong>: issue_score / solvability_score / personalFit / opportunity_score は<strong>そのまま</strong>。 「業界視点ランキング」 は今まで通り見られる。 新しい「DX 視点ランキング」 が並列で追加される形。
+</div>
+
+<!-- 拡張性 ========================================================== -->
+<h2 id="extensibility">// 06 / 拡張性: 視点軸の追加パターン</h2>
+
+<div class="card">
+  <p>同じ構造で N 視点を追加可能。 将来の masatoman の役割変化に応じて軸を増やす:</p>
+</div>
+
+<div class="axis future">
+  <div class="name">shindansiFeasibility (中小企業診断士視点) <em style="color:var(--muted);font-size:12px;">将来</em></div>
+  <div class="desc">中小企業診断士の資格取得後に追加。 経営支援 / 補助金申請代行 / 事業計画策定で解決できるか。</div>
+  <div class="formula">shindansiOpportunity = opportunity_score × (shindansiFeasibility / 100)</div>
+</div>
+
+<div class="axis future">
+  <div class="name">subsidyFeasibility (補助金支援視点) <em style="color:var(--muted);font-size:12px;">将来</em></div>
+  <div class="desc">IT 導入支援事業者登録後に追加。 補助金スキームで顧客負担を圧縮できるか。</div>
+  <div class="formula">subsidyOpportunity = opportunity_score × (subsidyFeasibility / 100)</div>
+</div>
+
+<div class="axis future">
+  <div class="name">offlineFeasibility (リアル接触解決) <em style="color:var(--muted);font-size:12px;">将来</em></div>
+  <div class="desc">建材屋 / 設計事務所経由のオフライン接点で解決できるか (memory [[komuten-channel-strategy]] の主戦場系)。</div>
+  <div class="formula">offlineOpportunity = opportunity_score × (offlineFeasibility / 100)</div>
+</div>
+
+<div class="note">
+  <strong>UI 側の使い方</strong>: ソートキーに <code>dxOpportunity</code> / <code>shindansiOpportunity</code> / <code>subsidyOpportunity</code> を追加。 「いま自分が動けるリソースは何か」 でフィルタを切り替える。 同じ業界クラスタを複数の視点で見られるようになる。
+</div>
+
+<!-- 暫定値 ========================================================== -->
+<h2 id="values">// 07 / 既存 7 クラスタへの dxFeasibility 暫定値</h2>
+
+<p>masatoman の現在の技術スタック (Next.js + Supabase + Claude API + Vercel + Resend) を前提として:</p>
+
+<div class="value-row">
+  <div class="label">連絡途絶 (CRM 簡易版)</div>
+  <div class="score high">90</div>
+  <div class="reason">得意領域。 1〜2 週間で MVP、 lab tools 接続容易、 IT 弱者向け UI も実績あり</div>
+</div>
+<div class="value-row">
+  <div class="label">引き渡し後アフター放置</div>
+  <div class="score high">60</div>
+  <div class="reason">機能 (名簿+定期通知) は実装可能。 ただし「現場が入力しない」 ハードルは DX 単独では解けない</div>
+</div>
+<div class="value-row">
+  <div class="label">個人情報・ハラスメント</div>
+  <div class="score">50</div>
+  <div class="reason">コンプライアンスチェック実装可能だが、 法令変更追従の運用負荷あり</div>
+</div>
+<div class="value-row">
+  <div class="label">大手 FC 支店ガチャ</div>
+  <div class="score">40</div>
+  <div class="reason">ナレッジ管理 SaaS で部分可能、 ただし Notion 等の競合と被るので差別化困難</div>
+</div>
+<div class="value-row">
+  <div class="label">施工品質不良</div>
+  <div class="score low">10</div>
+  <div class="reason">品質検査は技術職人の領域。 DX は記録支援程度。 本質解決は無理</div>
+</div>
+<div class="value-row">
+  <div class="label">業者の現場マナー違反</div>
+  <div class="score low">5</div>
+  <div class="reason">社員教育・行動指針共有は DX じゃない。 動画教材プラットフォームは別領域</div>
+</div>
+<div class="value-row">
+  <div class="label">大手 FC 契約圧力</div>
+  <div class="score low">5</div>
+  <div class="reason">営業マニュアル・体質問題。 DX 解決不可</div>
+</div>
+
+<!-- ランキング予測 ================================================== -->
+<h2 id="ranking">// 08 / dxOpportunity ランキングの予測</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>クラスタ</th>
+      <th class="num">issue</th>
+      <th class="num">opp 概算</th>
+      <th class="num">dxFeas</th>
+      <th class="num">dxOpp</th>
+      <th>業界視点順位</th>
+      <th>DX 視点順位</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>連絡途絶</strong></td><td class="num">50</td><td class="num">64</td><td class="num">90</td><td class="num"><strong>58</strong></td><td>3</td><td><strong>1</strong> ⬆</td></tr>
+    <tr><td>アフター放置</td><td class="num">70</td><td class="num">57</td><td class="num">60</td><td class="num">34</td><td>1</td><td>2 ⬇</td></tr>
+    <tr><td>個情ハラ</td><td class="num">45</td><td class="num">41</td><td class="num">50</td><td class="num">21</td><td>5</td><td>3</td></tr>
+    <tr><td>支店ガチャ</td><td class="num">47</td><td class="num">38</td><td class="num">40</td><td class="num">15</td><td>4</td><td>4</td></tr>
+    <tr><td>施工品質</td><td class="num">61</td><td class="num">41</td><td class="num">10</td><td class="num">4</td><td>2 ⬇⬇⬇</td><td>5</td></tr>
+    <tr><td>現場マナー</td><td class="num">44</td><td class="num">28</td><td class="num">5</td><td class="num">1</td><td>6</td><td>6</td></tr>
+    <tr><td>契約圧力</td><td class="num">32</td><td class="num">19</td><td class="num">5</td><td class="num">1</td><td>7</td><td>7</td></tr>
+  </tbody>
+</table>
+
+<div class="card" style="margin-top:14px;">
+  <strong>順位変動の意味</strong>:
+  <div class="diff-row" style="margin-top:10px;">
+    <div class="before">業界視点 1 位「アフター放置」 (issue=70 即動け)</div>
+    <div class="arrow">→</div>
+    <div class="after">DX 視点 2 位 (入力ハードルで dxFeas=60 に減点)</div>
+  </div>
+  <div class="diff-row">
+    <div class="before">業界視点 3 位「連絡途絶」 (issue=50)</div>
+    <div class="arrow">⬆</div>
+    <div class="after"><strong>DX 視点 1 位 (dxFeas=90 で大幅加点)</strong></div>
+  </div>
+  <div class="diff-row">
+    <div class="before">業界視点 2 位「施工品質」 (issue=61)</div>
+    <div class="arrow">⬇⬇</div>
+    <div class="after">DX 視点 5 位 (dxFeas=10 で実質除外)</div>
+  </div>
+</div>
+
+<div class="note">
+  <strong>5/22 北原氏面談での使い方</strong>: 「業界として深刻なのは #1 アフター放置 / #2 施工品質 だが、 私が個人事業主として DX で攻めるなら #1 連絡途絶 (CRM 簡易版)」 という二段構えで説明できる。 memory [[saas-pricing]] の主顧客向け SaaS 戦略とも完全に整合。
+</div>
+
+<!-- 実装 ============================================================ -->
+<h2 id="impl">// 09 / 実装ステップ</h2>
+
+<div class="card">
+  <ol>
+    <li><strong>scoring.ts 拡張</strong> / <code>dxFeasibility</code> 入力受け入れ + <code>computeDxOpportunityScore</code> 関数追加 + <code>sortKey</code> に <code>"dxOpportunity"</code> 追加</li>
+    <li><strong>Migration</strong> / <code>if_issues</code> テーブルに <code>dx_feasibility smallint check (0-100)</code> カラムを追加</li>
+    <li><strong>既存 7 クラスタへ値設定</strong> / 上記表の暫定値で SQL UPDATE</li>
+    <li><strong>process-job API スキーマ更新</strong> / Zod に <code>dxFeasibility</code> オプショナル受け入れ追加</li>
+    <li><strong>レポート HTML</strong> / <code>render-koumuten-reviews-html.js</code> に「DX 視点ランキング」 セクション追加</li>
+    <li><strong>business-summary 更新</strong> / 動くべき度ランキング表に dxFeas + dxOpp 列追加、 業界視点 vs DX 視点の二段構え提示</li>
+  </ol>
+</div>
+
+<h3>後回し可 (5/22 後)</h3>
+<ul>
+  <li>issue-finder UI (matrix / cards) に dxOpp ソート追加</li>
+  <li>SKILL ドキュメントに dxFeasibility 推定ガイド追記</li>
+  <li>既存 web_search 由来クラスタ 44 件への遡及値設定</li>
+  <li>shindansiFeasibility / subsidyFeasibility 軸の追加 (資格取得後)</li>
+</ul>
+
+<!-- 影響範囲 ======================================================== -->
+<h2 id="scope">// 10 / 影響範囲</h2>
+
+<table class="compact">
+  <thead><tr><th>領域</th><th>変更内容</th><th>後方互換</th></tr></thead>
+  <tbody>
+    <tr><td>scoring.ts</td><td>dxFeasibility 関連の関数追加 (既存関数は触らない)</td><td>✅ 完全互換</td></tr>
+    <tr><td>if_issues スキーマ</td><td><code>dx_feasibility</code> カラム追加 (NULL 許可)</td><td>✅ 既存 INSERT は NULL で動く</td></tr>
+    <tr><td>process-job API</td><td>Zod で <code>dxFeasibility</code> オプショナル受け入れ</td><td>✅ 既存 SKILL の POST は変更不要</td></tr>
+    <tr><td>issue-finder UI</td><td>後回し (matrix 等への組み込みは 5/22 後)</td><td>✅ 現状動作不変</td></tr>
+    <tr><td>レポート HTML</td><td>表示セクション追加 (既存セクションは保持)</td><td>✅</td></tr>
+    <tr><td>business-summary</td><td>表に列追加</td><td>✅</td></tr>
+  </tbody>
+</table>
+
+<div class="note">
+  <strong>既存 web_search 由来 44 クラスタへの影響</strong>: dx_feasibility は NULL のままになる。 dxOpportunity は NULL の場合 0 として扱う or 表示しない設計にする (sorting で NULL 行を最後に置く等)。 遡及評価は 5/22 後に必要なら実施。
+</div>
+
+<!-- 判定 ============================================================ -->
+<h2 id="decision">// 11 / 判定</h2>
+
+<div class="question">
+  <strong>このブリーフ v3 への判定 3 択:</strong>
+  <ul>
+    <li>① <strong>OK、 実装開始</strong> (scoring.ts → migration → SQL UPDATE → HTML 表示更新の順)</li>
+    <li>② dxFeasibility の暫定値 (7 クラスタ) で気になるものがあるので調整したい</li>
+    <li>③ もう一歩設計を詰めたい (例: 合成式の重み、 中小企業診断士視点の追加時期、 UI への組み込みタイミング等)</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>

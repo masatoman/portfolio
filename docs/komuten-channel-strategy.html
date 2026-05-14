@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>工務店オーナー 接点戦略 — Deep Research 検証メモ</title>
+  <style>
+    :root {
+      --ink: #071b49;
+      --sub: #33496d;
+      --muted: #5f6f89;
+      --line: #d8e3f2;
+      --bg: #fbfcfe;
+      --panel: #ffffff;
+      --accent: #f47b20;
+      --accent-soft: #fff4e9;
+      --good: #15803d;
+      --good-soft: #dcfce7;
+      --warn: #b45309;
+      --warn-soft: #fef3c7;
+      --bad: #b91c1c;
+      --bad-soft: #fee2e2;
+      --info: #1d4ed8;
+      --info-soft: #dbeafe;
+    }
+    * { box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--ink); margin: 0; padding: 0; }
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.75;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 920px; margin: 0 auto; padding: 48px 24px 96px; }
+    header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 24px;
+      margin-bottom: 36px;
+    }
+    header .eyebrow {
+      display: inline-block;
+      background: var(--bad-soft);
+      color: var(--bad);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 28px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      font-weight: 900;
+    }
+    header .meta {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    h2 {
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      margin: 56px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--line);
+      font-weight: 900;
+    }
+    h2 .num {
+      display: inline-block;
+      background: var(--ink);
+      color: white;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-right: 12px;
+      vertical-align: 3px;
+      font-weight: 800;
+    }
+    h3 {
+      font-size: 16px;
+      margin: 28px 0 10px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    p { margin: 0 0 14px; color: var(--sub); }
+    p strong { color: var(--ink); }
+    ul, ol { margin: 0 0 16px; padding-left: 24px; color: var(--sub); }
+    li { margin-bottom: 6px; }
+
+    .summary {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--bad);
+      padding: 24px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+    .summary h3 {
+      margin-top: 0;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--bad);
+      text-transform: uppercase;
+    }
+    .summary p {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .summary p:last-child { margin-bottom: 0; }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 16px 0 24px;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      background: #f4f7fc;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    tr:last-child td { border-bottom: none; }
+    td.num {
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    td.center { text-align: center; font-weight: 800; font-size: 16px; }
+
+    .pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .pill-good { background: var(--good-soft); color: var(--good); }
+    .pill-warn { background: var(--warn-soft); color: var(--warn); }
+    .pill-bad  { background: var(--bad-soft);  color: var(--bad);  }
+    .pill-info { background: var(--info-soft); color: var(--info); }
+
+    .quote {
+      background: #f7faff;
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: 13px;
+      color: var(--ink);
+      border-radius: 0 8px 8px 0;
+    }
+    .quote .source {
+      display: block;
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    .hyp {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+    }
+    .hyp .label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .hyp .body {
+      font-size: 14px;
+      color: var(--ink);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .hyp .judge {
+      font-size: 13px;
+      color: var(--sub);
+    }
+
+    .plan {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .plan.recommended {
+      border-color: var(--accent);
+      box-shadow: 0 4px 16px -8px rgba(244, 123, 32, 0.35);
+    }
+    .plan .rank {
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      background: var(--ink);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .plan.recommended .rank {
+      background: var(--accent);
+    }
+    .plan h3 {
+      margin: 4px 0 6px;
+      font-size: 17px;
+    }
+    .plan .what {
+      background: #f7faff;
+      border-left: 3px solid var(--line);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin: 10px 0;
+      font-size: 13px;
+      color: var(--sub);
+    }
+    .plan .what strong { color: var(--ink); }
+
+    .note {
+      background: var(--warn-soft);
+      border-left: 4px solid var(--warn);
+      padding: 14px 18px;
+      border-radius: 0 12px 12px 0;
+      color: var(--ink);
+      font-weight: 600;
+      margin: 16px 0 24px;
+      font-size: 14px;
+    }
+    .note strong { color: var(--warn); }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <header>
+      <span class="eyebrow">⚠️ STRATEGY PIVOT</span>
+      <h1>工務店オーナー 接点戦略<br />— Deep Research #1 + #2 (計 182 件) で 設計仮説 が 崩れた メモ</h1>
+      <p class="meta">2026-05-11 / Deep Research 2 回 統合 / masatoman 本人用 / 公開しない</p>
+    </header>
+
+
+    <section class="summary">
+      <h3>結論</h3>
+      <p>localbiz を 工務店向け の イベント収集 ツール に 拡張 する 計画 は <strong>取り下げ が 妥当</strong>。 Deep Research (100 件 の 1 次情報 + 3 仮説検証) の 結果、 主顧客 (IT 弱者 一人親方) は <strong>そもそも Web で イベント を 探さない</strong> ことが 明確 に。 接点 は 建材屋・建設組合・信金担当・既存施主紹介 など localbiz が 拾え ない <strong>アナログ ハブ</strong> に 集中。</p>
+    </section>
+
+
+    <h2><span class="num">01</span>何 を 検証 したか</h2>
+
+    <p>主顧客 = <strong>IT 弱者・一人親方 〜 5-10 人 規模 工務店オーナー</strong> (年商 5,000 万〜3 億)。 関東圏。 「スマホ は LINE と 電話 中心、 自分から ネット 検索 しない」 層。</p>
+
+    <p>Deep Research を <strong>2 回</strong> 実施 (計 182 件 の 1 次情報):</p>
+    <ul>
+      <li>#1: 100 件 (知恵袋・SNS・個人ブログ・業界紙 / 5 カテゴリ)</li>
+      <li>#2: 82 件 (引用源 重複 を避け、 数値裏付け + 新発見 を 強化)</li>
+    </ul>
+
+    <h3>数値裏付け (Deep Research #2 で 確定)</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>指標</th>
+          <th>数値</th>
+          <th>出典</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>工務店認知経路: 紹介</strong></td>
+          <td class="num" style="color: var(--bad)">51.5%</td>
+          <td>n=1079 消費者調査 / PR TIMES エニワン株式会社</td>
+        </tr>
+        <tr>
+          <td>優良工務店 (納得住宅工房) 紹介率</td>
+          <td class="num" style="color: var(--bad)">70%+</td>
+          <td>新建ハウジング (年 150 棟受注)</td>
+        </tr>
+        <tr>
+          <td>一人親方 SNS 利用率 (LINE 中心)</td>
+          <td class="num">86.8%</td>
+          <td>埼玉労災一人親方部会 アンケート</td>
+        </tr>
+        <tr>
+          <td>Facebook 利用率 40代 / 50代 / 60代</td>
+          <td class="num">34.5% / 23.5% / 10.6%</td>
+          <td>総務省 公的統計</td>
+        </tr>
+        <tr>
+          <td>LinkedIn 日本 MAU</td>
+          <td class="num">200 万</td>
+          <td>EnterpriseZine (転職認知)</td>
+        </tr>
+        <tr>
+          <td>東京 JC 年会費 / ロータリー年会費</td>
+          <td class="num">18 万円 / 5 万円〜</td>
+          <td>PRESIDENT Online / 知恵袋</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>検証した 3 仮説</h3>
+
+    <div class="hyp">
+      <div class="label">仮説 A</div>
+      <div class="body">一人親方 は 商工会議所 異業種交流会 に <strong>来ない</strong> (中堅以上 だけ)</div>
+      <div class="judge">判定: <span class="pill pill-bad">✕ 強く支持</span> 商工会議所交流会 への 拒絶 反応 が 多数 引用 で 確認</div>
+    </div>
+
+    <div class="hyp">
+      <div class="label">仮説 B</div>
+      <div class="body">補助金 説明会 には IT 弱者 も <strong>来る</strong> (「金 もらえる」 動機)</div>
+      <div class="judge">判定: <span class="pill pill-warn">△ 弱く支持 (#2 で 修正)</span> 単独「説明会」 には 来ない。 実態 は <strong>商工会議所 窓口 で の 個別相談</strong> + 税理士・社労士・補助金支援事業者 経由。 持続化補助金 は 「事業支援計画書 (様式4)」 が 必須 で 商工会議所 への 物理訪問 が 強制 される 構造</div>
+    </div>
+
+    <div class="hyp">
+      <div class="label">仮説 C</div>
+      <div class="body">接点 は <strong>知人紹介 が 圧倒的</strong>、 オンライン イベント サイト は ほぼ 意味 ない</div>
+      <div class="judge">判定: <span class="pill pill-bad">✕ 強く支持</span> <strong>紹介 51.5%</strong> (n=1079) / 優良工務店 70%超。 Peatix / こくちーず / connpass の 認知 ほぼ ゼロ、 LinkedIn は 日本 200 万 MAU・転職認知 のみ</div>
+    </div>
+
+
+    <h2><span class="num">02</span>主顧客 の リアル な 情報 経路</h2>
+
+    <p>Deep Research が 暴いた 「実際 に 主顧客 が 触れて いる ハブ」 を 信頼度・接触頻度 で ランキング:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>チャネル</th>
+          <th>接触頻度</th>
+          <th>信頼度</th>
+          <th>localbiz で 拾える?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background: var(--good-soft);">
+          <td><strong>既存施主 (OB) からの 紹介</strong></td>
+          <td>不定期</td>
+          <td><span class="pill pill-good">◎ 51.5% (n=1079)</span></td>
+          <td class="center"><span class="pill pill-bad">✕</span></td>
+        </tr>
+        <tr>
+          <td><strong>建材屋・卸業者 の 営業マン</strong></td>
+          <td>毎日 〜 週数回</td>
+          <td><span class="pill pill-good">◎ 極めて 高い</span></td>
+          <td class="center"><span class="pill pill-bad">✕</span></td>
+        </tr>
+        <tr>
+          <td><strong>LINE グループ</strong> (元請け / 職人仲間)</td>
+          <td>毎日</td>
+          <td><span class="pill pill-good">◎ SNS 86.8% は LINE 中心</span></td>
+          <td class="center"><span class="pill pill-bad">✕</span></td>
+        </tr>
+        <tr>
+          <td><strong>建設組合</strong> (東京土建 / 全建総連)</td>
+          <td>月 複数回</td>
+          <td><span class="pill pill-good">◎ 全国大会 1,163 人</span></td>
+          <td class="center"><span class="pill pill-warn">△ Web 掲載分のみ</span></td>
+        </tr>
+        <tr>
+          <td><strong>業界展示会</strong> (ジャパンホームショー / 建築建材展)</td>
+          <td>年 1-2 回</td>
+          <td><span class="pill pill-good">◎ 「毎年 名刺交換」 のオーナー実在</span></td>
+          <td class="center"><span class="pill pill-warn">△ 一部</span></td>
+        </tr>
+        <tr>
+          <td>同業者飲み会 / OB会 / 消防団</td>
+          <td>月 1 回</td>
+          <td><span class="pill pill-good">◎ 高い</span></td>
+          <td class="center"><span class="pill pill-bad">✕</span></td>
+        </tr>
+        <tr>
+          <td><strong>税理士・会計事務所</strong></td>
+          <td>月 1 回</td>
+          <td><span class="pill pill-info">○ 中程度 (補助金 で 接触)</span></td>
+          <td class="center"><span class="pill pill-bad">✕</span></td>
+        </tr>
+        <tr>
+          <td><strong>地元 信用金庫 担当者</strong></td>
+          <td>月 1 回</td>
+          <td><span class="pill pill-info">○ 中程度</span></td>
+          <td class="center"><span class="pill pill-bad">✕</span></td>
+        </tr>
+        <tr>
+          <td>業界紙 (新建ハウジング / 日刊建設工業) 紙 / FAX</td>
+          <td>週 1 回</td>
+          <td><span class="pill pill-info">○ FAX 返信 が 業界紙 で 現役</span></td>
+          <td class="center"><span class="pill pill-bad">✕</span></td>
+        </tr>
+        <tr>
+          <td>商工会議所 補助金 <strong>窓口</strong> (個別相談)</td>
+          <td>年 数回</td>
+          <td><span class="pill pill-info">○ 様式4 で 物理訪問 強制</span></td>
+          <td class="center"><span class="pill pill-warn">△ ノイズ込み</span></td>
+        </tr>
+        <tr style="background: var(--bad-soft);">
+          <td>商工会議所 異業種交流会</td>
+          <td>—</td>
+          <td><span class="pill pill-bad">✕ 「保険屋・マルチ ばかり」</span></td>
+          <td class="center"><span class="pill pill-warn">△ ノイズ</span></td>
+        </tr>
+        <tr style="background: var(--bad-soft);">
+          <td>JC / ロータリー / ライオンズ</td>
+          <td>—</td>
+          <td><span class="pill pill-bad">✕ 年会費 5-18 万、 跡継ぎ中心</span></td>
+          <td class="center"><span class="pill pill-warn">△ ノイズ</span></td>
+        </tr>
+        <tr style="background: var(--bad-soft);">
+          <td>Peatix / こくちーず / connpass</td>
+          <td>—</td>
+          <td><span class="pill pill-bad">✕ 認知 ほぼ ゼロ</span></td>
+          <td class="center"><span class="pill pill-warn">△ ノイズ</span></td>
+        </tr>
+        <tr style="background: var(--bad-soft);">
+          <td>LinkedIn</td>
+          <td>—</td>
+          <td><span class="pill pill-bad">✕ 日本 200 万 MAU・転職認知</span></td>
+          <td class="center"><span class="pill pill-warn">△ ノイズ</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>つまり <strong>localbiz で 拾える 場所 (商工会議所・Peatix 系) と、 主顧客 が 実際 に 集まる 場所 (建材屋・組合・LINE・紹介) が ほぼ ズレている</strong>。</p>
+
+
+    <h2><span class="num">02.5</span>戦略機会: Deep Research #2 で 発見した 3 つの 場</h2>
+
+    <p>#2 で 新たに 浮上 した、 masatoman が 主顧客 と 接触 できる 具体的 な 場 3 つ。 ToDo に 直結 する。</p>
+
+    <div class="plan recommended">
+      <span class="rank">★ 最強 機会</span>
+      <h3>① 住宅デー (毎年 6/25 全建総連 全国一斉)</h3>
+      <div class="what">
+        <strong>何 を やる</strong>: 全建総連 が 全国 で 一斉 に 開催 する <strong>地域住民 向け 無料 住宅相談 day</strong>。 工務店オーナー (組合員) と 地域住民 (= 将来 施主) が <strong>同時 に 集まる</strong> 年 1 回 の 機会。
+      </div>
+      <p style="font-size: 13px; margin: 0;">masatoman が 組合 経由 で 「住宅相談 に IT サポート 視点」 を 提供 できれば、 顔つなぎ + 案件導線 が 一気に 作れる。 今年 は <strong>2026/6/25 = friend ヒアリング (5月中〜6月前半) と 重なる</strong> ので、 ヒアリング 時 に 「住宅デー に 自分も 関われる か」 を 聞く。</p>
+    </div>
+
+    <div class="plan">
+      <span class="rank">高 機会</span>
+      <h3>② 全建総連 / 東京土建 の 支部活動 (年間 を通じて)</h3>
+      <div class="what">
+        <strong>何 が ある</strong>: 全国大会 1,163 人 (2023 高崎) / 東京土建 渋谷支部 = 新年会 / 春闘 旗開き / シニアクラブ 蕎麦打ち / 一泊バスツアー / 全国青年技能競技大会 (36 歳以下 56 人)。 月 複数回 アクティブ。
+      </div>
+      <p style="font-size: 13px; margin: 0;">「商工会議所 異業種交流会」 とは 真逆 で、 一人親方・小規模 工務店 が 主役 の 場。 多摩西部 支部 への 訪問 が ファースト ステップ。</p>
+    </div>
+
+    <div class="plan">
+      <span class="rank">中 機会</span>
+      <h3>③ 業界展示会 (ジャパンホームショー / 建築建材展)</h3>
+      <div class="what">
+        <strong>何 が ある</strong>: ジャパンホームショー (東京ビッグサイト、 例年 10 月) / 建築建材展 (例年 3 月)。 1 次情報 で 「<strong>毎年 欠かさず 名刺交換 に 来ている 小規模 オーナー 実在</strong>」 が 確認 された。
+      </div>
+      <p style="font-size: 13px; margin: 0;">来場目的 が 明確 (新製品・カタログ・実機) なので 営業臭 が 薄い。 2026 年 10 月 を 目標 に 訪問 計画。</p>
+    </div>
+
+
+    <h2><span class="num">03</span>説得力 ある 1 次情報 抜粋</h2>
+
+    <p>判定 の 根拠 と なった 主顧客 の 生 の 声 を 一部 引用:</p>
+
+    <div class="quote">
+      「商工会議所 の 交流会 に 一度 行った けど、 スーツ を 着た IT 系 や 保険 の 営業マン ばかり。 名刺 を 渡して も <strong>『家 を 建てる 予定 は ない んで』 と 冷たく あしらわれた 気分</strong>。 あそこ は 俺たち みたい な 作業着 の 人間 が 行く 場所 じゃ ない ね」
+      <span class="source">Yahoo!知恵袋 / 2023-12 / カテゴリ: リアル イベント参加</span>
+    </div>
+
+    <div class="quote">
+      「Peatix とか こくちーず？ <strong>全然 知らない</strong>。 イベント を 探す のに わざわざ アプリ を 入れる なんて 考えた こと も ない よ。 情報 の チラシ が FAX で 流れて くる のを 待つ ほう が、 ずっと 楽 じゃ ない か」
+      <span class="source">神奈川県 塗装業 オーナー / 業界紙 インタビュー / 2024-01</span>
+    </div>
+
+    <div class="quote">
+      「結局、 一番 の 情報源 は <strong>建材屋 の 営業マン が 持って くる 生 の 話</strong>。 あそこ の 現場 の 親方 が 引退 した とか、 新しい プレカット 工場 が できた とか、 ネット に は 載らない 地域 の 生々しい 情報 が 一番 役 に 立つ」
+      <span class="source">日刊建設工業新聞 Web 連載 / 2024-03</span>
+    </div>
+
+    <div class="quote">
+      「IT 導入補助金 の 説明会 に 参加 した こと が ある。 でも、 <strong>横文字 の 専門用語 ばかり で、 眠く なって しまった</strong>。 隣 に 座って いた 同業 の 親方 も、 スマホ で 明日 の 現場 の 段取り を 確認 して いた よ。 俺たち には 早すぎた」
+      <span class="source">補助金支援者ブログ / 2023-10</span>
+    </div>
+
+    <div class="quote">
+      「新しい 業者 と どう 知り合う か？ <strong>紹介 vs 飛び込み。 迷う 必要 も ない</strong>。 飛び込み で 来る 奴 は、 仕事 が なくて 困って いる んだろう と 思っちゃう。 紹介 なら、 相手 の 背景 が 見える から、 安心 して 任せられる」
+      <span class="source">東京多摩地域 リフォーム会社オーナー / 業界紙 インタビュー / 2024-02</span>
+    </div>
+
+    <h3>Deep Research #2 で 追加 された 決定的 引用</h3>
+
+    <div class="quote">
+      「3 年〜5 年以内 に 家を 建てた 方 1,079 人 へ アンケート。 『工務店 に関する 最初 の 情報 を どこ で 得ました か？』 に 対し、 <strong>『紹介 (51.5%)』 と 回答 した 方 の 割合 が 最も 多く</strong>、 次いで 『チラシ (23.4%)』 『まとめ 情報 サイト (11.1%)』 と 続きました」
+      <span class="source">エニワン株式会社 PR TIMES アンケート / 2019-07</span>
+    </div>
+
+    <div class="quote">
+      「『すべては お客様 の ために』 を 掲げる 納得住宅工房 …新規 の 開拓・集客 には 目 も くれず、 目 の 前 に いる 顧客 と OB 施主 だけ を とことん 大事 に する 独自 の スタイル で 年間 150 棟 の 注文住宅 を 請け負う … 広告宣伝費 は 売上 の 2% 未満。 基本的に 新規 の 集客 は 行わず、 毎年 150 棟 もの 受注 を 同社 で 家 を 建てた オーナー (OB施主) たち が 支えて いる。 その <strong>紹介率 の 高さ は 業界内 でも 有名 で、 平均 70% 以上 に のぼる</strong>」
+      <span class="source">新建ハウジング 業界インタビュー / 2020</span>
+    </div>
+
+    <div class="quote">
+      「数十年 会員 でした が <strong>何 の メリット も 感じません</strong>。 天下り して 来た 役員 が 指導員 など と ぬかし、 経営 コンサル ティング など と 上から目線 で 薀蓄 を 垂れる のを 聞いて いる のに 嫌気 が して 来ました。 ふと、 何 で 会費 を 払って 不愉快 な 思い を しなければ ならない の か と 思い、 会員 の 意味 は 何処 に ある のか? と 基本的 な 疑問 が 生じました」 (商工会議所 退会 の 声)
+      <span class="source">Yahoo!知恵袋 / 2024</span>
+    </div>
+
+    <div class="quote">
+      「全建総連 は 10 月 15 日、 第 62 回 定期大会 を 開催し、 全 53 県連・組合 から <strong>987 人 (委任代議員 288 人 を 含む) が 参加</strong> しました … 10 月 25 日 午後 1 時、 群馬県 高崎市 『Gメッセ群馬』 で、 全建総連 第 64 回 定期大会 が 始まりました … 代議員 700 人、 中央役員 138 人、 組合員 参加者 311 人、 顧問・来賓 など 14 人 の <strong>総勢 1,163 人 が 参加</strong> しています」
+      <span class="source">全建総連 公式 / 2023</span>
+    </div>
+
+
+    <h2><span class="num">04</span>localbiz の 構造的 ミスマッチ</h2>
+
+    <p>localbiz の 設計 思想 = 「Web で 公開 されて いる イベント を 集めて スコアリング」。 でも 上記 の 通り 主顧客 が 接して いる ハブ は <strong>ほぼ 全部 Web に 載って いない</strong>:</p>
+
+    <ul>
+      <li>建材屋 の 営業マン → 対面 / LINE</li>
+      <li>組合 の 機関紙・FAX 通信 → 紙</li>
+      <li>信金担当者 の 集金 ついで の 世間話 → 対面</li>
+      <li>飲み屋 で の 同業者 雑談 → 対面</li>
+      <li>既存施主 から の 電話 → 電話</li>
+    </ul>
+
+    <p>localbiz が 拾える のは <strong>「補助金 説明会」 だけ</strong>。 それ以外 は ノイズ (Peatix の エンジニア 勉強会 / こくちーず の マーケ セミナー 等)。</p>
+
+
+    <h2><span class="num">05</span>取れる 道 3 案</h2>
+
+    <div class="plan recommended">
+      <span class="rank">★ 推奨</span>
+      <h3>案 A: komuten 機能 を 撤回、 localbiz は indie 専用 に 戻す</h3>
+      <div class="what">
+        <strong>何 を やる</strong>: 私 が 追加 した <code>profile=komuten</code> / 工務店 scoring / industry クエリ受け / オレンジバナー / 3 ティア 地域加点 / portfolio の リンク ボタン を <strong>全部 撤回</strong>。 localbiz は masatoman 個人 の 勉強会 探し に 専念。
+      </div>
+      <p style="font-size: 13px; margin: 0;">代わり に <strong>「主顧客 へ の アナログ 接点 リスト」</strong> を docs に 整理 (この HTML 自体 が その 一歩)。 訪問 優先順位 + 月次 ToDo 化。 ツール化 は friend ヒアリング 後 に 判断。 工数 30-45 分。</p>
+    </div>
+
+    <div class="plan">
+      <span class="rank">2 番手</span>
+      <h3>案 B: localbiz を「リアル販路 CRM」 に 用途変更</h3>
+      <div class="what">
+        <strong>何 を やる</strong>: localbiz の 構造 (Supabase / scoring / Tailscale) を 流用 して、 events テーブル を contacts テーブル に 改修。 イベント 一覧 で なく <strong>建材屋・組合・信金担当者・既存施主</strong> を 管理 する CRM に 変える。 「次回 訪問 予定」 「最後 に 会った 日」 「紹介 で 繋がった 案件」 等。
+      </div>
+      <p style="font-size: 13px; margin: 0;">工数 1-2 日。 ただし 手動入力 が 増える ので masatoman の 運用 負担 大。 ヒアリング 後 に やる 価値 を 再判定。</p>
+    </div>
+
+    <div class="plan" style="opacity: 0.7;">
+      <span class="rank">非推奨</span>
+      <h3>案 C: そのまま 放置 (komuten 機能 は 残す が 運用 し ない)</h3>
+      <div class="what">
+        <strong>何 を やる</strong>: 何 も しない。 既存 komuten 機能 は コード に 残る が データ 0 件 の まま。
+      </div>
+      <p style="font-size: 13px; margin: 0;">最小 コスト だ が 「使え ない 機能 が 残って いる」 状態 で 認知 負荷 + 将来 自分 が 「これ 何 だっけ」 と 混乱 する リスク。</p>
+    </div>
+
+
+    <h2><span class="num">06</span>案 A で やる こと の 内訳</h2>
+
+    <h3>撤回 する コード</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ファイル</th>
+          <th>内容</th>
+          <th>処置</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>localbiz/src/lib/scoring.ts</code></td>
+          <td>calcScoreKomuten 関数</td>
+          <td>削除</td>
+        </tr>
+        <tr>
+          <td><code>localbiz/src/app/events/page.tsx</code></td>
+          <td>profile クエリ受け + メモリ再計算 + オレンジバナー + industry クエリ受け</td>
+          <td>削除</td>
+        </tr>
+        <tr>
+          <td><code>localbiz/src/components/EventsFilter.tsx</code></td>
+          <td>AREA_GROUPS の optgroup 化</td>
+          <td><strong>維持</strong> (UI 改善 として は 価値)</td>
+        </tr>
+        <tr>
+          <td><code>localbiz/src/app/events/new/page.tsx</code></td>
+          <td>AREA_GROUPS 同期</td>
+          <td><strong>維持</strong> (同上)</td>
+        </tr>
+        <tr>
+          <td><code>portfolio/lib/lab-tools/issue-finder/localbiz-link.ts</code></td>
+          <td>buildLocalbizSearchLink 関数</td>
+          <td>削除</td>
+        </tr>
+        <tr>
+          <td><code>portfolio/components/lab-tools/issue-finder/issue-card.tsx</code></td>
+          <td>LocalbizLink ボタン</td>
+          <td>削除</td>
+        </tr>
+        <tr>
+          <td><code>portfolio/.env.local</code></td>
+          <td>NEXT_PUBLIC_LOCALBIZ_URL</td>
+          <td>削除</td>
+        </tr>
+        <tr>
+          <td><code>portfolio/docs/issue-finder-localbiz-synergy.html</code></td>
+          <td>連携メモ</td>
+          <td>削除 (本 HTML が 結論)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>新規 で 残す もの</h3>
+
+    <ul>
+      <li><strong>この HTML</strong> (komuten-channel-strategy.html) — 戦略 ピボット の 経緯 と 結論</li>
+      <li>localbiz の <strong>area 拡張 (案 B = 多摩 + 23区 + 神奈川北 + 埼玉県境)</strong> は indie プロファイル の 範囲 拡大 として 残す (masatoman 個人 の 勉強会 探し が より 広範囲 に 効く)</li>
+    </ul>
+
+
+    <h2><span class="num">07</span>主顧客 への 接点 ToDo (案 A の 副産物、 #2 で 拡充)</h2>
+
+    <p>localbiz を 拡張 する 代わり に、 masatoman が <strong>実際 に 動く ToDo</strong> を 即着手・中期・継続 の 3 段 で 整理:</p>
+
+    <h3>即着手 (5-6 月)</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 36%">アクション</th>
+          <th>狙い</th>
+          <th>頻度</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background: var(--good-soft);">
+          <td><strong>🎯 住宅デー (2026/6/25) 参加 検討</strong><br /><small>全建総連 多摩西部 / 渋谷 支部 に 問い合わせ</small></td>
+          <td>「IT サポート 視点 で 住宅相談 を 手伝える か」 を 打診。 工務店オーナー × 地域住民 が 同時 接触 の 年 1 回 機会</td>
+          <td>1 回 (6/25)</td>
+        </tr>
+        <tr>
+          <td><strong>friend (現場監督) ヒアリング</strong></td>
+          <td>Deep Research 結果 を 体感 と 照合 + 「住宅デー に 関われる か」 を 聞く</td>
+          <td>5 月中〜6 月前半</td>
+        </tr>
+        <tr>
+          <td><strong>東京土建 一般労働組合 多摩西部 支部 を 訪問</strong></td>
+          <td>機関紙 寄稿 機会 を 探る + 新年会・春闘・シニアクラブ 同行可能性</td>
+          <td>初回 1 回</td>
+        </tr>
+        <tr>
+          <td><strong>近所 の 建材屋 / プロショップ を 巡回</strong> (LIXIL ショールーム、 ナフコ 等)</td>
+          <td>営業マン と 顔つなぎ → 「IT に 詳しい 兄ちゃん」 認知 を 作る</td>
+          <td>月 2-3 回</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>中期 (6-9 月)</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 36%">アクション</th>
+          <th>狙い</th>
+          <th>頻度</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>商工会議所 窓口担当者 と 顔合わせ</strong> (府中・立川)<br /><small>「説明会」 ではなく 「窓口」 (#2 修正)</small></td>
+          <td>補助金 個別相談 の 同席 を 提案。 様式 4 で 主顧客 が 物理訪問 する ハブ</td>
+          <td>四半期 1 回</td>
+        </tr>
+        <tr>
+          <td><strong>補助金支援事業者 (IT 導入支援事業者) と チャネル開拓</strong></td>
+          <td>主顧客 の 補助金 申請 案件 が 自然 に 来る ルート</td>
+          <td>四半期 1 回</td>
+        </tr>
+        <tr>
+          <td><strong>地元 信用金庫 (西武信金 / 多摩信金) の 担当者 と 顔合わせ</strong></td>
+          <td>「IT 案件 困ってる 顧客 いたら 紹介 して」 と 仕込み</td>
+          <td>四半期 1 回</td>
+        </tr>
+        <tr>
+          <td><strong>ジャパンホームショー (2026 年 10 月 東京ビッグサイト) 訪問</strong></td>
+          <td>「毎年 名刺交換 に 来る 小規模 オーナー」 と 接触</td>
+          <td>1 回</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>継続</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 36%">アクション</th>
+          <th>狙い</th>
+          <th>頻度</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>新建ハウジング を 紙 で 購読</strong></td>
+          <td>主顧客 が 読む 情報源 に 触れる、 共通言語 を 持つ</td>
+          <td>月 4 回</td>
+        </tr>
+        <tr>
+          <td><strong>建築建材展 (毎年 3 月) 訪問</strong></td>
+          <td>2027 年 以降 に 組み込み</td>
+          <td>年 1 回</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <h2><span class="num">08</span>残った 戦略 的 含意</h2>
+
+    <div class="note">
+      <strong>含意 1</strong>: issue-finder は そのまま 維持 する。 「主顧客 が 集まる 場所 を 探す ツール」 と して は ミスマッチ だった が、 「主顧客 の ペイン を 発見 する ツール」 と して は <strong>引き続き 有効</strong>。 ネット で 悲鳴 を 拾う ↔ 主顧客 が ネット 検索 し ない、 は 矛盾 し ない (悲鳴 を 書く のは 主顧客 ではなく 周囲 = 妻・家族・友人・OB・若手 職人)。
+    </div>
+
+    <div class="note">
+      <strong>含意 2</strong>: 工務店向け SaaS / 受託 の 値付け (memory: saas-pricing.md の 4 パターン) は <strong>販路 が アナログ で ある こと を 前提</strong> に した もの に 修正 必要。 Web 完結 の セルフサーブ は 主顧客 と 噛み合わ ない。 「商談 → 見積 → 対面 商談 → 契約」 が 基本フロー に なる。
+    </div>
+
+    <div class="note">
+      <strong>含意 3</strong>: 「主顧客 = IT 弱者」 と memory に は 書いて あった が、 私 (Claude) は その 意味 を <strong>完全 に 内面化 して いなかった</strong>。 localbiz 拡張 や 「こくちーず に 工務店 キーワード 追加」 提案 は その 証拠。 今後 の 設計 は <strong>「ターゲット が 本当 に そこを 使う か」 を 最初 の 関門</strong> に する。
+    </div>
+
+
+    <footer>
+      <p>📍 工務店オーナー 接点戦略 — 2026-05-11 作成</p>
+      <p>関連: <code>docs/issue-finder-localbiz-synergy.html</code> (撤回予定) / <code>memory/customer-target.md</code> / <code>memory/friend-hearing-may-2026.md</code></p>
+    </footer>
+
+  </main>
+</body>
+</html>
