@@ -72,7 +72,7 @@ export function SavingsSimulation({
         ))}
       </div>
 
-      <p className="mt-5 text-xs font-bold leading-6 text-[#7a8aa8]">
+      <p className="mt-5 text-xs font-bold leading-6 text-[#5a6680]">
         ※ {disclaimer}
       </p>
     </section>

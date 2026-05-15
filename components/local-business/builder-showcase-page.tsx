@@ -43,7 +43,7 @@ function Header({ label }: { label: string }) {
           <ArrowLeft className="h-4 w-4" />
           比較一覧へ戻る
         </Link>
-        <div className="text-sm font-semibold tracking-[0.18em] text-[#8a7a63]">{label}</div>
+        <div className="text-sm font-semibold tracking-[0.18em] text-[#6b5d44]">{label}</div>
       </div>
     </header>
   )
@@ -53,15 +53,15 @@ function InfoPills() {
   return (
     <div className="mt-8 space-y-3">
       <div className="flex items-start gap-3 rounded-[22px] border border-[#e4dacc] bg-white px-4 py-4 text-sm leading-7 text-[#5f6871]">
-        <Home className="mt-1 h-4 w-4 text-[#8a7a63]" />
+        <Home className="mt-1 h-4 w-4 text-[#6b5d44]" />
         {builderBrand.serviceLine}
       </div>
       <div className="flex items-start gap-3 rounded-[22px] border border-[#e4dacc] bg-white px-4 py-4 text-sm leading-7 text-[#5f6871]">
-        <MapPin className="mt-1 h-4 w-4 text-[#8a7a63]" />
+        <MapPin className="mt-1 h-4 w-4 text-[#6b5d44]" />
         {builderBrand.regionLine}
       </div>
       <div className="flex items-start gap-3 rounded-[22px] border border-[#e4dacc] bg-white px-4 py-4 text-sm leading-7 text-[#5f6871]">
-        <Clock3 className="mt-1 h-4 w-4 text-[#8a7a63]" />
+        <Clock3 className="mt-1 h-4 w-4 text-[#6b5d44]" />
         {builderBrand.hoursLine}
       </div>
     </div>
@@ -105,12 +105,12 @@ function WatanabetomiLayout() {
                 <div className="relative min-h-[520px] overflow-hidden sm:min-h-[620px]">
                   <Image src={builderImages.exteriorDay} alt={`${builderBrand.company}の外観`} fill className="object-cover" priority />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(27,35,44,0.06),rgba(27,35,44,0.1))]" />
-                  <div className="absolute left-6 top-6 rounded-full bg-white/85 px-4 py-2 text-xs font-semibold tracking-[0.18em] text-[#8a7a63] backdrop-blur sm:left-8 sm:top-8">
+                  <div className="absolute left-6 top-6 rounded-full bg-white/85 px-4 py-2 text-xs font-semibold tracking-[0.18em] text-[#6b5d44] backdrop-blur sm:left-8 sm:top-8">
                     {builderBrand.roman}
                   </div>
                   <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8 lg:max-w-[74%]">
                     <div className="rounded-[32px] bg-[#f8f4ed]/92 p-6 shadow-[0_18px_45px_rgba(31,42,55,0.12)] backdrop-blur sm:p-8">
-                      <p className="text-xs font-semibold tracking-[0.2em] text-[#8a7a63]">{variant.heroLabel}</p>
+                      <p className="text-xs font-semibold tracking-[0.2em] text-[#6b5d44]">{variant.heroLabel}</p>
                       <h1 className={`${headingFont.className} mt-3 text-[38px] leading-[1.45] tracking-[-0.05em] text-[#1f2a37] sm:text-[60px]`}>
                         {builderBrand.baseTitle}
                       </h1>
@@ -121,7 +121,7 @@ function WatanabetomiLayout() {
                 </div>
                 <div className="flex flex-col justify-between bg-[#f8f5ee] p-6 sm:p-8 lg:p-10">
                   <div>
-                    <p className="text-xs font-semibold tracking-[0.22em] text-[#8a7a63]">PHILOSOPHY</p>
+                    <p className="text-xs font-semibold tracking-[0.22em] text-[#6b5d44]">PHILOSOPHY</p>
                     <h2 className={`${headingFont.className} mt-4 text-[30px] leading-[1.6] tracking-[-0.04em] text-[#1f2a37] sm:text-[40px]`}>
                       木の手ざわりと、
                       <br />
@@ -141,7 +141,7 @@ function WatanabetomiLayout() {
         <section className="px-4 py-16 sm:px-6 sm:py-20">
           <div className="mx-auto flex max-w-[1320px] flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-semibold tracking-[0.2em] text-[#8a7a63]">WORKS</p>
+              <p className="text-xs font-semibold tracking-[0.2em] text-[#6b5d44]">WORKS</p>
               <h2 className={`${headingFont.className} mt-3 text-[34px] leading-[1.5] tracking-[-0.04em] text-[#1f2a37] sm:text-[46px]`}>
                 写真の余韻で、
                 <br />
@@ -157,7 +157,7 @@ function WatanabetomiLayout() {
                   <Image src={work.image} alt={work.title} fill className="object-cover" />
                 </div>
                 <div className="p-6 sm:p-7">
-                  <p className="text-xs font-semibold tracking-[0.18em] text-[#8a7a63]">{work.place}</p>
+                  <p className="text-xs font-semibold tracking-[0.18em] text-[#6b5d44]">{work.place}</p>
                   <h3 className={`${headingFont.className} mt-3 text-[28px] leading-[1.5] tracking-[-0.04em] text-[#1f2a37]`}>{work.title}</h3>
                   <p className="mt-3 max-w-[32rem] text-[15px] leading-8 text-[#5f6871]">{work.text}</p>
                 </div>
@@ -169,7 +169,7 @@ function WatanabetomiLayout() {
         <section className="bg-[#1f2a37] px-4 py-16 text-white sm:px-6 sm:py-20">
           <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.92fr_1.08fr]">
             <div>
-              <p className="text-xs font-semibold tracking-[0.2em] text-[#d4c2a6]">ABOUT THE COMPANY</p>
+              <p className="text-xs font-semibold tracking-[0.2em] text-[#a08864]">ABOUT THE COMPANY</p>
               <h2 className={`${headingFont.className} mt-3 text-[34px] leading-[1.55] tracking-[-0.04em] text-white sm:text-[46px]`}>
                 会社の姿勢は、
                 <br />
@@ -181,7 +181,7 @@ function WatanabetomiLayout() {
             <div className="space-y-4">
               {builderStrengths.map((item, index) => (
                 <article key={item.title} className={`rounded-[30px] border border-white/10 px-6 py-6 sm:px-7 ${index === 1 ? "bg-[#f7f1e8] text-[#1f2a37]" : "bg-white/5 text-white"}`}>
-                  <p className={`text-xs font-semibold tracking-[0.18em] ${index === 1 ? "text-[#8a7a63]" : "text-[#d4c2a6]"}`}>0{index + 1}</p>
+                  <p className={`text-xs font-semibold tracking-[0.18em] ${index === 1 ? "text-[#6b5d44]" : "text-[#a08864]"}`}>0{index + 1}</p>
                   <h3 className={`${headingFont.className} mt-3 text-[28px] leading-[1.5] tracking-[-0.04em]`}>{item.title}</h3>
                   <p className={`mt-3 text-[15px] leading-8 ${index === 1 ? "text-[#5f6871]" : "text-white/72"}`}>{item.text}</p>
                 </article>
@@ -203,7 +203,7 @@ function IbaLayout() {
         <section className="mx-auto max-w-[1320px]">
           <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
             <div>
-              <p className="text-xs font-semibold tracking-[0.2em] text-[#8a7a63]">{variant.heroLabel}</p>
+              <p className="text-xs font-semibold tracking-[0.2em] text-[#6b5d44]">{variant.heroLabel}</p>
               <h1 className={`${headingFont.className} mt-4 text-[40px] leading-[1.5] tracking-[-0.05em] text-[#1f2a37] sm:text-[60px]`}>
                 施工事例から、
                 <br />
@@ -246,13 +246,13 @@ function IbaLayout() {
                 <div className="p-5">
                   <div className="flex flex-wrap gap-2">
                     {builderTags.slice(index, index + 3).map((tag) => (
-                      <div key={`${work.title}-${tag}`} className="rounded-full bg-[#f5efe4] px-3 py-1 text-xs font-semibold text-[#8a7a63]">
+                      <div key={`${work.title}-${tag}`} className="rounded-full bg-[#f5efe4] px-3 py-1 text-xs font-semibold text-[#6b5d44]">
                         {tag}
                       </div>
                     ))}
                   </div>
                   <h3 className={`${headingFont.className} mt-3 text-[26px] leading-[1.5] tracking-[-0.04em] text-[#1f2a37]`}>{work.title}</h3>
-                  <p className="mt-1 text-sm font-semibold text-[#8a7a63]">{work.place}</p>
+                  <p className="mt-1 text-sm font-semibold text-[#6b5d44]">{work.place}</p>
                   <p className="mt-3 text-[15px] leading-8 text-[#5f6871]">{work.text}</p>
                 </div>
               </article>
@@ -263,7 +263,7 @@ function IbaLayout() {
         <section className="mx-auto mt-16 max-w-[1320px] rounded-[34px] border border-[#ddd4c7] bg-white p-6 shadow-[0_18px_45px_rgba(31,42,55,0.08)] sm:p-8">
           <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
-              <p className="text-xs font-semibold tracking-[0.2em] text-[#8a7a63]">ABOUT</p>
+              <p className="text-xs font-semibold tracking-[0.2em] text-[#6b5d44]">ABOUT</p>
               <h2 className={`${headingFont.className} mt-3 text-[30px] leading-[1.55] tracking-[-0.04em] text-[#1f2a37] sm:text-[40px]`}>
                 一覧から深く知る導線
               </h2>
@@ -292,7 +292,7 @@ function KojimaLayout() {
       <main>
         <section className="px-4 py-16 sm:px-6 sm:py-20">
           <div className="mx-auto max-w-[1120px] text-center">
-            <p className="text-xs font-semibold tracking-[0.24em] text-[#8a7a63]">{variant.heroLabel}</p>
+            <p className="text-xs font-semibold tracking-[0.24em] text-[#6b5d44]">{variant.heroLabel}</p>
             <h1 className={`${headingFont.className} mt-5 text-[42px] leading-[1.6] tracking-[-0.06em] text-[#1f2a37] sm:text-[70px]`}>
               木と、地域と、
               <br />
@@ -314,7 +314,7 @@ function KojimaLayout() {
               <Image src={builderImages.exteriorDay} alt="外観" width={1456} height={1080} className="aspect-[4/3] w-full object-cover" />
             </div>
             <div className="flex flex-col justify-center">
-              <p className="text-xs font-semibold tracking-[0.2em] text-[#d4c2a6]">STATEMENT</p>
+              <p className="text-xs font-semibold tracking-[0.2em] text-[#a08864]">STATEMENT</p>
               <h2 className={`${headingFont.className} mt-4 text-[36px] leading-[1.55] tracking-[-0.05em] text-white sm:text-[50px]`}>
                 目立つ家ではなく、
                 <br />
@@ -337,7 +337,7 @@ function KojimaLayout() {
                   <Image src={work.image} alt={work.title} width={1456} height={1080} className="aspect-[16/10] w-full object-cover" />
                 </div>
                 <div>
-                  <p className="text-xs font-semibold tracking-[0.2em] text-[#8a7a63]">{work.place}</p>
+                  <p className="text-xs font-semibold tracking-[0.2em] text-[#6b5d44]">{work.place}</p>
                   <h3 className={`${headingFont.className} mt-3 text-[34px] leading-[1.5] tracking-[-0.04em] text-[#1f2a37]`}>{work.title}</h3>
                   <p className="mt-4 text-[15px] leading-8 text-[#5f6871]">{work.text}</p>
                   <p className="mt-6 text-[15px] leading-8 text-[#5f6871]">
@@ -373,7 +373,7 @@ function ObamaLayout() {
         <section className="mx-auto max-w-[1320px] rounded-[38px] border border-[#ddd4c7] bg-white p-6 shadow-[0_18px_50px_rgba(31,42,55,0.08)] sm:p-8">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
-              <p className="text-xs font-semibold tracking-[0.22em] text-[#8a7a63]">{variant.heroLabel}</p>
+              <p className="text-xs font-semibold tracking-[0.22em] text-[#6b5d44]">{variant.heroLabel}</p>
               <h1 className={`${headingFont.className} mt-4 text-[40px] leading-[1.5] tracking-[-0.05em] text-[#1f2a37] sm:text-[60px]`}>
                 好きな暮らし方から、
                 <br />
@@ -383,7 +383,7 @@ function ObamaLayout() {
               <div className="mt-6 flex flex-wrap gap-3">
                 {builderTags.map((tag) => (
                   <div key={tag} className="inline-flex items-center gap-2 rounded-full border border-[#d9cfbf] bg-[#fcfaf6] px-4 py-2 text-sm font-semibold text-[#5f6871]">
-                    <Tags className="h-3.5 w-3.5 text-[#8a7a63]" />
+                    <Tags className="h-3.5 w-3.5 text-[#6b5d44]" />
                     {tag}
                   </div>
                 ))}
@@ -409,7 +409,7 @@ function ObamaLayout() {
         <section className="mx-auto mt-16 max-w-[1320px]">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-semibold tracking-[0.2em] text-[#8a7a63]">LIFESTYLE CASES</p>
+              <p className="text-xs font-semibold tracking-[0.2em] text-[#6b5d44]">LIFESTYLE CASES</p>
               <h2 className={`${headingFont.className} mt-3 text-[34px] leading-[1.5] tracking-[-0.04em] text-[#1f2a37] sm:text-[44px]`}>
                 暮らしのイメージで
                 <br />
@@ -425,13 +425,13 @@ function ObamaLayout() {
                 <div className="p-5">
                   <div className="mb-3 flex flex-wrap gap-2">
                     {builderTags.slice(index, index + 2).map((tag) => (
-                      <div key={`${work.title}-${tag}`} className="rounded-full bg-[#f5efe4] px-3 py-1 text-xs font-semibold text-[#8a7a63]">
+                      <div key={`${work.title}-${tag}`} className="rounded-full bg-[#f5efe4] px-3 py-1 text-xs font-semibold text-[#6b5d44]">
                         {tag}
                       </div>
                     ))}
                   </div>
                   <h3 className={`${headingFont.className} text-[25px] leading-[1.5] tracking-[-0.04em] text-[#1f2a37]`}>{work.title}</h3>
-                  <p className="mt-2 text-sm font-semibold text-[#8a7a63]">{work.place}</p>
+                  <p className="mt-2 text-sm font-semibold text-[#6b5d44]">{work.place}</p>
                   <p className="mt-3 text-[14px] leading-7 text-[#5f6871]">{work.text}</p>
                 </div>
               </article>
@@ -442,7 +442,7 @@ function ObamaLayout() {
         <section className="mx-auto mt-16 max-w-[1320px] rounded-[34px] border border-[#ddd4c7] bg-[#1f2a37] p-6 text-white shadow-[0_22px_60px_rgba(31,42,55,0.12)] sm:p-8">
           <div className="grid gap-6 lg:grid-cols-[0.74fr_1.26fr]">
             <div>
-              <p className="text-xs font-semibold tracking-[0.2em] text-[#d4c2a6]">ABOUT</p>
+              <p className="text-xs font-semibold tracking-[0.2em] text-[#a08864]">ABOUT</p>
               <h2 className={`${headingFont.className} mt-3 text-[30px] leading-[1.55] tracking-[-0.04em] text-white sm:text-[42px]`}>
                 暮らしのイメージを、
                 <br />
@@ -474,7 +474,7 @@ function GamouLayout() {
           <div className="mx-auto max-w-[1320px]">
             <div className="grid gap-6 lg:grid-cols-[0.88fr_1.12fr] lg:items-stretch">
               <div className="rounded-[36px] border border-[#ddd4c7] bg-[#1f2a37] p-7 text-white shadow-[0_20px_55px_rgba(31,42,55,0.14)] sm:p-9">
-                <p className="text-xs font-semibold tracking-[0.2em] text-[#d4c2a6]">{variant.heroLabel}</p>
+                <p className="text-xs font-semibold tracking-[0.2em] text-[#a08864]">{variant.heroLabel}</p>
                 <h1 className={`${headingFont.className} mt-4 text-[40px] leading-[1.5] tracking-[-0.05em] text-white sm:text-[58px]`}>
                   住宅も、改修も、
                   <br />
@@ -495,8 +495,8 @@ function GamouLayout() {
         <section className="px-4 py-16 sm:px-6 sm:py-18">
           <div className="mx-auto max-w-[1320px]">
             <div className="flex items-center gap-3">
-              <Building2 className="h-5 w-5 text-[#8a7a63]" />
-              <p className="text-xs font-semibold tracking-[0.2em] text-[#8a7a63]">SERVICE CATEGORIES</p>
+              <Building2 className="h-5 w-5 text-[#6b5d44]" />
+              <p className="text-xs font-semibold tracking-[0.2em] text-[#6b5d44]">SERVICE CATEGORIES</p>
             </div>
             <h2 className={`${headingFont.className} mt-4 text-[34px] leading-[1.5] tracking-[-0.04em] text-[#1f2a37] sm:text-[44px]`}>
               対応内容の入口を
@@ -518,7 +518,7 @@ function GamouLayout() {
           <div className="mx-auto max-w-[1320px]">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="text-xs font-semibold tracking-[0.2em] text-[#8a7a63]">WORKS</p>
+                <p className="text-xs font-semibold tracking-[0.2em] text-[#6b5d44]">WORKS</p>
                 <h2 className={`${headingFont.className} mt-3 text-[34px] leading-[1.5] tracking-[-0.04em] text-[#1f2a37] sm:text-[44px]`}>
                   写真で興味を引きつけつつ、
                   <br />
@@ -532,7 +532,7 @@ function GamouLayout() {
                 <Image src={builderImages.livingDining} alt="LDK" width={1456} height={1080} className="aspect-[16/10] w-full object-cover" />
                 <div className="p-6">
                   <h3 className={`${headingFont.className} text-[30px] leading-[1.5] tracking-[-0.04em] text-[#1f2a37]`}>{builderWorks[0].title}</h3>
-                  <p className="mt-2 text-sm font-semibold text-[#8a7a63]">{builderWorks[0].place}</p>
+                  <p className="mt-2 text-sm font-semibold text-[#6b5d44]">{builderWorks[0].place}</p>
                   <p className="mt-3 text-[15px] leading-8 text-[#5f6871]">{builderWorks[0].text}</p>
                 </div>
               </article>
@@ -555,8 +555,8 @@ function GamouLayout() {
           <div className="mx-auto grid max-w-[1320px] gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <article className="rounded-[34px] border border-[#ddd4c7] bg-white p-6 shadow-[0_16px_40px_rgba(31,42,55,0.07)] sm:p-8">
               <div className="flex items-center gap-3">
-                <Hammer className="h-5 w-5 text-[#8a7a63]" />
-                <p className="text-xs font-semibold tracking-[0.2em] text-[#8a7a63]">ABOUT</p>
+                <Hammer className="h-5 w-5 text-[#6b5d44]" />
+                <p className="text-xs font-semibold tracking-[0.2em] text-[#6b5d44]">ABOUT</p>
               </div>
               <h2 className={`${headingFont.className} mt-4 text-[32px] leading-[1.55] tracking-[-0.04em] text-[#1f2a37] sm:text-[42px]`}>
                 情報整理と、相談のしやすさを

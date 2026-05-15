@@ -186,7 +186,7 @@ export function ReceiptExpenseCameraDemo() {
           ))}
         </div>
 
-        <p className="mt-5 text-xs font-bold leading-6 text-[#7a8aa8]">
+        <p className="mt-5 text-xs font-bold leading-6 text-[#5a6680]">
           ※ 撮った領収書は 改ざん防止 つきで そのまま クラウドに 残ります。 電子帳簿保存法 (電帳法) の 保存要件にも 対応済み。
         </p>
       </section>

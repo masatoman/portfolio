@@ -18,7 +18,7 @@ export default function ClientProgressPage() {
       description="施主からの「今どうなってる？」 電話・LINE が 毎週来る。 そのたびに 写真撮って 送る手間。 これを 自動更新の 公開ページに 置き換えます。"
     >
       <DemoUsageGuide
-        accent="#06b6d4"
+        accent="#0e7490"
         pains={[
           "施主から「今 どうなってる？」電話・LINE が 毎週 来る",
           "そのたびに 写真を 撮って 送る手間が 積もる",

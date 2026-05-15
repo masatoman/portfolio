@@ -30,7 +30,7 @@ export function WebsiteRefreshDemo() {
   return (
     <div className="space-y-8">
       <section className="rounded-[30px] border border-[#ddd4c7] bg-white p-6 shadow-[0_14px_40px_rgba(31,42,55,0.08)] sm:p-8">
-        <p className="text-xs font-semibold tracking-[0.2em] text-[#8a7a63]">COMPARISON CONCEPT</p>
+        <p className="text-xs font-semibold tracking-[0.2em] text-[#6b5d44]">COMPARISON CONCEPT</p>
         <h2 className="mt-3 text-[30px] font-semibold leading-[1.45] tracking-[-0.04em] text-[#1f2a37]">
           同じ素材を使って、
           <br />
@@ -64,7 +64,7 @@ export function WebsiteRefreshDemo() {
                 height={1080}
                 className="aspect-[16/10] w-full object-cover"
               />
-              <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold tracking-[0.16em] text-[#8a7a63] backdrop-blur">
+              <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold tracking-[0.16em] text-[#6b5d44] backdrop-blur">
                 {variant.reference}
               </div>
             </div>
