@@ -276,7 +276,7 @@ export default function HomePage() {
         <section id="problems" className="border-y border-[#ded6c8] bg-[#f8f5ee] px-4 py-14 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
-              <p className="text-[12px] font-semibold tracking-[0.2em] text-[#8a7a63]">COMMON PAIN POINTS</p>
+              <p className="text-[12px] font-semibold tracking-[0.2em] text-[#6b5d44]">COMMON PAIN POINTS</p>
               <h2 className={`${headingFont.className} mt-3 text-[30px] leading-[1.5] tracking-[-0.04em] text-[#1f2a37] sm:text-[42px]`}>
                 現場でよく起きる小さな負担を、
                 <br className="hidden sm:block" />
@@ -306,7 +306,7 @@ export default function HomePage() {
           <div className="mx-auto max-w-[1240px]">
             <div className="grid gap-10 lg:grid-cols-[0.44fr_1fr] lg:items-start">
               <div>
-                <p className="text-[12px] font-semibold tracking-[0.2em] text-[#8a7a63]">WHAT I CAN HELP WITH</p>
+                <p className="text-[12px] font-semibold tracking-[0.2em] text-[#6b5d44]">WHAT I CAN HELP WITH</p>
                 <h2 className={`${headingFont.className} mt-3 text-[30px] leading-[1.55] tracking-[-0.04em] text-[#1f2a37] sm:text-[42px]`}>
                   施工会社の流れに合わせて、
                   <br />
@@ -386,7 +386,7 @@ export default function HomePage() {
                   key={item.no}
                   className="rounded-[24px] border border-[#e1d9cc] bg-white px-6 py-7 shadow-[0_12px_30px_rgba(31,42,55,0.05)]"
                 >
-                  <p className="text-sm font-semibold tracking-[0.2em] text-[#9c7d54]">{item.no}</p>
+                  <p className="text-sm font-semibold tracking-[0.2em] text-[#7a5e3a]">{item.no}</p>
                   <h3 className={`${headingFont.className} mt-3 text-[24px] leading-[1.55] tracking-[-0.04em] text-[#1f2a37]`}>
                     {item.title}
                   </h3>
@@ -400,7 +400,7 @@ export default function HomePage() {
         <section id="pricing" className="border-y border-[#ded6c8] bg-[#f8f5ee] px-4 py-14 sm:px-6 sm:py-18">
           <div className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
-              <p className="text-[12px] font-semibold tracking-[0.2em] text-[#8a7a63]">PRICE GUIDE</p>
+              <p className="text-[12px] font-semibold tracking-[0.2em] text-[#6b5d44]">PRICE GUIDE</p>
               <h2 className={`${headingFont.className} mt-3 text-[30px] leading-[1.55] tracking-[-0.04em] text-[#1f2a37] sm:text-[42px]`}>
                 ご相談の目安
               </h2>
@@ -420,7 +420,7 @@ export default function HomePage() {
                 </article>
               ))}
             </div>
-            <p className="mt-4 text-right text-[13px] font-medium text-[#7d766b]">※内容によりお見積りします</p>
+            <p className="mt-4 text-right text-[13px] font-medium text-[#5f5a51]">※内容によりお見積りします</p>
           </div>
         </section>
 
@@ -429,7 +429,7 @@ export default function HomePage() {
             <div className="rounded-[32px] border border-[#ddd4c7] bg-[linear-gradient(135deg,#fffdf9,#f2ebdf)] p-8 shadow-[0_18px_45px_rgba(31,42,55,0.06)] sm:p-10">
               <div className="grid gap-8 lg:grid-cols-[0.52fr_1fr] lg:items-start">
                 <div>
-                  <p className="text-[12px] font-semibold tracking-[0.2em] text-[#8a7a63]">GOOD FIT</p>
+                  <p className="text-[12px] font-semibold tracking-[0.2em] text-[#6b5d44]">GOOD FIT</p>
                   <h2 className={`${headingFont.className} mt-3 text-[30px] leading-[1.55] tracking-[-0.04em] text-[#1f2a37] sm:text-[40px]`}>
                     こういうご相談に
                     <br />
@@ -453,7 +453,7 @@ export default function HomePage() {
             <div className="grid gap-8 overflow-hidden rounded-[36px] border border-[#d9cfbf] bg-[#f7f3ec] p-6 shadow-[0_26px_70px_rgba(31,42,55,0.1)] lg:grid-cols-[0.92fr_1.08fr] lg:p-10">
               <div className="flex flex-col justify-between">
                 <div>
-                  <p className="text-[12px] font-semibold tracking-[0.2em] text-[#8a7a63]">CONTACT</p>
+                  <p className="text-[12px] font-semibold tracking-[0.2em] text-[#6b5d44]">CONTACT</p>
                   <h2 className={`${headingFont.className} mt-3 text-[32px] leading-[1.6] tracking-[-0.04em] text-[#1f2a37] sm:text-[44px]`}>
                     今のやり方を活かしながら、
                     <br />
@@ -477,7 +477,7 @@ export default function HomePage() {
       </main>
 
       <footer className="border-t border-[#d8d0c1] bg-[#f7f3ec] py-10">
-        <div className="mx-auto flex max-w-[1240px] flex-col items-center justify-between gap-3 px-4 text-[12px] text-[#7d766b] sm:flex-row sm:px-6">
+        <div className="mx-auto flex max-w-[1240px] flex-col items-center justify-between gap-3 px-4 text-[12px] text-[#5f5a51] sm:flex-row sm:px-6">
           <span>© 2026 井原誠斗 (Ihara Frontend)</span>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1.5">
             <Link href="/portfolio" className="hover:text-[#7a5c38] transition-colors">

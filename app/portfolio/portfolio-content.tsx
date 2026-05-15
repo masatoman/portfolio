@@ -164,7 +164,7 @@ function Hero() {
             >
               status: online
             </span>
-            <span className="text-white/40">// {siteMeta.status}</span>
+            <span className="text-white/75">// {siteMeta.status}</span>
           </div>
         </Reveal>
         <Reveal delay={100}>
@@ -406,7 +406,7 @@ function Services() {
                     {s.outcome}
                   </p>
                   <div className="mt-6 pt-5 border-t border-white/10">
-                    <div className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-white/75 mb-1">
                       価格 目安
                     </div>
                     <div
@@ -526,7 +526,7 @@ function Subsidies() {
           </div>
         </Reveal>
         <Reveal delay={450}>
-          <p className="mt-6 text-[11px] text-white/40 leading-relaxed font-variant-y2k-body max-w-3xl">
+          <p className="mt-6 text-[11px] text-white/75 leading-relaxed font-variant-y2k-body max-w-3xl">
             ※ 採択されるかは 審査次第です。 補助金の制度は 毎年 内容が変わるため、 最新の要件は ご相談時に 一緒に 確認します。 なお、 IT 導入補助金 (IT導入支援事業者経由のもの) は 現状 対象外です。
           </p>
         </Reveal>
@@ -668,15 +668,21 @@ function Footer() {
       className="border-t py-10"
       style={{ borderColor: `${NEON.cyan}30`, background: "#000" }}
     >
-      <div className="mx-auto max-w-7xl px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] uppercase tracking-widest text-white/40">
+      <div className="mx-auto max-w-7xl px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] uppercase tracking-widest text-white/75">
         <span>
           © 2026 // {profile.nameRomaji} ・ {siteMeta.brandName}
         </span>
-        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5">
-          <Link href="/" className="hover:text-[#00f0ff] transition-colors">
+        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+          <Link
+            href="/"
+            className="inline-flex items-center min-h-[44px] px-3 py-2 hover:text-[#00f0ff] transition-colors"
+          >
             // home — お仕事のご相談はこちら
           </Link>
-          <Link href="/lab" className="hover:text-[#00f0ff] transition-colors">
+          <Link
+            href="/lab"
+            className="inline-flex items-center min-h-[44px] px-3 py-2 hover:text-[#00f0ff] transition-colors"
+          >
             // lab — 個人開発の実験ノート
           </Link>
         </div>

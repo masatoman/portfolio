@@ -91,6 +91,7 @@ export function VoiceDailyReportDemo() {
               <button
                 type="button"
                 onClick={handleStartRecording}
+                aria-label="録音を開始"
                 className="mx-auto mt-4 grid h-24 w-24 place-items-center rounded-full bg-[#0e9d6a] text-white shadow-[0_14px_40px_rgba(14,157,106,0.35)] transition hover:bg-[#0a8259]"
               >
                 <Mic className="h-10 w-10" />
@@ -104,6 +105,7 @@ export function VoiceDailyReportDemo() {
               <button
                 type="button"
                 onClick={handleStopRecording}
+                aria-label="録音を停止"
                 className="mx-auto mt-4 grid h-24 w-24 place-items-center rounded-full bg-[#dc2626] text-white shadow-[0_14px_40px_rgba(220,38,38,0.4)] transition hover:bg-[#b91c1c]"
               >
                 <Square className="h-9 w-9" fill="currentColor" />
