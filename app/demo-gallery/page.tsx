@@ -1,10 +1,40 @@
 import type { Metadata } from "next"
 import { DemoVoteForm } from "@/components/demo-gallery/vote-form"
 
+const OG_TITLE = "喉から手が出るほど欲しいツールを教えてください / 工務店業務改善ツール 8 案"
+const OG_DESCRIPTION =
+  "工務店現場で「これあったら絶対使う」 と思うツール 8 案。 最大 3 つ選んでください。 1〜2 分で済みます。"
+const OG_URL = "https://ihara-frontend.com/demo-gallery"
+const OG_IMAGE = "/images/demo-mocks/estimate-organizer.png"
+
 export const metadata: Metadata = {
-  title: "喉から手が出るほど欲しいツールを教えてください / 工務店業務改善ツール 8 案",
-  description:
-    "工務店現場で「これあったら絶対使う」 と思うツール 8 案。 最大 3 つ選んでください。",
+  title: OG_TITLE,
+  description: OG_DESCRIPTION,
+  alternates: {
+    canonical: OG_URL,
+  },
+  openGraph: {
+    title: OG_TITLE,
+    description: OG_DESCRIPTION,
+    url: OG_URL,
+    siteName: "井原誠斗 / 工務店向け業務改善ツール 投票",
+    locale: "ja_JP",
+    type: "website",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 750,
+        alt: "工務店向け業務改善ツール 8 案 投票ページ",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: OG_TITLE,
+    description: OG_DESCRIPTION,
+    images: [OG_IMAGE],
+  },
 }
 
 const demos = [
@@ -16,7 +46,7 @@ const demos = [
     description:
       "外注先 (設備・電気・水道業者など) から PDF で受け取った見積書を、 ファイルをアップすると項目・数量・単価が自動で表に整理されます。 みつも郎 17 への二重入力で潰れる時間を解消します。",
     hypothesis: "② みつも郎 17 二重入力",
-    imagePath: "/images/demo-mocks/estimate-organizer.png",
+    imagePath: "/images/demo-mocks/estimate-organizer.webp",
     orientation: "desktop" as const,
   },
   {
@@ -27,7 +57,7 @@ const demos = [
     description:
       "電話 / LINE 通話の内容を、 担当者・日時・対応状態とともに記録。 「言った言わない」 問題と情報散逸を防ぎます。 ホワイトボードや付箋メモの代替。",
     hypothesis: "③ 通話記録散逸",
-    imagePath: "/images/demo-mocks/call-memo-board.png",
+    imagePath: "/images/demo-mocks/call-memo-board.webp",
     orientation: "desktop" as const,
   },
   {
@@ -38,7 +68,7 @@ const demos = [
     description:
       "現場で撮った大量の写真をアップロードすると、 「現場名 / 工程 (基礎・配筋・上棟…) / 撮影日」 で自動仕分けされます。 「あの配筋の写真どこ」 で 30 分探す手間がなくなります。",
     hypothesis: "④ 移動深夜 / 現場完結",
-    imagePath: "/images/demo-mocks/site-photo-organizer.png",
+    imagePath: "/images/demo-mocks/site-photo-organizer.webp",
     orientation: "desktop" as const,
   },
   {
@@ -49,8 +79,8 @@ const demos = [
     description:
       "現場の帰り道で話した内容を音声録音すると、 日報フォーマットに自動で整います。 「事務所に戻ってからの日報書きで残業」 を解消する仕組み。",
     hypothesis: "④ 移動深夜 / 現場完結",
-    imagePath: "/images/demo-mocks/voice-daily-report.png",
-    secondaryImagePath: "/images/demo-mocks/voice-daily-report-history.png",
+    imagePath: "/images/demo-mocks/voice-daily-report.webp",
+    secondaryImagePath: "/images/demo-mocks/voice-daily-report-history.webp",
     orientation: "mobile" as const,
   },
   {
@@ -61,7 +91,7 @@ const demos = [
     description:
       "現場で発生する材料費・燃料代の領収書をスマホで撮影するだけで、 日付 / 店名 / 金額 / 品目を自動抽出。 月末の経費まとめ作業を不要にします。",
     hypothesis: "④ 移動深夜 / 現場完結",
-    imagePath: "/images/demo-mocks/receipt-expense-camera.png",
+    imagePath: "/images/demo-mocks/receipt-expense-camera.webp",
     orientation: "mobile" as const,
   },
   {
@@ -72,7 +102,7 @@ const demos = [
     description:
       "スマホ / タブレットから建築図面 PDF を瞬時に開き、 ピンチズーム + 部屋検索 + 注釈書き込みができます。 「事務所に図面確認の電話する」 を不要に。",
     hypothesis: "④ 移動深夜 / 現場完結",
-    imagePath: "/images/demo-mocks/drawing-quick-viewer.png",
+    imagePath: "/images/demo-mocks/drawing-quick-viewer.webp",
     orientation: "desktop" as const,
   },
   {
@@ -83,7 +113,7 @@ const demos = [
     description:
       "工事の進捗を施主 (お客様) が見られる専用ページ。 写真・工程・次の予定が時系列でまとまっており、 「進捗の電話が頻繁にかかる」 を解消します。",
     hypothesis: "③ 通話記録散逸 / 顧客満足",
-    imagePath: "/images/demo-mocks/client-progress-page.png",
+    imagePath: "/images/demo-mocks/client-progress-page.webp",
     orientation: "mobile" as const,
   },
   {
@@ -94,7 +124,7 @@ const demos = [
     description:
       "古臭い工務店ホームページを、 最低限の情報を整理してモダンなデザインに置き換える提案ツール。 ビフォー / アフター比較形式で見られます。 「Web から問い合わせが来ない」 を解消。",
     hypothesis: "(補完) 工務店 Web 集客",
-    imagePath: "/images/demo-mocks/website-refresh.png",
+    imagePath: "/images/demo-mocks/website-refresh.webp",
     orientation: "desktop" as const,
   },
 ]

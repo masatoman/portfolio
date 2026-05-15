@@ -21,6 +21,30 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   compress: true,
+  // Stop the dev watcher from rebuilding when Playwright (or local tooling)
+  // writes debug logs / screenshots into the project root.
+  webpack: (config, { dev }) => {
+    if (dev) {
+      const ignored = [
+        '**/node_modules/**',
+        '**/.next/**',
+        '**/.git/**',
+        '**/.playwright-mcp/**',
+        '**/.serena/**',
+        '**/.email-previews/**',
+        '**/*.png',
+        '**/*.jpg',
+        '**/*.jpeg',
+        '**/*.log',
+      ]
+      config.watchOptions = {
+        ...(config.watchOptions || {}),
+        ignored,
+        aggregateTimeout: 300,
+      }
+    }
+    return config
+  },
 }
 
 export default nextConfig

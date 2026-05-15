@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Claude Code 未活用の便利機能 — masatoman workflow 適用版</title>
+  <style>
+    :root {
+      --ink: #071b49;
+      --sub: #33496d;
+      --muted: #5f6f89;
+      --line: #d8e3f2;
+      --bg: #fbfcfe;
+      --panel: #ffffff;
+      --accent: #f47b20;
+      --accent-soft: #fff4e9;
+      --good: #15803d;
+      --good-soft: #dcfce7;
+      --warn: #b45309;
+      --warn-soft: #fef3c7;
+      --bad: #b91c1c;
+      --bad-soft: #fee2e2;
+      --code-bg: #0f172a;
+      --code-fg: #e2e8f0;
+    }
+    * { box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--ink); margin: 0; padding: 0; }
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.75;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 920px; margin: 0 auto; padding: 48px 24px 96px; }
+    header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 24px;
+      margin-bottom: 36px;
+    }
+    header .eyebrow {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 30px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      font-weight: 900;
+    }
+    header .meta { color: var(--muted); font-size: 13px; }
+    h2 {
+      font-size: 22px;
+      margin: 48px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--line);
+      letter-spacing: -0.01em;
+    }
+    h2 .num {
+      display: inline-block;
+      background: var(--ink);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      border-radius: 50%;
+      text-align: center;
+      margin-right: 10px;
+      vertical-align: 2px;
+    }
+    h2 .star {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-left: 10px;
+      vertical-align: 4px;
+    }
+    h3 {
+      font-size: 16px;
+      margin: 24px 0 10px;
+      color: var(--sub);
+    }
+    p { margin: 12px 0; }
+    ul, ol { padding-left: 24px; margin: 12px 0; }
+    li { margin: 6px 0; }
+    code {
+      background: #eef2f8;
+      color: var(--ink);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: "SF Mono", Menlo, Consolas, monospace;
+      font-size: 13px;
+    }
+    pre {
+      background: var(--code-bg);
+      color: var(--code-fg);
+      padding: 16px 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: "SF Mono", Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #eef2f8;
+      font-weight: 700;
+      color: var(--sub);
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 16px 0;
+    }
+    .card.accent { border-color: var(--accent); background: var(--accent-soft); }
+    .card.good { border-color: var(--good); background: var(--good-soft); }
+    .card.warn { border-color: var(--warn); background: var(--warn-soft); }
+    .pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-right: 6px;
+    }
+    .pill.high { background: var(--bad-soft); color: var(--bad); }
+    .pill.mid  { background: var(--warn-soft); color: var(--warn); }
+    .pill.low  { background: var(--good-soft); color: var(--good); }
+    .pill.new  { background: var(--accent-soft); color: var(--accent); }
+    .quote {
+      border-left: 4px solid var(--accent);
+      padding: 6px 16px;
+      margin: 16px 0;
+      color: var(--sub);
+      background: #fff;
+    }
+    .nav {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 24px;
+      margin-bottom: 36px;
+    }
+    .nav h3 { margin: 0 0 10px; color: var(--ink); font-size: 14px; }
+    .nav ol { margin: 0; padding-left: 22px; }
+    .nav li { margin: 4px 0; }
+    .nav a { color: var(--sub); text-decoration: none; }
+    .nav a:hover { color: var(--accent); text-decoration: underline; }
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+    .conclusion {
+      background: linear-gradient(180deg, var(--accent-soft), #fff);
+      border: 2px solid var(--accent);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+    .conclusion h2 { border: none; margin-top: 0; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <span class="eyebrow">CLAUDE CODE TIPS / 2026-05-14</span>
+      <h1>Claude Code 未活用の便利機能 ピックアップ</h1>
+      <div class="meta">masatoman workflow (skill / memory / MCP / RTK / claude-hud / Obsidian Vault 既使用) 前提で、 まだ使っていない可能性が高い機能を厳選。 公式ドキュメント (code.claude.com) ベース。</div>
+    </header>
+
+    <div class="nav">
+      <h3>目次</h3>
+      <ol>
+        <li><a href="#s1">Output Styles ⭐ 最有力</a></li>
+        <li><a href="#s2">Hooks の多彩なイベント</a></li>
+        <li><a href="#s3">Web 版 Claude Code + iOS app</a></li>
+        <li><a href="#s4">Remote Control / Dispatch / Channels</a></li>
+        <li><a href="#s5">Worktree 隔離で並列実験</a></li>
+        <li><a href="#s6">Routines (cloud) vs /loop vs Desktop scheduled tasks</a></li>
+        <li><a href="#s7">/fast モード</a></li>
+        <li><a href="#s8">fewer-permission-prompts skill</a></li>
+        <li><a href="#s9">simplify skill</a></li>
+        <li><a href="#s10">GitHub Actions / Code Review 統合</a></li>
+        <li><a href="#s11">Plugins で skill / hook / agent 配布</a></li>
+        <li><a href="#conclusion">推奨着手順 (ROI 軸)</a></li>
+      </ol>
+    </div>
+
+    <!-- 1 -->
+    <h2 id="s1"><span class="num">1</span>Output Styles<span class="star">最有力推し</span></h2>
+    <p>
+      <code>/config</code> → <strong>Output style</strong> で切替。 CLAUDE.md / skill とは別レイヤーで <strong>system prompt 自体を書き換える</strong> 機能。
+    </p>
+
+    <h3>公式組み込み 3 種</h3>
+    <table>
+      <tr><th>名前</th><th>挙動</th></tr>
+      <tr><td><strong>Proactive</strong></td><td>確認を待たず即実行 (auto mode 相当、 permission prompt は残る)</td></tr>
+      <tr><td><strong>Explanatory</strong></td><td>コード実装中に「Insights」 解説を挟む</td></tr>
+      <tr><td><strong>Learning</strong></td><td><code>TODO(human)</code> マーカーで一部実装を masatoman に任せる学習モード</td></tr>
+    </table>
+
+    <h3>masatoman さん向け活用案</h3>
+    <ul>
+      <li><strong>「demo-gallery 投票分析モード」</strong> custom output-style — 票数より拒否理由分布を主軸に解釈するペルソナを default 化</li>
+      <li><strong>「工務店オーナー向け説明モード」</strong> — IT 用語禁止 + LINE で送れる文に変換</li>
+      <li><code>.claude/output-styles/komuten-mode.md</code> で project 単位に固定可能</li>
+    </ul>
+
+    <div class="card">
+      <strong>skill との違い</strong>: skill は呼び出し型、 output-style は <strong>毎ターン自動適用</strong>。 主顧客モードを永続化したい時に強い。
+    </div>
+
+    <pre><code>---
+name: Komuten Owner Mode
+description: IT 用語禁止 + LINE 配布想定の平易日本語に変換
+keep-coding-instructions: true
+---
+
+回答は工務店オーナー (40-60 代、 LINE はできるが Web 入力は苦手) に送る前提で書く。
+- カタカナ専門語禁止 (「モバイル」「アプリ」 等)
+- 1 文 40 字以内
+- 操作手順は番号付き、 1 ステップ 1 動詞
+- 専門語が必要な時は ()内に「= 〜のこと」 を必ず添える</code></pre>
+
+    <!-- 2 -->
+    <h2 id="s2"><span class="num">2</span>Hooks の多彩なイベント</h2>
+    <p>
+      masatoman さんは RTK (token 削減 hook) を使っているが、 hook イベントは <strong>20+ 種類</strong> ある。 軸 B プロジェクトで効くもの:
+    </p>
+
+    <table>
+      <tr><th>Hook</th><th>活用案</th></tr>
+      <tr><td><code>UserPromptSubmit</code></td><td>プロンプト送信前に「これは軸 B / 軸 A どっち?」 を STRATEGY.md と照合して警告</td></tr>
+      <tr><td><code>PostToolUse</code> (Edit/Write)</td><td>demo-gallery / 主要 LP 編集後に Prettier + Playwright スモークを自動実行</td></tr>
+      <tr><td><code>UserPromptExpansion</code></td><td><code>/x-post-rules</code> や <code>/masatoman-article-rules</code> 起動時に追加 context を強制注入</td></tr>
+      <tr><td><code>SubagentStop</code></td><td>Explore/Plan agent 終了時に dev_journal に作業記録を自動 append</td></tr>
+      <tr><td><code>CwdChanged</code></td><td>portfolio ↔ 個人開発マネタイズプラットフォーム の往復で env を切り替え</td></tr>
+      <tr><td><code>Stop</code></td><td>turn 終了時に session-recap 候補が溜まったか自動判定</td></tr>
+      <tr><td><code>PreCompact</code></td><td>圧縮直前に重要な決定を memory に逃がす保険</td></tr>
+    </table>
+
+    <div class="card accent">
+      特に <strong><code>UserPromptSubmit</code> hook で軸 B/A 自動判定</strong> は STRATEGY.md の主軸切り替えと相性が良い。
+    </div>
+
+    <!-- 3 -->
+    <h2 id="s3"><span class="num">3</span>Web 版 Claude Code + iOS app</h2>
+    <p>terminal CLI 中心だと推測されるが、 web (claude.ai/code) / iOS は こういう時に使える:</p>
+    <ul>
+      <li><strong>外出先で 商談 / ヒアリング メモを起こす → portfolio repo に反映</strong> (5/22 北原氏面談、 友人ヒアリング当日)</li>
+      <li>長時間タスクを kick off して放置 → 戻ったら結果を terminal に <code>claude --teleport</code> で引き取り</li>
+      <li>出先で「issue-finder の結果見たい」 が手元の Mac なしで完結</li>
+      <li>iOS app は <strong>Slack 連携</strong> で <code>@Claude</code> メンション → PR が返ってくる workflow も組める</li>
+    </ul>
+
+    <!-- 4 -->
+    <h2 id="s4"><span class="num">4</span>Remote Control / Dispatch / Channels</h2>
+    <table>
+      <tr><th>機能</th><th>挙動</th></tr>
+      <tr><td><strong>Remote Control</strong></td><td>自宅 Mac で動かしてる session を スマホから操作。 外出中に「あの skill だけ叩いて」 が可能</td></tr>
+      <tr><td><strong>Dispatch</strong></td><td>スマホから 1 行投げる → Desktop app が session を自動生成して処理</td></tr>
+      <tr><td><strong>Channels</strong></td><td>Telegram / Discord / iMessage / 自前 webhook から session に event push</td></tr>
+    </table>
+    <p>軸 B の友人ヒアリング当日、 LINE 経由で「この回答どう解釈する?」 を即投げる経路として <strong>Channels (LINE は無いが iMessage 経由) が刺さる可能性</strong>。</p>
+
+    <!-- 5 -->
+    <h2 id="s5"><span class="num">5</span>Worktree 隔離で並列実験</h2>
+    <p><code>isolation: "worktree"</code> を agent に渡すと、 一時 git worktree で作業して 終わったら自動クリーンアップ。</p>
+    <ul>
+      <li>demo-gallery の <strong>拒否理由 UI を A/B 並行検証</strong> したい時 (1 つは本番ブランチ、 1 つは worktree)</li>
+      <li>issue-finder の profile 拡張 (FP / micro-corp / it-subsidy) を <strong>互いに干渉せず 4 並列実行</strong></li>
+    </ul>
+    <div class="card good">
+      何も commit しなければ worktree は自動消滅するので <strong>思いつき実験コストが激安</strong>。
+    </div>
+
+    <!-- 6 -->
+    <h2 id="s6"><span class="num">6</span>Routines (cloud) vs /loop vs Desktop scheduled tasks</h2>
+    <p>masatoman さんは <code>/schedule</code> と <code>/loop</code> を skill で持っているが、 3 つの違いを使い分けると効く:</p>
+    <table>
+      <tr><th>種類</th><th>動く場所</th><th>用途</th></tr>
+      <tr>
+        <td><strong>Routines</strong></td>
+        <td>Anthropic クラウド</td>
+        <td>Mac 落ちても動く / GitHub event / API trigger 可 (sns-automation の本番化候補)</td>
+      </tr>
+      <tr>
+        <td><strong>Desktop scheduled tasks</strong></td>
+        <td>masatoman 自身の Mac</td>
+        <td>ローカル file 直接触りたい時 (issue-finder の supabase 直接書き込み等)</td>
+      </tr>
+      <tr>
+        <td><code>/loop</code></td>
+        <td>現セッション内</td>
+        <td>一時的なポーリング (商談ペライチ生成中の進捗監視等)</td>
+      </tr>
+    </table>
+    <p><strong>Routines</strong> は sns-automation の API 課金回避ルートに化ける可能性 (Claude Code MAX 内蔵 web_search を cloud で動かせる)。</p>
+
+    <!-- 7 -->
+    <h2 id="s7"><span class="num">7</span>/fast モード</h2>
+    <p>
+      <code>/fast</code> で <strong>Opus のまま出力速度を上げる</strong> (model を downgrade しない)。
+      ペライチ HTML 生成や 大型 review で体感差が大きい。 masatoman さんは Opus 4.7 (1M context) なので即使える。
+    </p>
+
+    <!-- 8 -->
+    <h2 id="s8"><span class="num">8</span>fewer-permission-prompts skill <span class="pill new">available</span></h2>
+    <p>system prompt 内に出ているが、 まだ実行してない可能性が高い。</p>
+    <ul>
+      <li>過去 transcript を scan して 安全な read-only コマンドを <code>.claude/settings.json</code> に自動 allowlist 追加</li>
+      <li><code>bq</code> / <code>gh api</code> / <code>supabase</code> 系の毎回の permission prompt が消える</li>
+      <li>RTK と併用可</li>
+    </ul>
+    <p>軸 B フェーズで Supabase MCP / Notion MCP を頻繁に叩くので 効果が大きい。</p>
+
+    <!-- 9 -->
+    <h2 id="s9"><span class="num">9</span>simplify skill <span class="pill new">available</span></h2>
+    <p>変更コードを review して <strong>再利用可能性 / 品質 / 効率</strong> の観点で問題があれば修正まで自動でやる。</p>
+    <ul>
+      <li>demo-gallery の <code>vote-form.tsx</code> 等 直近大量編集箇所に走らせると 重複コード回収できる</li>
+      <li>friend-hearing 関連 <code>docs/</code> も対象 (md / html)</li>
+    </ul>
+
+    <!-- 10 -->
+    <h2 id="s10"><span class="num">10</span>GitHub Actions / Code Review 統合</h2>
+    <p>PR を作るたびに <strong>自動コードレビュー + issue triage</strong> が走る。</p>
+    <ul>
+      <li>portfolio repo は商談用 LP / demo-gallery が頻繁に変わる → セルフレビューを自動化</li>
+      <li>masatoman.net (軸 A) の自動運用と相性が良い (Claude が自動で校正 PR を立てる)</li>
+    </ul>
+    <div class="card">
+      <strong><code>/ultrareview</code> との違い</strong>: GitHub Actions は <strong>毎 PR 自動 / 無料枠あり / 軽量</strong>、 <code>/ultrareview</code> は <strong>手動 / 課金 / 重い深掘り</strong>。
+    </div>
+
+    <!-- 11 -->
+    <h2 id="s11"><span class="num">11</span>Plugins で skill / hook / agent / output-style をパッケージ配布</h2>
+    <p>masatoman さんは skill を 14 個以上 自作している → これを <strong>plugin にまとめて配布可能</strong> な状態。</p>
+    <ul>
+      <li><code>masatoman-rules-plugin</code> (x-post-rules + masatoman-article-rules + article-publish-gate を 1 セット)</li>
+      <li>知人開発者に「この plugin 入れれば 同じ運用ができる」 と配布 → 軸 A 認知ルートの 1 つに化ける可能性</li>
+    </ul>
+
+    <!-- Conclusion -->
+    <div class="conclusion" id="conclusion">
+      <h2 style="border:none; padding:0;">推奨着手順 (ROI 軸)</h2>
+      <ol>
+        <li><strong>Output Styles の custom 作成</strong> (軸 B 主顧客モード) <span class="pill mid">1 時間 / 永続効果</span></li>
+        <li><strong>fewer-permission-prompts skill 実行</strong> <span class="pill low">5 分 / 体感差大</span></li>
+        <li><strong><code>/fast</code> モード 試す</strong> <span class="pill low">即時 / コスト 0</span></li>
+        <li><strong>UserPromptSubmit hook で軸 B/A 自動判定</strong> <span class="pill mid">30 分 / STRATEGY.md 遵守を自動化</span></li>
+        <li><strong>Web 版 Claude Code (claude.ai/code) を 5/22 面談前に試す</strong> <span class="pill mid">当日のメモ起こしに使えるか確認</span></li>
+      </ol>
+      <p style="margin-top:18px;">
+        <strong>ウルトラシンク結論</strong>: masatoman さんの workflow に最も効くのは
+        <strong>Output Styles の custom 化</strong> と
+        <strong>UserPromptSubmit hook で軸切替の自動 guard</strong> の 2 つ。
+        どちらも skill 文化と相性が良く、 既存 memory システムと衝突しない。
+      </p>
+    </div>
+
+    <footer>
+      <div>参照: <code>code.claude.com/docs/en/overview</code> / <code>/hooks</code> / <code>/output-styles</code> (2026-05-14 取得)</div>
+      <div>関連 memory: <code>twin-axis-status.md</code> / <code>demo-gallery-status.md</code> / <code>customer-target.md</code></div>
+      <div>関連 docs: <code>docs/saas-pricing-strategy.html</code> / <code>docs/friend-hearing-checklist.html</code></div>
+    </footer>
+
+  </div>
+</body>
+</html>
