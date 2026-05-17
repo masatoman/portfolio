@@ -6,7 +6,10 @@ import {
   getPerspectiveForDate,
   type ExpandedQuery,
 } from "@/lib/lab-tools/issue-finder/queries"
-import type { CollectionJob } from "@/lib/lab-tools/issue-finder/db"
+import type {
+  CollectionJob,
+  PerspectiveRunStatus,
+} from "@/lib/lab-tools/issue-finder/db"
 import { LAB_NEON } from "@/lib/lab-tools/registry"
 
 const STATUS_LABEL: Record<CollectionJob["status"], string> = {
@@ -25,12 +28,27 @@ const STATUS_COLOR: Record<CollectionJob["status"], string> = {
 
 type Props = {
   initialJobs: CollectionJob[]
+  perspectiveStatus: PerspectiveRunStatus[]
 }
 
-export function CollectionQueueForm({ initialJobs }: Props) {
+export function CollectionQueueForm({
+  initialJobs,
+  perspectiveStatus,
+}: Props) {
   const today = useMemo(() => new Date(), [])
   const todayInfo = useMemo(() => getPerspectiveForDate(today), [today])
   const allQueries = useMemo(() => expandQueries(), [])
+  const statusMap = useMemo(() => {
+    const m = new Map<string, PerspectiveRunStatus>()
+    for (const s of perspectiveStatus) m.set(`${s.profileId}::${s.role}`, s)
+    return m
+  }, [perspectiveStatus])
+  const unrunCount = useMemo(() => {
+    return allQueries.filter((q) => {
+      const s = statusMap.get(`${q.profileId}::${q.role}`)
+      return !s || s.drRunCount + s.wsRunCount === 0
+    }).length
+  }, [allQueries, statusMap])
 
   const [selectedKey, setSelectedKey] = useState<string>(
     `${todayInfo.query.profileId}::${todayInfo.query.role}`,
@@ -127,12 +145,26 @@ export function CollectionQueueForm({ initialJobs }: Props) {
       >
         <div className="grid gap-3 md:grid-cols-3">
           <div className="md:col-span-2">
-            <label
-              className="block mb-1.5 font-mono text-[10px] uppercase tracking-widest"
-              style={{ color: LAB_NEON.cyan }}
-            >
-              // perspective を選ぶ
-            </label>
+            <div className="mb-1.5 flex items-center justify-between gap-2 flex-wrap">
+              <label
+                className="font-mono text-[10px] uppercase tracking-widest"
+                style={{ color: LAB_NEON.cyan }}
+              >
+                // perspective を選ぶ
+              </label>
+              {unrunCount > 0 && (
+                <span
+                  className="font-mono text-[10px] uppercase tracking-widest border px-2 py-0.5"
+                  style={{
+                    color: LAB_NEON.magenta,
+                    borderColor: `${LAB_NEON.magenta}80`,
+                  }}
+                  title="DR/WS どちらも未実行の perspective 数"
+                >
+                  ✗ 未実行 {unrunCount} 件
+                </span>
+              )}
+            </div>
             <select
               value={selectedKey}
               onChange={(e) => setSelectedKey(e.target.value)}
@@ -145,10 +177,22 @@ export function CollectionQueueForm({ initialJobs }: Props) {
                 const isToday =
                   q.profileId === todayInfo.query.profileId &&
                   q.role === todayInfo.query.role
+                const status = statusMap.get(value)
+                const dr = status?.drRunCount ?? 0
+                const ws = status?.wsRunCount ?? 0
+                const total = dr + ws
+                const badge =
+                  total === 0
+                    ? "✗ 未"
+                    : `DR ${dr} / WS ${ws}`
+                const lastDate = status?.lastRunAt
+                  ? ` (最終 ${status.lastRunAt.slice(5, 10).replace("-", "/")})`
+                  : ""
                 return (
                   <option key={value} value={value}>
                     {isToday ? "[今日] " : ""}
-                    {q.profileName} → {q.role}
+                    {badge}
+                    {lastDate} | {q.profileName} → {q.role}
                   </option>
                 )
               })}

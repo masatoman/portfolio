@@ -140,3 +140,57 @@ export async function fetchRecentJobs(limit = 20): Promise<CollectionJob[]> {
     return []
   }
 }
+
+export type PerspectiveRunStatus = {
+  profileId: string
+  role: string
+  drRunCount: number // Deep Research モード (raw_input_text あり) で完了したジョブ数
+  wsRunCount: number // web_search モード (raw_input_text なし) で完了したジョブ数
+  lastRunAt: string | null
+}
+
+// perspective (profileId × role) ごとの完了ジョブ数 + 最終実行日時を集計。
+// raw_input_text の有無で DR (Deep Research) / WS (web_search) を区別。
+// select の option に「DR ✓N / WS ✓M (最終 5/14)」 を出すための材料。
+export async function fetchPerspectiveRunStatus(): Promise<
+  PerspectiveRunStatus[]
+> {
+  if (!isSupabaseConfigured()) return []
+  try {
+    const supabase = await createServerSupabase()
+    const { data, error } = await supabase
+      .from("if_jobs")
+      .select("profile_id, role, created_at, raw_input_text")
+      .eq("status", "completed")
+    if (error || !data) return []
+
+    const map = new Map<string, PerspectiveRunStatus>()
+    for (const row of data as Array<{
+      profile_id: string
+      role: string
+      created_at: string
+      raw_input_text: string | null
+    }>) {
+      const key = `${row.profile_id}::${row.role}`
+      const existing = map.get(key) ?? {
+        profileId: row.profile_id,
+        role: row.role,
+        drRunCount: 0,
+        wsRunCount: 0,
+        lastRunAt: null,
+      }
+      const isDr =
+        typeof row.raw_input_text === "string" &&
+        row.raw_input_text.length > 0
+      if (isDr) existing.drRunCount += 1
+      else existing.wsRunCount += 1
+      if (!existing.lastRunAt || row.created_at > existing.lastRunAt) {
+        existing.lastRunAt = row.created_at
+      }
+      map.set(key, existing)
+    }
+    return Array.from(map.values())
+  } catch {
+    return []
+  }
+}

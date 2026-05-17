@@ -9,7 +9,10 @@ import { KeywordFrequencyMatrix } from "@/components/lab-tools/issue-finder/keyw
 import { ScheduledQueriesBoard } from "@/components/lab-tools/issue-finder/scheduled-queries-board"
 import { CollectionQueueForm } from "@/components/lab-tools/issue-finder/collection-queue-form"
 import { SAMPLE_ISSUES } from "@/lib/lab-tools/issue-finder/sample-data"
-import type { CollectionJob } from "@/lib/lab-tools/issue-finder/db"
+import type {
+  CollectionJob,
+  PerspectiveRunStatus,
+} from "@/lib/lab-tools/issue-finder/db"
 import {
   SORT_LABEL,
   sortIssues,
@@ -21,11 +24,16 @@ import { LAB_NEON } from "@/lib/lab-tools/registry"
 type Props = {
   dbIssues: Issue[]
   jobs: CollectionJob[]
+  perspectiveStatus: PerspectiveRunStatus[]
 }
 
 type ResultsTab = "matrix" | "cards" | "keywords"
 
-export function IssueFinderShell({ dbIssues, jobs }: Props) {
+export function IssueFinderShell({
+  dbIssues,
+  jobs,
+  perspectiveStatus,
+}: Props) {
   const hasDb = dbIssues.length > 0
   const rawIssues: Issue[] = hasDb ? dbIssues : SAMPLE_ISSUES
   const [resultsTab, setResultsTab] = useState<ResultsTab>("matrix")
@@ -60,7 +68,10 @@ export function IssueFinderShell({ dbIssues, jobs }: Props) {
           title="収集ジョブをキューに追加"
           note="GUI フォーム → Supabase → SKILL が処理"
         />
-        <CollectionQueueForm initialJobs={jobs} />
+        <CollectionQueueForm
+          initialJobs={jobs}
+          perspectiveStatus={perspectiveStatus}
+        />
 
         <SectionHeader
           label="// 02 / results"
@@ -200,7 +211,7 @@ export function IssueFinderShell({ dbIssues, jobs }: Props) {
             // 外部 Deep Research プロンプトを使う (任意の代替手段)
           </summary>
           <div className="mt-4">
-            <DeepSearchHelper />
+            <DeepSearchHelper perspectiveStatus={perspectiveStatus} />
           </div>
         </details>
       </div>

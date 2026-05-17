@@ -1,5 +1,6 @@
 import { IssueFinderShell } from "@/components/lab-tools/issue-finder/issue-finder-shell"
 import {
+  fetchPerspectiveRunStatus,
   fetchRecentIssues,
   fetchRecentJobs,
 } from "@/lib/lab-tools/issue-finder/db"
@@ -10,9 +11,16 @@ export const dynamic = "force-dynamic"
 export const revalidate = 0
 
 export default async function IssueFinderPage() {
-  const [dbIssues, jobs] = await Promise.all([
+  const [dbIssues, jobs, perspectiveStatus] = await Promise.all([
     fetchRecentIssues(50),
     fetchRecentJobs(20),
+    fetchPerspectiveRunStatus(),
   ])
-  return <IssueFinderShell dbIssues={dbIssues} jobs={jobs} />
+  return (
+    <IssueFinderShell
+      dbIssues={dbIssues}
+      jobs={jobs}
+      perspectiveStatus={perspectiveStatus}
+    />
+  )
 }
