@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendar 棚卸し / 2026-05-18 / portfolio</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --accent: #b85c3a;
+  --warn: #c34a1f;
+  --good: #2d6a4f;
+  --info: #2a5f8f;
+  --card: #ffffff;
+  --border: #e4ddd1;
+  --soft: #f5f0e6;
+  --delete-bg: #fdebe6;
+  --delete-bd: #c34a1f;
+  --decide-bg: #fef5e7;
+  --decide-bd: #b8862e;
+  --keep-bg: #e6f3e6;
+  --keep-bd: #2d6a4f;
+  --past-bg: #f0f0ef;
+  --past-bd: #999;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.page {
+  max-width: 1080px;
+  padding: 16mm 18mm;
+  margin: 8mm auto;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+}
+header {
+  border-bottom: 2px solid var(--fg);
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+header h1 { font-size: 20px; font-weight: 700; }
+header .meta { font-size: 10px; color: var(--muted); margin-top: 4px; }
+header .lede { font-size: 11px; color: var(--muted); margin-top: 6px; max-width: 760px; }
+
+.section { margin-bottom: 24px; }
+.section h2 {
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 4px 10px;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+.section h3 {
+  font-size: 12px;
+  font-weight: 700;
+  margin: 12px 0 6px;
+  padding: 4px 8px;
+  border-radius: 3px;
+}
+.section h3.del { background: var(--delete-bg); color: var(--delete-bd); border-left: 3px solid var(--delete-bd); }
+.section h3.decide { background: var(--decide-bg); color: var(--decide-bd); border-left: 3px solid var(--decide-bd); }
+.section h3.keep { background: var(--keep-bg); color: var(--keep-bd); border-left: 3px solid var(--keep-bd); }
+.section h3.past { background: var(--past-bg); color: #666; border-left: 3px solid var(--past-bd); }
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.summary-card {
+  background: var(--soft);
+  border-left: 3px solid var(--accent);
+  padding: 8px 10px;
+  border-radius: 3px;
+}
+.summary-card.del { border-left-color: var(--delete-bd); background: var(--delete-bg); }
+.summary-card.decide { border-left-color: var(--decide-bd); background: var(--decide-bg); }
+.summary-card.keep { border-left-color: var(--keep-bd); background: var(--keep-bg); }
+.summary-card.past { border-left-color: var(--past-bd); background: var(--past-bg); }
+.summary-card .label { font-size: 9px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+.summary-card .value { font-size: 18px; font-weight: 700; margin-top: 2px; }
+.summary-card .sub { font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+
+table.cal {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+table.cal th, table.cal td {
+  padding: 5px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+table.cal th {
+  background: var(--soft);
+  font-weight: 700;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+table.cal td.date {
+  white-space: nowrap;
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 10px;
+  color: var(--muted);
+  width: 100px;
+}
+table.cal td.count {
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  text-align: right;
+  width: 50px;
+}
+table.cal td.title { font-weight: 600; width: 28%; }
+table.cal td.action {
+  font-size: 10px;
+  width: 110px;
+  font-weight: 700;
+}
+table.cal td.reason { font-size: 11px; color: #444; line-height: 1.5; }
+
+tr.action-del td.action { color: var(--delete-bd); }
+tr.action-del { background: #fef9f7; }
+tr.action-decide td.action { color: var(--decide-bd); }
+tr.action-decide { background: #fefbf5; }
+tr.action-keep td.action { color: var(--keep-bd); }
+tr.action-past td.action { color: #777; }
+tr.action-past { background: #fafafa; }
+
+.note {
+  font-size: 10px;
+  color: var(--muted);
+  margin: 4px 0 12px;
+  padding: 6px 10px;
+  background: var(--soft);
+  border-left: 2px solid var(--muted);
+  border-radius: 2px;
+}
+
+.execplan {
+  background: #e6f3e6;
+  border-left: 3px solid var(--keep-bd);
+  padding: 10px 12px;
+  border-radius: 3px;
+  margin-top: 12px;
+}
+.execplan h3 { font-size: 12px; color: var(--keep-bd); margin-bottom: 6px; }
+.execplan ol { padding-left: 20px; }
+.execplan ol li { font-size: 11px; margin-bottom: 4px; line-height: 1.55; }
+
+footer {
+  margin-top: 24px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--muted);
+  text-align: right;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>Calendar 棚卸し 表</h1>
+  <div class="meta">2026-05-18 (月) 22:00 JST 時点 / 範囲: 2026-04-15 〜 2026-12-31 (58 件)</div>
+  <div class="lede">routine ができる前は Calendar 上の予定タスクのみで運用していたため、 同種の作業が「Calendar (手動) + routine (自動)」 で二重化している可能性を整理。 routine 9 件 (うち稼働 7) との重複・凍結プロジェクト残骸・既完了タスクを抽出する。</div>
+</header>
+
+<div class="section">
+  <h2>サマリ (58 件の分類)</h2>
+  <div class="summary-grid">
+    <div class="summary-card del">
+      <div class="label">削除推奨</div>
+      <div class="value">4</div>
+      <div class="sub">凍結プロジェクト残骸 + routine 化済の確認タスク</div>
+    </div>
+    <div class="summary-card decide">
+      <div class="label">要判断</div>
+      <div class="value">39</div>
+      <div class="sub">dev_journal recurring (Weekly × 31 + Monthly × 8)</div>
+    </div>
+    <div class="summary-card keep">
+      <div class="label">残す (未来)</div>
+      <div class="value">6</div>
+      <div class="sub">北原氏 3 件 / 軸 A 判定 / 業務外 2 件</div>
+    </div>
+    <div class="summary-card past">
+      <div class="label">過去・完了済</div>
+      <div class="value">9</div>
+      <div class="sub">そのまま残せばログ。 削除しても OK</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">routine と重複</div>
+      <div class="value">0</div>
+      <div class="sub">明確に同じ仕事をするものは無し</div>
+    </div>
+  </div>
+  <div class="note">
+    <strong>重要な発見</strong>: routine 9 件と Calendar 予定の間で「完全に同じ仕事をする」 重複は実は <strong>無い</strong>。
+    Calendar 側は (a) 個別アポ・準備 / (b) 個人活動 / (c) Obsidian ローカル振り返り / (d) 凍結プロジェクト残骸 で構成されていて、 routine が補完するものはない。
+    整理の主戦場は <strong>凍結プロジェクト残骸 4 件の削除</strong> と <strong>dev_journal recurring 39 件の運用負荷判断</strong>。
+  </div>
+</div>
+
+<div class="section">
+  <h2>① 削除推奨 (4 件)</h2>
+  <h3 class="del">凍結プロジェクト残骸 + routine 化済の確認タスク</h3>
+  <table class="cal">
+    <thead>
+      <tr><th>日時</th><th>件数</th><th>予定名</th><th>判定理由</th><th>操作</th></tr>
+    </thead>
+    <tbody>
+      <tr class="action-del">
+        <td class="date">2026-05-14 (水) 09:00</td>
+        <td class="count">1</td>
+        <td class="title">外部媒体流入 実験の初回確認</td>
+        <td class="reason">distribution experiment v1 は 2026-05-14 に凍結 (STRATEGY.md §4 + memory `frozen-distribution-experiment-v1.md`)。 utm_source 検証は実施されておらず、 既に過去日。</td>
+        <td class="action">削除 (過去)</td>
+      </tr>
+      <tr class="action-del">
+        <td class="date">2026-06-04 (木) 09:00</td>
+        <td class="count">1</td>
+        <td class="title">外部媒体流入 実験の28日判定</td>
+        <td class="reason">同上 (凍結済) で判定対象データなし。 開いても空振り。</td>
+        <td class="action">削除 (未来)</td>
+      </tr>
+      <tr class="action-del">
+        <td class="date">2026-05-18 (月) 09:30</td>
+        <td class="count">1</td>
+        <td class="title">routine 初回実行確認: issue-finder daily perspective queue</td>
+        <td class="reason">routine 自体は今朝 09:09 JST に正常発火済 (Supabase if_jobs に micro-corp::既存マイクロ法人運用者 で pending INSERT)。 確認目的は達成済。</td>
+        <td class="action">削除 (今日確認済)</td>
+      </tr>
+      <tr class="action-del">
+        <td class="date">2026-05-18 (月) 09:00</td>
+        <td class="count">1</td>
+        <td class="title">📊 masatoman.net SEO 監査 PR review (初回)</td>
+        <td class="reason">5/22 deadline で workflow stop 予定なので、 今日確認できれば次回不要。 7/30 軸 A 判定で「再強化」 となれば 7/30 以降に再追加。 ※ <strong>masatoman さんが今日確認したかだけ要チェック</strong>。</td>
+        <td class="action">削除 (確認後)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <h2>② 要判断 (39 件)</h2>
+  <h3 class="decide">dev_journal recurring 2 系列 (重複ではないが運用負荷大)</h3>
+  <table class="cal">
+    <thead>
+      <tr><th>recurring パターン</th><th>件数</th><th>予定名 + 説明</th><th>判定軸</th><th>操作候補</th></tr>
+    </thead>
+    <tbody>
+      <tr class="action-decide">
+        <td class="date">毎週土曜 09:00 (15 分)<br>2026-05-16 〜 2026-12-26</td>
+        <td class="count">31</td>
+        <td class="title">dev_journal Weekly review<br><span style="font-weight:normal;color:#666;">Obsidian で前週の dev_journal を sync + digest 実行 → 主な決定・学び 3 個ピックアップ + 反省 3 行</span></td>
+        <td class="reason">routine 化されていないローカル習慣 (Obsidian 起動 + ターミナルコマンド実行)。 内容自体は価値高いが、 毎週土曜 09:00 という固定で「土曜 旅行 / 引越し / 体調」 で skip しがち。 12 月までで 31 回 = 一度に Calendar 散らかす。</td>
+        <td class="action">下記 3 択</td>
+      </tr>
+      <tr class="action-decide">
+        <td class="date">毎月最終土曜 09:00 (30 分)<br>2026-05-30 〜 2026-12-26</td>
+        <td class="count">8</td>
+        <td class="title">dev_journal Monthly digest<br><span style="font-weight:normal;color:#666;">前月の monthly digest 実行 + 翌月の reports/YYYY-MM-plan.md を 3 行で書く</span></td>
+        <td class="reason">月 1 回の戦略リフレクション。 価値は高いが Weekly review と日付が重なる週 (5/30 / 6/27 / 7/25 / 8/29 / 9/26 / 10/31 / 11/28 / 12/26) は両方走らせる前提。</td>
+        <td class="action">下記 3 択</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note" style="background:#fef5e7; border-left-color:#b8862e;">
+    <strong>3 択の判断材料</strong>:
+    <ul style="padding-left:18px; margin-top:4px;">
+      <li><strong>A. 全部残す</strong> — 「忘れずやる」 ことに価値、 Calendar が散らかっても OK。 過去 2 ヶ月 (5/16 / 5/23) 実施状況を masatoman さん自己確認 → 8 割以上実施なら継続。</li>
+      <li><strong>B. 直近 4 週分だけ残す</strong> — 5/23 / 5/30 / 6/06 / 6/13 のみ残し、 残り 27 件削除。 毎月最終週に「次の 4 週分追加」 を Calendar 化。 心理的負荷低下、 実施率向上期待。</li>
+      <li><strong>C. routine 化</strong> — sync + digest コマンドを Bash で自動実行する routine に変換 (毎週土曜 09:00 JST = 0:00 UTC)。 ただし Obsidian での「主な決定 3 個ピックアップ + 反省 3 行」 は人間判断なので半自動止まり (slack 通知だけして masatoman は Obsidian で書く)。</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <h2>③ 残す (未来 6 件)</h2>
+  <h3 class="keep">routine 化不能 + 戦略上重要</h3>
+  <table class="cal">
+    <thead>
+      <tr><th>日時</th><th>件数</th><th>予定名</th><th>残す理由</th><th>操作</th></tr>
+    </thead>
+    <tbody>
+      <tr class="action-keep">
+        <td class="date">2026-05-19 (火) 21:00</td>
+        <td class="count">1</td>
+        <td class="title">【準備チェック1】北原さん相談 3 日前</td>
+        <td class="reason">5/22 面談に向けた資料準備の中間チェック (競合比較表 / friend 追加質問返信整理)。</td>
+        <td class="action">残す</td>
+      </tr>
+      <tr class="action-keep">
+        <td class="date">2026-05-21 (木) 21:00</td>
+        <td class="count">1</td>
+        <td class="title">【準備チェック2】前日最終チェック</td>
+        <td class="reason">Zoom 接続テスト + マイク・カメラ + 北原氏経歴再確認 + 30 秒スクリプト練習。</td>
+        <td class="action">残す</td>
+      </tr>
+      <tr class="action-keep">
+        <td class="date">2026-05-22 (金) 19:00</td>
+        <td class="count">1</td>
+        <td class="title">🎯 北原氏相談 (TOKYO 創業ステーション)</td>
+        <td class="reason">軸 B 主軸の最大イベント。 demo-gallery ライブ + 法人化 + IT 導入支援事業者 + 工務店紹介依頼。</td>
+        <td class="action">残す</td>
+      </tr>
+      <tr class="action-keep">
+        <td class="date">2026-05-23 (土) 10:00</td>
+        <td class="count">1</td>
+        <td class="title">🏡 目黒探索 (引越し検討)</td>
+        <td class="reason">個人活動 (住居検討)、 routine 化対象外。</td>
+        <td class="action">残す</td>
+      </tr>
+      <tr class="action-keep">
+        <td class="date">2026-05-24 (日) 14:45</td>
+        <td class="count">1</td>
+        <td class="title">新宿ボードゲーム会</td>
+        <td class="reason">個人活動、 routine 化対象外。</td>
+        <td class="action">残す</td>
+      </tr>
+      <tr class="action-keep">
+        <td class="date">2026-07-30 (木) 09:00</td>
+        <td class="count">1</td>
+        <td class="title">🎯 軸 A masatoman.net 3 ヶ月後判定 (STRATEGY.md §9)</td>
+        <td class="reason">3 ヶ月後判定の最重要マイルストーン。 自動運用継続 / 再強化 / さらに弱維持 を決める。</td>
+        <td class="action">残す</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <h2>④ 過去・完了済 (9 件)</h2>
+  <h3 class="past">削除しても残しても OK (個人の活動ログとして残す価値あり)</h3>
+  <table class="cal">
+    <thead>
+      <tr><th>日時</th><th>件数</th><th>予定名</th><th>分類</th><th>操作</th></tr>
+    </thead>
+    <tbody>
+      <tr class="action-past">
+        <td class="date">2026-04-17 (金) 19:00</td><td class="count">1</td><td class="title">焼肉べこ六 立川店 予約</td><td class="reason">業務外 / 完了</td><td class="action">残す or 削除</td>
+      </tr>
+      <tr class="action-past">
+        <td class="date">2026-04-25 (土) 13:00</td><td class="count">1</td><td class="title">府中ゲーム会</td><td class="reason">業務外 / 完了</td><td class="action">残す or 削除</td>
+      </tr>
+      <tr class="action-past">
+        <td class="date">2026-04-30 (木) 18:30</td><td class="count">1</td><td class="title">ファイナンシャルプランナー</td><td class="reason">業務 (FP 商談、 軸 B 探索枠) / 完了</td><td class="action">残す (記録)</td>
+      </tr>
+      <tr class="action-past">
+        <td class="date">2026-05-05 (火) 18:45</td><td class="count">1</td><td class="title">月島もんじゃ 三日月 予約</td><td class="reason">業務外 / 完了</td><td class="action">残す or 削除</td>
+      </tr>
+      <tr class="action-past">
+        <td class="date">2026-05-14 (水) 09:00</td><td class="count">1</td><td class="title">面談</td><td class="reason">業務 (中身不明、 おそらく friend hearing 関連) / 完了</td><td class="action">残す (記録)</td>
+      </tr>
+      <tr class="action-past">
+        <td class="date">2026-05-16 (土) 09:00</td><td class="count">1</td><td class="title">dev_journal Weekly review (15 分) 初回</td><td class="reason">業務 (recurring 起点) / 完了</td><td class="action">残す (recurring 起点)</td>
+      </tr>
+      <tr class="action-past">
+        <td class="date">2026-05-16 (土) 10:00</td><td class="count">1</td><td class="title">🏙️ 五反田探索 Day 1</td><td class="reason">業務外 / 完了</td><td class="action">残す or 削除</td>
+      </tr>
+      <tr class="action-past">
+        <td class="date">2026-05-17 (日) 10:00</td><td class="count">1</td><td class="title">🏙️ 五反田探索 Day 2</td><td class="reason">業務外 / 完了</td><td class="action">残す or 削除</td>
+      </tr>
+      <tr class="action-past">
+        <td class="date">2026-05-18 (月) 09:00-</td><td class="count">2</td><td class="title">本日朝の確認系 2 件 (SEO 監査 / routine 初回確認)</td><td class="reason">業務 / 完了 → 削除候補 ① に再掲</td><td class="action">削除 (①)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <h2>整理実行プラン</h2>
+  <div class="execplan">
+    <h3>このまま進める順序 (推奨)</h3>
+    <ol>
+      <li><strong>Step 1</strong>: ① 削除推奨 4 件を masatoman さんに確認 → OK なら一括削除実行 (Calendar MCP の `delete_event`、 私から実行可能)。 <strong>所要 1 分</strong>。</li>
+      <li><strong>Step 2</strong>: ② dev_journal recurring 39 件の方針 (A/B/C) を選択 → 選んだ案に応じて削除 or routine 化。 <strong>所要 5-10 分</strong>。</li>
+      <li><strong>Step 3</strong>: ④ 過去 9 件は基本そのまま残す (ログ価値あり)。 「Calendar が見づらい」 なら 4-5 月分のみ後でアーカイブ。</li>
+      <li><strong>Step 4</strong>: routine 側 `nta-app-id-reminder` は claude.ai/code/routines から手動削除 (masatoman さん操作必須、 私から不可)。 ついでに対応。</li>
+    </ol>
+  </div>
+</div>
+
+<footer>
+  生成: Claude Code Opus 4.7 / 2026-05-18 (月) 22:00 JST<br>
+  根拠: Google Calendar list_events 4/15-12/31 = 58 件 / RemoteTrigger list = routine 9 件<br>
+  関連 docs: routines-overview-2026-05-18.html (routine 詳細) / 関連 memory: feedback_user_forgets_periodic_tasks
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>routine + Calendar 棚卸し / 2026-05-18 / portfolio</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --accent: #b85c3a;
+  --warn: #c34a1f;
+  --good: #2d6a4f;
+  --info: #2a5f8f;
+  --card: #ffffff;
+  --border: #e4ddd1;
+  --soft: #f5f0e6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.page {
+  max-width: 1080px;
+  padding: 16mm 18mm;
+  margin: 8mm auto;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+}
+header {
+  border-bottom: 2px solid var(--fg);
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+header h1 { font-size: 20px; font-weight: 700; }
+header .meta { font-size: 10px; color: var(--muted); margin-top: 4px; }
+header .lede { font-size: 11px; color: var(--muted); margin-top: 6px; max-width: 720px; }
+
+.section { margin-bottom: 24px; }
+.section h2 {
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 4px 10px;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.summary-card {
+  background: var(--soft);
+  border-left: 3px solid var(--accent);
+  padding: 8px 10px;
+  border-radius: 3px;
+}
+.summary-card .label { font-size: 9px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+.summary-card .value { font-size: 18px; font-weight: 700; margin-top: 2px; }
+.summary-card .sub { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+.routine {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.routine.disabled { border-left-color: var(--muted); opacity: 0.7; }
+.routine.warn { border-left-color: var(--warn); }
+.routine.good { border-left-color: var(--good); }
+
+.routine-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.routine-head .name {
+  font-size: 13px;
+  font-weight: 700;
+}
+.routine-head .name .emoji { margin-right: 4px; }
+.routine-head .chips {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.chip {
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 2px;
+  background: var(--soft);
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.chip.cron { background: #ede5d4; color: #6b5f47; }
+.chip.last { background: #e3f0e3; color: #2d6a4f; }
+.chip.last.warn { background: #fef0e6; color: #b85c3a; }
+.chip.last.disabled { background: #eee; color: #999; }
+.chip.next { background: #e7f1fa; color: #2a5f8f; }
+.chip.repo { background: #f5e8e0; color: #8a4a30; }
+.chip.once { background: #faf0e0; color: #8a5d2a; }
+
+.routine .body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 4px;
+}
+.routine .col h4 {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  padding-bottom: 2px;
+  border-bottom: 1px dashed var(--border);
+}
+.routine .col.what h4 { color: var(--info); }
+.routine .col.merit h4 { color: var(--good); }
+.routine .col.fix h4 { color: var(--warn); }
+.routine ul { padding-left: 14px; }
+.routine ul li { font-size: 11px; margin-bottom: 3px; line-height: 1.45; }
+.routine .col p { font-size: 11px; line-height: 1.5; }
+
+.cal-group {
+  margin-bottom: 14px;
+}
+.cal-group h3 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 3px;
+  margin-bottom: 6px;
+}
+.cal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+.cal-table th, .cal-table td {
+  padding: 4px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.cal-table th {
+  background: var(--soft);
+  font-weight: 700;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+.cal-table .date { white-space: nowrap; font-family: ui-monospace, "SF Mono", monospace; font-size: 10px; color: var(--muted); }
+.cal-table .title { font-weight: 600; }
+.cal-table tr.highlight td { background: #fff8ef; }
+.cal-table tr.frozen td { background: #f5f0e6; opacity: 0.7; }
+.cal-table tr.frozen .title::after { content: " (凍結 / 削除候補)"; color: var(--warn); font-weight: 700; font-size: 9px; }
+
+.fix-list {
+  background: #fef0e6;
+  border-left: 3px solid var(--warn);
+  padding: 10px 12px;
+  border-radius: 3px;
+  margin-top: 8px;
+}
+.fix-list h3 { font-size: 12px; color: var(--warn); margin-bottom: 6px; }
+.fix-list ol { padding-left: 18px; }
+.fix-list ol li { font-size: 11px; margin-bottom: 4px; line-height: 1.5; }
+
+footer {
+  margin-top: 24px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--muted);
+  text-align: right;
+}
+
+.tag-axis-a { background: #fdebe6; color: #b85c3a; }
+.tag-axis-b { background: #e6f0fa; color: #2a5f8f; }
+.tag-meta { background: #f0e8d8; color: #8a6d2a; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>routine + Calendar 棚卸し</h1>
+  <div class="meta">2026-05-18 (月) 22:00 JST 時点 / portfolio (軸 B 工務店プロジェクト 主軸 repo)</div>
+  <div class="lede">クラウド routine (Anthropic 側) 9 件 + Google Calendar 主要予定 (今日〜8 月) の現状・効用・改善点を 1 枚に整理。 軸 A masatoman.net (自動運用 + 暗黙量産) と 軸 B 工務店プロジェクト (主軸、 5/22 北原氏面談ピーク) が混在する 二軸運用前提。</div>
+</header>
+
+<div class="section">
+  <h2>サマリ</h2>
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="label">Routine 総数</div>
+      <div class="value">9</div>
+      <div class="sub">うち稼働 7 / 待機 (run_once) 1 / 無効 1</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">直近 24h 発火</div>
+      <div class="value">5</div>
+      <div class="sub">night-writer / daily-operator / issue-finder / weekly-auto-article / zero-to-one-diary</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Calendar 予定 (5/18〜8/2)</div>
+      <div class="value">21</div>
+      <div class="sub">うち定期 (weekly review × 10 + monthly digest × 3) = 13、 単発 8</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">要対応</div>
+      <div class="value">3</div>
+      <div class="sub">無効 routine 削除 / 凍結済予定削除 / tuesday-watchdog 初回監視</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>クラウド routine 詳細 (9 件)</h2>
+
+  <!-- 1. night-writer -->
+  <div class="routine">
+    <div class="routine-head">
+      <div class="name"><span class="emoji">🌙</span>night-writer</div>
+      <div class="chips">
+        <span class="chip tag-axis-a">軸 A</span>
+        <span class="chip cron">毎日 02:00 JST</span>
+        <span class="chip last">last: 5/18 02:04 ✅</span>
+        <span class="chip next">next: 5/19 02:06</span>
+        <span class="chip repo">masatoman.net + Qiita + zenn + sns-automation</span>
+      </div>
+    </div>
+    <div class="body">
+      <div class="col what">
+        <h4>何をしている</h4>
+        <ul>
+          <li>dev_journal の直近 14 日エントリから記事ネタを 40 点スコアで採点 (35 点以上で採用)</li>
+          <li>masatoman.net マスター記事を新規生成 + 4 媒体 (Qiita / zenn / はてな / Dev.to / note) に adapted 版を即 git push</li>
+          <li>article_pipeline テーブルに Day+1〜+5 で publish スケジュール INSERT</li>
+          <li>誇張 grep ('MRR ¥XXX' '転換率 X%' 等) で 0 件になるまで自己修正</li>
+        </ul>
+      </div>
+      <div class="col merit">
+        <h4>メリット</h4>
+        <ul>
+          <li>軸 A 量産モード (月 30+ 本生成) の中核、 push 込みで完全ゼロタッチ</li>
+          <li>5 媒体展開で SEO + 流入両面カバー</li>
+          <li>誇張禁止 grep + 一次情報主体 70%+ の publish-gate で品質下限を担保</li>
+          <li>fresh clone 仕様で git 状態のドリフトなし</li>
+        </ul>
+      </div>
+      <div class="col fix">
+        <h4>改善点</h4>
+        <ul>
+          <li>prompt が 8000 字超で メンテコスト高、 STRATEGY.md スナップショットが固まっている → 古くなるリスク</li>
+          <li>カニバリチェックが `ls + slug 近似` で甘い、 意味的重複は検知不可</li>
+          <li>5 媒体 push の どれかが失敗しても Slack 通知が「N 件成功」 のみで原因見えない</li>
+          <li>Phase 3-A (dev_journal 採用) と Phase 3 (新規ネタ) の境界が曖昧、 連日同テーマ生成事故が起きやすい</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. daily-operator -->
+  <div class="routine">
+    <div class="routine-head">
+      <div class="name"><span class="emoji">🛠️</span>daily-operator</div>
+      <div class="chips">
+        <span class="chip tag-meta">軸 A/B 横断</span>
+        <span class="chip cron">毎日 03:00 JST</span>
+        <span class="chip last">last: 5/18 03:01 ✅</span>
+        <span class="chip next">next: 5/19 03:03</span>
+        <span class="chip repo">sns-automation</span>
+      </div>
+    </div>
+    <div class="body">
+      <div class="col what">
+        <h4>何をしている</h4>
+        <ul>
+          <li>CEO: Notion 共有ボード読込 + 4 repo (masatoman.net / portfolio / sns-automation / KOBO) ヘルスチェック</li>
+          <li>Publisher: posting_rules から X 投稿 3 枠 (Build in Public / トレンド再フレーム / 記事シェア) を post_queue に登録</li>
+          <li>Marketer: フォロワー・engagement 分析 + posting_rules 更新</li>
+          <li>Dev Journal: 過去 24h を Slack #dev-crew-logs に集計報告</li>
+          <li>Daily Feedback Brief 400-700 字を生成</li>
+        </ul>
+      </div>
+      <div class="col merit">
+        <h4>メリット</h4>
+        <ul>
+          <li>朝の運用判断を 1 セッションに束ねている (個別 routine だと忘れる)</li>
+          <li>X 投稿の自動化が記事執筆 routine と分離されている (役割明確)</li>
+          <li>毎週月曜は CEO フルモード (先週振り返り + 今週重点) で戦略 PDCA に接続</li>
+        </ul>
+      </div>
+      <div class="col fix">
+        <h4>改善点</h4>
+        <ul>
+          <li>prompt 内に「LaunchKit 日本向け CTA 廃止」「kore-katte-kite 5/31 Go/No-Go」 等 古い記述が大量に残存 (5/17 時点では撤去済戦略のリマインダー)</li>
+          <li>X 投稿 3 枠が「ネタなし日」 でも常に動く設計 → 質の低い投稿リスクあり</li>
+          <li>戦略整合チェックが prompt 内のスナップショット比較のみ、 実 STRATEGY.md を fetch しない</li>
+          <li>pdca-weekly-analyzer の Notion 出力が前提だが、 fetch 失敗時の挙動が「読めなければスキップ」 と弱い</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. issue-finder daily queue -->
+  <div class="routine">
+    <div class="routine-head">
+      <div class="name"><span class="emoji">🔍</span>issue-finder daily perspective queue</div>
+      <div class="chips">
+        <span class="chip tag-axis-b">軸 B 補助</span>
+        <span class="chip cron">毎日 09:00 JST</span>
+        <span class="chip last">last: 5/18 09:09 ✅</span>
+        <span class="chip next">next: 5/19 09:03</span>
+        <span class="chip repo">portfolio</span>
+      </div>
+    </div>
+    <div class="body">
+      <div class="col what">
+        <h4>何をしている</h4>
+        <ul>
+          <li>queries.json の rotationStartDate から経過日数を計算 → perspectives 配列 (14 件) から index を決定</li>
+          <li>今日の `{profileId, role}` を確定 (4 profile = komuten / micro-corp / it-subsidy / financial-planner を 14 perspective に展開)</li>
+          <li>過去 24h 内の同 perspective ジョブを重複チェック</li>
+          <li>Supabase if_jobs に status=pending で INSERT (extra_notes: "auto-queued by daily routine")</li>
+        </ul>
+      </div>
+      <div class="col merit">
+        <h4>メリット</h4>
+        <ul>
+          <li>半自動 (web_search は masatoman の MAX 枠で後で処理) で API 課金ゼロ</li>
+          <li>主軸 = 軸 B の市場リサーチ自動キューイング、 朝起きたら「今日のお題」 が決まっている</li>
+          <li>perspective ローテーション 14 日サイクルで profile 偏りを防ぐ</li>
+        </ul>
+      </div>
+      <div class="col fix">
+        <h4>改善点</h4>
+        <ul>
+          <li>Slack 通知なし → masatoman が「今日のお題」 を見るのに ローカル http://localhost:3000/lab/tools/issue-finder を開く必要 (能動アクション必須)</li>
+          <li>skip 時 (同 perspective 既存) の代替候補 fallback がない → 連日同じ profile が混雑すると無駄ジョブが増える</li>
+          <li>JST 09:00 と UTC 00:00 の境界で日付計算が脆い (うるう秒/サマータイム想定外)</li>
+          <li>masatoman 側 `/issue-finder process` の頻度が低い (週 1-2 回?) と pending が溜まる → 滞留メトリクスなし</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. zero-to-one-diary -->
+  <div class="routine">
+    <div class="routine-head">
+      <div class="name"><span class="emoji">📝</span>zero-to-one-diary</div>
+      <div class="chips">
+        <span class="chip tag-meta">軸 A/B 中立</span>
+        <span class="chip cron">毎日 21:00 JST</span>
+        <span class="chip last">last: 5/18 21:10 ✅</span>
+        <span class="chip next">next: 5/19 21:08</span>
+        <span class="chip repo">masatoman.net</span>
+      </div>
+    </div>
+    <div class="body">
+      <div class="col what">
+        <h4>何をしている</h4>
+        <ul>
+          <li>仕事 1: Slack #dev-crew-logs + dev_journal + Notion 共有ボードから今日の活動を抽出</li>
+          <li>「¥0 からの逆転日記 Day N」 ドラフト (1000-2000 字) を Notion に作成 → Slack 通知</li>
+          <li>仕事 2: masatoman.net で画像なし記事を最大 3 本選び、 Canva MCP で 1200x630px ヒーロー画像生成 → public/images/articles/ に push</li>
+        </ul>
+      </div>
+      <div class="col merit">
+        <h4>メリット</h4>
+        <ul>
+          <li>note 連載のネタ切れ防止 (Build in Public の継続強制装置)</li>
+          <li>軸 A/B 両方の今日の動きを 1 つの物語に束ねる</li>
+          <li>記事画像生成も同 routine で完結、 Canva API 枠の有効活用</li>
+        </ul>
+      </div>
+      <div class="col fix">
+        <h4>改善点</h4>
+        <ul>
+          <li>note への自動公開はせず Notion に貯まるだけ → 何ヶ月か溜まっていないかチェック必要 (masatoman 手動 publish)</li>
+          <li>画像生成失敗 (Canva MCP timeout) 時のフォールバック (黒バックに白文字程度の SVG 自動生成) がない</li>
+          <li>Day 番号は 2026-04-12 起算で固定計算、 routine の途中で日付ずれ・スキップ日が発生したときの整合性チェックなし</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. masatoman-weekly-auto-article -->
+  <div class="routine">
+    <div class="routine-head">
+      <div class="name"><span class="emoji">📄</span>masatoman-weekly-auto-article</div>
+      <div class="chips">
+        <span class="chip tag-axis-a">軸 A</span>
+        <span class="chip cron">毎週月曜 13:00 JST</span>
+        <span class="chip last">last: 5/18 13:03 ✅</span>
+        <span class="chip next">next: 5/25 13:04</span>
+        <span class="chip repo">masatoman.net</span>
+      </div>
+    </div>
+    <div class="body">
+      <div class="col what">
+        <h4>何をしている</h4>
+        <ul>
+          <li>dev_journal 直近 14 日を Supabase MCP で取得 → 失敗 / 数字 / 判断変更 / 一次情報を 40 点スコアリング</li>
+          <li>上位 1 件で記事ドラフト生成 → publish-gate 50 点 (45 通過) で auto-merge PR</li>
+          <li>frontmatter に ai_assisted: true / source_journal_ids を必ず明示 (透明性)</li>
+          <li>月 4 本上限 (gh pr search で同月カウント) を厳守</li>
+        </ul>
+      </div>
+      <div class="col merit">
+        <h4>メリット</h4>
+        <ul>
+          <li>night-writer と独立した「品質ゲート厳格枠」、 ai_assisted 明示で訴求の透明性確保</li>
+          <li>auto-merge workflow と連動して masatoman 介入ゼロで公開まで自走</li>
+          <li>主顧客マッチ度 0.6 未満を hard block → 量より質に振れる安全弁</li>
+        </ul>
+      </div>
+      <div class="col fix">
+        <h4>改善点</h4>
+        <ul>
+          <li>night-writer と「どっちが何を書くか」 の境界が曖昧 (両者とも dev_journal を見る、 重複生成リスク)</li>
+          <li>publish-gate 通過率の累積メトリクスなし → 「skip が多すぎて月 0 本」 でも気付けない</li>
+          <li>dev_journal が空の週 (旅行・体調不良) は「skip 報告のみ」 で代替策なし、 連続 skip 検知 alert 欲しい</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. tuesday-watchdog -->
+  <div class="routine warn">
+    <div class="routine-head">
+      <div class="name"><span class="emoji">🐺</span>masatoman-tuesday-article-watchdog</div>
+      <div class="chips">
+        <span class="chip tag-axis-a">軸 A</span>
+        <span class="chip cron">毎週火曜 13:00 JST</span>
+        <span class="chip last warn">未実行 (5/19 初回)</span>
+        <span class="chip next">next: 5/19 13:05</span>
+        <span class="chip repo">masatoman.net</span>
+      </div>
+    </div>
+    <div class="body">
+      <div class="col what">
+        <h4>何をしている</h4>
+        <ul>
+          <li>直近 24h に merged された label:auto-article の PR を `gh pr list` で取得</li>
+          <li>各記事 URL を curl して 200/404 + HTML 中の 'undefined' 'null' '[object Object]' をチェック</li>
+          <li>frontmatter title 空 / description 30-200 字外 / 本文 500 字未満 を異常判定</li>
+          <li>異常検知時に draft:true 化した unpublish PR を作成 (auto-merge せず、 人間 review 待ち)</li>
+        </ul>
+      </div>
+      <div class="col merit">
+        <h4>メリット</h4>
+        <ul>
+          <li>auto-article の事故 (テンプレートエラー / SSR 失敗) を 24h 内に自動巻き戻し</li>
+          <li>masatoman 手動 publish PR には触らない設計で誤検知ブロック</li>
+          <li>night-writer / weekly-auto-article の「攻め」 に対する「守り」 の routine、 量産モードの安全装置</li>
+        </ul>
+      </div>
+      <div class="col fix">
+        <h4>改善点</h4>
+        <ul>
+          <li><strong>初回 5/19 13:00 JST がぶっつけ本番</strong> → masatoman が結果を確認する手順を Calendar に未登録 (要対応 #3)</li>
+          <li>'null' 検知は本文内に普通に登場する単語 (例: 「null 安全な」 解説記事) で誤検知しやすい、 文脈無視の grep</li>
+          <li>unpublish PR は draft のまま作成 = 通知されないと放置リスク、 Slack 通知が prompt に未記載</li>
+          <li>異常検知の対象が「24h 内 merged」 のみ → 24h 超え後の遅延発覚事故は拾わない</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. pdca-weekly-analyzer -->
+  <div class="routine">
+    <div class="routine-head">
+      <div class="name"><span class="emoji">📊</span>pdca-weekly-analyzer</div>
+      <div class="chips">
+        <span class="chip tag-meta">軸 A/B 横断</span>
+        <span class="chip cron">毎週日曜 08:00 JST</span>
+        <span class="chip last">last: 5/17 08:05 ✅</span>
+        <span class="chip next">next: 5/24 08:00</span>
+        <span class="chip repo">sns-automation</span>
+      </div>
+    </div>
+    <div class="body">
+      <div class="col what">
+        <h4>何をしている</h4>
+        <ul>
+          <li>sns-automation の pdca_analyzer.ts を npm run track:analytics で実行 → 週次 JSON 出力</li>
+          <li>収益 / 流入 / engagement / 勝ちパターン / 推奨アクション TOP3 を分析</li>
+          <li>Notion 共有ボード配下に「PDCA 週次分析 YYYY-MM-DD」 ページ作成</li>
+          <li>Supabase weekly_insights テーブルに INSERT → Slack 通知</li>
+        </ul>
+      </div>
+      <div class="col merit">
+        <h4>メリット</h4>
+        <ul>
+          <li>翌日 daily-operator (月曜 03:00) が必ず読む → 月曜の戦略議論に PDCA データが間に合う</li>
+          <li>推奨アクション TOP3 を Notion 化で masatoman も同期しやすい</li>
+          <li>軸 A 数字 (有料記事購入 / Lab Free 登録) を週次でクローズ</li>
+        </ul>
+      </div>
+      <div class="col fix">
+        <h4>改善点</h4>
+        <ul>
+          <li>軸 B 指標 (demo-gallery 投票 / friend hearing N / たましん訪問成果) が「可能なら」 で任意扱い → 軸 B 主軸時代に合っていない、 必須化したい</li>
+          <li>secrets (GOOGLE_SERVICE_ACCOUNT_JSON) なし時の挙動が「既存 CSV を使う」 で stale データのまま PDCA する事故リスク</li>
+          <li>Notion 出力失敗時のフォールバック (Slack に全レポート) は OK だが、 daily-operator 側は Notion 前提で読みに行く → 連鎖失敗</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. paid-article-followup -->
+  <div class="routine">
+    <div class="routine-head">
+      <div class="name"><span class="emoji">⏰</span>paid-article-design-fix-3months-followup</div>
+      <div class="chips">
+        <span class="chip tag-axis-a">軸 A</span>
+        <span class="chip once">run_once @ 2026-08-02 09:00 JST</span>
+        <span class="chip last disabled">未実行 (待機)</span>
+        <span class="chip repo">masatoman.net</span>
+      </div>
+    </div>
+    <div class="body">
+      <div class="col what">
+        <h4>何をしている</h4>
+        <ul>
+          <li>2026-05-02 公開「有料記事 9 本 sales=0」 記事の 3 ヶ月後経過レポートをドラフト生成</li>
+          <li>dev_journal 5/2〜8/2 の有料記事・サブスク販売実績を SQL で抽出</li>
+          <li>Before/After + 動いた指標・動かなかった指標 + 7/30 軸 A 3 ヶ月後判定との位置づけを記事化</li>
+          <li>draft:true で commit + push (公開は masatoman 判断)</li>
+        </ul>
+      </div>
+      <div class="col merit">
+        <h4>メリット</h4>
+        <ul>
+          <li>「失敗を全公開」 のポジショニング (§3 差別化軸) に直結する経過記事を忘れず書く仕組み</li>
+          <li>7/30 判定の 3 日後 = 判定結果を含めた説得力ある記事になる設計</li>
+        </ul>
+      </div>
+      <div class="col fix">
+        <h4>改善点</h4>
+        <ul>
+          <li>7/30 軸 A 3 ヶ月後判定 (Calendar) と 8/2 routine 実行のあいだに 3 日しかない → 判定結果が docs にまとまる前に routine が走る順序リスク</li>
+          <li>「数字が悪い場合 / 戦略変更があった場合」 の分岐がなく、 同じテンプレで書こうとする</li>
+          <li>placeholder `[補完待ち: ...]` が残る前提だが、 masatoman が手で埋めない限り公開できない (=routine の effort が宙ぶらりんになる可能性)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. nta-app-id-reminder -->
+  <div class="routine disabled">
+    <div class="routine-head">
+      <div class="name"><span class="emoji">🗑️</span>nta-app-id-reminder</div>
+      <div class="chips">
+        <span class="chip tag-meta" style="background:#eee;color:#999;">凍結プロジェクト</span>
+        <span class="chip cron" style="background:#eee;color:#999;">毎年 5/10 10:01 UTC</span>
+        <span class="chip last disabled">enabled=false</span>
+        <span class="chip repo" style="background:#eee;color:#999;">(FreelanceGuard)</span>
+      </div>
+    </div>
+    <div class="body">
+      <div class="col what">
+        <h4>何をしている</h4>
+        <ul>
+          <li>国税庁の「適格請求書発行事業者公表システム Web-API」 アプリケーション ID 申請のフォローアップリマインド</li>
+          <li>Gmail を検索して ID 通知メールがあるか確認 → Slack 通知</li>
+        </ul>
+      </div>
+      <div class="col merit">
+        <h4>メリット</h4>
+        <ul>
+          <li>本来は FreelanceGuard の T 番号チェッカー機能で必要だった</li>
+          <li>現状は FreelanceGuard 自体が凍結 (2026-04-12 STRATEGY.md §7) なので機能停止が正解</li>
+        </ul>
+      </div>
+      <div class="col fix">
+        <h4>改善点</h4>
+        <ul>
+          <li><strong>削除推奨</strong> (要対応 #1)。 https://claude.ai/code/routines から手動削除のみ可能</li>
+          <li>すでに enabled=false なので発火しないが、 list を散らかすだけ</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="section">
+  <h2>Google Calendar 主要予定 (今日〜2026-08-02)</h2>
+
+  <div class="cal-group">
+    <h3>① 直近 1 週間 (5/18〜5/24) — 北原氏面談に向けた最重要期</h3>
+    <table class="cal-table">
+      <thead>
+        <tr><th style="width:13%">日時</th><th style="width:32%">予定</th><th>意味・改善点</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="date">5/18 (月) 09:00</td>
+          <td class="title">📊 masatoman.net SEO 監査 PR review (初回)</td>
+          <td>seo-audit-weekly.yml workflow 初回結果の review。 5/22 deadline で stop 予定の workflow が、 7/30 軸 A 3 ヶ月後判定で「軸 A 再強化」 と決まれば延長される。 <strong>今日 09:00 過ぎ → 確認済か?</strong></td>
+        </tr>
+        <tr>
+          <td class="date">5/18 (月) 09:30</td>
+          <td class="title">routine 初回実行確認 (issue-finder)</td>
+          <td>同上の check (Supabase if_jobs SELECT)。 上の表のとおり routine 自体は 09:09 JST に正常発火 → OK 判定可能。</td>
+        </tr>
+        <tr class="highlight">
+          <td class="date">5/19 (火) 13:00</td>
+          <td class="title">🐺 tuesday-watchdog 初回 (routine 側)</td>
+          <td>明日 月曜公開記事の 24h 後異常検知が初稼働。 Slack 通知が prompt に未記載なので、 masatoman が能動的に claude.ai/code/routines を見に行く必要あり。</td>
+        </tr>
+        <tr>
+          <td class="date">5/19 (火) 21:00</td>
+          <td class="title">【準備チェック1】北原さん相談 3 日前</td>
+          <td>競合 5 社機能比較表 + 友人ヒアリング追加質問返信整理 + 30 秒スクリプト練習。</td>
+        </tr>
+        <tr>
+          <td class="date">5/21 (木) 21:00</td>
+          <td class="title">【準備チェック2】前日 Zoom テスト</td>
+          <td>Zoom URL 受信確認 + アプリ更新 + マイク・カメラテスト + 北原氏経歴再確認。</td>
+        </tr>
+        <tr class="highlight">
+          <td class="date">5/22 (金) 19:00</td>
+          <td class="title">🎯 北原氏面談 (TOKYO 創業ステーション、 オンライン 45 分)</td>
+          <td><strong>軸 B 主軸の最大イベント</strong>。 demo-gallery iPad ライブ + 法人化判断 + IT 導入支援事業者 + 工務店紹介依頼 + 認定支援機関税理士紹介。 終了直後 19:45-20:00 に次回 (5/29) 即予約。</td>
+        </tr>
+        <tr>
+          <td class="date">5/23 (土) 09:00</td>
+          <td class="title">dev_journal Weekly review (15 分)</td>
+          <td>毎週土曜 recurring (5/23〜7/25 まで 10 回入っている)。 Obsidian で振り返り、 主な決定・学び 3 個ピックアップ。</td>
+        </tr>
+        <tr>
+          <td class="date">5/23 (土) 10:00</td>
+          <td class="title">🏡 目黒探索 (引越し検討)</td>
+          <td>商店街リサーチ + 坂道 + 夜の雰囲気チェック。 軸 B 業務外、 生活基盤の検討。</td>
+        </tr>
+        <tr>
+          <td class="date">5/24 (日) 14:45</td>
+          <td class="title">新宿ボードゲーム会</td>
+          <td>業務外イベント。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cal-group">
+    <h3>② 中期 (5/30〜6/30) — 友人ヒアリング・たましん訪問・住宅デー期</h3>
+    <table class="cal-table">
+      <thead>
+        <tr><th style="width:13%">日時</th><th style="width:32%">予定</th><th>意味・改善点</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="date">5/30 (金) 09:00</td>
+          <td class="title">dev_journal Monthly digest (30 分)</td>
+          <td>5 月総括 + 6 月計画 reports/2026-06-plan.md を 3 行で書く。 毎月最終金曜 recurring (5/30 / 6/27 / 7/25 入)。</td>
+        </tr>
+        <tr class="frozen">
+          <td class="date">6/04 (木) 09:00</td>
+          <td class="title">外部媒体流入 実験の 28 日判定</td>
+          <td>distribution experiment v1 が 5/14 凍結済 (STRATEGY.md §4 + memory `frozen-distribution-experiment-v1.md`)。 判定対象データなし。 <strong>削除推奨</strong> (要対応 #2)。</td>
+        </tr>
+        <tr>
+          <td class="date">6/06〜6/27 (土) 09:00</td>
+          <td class="title">dev_journal Weekly review × 4 回</td>
+          <td>毎週土曜 recurring。 引越し・旅行で参加できない週は手動 skip 必要。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cal-group">
+    <h3>③ 長期マイルストーン (7/4〜8/2)</h3>
+    <table class="cal-table">
+      <thead>
+        <tr><th style="width:13%">日時</th><th style="width:32%">予定</th><th>意味・改善点</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="date">7/04〜7/25 (土) 09:00</td>
+          <td class="title">dev_journal Weekly review × 4 回</td>
+          <td>毎週土曜 recurring。 7/25 は Monthly digest と併発。</td>
+        </tr>
+        <tr class="highlight">
+          <td class="date">7/30 (木) 09:00</td>
+          <td class="title">🎯 軸 A masatoman.net 3 ヶ月後判定</td>
+          <td><strong>STRATEGY.md §9 で定めた最重要判定</strong>。 軸 A 自動運用継続 / 再強化 / さらに弱維持 を決める。 seo-audit-weekly.yml DEADLINE 延長判断もここ。</td>
+        </tr>
+        <tr>
+          <td class="date">8/02 (日) 09:00</td>
+          <td class="title">⏰ paid-article followup routine 実行 (routine 側)</td>
+          <td>7/30 判定結果が docs にまとまっていれば routine が活用可。 順序的にタイト (3 日のみ) → 判定後に prompt 補強する手間あり。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="section">
+  <h2>要対応 3 件 + 全体改善提案</h2>
+
+  <div class="fix-list">
+    <h3>要対応 (短期、 5/19 までに)</h3>
+    <ol>
+      <li><strong>nta-app-id-reminder routine 削除</strong> — claude.ai/code/routines から手動削除。 FreelanceGuard 凍結 (2026-04-12) で機能停止済、 list を散らかすだけ。</li>
+      <li><strong>6/4 (木) 09:00 「外部媒体流入 実験の 28 日判定」 Calendar 削除</strong> — distribution experiment v1 凍結 (5/14) で判定対象データなし。</li>
+      <li><strong>5/19 (火) 13:30 JST 付近で tuesday-watchdog 初回結果確認</strong> — Slack 通知が未実装のため、 masatoman が claude.ai/code/routines を見に行く必要。 Calendar に追加推奨。</li>
+    </ol>
+  </div>
+
+  <div class="fix-list" style="background:#e6f0fa; border-left-color:#2a5f8f;">
+    <h3 style="color:#2a5f8f;">中期改善 (5 月中〜6 月、 routine 設計の質向上)</h3>
+    <ol>
+      <li><strong>routine 間で「STRATEGY.md fetcher」 を共通化</strong> — 現状は各 prompt 内にスナップショットがハードコード、 戦略変更があるたび 7 件の prompt を手動 update。 GitHub raw URL を curl する Bash step を共通化したい。</li>
+      <li><strong>Slack 通知を欠けている 3 routine に追加</strong> — issue-finder daily queue / tuesday-watchdog / zero-to-one-diary は完了通知なし。 失敗時 (24h 沈黙) の検知が能動アクション頼み。</li>
+      <li><strong>night-writer と weekly-auto-article のカニバリ解消</strong> — 両者とも dev_journal を見て記事生成、 同テーマ重複リスク。 weekly-auto-article は night-writer が touched した dev_journal id を除外する設計に。</li>
+      <li><strong>publish-gate 通過率の累積メトリクス</strong> — 「skip が多くて月 0 本」 でも気付かない。 Supabase に gate_decisions テーブルを足して週次集計を pdca-weekly-analyzer で可視化。</li>
+      <li><strong>tuesday-watchdog の異常判定基準を厳格化</strong> — 'null' grep は文脈無視で誤検知しやすい、 「frontmatter 不正」「HTTP 5xx」「本文 0 字」 等の確実シグナルに絞る。</li>
+    </ol>
+  </div>
+
+  <div class="fix-list" style="background:#fef5e7; border-left-color:#b8862e;">
+    <h3 style="color:#b8862e;">7/30 軸 A 3 ヶ月後判定で再評価する論点</h3>
+    <ol>
+      <li><strong>軸 A 量産モード継続可否</strong> — night-writer + weekly-auto-article + tuesday-watchdog の 3 routine が月 30+ 本生成体制を維持する価値はあるか? STRATEGY.md §3 の「弱維持」 表記との乖離をそのまま許容するか、 表記を更新するか。</li>
+      <li><strong>pdca-weekly-analyzer の軸 B 指標必須化</strong> — 軸 B 主軸時代に合わせて、 demo-gallery 投票数 / friend hearing N / たましん訪問成果を必須出力に。</li>
+      <li><strong>seo-audit-weekly.yml の DEADLINE 延長</strong> — 5/22 stop 設定だが、 判定で軸 A 再強化なら 2026-08-31 等に延長 + 週次 SEO 監査 PR review Calendar 再追加。</li>
+      <li><strong>paid-article followup routine の役割再定義</strong> — 7/30 判定との 3 日差順序を再整理、 判定結果を待ってから run_once_at を 8/5 等に後ろ倒しするか検討。</li>
+    </ol>
+  </div>
+
+</div>
+
+<footer>
+  生成: Claude Code Opus 4.7 / 2026-05-18 (月) 22:00 JST<br>
+  根拠データ: RemoteTrigger list (9 routine) + Google Calendar list_events (5/18〜8/2、 21 件)<br>
+  関連 memory: axis-a-implicit-rescaled-2026-05-17 / feedback_user_forgets_periodic_tasks / pr-review-via-schedule
+</footer>
+
+</div>
+</body>
+</html>

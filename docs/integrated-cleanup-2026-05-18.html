@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>routine + Cowork + Calendar 3 経路統合棚卸し / 2026-05-18 / portfolio</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --accent: #b85c3a;
+  --warn: #c34a1f;
+  --good: #2d6a4f;
+  --info: #2a5f8f;
+  --gold: #b8862e;
+  --card: #ffffff;
+  --border: #e4ddd1;
+  --soft: #f5f0e6;
+  --routine-bg: #e7f1fa; --routine-bd: #2a5f8f;
+  --cowork-bg: #f0e7fa; --cowork-bd: #6a3a9c;
+  --cal-bg: #e6f3e6; --cal-bd: #2d6a4f;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.page {
+  max-width: 1180px;
+  padding: 14mm 16mm;
+  margin: 8mm auto;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+}
+header {
+  border-bottom: 2px solid var(--fg);
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+header h1 { font-size: 21px; font-weight: 700; }
+header .meta { font-size: 10px; color: var(--muted); margin-top: 4px; }
+header .lede { font-size: 11px; color: var(--muted); margin-top: 6px; max-width: 820px; }
+
+.section { margin-bottom: 24px; }
+.section h2 {
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 4px 10px;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+.section h3 {
+  font-size: 12px;
+  font-weight: 700;
+  margin: 14px 0 6px;
+  color: var(--accent);
+  padding-bottom: 3px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.summary-card {
+  background: var(--soft);
+  border-left: 3px solid var(--accent);
+  padding: 9px 11px;
+  border-radius: 3px;
+}
+.summary-card.routine { background: var(--routine-bg); border-left-color: var(--routine-bd); }
+.summary-card.cowork { background: var(--cowork-bg); border-left-color: var(--cowork-bd); }
+.summary-card.cal { background: var(--cal-bg); border-left-color: var(--cal-bd); }
+.summary-card.center { background: white; border: 1px solid var(--border); border-left: 3px solid var(--warn); }
+.summary-card .label { font-size: 9px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+.summary-card .value { font-size: 20px; font-weight: 700; margin-top: 2px; }
+.summary-card .sub { font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+
+.headline {
+  background: #fff8ef;
+  border: 1px solid var(--gold);
+  border-left: 4px solid var(--gold);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+.headline h3 {
+  border: none;
+  color: var(--gold);
+  margin: 0 0 4px;
+  padding: 0;
+  font-size: 13px;
+}
+.headline p { font-size: 11px; line-height: 1.6; }
+
+table.timeline {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+table.timeline th, table.timeline td {
+  padding: 5px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+table.timeline th {
+  background: var(--soft);
+  font-weight: 700;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+table.timeline td.time { white-space: nowrap; font-family: ui-monospace, "SF Mono", monospace; font-size: 10px; color: var(--fg); font-weight: 600; width: 95px; }
+table.timeline td.cadence { white-space: nowrap; font-size: 10px; color: var(--muted); width: 110px; }
+table.timeline td.path { width: 80px; }
+table.timeline td.name { font-weight: 600; width: 22%; }
+table.timeline td.role { font-size: 11px; color: #444; line-height: 1.5; }
+
+.tag {
+  display: inline-block;
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 2px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.tag.routine { background: var(--routine-bg); color: var(--routine-bd); }
+.tag.cowork { background: var(--cowork-bg); color: var(--cowork-bd); }
+.tag.cal { background: var(--cal-bg); color: var(--cal-bd); }
+.tag.axis-a { background: #fdebe6; color: var(--warn); }
+.tag.axis-b { background: #e6f0fa; color: var(--info); }
+.tag.meta { background: #f0e8d8; color: #8a6d2a; }
+.tag.aff { background: #f0e7fa; color: #6a3a9c; }
+.tag.dead { background: #eee; color: #888; }
+
+tr.collision td { background: #fff5e6; }
+tr.disabled td { background: #f5f5f5; opacity: 0.7; }
+tr.disabled td.name::after { content: " (無効)"; color: var(--warn); font-weight: 700; font-size: 9px; }
+
+.findings {
+  background: #fdebe6;
+  border-left: 3px solid var(--warn);
+  padding: 10px 14px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+.findings.info { background: #e7f1fa; border-left-color: var(--info); }
+.findings.good { background: #e6f3e6; border-left-color: var(--good); }
+.findings.gold { background: #fef5e7; border-left-color: var(--gold); }
+.findings h3 {
+  border: none;
+  margin: 0 0 6px;
+  padding: 0;
+  font-size: 12px;
+}
+.findings.info h3 { color: var(--info); }
+.findings.good h3 { color: var(--good); }
+.findings.gold h3 { color: var(--gold); }
+.findings.warn h3 { color: var(--warn); }
+.findings ol, .findings ul { padding-left: 20px; }
+.findings li { font-size: 11px; margin-bottom: 4px; line-height: 1.55; }
+
+.flow-diagram {
+  background: var(--soft);
+  border: 1px solid var(--border);
+  padding: 12px 16px;
+  border-radius: 3px;
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 10px;
+  line-height: 1.8;
+  white-space: pre;
+  overflow-x: auto;
+  color: #444;
+}
+
+footer {
+  margin-top: 24px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--muted);
+  text-align: right;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>routine + Cowork + Calendar 3 経路統合棚卸し</h1>
+  <div class="meta">2026-05-18 (月) 22:30 JST / portfolio (軸 B 工務店プロジェクト 主軸 repo)</div>
+  <div class="lede">「ルーティーンができる前は Cowork 予定タスクでしか実行してこなかった」 ことを踏まえ、 routine (Anthropic クラウド) / Cowork (Mac アプリ) / Calendar (Google) 3 経路を初めて統合棚卸し。 結論: <strong>明確な重複は 0 件</strong>、 ただし戦略文書 (STRATEGY.md / memory) との大きな乖離が複数発覚。</div>
+</header>
+
+<div class="section">
+  <h2>サマリ (3 経路で 73 件)</h2>
+  <div class="summary-grid">
+    <div class="summary-card routine">
+      <div class="label">routine</div>
+      <div class="value">9</div>
+      <div class="sub">Anthropic クラウド cron / 稼働 7 / 待機 1 / 無効 1<br>Mac 起動不要</div>
+    </div>
+    <div class="summary-card cowork">
+      <div class="label">Cowork</div>
+      <div class="value">6</div>
+      <div class="sub">Claude Desktop アプリ / 全件アクティブ<br><strong>Mac スリープ中は止まる</strong></div>
+    </div>
+    <div class="summary-card cal">
+      <div class="label">Calendar</div>
+      <div class="value">58</div>
+      <div class="sub">手動・recurring (Obsidian 振り返り 39 件含む)<br>リマインダーのみ</div>
+    </div>
+    <div class="summary-card center">
+      <div class="label">明確な重複</div>
+      <div class="value">0</div>
+      <div class="sub">3 経路は綺麗に分業<br>注意点 4 / 文書ギャップ 3</div>
+    </div>
+  </div>
+
+  <div class="headline">
+    <h3>🚨 最重要発見: Affiliate Crew (ai-crew.site) が戦略文書に存在しない</h3>
+    <p>
+      Cowork で 2026-04-02 から <strong>毎日休まず 40+ 回稼働中</strong> の主力プロジェクト <strong>Affiliate Crew</strong> (Aff writer + Aff engineer の 2 タスク、 新ドメイン <code>ai-crew.site</code> + masatoman.net pSEO サテライト、 専用 Slack channel <code>#aff-crew-logs</code>、 専用 Notion ボード <code>336a5fa7…</code>) が、 STRATEGY.md にも 199 memory にも一切記述されていない。
+      最終 CTA は masatoman.net Lab Free 登録なので構造的には <strong>軸 A の集客サテライト</strong>。 軸 A 「自動運用 / 弱維持」 方針の解釈に直接影響する。
+    </p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>24h タイムテーブル (全 16 件の自動稼働)</h2>
+  <table class="timeline">
+    <thead>
+      <tr><th>時刻 (JST)</th><th>頻度</th><th>経路</th><th>名前</th><th>役割</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="time">02:00</td><td class="cadence">毎日</td><td class="path"><span class="tag routine">routine</span></td>
+        <td class="name">night-writer <span class="tag axis-a">軸A</span></td>
+        <td class="role">dev_journal → masatoman.net + Qiita + zenn + sns-automation/adapted-articles/ の 5 媒体 push</td>
+      </tr>
+      <tr class="collision">
+        <td class="time">03:00</td><td class="cadence">毎日</td><td class="path"><span class="tag routine">routine</span></td>
+        <td class="name">daily-operator <span class="tag meta">横断</span></td>
+        <td class="role">CEO / Publisher / Marketer / Dev Journal 集計 / Feedback Brief 統合 (X 投稿 3 枠登録)</td>
+      </tr>
+      <tr class="collision">
+        <td class="time">03:00</td><td class="cadence">毎日</td><td class="path"><span class="tag cowork">Cowork</span></td>
+        <td class="name">Night publisher <span class="tag axis-a">軸A</span></td>
+        <td class="role">sns-automation/hatena_publisher.ts + note_publisher.ts を呼んで実公開 (Dev.to は GitHub Actions 担当)</td>
+      </tr>
+      <tr>
+        <td class="time">08:00</td><td class="cadence">平日</td><td class="path"><span class="tag cowork">Cowork</span></td>
+        <td class="name">Morning brief weekday <span class="tag meta">個人</span></td>
+        <td class="role">Google Calendar + Gmail 過去 24h 未読 → 平日朝の Today's Focus ブリーフ</td>
+      </tr>
+      <tr>
+        <td class="time">08:00</td><td class="cadence">日曜</td><td class="path"><span class="tag routine">routine</span></td>
+        <td class="name">pdca-weekly-analyzer <span class="tag meta">横断</span></td>
+        <td class="role">pdca_analyzer.ts 実行 → JSON 出力 → Notion 共有ボード「PDCA 週次分析」 ページ作成 → Supabase weekly_insights INSERT</td>
+      </tr>
+      <tr>
+        <td class="time">09:00</td><td class="cadence">毎日</td><td class="path"><span class="tag routine">routine</span></td>
+        <td class="name">issue-finder daily perspective queue <span class="tag axis-b">軸B</span></td>
+        <td class="role">queries.json の rotation 計算 → Supabase if_jobs に pending ジョブ INSERT (半自動、 後で /issue-finder process で処理)</td>
+      </tr>
+      <tr>
+        <td class="time">09:00</td><td class="cadence">月初日曜</td><td class="path"><span class="tag cowork">Cowork</span></td>
+        <td class="name">Maintenance auditor <span class="tag meta">監査</span></td>
+        <td class="role">モノレポ 6 領域 (plans/memory/scheduled-tasks/.claude/GitHub Actions/Skills) 整合性監査、 赤/黄/緑分類、 自動修正禁止</td>
+      </tr>
+      <tr>
+        <td class="time">13:00</td><td class="cadence">月曜</td><td class="path"><span class="tag routine">routine</span></td>
+        <td class="name">masatoman-weekly-auto-article <span class="tag axis-a">軸A</span></td>
+        <td class="role">dev_journal スコアリング → publish-gate 45/50 通過なら masatoman.net 記事 auto-merge、 月 4 本上限</td>
+      </tr>
+      <tr>
+        <td class="time">13:00</td><td class="cadence">火曜</td><td class="path"><span class="tag routine">routine</span></td>
+        <td class="name">masatoman-tuesday-article-watchdog <span class="tag axis-a">軸A</span></td>
+        <td class="role">前日公開 auto-article の 24h 後異常検知 (404 / 'undefined' / 短文 等)、 異常なら draft:true 化 PR 作成。 <strong>初回 5/19 13:00</strong></td>
+      </tr>
+      <tr>
+        <td class="time">14:00</td><td class="cadence">毎日</td><td class="path"><span class="tag cowork">Cowork</span></td>
+        <td class="name">Aff writer <span class="tag aff">Aff</span></td>
+        <td class="role">ai-crew.site + masatoman.net 配下に pSEO 記事執筆 (Layer 1/2 分類、 KOBO CTA 必須)、 Notion 336a5fa7 + Slack #aff-crew-logs。 <strong>40+ 回稼働 / 戦略文書未記載</strong></td>
+      </tr>
+      <tr>
+        <td class="time">18:30</td><td class="cadence">月水金</td><td class="path"><span class="tag cowork">Cowork</span></td>
+        <td class="name">Aff engineer <span class="tag aff">Aff</span></td>
+        <td class="role">masatoman.net サイト構築・画像 frontmatter 設定・Vercel デプロイ、 git pull --rebase 込み osascript 経由。 <strong>初期構築完了後は週 1 移行予定</strong></td>
+      </tr>
+      <tr>
+        <td class="time">21:00</td><td class="cadence">毎日</td><td class="path"><span class="tag routine">routine</span></td>
+        <td class="name">zero-to-one-diary <span class="tag meta">横断</span></td>
+        <td class="role">「¥0 からの逆転日記 Day N」 を Notion にドラフト + Canva MCP で記事ヒーロー画像生成 + git push</td>
+      </tr>
+      <tr>
+        <td class="time">00:00</td><td class="cadence">毎月 1 日</td><td class="path"><span class="tag cowork">Cowork</span></td>
+        <td class="name">Monthly archiver <span class="tag meta">集約</span></td>
+        <td class="role">前月の pdca-weekly-analyzer JSON 4-5 本 → sns-automation/reports/monthly_YYYY-MM.md に 5 ブロック (数字 / 主要イベント / トップ投稿 / 学び / 記事ネタ) 集約</td>
+      </tr>
+      <tr>
+        <td class="time">8/2 09:00</td><td class="cadence">1 回限り</td><td class="path"><span class="tag routine">routine</span></td>
+        <td class="name">paid-article-design-fix-3months-followup <span class="tag axis-a">軸A</span></td>
+        <td class="role">5/2 公開 paid-article 記事の 3 ヶ月後経過レポートドラフト、 draft:true で commit (7/30 軸 A 判定 の 3 日後)</td>
+      </tr>
+      <tr class="disabled">
+        <td class="time">5/10</td><td class="cadence">年次</td><td class="path"><span class="tag routine">routine</span></td>
+        <td class="name">nta-app-id-reminder <span class="tag dead">凍結</span></td>
+        <td class="role">FreelanceGuard 凍結プロジェクト残骸、 enabled=false。 <strong>削除推奨</strong></td>
+      </tr>
+      <tr>
+        <td class="time">土09:00</td><td class="cadence">毎週 (31 回)</td><td class="path"><span class="tag cal">Calendar</span></td>
+        <td class="name">dev_journal Weekly review <span class="tag meta">習慣</span></td>
+        <td class="role">Obsidian で過去 1 週間振り返り、 決定・学び 3 個ピックアップ + 反省 3 行 (人手、 routine 化候補)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <h2>記事執筆・配信パイプライン (現状の役割分担)</h2>
+  <div class="flow-diagram">
+   ┌─ 02:00 night-writer (routine) ─┐
+   │  dev_journal 採点 + 記事生成    │
+   │                                 │
+   ├──→ masatoman.net (記事本体)      │ ← 14:00 Aff writer も同 repo に追記 (要 rebase)
+   ├──→ Qiita (adapted)              │
+   ├──→ zenn (adapted)               │
+   └──→ sns-automation/adapted-articles/{hatena,note,devto}/<slug>.md
+                          │
+                          ▼
+            ┌─ 03:00 Night publisher (Cowork) ─┐
+            │  hatena_publisher.ts → はてな    │
+            │  note_publisher.ts   → note      │
+            └──────────────────────────────────┘
+                          │
+            ┌─ 毎時 :15 UTC GitHub Actions ────┐
+            │  devto-publisher.yml → Dev.to    │
+            └──────────────────────────────────┘
+
+   ┌─ 14:00 Aff writer (Cowork) ───────────┐
+   │  ai-crew.site pSEO 記事生成            │
+   │  → masatoman.net にも pSEO 追記        │  ← night-writer と同 repo (二経路書き込み)
+   │  → Notion 336a5fa7 + #aff-crew-logs    │
+   └────────────────────────────────────────┘
+
+   ┌─ 18:30 月水金 Aff engineer (Cowork) ──┐
+   │  masatoman.net 画像 frontmatter 設定    │
+   │  git pull --rebase + Vercel deploy     │  ← rebase で衝突防止 (他経路もこの安全策が必要)
+   └────────────────────────────────────────┘
+  </div>
+</div>
+
+<div class="section">
+  <h2>確定: 重複 0 件 / 注意点 4 件 / 文書ギャップ 3 件</h2>
+
+  <div class="findings good">
+    <h3>✅ 明確な重複 = 0 件</h3>
+    <ul>
+      <li>3 経路は綺麗に役割分担されており、 「完全に同じ仕事を別経路で 2 回やる」 タスクは無い。</li>
+      <li>特に night-writer (routine 02:00) → Night publisher (Cowork 03:00) → GitHub Actions devto-publisher.yml の パイプラインは整合的。</li>
+      <li>pdca-weekly-analyzer (routine 週次) → Monthly archiver (Cowork 月次) の集約パイプラインも上下関係で重複ではない。</li>
+    </ul>
+  </div>
+
+  <div class="findings">
+    <h3>⚠️ 注意点 4 件</h3>
+    <ol>
+      <li><strong>03:00 JST 同時起動 2 件</strong>: routine daily-operator + Cowork Night publisher。 リソース衝突せず (前者 Anthropic クラウド、 後者 Mac 本体)、 ただ Slack 通知が連続。 意図的なら問題なし。</li>
+      <li><strong>masatoman.net 同時書き込み 4 経路</strong>: night-writer (02:00) / weekly-auto-article (月 13:00) / Aff writer (14:00) / Aff engineer (月水金 18:30) が同 repo に push。 Aff engineer は git pull --rebase で守ってる、 <strong>他 3 経路の rebase 確認が必要</strong>。</li>
+      <li><strong>Aff engineer 縮退予定</strong>: SKILL.md に「初期構築完了後は週 1 に移行予定 (現在は月水金)」 と明記。 初期構築は 4 月開始から 1.5 ヶ月、 そろそろ週 1 への移行タイミング判断要。</li>
+      <li><strong>Aff writer の _shared/ ファイル欠落</strong>: SKILL.md が「最初に必読」 として参照する <code>~/Documents/Claude/Scheduled/_shared/{writing-guidelines, channel-roles, case-studies}.md</code> が <strong>ディレクトリごと空</strong>。 4 月から毎日 cat が失敗している可能性、 にもかかわらず記事生成は成功 = 不完全稼働。</li>
+    </ol>
+  </div>
+
+  <div class="findings warn">
+    <h3>🚨 戦略文書ギャップ 3 件 (STRATEGY.md / memory との乖離)</h3>
+    <ol>
+      <li><strong>Affiliate Crew (ai-crew.site) が完全未記載</strong>: 4 月から毎日稼働の主力サテライトプロジェクトが STRATEGY.md / 199 memory に登場しない。 軸 A 「自動運用 / 弱維持」 方針の実態と矛盾、 [[axis-a-implicit-rescaled-2026-05-17]] の暗黙再強化を超えて <strong>軸 A 集客サテライト</strong> が独立稼働している事実を文書化すべき。</li>
+      <li><strong>scheduled-tasks/ ディレクトリの存在</strong>: Maintenance auditor が <code>~/home_work/個人開発マネタイズプラットフォーム/scheduled-tasks/</code> 配下の SKILL.md 群を監査対象としているが、 portfolio 視点では未確認。 Cowork SKILL.md の原本がここに格納されている可能性大。</li>
+      <li><strong>Slack channel 2 系統の使い分け</strong>: <code>#dev-crew-logs</code> (C0AQY42LAFN、 全体) と <code>#aff-crew-logs</code> (C0AQUGSTNAW、 Affiliate Crew 専用) が併存するが、 どちらに何を流すかのルールが文書化されていない。</li>
+    </ol>
+  </div>
+</div>
+
+<div class="section">
+  <h2>整理アクション</h2>
+
+  <div class="findings">
+    <h3>🔴 即時 (5/19 までに)</h3>
+    <ol>
+      <li><strong>nta-app-id-reminder routine 削除</strong> — claude.ai/code/routines から手動。 凍結プロジェクト残骸。</li>
+      <li><strong>6/4 (木) 09:00 「外部媒体流入 実験の 28 日判定」 Calendar 削除</strong> — distribution experiment v1 凍結済、 判定対象データなし。 (私から削除可能)</li>
+      <li><strong>5/19 (火) 13:30 付近 tuesday-watchdog 初回結果確認</strong> — Slack 通知なし routine なので、 masatoman さんが claude.ai/code/routines を見に行く必要。 Calendar に追加推奨。</li>
+    </ol>
+  </div>
+
+  <div class="findings info">
+    <h3>🟡 中期 (5 月中〜6 月)</h3>
+    <ol>
+      <li><strong>Affiliate Crew を memory に追加</strong>: <code>affiliate-crew-status.md</code> として新規作成、 STRATEGY.md §7 「他プロジェクトの位置づけ」 にも 1 段落追加。 MEMORY.md インデックスに登録。</li>
+      <li><strong>Aff writer の _shared/ ファイル補完</strong>: writing-guidelines.md / channel-roles.md / case-studies.md を実体化。 portfolio から戻り値で渡せるよう Documents/Claude/Scheduled/_shared/ ディレクトリに配置。</li>
+      <li><strong>Aff engineer 縮退判断</strong>: 4/2 から 1.5 ヶ月、 初期構築は終わっているか? 月水金 → 週 1 (例: 月曜のみ) への切り替え。</li>
+      <li><strong>dev_journal Weekly review 39 件の方針確定</strong>: 全部残す / 直近 4 週分のみ / routine 化 のいずれか。 (前回の calendar-cleanup-2026-05-18.html の論点)</li>
+      <li><strong>routine 側で Slack 通知欠けている 3 件追加</strong>: issue-finder daily queue / tuesday-watchdog / zero-to-one-diary。 失敗時の検知が能動アクション頼みになっている。</li>
+    </ol>
+  </div>
+
+  <div class="findings gold">
+    <h3>🟢 7/30 軸 A 3 ヶ月後判定で再評価する論点</h3>
+    <ol>
+      <li><strong>軸 A 量産モード継続可否</strong>: night-writer + weekly-auto-article + tuesday-watchdog + Aff writer + Aff engineer の合計 5 経路で 月 60+ 本生成体制を維持する価値はあるか?</li>
+      <li><strong>Affiliate Crew の収益判定</strong>: 4 月から 40+ 記事生成済。 ai-crew.site → masatoman.net Lab Free 登録のコンバージョン数を確認、 ROI 判定。</li>
+      <li><strong>pdca-weekly-analyzer の軸 B 指標必須化</strong>: 軸 B 主軸時代に合わせて、 demo-gallery 投票 / friend hearing / たましん訪問成果を必須出力に。</li>
+      <li><strong>paid-article-followup routine の役割再定義</strong>: 7/30 判定の 3 日後に走る順序を後ろ倒し検討。</li>
+    </ol>
+  </div>
+</div>
+
+<div class="section">
+  <h2>次の一手 TOP3</h2>
+  <ol style="padding-left: 20px;">
+    <li style="margin-bottom: 8px; font-size: 12px;"><strong>即時削除 2 件 (nta-app-id-reminder routine / 6/4 Calendar)</strong> を実行。 routine は masatoman さん手動、 Calendar 削除は私から実行可能。</li>
+    <li style="margin-bottom: 8px; font-size: 12px;"><strong>Affiliate Crew memory 新規作成</strong> (<code>affiliate-crew-status.md</code>) と MEMORY.md インデックス追加。 これで戦略文書の最大ギャップを埋める。</li>
+    <li style="margin-bottom: 8px; font-size: 12px;"><strong>Aff writer の _shared/ 実体ファイル補完</strong>。 SKILL.md と実体の整合性を取り戻す。 _shared が無くても動いている = 補完したら品質向上が期待できる。</li>
+  </ol>
+</div>
+
+<footer>
+  生成: Claude Code Opus 4.7 / 2026-05-18 (月) 22:30 JST<br>
+  根拠: RemoteTrigger list (routine 9) + Google Calendar list_events 4/15-12/31 (58) + Claude Desktop アプリ Scheduled tasks スクショ (Cowork 6)<br>
+  前世代 docs: routines-overview-2026-05-18.html (routine 詳細) / calendar-cleanup-2026-05-18.html (Calendar 棚卸し)<br>
+  関連 memory: axis-a-implicit-rescaled-2026-05-17 / feedback_user_forgets_periodic_tasks / pr-review-via-schedule
+</footer>
+
+</div>
+</body>
+</html>
