@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北原氏面談 質問リスト (事前共有版) / 2026-05-22</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --accent: #b85c3a;
+  --warn: #c34a1f;
+  --good: #2d6a4f;
+  --card: #ffffff;
+  --border: #e4ddd1;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.75;
+  font-size: 14px;
+}
+.container { max-width: 820px; margin: 0 auto; padding: 28px 22px 60px; }
+
+header { border-bottom: 2px solid var(--fg); padding-bottom: 14px; margin-bottom: 22px; }
+header .tag { display: inline-block; font-size: 11px; letter-spacing: .15em; background: var(--fg); color: var(--bg); padding: 3px 10px; border-radius: 2px; margin-bottom: 8px; }
+header h1 { font-size: 22px; margin: 0 0 4px; font-weight: 700; }
+header .meta { color: var(--muted); font-size: 12px; }
+
+.intro {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-bottom: 22px;
+  font-size: 13px;
+}
+.intro p { margin: 4px 0; }
+
+h2 {
+  font-size: 16px;
+  margin: 30px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+h2 .pri {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: .1em;
+  padding: 3px 8px;
+  border-radius: 2px;
+  font-weight: 700;
+}
+h2 .pri.must { background: var(--warn); color: white; }
+h2 .pri.head { background: var(--accent); color: white; }
+h2 .pri.open { background: var(--good); color: white; }
+h2 .time { font-size: 11px; color: var(--muted); font-weight: 400; margin-left: auto; }
+
+.q {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+}
+.q.must { border-left-color: var(--warn); }
+.q.head { border-left-color: var(--accent); }
+.q.open { border-left-color: var(--good); }
+.q .num {
+  font-size: 11px;
+  letter-spacing: .15em;
+  color: var(--accent);
+  font-weight: 700;
+}
+.q.must .num { color: var(--warn); }
+.q.open .num { color: var(--good); }
+.q .text {
+  font-size: 14px;
+  margin: 6px 0 0;
+  line-height: 1.7;
+}
+
+.note {
+  background: #fff8ea;
+  border-left: 3px solid #d4a72c;
+  padding: 10px 14px;
+  margin: 16px 0;
+  font-size: 13px;
+  color: #5a4a1f;
+  border-radius: 0 4px 4px 0;
+}
+.note strong { color: #1f1c18; }
+
+footer.thanks {
+  margin-top: 32px;
+  padding: 14px 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+@media print {
+  body { background: white; font-size: 11px; }
+  .container { max-width: none; padding: 8mm; }
+  .q { break-inside: avoid; }
+  h2 { break-after: avoid; }
+}
+</style>
+  <meta name="created" content="2026-05-19T04:58:53.596Z">
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="tag">CONSULTATION QUESTIONS — PUBLIC</div>
+  <h1>北原様 面談 質問リスト (事前共有版)</h1>
+  <div class="meta">面談予定: 2026-05-22 / 東京創業ステーション (オンライン) / masatoman</div>
+</header>
+
+<div class="intro">
+  <p>当日の進行をスムーズにするため、 ご相談したい内容を事前に整理してお送りします。 全部を時間内に伺いきれないかもしれませんが、 優先順位は <strong>A (法人化判断 + IT 導入支援事業者) → B (工務店経営者へのアプローチ・紹介)</strong> を必達、 C 以降は時間に応じて、 という形で考えています。</p>
+  <p>事前にお目通しいただき、 当日は気になった部分から自由にお話しいただいて構いません。</p>
+</div>
+
+<!-- ====================================================== -->
+<h2><span class="pri must">デモ</span>0. 8 デモ評価 + 機能仮説 (面談冒頭) <span class="time">10 分目安</span></h2>
+
+<div class="note">
+  <strong>進行</strong>: PC 画面共有で 8 デモを順に動かしてご覧いただきます。 全部だと散漫なので、 業界仮説に直結する <strong>① estimate-organizer ② call-memo-board ③ site-photo-organizer ④ voice-daily-report</strong> の 4 つを優先表示、 残り 4 つ (client-progress-page / receipt-expense-camera / drawing-quick-viewer / website-refresh) は時間があれば。
+</div>
+
+<div class="q must">
+  <div class="num">Q0-a (デモ評価)</div>
+  <div class="text">8 つのデモの <strong>UI プロトタイプを実装済</strong>です (各 1 分でお見せします。 実機能 = 音声認識・OCR 等 は第 1 号ユーザーと共同開発する設計)。<br>
+  ① <strong>estimate-organizer</strong> (見積整理 / みつも郎 17 二重入力対策)<br>
+  ② <strong>call-memo-board</strong> (通話メモ構造化 / 情報散逸対策)<br>
+  ③ <strong>site-photo-organizer</strong> (現場写真整理 / 現場完結)<br>
+  ④ <strong>voice-daily-report</strong> (日報音声投稿 / 移動時間活用)<br>
+  ⑤〜⑧ receipt-expense-camera / drawing-quick-viewer / client-progress-page / website-refresh<br>
+  <br>
+  工務店オーナー / 現場監督に見せたとして、 <strong>どれが最も刺さりますか?</strong> 逆に「これは要らない」 「優先度が低い」 のはどれですか?</div>
+</div>
+
+<div class="q must">
+  <div class="num">Q0-b (未実装案の評価)</div>
+  <div class="text">8 デモ以外で「これあったら工務店刺さりますよ」 という機能仮説はありますか? 例えば「補助金申請書の下書き自動生成」 「建設業許可関連の書類管理」 「下請け業者との発注連絡」 等を検討中ですが、 北原様の実務感覚で「これは作る価値ある / 作る価値ない」 を教えてください。</div>
+</div>
+
+<div class="q must">
+  <div class="num">Q0-c (投票ページの活用)</div>
+  <div class="text">8 デモは <strong>https://ihara-frontend.com/demo-gallery</strong> で投票ページ化して公開済です。 主顧客 40-60 代向けに UI を調整しました (最大 3 つ選択 / 拒否理由 9 択 / 連絡先任意入力 / LINE 共有ボタン 等)。 SNS 告知はターゲット外混入を避けて控え、 <strong>友人経由の LINE 拡散で増やす方針</strong>です。<br>
+  <br>
+  <strong>① このページ設計、 40-60 代 IT 弱者の心理と合っていますか? 改善点はありますか?<br>
+  ② 北原様の顧問先 (工務店オーナー) で投票してくれそうな方をご紹介可能ですか?<br>
+  ③ 票数より「拒否理由分布」 「連絡先取得率」 を主軸に判断する方針、 違和感はありますか?</strong></div>
+</div>
+
+<!-- ====================================================== -->
+<h2><span class="pri must">必達 1</span>A. 法人化判断 + IT 導入支援事業者登録 <span class="time">15 分目安</span></h2>
+
+<div class="note">
+  <strong>前提</strong>: 当初「2026/6 マイクロ法人設立予定」 でしたが、 検討の結果<strong>当面は個人事業主のまま継続</strong>する方針に転換しました。 法人固定費 (年 7 万円〜) より検証フェーズの現金優先、 工務店 SaaS が軌道に乗ってから (所得 900 万超目安) 改めて法人化を検討する形に。 小規模企業共済 (月 7 万 = 年 84 万控除) は実施済です。
+</div>
+
+<div class="q must">
+  <div class="num">Q1 (判断基準)</div>
+  <div class="text">「工務店 SaaS が軌道に乗ったら法人化する」 という方針です。 この<strong>「軌道に乗った」 のベストな判断基準</strong>は何でしょうか? 例えば「月商 X 万円」 「顧客 X 社」 「所得 X 万円」 「PMF 後」 など、 北原様のご経験から決め手にすべき指標を教えてください。</div>
+</div>
+
+<div class="q must">
+  <div class="num">Q2 (信用度)</div>
+  <div class="text">工務店オーナーから見て、 取引相手が<strong>個人事業主か法人か</strong>で信用度や決裁プロセスに差が出ますか? 当面は個人事業主のまま工務店ビジネスを進める予定ですが、 これが<strong>受注機会を逃す要因</strong>になることはありますか? 信用度を補強するために個人事業主としてできる工夫はありますか?</div>
+</div>
+
+<div class="q must">
+  <div class="num">Q3 (IT 導入支援事業者)</div>
+  <div class="text">個人事業主のまま <strong>IT 導入支援事業者登録</strong>するには、 既存事業者のコンソーシアムに構成員参画する形になると理解しています。 北原様の感覚で、 個人事業主が構成員参画して実際に補助金訴求できるようになるまで、 どの程度の現実性 / 期間 / 販売実績ハードルがありますか?</div>
+</div>
+
+<!-- ====================================================== -->
+<h2><span class="pri must">必達 2</span>B. 工務店経営者へのアプローチ・紹介 <span class="time">10 分目安</span></h2>
+
+<div class="q must">
+  <div class="num">Q4 (アプローチ)</div>
+  <div class="text">工務店経営者にアプローチする際の<strong>業界マナー・注意点</strong>はありますか? 「個人開発者だが本気で工務店業務改善を支援したい」 と伝える際、 やってはいけない切り出し方や、 逆に効果的な前置きを教えていただきたいです。</div>
+</div>
+
+<div class="q must">
+  <div class="num">Q5 (紹介)</div>
+  <div class="text">北原様の建設業顧問先で、 <strong>業務改善や IT 化に課題感のある方</strong>をご紹介いただけますか? まずは売り込みではなくヒアリング (現状の課題感を聞きたい) からお願いできれば。 1 件でもご紹介いただけると、 私の側で雪だるまを転がせます。</div>
+</div>
+
+<!-- ====================================================== -->
+<h2><span class="pri head">頭出し</span>C. 業界慣習・決裁プロセス <span class="time">5 分目安</span></h2>
+
+<div class="q head">
+  <div class="num">Q6 (頭出し)</div>
+  <div class="text">工務店業界特有の<strong>決裁プロセス・商習慣</strong>で、 個人開発者の私が知らないとハマりそうなポイントを 1〜2 つだけ教えていただけますか? (例: 見積もり 3 社体勢の作法、 工期・支払いサイトの慣習、 反社チェック等)</div>
+</div>
+
+<!-- ====================================================== -->
+<h2><span class="pri head">頭出し</span>D. 補助金活用タイミング戦略 <span class="time">5 分目安</span></h2>
+
+<div class="q head">
+  <div class="num">Q7 (頭出し)</div>
+  <div class="text">現在は補助金訴求を<strong>控えめ</strong>にして、 GビズID プライム取得・IT 導入支援事業者登録完了後にガッツリ訴求へ昇格する方針です。 この昇格タイミングの<strong>ベストプラクティス</strong>はありますか? 何の実績 (申請件数・採択件数等) ができたら前面に出すべきでしょうか?</div>
+</div>
+
+<!-- ====================================================== -->
+<h2><span class="pri open">自由</span>E. 見落としているリスク <span class="time">5 分目安</span></h2>
+
+<div class="q open">
+  <div class="num">Q8 (オープン)</div>
+  <div class="text">最後に、 ここまでお話しを聞いていただいて、 私が<strong>見落としているリスク</strong>や<strong>先に潰しておくべき仮説</strong>があれば率直に教えてください。 半年前に Froski (英語×フリーランス) で「市場前提が崩れる」 失敗をしているので、 同じ轍を踏まない判断軸を取りに来ています。</div>
+</div>
+
+<!-- ====================================================== -->
+<h2><span class="pri head">追加</span>F. 補助金・事業承継 関連 (時間あれば) <span class="time">5-10 分目安</span></h2>
+
+<div class="note">
+  Part A〜E の中で自然に話題に上がれば個別に伺います。 残った時間で F としてまとめて伺います。 全部伺えなくても構いません。
+</div>
+
+<div class="q head">
+  <div class="num">Q9 (補助金スキームの 3 業種パートナー紹介)</div>
+  <div class="text">補助金訴求 (実質負担を抑える提案) を商談武器化 + 申請実務まで一気通貫でご提供するには <strong>「税理士 + 行政書士 + 中小企業診断士」 の 3 業種パートナー</strong> が必要だと考えています。 多摩地区で工務店向けに共同提案できる方を、 以下 3 業種でご<strong>紹介可能</strong>ですか?
+    <ul style="margin:6px 0 6px 18px;padding:0;font-size:13px;">
+      <li><strong>認定経営革新等支援機関 税理士</strong> — 信用補完の柱、 業務提携 or 顧問先紹介</li>
+      <li><strong>行政書士</strong> — 補助金申請書類作成・採択後成果報告の実務担当</li>
+      <li><strong>中小企業診断士</strong> — 補助金計画書・経営戦略との整合審査</li>
+    </ul>
+    私単独で申請代行屋になるのは重いので、 「自社 SaaS + 補助金活用提案」 = 入口、 「申請実務」 = 3 業種パートナー、 という<strong>ハブモデル</strong>を想定しています。 紹介料 10-20% バックの業務委託契約が相場と理解しています。</div>
+</div>
+
+<div class="q head">
+  <div class="num">Q10 (補助金 同時申請の前提)</div>
+  <div class="text">商談武器として <strong>IT 導入補助金 (3/4 補助) + 東京都 DX 推進助成金 (1/2 補助、 残り部分)</strong> を同時申請する設計を考えています。 同一経費への二重補助は不可と認識していますが、 別経費 (SaaS 本体 = IT 補助金 / 運用・サーバー = 都 DX 助成金) に分けて申請する形なら通りますか? また<strong>都 DX 推進助成金の 2026 年度 公募スケジュール</strong>はご存知でしょうか?</div>
+</div>
+
+<div class="q head">
+  <div class="num">Q11 (アトツギ世代 窓口化)</div>
+  <div class="text">工務店の意思決定は <strong>3 層 (決裁=社長 60 代 IT 弱 / 経理=妻 60 代 / 推進=アトツギ 30-40 代 IT 強)</strong> という構造で捉えています。 アトツギ世代 (2 代目 3 代目) を窓口にすると、 父親説得材料として SaaS を欲しがる心理が動く想定です。 北原様の顧問先で、 <strong>父親世代の社長より、 2 代目・3 代目を窓口にしたい工務店</strong>はありませんか? もしいればアトツギ経由でアプローチさせていただきたいです。</div>
+</div>
+
+<!-- ====================================================== -->
+<footer class="thanks">
+  上記はあくまで当日の議論のたたき台です。 順番や深掘り箇所は北原様の判断にお任せします。 当日はどうぞよろしくお願いいたします。
+</footer>
+
+</div>
+</body>
+</html>
