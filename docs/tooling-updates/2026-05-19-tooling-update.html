@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tooling Update 2026-05-19 — Claude Code / Obsidian / Anthropic</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; line-height: 1.7; color: #2c3e50; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { color: #4f46e5; margin-top: 2rem; }
+    .update-item { background: #f8fafc; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 4px; }
+    .update-item.applicable-b { border-left-color: #10b981; }
+    .update-item.applicable-obsidian { border-left-color: #f59e0b; }
+    .update-item.reference-only { border-left-color: #94a3b8; opacity: 0.85; }
+    .tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.85rem; margin-right: 0.5rem; }
+    .tag-b { background: #d1fae5; color: #065f46; }
+    .tag-obsidian { background: #fef3c7; color: #92400e; }
+    .tag-ref { background: #e5e7eb; color: #475569; }
+    .tag-source { background: #e0e7ff; color: #3730a3; }
+    .action { background: #eef2ff; padding: 0.75rem 1rem; border-radius: 4px; margin-top: 0.5rem; }
+    .meta { font-size: 0.85rem; color: #64748b; }
+    .version { font-size: 0.8rem; font-weight: 600; color: #6366f1; margin-left: 0.5rem; }
+    .none-box { background: #f1f5f9; padding: 0.75rem 1.25rem; border-radius: 4px; color: #64748b; font-style: italic; margin: 1rem 0; }
+    .fetch-fail { background: #fff7ed; border-left: 4px solid #f97316; padding: 0.75rem 1.25rem; border-radius: 4px; margin: 0.5rem 0; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>Tooling Update 2026-05-19</h1>
+  <p class="meta">
+    取得日: 2026-05-19 JST &nbsp;/&nbsp;
+    対象期間: 2026-05-12 〜 2026-05-19 &nbsp;/&nbsp;
+    ソース: Claude Code GitHub releases (直接取得) / Anthropic news (WebSearch 代替) / Obsidian changelog (新リリースなし確認)
+  </p>
+
+  <!-- ============================================================ -->
+  <h2>軸 B 工務店プロジェクトに使える更新</h2>
+  <!-- ============================================================ -->
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <span class="tag tag-source">Claude Code</span>
+    <span class="version">v2.1.142 — 2026-05-14</span>
+    <strong>claude agents コマンドに <code>--model</code> / <code>--effort</code> フラグ追加</strong>
+    <p>
+      <code>claude agents</code> コマンドに <code>--model</code>、<code>--effort</code>、<code>--permission-mode</code>、<code>--settings</code>、<code>--mcp-config</code>、<code>--add-dir</code> などのフラグが追加された。
+      サブエージェント単位でモデルとコスト水準を明示的に制御できるようになった。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      issue-finder v6 のマルチプロファイル実行で、軽量タスク（ラベル分類）は <code>--model claude-haiku-4-5</code>、重要判定は <code>--model claude-sonnet-4-6</code> と明示指定することで、1 日のクレジット消費を抑えながら精度を維持できる。
+      <code>--permission-mode acceptEdits</code> を daily queue に付与して確認ダイアログを省略する運用も検証価値あり。
+    </div>
+  </div>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <span class="tag tag-source">Claude Code</span>
+    <span class="version">v2.1.144 — 2026-05-19</span>
+    <strong>バックグラウンドセッションの <code>/resume</code> 対応・経過時間表示</strong>
+    <p>
+      <code>claude --bg</code> で起動したバックグラウンドセッションを <code>/resume</code> コマンドで再接続できるようになった。
+      完了通知に経過時間も表示されるため、長時間タスクの進捗把握が容易になった。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      demo-gallery の 8 デモ改修を夜間バックグラウンドで走らせながら、翌朝 <code>/resume</code> で結果確認する運用が実用になった。
+      特に friend hearing データ整理や issue-finder daily queue の自動実行後レビューで、途中経過を失わずに再接続できる。
+    </div>
+  </div>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <span class="tag tag-source">Claude Code</span>
+    <span class="version">v2.1.143 — 2026-05-15</span>
+    <strong>ストップフックの無限ループ修正</strong>
+    <p>
+      Stop フックが条件次第で無限ループに陥るバグが修正された。
+      masatoman 環境は PreToolUse / Edit-Write / Stop / PreCompact / UserPromptSubmit の 5 種フックを運用しており、Stop フックの不安定が daily-operator や night-writer の異常終了につながっていた可能性がある。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      v2.1.143 以降に更新済みであることを <code>claude --version</code> で確認。
+      Stop フック起因と思われる過去の異常終了ログ（<code>~/.claude/projects/*/reports/</code> 内）を 1 件だけ抽出して再発していないか照合する。
+    </div>
+  </div>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <span class="tag tag-source">Anthropic News</span>
+    <span class="version">発表日: 2026-05-18</span>
+    <strong>Anthropic が Stainless を買収（SDK 品質向上・MCP サーバーツーリング強化）</strong>
+    <p>
+      Stainless は全公式 Anthropic SDK の生成を担ってきた企業で、MCP サーバーツーリングにも強み。
+      買収により Anthropic SDK の安定性・型安全性・バージョン追従速度が向上する見込み。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      軸 B SaaS の将来的な Anthropic SDK 利用時（見積書・工程管理への AI 機能追加）に向け、今後リリースされる SDK メジャーバージョンアップのリリースノートを月 1 回確認するサイクルを設ける。
+      現時点では既存コードへの変更不要。
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>Obsidian Vault 育成に使える更新</h2>
+  <!-- ============================================================ -->
+
+  <div class="none-box">
+    ✗ 対象期間（2026-05-12〜2026-05-19）に Obsidian の新リリースなし。
+    確認した最新パブリック版は v1.12.7（2026-03-23）。
+    Insider ビルドの詳細ページは 403 Forbidden で取得不可。
+    Obsidian Roadmap によると、5 月中に「新コミュニティサイト + プラグイン自動レビューシステム」がリリース予定だが、今週時点では未公開。
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>参考のみ (今は使わない)</h2>
+  <!-- ============================================================ -->
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Anthropic News</span>
+    <strong>Claude Opus 4.7 一般公開</strong>
+    <p>
+      <code>claude-opus-4-7</code> が API で利用可能になった（$5 / 1M input tokens、$25 / 1M output tokens）。
+      masatoman は MAX プラン定額内運用かつ API 直叩きなし方針のため、コスト影響なし。
+      Claude Code 高速モードのデフォルトが Opus 4.7 に変更済み（v2.1.142）。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Anthropic News</span>
+    <strong>Apple Xcode 26.3 が Claude Agent SDK をネイティブ統合</strong>
+    <p>
+      Xcode 26.3 で Claude Code のサブエージェント・バックグラウンドタスク・プラグインが IDE 内から利用可能になった。
+      masatoman の主開発環境は VS Code / ターミナルのため現状は適用外。
+      将来的に iOS 向けサービス展開が生まれた場合に再評価。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Anthropic News</span>
+    <strong>タスクバジェット（public beta）— API トークン消費ガイド機能</strong>
+    <p>
+      Claude Platform API で開発者がトークン消費上限を設定できるタスクバジェット機能が public beta に。
+      API 直叩き不使用の現運用では対象外。将来 B2B SaaS で API コストを顧客請求に転嫁する際に参照。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Anthropic News</span>
+    <strong>Agent SDK Credits 分離（2026-06-15 施行予定）</strong>
+    <p>
+      2026-06-15 から Agent SDK / claude-p 利用がサブスクリプションの「月次 Agent SDK クレジット」から引き落とされる仕組みに変更。
+      masatoman の MAX プランへの影響を 6 月初旬に確認する。現時点での変更作業は不要。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Claude Code</span>
+    <span class="version">v2.1.144</span>
+    <strong>「extra usage」を「usage credits」に名称変更（<code>/usage-credits</code>）</strong>
+    <p>
+      コマンド名の変更のみ。機能に変化なし。既存スクリプトで <code>extra usage</code> の文字列をパースしている場合のみ対応が必要。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Claude Code</span>
+    <span class="version">v2.1.141</span>
+    <strong>ANTHROPIC_WORKSPACE_ID 環境変数でワークロード ID 連携</strong>
+    <p>
+      組織の Anthropic Console ワークスペース ID を環境変数で渡す機能。ソロ開発者でチーム機能を使わない masatoman には現状適用外。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Claude Code</span>
+    <span class="version">v2.1.143</span>
+    <strong>/plugin マーケットプレイスにコンテキストコスト予測を表示</strong>
+    <p>
+      プラグインが 1 ターンあたり消費するトークン数の目安が表示されるようになった。
+      現在使用中のプラグインのコストを把握するための参考情報として確認推奨。積極的な行動は不要。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Obsidian Roadmap</span>
+    <strong>新コミュニティサイト + プラグイン自動レビューシステム（5 月予定・未公開）</strong>
+    <p>
+      Obsidian Roadmap に 5 月中のリリースが予告されているが、2026-05-19 時点では未公開。
+      公開後に Vault のプラグイン管理（memory フォルダ・reports フォルダ連携プラグイン）の見直し機会になる可能性あり。
+    </p>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>取得失敗ソース</h2>
+  <!-- ============================================================ -->
+
+  <div class="fetch-fail">
+    <strong>docs.claude.com/en/release-notes/claude-code</strong> — 301→307 二重リダイレクト後、GitHub CHANGELOG.md（日付なし）に到達。GitHub releases ページから直接取得して代替。
+  </div>
+  <div class="fetch-fail">
+    <strong>obsidian.md/changelog/</strong> — 403 Forbidden。GitHub releases ページで「過去 7 日間に新リリースなし」を確認済み。
+  </div>
+  <div class="fetch-fail">
+    <strong>www.anthropic.com/news</strong> — 403 Forbidden。WebSearch (anthropic.com ドメイン限定) で代替取得（Stainless 買収・Opus 4.7・Xcode 統合・タスクバジェット・Agent SDK Credits を確認）。
+  </div>
+
+  <hr>
+  <p class="meta">
+    📥 読み終わったら手動で <code>~/.claude/projects/-Users-master-home-work-portfolio/reports/</code> にコピーすると Obsidian Vault で時系列管理できます。
+  </p>
+</body>
+</html>
