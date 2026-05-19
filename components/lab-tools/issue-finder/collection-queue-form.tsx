@@ -308,10 +308,10 @@ export function CollectionQueueForm({
         )}
       </form>
 
-      <div>
-        <h3 className="mb-2 font-mono text-[10px] uppercase tracking-widest text-white/60">
+      <details open className="group">
+        <summary className="mb-2 cursor-pointer font-mono text-[10px] uppercase tracking-widest text-white/60 hover:text-white">
           // recent jobs ({jobs.length})
-        </h3>
+        </summary>
         {jobs.length === 0 ? (
           <p className="font-mono text-[11px] text-white/40 border border-white/10 p-3">
             // ジョブはまだ登録されていません ・ Supabase 未設定の場合はここが空のままです
@@ -323,7 +323,7 @@ export function CollectionQueueForm({
             ))}
           </ul>
         )}
-      </div>
+      </details>
     </div>
   )
 }

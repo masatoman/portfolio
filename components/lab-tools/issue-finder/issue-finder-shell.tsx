@@ -19,6 +19,7 @@ import {
   type SortKey,
 } from "@/lib/lab-tools/issue-finder/scoring"
 import type { Issue } from "@/lib/lab-tools/issue-finder/types"
+import { issuesToNotionMarkdown } from "@/lib/lab-tools/issue-finder/notion-markdown"
 import { LAB_NEON } from "@/lib/lab-tools/registry"
 
 type Props = {
@@ -27,7 +28,7 @@ type Props = {
   perspectiveStatus: PerspectiveRunStatus[]
 }
 
-type ResultsTab = "matrix" | "cards" | "keywords"
+type ResultsTab = "results" | "keywords"
 
 export function IssueFinderShell({
   dbIssues,
@@ -36,13 +37,27 @@ export function IssueFinderShell({
 }: Props) {
   const hasDb = dbIssues.length > 0
   const rawIssues: Issue[] = hasDb ? dbIssues : SAMPLE_ISSUES
-  const [resultsTab, setResultsTab] = useState<ResultsTab>("matrix")
+  const [resultsTab, setResultsTab] = useState<ResultsTab>("results")
   const [sortKey, setSortKey] = useState<SortKey>("opportunity")
   const [highlightedId, setHighlightedId] = useState<string | null>(null)
+  const [hideSubsidy, setHideSubsidy] = useState(false)
+
+  const subsidyCount = useMemo(
+    () => rawIssues.filter((i) => i.profileId === "it-subsidy").length,
+    [rawIssues],
+  )
+
+  const filteredIssues = useMemo(
+    () =>
+      hideSubsidy
+        ? rawIssues.filter((i) => i.profileId !== "it-subsidy")
+        : rawIssues,
+    [rawIssues, hideSubsidy],
+  )
 
   const issues = useMemo(
-    () => sortIssues(rawIssues, sortKey),
-    [rawIssues, sortKey],
+    () => sortIssues(filteredIssues, sortKey),
+    [filteredIssues, sortKey],
   )
 
   return (
@@ -79,46 +94,55 @@ export function IssueFinderShell({
           title="集まった結果"
           note={
             hasDb
-              ? `Supabase から ${dbIssues.length} 件読込`
+              ? hideSubsidy
+                ? `Supabase ${issues.length}/${dbIssues.length} 件表示 (補助金系 ${subsidyCount} 件除外)`
+                : `Supabase から ${dbIssues.length} 件読込`
               : "DB が空のためサンプル 8 件を表示中"
           }
           right={
             <div className="flex items-center gap-2 flex-wrap">
+              {hasDb && subsidyCount > 0 && (
+                <HideSubsidyToggle
+                  hidden={hideSubsidy}
+                  count={subsidyCount}
+                  onToggle={() => setHideSubsidy((v) => !v)}
+                />
+              )}
               <SortSelect sortKey={sortKey} setSortKey={setSortKey} />
               <ResultsTabSwitch tab={resultsTab} setTab={setResultsTab} />
+              <CopyMarkdownButton issues={issues} />
             </div>
           }
         />
 
-        {resultsTab === "matrix" && (
-          <IssueMatrix
-            issues={issues}
-            onIssueClick={(i) => setHighlightedId(i.id)}
-          />
-        )}
-
-        {resultsTab === "cards" && (
-          <div className="grid gap-4 md:grid-cols-2 min-w-0">
-            {issues.map((issue, idx) => (
-              <div
-                key={issue.id}
-                className={`min-w-0 ${
-                  highlightedId === issue.id
-                    ? "ring-2 ring-offset-2 ring-offset-black"
-                    : ""
-                }`}
-                style={
-                  highlightedId === issue.id
-                    ? { boxShadow: `0 0 16px ${LAB_NEON.green}` }
-                    : undefined
-                }
-              >
-                <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-white/40">
-                  #{idx + 1}
+        {resultsTab === "results" && (
+          <div className="space-y-8">
+            <IssueMatrix
+              issues={issues}
+              onIssueClick={(i) => setHighlightedId(i.id)}
+            />
+            <div className="grid gap-4 md:grid-cols-2 min-w-0">
+              {issues.map((issue, idx) => (
+                <div
+                  key={issue.id}
+                  className={`min-w-0 ${
+                    highlightedId === issue.id
+                      ? "ring-2 ring-offset-2 ring-offset-black"
+                      : ""
+                  }`}
+                  style={
+                    highlightedId === issue.id
+                      ? { boxShadow: `0 0 16px ${LAB_NEON.green}` }
+                      : undefined
+                  }
+                >
+                  <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-white/40">
+                    #{idx + 1}
+                  </div>
+                  <IssueCard issue={issue} />
                 </div>
-                <IssueCard issue={issue} />
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
 
@@ -270,7 +294,7 @@ function HowToBoard() {
           title="ブラウザを更新して結果を見る"
         >
           ページをリロードすると <span style={{ color: LAB_NEON.cyan }}>// 02 / results</span>{" "}
-          に新しいクラスタが反映される。 タブで matrix / cards / keywords を切替。 重複は API 側で自動 skip。 jobs リストの{" "}
+          に新しいクラスタが反映される。 matrix と cards は上下並びで同時表示、 keywords タブだけ別ビュー。 重複は API 側で自動 skip。 jobs リストの{" "}
           <span
             className="border px-1 py-0.5 font-mono text-[9px]"
             style={{ borderColor: `${LAB_NEON.magenta}80`, color: LAB_NEON.magenta }}
@@ -536,8 +560,7 @@ function ResultsTabSwitch({
   setTab: (t: ResultsTab) => void
 }) {
   const items: Array<{ key: ResultsTab; label: string; color: string }> = [
-    { key: "matrix", label: "matrix", color: LAB_NEON.cyan },
-    { key: "cards", label: "cards", color: LAB_NEON.magenta },
+    { key: "results", label: "matrix + cards", color: LAB_NEON.cyan },
     { key: "keywords", label: "keywords", color: LAB_NEON.green },
   ]
   return (
@@ -563,5 +586,65 @@ function ResultsTabSwitch({
         )
       })}
     </div>
+  )
+}
+
+function HideSubsidyToggle({
+  hidden,
+  count,
+  onToggle,
+}: {
+  hidden: boolean
+  count: number
+  onToggle: () => void
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      className="border px-2 py-1 font-mono text-[10px] uppercase tracking-widest transition"
+      style={{
+        borderColor: hidden ? LAB_NEON.cyan : `${LAB_NEON.cyan}40`,
+        color: hidden ? LAB_NEON.cyan : "rgba(255,255,255,0.55)",
+        backgroundColor: hidden ? `${LAB_NEON.cyan}20` : "transparent",
+      }}
+      title={
+        hidden
+          ? "補助金系 (it-subsidy profile) を表示する"
+          : "補助金系 (it-subsidy profile) を非表示にする"
+      }
+    >
+      💴 {hidden ? `補助金 ${count} 件 非表示中` : `補助金系を隠す (${count})`}
+    </button>
+  )
+}
+
+function CopyMarkdownButton({ issues }: { issues: Issue[] }) {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = async () => {
+    const md = issuesToNotionMarkdown(issues)
+    try {
+      await navigator.clipboard.writeText(md)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 2000)
+    } catch {
+      setCopied(false)
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={handleCopy}
+      className="border px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-white/70 transition hover:text-white"
+      style={{
+        borderColor: copied ? LAB_NEON.green : `${LAB_NEON.green}60`,
+        backgroundColor: copied ? `${LAB_NEON.green}20` : "transparent",
+      }}
+      title="全クラスタを AI 入力用 Markdown に変換してクリップボードへ"
+    >
+      // {copied ? "copied!" : "copy md"}
+    </button>
   )
 }
