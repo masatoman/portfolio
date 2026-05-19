@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tooling Updates 一覧 — Claude Code / Obsidian / Anthropic</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", sans-serif;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+      line-height: 1.7;
+      color: #2c3e50;
+      background: #fafaf7;
+    }
+    h1 {
+      border-bottom: 3px solid #4f46e5;
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .lead {
+      color: #64748b;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    .filter-bar {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+      align-items: flex-end;
+    }
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      min-width: 0;
+    }
+    .filter-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .filter-group input[type="date"],
+    .filter-group input[type="search"] {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      background: #fff;
+      min-width: 0;
+      max-width: 100%;
+    }
+    .filter-group input[type="search"] {
+      width: 240px;
+      max-width: 100%;
+    }
+    .filter-cats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+    }
+    .filter-cats label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #2c3e50;
+      text-transform: none;
+      letter-spacing: 0;
+      cursor: pointer;
+    }
+    .filter-cats input[type="checkbox"] {
+      cursor: pointer;
+    }
+    .filter-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .btn-reset {
+      padding: 0.4rem 1rem;
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #475569;
+      transition: background 0.15s;
+    }
+    .btn-reset:hover {
+      background: #f1f5f9;
+    }
+    .result-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+    .sort-select {
+      padding: 0.3rem 0.6rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      background: #fff;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    #entries {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .entry-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+    .entry-card:hover {
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.08);
+      transform: translateY(-1px);
+    }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .entry-date {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #4f46e5;
+      letter-spacing: 0.02em;
+    }
+    .entry-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .tag-b { background: #d1fae5; color: #065f46; }
+    .tag-obsidian { background: #fef3c7; color: #92400e; }
+    .tag-ref { background: #e5e7eb; color: #475569; }
+    .tag-fail { background: #fee2e2; color: #991b1b; }
+    .entry-summary {
+      color: #475569;
+      font-size: 0.95rem;
+      margin: 0.5rem 0;
+    }
+    .entry-actions {
+      margin-top: 0.75rem;
+    }
+    .btn-open {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: #4f46e5;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      transition: background 0.15s;
+    }
+    .btn-open:hover {
+      background: #4338ca;
+    }
+    .empty {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #94a3b8;
+      background: #fff;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+    }
+    .footer-hint {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e2e8f0;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    .footer-hint code {
+      background: #f1f5f9;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem 3rem; }
+      .filter-row { gap: 0.75rem; }
+      .filter-group input[type="search"] { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Tooling Updates</h1>
+  <p class="lead">tooling-update-watch routine が毎週月曜 09:00 JST に生成する Claude Code / Obsidian / Anthropic 最新情報レポートの一覧。</p>
+
+  <div class="filter-bar">
+    <div class="filter-row">
+      <div class="filter-group">
+        <label for="filter-from">開始日</label>
+        <input type="date" id="filter-from">
+      </div>
+      <div class="filter-group">
+        <label for="filter-to">終了日</label>
+        <input type="date" id="filter-to">
+      </div>
+      <div class="filter-group" style="flex: 1; min-width: 200px;">
+        <label for="filter-search">キーワード検索</label>
+        <input type="search" id="filter-search" placeholder="タイトル / 概要から検索">
+      </div>
+    </div>
+    <div class="filter-row" style="margin-top: 1rem;">
+      <div class="filter-group" style="flex: 1;">
+        <label>カテゴリ (該当ありのみ表示)</label>
+        <div class="filter-cats">
+          <label><input type="checkbox" data-cat="b" checked> <span class="tag tag-b">軸 B 適用</span></label>
+          <label><input type="checkbox" data-cat="obsidian" checked> <span class="tag tag-obsidian">Obsidian 適用</span></label>
+          <label><input type="checkbox" data-cat="ref" checked> <span class="tag tag-ref">参考のみ</span></label>
+          <label><input type="checkbox" data-cat="fail" checked> <span class="tag tag-fail">取得失敗あり</span></label>
+        </div>
+      </div>
+      <div class="filter-actions">
+        <button class="btn-reset" id="btn-reset">フィルタをリセット</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-meta">
+    <span id="result-count">読み込み中...</span>
+    <span>
+      <label for="sort-select" style="margin-right: 0.5rem;">並び順</label>
+      <select id="sort-select" class="sort-select">
+        <option value="date-desc">新しい順</option>
+        <option value="date-asc">古い順</option>
+      </select>
+    </span>
+  </div>
+
+  <div id="entries"></div>
+
+  <div class="footer-hint">
+    📥 各レポートを読み終わったら、 手動で <code>~/.claude/projects/-Users-master-home-work-portfolio/reports/</code> にコピーすると Obsidian Vault で時系列管理できます。
+    <br>
+    🔁 一覧は routine が新規レポート生成時に rebuild されます。 手動 rebuild は <code>node docs/tooling-updates/rebuild-index.mjs</code> (TBD)。
+  </div>
+
+  <script>
+    // entries は routine が rebuild するときに置換される
+    // 形式: { date: "YYYY-MM-DD", filename: "YYYY-MM-DD-tooling-update.html", cats: { b: N, obsidian: N, ref: N, fail: N }, topB: "上位 1 件サマリ", topObsidian: "上位 1 件サマリ" }
+    const entries = [
+      /* ENTRIES_START */
+      /* ENTRIES_END */
+    ];
+
+    const $ = (id) => document.getElementById(id);
+    const els = {
+      from: $('filter-from'),
+      to: $('filter-to'),
+      search: $('filter-search'),
+      cats: document.querySelectorAll('.filter-cats input[type="checkbox"]'),
+      reset: $('btn-reset'),
+      sort: $('sort-select'),
+      count: $('result-count'),
+      list: $('entries'),
+    };
+
+    function getActiveCats() {
+      return Array.from(els.cats).filter(c => c.checked).map(c => c.dataset.cat);
+    }
+
+    function escapeHTML(s) {
+      return String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
+
+    function renderTag(cat, count) {
+      const labels = {
+        b: '軸 B 適用',
+        obsidian: 'Obsidian 適用',
+        ref: '参考のみ',
+        fail: '取得失敗',
+      };
+      return `<span class="tag tag-${cat}">${labels[cat]} ${count}</span>`;
+    }
+
+    function renderCard(e) {
+      const tags = Object.entries(e.cats || {})
+        .filter(([_, count]) => count > 0)
+        .map(([cat, count]) => renderTag(cat, count))
+        .join('');
+      const summary = [e.topB, e.topObsidian].filter(Boolean).join(' / ');
+      return `
+        <div class="entry-card">
+          <div class="entry-header">
+            <span class="entry-date">${escapeHTML(e.date)}</span>
+            <div class="entry-tags">${tags}</div>
+          </div>
+          ${summary ? `<div class="entry-summary">${escapeHTML(summary)}</div>` : ''}
+          <div class="entry-actions">
+            <a class="btn-open" href="${escapeHTML(e.filename)}">レポートを開く</a>
+          </div>
+        </div>
+      `;
+    }
+
+    function filterAndRender() {
+      const from = els.from.value;
+      const to = els.to.value;
+      const search = els.search.value.trim().toLowerCase();
+      const activeCats = getActiveCats();
+      const sortOrder = els.sort.value;
+
+      let filtered = entries.filter(e => {
+        if (from && e.date < from) return false;
+        if (to && e.date > to) return false;
+        if (search) {
+          const haystack = `${e.date} ${e.topB || ''} ${e.topObsidian || ''}`.toLowerCase();
+          if (!haystack.includes(search)) return false;
+        }
+        const hasCat = activeCats.some(c => (e.cats?.[c] || 0) > 0);
+        if (!hasCat && activeCats.length < 4) return false;
+        return true;
+      });
+
+      filtered.sort((a, b) => sortOrder === 'date-asc' ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date));
+
+      els.count.textContent = `${filtered.length} 件 / 全 ${entries.length} 件`;
+
+      if (filtered.length === 0) {
+        els.list.innerHTML = entries.length === 0
+          ? '<div class="empty">まだレポートがありません。 月曜 09:00 JST に最初の routine が実行されます。</div>'
+          : '<div class="empty">フィルタ条件に一致するレポートがありません。</div>';
+      } else {
+        els.list.innerHTML = filtered.map(renderCard).join('');
+      }
+    }
+
+    els.from.addEventListener('change', filterAndRender);
+    els.to.addEventListener('change', filterAndRender);
+    els.search.addEventListener('input', filterAndRender);
+    els.cats.forEach(c => c.addEventListener('change', filterAndRender));
+    els.sort.addEventListener('change', filterAndRender);
+    els.reset.addEventListener('click', () => {
+      els.from.value = '';
+      els.to.value = '';
+      els.search.value = '';
+      els.cats.forEach(c => c.checked = true);
+      els.sort.value = 'date-desc';
+      filterAndRender();
+    });
+
+    filterAndRender();
+  </script>
+</body>
+</html>
