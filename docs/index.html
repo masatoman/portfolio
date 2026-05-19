@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>docs/ 一覧 — portfolio (軸 B 工務店)</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", sans-serif;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+      line-height: 1.7;
+      color: #2c3e50;
+      background: #fafaf7;
+    }
+    h1 {
+      border-bottom: 3px solid #4f46e5;
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .lead {
+      color: #64748b;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    .filter-bar {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+      align-items: flex-end;
+    }
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      min-width: 0;
+    }
+    .filter-group label.field-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .filter-group input[type="date"],
+    .filter-group input[type="search"] {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      background: #fff;
+      min-width: 0;
+      max-width: 100%;
+    }
+    .filter-group input[type="search"] {
+      width: 280px;
+      max-width: 100%;
+    }
+    .filter-cats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+    }
+    .filter-cats label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #2c3e50;
+      cursor: pointer;
+    }
+    .filter-cats input[type="checkbox"] { cursor: pointer; }
+    .filter-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .btn-reset, .btn-all, .btn-none {
+      padding: 0.4rem 1rem;
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: #475569;
+      transition: background 0.15s;
+    }
+    .btn-reset:hover, .btn-all:hover, .btn-none:hover { background: #f1f5f9; }
+    .result-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+    .sort-select {
+      padding: 0.3rem 0.6rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      background: #fff;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    #entries {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+    .entry-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.25rem 1.4rem;
+      transition: box-shadow 0.15s, transform 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .entry-card:hover {
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.1);
+      transform: translateY(-2px);
+    }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .entry-date {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #94a3b8;
+      letter-spacing: 0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+    .cat-tag {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .cat-business { background: #d1fae5; color: #065f46; }
+    .cat-design { background: #fef3c7; color: #92400e; }
+    .cat-komuten { background: #dbeafe; color: #1e40af; }
+    .cat-hearing { background: #fae8ff; color: #86198f; }
+    .cat-automation { background: #e0e7ff; color: #3730a3; }
+    .cat-planning { background: #fce7f3; color: #9d174d; }
+    .cat-meta { background: #f3f4f6; color: #4b5563; }
+    .cat-other { background: #e5e7eb; color: #475569; }
+    .entry-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin: 0.25rem 0 0.5rem;
+      line-height: 1.4;
+    }
+    .entry-description {
+      color: #64748b;
+      font-size: 0.88rem;
+      flex: 1;
+      margin-bottom: 0.75rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .entry-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: auto;
+      padding-top: 0.5rem;
+      border-top: 1px solid #f1f5f9;
+    }
+    .entry-filename {
+      font-size: 0.75rem;
+      color: #cbd5e1;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      word-break: break-all;
+    }
+    .btn-open {
+      display: inline-block;
+      padding: 0.35rem 0.9rem;
+      background: #4f46e5;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+    .btn-open:hover { background: #4338ca; }
+    .empty {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #94a3b8;
+      background: #fff;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      grid-column: 1 / -1;
+    }
+    .footer-hint {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e2e8f0;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    .footer-hint code {
+      background: #f1f5f9;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+    .footer-hint a {
+      color: #4f46e5;
+      text-decoration: none;
+    }
+    .footer-hint a:hover { text-decoration: underline; }
+    .subdir-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .subdir-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.7rem;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      color: #4f46e5;
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+    .subdir-link:hover { background: #eef2ff; }
+    @media (max-width: 640px) {
+      body { padding: 1rem 0.75rem 3rem; }
+      #entries { grid-template-columns: 1fr; }
+      .filter-group input[type="search"] { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <h1>docs/ 一覧</h1>
+  <p class="lead">portfolio (軸 B 工務店プロジェクト) の docs/ 配下に蓄積した戦略 docs / デザインブリーフ / 商談資料 / 自動化整理レポートの一覧。 日付 / カテゴリ / キーワードでフィルタできます。</p>
+
+  <div class="filter-bar">
+    <div class="filter-row">
+      <div class="filter-group">
+        <label class="field-label" for="filter-from">開始日</label>
+        <input type="date" id="filter-from">
+      </div>
+      <div class="filter-group">
+        <label class="field-label" for="filter-to">終了日</label>
+        <input type="date" id="filter-to">
+      </div>
+      <div class="filter-group" style="flex: 1; min-width: 240px;">
+        <label class="field-label" for="filter-search">キーワード検索</label>
+        <input type="search" id="filter-search" placeholder="タイトル / 概要 / ファイル名から検索">
+      </div>
+    </div>
+    <div class="filter-row" style="margin-top: 1rem;">
+      <div class="filter-group" style="flex: 1;">
+        <label class="field-label">カテゴリ</label>
+        <div class="filter-cats">
+          <label><input type="checkbox" data-cat="business" checked> <span class="cat-tag cat-business">事業計画</span></label>
+          <label><input type="checkbox" data-cat="komuten" checked> <span class="cat-tag cat-komuten">工務店戦略</span></label>
+          <label><input type="checkbox" data-cat="hearing" checked> <span class="cat-tag cat-hearing">ヒアリング・商談</span></label>
+          <label><input type="checkbox" data-cat="design" checked> <span class="cat-tag cat-design">デザインブリーフ</span></label>
+          <label><input type="checkbox" data-cat="automation" checked> <span class="cat-tag cat-automation">自動化整理</span></label>
+          <label><input type="checkbox" data-cat="planning" checked> <span class="cat-tag cat-planning">実務計画</span></label>
+          <label><input type="checkbox" data-cat="meta" checked> <span class="cat-tag cat-meta">履歴・メタ</span></label>
+          <label><input type="checkbox" data-cat="other" checked> <span class="cat-tag cat-other">その他</span></label>
+        </div>
+      </div>
+      <div class="filter-actions">
+        <button class="btn-all" id="btn-cat-all">全選択</button>
+        <button class="btn-none" id="btn-cat-none">全解除</button>
+        <button class="btn-reset" id="btn-reset">リセット</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-meta">
+    <span id="result-count">読み込み中...</span>
+    <span>
+      <label for="sort-select" style="margin-right: 0.5rem;">並び順</label>
+      <select id="sort-select" class="sort-select">
+        <option value="date-desc">日付 (新しい順)</option>
+        <option value="date-asc">日付 (古い順)</option>
+        <option value="created-desc">作成日 (新しい順)</option>
+        <option value="created-asc">作成日 (古い順)</option>
+        <option value="updated-desc">更新日 (新しい順)</option>
+        <option value="title">タイトル順</option>
+      </select>
+    </span>
+  </div>
+
+  <div id="entries"></div>
+
+  <div class="footer-hint">
+    📂 サブディレクトリ:
+    <div class="subdir-row">
+      <a href="./tooling-updates/index.html" class="subdir-link">tooling-updates/ (週次 Claude Code/Obsidian 情報)</a>
+      <a href="./issue-finder/" class="subdir-link">issue-finder/</a>
+      <a href="./legacy/" class="subdir-link">legacy/</a>
+    </div>
+    <br>
+    🔁 一覧は <code>node scripts/rebuild-docs-index.mjs</code> で再生成できます。 新しい HTML を docs/ に追加したら手動で実行してください (将来 routine 化するかは検討中)。
+  </div>
+
+  <script>
+    const entries = [
+      /* ENTRIES_START */
+      {"filename":"business-summary-2026-05-22.html","title":"事業計画サマリ v2 / 工務店向け SaaS / 2026-05-22","description":"2026-05-14 動作確認 + 投票ページ公開済: 全 8 デモ動作確認 + https://ihara-frontend.com/demo-gallery を本番公開。 主顧客に「最大 3 つ」 「全部いらない場合は拒否理由を選択」 「リリース時連絡 OK の人は LINE / メール任意入力」 のフォームで需要","date":"2026-05-22","created":"2026-05-14T14:20:55+09:00","updated":"2026-05-15T15:07:47+09:00","category":{"id":"business","label":"事業計画"},"size":18089},
+      {"filename":"consultation-questions-2026-05-22.html","title":"北原氏面談 質問リスト v2 / 2026-05-22 東京創業ステーション","description":"面談の位置付け: 友人ヒアリング (現場監督) とは別軸。 主顧客本人ではなく業界俯瞰視点。 ヒアリング雪だるま 5 件の 2 件目候補。 北原氏は建設業の許可申請支援が本業のため、 業界実務に精通。","date":"2026-05-22","created":"2026-05-14T14:20:55+09:00","updated":"2026-05-15T15:07:47+09:00","category":{"id":"hearing","label":"ヒアリング・商談"},"size":29927},
+      {"filename":"calendar-cleanup-2026-05-18.html","title":"Calendar 棚卸し / 2026-05-18 / portfolio","description":"","date":"2026-05-18","created":"2026-05-19T02:12:59+09:00","updated":"2026-05-19T02:12:59+09:00","category":{"id":"automation","label":"自動化整理"},"size":18661},
+      {"filename":"cowork-to-routine-migration-plan-2026-05-18.html","title":"Cowork → routine 移行プラン / 2026-05-18 / portfolio","description":"Aff writer SKILL.md が参照する ~/Documents/Claude/Scheduled/_shared/ が空。 以下 3 ファイルを routine 化前に補完。 routine の prompt 内に inline 埋め込む方が確実 (Anthropic クラウドから Mac ローカルファイル","date":"2026-05-18","created":"2026-05-19T02:12:59+09:00","updated":"2026-05-19T02:12:59+09:00","category":{"id":"automation","label":"自動化整理"},"size":26156},
+      {"filename":"integrated-cleanup-2026-05-18.html","title":"routine + Cowork + Calendar 3 経路統合棚卸し / 2026-05-18 / portfolio","description":"Cowork で 2026-04-02 から 毎日休まず 40+ 回稼働中 の主力プロジェクト Affiliate Crew (Aff writer + Aff engineer の 2 タスク、 新ドメイン ai-crew.site + masatoman.net pSEO サテライト、 専用 Slack chann","date":"2026-05-18","created":"2026-05-19T02:12:59+09:00","updated":"2026-05-19T02:12:59+09:00","category":{"id":"automation","label":"自動化整理"},"size":24492},
+      {"filename":"routines-overview-2026-05-18.html","title":"routine + Calendar 棚卸し / 2026-05-18 / portfolio","description":"","date":"2026-05-18","created":"2026-05-19T02:12:59+09:00","updated":"2026-05-19T02:12:59+09:00","category":{"id":"automation","label":"自動化整理"},"size":35650},
+      {"filename":"voice-pipeline-guide.html","title":"Mac 録音 → 文字起こし → dev_journal 自動化パイプライン — 設計 + 使い方","description":"商談録音を inbox に投下するだけで、 5 分以内に Supabase dev_journal テーブル に 要約 + 引用 + 全文文字起こし が並ぶ。 完全ローカル処理 (商談相手の声をクラウドに送らない)・追加課金ゼロ・Claude Code MAX 定額のみで運用。","date":"2026-05-17","created":"2026-05-17T02:21:05.169Z","updated":"2026-05-17T02:21:05.169Z","category":{"id":"planning","label":"実務計画"},"size":26136},
+      {"filename":"index-2026-05-15.html","title":"docs/ 全 HTML リンク集 (作成日順 + タグ絞り込み) — 2026-05-15","description":"","date":"2026-05-15","created":"2026-05-15T07:01:28.570Z","updated":"2026-05-15T07:01:28.570Z","category":{"id":"meta","label":"履歴・メタ"},"size":22488},
+      {"filename":"may-action-plan-2026-05-15.html","title":"5 月残り 2 週間 実行計画 (2026-05-15 〜 2026-05-31) — Ihara Frontend","description":"5 月残り 2 週間で 軸 B に割ける時間 15-25 時間。 最優先は 5/22 (金) 北原氏面談 (オンライン業務後)。 次が たましん 既取引の渉外担当者にコンタクト (Step 1) = 価値創造事業部訪問は通常 1 ヶ月かかる業界慣習なので 訪問本番は 6 月後半-7 月初旬想定。 12 ヶ月後 MRR ","date":"2026-05-15","created":"2026-05-15T05:29:37.372Z","updated":"2026-05-15T05:29:37.372Z","category":{"id":"planning","label":"実務計画"},"size":30282},
+      {"filename":"tamashin-call-script-2026-05-15.html","title":"たましん 経営支援部 電話 + 訪問 台本 (2026-05-15/16) — 軸 B 接点ハブ起動","description":"2026-05-14 作成 / 軸 B 接点ハブ起動 / masatoman 本人用 / 公開しない","date":"2026-05-15","created":"2026-05-14T21:30:30+09:00","updated":"2026-05-15T15:07:47+09:00","category":{"id":"hearing","label":"ヒアリング・商談"},"size":35063},
+      {"filename":"business-plan-2026-05-14-v2.html","title":"軸 B 工務店プロジェクト 12 ヶ月事業計画 v2 (Ultrathink 5 insight 統合) — Ihara Frontend","description":"5/16 たましん訪問の手応えで全額起動判定。 動けば 100 万円融資申込 + 中シナリオ全額起動 (MRR ¥130K 目標)。 動かなければ中シナリオ縮小起動 (MRR ¥80K 目標) で 商工会議所 + 友人 + 北原氏 + 建材屋 で進行。 5/22 Q4 で 補助金 1/8 確定すれば 数字を更に上方修正","date":"2026-05-14","created":"2026-05-15T02:38:32.371Z","updated":"2026-05-15T02:38:32.371Z","category":{"id":"business","label":"事業計画"},"size":73904},
+      {"filename":"business-plan-2026-05-14.html","title":"軸 B 工務店プロジェクト 12 ヶ月事業計画 — Ihara Frontend","description":"5/15 友人ヒアリング → 6/15 「明日使いたい」 デモ 1 つ以上 → 5/22 北原氏面談 紹介ルート 1 つ以上 が成立した時点で、 100 万円融資申込 + 中シナリオ全額起動。 不成立なら 小シナリオで継続検証。 12 ヶ月後 (2027-04-30) に MRR ¥50,000 + 累積売上 ¥500","date":"2026-05-14","created":"2026-05-15T12:05:55+09:00","updated":"2026-05-15T12:05:55+09:00","category":{"id":"business","label":"事業計画"},"size":54222},
+      {"filename":"claude-code-features-unused.html","title":"Claude Code 未活用の便利機能 — masatoman workflow 適用版","description":"/config → Output style で切替。 CLAUDE.md / skill とは別レイヤーで system prompt 自体を書き換える 機能。","date":"2026-05-14","created":"2026-05-15T12:05:55+09:00","updated":"2026-05-15T12:05:55+09:00","category":{"id":"meta","label":"履歴・メタ"},"size":18439},
+      {"filename":"friend-hearing-checklist.html","title":"friend (現場監督) ヒアリング チェックリスト","description":"2026-05-11 作成 / 当日: 5 月中〜6 月前半 / Mac で 印刷 (Cmd+P) で A4 持参可","date":"2026-05-14","created":"2026-05-14T14:20:55+09:00","updated":"2026-05-14T14:20:55+09:00","category":{"id":"hearing","label":"ヒアリング・商談"},"size":27719},
+      {"filename":"komuten-fast-track-strategy-2026-05-14.html","title":"工務店プロジェクト 爆速ルート — Ultrathink 戦略 (2026-05-14)","description":"2026-05-14 / Ultrathink セッション / STRATEGY.md + MEMORY.md 反映済 / masatoman 本人用 / 公開しない","date":"2026-05-14","created":"2026-05-14T21:30:30+09:00","updated":"2026-05-15T15:07:47+09:00","category":{"id":"komuten","label":"工務店戦略"},"size":34100},
+      {"filename":"remaining-tasks-2026-05-14.html","title":"残タスク一覧 / 2026-05-14 / portfolio (軸 B 工務店プロジェクト)","description":"","date":"2026-05-14","created":"2026-05-14T18:02:26+09:00","updated":"2026-05-14T18:02:26+09:00","category":{"id":"planning","label":"実務計画"},"size":28997},
+      {"filename":"design-brief-2026-05-13-consultation-alignment.html","title":"設計ブリーフ v4 / 北原氏面談 相談予約との整合性確保","description":"工務店向け BtoB 型 SaaS を準備中。 対象は小〜中規模工務店、 現場監督 1〜数名規模を想定。","date":"2026-05-13","created":"2026-05-14T18:06:20+09:00","updated":"2026-05-14T18:06:20+09:00","category":{"id":"design","label":"デザインブリーフ"},"size":22894},
+      {"filename":"design-brief-2026-05-13-koumuten-reviews-integration.html","title":"設計ブリーフ v2 / 工務店 Google マップ レビュー収集 × 仮説検証ストア","description":"今回のヒアリングで判明したこと:","date":"2026-05-13","created":"2026-05-14T18:06:20+09:00","updated":"2026-05-14T18:06:20+09:00","category":{"id":"design","label":"デザインブリーフ"},"size":28035},
+      {"filename":"design-brief-2026-05-13-scoring-multi-axis.html","title":"設計ブリーフ v3 / scoring 多軸化 (DX 解決可能性 + 将来拡張)","description":"ユーザー指摘 (2026-05-13): 「issue-finder は僕視点でイシュー度をつけてる? 僕視点というのは僕が DX で解決できる範囲で見てる?」","date":"2026-05-13","created":"2026-05-14T18:06:20+09:00","updated":"2026-05-14T18:06:20+09:00","category":{"id":"design","label":"デザインブリーフ"},"size":24737},
+      {"filename":"koumuten-reviews-2026-05-13.html","title":"工務店レビュー収集 + 不満カテゴリ分析レポート / 2026-05-13","description":"このレポートは「主顧客 (IT 弱者の中小工務店オーナー / 現場監督) との対話の根拠データ」として設計されています。 用途別に 5 つのシーンを想定:","date":"2026-05-13","created":"2026-05-14T18:06:20+09:00","updated":"2026-05-14T18:06:20+09:00","category":{"id":"komuten","label":"工務店戦略"},"size":957361},
+      {"filename":"komuten-channel-strategy.html","title":"工務店オーナー 接点戦略 — Deep Research 検証メモ","description":"2026-05-11 / Deep Research 2 回 統合 / masatoman 本人用 / 公開しない","date":"2026-05-11","created":"2026-05-14T18:06:20+09:00","updated":"2026-05-14T18:06:20+09:00","category":{"id":"komuten","label":"工務店戦略"},"size":34905},
+      {"filename":"komuten-stakeholder-strategy.html","title":"工務店 周辺 ステークホルダー戦略","description":"2026-05-11 作成 / masatoman 本人用","date":"2026-05-11","created":"2026-05-14T18:06:20+09:00","updated":"2026-05-14T18:06:20+09:00","category":{"id":"komuten","label":"工務店戦略"},"size":27370},
+      {"filename":"design-brief-2026-05-10-top.html","title":"デザインブリーフ: トップページ (/) リデザイン — Ihara Frontend","description":"順序が重要 (上ほど見出し / 太字に近い扱い)。 saas-pricing.md と customer-target.md を踏まえた訴求。","date":"2026-05-10","created":"2026-05-14T18:06:20+09:00","updated":"2026-05-14T18:06:20+09:00","category":{"id":"design","label":"デザインブリーフ"},"size":26666},
+      {"filename":"saas-pricing-strategy.html","title":"工務店向け業務ツール 価格戦略メモ — Ihara Frontend","description":"SaaS (Web) として売る。 exe / デスクトップアプリは ターゲット (現場監督 = スマホ中心 + IT 弱者) の利用シーンに合わない。 値付けは 「初期 10〜30 万 + 月 1 万」 の王道路線で、 5〜30 人の中堅工務店を主ターゲットに置く。 IT 弱者向け 1 機能特化 (月 1,500〜3","date":"2026-05-10","created":"2026-05-14T18:06:20+09:00","updated":"2026-05-14T18:06:20+09:00","category":{"id":"planning","label":"実務計画"},"size":21138}
+      /* ENTRIES_END */
+    ];
+
+    const $ = (id) => document.getElementById(id);
+    const els = {
+      from: $('filter-from'),
+      to: $('filter-to'),
+      search: $('filter-search'),
+      cats: document.querySelectorAll('.filter-cats input[type="checkbox"]'),
+      catAll: $('btn-cat-all'),
+      catNone: $('btn-cat-none'),
+      reset: $('btn-reset'),
+      sort: $('sort-select'),
+      count: $('result-count'),
+      list: $('entries'),
+    };
+
+    function getActiveCats() {
+      return Array.from(els.cats).filter(c => c.checked).map(c => c.dataset.cat);
+    }
+
+    function escapeHTML(s) {
+      return String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
+
+    function renderCard(e) {
+      const cat = e.category || { id: 'other', label: 'その他' };
+      return `
+        <div class="entry-card">
+          <div class="entry-header">
+            <span class="entry-date">${escapeHTML(e.date)}</span>
+            <span class="cat-tag cat-${cat.id}">${escapeHTML(cat.label)}</span>
+          </div>
+          <div class="entry-title">${escapeHTML(e.title)}</div>
+          <div class="entry-description">${escapeHTML(e.description || '(概要なし)')}</div>
+          <div class="entry-footer">
+            <span class="entry-filename">${escapeHTML(e.filename)}</span>
+            <a class="btn-open" href="./${escapeHTML(e.filename)}">開く</a>
+          </div>
+        </div>
+      `;
+    }
+
+    function filterAndRender() {
+      const from = els.from.value;
+      const to = els.to.value;
+      const search = els.search.value.trim().toLowerCase();
+      const activeCats = getActiveCats();
+      const sortOrder = els.sort.value;
+
+      let filtered = entries.filter(e => {
+        if (from && e.date < from) return false;
+        if (to && e.date > to) return false;
+        if (search) {
+          const haystack = `${e.title} ${e.description || ''} ${e.filename}`.toLowerCase();
+          if (!haystack.includes(search)) return false;
+        }
+        if (!activeCats.includes(e.category?.id || 'other')) return false;
+        return true;
+      });
+
+      const sorters = {
+        'date-desc': (a, b) => b.date.localeCompare(a.date),
+        'date-asc': (a, b) => a.date.localeCompare(b.date),
+        'created-desc': (a, b) => (b.created || '').localeCompare(a.created || ''),
+        'created-asc': (a, b) => (a.created || '').localeCompare(b.created || ''),
+        'updated-desc': (a, b) => (b.updated || '').localeCompare(a.updated || ''),
+        'title': (a, b) => a.title.localeCompare(b.title, 'ja'),
+      };
+      filtered.sort(sorters[sortOrder] || sorters['date-desc']);
+
+      els.count.textContent = `${filtered.length} 件 / 全 ${entries.length} 件`;
+
+      if (filtered.length === 0) {
+        els.list.innerHTML = entries.length === 0
+          ? '<div class="empty">エントリがまだありません。 <code>node scripts/rebuild-docs-index.mjs</code> を実行してください。</div>'
+          : '<div class="empty">フィルタ条件に一致するエントリがありません。</div>';
+      } else {
+        els.list.innerHTML = filtered.map(renderCard).join('');
+      }
+    }
+
+    els.from.addEventListener('change', filterAndRender);
+    els.to.addEventListener('change', filterAndRender);
+    els.search.addEventListener('input', filterAndRender);
+    els.cats.forEach(c => c.addEventListener('change', filterAndRender));
+    els.sort.addEventListener('change', filterAndRender);
+    els.catAll.addEventListener('click', () => { els.cats.forEach(c => c.checked = true); filterAndRender(); });
+    els.catNone.addEventListener('click', () => { els.cats.forEach(c => c.checked = false); filterAndRender(); });
+    els.reset.addEventListener('click', () => {
+      els.from.value = '';
+      els.to.value = '';
+      els.search.value = '';
+      els.cats.forEach(c => c.checked = true);
+      els.sort.value = 'date-desc';
+      filterAndRender();
+    });
+
+    filterAndRender();
+  </script>
+</body>
+</html>

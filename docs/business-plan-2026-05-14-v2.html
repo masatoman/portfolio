@@ -1,0 +1,1151 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>軸 B 工務店プロジェクト 12 ヶ月事業計画 v2 (Ultrathink 5 insight 統合) — Ihara Frontend</title>
+  <style>
+    :root {
+      --ink: #071b49;
+      --sub: #33496d;
+      --muted: #5f6f89;
+      --line: #d8e3f2;
+      --bg: #fbfcfe;
+      --panel: #ffffff;
+      --accent: #f47b20;
+      --accent-soft: #fff4e9;
+      --good: #15803d;
+      --good-soft: #dcfce7;
+      --warn: #b45309;
+      --warn-soft: #fef3c7;
+      --bad: #b91c1c;
+      --bad-soft: #fee2e2;
+      --info: #1d4ed8;
+      --info-soft: #dbeafe;
+      --new: #7c3aed;
+      --new-soft: #ede9fe;
+    }
+    * { box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--ink); margin: 0; padding: 0; }
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.75;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 920px; margin: 0 auto; padding: 48px 24px 96px; }
+    header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 24px;
+      margin-bottom: 36px;
+    }
+    header .eyebrow {
+      display: inline-block;
+      background: var(--new-soft);
+      color: var(--new);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 28px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      font-weight: 900;
+    }
+    h1 .v2 {
+      color: var(--new);
+      background: var(--new-soft);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 18px;
+      vertical-align: 4px;
+      margin-left: 8px;
+    }
+    header .meta {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    h2 {
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      margin: 56px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--line);
+      font-weight: 900;
+    }
+    h2 .num {
+      display: inline-block;
+      background: var(--ink);
+      color: white;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-right: 12px;
+      vertical-align: 3px;
+      font-weight: 800;
+    }
+    h2.h2-new .num { background: var(--new); }
+    h3 {
+      font-size: 17px;
+      margin: 32px 0 12px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    h4 {
+      font-size: 14px;
+      margin: 20px 0 8px;
+      font-weight: 800;
+      color: var(--sub);
+      letter-spacing: 0.04em;
+    }
+    p { margin: 0 0 14px; color: var(--sub); }
+    p strong { color: var(--ink); }
+    ul, ol { margin: 0 0 16px; padding-left: 24px; color: var(--sub); }
+    li { margin-bottom: 6px; }
+    code {
+      background: #f4f7fc;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: "SF Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+
+    .summary {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--new);
+      padding: 24px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+    .summary h3 { margin-top: 0; font-size: 14px; letter-spacing: 0.18em; color: var(--new); text-transform: uppercase; }
+    .summary p { font-size: 16px; line-height: 1.85; color: var(--ink); font-weight: 700; }
+    .summary p:last-child { margin-bottom: 0; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 16px 0 24px;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      background: #f4f7fc;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    tr:last-child td { border-bottom: none; }
+    td.num { font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 700; color: var(--ink); }
+    td.tag-good { color: var(--good); font-weight: 700; }
+    td.tag-bad { color: var(--bad); font-weight: 700; }
+    td.tag-warn { color: var(--warn); font-weight: 700; }
+    td.tag-new { color: var(--new); font-weight: 700; }
+    .pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+    }
+    .pill-good { background: var(--good-soft); color: var(--good); }
+    .pill-warn { background: var(--warn-soft); color: var(--warn); }
+    .pill-bad { background: var(--bad-soft); color: var(--bad); }
+    .pill-info { background: var(--info-soft); color: var(--info); }
+    .pill-new { background: var(--new-soft); color: var(--new); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0 24px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0 24px;
+    }
+    @media (max-width: 700px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .card .label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .card .value {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin: 4px 0 6px;
+    }
+    .card .body { font-size: 13px; color: var(--sub); line-height: 1.7; }
+    .card.scenario-small { border-top: 4px solid var(--muted); }
+    .card.scenario-mid { border-top: 4px solid var(--accent); background: #fff8ef; }
+    .card.scenario-large { border-top: 4px solid var(--info); }
+
+    .quote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 16px 0 24px;
+    }
+
+    .scenario {
+      background: #f7faff;
+      border: 1px solid var(--line);
+      padding: 18px 20px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+    .scenario .label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .scenario .head {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .goal-block {
+      font-family: "SF Mono", Menlo, monospace;
+      background: var(--ink);
+      color: #c0d3ff;
+      padding: 18px 22px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.85;
+      white-space: pre-wrap;
+      margin: 16px 0 24px;
+      letter-spacing: 0;
+    }
+    .goal-block .gkey { color: var(--accent); font-weight: 700; }
+    .goal-block .gvar { color: #fff8ef; font-weight: 700; }
+    .goal-block .gcomment { color: #6b87b8; }
+
+    .callout {
+      background: var(--info-soft);
+      border-left: 4px solid var(--info);
+      padding: 14px 18px;
+      border-radius: 0 12px 12px 0;
+      color: var(--ink);
+      font-size: 14px;
+      margin: 16px 0 24px;
+    }
+    .callout strong { color: var(--info); }
+    .callout-new {
+      background: var(--new-soft);
+      border-left-color: var(--new);
+    }
+    .callout-new strong { color: var(--new); }
+
+    .table-cf th, .table-cf td { font-size: 12.5px; padding: 8px 10px; }
+    .table-cf td.num { white-space: nowrap; }
+    .table-cf tr.total td { background: #f4f7fc; font-weight: 900; }
+
+    .schedule .phase {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--new);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+    }
+    .schedule .phase-head {
+      font-weight: 800;
+      color: var(--new);
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    .schedule .phase ul { margin: 4px 0 0; }
+
+    .insight {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin-bottom: 18px;
+      position: relative;
+    }
+    .insight .step-label {
+      position: absolute;
+      top: -10px;
+      left: 18px;
+      background: var(--new);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+    .insight h3 { margin-top: 6px; }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media print {
+      body { background: white; font-size: 13px; }
+      .page { padding: 24px; max-width: none; }
+      .summary, .card, .scenario, table, .goal-block, .callout, .quote, .insight, .schedule .phase { box-shadow: none; }
+      h2 { page-break-after: avoid; margin-top: 36px; }
+      table { page-break-inside: avoid; }
+      .scenario, .card, .insight, .schedule .phase { page-break-inside: avoid; }
+      .grid-2, .grid-3 { page-break-inside: avoid; }
+      .goal-block { background: #f4f7fc; color: var(--ink); }
+      .goal-block .gkey { color: var(--accent); }
+      .goal-block .gvar { color: var(--ink); }
+      .goal-block .gcomment { color: var(--muted); }
+    }
+  </style>
+  <meta name="created" content="2026-05-15T02:38:32.371Z">
+</head>
+<body>
+  <div class="page">
+    <header>
+      <span class="eyebrow">BUSINESS PLAN — Ultrathink 5 INSIGHT 統合 v2</span>
+      <h1>軸 B 工務店プロジェクト 12 ヶ月事業計画<span class="v2">v2</span></h1>
+      <div class="meta">
+        作成: 2026-05-14 ／ 著者: masatoman (個人事業主) ／ 対象期間: 2026-05-14〜2027-04-30 (12 ヶ月、 ただし 5/14-7/30 が爆速ルート)
+        ／ 想定参照者: 自分自身 / 5/22 北原氏面談 / 100 万円融資申込時 (日本政策金融公庫)
+      </div>
+      <div class="meta" style="margin-top: 8px;">
+        ベース: STRATEGY.md §3〜§9 (Ultrathink 5 insight 反映版) / portfolio CLAUDE.md / memory 33 件 / docs/komuten-fast-track-strategy-2026-05-14.html
+        ／ v1 との関係: v1 = 12 ヶ月予算 + キャッシュフローの骨格、 v2 = ultrathink 5 insight + 7 ステップ解像度向上
+      </div>
+    </header>
+
+    <section class="summary">
+      <h3>結論 (一行) v2</h3>
+      <p>
+        <strong>5/16 たましん訪問の手応えで全額起動判定</strong>。
+        動けば 100 万円融資申込 + 中シナリオ全額起動 (MRR ¥130K 目標)。
+        動かなければ中シナリオ縮小起動 (MRR ¥80K 目標) で 商工会議所 + 友人 + 北原氏 + 建材屋 で進行。
+        5/22 Q4 で 補助金 1/8 確定すれば 数字を更に上方修正、 NG なら 1/4 訴求に縮小。
+      </p>
+    </section>
+
+    <h2 class="h2-new"><span class="num">00.0</span>v2.2 追加修正 (2026-05-15、 6 プロンプト検証)</h2>
+
+    <p>
+      3 人議論 v2.1 後、 Gemini キラープロンプト 6 個 (前提疑い / 致命盲点 / プレモータム / バックキャスティング / 抽象排除 / パレート 80:20) で再検証。 以下 3 論点を追加:
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>#</th><th>論点</th><th>内容</th><th>反映先</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>A</td><td><strong>別ドメイン取得検討</strong></td><td><code>ihara-frontend.com</code> は IT 業界用語、 主顧客 (IT 弱者) に意味不明。 多摩工務店向けドメイン (例: <code>tama-koumuten-it.jp</code> / <code>koumuten-saas.tokyo</code>) の取得検討、 リダイレクト戦略</td><td>§11 リスク + 補足資料 §13</td></tr>
+        <tr><td>B</td><td><strong>「単独主軸化」 表現と実態の乖離</strong></td><td>12 ヶ月後 MRR ¥130K でも 軸 B 単独で生活費賄えない。 「単独主軸化」 は実態と乖離、 実質「軸 B 強化期 / 副業並列」 が正しい</td><td>§1 サマリ + §13 推奨判定</td></tr>
+        <tr><td>C</td><td><strong>5/16 訪問順序の論理的見直し</strong></td><td>友人ヒアリング (一次情報取得) を 5/16 たましん訪問より先にすべき = 「8 デモが刺さる」 仮説検証ゼロのまま見せに行く論理矛盾</td><td>§10 スケジュール + §11 リスク</td></tr>
+      </tbody>
+    </table>
+
+    <h3>現実的な判断</h3>
+
+    <ul>
+      <li><strong>A 別ドメイン</strong>: 5/22 北原氏面談で「ihara-frontend は工務店オーナー的にどう?」 と聞いて判断、 6 月以降の TODO</li>
+      <li><strong>B 表現修正</strong>: STRATEGY.md は親リポにあるため触らず、 v2 docs 内の表現を「軸 B 強化期」 に部分修正</li>
+      <li><strong>C 訪問順序</strong>: 5/16 アポは既に動いているなら強行、 ただし主目的を「業界情報取得 + 関係構築」 に絞り「8 デモを売り込まない」 (v2.1 期待値リセットと整合)</li>
+    </ul>
+
+    <p style="color: var(--muted); font-size: 13px;">詳細議論は 2026-05-15 セッション 6 プロンプト検証参照。</p>
+
+    <h2 class="h2-new"><span class="num">00</span>3 人の専門家 議論で追加された v2.1 修正 (2026-05-15)</h2>
+
+    <p>
+      VC / 工務店業界 中小企業診断士 / 創業融資 税理士 の 3 人で v2 を議論した結果、 以下 7 点を追記:
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>#</th><th>指摘者</th><th>修正内容</th><th>反映先</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">1</td><td>税理士 C</td><td><strong>公庫融資 100 万は法人化判断より先</strong>。 申込時に既存受託契約書類を別紙添付必須</td><td>§10.5 / §10 スケジュール</td></tr>
+        <tr><td class="num">2</td><td>税理士 C</td><td><strong>補助金 1/8 同時申請可否は 5/15-16 公社直接電話で確定</strong>。 北原氏 5/22 待ち回避</td><td>§10 スケジュール</td></tr>
+        <tr><td class="num">3</td><td>税理士 C</td><td><strong>GビズID プライム取得状況確認</strong> (なければ 5/15 中に申請、 1-2 週間で取得)</td><td>§10 今週 + 補足資料 §14</td></tr>
+        <tr><td class="num">4</td><td>診断士 B</td><td><strong>たましん 5-10 件紹介は半年スパン</strong>、 1 回訪問は情報収集と捉える、 期待値リセット</td><td>§3 ファネル / §11 リスク</td></tr>
+        <tr><td class="num">5</td><td>診断士 B</td><td><strong>アトツギ普遍性は 4 割</strong>、 残り 6 割は建材屋経由ルートで並列展開</td><td>§2 アトツギ章 (補足資料 §13)</td></tr>
+        <tr><td class="num">6</td><td>VC A</td><td><strong>チャーン月 4% は緩い</strong>、 IT 弱者ターゲットでは月 8-10% リスク</td><td>§11 リスク + LTV 感度分析</td></tr>
+        <tr><td class="num">7</td><td>VC A</td><td><strong>1 月末 MRR ¥50K 未達なら 価格 C (1 機能特化) に即ピボット</strong>、 4/30 ルートゴール 待たず 9 ヶ月時点で勝負</td><td>§9 撤退ライン</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3 人の合意 5 アクション</h3>
+
+    <ol>
+      <li><strong>5/15 中</strong>: GビズID プライム取得状況確認</li>
+      <li><strong>5/15-16</strong>: 公社 (東京都中小企業振興公社) DX 推進助成金担当に直接電話</li>
+      <li><strong>5/16</strong>: たましん訪問で「業界情報」 取得 (紹介数より関係構築)</li>
+      <li><strong>5 月末-6 月初旬</strong>: 公庫融資 100 万円 申込 (法人化判断より先)</li>
+      <li><strong>5-6 月中</strong>: 東京都事業承継・引継ぎ支援センター訪問</li>
+    </ol>
+
+    <p style="color: var(--muted); font-size: 13px;">詳細議論記録は会話履歴 (2026-05-15 セッション) 参照。</p>
+
+    <h2 class="h2-new"><span class="num">00.1</span>v1 → v2 差分 (7 ステップ統合)</h2>
+
+    <table>
+      <thead>
+        <tr><th>#</th><th>統合した論点</th><th>v1 の状態</th><th>v2 の状態</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">1</td><td>アトツギ 3 層意思決定構造</td><td>主顧客 = IT 弱者の社長 一本</td><td class="tag-new">決裁=社長 / 経理=妻 / 推進=アトツギ の 3 層、 真のキーパーソン = アトツギ</td></tr>
+        <tr><td class="num">2</td><td>たましん 5/15-16 電話・訪問</td><td>5/15 友人ヒアリングと 5/22 北原氏が起点</td><td class="tag-new">5/15-16 たましん が 単独最大ボトルネック・最早アクション</td></tr>
+        <tr><td class="num">3</td><td>補助金 1/8 訴求 (CVR 30 → 60%)</td><td>商談 → 契約 CVR 30% (業界相場)</td><td class="tag-new">補助金 1/8 武器化で CVR 60%、 中シナリオ 9 → 13 件 / MRR ¥90K → ¥130K</td></tr>
+        <tr><td class="num">4</td><td>信用補完二重化 (B 先行 → A 後追い)</td><td>大シナリオに合同会社設立のみ</td><td class="tag-new">B-1/2/3 (5-6 月、 ¥0) → A-1/2/3 (6-7 月、 ¥40K)</td></tr>
+        <tr><td class="num">5</td><td>業界紙取材依頼 (予算 ¥0)</td><td>業界紙購読のみ ¥30K</td><td class="tag-new">取材依頼 5 月中 1-2 媒体 (¥0) で 8-9 月加速。 大シナリオ 業界紙広告 ¥150K を取材依頼に置換</td></tr>
+        <tr><td class="num">6</td><td>接触ハブ 短期 18-31 件 / 並行 5 件商談</td><td>ファネル 12 ヶ月通算のみ</td><td class="tag-new">§5 を「短期 5/22-5/31 (10 日)」 と 「長期 6 月-翌 4 月」 に二分割</td></tr>
+        <tr><td class="num">7</td><td>撤退ライン に 5/16 たましん訪問の手応え</td><td>撤退ライン 6/15 友人 〜 4/30 ルートゴール</td><td class="tag-new">5/16 たましん訪問判定を先頭に追加</td></tr>
+      </tbody>
+    </table>
+
+    <h2><span class="num">01</span>エグゼクティブサマリ v2 (数字更新)</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>投資額</th>
+          <th>12 ヶ月後 MRR (補助金 1/8 反映)</th>
+          <th>累積売上</th>
+          <th>純損益 (借入考慮)</th>
+          <th>撤退判定</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>小 ¥500K</strong></td>
+          <td class="num">¥60,000 (6 件)</td>
+          <td class="num">¥720,000</td>
+          <td class="num tag-warn">-¥40,000</td>
+          <td>2026-10-31 契約 0 件で撤退</td>
+        </tr>
+        <tr style="background: #fff8ef;">
+          <td><strong>中 ¥1M</strong> <span class="pill" style="background: var(--accent-soft); color: var(--accent);">推奨</span></td>
+          <td class="num">¥130,000 (13 件)</td>
+          <td class="num">¥1,690,000</td>
+          <td class="num tag-good">+¥350,000</td>
+          <td>2026-10-31 契約 3 件未満で戦術見直し</td>
+        </tr>
+        <tr>
+          <td><strong>大 ¥2M</strong></td>
+          <td class="num">¥250,000 (25 件)</td>
+          <td class="num">¥3,250,000</td>
+          <td class="num tag-good">+¥2,100,000</td>
+          <td>2026-10-31 契約 7 件未満で営業代行止め</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      <span class="pill pill-new">数字根拠</span>
+      v1 ファネル §3 の 商談 → 契約 CVR 30% を 補助金 1/8 訴求で 60% に上方修正 (採択率 30-60% リスクで 1.4-1.7 倍、 中央値 1.5 倍)。
+      <strong>5/22 北原氏 Q4 で都 DX 推進助成金 同時申請可否確認できれば数字確定</strong>、 NG なら 1.2 倍 (中シナリオ 11 件) に下方修正。
+    </p>
+
+    <h3>v2 ルートゴール (3 パターン共通)</h3>
+
+    <pre class="goal-block"><span class="gkey">/goal</span> 2027-04-30 までに 軸 B 工務店プロジェクトで:
+        - 月次 MRR <span class="gvar">¥50,000</span> 以上 (= 5 社契約 価格パターン A)
+        - 累積売上 <span class="gvar">¥500,000</span> 以上
+      を達成する。
+      <span class="gcomment">// 即時停止判定:</span>
+        - 2026-05-16: たましん経営支援部訪問の手応え <span class="gcomment">// 動かない判定なら中シナリオ縮小</span>
+        - 2026-06-15: 友人ヒアリング完了 (デモ評価 + WTP 取得)
+        - 2026-07-30: 月次売上 5-10 万円ライン (STRATEGY.md §4 Month 3 目標)
+        - 2026-08-31: 初契約 1 件成立
+        - 2026-11-30: MRR <span class="gvar">¥30,000</span> (3 社) 到達</pre>
+
+    <h2 class="h2-new"><span class="num">02</span>アトツギ 3 層意思決定構造 (Step 1)</h2>
+
+    <div class="insight">
+      <span class="step-label">STEP 1 / 7</span>
+      <h3>3 層構造 = 工務店意思決定の本質</h3>
+
+      <table>
+        <thead>
+          <tr><th>層</th><th>人物</th><th>年齢</th><th>IT</th><th>関心事</th><th>masatoman の立ち位置</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>決裁</td><td>社長</td><td>60-70 代</td><td><span class="pill pill-bad">弱</span></td><td>受注・現場・職人手配</td><td>説得対象 (最終決定者)</td></tr>
+          <tr><td>経理</td><td>社長の妻</td><td>60 代</td><td><span class="pill pill-warn">中</span></td><td>資金繰り・支払い・補助金</td><td>金銭面で味方化</td></tr>
+          <tr><td><strong>推進</strong></td><td><strong>アトツギ (子・娘)</strong></td><td>30-40 代</td><td><span class="pill pill-good">強</span></td><td>事業承継・効率化・若返り</td><td><strong>真のキーパーソン</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h4>営業設計の変更点 (v1 → v2)</h4>
+      <ul>
+        <li><strong>v1</strong>: 工務店オーナー (社長) に直接ペライチ手渡し</li>
+        <li><strong>v2</strong>: アトツギを窓口化 + 父親決裁の並行説得。 アトツギが「父親を説得する材料」 として SaaS を欲しがる構造を利用。 父親同席の場を必ず作る (アトツギ単独説得は無意味、 決裁権ない)</li>
+      </ul>
+
+      <h4>アトツギ甲子園 (12-2 月) を予算組込</h4>
+      <p>中小企業庁主管、 多摩地区 アトツギ集まる、 工務店割合 高い。 2026-12 〜 2027-2 が次回機会。</p>
+      <ul>
+        <li>中シナリオ予算: 観覧 + 交通費 ¥10K (12-2 月)</li>
+        <li>大シナリオ予算: ブース打診 ¥30K (時期合えば)</li>
+      </ul>
+
+      <h4>5/22 北原氏面談 Q5 (Ultrathink 追加)</h4>
+      <div class="quote">
+        「父親世代の社長より、 <strong>2 代目・3 代目を窓口にしたい工務店</strong> ありませんか? アトツギ経由で父親を説得する構造を想定しています」
+      </div>
+
+      <h4>落とし穴</h4>
+      <ul>
+        <li>アトツギ単独説得 = 無意味 (決裁権ない、 「いいですね」 で終わる)</li>
+        <li>「父親を説得してください」 と丸投げ NG (説得材料を必ず渡す)</li>
+        <li>アトツギ不在工務店 (一人親方) は別ルート (建材屋経由)</li>
+      </ul>
+    </div>
+
+    <h2 class="h2-new"><span class="num">03</span>信用補完 二重化 (Step 4)</h2>
+
+    <div class="insight">
+      <span class="step-label">STEP 4 / 7</span>
+      <h3>B 先行 (5-6 月) → A 後追い (6-7 月) で「競合不在ポジション」</h3>
+
+      <p>個人事業主の最大の壁 = 「この人で大丈夫?」。 1 つだけだと競合 (補助金代行業者 / フリーランス) に埋もれる。 <strong>2 経路の権威を借りる</strong>。</p>
+
+      <h4>レイヤー A: 公的認定 (中期、 6-7 月)</h4>
+
+      <table>
+        <thead>
+          <tr><th>認定</th><th>取得難度</th><th>主管</th><th>masatoman ルート</th><th>中シナリオ予算</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>認定経営革新等支援機関</strong></td><td><span class="pill pill-bad">高</span></td><td>中小企業庁</td><td>多摩地区 認定支援機関税理士 と業務提携 → 補助金申請まで 一気通貫 共同提案</td><td class="num">¥10,000</td></tr>
+          <tr><td><strong>DX 認定事業者</strong></td><td><span class="pill pill-warn">中</span></td><td>経産省</td><td>個人事業主 取得可、 書類重い</td><td class="num">¥30,000</td></tr>
+          <tr><td><strong>IT 導入支援事業者</strong></td><td><span class="pill pill-warn">中</span></td><td>経産省</td><td>コンソーシアム参画ルート、 5/22 Q2 確認</td><td class="num">¥0</td></tr>
+        </tbody>
+      </table>
+
+      <h4>レイヤー B: 地域ブランド 口約束 (短期、 5-6 月、 ¥0)</h4>
+
+      <table>
+        <thead>
+          <tr><th>肩書 (口約束ベース)</th><th>取得方法</th><th>効果</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>「たましん指定 SaaS」</strong></td><td>たましん経営支援部 担当者 と関係構築</td><td>多摩地区工務店 への圧倒的信用補完</td></tr>
+          <tr><td><strong>「府中商工会議所 IT 化推進パートナー」</strong></td><td>経営指導員と関係構築、 持続化補助金案件で共同支援</td><td>商工会議所会員工務店 への信用補完</td></tr>
+          <tr><td><strong>「東京創業ステーション 卒業生 / 紹介ベース」</strong></td><td>北原氏面談後、 「コンシェルジュ紹介」 を名乗る</td><td>アトツギ系工務店 への信用補完</td></tr>
+        </tbody>
+      </table>
+
+      <h4>取得タイムライン</h4>
+
+      <pre class="goal-block">5/15-16  B-1: たましん経営支援部担当者 関係構築開始 (電話 + 訪問)
+5/15-16  B-2: 府中商工会議所経営指導員 関係構築開始 (電話)
+5/22     B-3 + A 仕込み: 北原氏面談、 認定支援機関税理士 紹介依頼
+5月末    B 三本揃う、 試作商談で早速名乗る
+6 月     A-1: 認定支援機関税理士 業務提携締結
+6 月     A-2: IT 導入支援事業者 コンソーシアム参画手続き
+7 月     A-3: DX 認定事業者 申請</pre>
+
+      <h4>落とし穴</h4>
+      <ul>
+        <li><strong>B の口約束を文書化しない</strong> → 担当者異動で切れたら復旧不能。 メール 1 通で 「次の工務店さんに紹介させていただく可能性ある旨」 を残す</li>
+        <li><strong>A の取得待ちで商談を止めない</strong> → 5 月時点で商談開始、 「6 月中に DX 認定取得予定」 と言えば OK</li>
+        <li><strong>多重肩書きの羅列で怪しく見える</strong> → 名刺で出す肩書は 2-3 個に絞る</li>
+      </ul>
+    </div>
+
+    <h2 class="h2-new"><span class="num">04</span>補助金 1/8 訴求 (Step 3、 CVR 30 → 60%)</h2>
+
+    <div class="insight">
+      <span class="step-label">STEP 3 / 7</span>
+      <h3>商談決まり文句</h3>
+
+      <div class="quote" style="font-size: 16px;">
+        「<strong>IT 導入補助金で 3/4 + 東京都 DX 推進助成金で 残り 1/2 = 実質負担 1/8 で導入できます</strong>。 申請は弊社で伴走します」
+      </div>
+
+      <p>仮に <strong>月額 1 万円 × 3 年 = 36 万 + 初期 10 万 = 総額 46 万</strong> が <strong>工務店負担 5.75 万まで圧縮</strong> できる計算。 工務店オーナーが「もうちょっと考える」 と言わない数字。</p>
+
+      <h4>補助金マトリクス (主役 = 都 DX 推進助成金)</h4>
+
+      <table>
+        <thead>
+          <tr><th>補助金</th><th>上限</th><th>補助率</th><th>使い道</th><th>主管</th><th>公募時期</th></tr>
+        </thead>
+        <tbody>
+          <tr style="background: #fff8ef;"><td><strong>東京都 DX 推進助成金</strong></td><td class="num">100-300 万</td><td class="num">1/2</td><td>クラウド SaaS 導入</td><td>東京都中小企業振興公社</td><td>要確認 (5/22 Q4)</td></tr>
+          <tr><td>IT 導入補助金 2026</td><td class="num">5-450 万</td><td class="num">1/2-3/4</td><td>SaaS 単体</td><td>経産省</td><td>6 月公募</td></tr>
+          <tr><td>小規模事業者持続化補助金</td><td class="num">50-200 万</td><td class="num">2/3</td><td>HP + SaaS</td><td>商工会議所</td><td>2-3 / 6 / 9 月</td></tr>
+          <tr><td>長期優良住宅化リフォーム推進事業</td><td class="num">100-250 万</td><td class="num">1/3</td><td>図面管理 IT 経費</td><td>国交省</td><td>通年</td></tr>
+          <tr><td>地域型住宅グリーン化事業</td><td class="num">100-400 万</td><td class="num">—</td><td>グループ内 IT 共有</td><td>国交省</td><td>年 1 回</td></tr>
+          <tr><td>中小企業成長加速化補助金</td><td class="num">100-1500 万</td><td class="num">1/2</td><td>業態転換 + DX</td><td>経産省</td><td>不定期</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-new">
+        <strong>1/8 計算ロジック:</strong> IT 導入補助金 デジタル化基盤導入枠 3/4 補助 → 残り 1/4 → 都 DX 1/2 → <strong>1/4 × 1/2 = 1/8</strong>。
+        <br />ただし <strong>同一経費への二重補助は不可</strong>、 別経費 (SaaS 本体 = IT 補助金、 サーバー / 運用 = 都 DX 助成金) に分けて申請する設計が必要。 5/22 Q4 で「同時申請可否 + 実例」 確認。
+      </div>
+
+      <h4>商談での提示順序</h4>
+      <ol>
+        <li><strong>痛みの確認</strong> (issue-finder 235 件分析から該当箇所)</li>
+        <li><strong>解決策 demo</strong> (demo-gallery から主顧客が選んだ 1-2 個)</li>
+        <li><strong>価格</strong> (saas-pricing 4 パターンから 1 つ)</li>
+        <li><strong>補助金 1/8 訴求</strong> ← ここで「えっ」 となる</li>
+        <li><strong>申請伴走サービス</strong> (masatoman が代行、 認定支援機関税理士と提携)</li>
+        <li><strong>クロージング</strong></li>
+      </ol>
+
+      <h4>ファネル CVR 上方修正</h4>
+
+      <table>
+        <thead>
+          <tr><th>経路</th><th>v1 接触→商談</th><th>v1 商談→契約</th><th>v2 商談→契約 (補助金武器化)</th><th>v2 契約数 (中シナリオ)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>紹介スノーボール</td><td class="num">50%</td><td class="num">30%</td><td class="num tag-new">45% (1.5x)</td><td class="num">4.5 → 7 件</td></tr>
+          <tr><td>建材屋営業マン経由</td><td class="num">40%</td><td class="num">25%</td><td class="num tag-new">40% (1.6x)</td><td class="num">2 → 3 件</td></tr>
+          <tr><td>設計事務所開拓 DM</td><td class="num">5%</td><td class="num">30%</td><td class="num tag-new">45%</td><td class="num">1.5 → 2 件</td></tr>
+          <tr><td>ポスティング</td><td class="num">0.2%</td><td class="num">30%</td><td class="num tag-new">40%</td><td class="num">3 → 4 件</td></tr>
+          <tr><td>LINE / Facebook 広告</td><td class="num">0.5%</td><td class="num">10%</td><td class="num tag-new">15%</td><td class="num">0.5 → 0.7 件</td></tr>
+          <tr class="total"><td><strong>計 (中シナリオ)</strong></td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num"><strong>約 13 件 → MRR ¥130K</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h4>落とし穴</h4>
+      <ul>
+        <li><strong>補助金代行業者ポジション に落ちる</strong>: 訴求順序は「痛み → 解決 → 価格 → 補助金」、 補助金は最後のひと押し</li>
+        <li><strong>採択リスクを隠さない</strong>: 採択率 30-60%、 「採択されなかった場合の価格」 も提示</li>
+        <li><strong>同時申請可否を確認せず訴求しない</strong>: 5/22 Q4 で確認してから 1/8 訴求を正式セットに</li>
+        <li><strong>持続化補助金は商工会議所経由限定</strong>: 訴求工務店が会員でないと使えない、 商談で先に確認</li>
+      </ul>
+    </div>
+
+    <h2 class="h2-new"><span class="num">05</span>売上ファネル v2 (Step 6、 短期 + 長期 二段構造)</h2>
+
+    <div class="insight">
+      <span class="step-label">STEP 6 / 7</span>
+
+      <h3>5.1 短期: 5/22-5/31 (10 日) 接触 18-31 件 → 並行 5 件商談</h3>
+
+      <p>クリティカルパス (fast-track docs §03):</p>
+
+      <table>
+        <thead>
+          <tr><th>ハブ</th><th>期待接触数</th><th>確度</th><th>アクション期日</th></tr>
+        </thead>
+        <tbody>
+          <tr style="background: #fff8ef;"><td><strong>たましん経営支援部</strong></td><td class="num">5-10 件</td><td><span class="pill pill-good">高</span></td><td><strong>5/16 (金) 訪問完了</strong></td></tr>
+          <tr><td>北原氏紹介</td><td class="num">3-5 件</td><td><span class="pill pill-good">高</span></td><td>5/22 (木)</td></tr>
+          <tr><td>友人 LINE 拡散 (Q25)</td><td class="num">5-8 件</td><td><span class="pill pill-warn">中</span></td><td>5/17-19 文面確定 → 友人ヒアリング後</td></tr>
+          <tr><td>府中商工会議所</td><td class="num">2-3 件</td><td><span class="pill pill-warn">中</span></td><td>5/15 (木) AM</td></tr>
+          <tr><td>建材屋営業マン 巡回</td><td class="num">3-5 件</td><td><span class="pill pill-warn">中</span></td><td>5/20-31 LIXIL/ナフコ/地元卸</td></tr>
+          <tr class="total"><td><strong>合計</strong></td><td class="num"><strong>18-31 件</strong></td><td>—</td><td>5/31 まで</td></tr>
+        </tbody>
+      </table>
+
+      <p>接触 18-31 件 → 商談 6-12 件 (CVR 30-40%) → 並行 5 件商談確保。 計算上は ギリギリ成立。</p>
+
+      <h3>5.2 長期: 6 月-翌 4 月 (11 ヶ月) 接触 累計 100-150 件</h3>
+
+      <table>
+        <thead>
+          <tr><th>経路</th><th>想定接触数</th><th>接触→商談</th><th>商談→契約 (補助金 1/8)</th><th>契約数</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>紹介スノーボール</td><td class="num">30 件</td><td class="num">50%</td><td class="num">45%</td><td class="num">7</td></tr>
+          <tr><td>建材屋営業マン経由</td><td class="num">20 件</td><td class="num">40%</td><td class="num">40%</td><td class="num">3</td></tr>
+          <tr><td>設計事務所開拓 DM (中・大)</td><td class="num">100 件</td><td class="num">5%</td><td class="num">45%</td><td class="num">2</td></tr>
+          <tr><td>多摩地区ポスティング (中・大)</td><td class="num">5,000 部</td><td class="num">0.2%</td><td class="num">40%</td><td class="num">4</td></tr>
+          <tr style="background: #ede9fe;"><td><strong>業界紙取材掲載 (8-9 月以降)</strong></td><td class="num">リーチ 5,000</td><td class="num">0.3%</td><td class="num">40%</td><td class="num">6</td></tr>
+          <tr><td>業界紙 / 全建総連機関紙 (中・大)</td><td class="num">5,000 部到達</td><td class="num">0.2%</td><td class="num">40%</td><td class="num">4</td></tr>
+          <tr><td>ジャパンホームショー出展 (大、 10 月)</td><td class="num">名刺 150 件</td><td class="num">20%</td><td class="num">25%</td><td class="num">7.5</td></tr>
+          <tr><td>営業代行 テレアポ 2 ヶ月 (大)</td><td class="num">接電 2,000</td><td class="num">1%</td><td class="num">15%</td><td class="num">3</td></tr>
+          <tr><td>住宅デー 6/25 / 全建総連支部</td><td class="num">名刺 30 件</td><td class="num">30%</td><td class="num">30%</td><td class="num">2.7</td></tr>
+          <tr style="background: #ede9fe;"><td><strong>アトツギ甲子園 12-2 月 (中・大)</strong></td><td class="num">名刺 20 件</td><td class="num">30%</td><td class="num">50% (アトツギ高 CVR)</td><td class="num">3</td></tr>
+          <tr><td>LINE / Facebook 広告 (中・大)</td><td class="num">表示 100K</td><td class="num">0.5%</td><td class="num">15%</td><td class="num">0.7</td></tr>
+        </tbody>
+      </table>
+
+      <h3>5.3 シナリオ別 12 ヶ月契約見込 (v2 上方修正)</h3>
+
+      <table>
+        <thead>
+          <tr><th>シナリオ</th><th>悲観</th><th>標準</th><th>楽観</th><th>標準 12ヶ月後 MRR</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>小 ¥500K</td><td class="num">3</td><td class="num"><strong>6</strong></td><td class="num">9</td><td class="num">¥60,000</td></tr>
+          <tr style="background: #fff8ef;"><td><strong>中 ¥1M</strong></td><td class="num">8</td><td class="num"><strong>13</strong></td><td class="num">19</td><td class="num"><strong>¥130,000</strong></td></tr>
+          <tr><td>大 ¥2M</td><td class="num">15</td><td class="num"><strong>25</strong></td><td class="num">38</td><td class="num">¥250,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2><span class="num">06</span>3 パターン詳細予算配分 v2</h2>
+
+    <div class="grid-3">
+      <div class="card scenario-small">
+        <div class="label">小 v2</div>
+        <div class="value">¥500,000</div>
+        <div class="body">v1 と同枠、 業界紙取材依頼 (¥0) + アトツギ甲子園観覧 (¥3K) + ペライチ第 3 版印刷 (+¥10K) を組込</div>
+      </div>
+      <div class="card scenario-mid">
+        <div class="label">中 v2 (推奨)</div>
+        <div class="value">¥1,000,000</div>
+        <div class="body">DX 認定 ¥30K + 認定支援機関提携 ¥10K + アトツギ甲子園 ¥10K を追加、 予備費を圧縮で総額キープ</div>
+      </div>
+      <div class="card scenario-large">
+        <div class="label">大 v2</div>
+        <div class="value">¥2,000,000</div>
+        <div class="body">業界紙広告 ¥150K → 取材依頼 ¥0 で置換、 浮いた ¥150K を アトツギ向け LP / 甲子園出展 / 認定支援機関契約整備 / DX 認定行政書士 に再配分</div>
+      </div>
+    </div>
+
+    <h3>6.1 小 ¥500,000 (微修正)</h3>
+
+    <table>
+      <thead><tr><th>項目</th><th>金額</th><th>v1 → v2 増減</th></tr></thead>
+      <tbody>
+        <tr><td>Claude Code MAX 12 ヶ月</td><td class="num">¥120,000</td><td>—</td></tr>
+        <tr><td>Vercel Pro 切替</td><td class="num">¥18,000</td><td>—</td></tr>
+        <tr><td>ペライチ印刷 (各 500 部 × 3 種類 [v2: アトツギ版追加] + 名刺 1,000 枚)</td><td class="num">¥50,000</td><td class="tag-new">+¥10K</td></tr>
+        <tr><td>巡回交通費 (建材屋 + 設計事務所 + 組合 + たましん 5/16 訪問)</td><td class="num">¥60,000</td><td>—</td></tr>
+        <tr><td>商工会議所 + 全建総連 加盟</td><td class="num">¥30,000</td><td>—</td></tr>
+        <tr><td>住宅デー 6/25 関連</td><td class="num">¥10,000</td><td>—</td></tr>
+        <tr><td>業界紙購読 + <strong>取材依頼メール送付</strong></td><td class="num">¥30,000</td><td>取材依頼 ¥0</td></tr>
+        <tr style="background: #ede9fe;"><td><strong>アトツギ甲子園 観覧</strong> (12-2 月、 1 日交通費)</td><td class="num">¥3,000</td><td class="tag-new">+¥3K</td></tr>
+        <tr><td>ジャパンホームショー視察</td><td class="num">¥3,000</td><td>—</td></tr>
+        <tr><td>友人ヒアリング 雪だるま 5 件 謝礼</td><td class="num">¥150,000</td><td>—</td></tr>
+        <tr><td>予備費</td><td class="num">¥26,000</td><td>-¥13K</td></tr>
+        <tr class="total"><td><strong>合計</strong></td><td class="num">¥500,000</td><td>±0</td></tr>
+      </tbody>
+    </table>
+
+    <pre class="goal-block"><span class="gkey">/goal</span> <span class="gcomment">// 小 v2</span>
+2027-04-30 までに 契約 <span class="gvar">6 件</span> + MRR <span class="gvar">¥60K</span> を達成。
+撤退ライン: 2026-10-31 時点で契約 0 件</pre>
+
+    <h3>6.2 中 ¥1,000,000 (推奨、 二重化費用 + アトツギ追加)</h3>
+
+    <h4>小 ¥500K に追加する項目 (v1 と一部入れ替え)</h4>
+
+    <table>
+      <thead><tr><th>追加項目</th><th>v1 金額</th><th>v2 金額</th><th>増減</th></tr></thead>
+      <tbody>
+        <tr><td>LINE 友だち広告</td><td class="num">¥90,000</td><td class="num">¥90,000</td><td>—</td></tr>
+        <tr><td>ポスティング 5,000 部</td><td class="num">¥80,000</td><td class="num">¥80,000</td><td>—</td></tr>
+        <tr><td>建材屋紹介キックバック原資</td><td class="num">¥100,000</td><td class="num">¥100,000</td><td>—</td></tr>
+        <tr><td>設計事務所開拓 DM (100 社)</td><td class="num">¥20,000</td><td class="num">¥20,000</td><td>—</td></tr>
+        <tr><td>ジャパンホームショー来場 + 事前アポ</td><td class="num">¥30,000</td><td class="num">¥30,000</td><td>—</td></tr>
+        <tr><td>補助金申請伴走 (社労士 → <strong>認定支援機関税理士</strong> スポット)</td><td class="num">¥60,000</td><td class="num">¥60,000</td><td>—</td></tr>
+        <tr><td>LP / 動画制作 (デモ動画 + <strong>アトツギ向けピッチ動画</strong>)</td><td class="num">¥80,000</td><td class="num">¥80,000</td><td>—</td></tr>
+        <tr style="background: #ede9fe;"><td><strong>DX 認定事業者 申請費</strong> (書類作成委託)</td><td class="num">—</td><td class="num">¥30,000</td><td class="tag-new">+¥30K</td></tr>
+        <tr style="background: #ede9fe;"><td><strong>認定支援機関税理士 提携 連絡実費</strong></td><td class="num">—</td><td class="num">¥10,000</td><td class="tag-new">+¥10K</td></tr>
+        <tr style="background: #ede9fe;"><td><strong>アトツギ甲子園 関連経費</strong> (LinkedIn 名刺 + 観覧拡張)</td><td class="num">—</td><td class="num">¥10,000</td><td class="tag-new">+¥10K</td></tr>
+        <tr><td>予備費</td><td class="num">¥40,000</td><td class="num">-¥10,000</td><td>-¥50K</td></tr>
+        <tr class="total"><td><strong>追加合計</strong></td><td class="num">¥500,000</td><td class="num">¥500,000</td><td>±0</td></tr>
+        <tr class="total"><td><strong>中シナリオ 総予算</strong></td><td class="num">¥1,000,000</td><td class="num">¥1,000,000</td><td>±0</td></tr>
+      </tbody>
+    </table>
+
+    <pre class="goal-block"><span class="gkey">/goal</span> <span class="gcomment">// 中 v2 (推奨)</span>
+2027-04-30 までに 契約 <span class="gvar">13 件</span> + MRR <span class="gvar">¥130K</span> を達成。
+撤退ライン: 2026-10-31 時点で契約 3 件未満
+ピボット候補:
+  - 補助金 1/8 訴求 が 重複 NG (5/22 Q4) なら 1/4 訴求に縮小
+  - 価格パターン B (初期 30 万 + 月 5K) で 前倒し回収</pre>
+
+    <h3>6.3 大 ¥2,000,000 (業界紙広告 → 取材依頼置換)</h3>
+
+    <h4>中 ¥1M に追加する項目 (v1 と一部入れ替え)</h4>
+
+    <table>
+      <thead><tr><th>追加項目</th><th>v1 金額</th><th>v2 金額</th><th>増減</th></tr></thead>
+      <tbody>
+        <tr><td>営業代行 (テレアポ 2 ヶ月)</td><td class="num">¥300,000</td><td class="num">¥300,000</td><td>—</td></tr>
+        <tr><td>ジャパンホームショー シェアブース出展</td><td class="num">¥350,000</td><td class="num">¥350,000</td><td>—</td></tr>
+        <tr style="background: #ede9fe;"><td><s>業界紙広告</s> → <strong>取材依頼 + 掲載後 PDF 添付商談</strong></td><td class="num">¥150,000</td><td class="num tag-new">¥0</td><td class="tag-new">-¥150K</td></tr>
+        <tr><td>工務店オーナー DM (1,000 件 多摩地区)</td><td class="num">¥80,000</td><td class="num">¥80,000</td><td>—</td></tr>
+        <tr><td>合同会社設立費用</td><td class="num">¥60,000</td><td class="num">¥60,000</td><td>—</td></tr>
+        <tr><td>リーガル / 契約書テンプレ整備</td><td class="num">¥50,000</td><td class="num">¥50,000</td><td>—</td></tr>
+        <tr style="background: #ede9fe;"><td><strong>アトツギ向け LP 第 3 版 制作</strong> (<code>/report/atotsugi</code>)</td><td class="num">—</td><td class="num">¥50,000</td><td class="tag-new">+¥50K</td></tr>
+        <tr style="background: #ede9fe;"><td><strong>アトツギ甲子園 ブース打診 / 出展</strong></td><td class="num">—</td><td class="num">¥30,000</td><td class="tag-new">+¥30K</td></tr>
+        <tr style="background: #ede9fe;"><td><strong>認定支援機関 業務提携 契約書整備</strong> (弁護士スポット)</td><td class="num">—</td><td class="num">¥20,000</td><td class="tag-new">+¥20K</td></tr>
+        <tr style="background: #ede9fe;"><td><strong>DX 認定事業者 申請費</strong> (大シナリオ版、 行政書士委託)</td><td class="num">—</td><td class="num">¥50,000</td><td class="tag-new">+¥50K</td></tr>
+        <tr><td>予備費</td><td class="num">¥10,000</td><td class="num">¥10,000</td><td>—</td></tr>
+        <tr class="total"><td><strong>追加合計</strong></td><td class="num">¥1,000,000</td><td class="num">¥1,000,000</td><td>±0</td></tr>
+        <tr class="total"><td><strong>大シナリオ 総予算</strong></td><td class="num">¥2,000,000</td><td class="num">¥2,000,000</td><td>±0</td></tr>
+      </tbody>
+    </table>
+
+    <pre class="goal-block"><span class="gkey">/goal</span> <span class="gcomment">// 大 v2</span>
+2027-04-30 までに 契約 <span class="gvar">25 件</span> + MRR <span class="gvar">¥250K</span> を達成。
+撤退ライン: 2026-10-31 時点で契約 7 件未満 → 営業代行止め</pre>
+
+    <h2><span class="num">07</span>月次キャッシュフロー v2 (中シナリオ標準)</h2>
+
+    <p>
+      <strong>契約タイミング v2</strong>: M2 (2)・M3 (1)・M4 (1)・M5 (1)・M6 (1)・M7 (1)・M8 (1)・M9 (1)・M10 (1)・M11 (1)・M12 (2) = 累計 13 件。
+      M2 (6 月) で 2 件 = たましん 5/16 起点 + 商工会議所 + 北原氏紹介の 5/22-5/31 接触で 6 月中契約。
+      M12 (4 月) で 2 件 = 業界紙 8-9 月掲載効果の継続 + アトツギ甲子園 (2027-2) フォロー。
+    </p>
+
+    <table class="table-cf">
+      <thead>
+        <tr>
+          <th>月</th><th>契約累計</th><th>売上初期</th><th>売上月額</th><th>売上小計</th><th>Claude</th><th>営業経費</th><th>借入返済</th><th>経費小計</th><th>月次 CF</th><th>累積 CF (借入込)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>M1 (5月)</td><td>0</td><td class="num">¥0</td><td class="num">¥0</td><td class="num">¥0</td><td class="num">¥10K</td><td class="num">¥60K</td><td class="num">¥2K</td><td class="num">¥72K</td><td class="num tag-bad">-¥72K</td><td class="num">+¥928K</td></tr>
+        <tr style="background: #ede9fe;"><td>M2 (6月)</td><td>2</td><td class="num">¥200K</td><td class="num">¥0</td><td class="num">¥200K</td><td class="num">¥10K</td><td class="num">¥120K</td><td class="num">¥2K</td><td class="num">¥132K</td><td class="num tag-good">+¥68K</td><td class="num">+¥996K</td></tr>
+        <tr><td>M3 (7月)</td><td>3</td><td class="num">¥100K</td><td class="num">¥20K</td><td class="num">¥120K</td><td class="num">¥10K</td><td class="num">¥100K</td><td class="num">¥2K</td><td class="num">¥112K</td><td class="num tag-good">+¥8K</td><td class="num">+¥1,004K</td></tr>
+        <tr><td>M4 (8月)</td><td>4</td><td class="num">¥100K</td><td class="num">¥30K</td><td class="num">¥130K</td><td class="num">¥10K</td><td class="num">¥80K</td><td class="num">¥2K</td><td class="num">¥92K</td><td class="num tag-good">+¥38K</td><td class="num">+¥1,042K</td></tr>
+        <tr><td>M5 (9月)</td><td>5</td><td class="num">¥100K</td><td class="num">¥40K</td><td class="num">¥140K</td><td class="num">¥10K</td><td class="num">¥80K</td><td class="num">¥2K</td><td class="num">¥92K</td><td class="num tag-good">+¥48K</td><td class="num">+¥1,090K</td></tr>
+        <tr><td>M6 (10月)</td><td>6</td><td class="num">¥100K</td><td class="num">¥50K</td><td class="num">¥150K</td><td class="num">¥10K</td><td class="num">¥80K</td><td class="num">¥2K</td><td class="num">¥92K</td><td class="num tag-good">+¥58K</td><td class="num">+¥1,148K</td></tr>
+        <tr><td>M7 (11月)</td><td>7</td><td class="num">¥100K</td><td class="num">¥60K</td><td class="num">¥160K</td><td class="num">¥10K</td><td class="num">¥40K</td><td class="num tag-warn">¥18K</td><td class="num">¥68K</td><td class="num tag-good">+¥92K</td><td class="num">+¥1,240K</td></tr>
+        <tr><td>M8 (12月)</td><td>8</td><td class="num">¥100K</td><td class="num">¥70K</td><td class="num">¥170K</td><td class="num">¥10K</td><td class="num">¥40K</td><td class="num">¥18K</td><td class="num">¥68K</td><td class="num tag-good">+¥102K</td><td class="num">+¥1,342K</td></tr>
+        <tr><td>M9 (1月)</td><td>9</td><td class="num">¥100K</td><td class="num">¥80K</td><td class="num">¥180K</td><td class="num">¥10K</td><td class="num">¥40K</td><td class="num">¥18K</td><td class="num">¥68K</td><td class="num tag-good">+¥112K</td><td class="num">+¥1,454K</td></tr>
+        <tr><td>M10 (2月)</td><td>10</td><td class="num">¥100K</td><td class="num">¥90K</td><td class="num">¥190K</td><td class="num">¥10K</td><td class="num">¥40K</td><td class="num">¥18K</td><td class="num">¥68K</td><td class="num tag-good">+¥122K</td><td class="num">+¥1,576K</td></tr>
+        <tr><td>M11 (3月)</td><td>11</td><td class="num">¥100K</td><td class="num">¥100K</td><td class="num">¥200K</td><td class="num">¥10K</td><td class="num">¥40K</td><td class="num">¥18K</td><td class="num">¥68K</td><td class="num tag-good">+¥132K</td><td class="num">+¥1,708K</td></tr>
+        <tr style="background: #ede9fe;"><td>M12 (4月)</td><td>13</td><td class="num">¥200K</td><td class="num">¥110K</td><td class="num">¥310K</td><td class="num">¥10K</td><td class="num">¥40K</td><td class="num">¥18K</td><td class="num">¥68K</td><td class="num tag-good">+¥242K</td><td class="num">+¥1,950K</td></tr>
+        <tr class="total"><td><strong>累計</strong></td><td>13</td><td class="num">¥1,300K</td><td class="num">¥570K</td><td class="num">¥1,870K</td><td class="num">¥120K</td><td class="num">¥760K</td><td class="num">¥120K</td><td class="num">¥1,000K</td><td class="num tag-good">+¥870K</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-new">
+      <strong>v1 との比較</strong><br />
+      ・ 累積売上: ¥1,270K (v1) → <strong>¥1,870K (v2、 +¥600K)</strong><br />
+      ・ 月次 CF 累計: +¥390K (v1) → <strong>+¥870K (v2、 +¥480K)</strong><br />
+      ・ 12 ヶ月後 MRR: ¥80K (v1) → <strong>¥110K (v2、 13 件目契約済 = 13 ヶ月目から ¥130K)</strong><br />
+      ・ 純損益 (会計ベース): +¥492K (v1) → <strong>+¥992K (v2、 +¥500K)</strong>
+    </div>
+
+    <h3>撤退ライン到達時のキャッシュ状態 (M6 契約 3 件未満)</h3>
+
+    <ul>
+      <li>累積 CF: 約 <strong>+¥920K</strong> (4 件契約パターン: 売上 ¥230K 減算)</li>
+      <li>借入残債 ¥982K (利息のみ返済中)</li>
+      <li>→ 手元 ¥920K - 残債 ¥982K = 約 <strong>-¥62K の繰り越し負債</strong> で v1 (-¥226K) より大幅改善</li>
+      <li>撤退してもキャッシュ的に致命傷ではない</li>
+    </ul>
+
+    <h2><span class="num">08</span>借入 100 万円 設計 (v1 §6 と同一)</h2>
+
+    <p>詳細は v1 (<code>docs/business-plan-2026-05-14.html</code>) §6 参照。 v2 では追加変更なし。</p>
+
+    <ul>
+      <li>日本政策金融公庫 「新規開業資金」、 60 ヶ月、 利率 2.5%、 据置 6 ヶ月</li>
+      <li>月返済: 据置中 ¥2,083 → 7 ヶ月目から ¥17,750</li>
+      <li>12 ヶ月返済額合計 ¥119K</li>
+      <li>たましん経由 信保協付き融資 は軌道乗ってから追加融資先として温存</li>
+    </ul>
+
+    <h2><span class="num">09</span>撤退ライン マトリックス v2 (Step 7 反映)</h2>
+
+    <table>
+      <thead>
+        <tr><th>期日</th><th>観察指標</th><th>OK 判定</th><th>注意 (戦術見直し)</th><th>NG (撤退/縮小)</th></tr>
+      </thead>
+      <tbody>
+        <tr style="background: #ede9fe;"><td><strong>2026-05-16 (v2.1 修正)</strong></td><td><strong>たましん訪問の手応え</strong> (期待値リセット: 半年で 3-5 件が現実的、 1 回訪問は情報収集が主)</td><td class="tag-good">「業界情報あり + 次回紹介検討の意向」</td><td class="tag-warn">「業界情報あり、 紹介は当面なし」 (= 2-3 回訪問で関係構築継続)</td><td class="tag-bad">「個別紹介はしない、 ビジネスフェアでどうぞ」 → <strong>中シナリオ縮小</strong></td></tr>
+        <tr style="background: #ede9fe;"><td><strong>2027-01-31 (v2.1 追加)</strong></td><td><strong>MRR ¥50K (5 件) 達成判定</strong> ← 9 ヶ月時点 早期判定</td><td class="tag-good">¥50K 以上</td><td class="tag-warn">¥30-50K で改善見込み</td><td class="tag-bad">¥50K 未満 → <strong>価格 C (1 機能特化 月 ¥1,500-3,000) に即ピボット</strong>、 4/30 ルートゴール 待たず勝負</td></tr>
+        <tr><td>2026-06-15</td><td>友人ヒアリング 「明日使いたい」 デモ数</td><td class="tag-good">1 つ以上</td><td class="tag-warn">0 だが「将来検討」 1 つ以上</td><td class="tag-bad">全部「使わない」</td></tr>
+        <tr><td>2026-06-30</td><td>5/22 北原氏面談 紹介経路獲得数</td><td class="tag-good">1 つ以上</td><td class="tag-warn">0 だが「IT 導入補助金紹介」 のみ</td><td class="tag-bad">何もなし</td></tr>
+        <tr><td>2026-07-30</td><td>商談 (見積もり提示まで) 累計</td><td class="tag-good">5 件以上 (v1: 3 件)</td><td class="tag-warn">2-4 件</td><td class="tag-bad">0-1 件</td></tr>
+        <tr><td>2026-08-31</td><td>初契約累計</td><td class="tag-good">2 件以上 (v1: 1 件)</td><td class="tag-warn">商談中 多数</td><td class="tag-bad">商談 0 件</td></tr>
+        <tr><td>2026-10-31 (M6)</td><td>契約累計</td><td class="tag-good">小:1 / 中:3 / 大:7</td><td class="tag-warn">各 -1 件</td><td class="tag-bad">各 -2 件以下</td></tr>
+        <tr><td>2026-11-30</td><td>MRR</td><td class="tag-good">¥40K 以上 (v1: ¥30K)</td><td class="tag-warn">¥10-40K</td><td class="tag-bad">¥10K 未満</td></tr>
+        <tr><td>2027-01-31</td><td>借入返済キャッシュ余力</td><td class="tag-good">+¥150K 以上 (v1: +¥100K)</td><td class="tag-warn">+¥0-150K</td><td class="tag-bad">-¥0 以下</td></tr>
+        <tr><td>2027-04-30</td><td>ルートゴール (§01)</td><td class="tag-good">達成</td><td class="tag-warn">MRR ¥30-50K で継続検討</td><td class="tag-bad">撤退判定</td></tr>
+      </tbody>
+    </table>
+
+    <h3>5/16 たましん訪問 → 動かない時のリカバリ計画</h3>
+
+    <ul>
+      <li>中シナリオは縮小 (DX 認定費 + アトツギ甲子園費 はキープ、 LINE 広告と LP 制作費を削減)</li>
+      <li>接触経路: 商工会議所 + 友人 LINE + 北原氏紹介 + 建材屋巡回 で 13-21 件接触</li>
+      <li>補助金 1/8 訴求 + アトツギ窓口化 + 業界紙取材 は変更なし</li>
+      <li>12 ヶ月後 MRR 目標を ¥130K → ¥80K に下方修正</li>
+    </ul>
+
+    <h2 class="h2-new"><span class="num">10</span>統合スケジュール 5/14 - 7/30 (新規)</h2>
+
+    <div class="schedule">
+      <div class="phase">
+        <div class="phase-head">今週 (5/14 - 5/21) — 接触ハブ 活性化</div>
+        <p style="margin: 0 0 8px; padding: 8px 12px; background: var(--new-soft); border-radius: 6px; color: var(--new); font-size: 13px;"><strong>v2.1 (2026-05-15) 追加アクション</strong></p>
+        <ul>
+          <li><strong>5/15 中</strong>: <strong>GビズID プライム取得状況確認</strong> (なければ当日中に申請、 法務局印鑑証明書必要、 取得 1-2 週間)</li>
+          <li><strong>5/15-16 中</strong>: <strong>東京都中小企業振興公社 DX 推進助成金担当に直接電話</strong>、 IT 導入補助金との同時申請可否を確認 (北原氏 5/22 Q4 待ち回避)</li>
+        </ul>
+        <p style="margin: 12px 0 8px; font-size: 13px; color: var(--muted);">通常アクション:</p>
+        <ul>
+          <li><strong>5/15 (木) AM</strong>: 府中商工会議所 経営指導員 に電話 → 持続化補助金対象工務店紹介 + 「IT 化推進パートナー」 肩書き打診</li>
+          <li><strong>5/15 (木) PM</strong>: たましん 府中支店 経営支援部 に電話 → 取引先工務店紹介 + 「たましん指定 SaaS」 ポジション打診 + 試作品ライブ訪問日程</li>
+          <li><strong>5/16 (金)</strong>: たましん 訪問 (試作品 ノート PC ライブ持参 + 念のため iPhone Safari でも見せられる準備、 静的スクショ PDF バックアップ併用)。 <strong>期待値リセット (v2.1): 紹介数より「業界情報」 取得を主目的に、 1 回訪問で 5-10 件紹介は楽観すぎ、 半年で 3-5 件が現実的</strong></li>
+          <li>5/17-19: 友人ヒアリング 日時確定 + LINE 拡散文面確定</li>
+          <li>5/20-21: 5/22 北原氏面談 Q0-Q5 確定 (Q4 都 DX 助成金、 Q5 アトツギ窓口を追加)</li>
+          <li>5/20-30: <strong>新建ハウジング / リフォーム産業新聞 取材依頼メール</strong> (1-2 媒体、 v2 新規)</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">5/22 (木) 北原氏面談 — 紹介ハブ確定</div>
+        <ul>
+          <li>Q0: 紹介依頼 3-5 社</li>
+          <li>Q1: 信用度ルート (合同会社) 必要性</li>
+          <li>Q2: IT 導入支援事業者 2026 公募 + コンソーシアム参画</li>
+          <li>Q3: 認定支援機関税理士 紹介</li>
+          <li><strong>Q4: 東京都 DX 推進助成金 スケジュール + 同時申請可否</strong> (Ultrathink 追加)</li>
+          <li><strong>Q5: アトツギ世代を窓口にしたい工務店</strong> (Ultrathink 追加)</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">5/23 - 5/31 — 接触 18-31 件作る</div>
+        <ul>
+          <li>北原氏紹介 3-5 社へ初回連絡</li>
+          <li>たましん紹介 5-10 社へ初回連絡</li>
+          <li>商工会議所紹介 2-3 社へ初回連絡</li>
+          <li>友人ヒアリング実施 → LINE 拡散起動</li>
+          <li>建材屋営業マン (LIXIL 多摩 / ナフコ / 地元卸) 巡回開始</li>
+          <li>業界紙 1-2 媒体目 取材依頼</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">6/1 - 6/15 — 並行 5 件商談</div>
+        <ul>
+          <li>1 次商談 5-7 社</li>
+          <li>demo 持ち込み 3-5 社</li>
+          <li>東京都 DX 推進助成金 申請伴走パッケージ化</li>
+          <li>IT 導入支援事業者 コンソーシアム参画手続き</li>
+          <li>アトツギ甲子園 地域予選 参加検討 (時期合えば)</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">6/16 - 6/30 — 1-2 社目契約</div>
+        <ul>
+          <li>社内検討フェーズ 3-5 社</li>
+          <li><strong>1-2 社目契約完了 (6/30 目標、 v2 で 2 件契約に上方修正)</strong></li>
+          <li>6/25 住宅デー (全建総連 多摩西部支部) — 顔売り + IT 相談ブース</li>
+          <li>信用度ルート (合同会社) 設立 (必要なら)</li>
+          <li><strong>v2.1 重要ルール (税理士 C 指摘): 法人化は公庫融資申込・実行後</strong>。 法人化すると融資審査がリセットされるため、 5 月末-6 月初旬に公庫 100 万円申込 → 6 月末入金 → その後 信用度ルート判断時のみ合同会社設立 (6 月後半 〜 7 月)</li>
+          <li><strong>公庫融資申込時 必須書類 (v2.1 追加): 既存受託案件の固定収入証明 (顧客契約書 / 請書 / 通帳)</strong>。 軸 B 売上ゼロベースで「既存受託の継続性」 を別紙添付しないと面談で詰む</li>
+          <li><strong>東京都事業承継・引継ぎ支援センター 訪問 (v2.1 追加)</strong>: アトツギ系工務店リスト取得目的、 アトツギ甲子園 (12-2 月) 待ちより早く成果出る</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">7 月 — 3 社目 + 月次売上ライン</div>
+        <ul>
+          <li>3 社目契約 (7/30 目標)</li>
+          <li>IT 導入補助金 武器化 (登録完了)</li>
+          <li>DX 認定事業者 申請完了</li>
+          <li><strong>月次売上 5-10 万円達成</strong> (STRATEGY.md §4 Month 3 目標)</li>
+          <li>業界紙取材掲載開始 (新建ハウジング 1-2 媒体目)</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">8-12 月 — 業界紙加速 + ストック</div>
+        <ul>
+          <li>8-9 月: 業界紙掲載効果で 2-3 社目以降加速</li>
+          <li>10 月: ジャパンホームショー来場 (大シナリオ シェアブース出展)</li>
+          <li>11 月: 月次 MRR ¥60K ライン</li>
+          <li>12 月: 月次 MRR ¥80K ライン + アトツギ甲子園 地域予選 観覧開始</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">1-4 月 (2027) — アトツギ甲子園加速 + ルートゴール</div>
+        <ul>
+          <li>1-2 月: アトツギ甲子園 全国決勝 (3 月) までに アトツギネットワーク構築</li>
+          <li>3 月: 月次 MRR ¥110K</li>
+          <li><strong>4/30: ルートゴール判定</strong> (12 ヶ月後判定、 STRATEGY.md §9)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2><span class="num">11</span>リスクシナリオ + ピボット候補 v2</h2>
+
+    <h3>v1 から追加されたリスク</h3>
+
+    <table>
+      <thead><tr><th>リスク</th><th>確率</th><th>影響度</th><th>対応</th></tr></thead>
+      <tbody>
+        <tr style="background: var(--new-soft);"><td><strong>チャーンレート月 4% 仮定が甘い、 IT 弱者ターゲットで月 8-10% リスク (VC A 指摘、 v2.1)</strong></td><td class="tag-bad">高</td><td class="tag-bad">大</td><td>LTV ¥340K → ¥150K に半減、 LTV/CAC 4.4 倍 → 2 倍まで悪化。 カスタマーサクセス (定期 LINE フォロー) + 1 年契約縛り (価格 B) で対策</td></tr>
+        <tr style="background: var(--new-soft);"><td><strong>たましん 1 回訪問で 5-10 件紹介は楽観 (診断士 B 指摘、 v2.1)</strong></td><td class="tag-bad">高</td><td class="tag-warn">中</td><td>半年で 3-5 件紹介が現実的、 1 回訪問は情報収集と捉える。 並行で商工会議所 + 北原氏 + 友人 LINE で接触数を補完</td></tr>
+        <tr style="background: var(--new-soft);"><td><strong>アトツギ不在工務店が 6 割 (診断士 B 指摘、 v2.1)</strong></td><td class="tag-warn">中</td><td class="tag-warn">中</td><td>アトツギ戦略は 4 割の工務店に集中、 残り 6 割は建材屋経由で並列展開</td></tr>
+        <tr style="background: var(--new-soft);"><td><strong>公庫融資面談で「軸 B 売上ゼロ」 で詰む (税理士 C 指摘、 v2.1)</strong></td><td class="tag-warn">中</td><td class="tag-bad">大</td><td>既存受託案件の固定収入証明書類 (契約書 / 請書 / 通帳) を別紙添付必須</td></tr>
+        <tr style="background: var(--new-soft);"><td><strong>補助金 1/8 同時申請が「実質同一案件で 2 制度使用は趣旨違反」 と判定 (税理士 C 指摘、 v2.1)</strong></td><td class="tag-warn">中</td><td class="tag-warn">中</td><td>5/15-16 公社直接電話で確定、 NG なら 1/4 訴求に縮小 (北原氏 5/22 待ち回避)</td></tr>
+        <tr style="background: var(--new-soft);"><td><strong>ドメイン名 <code>ihara-frontend.com</code> が主顧客に意味不明 (v2.2)</strong></td><td class="tag-bad">高</td><td class="tag-warn">中</td><td>5/22 北原氏 Q6 で「工務店オーナーから見たドメイン名」 を聞く。 6 月以降、 多摩工務店向けドメイン取得検討</td></tr>
+        <tr style="background: var(--new-soft);"><td><strong>「単独主軸化」 と実態の乖離 (v2.2)</strong></td><td class="tag-bad">高</td><td class="tag-good">小</td><td>表現を「軸 B 強化期」 に修正、 数字目標を MRR ¥250K へ前倒し検討</td></tr>
+        <tr style="background: var(--new-soft);"><td><strong>8 デモ仮説検証ゼロのまま たましん訪問する論理矛盾 (v2.2)</strong></td><td class="tag-warn">中</td><td class="tag-warn">中</td><td>5/16 訪問の主目的を「業界情報取得 + 関係構築」 に絞る、 友人ヒアリング後に 5/30 訪問でデモ調整版を見せる</td></tr>
+        <tr style="background: #ede9fe;"><td><strong>たましん経営支援部 が制度的に個別紹介しない (5/16 判明)</strong></td><td class="tag-warn">中</td><td class="tag-bad">大</td><td>中シナリオ縮小、 接触 13-21 件で進行、 MRR 目標 ¥130K → ¥80K</td></tr>
+        <tr style="background: #ede9fe;"><td><strong>補助金 1/8 訴求 同時申請 NG (5/22 Q4 判明)</strong></td><td class="tag-warn">中</td><td class="tag-warn">中</td><td>1/4 訴求に縮小、 CVR 上方修正係数 1.5x → 1.2x、 中シナリオ 13 件 → 11 件</td></tr>
+        <tr style="background: #ede9fe;"><td><strong>アトツギ不在工務店ばかり</strong> (一人親方多数)</td><td class="tag-warn">中</td><td class="tag-warn">中</td><td>建材屋経由ルートに重み移す、 アトツギ甲子園予算は撤回</td></tr>
+        <tr style="background: #ede9fe;"><td>たましん指定 SaaS 担当者異動 (信金 2-3 年異動)</td><td class="tag-good">低</td><td class="tag-bad">大</td><td>6 月時点で関係構築 → 7 月までに紹介 5 件以上を受け切るスピード</td></tr>
+        <tr style="background: #ede9fe;"><td>DX 認定書類重く 7 月申請 間に合わない</td><td class="tag-warn">中</td><td class="tag-good">小</td><td>行政書士委託 (大シナリオ ¥50K)、 中シナリオは申請ずらし</td></tr>
+        <tr style="background: #ede9fe;"><td>業界紙取材 4 媒体 全部 反応なし</td><td class="tag-good">低</td><td class="tag-warn">中</td><td>5 月中 1 媒体目で反応見て、 反応なければ 2 媒体目を別角度で送り直し</td></tr>
+      </tbody>
+    </table>
+
+    <h3>v1 から継続するピボット候補 3 つ</h3>
+
+    <ul>
+      <li><strong>ピボット #1</strong>: 価格パターン B (前倒し回収) — トリガー M6 契約 0-1 件</li>
+      <li><strong>ピボット #2</strong>: 価格パターン C (1 機能特化サブスク) — トリガー M9 MRR ¥30K 未満</li>
+      <li><strong>ピボット #3</strong>: 価格パターン D (受託 + 月額) — トリガー M6 「HP刷新から始めたい」 工務店多数</li>
+    </ul>
+
+    <h2><span class="num">12</span>masatoman の性格を踏まえた運用ガイド v2</h2>
+
+    <h3>v1 から追加された運用ガイド</h3>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="label">アトツギ窓口化</div>
+        <div class="value">商談は父親同席</div>
+        <div class="body">
+          ・ アトツギ単独説得を防ぐ (決裁権ない)<br />
+          ・ アトツギの「父親説得用」 配付資料を商談後に渡す (補助金 1/8 + 同業事例 + ROI)<br />
+          ・ 5/22 Q5 で アトツギ窓口工務店リスト 3-5 社 取得
+        </div>
+      </div>
+      <div class="card">
+        <div class="label">たましん 5/15-16</div>
+        <div class="value">最優先タスク化</div>
+        <div class="body">
+          ・ 撤退ライン §9 でリカバリ計画明示済、 動かなくても進行可能<br />
+          ・ 5/16 訪問の手応えを「動く」 と判定したら中シナリオ全額起動<br />
+          ・ 試作品 ノート PC ライブ持参 (iPad 未所持、 iPhone Safari で代替可)、 オフライン動作未検証 → 静的スクショ PDF バックアップ併用
+        </div>
+      </div>
+      <div class="card">
+        <div class="label">補助金 1/8 訴求</div>
+        <div class="value">商談で必ず最後に</div>
+        <div class="body">
+          ・ 訴求順序: 痛み → 解決 → 価格 → 補助金 (代行業者ポジションに落ちない)<br />
+          ・ 5/22 Q4 結果まで「実質負担 1/4-1/8 になる可能性」 と表現<br />
+          ・ 採択率 30-60% を必ず明示 (誠実さで信用獲得)
+        </div>
+      </div>
+      <div class="card">
+        <div class="label">業界紙取材依頼</div>
+        <div class="value">5/30 までに送信</div>
+        <div class="body">
+          ・ 優先順位: 新建ハウジング > 建築知識 > 日経ホームビルダー > リフォーム産業新聞<br />
+          ・ 同時に 4 媒体送らない (記者ネットワーク経由で「他社にも」 と取られる)<br />
+          ・ 取材は無料、 自薦可能、 即効性 中 (掲載 2-3 ヶ月)
+        </div>
+      </div>
+    </div>
+
+    <p>v1 から継続する運用ガイド (撤退判断早い / 作る前の調査不足 / AI 前面に出さない / X 告知 wontfix / 多摩 + たましん地理優位) は v1 §9 参照。</p>
+
+    <h2><span class="num">13</span>推奨判定 v2.2 (一行)</h2>
+
+    <div class="quote" style="font-size: 16px; line-height: 1.85;">
+      <strong>5/16 たましん訪問の手応えで全額起動判定</strong>。
+      動けば 100 万円融資申込 + 中シナリオ全額起動 (MRR ¥130K 目標)。
+      動かなければ中シナリオ縮小起動 (MRR ¥80K 目標) で 商工会議所 + 友人 + 北原氏 + 建材屋 で進行。
+      5/22 Q4 で 補助金 1/8 確定すれば 数字を更に上方修正、 NG なら 1/4 訴求に縮小。
+    </div>
+
+    <div class="callout callout-new">
+      <strong>v2.2 補強</strong>: 上記は 「軸 B 強化期」 の戦略 (実質的に 既存受託 + 軸 B の副業並列強化)。
+      「単独主軸化」 という STRATEGY.md の表現は中長期的な方向性であり、 12 ヶ月後 MRR ¥130K では 軸 B 単独で生活費賄えない。
+      真の「単独主軸化」 は 大シナリオ達成 (MRR ¥250K+) または 軸 B 24 ヶ月後 (MRR ¥300-500K) に持ち越し。
+    </div>
+
+    <h2><span class="num">A</span>付録: 参照 memory / docs (v2 追加分)</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="label">Ultrathink 5 insight memory</div>
+        <div class="body">
+          <code>memory/atotsugi-decision-maker.md</code> (#1)<br />
+          <code>memory/credit-augmentation-dual-layer.md</code> (#2)<br />
+          <code>memory/tamashin-keiei-shien-bottleneck.md</code> (#3)<br />
+          <code>memory/subsidy-1-8th-burden-pitch.md</code> (#4)<br />
+          <code>memory/industry-press-authority-borrow.md</code> (#5)
+        </div>
+      </div>
+      <div class="card">
+        <div class="label">統合戦略 docs</div>
+        <div class="body">
+          <code>docs/komuten-fast-track-strategy-2026-05-14.html</code> (Ultrathink セッション原文)<br />
+          <code>docs/business-plan-2026-05-14.md</code> (v1)<br />
+          <code>docs/business-plan-2026-05-14.html</code> (v1 印刷版)<br />
+          <code>docs/business-plan-2026-05-14-v2.md</code> (本ファイルの md ソース)
+        </div>
+      </div>
+    </div>
+
+    <h2><span class="num">B</span>付録: 数字の前提と限界 v2</h2>
+
+    <ul>
+      <li>補助金 1/8 訴求の CVR 上方修正係数 1.5x は 採択率 30-60% を考慮した中央値仮定。 5/22 Q4 結果次第で 1.2-1.7x に振れる</li>
+      <li>たましん経営支援部 5-10 件接触は 担当者が動く前提。 制度的に動かない場合は 0 件</li>
+      <li>アトツギ甲子園 名刺 20 件 / 12-2 月 は 1 シーズン参加前提、 出展なら名刺 50 件以上</li>
+      <li>業界紙取材は 5 月中送信 → 7-9 月掲載 → 8-9 月効果という 2-3 ヶ月遅延を仮定</li>
+      <li>DX 認定事業者 申請は 書類重い (個人事業主実例少ない)、 7 月申請間に合わないリスクあり</li>
+      <li>本計画は <strong>5/15 友人ヒアリング前 + 5/16 たましん訪問前</strong> の立案 = 一次情報未取得段階。 5/16 + 5/22 後に必ず数字を更新する (v3 想定)</li>
+    </ul>
+
+    <footer>
+      Ihara Frontend (個人事業主) ／ ihara-frontend.com<br />
+      作成: 2026-05-14 (v2 Ultrathink 5 insight 統合) ／ 印刷向け Cmd+P ／ 関連: docs/business-plan-2026-05-14-v2.md (本ファイルのソース md)<br />
+      旧版: docs/business-plan-2026-05-14.md / .html (v1)<br />
+      関連: docs/komuten-fast-track-strategy-2026-05-14.html (Ultrathink 原文)<br />
+      連絡: kanon02sky@gmail.com / LINE 公式アカウント
+    </footer>
+  </div>
+</body>
+</html>

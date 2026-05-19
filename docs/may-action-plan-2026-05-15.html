@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>5 月残り 2 週間 実行計画 (2026-05-15 〜 2026-05-31) — Ihara Frontend</title>
+  <style>
+    :root {
+      --ink: #071b49;
+      --sub: #33496d;
+      --muted: #5f6f89;
+      --line: #d8e3f2;
+      --bg: #fbfcfe;
+      --panel: #ffffff;
+      --accent: #f47b20;
+      --accent-soft: #fff4e9;
+      --good: #15803d;
+      --good-soft: #dcfce7;
+      --warn: #b45309;
+      --warn-soft: #fef3c7;
+      --bad: #b91c1c;
+      --bad-soft: #fee2e2;
+      --info: #1d4ed8;
+      --info-soft: #dbeafe;
+      --rest: #94a3b8;
+      --rest-soft: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--ink); margin: 0; padding: 0; }
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      font-size: 14.5px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 880px; margin: 0 auto; padding: 40px 24px 80px; }
+    header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+    header .eyebrow {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 26px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      margin: 0 0 6px;
+      font-weight: 900;
+    }
+    header .meta { color: var(--muted); font-size: 13px; }
+    h2 {
+      font-size: 19px;
+      letter-spacing: -0.01em;
+      margin: 40px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--line);
+      font-weight: 900;
+    }
+    h2 .num {
+      display: inline-block;
+      background: var(--ink);
+      color: white;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-right: 10px;
+      vertical-align: 3px;
+      font-weight: 800;
+    }
+    h3 {
+      font-size: 15px;
+      margin: 24px 0 10px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    p { margin: 0 0 12px; color: var(--sub); }
+    p strong { color: var(--ink); }
+    ul, ol { margin: 0 0 14px; padding-left: 22px; color: var(--sub); }
+    li { margin-bottom: 4px; }
+    code {
+      background: #f4f7fc;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: "SF Mono", Menlo, monospace;
+      font-size: 12.5px;
+    }
+
+    .summary {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      padding: 20px 24px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    .summary p { font-size: 15px; line-height: 1.85; color: var(--ink); font-weight: 700; margin-bottom: 0; }
+
+    .constraints {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 16px 0 24px;
+    }
+    @media (max-width: 700px) { .constraints { grid-template-columns: 1fr 1fr; } }
+    .constraint {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .constraint .label { font-size: 10px; letter-spacing: 0.1em; color: var(--muted); font-weight: 800; text-transform: uppercase; }
+    .constraint .value { font-size: 16px; font-weight: 900; color: var(--ink); margin: 4px 0 2px; }
+    .constraint .body { font-size: 11.5px; color: var(--sub); line-height: 1.5; }
+
+    .cal {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin: 16px 0 24px;
+    }
+    .cal .head {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--muted);
+      padding: 6px 0;
+      letter-spacing: 0.1em;
+    }
+    .cal .head.sat { color: var(--info); }
+    .cal .head.sun { color: var(--bad); }
+    .cal .day {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+      min-height: 92px;
+      font-size: 11.5px;
+      line-height: 1.5;
+    }
+    .cal .day .date {
+      font-weight: 900;
+      font-size: 14px;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .cal .day.today { background: var(--accent-soft); border-color: var(--accent); border-width: 2px; }
+    .cal .day.today .date { color: var(--accent); }
+    .cal .day.weekend { background: var(--rest-soft); }
+    .cal .day.weekend .date { color: var(--rest); }
+    .cal .day.holiday { background: var(--bad-soft); }
+    .cal .day.holiday .date { color: var(--bad); }
+    .cal .day.key { background: var(--good-soft); border-color: var(--good); border-width: 2px; }
+    .cal .day.key .date { color: var(--good); }
+    .cal .day.mtg { background: var(--info-soft); border-color: var(--info); border-width: 2px; }
+    .cal .day.mtg .date { color: var(--info); }
+    .cal .day .act { color: var(--sub); font-size: 10.5px; }
+    .cal .day .act strong { color: var(--ink); font-weight: 800; }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .legend .item { display: inline-flex; align-items: center; gap: 4px; }
+    .legend .swatch { width: 12px; height: 12px; border-radius: 3px; border: 1px solid var(--line); }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 12px 0 20px;
+      font-size: 13px;
+    }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { background: #f4f7fc; font-weight: 800; font-size: 11px; letter-spacing: 0.05em; color: var(--muted); text-transform: uppercase; }
+    tr:last-child td { border-bottom: none; }
+    td.num { font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 700; color: var(--ink); }
+    td.tag-good { color: var(--good); font-weight: 700; }
+    td.tag-warn { color: var(--warn); font-weight: 700; }
+    td.tag-bad { color: var(--bad); font-weight: 700; }
+
+    .pill {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+    }
+    .pill-good { background: var(--good-soft); color: var(--good); }
+    .pill-warn { background: var(--warn-soft); color: var(--warn); }
+    .pill-bad { background: var(--bad-soft); color: var(--bad); }
+    .pill-info { background: var(--info-soft); color: var(--info); }
+
+    .script {
+      background: var(--ink);
+      color: #c0d3ff;
+      padding: 14px 18px;
+      border-radius: 8px;
+      font-family: "SF Mono", Menlo, monospace;
+      font-size: 12.5px;
+      line-height: 1.75;
+      white-space: pre-wrap;
+      margin: 8px 0 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 12px 0 20px;
+    }
+    @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .card .label { font-size: 10px; letter-spacing: 0.1em; color: var(--muted); font-weight: 800; text-transform: uppercase; }
+    .card .value { font-size: 17px; font-weight: 900; color: var(--ink); margin: 4px 0 4px; }
+    .card .body { font-size: 12.5px; color: var(--sub); line-height: 1.65; }
+
+    .quote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 0 10px 10px 0;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 12px 0 20px;
+      font-size: 14px;
+    }
+    .callout {
+      background: var(--info-soft);
+      border-left: 4px solid var(--info);
+      padding: 12px 16px;
+      border-radius: 0 10px 10px 0;
+      color: var(--ink);
+      font-size: 13px;
+      margin: 12px 0 20px;
+    }
+
+    footer {
+      margin-top: 48px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11.5px;
+    }
+
+    @media print {
+      body { background: white; font-size: 12px; }
+      .page { padding: 20px; max-width: none; }
+      .summary, .card, table, .script, .callout, .quote, .cal .day, .constraint { box-shadow: none; }
+      h2 { page-break-after: avoid; margin-top: 28px; }
+      table, .cal { page-break-inside: avoid; }
+      .script { background: #f4f7fc; color: var(--ink); }
+    }
+  </style>
+  <meta name="created" content="2026-05-15T05:29:37.372Z">
+</head>
+<body>
+  <div class="page">
+    <header>
+      <span class="eyebrow">5 月残り 2 週間 実行計画 (2026-05-15 〜 2026-05-31)</span>
+      <h1>軸 B 工務店プロジェクト 直近 アクションプラン</h1>
+      <div class="meta">
+        作成: 2026-05-15 (金) ／ 制約反映済 (本業 140h / 5 月 GW / 友人ヒアリング N=1) ／ 心境配慮: 「やれそうなら」 トーン徹底
+      </div>
+    </header>
+
+    <section class="summary">
+      <p>
+        5 月残り 2 週間で <strong>軸 B に割ける時間 15-25 時間</strong>。
+        最優先は <strong>5/22 (金) 北原氏面談</strong> (オンライン業務後)。
+        次が <strong>たましん 既取引の渉外担当者にコンタクト (Step 1)</strong> = 価値創造事業部訪問は通常 1 ヶ月かかる業界慣習なので 訪問本番は 6 月後半-7 月初旬想定。
+        12 ヶ月後 MRR ¥80-130K は十分目指せる。
+      </p>
+    </section>
+
+    <div class="callout" style="margin-bottom: 24px;">
+      <strong>⚠️ 2026-05-15 重要修正</strong>: たましん価値創造事業部に「いきなり電話 → 翌日訪問」 は 信金業界慣習に反する楽観プランでした。 信金は紹介経済 / 担当者ベース文化で、 個人預金のみ取引だと価値創造事業部の対象外の可能性高い。 正しいフロー Step 1-3 は §02 参照 (約 1 ヶ月)。 詳細 memory: <code>shinkin-introduction-flow.md</code>。
+    </div>
+
+    <h2><span class="num">01</span>制約サマリ (再確認)</h2>
+
+    <div class="constraints">
+      <div class="constraint">
+        <div class="label">本業</div>
+        <div class="value">月 140 時間</div>
+        <div class="body">8h × 18 日で達成、 残り 12-13 日は平日休可</div>
+      </div>
+      <div class="constraint">
+        <div class="label">5 月 軸 B 投資</div>
+        <div class="value">15-25 時間</div>
+        <div class="body">GW 影響でノルマ達成厳しい、 在宅 + オンライン中心</div>
+      </div>
+      <div class="constraint">
+        <div class="label">外出可能</div>
+        <div class="value">月 4-12 日</div>
+        <div class="body">平日休 + 土日、 訪問は半休取得 or 平日休利用</div>
+      </div>
+      <div class="constraint">
+        <div class="label">オンライン</div>
+        <div class="value">業務後 18:00〜</div>
+        <div class="body">電話・Zoom 等は ランチ・早朝・業務後 で平日も可</div>
+      </div>
+    </div>
+
+    <h2><span class="num">02</span>たましん 接触フロー (Step 1-3 / 約 1 ヶ月)</h2>
+
+    <p>信金は紹介経済 / 担当者ベース文化なので、 価値創造事業部に いきなり電話してもアポ取得確率 5-10%。 正しいフローは <strong>渉外担当者経由で 1 ヶ月かけて橋渡し</strong>。</p>
+
+    <table>
+      <thead>
+        <tr><th>Step</th><th>期間</th><th>アクション</th><th>ゴール</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Step 1</td><td>1-2 営業日</td><td>既取引の渉外担当者にコンタクト (支店窓口 or メール)</td><td>担当者と「事業性相談 + 価値創造事業部紹介依頼」 を共有</td></tr>
+        <tr><td>Step 2</td><td>1-2 週間</td><td>担当者経由で価値創造事業部に橋渡し</td><td>価値創造事業部の担当者名 + 連絡可能 状態</td></tr>
+        <tr><td>Step 3</td><td>2-3 週間後</td><td>価値創造事業部 アポイント + 訪問 (ノート PC ライブ + ペライチ)</td><td>取引先工務店 紹介依頼 + 「たましん指定 SaaS」 ポジション打診</td></tr>
+      </tbody>
+    </table>
+
+    <h3>5/15 (今日) の最小アクション 修正版 — 業務後 5 分</h3>
+
+    <p>「価値創造事業部に直接電話」 ではなく <strong>「渉外担当者にコンタクト」</strong> が正しい初手。 以下 3 つの選択肢から 一番ハードル低いものを:</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="label">選択肢 A (推奨)</div>
+        <div class="value">既取引 渉外担当者にメール</div>
+        <div class="body">
+          通帳・キャッシュカード送付状から担当者名を確認。<br />
+          「個人事業を本格化したく、 価値創造事業部のご紹介をお願いできませんか」<br />
+          所要 5 分、 業務後 OK、 翌日返信期待
+        </div>
+      </div>
+      <div class="card">
+        <div class="label">選択肢 B</div>
+        <div class="value">5/18 月 ランチ時間に支店窓口</div>
+        <div class="body">
+          府中支店窓口 (12:00-13:00) で「事業相談したい」 と告げる<br />
+          → 渉外担当者を呼んでもらう<br />
+          所要 30 分、 ランチ時間使う
+        </div>
+      </div>
+      <div class="card">
+        <div class="label">選択肢 C</div>
+        <div class="value">価値創造事業部に直接電話</div>
+        <div class="body">
+          価値創造事業部 直電 <strong>042-526-7728</strong> (平日 9-17 時)<br />
+          確率 5-10% で即アポ、 90% で「支店から折り返します」<br />
+          所要 5 分、 ダメ元で試す価値あり
+        </div>
+      </div>
+      <div class="card">
+        <div class="label">選択肢 D</div>
+        <div class="value">5/22 北原氏紹介経由</div>
+        <div class="body">
+          北原氏面談 Q10 で「たましん価値創造事業部の知人ご紹介」 依頼<br />
+          → 北原氏経由なら Step 1-2 をスキップできる可能性<br />
+          所要 0 分 (5/22 当日のみ)
+        </div>
+      </div>
+    </div>
+
+    <h3>選択肢 A (推奨) のメール文面</h3>
+
+    <pre class="script">件名: 事業相談 + 価値創造事業部のご紹介依頼 (井原)
+
+たましん府中支店 ◯◯ 様
+
+お世話になっております。
+分倍河原在住の井原 (口座番号: XXXX-XXXXXXX) と申します。
+
+このたび、 個人事業主として 工務店向けの業務 SaaS を本格化することに
+なりまして、 たましんさんの価値創造事業部のご紹介を いただけませんでしょうか。
+
+具体的には、 多摩地区の中小工務店さんで IT 化を検討されている方を
+ご紹介いただける可能性 + 補助金 (IT 導入補助金 / 都 DX 推進助成金)
+を活用した提案ができるかどうか、 ご相談させていただきたいです。
+
+業務終了後 18:00 以降 or 平日休 (5 月後半-6 月) で
+お電話 or 訪問のお時間 いただけますと幸いです。
+
+引き続き よろしくお願いいたします。
+
+------
+井原 誠斗 (いはら まこと)
+ihara-frontend.com / kanon02sky@gmail.com
+東京都府中市
+------</pre>
+
+    <div class="callout">
+      <strong>「事業相談したい」 という言葉</strong> がキーワード。 信金の渉外担当者は「事業相談 = 事業性融資の可能性」 を察知して 価値創造事業部に話を上げる動機がある。 単に「価値創造事業部紹介して」 より 「事業を本格化したい」 と添える方が動く。
+    </div>
+
+    <h2><span class="num">03</span>5 月残り 2 週間 カレンダー</h2>
+
+    <div class="legend">
+      <span class="item"><span class="swatch" style="background: var(--accent-soft); border-color: var(--accent);"></span>今日</span>
+      <span class="item"><span class="swatch" style="background: var(--good-soft); border-color: var(--good);"></span>キーアクション</span>
+      <span class="item"><span class="swatch" style="background: var(--info-soft); border-color: var(--info);"></span>重要面談</span>
+      <span class="item"><span class="swatch" style="background: var(--rest-soft);"></span>土日 (たましん休)</span>
+      <span class="item"><span class="swatch" style="background: var(--bad-soft);"></span>避ける日</span>
+    </div>
+
+    <div class="cal">
+      <div class="head">月</div>
+      <div class="head">火</div>
+      <div class="head">水</div>
+      <div class="head">木</div>
+      <div class="head">金</div>
+      <div class="head sat">土</div>
+      <div class="head sun">日</div>
+
+      <div class="day" style="visibility: hidden;"></div>
+      <div class="day" style="visibility: hidden;"></div>
+      <div class="day" style="visibility: hidden;"></div>
+      <div class="day" style="visibility: hidden;"></div>
+
+      <div class="day today">
+        <div class="date">5/15 金 ◀ 今日</div>
+        <div class="act"><strong>業務後 5 分</strong>: たましん渉外担当者にメール (選択肢 A) or 5/18 月スライド OK</div>
+      </div>
+      <div class="day weekend">
+        <div class="date">5/16 土</div>
+        <div class="act">在宅: 通帳から渉外担当者名確認 / Q0-Q10 確定</div>
+      </div>
+      <div class="day weekend">
+        <div class="date">5/17 日</div>
+        <div class="act">休息 or 質問リスト Q10 整理</div>
+      </div>
+
+      <div class="day">
+        <div class="date">5/18 月</div>
+        <div class="act">業務後: 公社電話 (DX 助成金) + 商工会議所電話 + GビズID 確認</div>
+      </div>
+      <div class="day">
+        <div class="date">5/19 火</div>
+        <div class="act">本業 or ランチ時間に 府中支店窓口訪問 (選択肢 B、 任意)</div>
+      </div>
+      <div class="day">
+        <div class="date">5/20 水</div>
+        <div class="act">本業 + 業界紙取材依頼メール (新建ハウジング)</div>
+      </div>
+      <div class="day">
+        <div class="date">5/21 木</div>
+        <div class="act">5/22 直前準備、 質問リスト最終確定</div>
+      </div>
+      <div class="day mtg">
+        <div class="date">5/22 金 ★</div>
+        <div class="act"><strong>北原氏面談</strong><br />オンライン業務後 18:00〜<br />Q0-Q10 (Q10=信金接触ルート)</div>
+      </div>
+      <div class="day weekend">
+        <div class="date">5/23 土</div>
+        <div class="act">在宅: 5/22 結果 memory 整理 + たましん渉外担当者 返信フォロー</div>
+      </div>
+      <div class="day weekend">
+        <div class="date">5/24 日</div>
+        <div class="act">休息</div>
+      </div>
+
+      <div class="day">
+        <div class="date">5/25 月</div>
+        <div class="act">業務後: 必要に応じて たましん渉外担当者 再連絡 (Step 2 進行確認)</div>
+      </div>
+      <div class="day">
+        <div class="date">5/26 火</div>
+        <div class="act">本業</div>
+      </div>
+      <div class="day">
+        <div class="date">5/27 水</div>
+        <div class="act">本業</div>
+      </div>
+      <div class="day">
+        <div class="date">5/28 木</div>
+        <div class="act">本業ノルマ達成優先</div>
+      </div>
+      <div class="day">
+        <div class="date">5/29 金</div>
+        <div class="act">月末、 本業ノルマ最終調整</div>
+      </div>
+      <div class="day weekend">
+        <div class="date">5/30 土</div>
+        <div class="act">在宅: 6 月本格起動準備 + v3 着手</div>
+      </div>
+      <div class="day weekend">
+        <div class="date">5/31 日</div>
+        <div class="act">休息 / 友人雪だるま 2 件目 LINE 連絡</div>
+      </div>
+    </div>
+
+    <h2><span class="num">04</span>たましん訪問本番 (Step 3、 6 月後半-7 月初旬想定)</h2>
+
+    <p>5 月内に価値創造事業部訪問は <strong>原則 不可能</strong> (Step 1-2 で 3-4 週間)。 訪問本番は 6 月後半-7 月初旬想定。 5 月は Step 1 (渉外担当者) → Step 2 (価値創造事業部橋渡し開始) まで。</p>
+
+    <table>
+      <thead>
+        <tr><th>項目</th><th>内容</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>訪問本番タイミング</td><td>6 月後半 〜 7 月初旬 (Step 3、 価値創造事業部からアポ来る想定)</td></tr>
+        <tr><td>持参物</td><td>ノート PC + iPhone Safari + PDF バックアップ 11 個 + 紙ペライチ <code>/report</code> 3 枚 + <code>/report/komuten</code> 3 枚 + 名刺 5 枚 + 予備モバイルバッテリー</td></tr>
+        <tr><td>主目的 (期待値リセット済)</td><td>業界情報取得 + 関係構築 (1 回訪問で 5-10 件紹介は楽観、 半年で 3-5 件が現実)</td></tr>
+        <tr><td>聞くこと</td><td>多摩地区中小工務店の像 / 紹介可能性 / たましん指定 SaaS ポジション可否 / <strong>友人 N=1 確認 (個人客 9 割は中堅工務店も?買い切り傾向?)</strong></td></tr>
+        <tr><td>詳細スクリプト</td><td><code>docs/tamashin-visit-script-2026-05-19.md</code> (ファイル名は 5/19 だが訪問は 6 月以降、 v3 書換時に日付更新)</td></tr>
+      </tbody>
+    </table>
+
+    <h2><span class="num">05</span>5/22 (金) 北原氏面談 — オンライン業務後 18:00-19:00</h2>
+
+    <h3>質問リスト Q0-Q9 (友人ヒアリング N=1 反映済)</h3>
+
+    <table>
+      <thead>
+        <tr><th>#</th><th>質問</th><th>狙い</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Q0</td><td>工務店 3-5 社 紹介依頼</td><td>接点ハブ確保</td></tr>
+        <tr><td>Q1</td><td>信用度ルート (合同会社) 必要性</td><td>個人事業主 vs 法人化判断</td></tr>
+        <tr><td>Q2</td><td>IT 導入支援事業者 2026 公募 + コンソーシアム参画</td><td>補助金武器化</td></tr>
+        <tr><td>Q3</td><td>認定支援機関 税理士 紹介</td><td>信用補完 A 確保</td></tr>
+        <tr><td>Q4</td><td>東京都 DX 推進助成金 同時申請可否</td><td>1/8 訴求成立確認 (公社直接電話と二重確認)</td></tr>
+        <tr><td>Q5</td><td>アトツギ世代を窓口にしたい工務店</td><td>3 層意思決定構造 攻略</td></tr>
+        <tr><td>Q6</td><td><code>ihara-frontend.com</code> ドメイン名 工務店オーナー目線でどう?</td><td>v2.2 盲点 #1、 別ドメイン要否判断</td></tr>
+        <tr><td>Q7</td><td>中堅工務店 (5-30 人) でも 月額より買い切りの傾向ありますか?</td><td>友人 N=1 「買い切り嬉しい」 確認</td></tr>
+        <tr><td>Q8</td><td>中堅工務店の顧客構成 (個人 vs 会社) の比率は?</td><td>友人 N=1 「個人 9 割」 確認</td></tr>
+        <tr><td>Q9</td><td>「工務店間の横のつながり薄い」 と聞きました、 紹介経路は OB 施主 / 設計事務所 / 建材屋 のどれが効きますか?</td><td>友人 N=1 「横のつながりない」 確認、 紹介戦略再評価</td></tr>
+        <tr><td><strong>Q10</strong></td><td><strong>たましん価値創造事業部 にいきなり接触するルートと、 渉外担当者経由のルートで、 どちらが効きますか? 北原氏のお知り合いで紹介可能な価値創造事業部担当者いらっしゃいますか?</strong></td><td><strong>v2.2 docs 致命盲点 (信金接触フロー)、 北原氏紹介でショートカット可能性</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>友人 N=1 → N=2 化の意義</strong>: Q7-Q9 で北原氏 (中小企業診断士、 工務店顧問経験あり) の見解を取得すれば、 5/14 友人ヒアリングの普遍性を 1 段階確認可能。 v2.2 docs の前提崩壊 5 件のうち 3 件 (買い切り / 個人客 / 横のつながり) が 5/22 で確度上がる。
+    </div>
+
+    <h2><span class="num">06</span>5 月内 達成目標 (現実的、 全部やる必要なし)</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="label">必達 (3 つ)</div>
+        <div class="value">最低限ライン</div>
+        <div class="body">
+          ① 5/22 北原氏面談 完了 + Q0-Q10 取得<br />
+          ② たましん 渉外担当者にコンタクト (Step 1)、 メール 1 通でも OK<br />
+          ③ 友人ヒアリング N=1 結果 を memory + 5/22 質問に反映 (済)
+        </div>
+      </div>
+      <div class="card">
+        <div class="label">できれば (4 つ)</div>
+        <div class="value">余力あれば</div>
+        <div class="body">
+          ④ 公社 (DX 推進助成金) 電話 → 同時申請可否確定<br />
+          ⑤ 商工会議所 + GビズID 確認<br />
+          ⑥ 業界紙取材依頼メール 1 媒体目<br />
+          ⑦ たましん 渉外担当者から価値創造事業部紹介の確認返信 (Step 2 開始)
+        </div>
+      </div>
+    </div>
+
+    <h2><span class="num">07</span>6 月以降のロードマップ (本格起動)</h2>
+
+    <p style="margin-bottom: 8px;">5 月で軸足固め → 6 月から月 30-40 時間で本格起動 → 7 月末 1-2 社契約 → 12 ヶ月後 MRR ¥80-130K (中シナリオ標準)。</p>
+
+    <table>
+      <thead>
+        <tr><th>月</th><th>軸 B 時間</th><th>主アクション</th><th>目標</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>6 月</td><td class="num">月 30-40h</td><td>たましん Step 2-3 (価値創造事業部橋渡し → 訪問本番 6 月後半) / 商工会議所訪問 / 友人雪だるま 1-2 件 / 公庫融資申込 / IT 導入補助金 6 月公募準備</td><td>商談 3-5 件並行</td></tr>
+        <tr><td>7 月</td><td class="num">月 30-40h</td><td>たましん訪問本番 7 月初旬 (もし 6 月で取れなければ) / 商談 5 件並行 → 1-2 社目契約 / DX 認定申請 / 業界紙掲載開始</td><td><strong>月次売上 5-10 万円</strong></td></tr>
+        <tr><td>8-12 月</td><td class="num">月 30-40h</td><td>業界紙掲載効果 / ジャパンホームショー来場 / 月 1-2 件契約継続</td><td>MRR ¥50-100K</td></tr>
+        <tr><td>1-4 月 (2027)</td><td class="num">月 30-40h</td><td>アトツギ甲子園加速 / アトツギ向け LP 第 3 版</td><td><strong>MRR ¥80-130K (ルートゴール)</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h2><span class="num">08</span>やめる判定基準 (撤退判断早い性格を活かす)</h2>
+
+    <table>
+      <thead>
+        <tr><th>期日</th><th>判定指標</th><th>OK</th><th>注意</th><th>NG (撤退/縮小)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>5/22</td><td>北原氏面談 紹介数 + Q10 信金ルート</td><td class="tag-good">1 件以上 + 信金担当者紹介</td><td class="tag-warn">0 だが補助金紹介あり</td><td class="tag-bad">何もなし → 多摩信金 渉外担当者ルート単独で進行</td></tr>
+        <tr><td>5/29</td><td>たましん 渉外担当者の反応 (Step 1-2 進捗)</td><td class="tag-good">価値創造事業部紹介の意向あり</td><td class="tag-warn">返信あり、 価値創造事業部紹介は内部稟議中</td><td class="tag-bad">返信なし or 価値創造事業部対象外回答 → 6 月に再アプローチ or 別ルート</td></tr>
+        <tr><td>6/30</td><td>商談数</td><td class="tag-good">3 件以上</td><td class="tag-warn">1-2 件</td><td class="tag-bad">0 件 → 戦術全面見直し</td></tr>
+        <tr><td>7/30</td><td>初契約累計</td><td class="tag-good">2 件以上 (MRR ¥20K)</td><td class="tag-warn">1 件 (MRR ¥10K)</td><td class="tag-bad">0 件 → 価格 C ピボット検討</td></tr>
+        <tr><td>10/31 (M6)</td><td>契約累計</td><td class="tag-good">中 3 件 / 大 7 件</td><td class="tag-warn">各 -1</td><td class="tag-bad">各 -2 以下 → 撤退判定</td></tr>
+        <tr><td>1/31 (M9)</td><td>MRR (早期判定)</td><td class="tag-good">¥50K 以上</td><td class="tag-warn">¥30-50K</td><td class="tag-bad">¥50K 未満 → 価格 C 即ピボット</td></tr>
+        <tr><td>4/30 (M12)</td><td>ルートゴール</td><td class="tag-good">MRR ¥50K + 累計 ¥500K</td><td class="tag-warn">MRR ¥30-50K で継続検討</td><td class="tag-bad">未達 → 軸 A 自動運用に重み戻し</td></tr>
+      </tbody>
+    </table>
+
+    <div class="quote">
+      5 月は GW + 本業ノルマ 140h で 軸 B にがっつり時間を割けないのが現実。
+      でも <strong>5/22 北原氏面談 と たましん渉外担当者へのメール 5 分</strong> という最小限のアクションで、 軸 B は確実に前進する。
+      たましん価値創造事業部訪問本番は 6 月後半-7 月初旬、 信金業界慣習の Step 1-3 を踏むことで「いきなり押しかけ」 の悪印象を回避できる。
+      残りは 6 月以降の本格起動で取り戻せる。 焦らない。
+    </div>
+
+    <footer>
+      Ihara Frontend (個人事業主) ／ ihara-frontend.com<br />
+      作成: 2026-05-15 (金) ／ 印刷向け Cmd+P (A4 2-3 ページ想定)<br />
+      関連 docs:<br />
+      ・ 12 ヶ月事業計画 v2.2: <code>docs/business-plan-2026-05-14-v2.html</code><br />
+      ・ 補足資料 14 章: <code>docs/business-plan-2026-05-14-v2-supplement.md</code><br />
+      ・ たましん訪問スクリプト (要日付更新): <code>docs/tamashin-visit-script-2026-05-19.md</code><br />
+      ・ Ultrathink 統合戦略: <code>docs/komuten-fast-track-strategy-2026-05-14.html</code><br />
+      関連 memory: <code>user-work-time-constraint.md</code> / <code>friend-hearing-result-2026-05-14.md</code> / <code>tamashin-keiei-shien-bottleneck.md</code> / <code>feedback-verify-weekday.md</code>
+    </footer>
+  </div>
+</body>
+</html>

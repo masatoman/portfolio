@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>docs/ 全 HTML リンク集 (作成日順 + タグ絞り込み) — 2026-05-15</title>
+  <style>
+    :root {
+      --ink: #071b49;
+      --sub: #33496d;
+      --muted: #5f6f89;
+      --line: #d8e3f2;
+      --bg: #fbfcfe;
+      --panel: #ffffff;
+      --accent: #f47b20;
+      --good: #15803d;
+      --good-soft: #dcfce7;
+      --warn: #b45309;
+      --warn-soft: #fef3c7;
+      --bad: #b91c1c;
+      --bad-soft: #fee2e2;
+      --info: #1d4ed8;
+      --info-soft: #dbeafe;
+      --purple: #7c3aed;
+      --purple-soft: #ede9fe;
+    }
+    * { box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--ink); margin: 0; padding: 0; }
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 1100px; margin: 0 auto; padding: 32px 20px 80px; }
+
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+    header h1 { font-size: 22px; margin: 0 0 4px; font-weight: 900; }
+    header .meta { color: var(--muted); font-size: 12px; }
+
+    .controls {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+    }
+    .controls .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 12px; }
+    .controls .row:last-child { margin-bottom: 0; }
+    .controls label { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+
+    input[type="text"] {
+      flex: 1;
+      min-width: 200px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    input[type="text"]:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+
+    select {
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--ink);
+      background: var(--panel);
+      cursor: pointer;
+    }
+
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag-btn {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--sub);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .tag-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .tag-btn.active {
+      background: var(--ink);
+      color: white;
+      border-color: var(--ink);
+    }
+    .tag-btn.special {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    .tag-btn.special.active {
+      background: var(--bad);
+      border-color: var(--bad);
+    }
+
+    .mode-toggle {
+      display: inline-flex;
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .mode-toggle button {
+      padding: 6px 14px;
+      border: none;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .mode-toggle button.active {
+      background: var(--ink);
+      color: white;
+    }
+
+    .summary-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--muted);
+      padding: 8px 4px;
+      border-bottom: 1px dashed var(--line);
+      margin-bottom: 16px;
+    }
+    .summary-bar strong { color: var(--ink); }
+
+    .doc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .doc-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 14px 16px;
+      transition: all 0.15s;
+    }
+    .doc-card.hidden { display: none; }
+    .doc-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 8px rgba(244, 123, 32, 0.1);
+    }
+    .doc-card.deprecated { border-left-color: var(--bad); }
+    .doc-card.ultrathink { border-left-color: var(--purple); }
+    .doc-card.brief { border-left-color: var(--info); }
+    .doc-card.report { border-left-color: var(--good); }
+
+    .doc-card .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+    .doc-card .title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--ink);
+      flex: 1;
+      line-height: 1.45;
+    }
+    .doc-card .title a { color: var(--ink); text-decoration: none; }
+    .doc-card .title a:hover { color: var(--accent); text-decoration: underline; }
+    .doc-card .date {
+      font-size: 11px;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      font-weight: 700;
+    }
+    .doc-card .filename {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "SF Mono", Monaco, monospace;
+      margin-bottom: 6px;
+    }
+    .doc-card .summary {
+      font-size: 12px;
+      color: var(--sub);
+      margin: 6px 0 8px;
+      line-height: 1.6;
+    }
+    .doc-card .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .doc-card .tag-pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      background: #f4f7fc;
+      color: var(--sub);
+      letter-spacing: 0.02em;
+    }
+    .doc-card .tag-pill.tag-ultrathink { background: var(--purple-soft); color: var(--purple); }
+    .doc-card .tag-pill.tag-deprecated { background: var(--bad-soft); color: var(--bad); }
+    .doc-card .tag-pill.tag-strategy { background: var(--info-soft); color: var(--info); }
+    .doc-card .tag-pill.tag-script { background: var(--warn-soft); color: var(--warn); }
+    .doc-card .tag-pill.tag-planning { background: var(--good-soft); color: var(--good); }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+    }
+  </style>
+  <meta name="created" content="2026-05-15T07:01:28.570Z">
+</head>
+<body>
+  <main class="page">
+
+    <header>
+      <h1>docs/ 全 HTML リンク集 (作成日順 + タグ絞り込み)</h1>
+      <div class="meta">2026-05-15 生成 / portfolio (ihara-frontend.com) / docs 配下 18 ファイル / 軸 B 工務店プロジェクト 中心</div>
+    </header>
+
+    <div class="controls">
+
+      <div class="row">
+        <label>検索:</label>
+        <input type="text" id="search" placeholder="タイトル / ファイル名 / サマリ を 部分一致 (例: たましん、 北原、 補助金)" />
+        <label>ソート:</label>
+        <select id="sort">
+          <option value="date-desc">作成日 ↓ (新 → 古)</option>
+          <option value="date-asc">作成日 ↑ (古 → 新)</option>
+          <option value="title">タイトル (あいうえお順)</option>
+          <option value="file">ファイル名</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label>タグ:</label>
+        <div class="tag-group" id="tag-buttons"></div>
+      </div>
+
+      <div class="row">
+        <label>絞り込みモード:</label>
+        <div class="mode-toggle" id="mode-toggle">
+          <button data-mode="OR" class="active">OR (どれか)</button>
+          <button data-mode="AND">AND (全部)</button>
+        </div>
+        <button id="clear-tags" class="tag-btn" style="margin-left:auto;">全タグ解除</button>
+      </div>
+
+    </div>
+
+    <div class="summary-bar">
+      <span>表示中: <strong id="visible-count">0</strong> / 全 <strong id="total-count">0</strong> 件</span>
+      <span id="active-filters" style="font-size:11px;"></span>
+    </div>
+
+    <div class="doc-list" id="doc-list"></div>
+
+    <div class="empty-state hidden" id="empty-state">
+      該当する docs が ありません。 タグ を 解除 するか、 検索ワード を 変えて ください。
+    </div>
+
+    <footer>
+      portfolio/docs 配下 *.html 18 件 を 自動列挙 (md ファイルは 別途)。 タグ は 内容ベースで 手動付与。 ファイル更新時は 本ページの 更新も 必要。
+    </footer>
+
+  </main>
+
+  <script>
+    const docs = [
+      {
+        file: "saas-pricing-strategy.html",
+        title: "工務店向け業務ツール 価格戦略メモ",
+        summary: "業界相場 + memory 整合 で 4 パターン (王道 / キャッシュ前倒し / 1 機能特化 / 受託ハイブリッド) を 比較。",
+        created: "2026-05-10T14:17",
+        tags: ["価格戦略", "工務店", "軸B", "戦略"],
+        color: "default"
+      },
+      {
+        file: "design-brief-2026-05-10-top.html",
+        title: "デザインブリーフ: トップページ (/) リデザイン",
+        summary: "warm editorial トップ (工務店向け LP) の 設計ブリーフ第1号。 template → 叩き台 → REVISE → 3 案 の フロー起点。",
+        created: "2026-05-10T19:04",
+        tags: ["設計ブリーフ", "デザイン", "工務店", "トップページ"],
+        color: "brief"
+      },
+      {
+        file: "komuten-channel-strategy.html",
+        title: "工務店オーナー 接点戦略 — Deep Research 検証メモ",
+        summary: "Deep Research #1+#2 計 182 件で 主顧客 (IT 弱者) の 真の接点 = 紹介 51.5% / 建材屋 / 設計事務所 を 検証。 Peatix/connpass/商工会議所交流会には 来ない 確定。",
+        created: "2026-05-11T16:16",
+        tags: ["戦略", "接点戦略", "工務店", "Deep Research", "軸B"],
+        color: "default"
+      },
+      {
+        file: "komuten-stakeholder-strategy.html",
+        title: "工務店 周辺 ステークホルダー戦略",
+        summary: "工務店を取り巻く 6 ステークホルダー (建材屋 / 設計事務所 / 補助金支援者 等) を 「自身顧客価値 × 工務店紹介価値」 で 評価。 建材屋 + 設計事務所 が ◎×◎ 主戦場。",
+        created: "2026-05-11T17:47",
+        tags: ["戦略", "接点戦略", "工務店", "軸B"],
+        color: "default"
+      },
+      {
+        file: "koumuten-reviews-2026-05-13.html",
+        title: "工務店レビュー収集 + 不満カテゴリ分析レポート",
+        summary: "21 地域 / 794 レビュー / 7 クラスタ。 主顧客痛点の 一次情報源。 UC-A〜E の 根拠データ。",
+        created: "2026-05-13T11:24",
+        tags: ["分析", "レポート", "工務店", "レビュー", "軸B"],
+        color: "report"
+      },
+      {
+        file: "design-brief-2026-05-13-koumuten-reviews-integration.html",
+        title: "設計ブリーフ v2 / 工務店 Google マップ レビュー × 仮説検証ストア",
+        summary: "Google マップ 794 レビューを 既存仮説検証ストアと 統合する 設計。",
+        created: "2026-05-13T11:47",
+        tags: ["設計ブリーフ", "デザイン", "レビュー", "工務店"],
+        color: "brief"
+      },
+      {
+        file: "design-brief-2026-05-13-scoring-multi-axis.html",
+        title: "設計ブリーフ v3 / scoring 多軸化 (DX 解決可能性 + 将来拡張)",
+        summary: "issue-finder の scoring を 単軸 → 多軸 (DX 解決可能性 / 将来拡張性 / 緊急度) に 拡張する 設計。",
+        created: "2026-05-13T14:34",
+        tags: ["設計ブリーフ", "デザイン", "issue-finder"],
+        color: "brief"
+      },
+      {
+        file: "design-brief-2026-05-13-consultation-alignment.html",
+        title: "設計ブリーフ v4 / 北原氏面談 相談予約との整合性確保",
+        summary: "5/22 北原氏面談 の 相談予約内容 (#1-#6) と 質問リスト / 事業計画サマリ を 整合させる 設計。",
+        created: "2026-05-13T14:56",
+        tags: ["設計ブリーフ", "デザイン", "5/22北原氏", "工務店"],
+        color: "brief"
+      },
+      {
+        file: "friend-hearing-checklist.html",
+        title: "friend (現場監督) ヒアリング チェックリスト",
+        summary: "25 問 6 グループ。 5 デモ + 値付け Q1/Q2 + issue-finder 235 件分析照合 + LINE 拡散依頼 (Q25)。 軸 B 起点の 一次情報取得。",
+        created: "2026-05-14T14:18",
+        tags: ["チェックリスト", "友人ヒアリング", "工務店", "軸B"],
+        color: "default"
+      },
+      {
+        file: "remaining-tasks-2026-05-14.html",
+        title: "残タスク一覧 / 2026-05-14 / portfolio (軸 B 工務店プロジェクト)",
+        summary: "5/14 時点の portfolio 残タスク 一覧。",
+        created: "2026-05-14T16:01",
+        tags: ["タスク", "工務店", "軸B"],
+        color: "default"
+      },
+      {
+        file: "claude-code-features-unused.html",
+        title: "Claude Code 未活用の便利機能 — masatoman workflow 適用版",
+        summary: "Claude Code の 未活用機能を masatoman の workflow に 適用 する メモ。",
+        created: "2026-05-14T20:50",
+        tags: ["ツール", "Claude Code", "workflow"],
+        color: "default"
+      },
+      {
+        file: "business-plan-2026-05-14.html",
+        title: "軸 B 工務店プロジェクト 12 ヶ月事業計画 (v1)",
+        summary: "5/14 作成の 12 ヶ月事業計画 v1。 翌日 v2 で Ultrathink 5 insight 統合。",
+        created: "2026-05-14T20:57",
+        tags: ["計画", "12ヶ月", "工務店", "軸B"],
+        color: "default"
+      },
+      {
+        file: "business-plan-2026-05-14-v2.html",
+        title: "軸 B 工務店プロジェクト 12 ヶ月事業計画 v2 (Ultrathink 5 insight 統合)",
+        summary: "v1 を Ultrathink 5 insight (アトツギ / 信用補完二重化 / たましん / 補助金1/8 / 業界紙) で 強化。 12 ヶ月 MRR ¥80-130K 目標。",
+        created: "2026-05-15T11:38",
+        tags: ["計画", "12ヶ月", "工務店", "軸B", "Ultrathink", "前提崩壊"],
+        color: "ultrathink"
+      },
+      {
+        file: "may-action-plan-2026-05-15.html",
+        title: "5 月残り 2 週間 実行計画 (2026-05-15 〜 2026-05-31)",
+        summary: "5/15 〜 5/31 の 実行計画。 たましん / 北原氏面談 / 友人ヒアリング 等の 同時進行 タスク。",
+        created: "2026-05-15T14:29",
+        tags: ["計画", "アクションプラン", "5月", "工務店", "軸B"],
+        color: "default"
+      },
+      {
+        file: "business-summary-2026-05-22.html",
+        title: "事業計画サマリ v2 / 工務店向け SaaS / 2026-05-22",
+        summary: "5/22 北原氏面談用の 事業計画サマリ。 02-c に demo-gallery セクション、 §8 法人化 2 ルート分離。 Q9-Q11 (Ultrathink) 追加。",
+        created: "2026-05-15T15:06",
+        tags: ["商談用", "5/22北原氏", "事業計画", "工務店", "軸B", "Ultrathink", "前提崩壊"],
+        color: "ultrathink"
+      },
+      {
+        file: "consultation-questions-2026-05-22.html",
+        title: "北原氏面談 質問リスト v2 / 2026-05-22 東京創業ステーション",
+        summary: "Q0-c で demo-gallery 評価 + 紹介依頼前フリ。 Q9-Q11 (認定支援機関 / 補助金同時申請 / アトツギ) Ultrathink 追加。 Part F に位置。",
+        created: "2026-05-15T15:07",
+        tags: ["商談用", "5/22北原氏", "質問リスト", "工務店", "軸B", "Ultrathink"],
+        color: "ultrathink"
+      },
+      {
+        file: "komuten-fast-track-strategy-2026-05-14.html",
+        title: "工務店プロジェクト 爆速ルート — Ultrathink 戦略 (2026-05-14)",
+        summary: "7 月末月次 5-10 万 から 逆算した 5 つの盲点 (アトツギ / 信用補完二重化 / たましん / 補助金1/8 / 業界紙)。 5/15 で 前提複数崩壊。",
+        created: "2026-05-15T15:06",
+        tags: ["戦略", "Ultrathink", "工務店", "軸B", "前提崩壊"],
+        color: "ultrathink"
+      },
+      {
+        file: "tamashin-call-script-2026-05-15.html",
+        title: "たましん 経営支援部 電話 + 訪問 台本 (2026-05-15/16) — 軸 B 接点ハブ起動",
+        summary: "5/15 電話 + 5/16 訪問 台本。 取り次ぎ / 分岐 5 種 / Q&A 7 種 / 30 分構成 / 失敗パターン 8 種 / シナリオ B 補完経路。 5/15 で 前提崩壊 (信金は飛び込み NG、 渉外担当者経由 1 ヶ月、 価値創造事業部が正式)。",
+        created: "2026-05-15T15:06",
+        tags: ["台本", "たましん", "工務店", "軸B", "前提崩壊"],
+        color: "deprecated"
+      }
+    ];
+
+    // タグ 一覧 (重複削除 + 出現順)
+    const allTags = (() => {
+      const set = new Set();
+      docs.forEach(d => d.tags.forEach(t => set.add(t)));
+      return [...set].sort((a, b) => a.localeCompare(b, "ja"));
+    })();
+
+    const state = {
+      query: "",
+      sort: "date-desc",
+      selectedTags: new Set(),
+      mode: "OR"
+    };
+
+    // --- レンダリング ---
+
+    function renderTagButtons() {
+      const container = document.getElementById("tag-buttons");
+      container.innerHTML = "";
+      allTags.forEach(tag => {
+        const btn = document.createElement("button");
+        btn.className = "tag-btn";
+        btn.textContent = tag;
+        btn.dataset.tag = tag;
+        if (tag === "前提崩壊") btn.classList.add("special");
+        btn.addEventListener("click", () => {
+          if (state.selectedTags.has(tag)) state.selectedTags.delete(tag);
+          else state.selectedTags.add(tag);
+          renderTagButtons();
+          renderDocs();
+        });
+        if (state.selectedTags.has(tag)) btn.classList.add("active");
+        container.appendChild(btn);
+      });
+    }
+
+    function renderDocs() {
+      const list = document.getElementById("doc-list");
+      const empty = document.getElementById("empty-state");
+      list.innerHTML = "";
+
+      const q = state.query.toLowerCase();
+
+      const filtered = docs.filter(d => {
+        // 検索フィルタ
+        if (q) {
+          const hay = (d.title + " " + d.file + " " + d.summary + " " + d.tags.join(" ")).toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        // タグフィルタ
+        if (state.selectedTags.size > 0) {
+          if (state.mode === "AND") {
+            for (const t of state.selectedTags) {
+              if (!d.tags.includes(t)) return false;
+            }
+            return true;
+          } else {
+            return d.tags.some(t => state.selectedTags.has(t));
+          }
+        }
+        return true;
+      });
+
+      // ソート
+      filtered.sort((a, b) => {
+        switch (state.sort) {
+          case "date-desc": return b.created.localeCompare(a.created);
+          case "date-asc":  return a.created.localeCompare(b.created);
+          case "title":     return a.title.localeCompare(b.title, "ja");
+          case "file":      return a.file.localeCompare(b.file);
+        }
+      });
+
+      // count 表示
+      document.getElementById("visible-count").textContent = filtered.length;
+      document.getElementById("total-count").textContent = docs.length;
+      document.getElementById("active-filters").textContent =
+        (state.selectedTags.size > 0 ? `タグ: ${[...state.selectedTags].join(" " + state.mode + " ")}` : "") +
+        (q ? (state.selectedTags.size > 0 ? " / " : "") + `検索: "${q}"` : "");
+
+      empty.classList.toggle("hidden", filtered.length > 0);
+
+      filtered.forEach(d => {
+        const card = document.createElement("article");
+        card.className = "doc-card " + (d.color || "default");
+
+        const head = document.createElement("div");
+        head.className = "head";
+        head.innerHTML = `
+          <div class="title"><a href="${d.file}">${d.title}</a></div>
+          <div class="date">${d.created.replace("T", " ")}</div>
+        `;
+
+        const filename = document.createElement("div");
+        filename.className = "filename";
+        filename.textContent = d.file;
+
+        const summary = document.createElement("div");
+        summary.className = "summary";
+        summary.textContent = d.summary;
+
+        const tags = document.createElement("div");
+        tags.className = "tags";
+        d.tags.forEach(t => {
+          const pill = document.createElement("span");
+          pill.className = "tag-pill";
+          if (t === "Ultrathink") pill.classList.add("tag-ultrathink");
+          if (t === "前提崩壊") pill.classList.add("tag-deprecated");
+          if (t === "戦略" || t === "接点戦略") pill.classList.add("tag-strategy");
+          if (t === "台本") pill.classList.add("tag-script");
+          if (t === "計画") pill.classList.add("tag-planning");
+          pill.textContent = t;
+          tags.appendChild(pill);
+        });
+
+        card.appendChild(head);
+        card.appendChild(filename);
+        card.appendChild(summary);
+        card.appendChild(tags);
+        list.appendChild(card);
+      });
+    }
+
+    // --- イベント ---
+
+    document.getElementById("search").addEventListener("input", (e) => {
+      state.query = e.target.value;
+      renderDocs();
+    });
+
+    document.getElementById("sort").addEventListener("change", (e) => {
+      state.sort = e.target.value;
+      renderDocs();
+    });
+
+    document.getElementById("mode-toggle").addEventListener("click", (e) => {
+      if (e.target.tagName === "BUTTON") {
+        state.mode = e.target.dataset.mode;
+        document.querySelectorAll("#mode-toggle button").forEach(b =>
+          b.classList.toggle("active", b.dataset.mode === state.mode)
+        );
+        renderDocs();
+      }
+    });
+
+    document.getElementById("clear-tags").addEventListener("click", () => {
+      state.selectedTags.clear();
+      renderTagButtons();
+      renderDocs();
+    });
+
+    // 初期レンダリング
+    renderTagButtons();
+    renderDocs();
+  </script>
+</body>
+</html>

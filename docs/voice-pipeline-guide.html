@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mac 録音 → 文字起こし → dev_journal 自動化パイプライン — 設計 + 使い方</title>
+  <style>
+    :root {
+      --ink: #071b49;
+      --sub: #33496d;
+      --muted: #5f6f89;
+      --line: #d8e3f2;
+      --bg: #fbfcfe;
+      --panel: #ffffff;
+      --accent: #f47b20;
+      --accent-soft: #fff4e9;
+      --good: #15803d;
+      --good-soft: #dcfce7;
+      --warn: #b45309;
+      --warn-soft: #fef3c7;
+      --bad: #b91c1c;
+      --bad-soft: #fee2e2;
+      --info: #1d4ed8;
+      --info-soft: #dbeafe;
+      --rest: #94a3b8;
+      --rest-soft: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--ink); margin: 0; padding: 0; }
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      font-size: 14.5px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 880px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    header { border-bottom: 1px solid var(--line); padding-bottom: 20px; margin-bottom: 28px; }
+    header .eyebrow {
+      display: inline-block; background: var(--accent-soft); color: var(--accent);
+      font-size: 11px; font-weight: 800; letter-spacing: 0.2em;
+      padding: 6px 12px; border-radius: 999px; margin-bottom: 12px;
+    }
+    h1 { font-size: 26px; line-height: 1.4; letter-spacing: -0.02em; margin: 0 0 6px; font-weight: 900; }
+    header .meta { color: var(--muted); font-size: 13px; }
+
+    h2 {
+      font-size: 19px; letter-spacing: -0.01em; margin: 40px 0 12px;
+      padding-bottom: 6px; border-bottom: 2px solid var(--line); font-weight: 900;
+    }
+    h2 .num {
+      display: inline-block; background: var(--ink); color: white;
+      font-size: 11px; letter-spacing: 0.05em; padding: 3px 9px;
+      border-radius: 999px; margin-right: 10px; vertical-align: 3px; font-weight: 800;
+    }
+    h3 { font-size: 15px; margin: 24px 0 10px; font-weight: 800; color: var(--ink); }
+    p { margin: 0 0 12px; color: var(--sub); }
+    p strong { color: var(--ink); }
+    ul, ol { margin: 0 0 14px; padding-left: 22px; color: var(--sub); }
+    li { margin-bottom: 4px; }
+    code {
+      background: #f4f7fc; padding: 1px 6px; border-radius: 4px;
+      font-family: "SF Mono", Menlo, monospace; font-size: 12.5px; color: var(--ink);
+    }
+    pre {
+      background: #0f172a; color: #e2e8f0; padding: 16px 18px;
+      border-radius: 10px; overflow-x: auto; font-size: 12.5px; line-height: 1.6;
+      font-family: "SF Mono", Menlo, monospace; margin: 0 0 16px;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; font-size: inherit; }
+
+    .summary {
+      background: var(--panel); border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      padding: 20px 24px; border-radius: 12px; margin-bottom: 20px;
+    }
+    .summary p { font-size: 15px; line-height: 1.85; color: var(--ink); font-weight: 700; margin-bottom: 0; }
+
+    .constraints {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 16px 0 28px;
+    }
+    @media (max-width: 700px) { .constraints { grid-template-columns: 1fr 1fr; } }
+    .constraint {
+      background: var(--panel); border: 1px solid var(--line);
+      border-radius: 8px; padding: 12px 14px;
+    }
+    .constraint .label {
+      font-size: 10px; letter-spacing: 0.15em; color: var(--muted);
+      font-weight: 800; margin-bottom: 4px;
+    }
+    .constraint .value { font-size: 14px; font-weight: 700; color: var(--ink); }
+
+    .callout {
+      border-radius: 10px; padding: 14px 18px; margin: 12px 0 16px;
+      border: 1px solid; font-size: 13.5px;
+    }
+    .callout.good { background: var(--good-soft); border-color: var(--good); color: var(--good); }
+    .callout.warn { background: var(--warn-soft); border-color: var(--warn); color: var(--warn); }
+    .callout.bad  { background: var(--bad-soft);  border-color: var(--bad);  color: var(--bad);  }
+    .callout.info { background: var(--info-soft); border-color: var(--info); color: var(--info); }
+    .callout strong { color: inherit; }
+
+    table {
+      width: 100%; border-collapse: collapse; margin: 0 0 18px;
+      background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+      font-size: 13px;
+    }
+    th, td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+    thead th { background: #f4f7fc; color: var(--ink); font-weight: 800; font-size: 12px; letter-spacing: 0.03em; }
+    td { color: var(--sub); }
+    td strong { color: var(--ink); }
+    tbody tr:last-child td { border-bottom: none; }
+
+    .flow {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+      padding: 18px 20px; margin: 0 0 20px;
+      font-family: "SF Mono", Menlo, monospace; font-size: 12.5px; color: var(--ink);
+      line-height: 1.9; white-space: pre; overflow-x: auto;
+    }
+
+    .step {
+      background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+      border-radius: 8px; padding: 14px 18px; margin: 0 0 12px;
+    }
+    .step .step-head { font-weight: 800; color: var(--ink); margin-bottom: 6px; font-size: 14px; }
+    .step .step-head .step-num {
+      display: inline-block; background: var(--accent); color: white;
+      font-size: 11px; padding: 2px 8px; border-radius: 999px; margin-right: 8px; font-weight: 800;
+    }
+    .step p { margin: 0 0 4px; font-size: 13.5px; }
+    .step ul { margin: 4px 0 0; }
+
+    .pill { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-right: 4px; }
+    .pill.good { background: var(--good-soft); color: var(--good); }
+    .pill.warn { background: var(--warn-soft); color: var(--warn); }
+    .pill.info { background: var(--info-soft); color: var(--info); }
+    .pill.rest { background: var(--rest-soft); color: var(--rest); }
+
+    footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+  </style>
+  <meta name="created" content="2026-05-17T02:21:05.169Z">
+</head>
+<body>
+<div class="page">
+
+<header>
+  <span class="eyebrow">VOICE PIPELINE</span>
+  <h1>Mac 録音 → 文字起こし → dev_journal 自動化 — 設計 + 使い方</h1>
+  <div class="meta">作成 2026-05-15 / 更新 2026-05-17 — 商談・ヒアリング録音を 5 分以内に dev_journal へ自動投入する完全ローカルパイプライン</div>
+</header>
+
+<div class="summary">
+  <p>商談録音を inbox に投下するだけで、 5 分以内に <strong>Supabase dev_journal テーブル</strong> に <strong>要約 + 引用 + 全文文字起こし</strong> が並ぶ。 完全ローカル処理 (商談相手の声をクラウドに送らない)・追加課金ゼロ・Claude Code MAX 定額のみで運用。</p>
+</div>
+
+<div class="constraints">
+  <div class="constraint"><div class="label">録音</div><div class="value">Voice Memos</div></div>
+  <div class="constraint"><div class="label">文字起こし</div><div class="value">whisper.cpp + Metal</div></div>
+  <div class="constraint"><div class="label">取込先</div><div class="value">dev_journal</div></div>
+  <div class="constraint"><div class="label">月額コスト</div><div class="value">¥0</div></div>
+</div>
+
+<!-- ========= §1 全体像 ========= -->
+<h2><span class="num">01</span>全体像とデータフロー</h2>
+
+<p>商談相手の前で iPhone or Mac の <strong>ボイスメモ</strong> をタップして録音 → 終了後 inbox/ に投下 (Shortcuts で自動化) → launchd が検知 → whisper.cpp が文字起こし → Claude Code が要約整形 → Supabase に INSERT。 ここまで人手は <strong>「録音ボタン押す」 と 「停止」 の 2 回</strong> だけ。</p>
+
+<div class="flow">[iPhone / Mac ボイスメモ録音]
+      │
+      ▼ Shortcuts.app (自動コピー)
+[inbox/ に .m4a 投下]
+      │
+      ▼ launchd WatchPaths 検知
+[01_ingest.sh] ffmpeg で 16kHz mono wav 正規化
+      │
+      ▼
+[02_transcribe.sh] whisper.cpp + Metal (large-v3-turbo-q5_0)
+      │  → raw.txt + segments.json (タイムスタンプ付き)
+      ▼
+[03_summarize.sh] claude -p で要約 + 引用 5 件 + 固有名詞補正
+      │  → payload.json (project / category / kind / title / body / metadata)
+      ▼
+[04_insert.sh] supabase-js で dev_journal INSERT
+      │
+      ▼
+[Supabase dev_journal にレコード追加] → 後で記事化・戦略整理に活用</div>
+
+<div class="callout info">
+  <strong>処理時間の目安</strong>: M4 Pro Metal で <strong>約 7.6x realtime</strong> (実測 5/15、 JFK 11 秒 → 1.44 秒)。 60 分の長尺商談なら <strong>約 8 分</strong> で dev_journal に着地。 Rosetta 経由でこの速度なので体感不満なし。
+</div>
+
+<!-- ========= §2 使い方 ========= -->
+<h2><span class="num">02</span>使い方 — 実運用フロー</h2>
+
+<h3>商談前 (前日〜当日 直前)</h3>
+<div class="step">
+  <div class="step-head"><span class="step-num">前1</span>ボイスメモ アプリを開いて録音準備</div>
+  <p>iPhone / Mac どちらでも OK。 オンライン面談 (北原氏など) の場合は Mac のボイスメモで画面の音声と自分の声を同時録音、 対面 (たましん訪問・友人ヒアリング) の場合は iPhone を机に置く。</p>
+</div>
+<div class="step">
+  <div class="step-head"><span class="step-num">前2</span>(対面のみ) 録音許可を口頭で取る</div>
+  <p>「メモのため録音させていただいてもよろしいでしょうか」 で OK。 ローカル処理で外部送信しない旨も伝えると安心感が出る。</p>
+</div>
+
+<h3>商談中</h3>
+<div class="step">
+  <div class="step-head"><span class="step-num">中1</span>録音開始 → あとは話に集中</div>
+  <p>録音中の操作は不要。 紙メモは取っても取らなくてよい (録音が一次情報、 紙はあとから整理されるので)。 質問リストだけ手元に置いておく。</p>
+</div>
+
+<h3>商談後 (終了 5 分以内に着手)</h3>
+<div class="step">
+  <div class="step-head"><span class="step-num">後1</span>録音停止 + ファイル名を商談相手 + 日付に</div>
+  <p>例: <code>2026-05-22-kitahara-online.m4a</code>。 ファイル名から <code>title</code> 自動生成されるので、 「日付 + 相手 + 形式」 を守ると後で検索しやすい。</p>
+</div>
+<div class="step">
+  <div class="step-head"><span class="step-num">後2</span>inbox/ に投下</div>
+  <p>iPhone 録音 → Shortcuts.app の自動化で inbox/ にコピー (1 回設定済み)。 Mac 録音 → Finder で <code>~/home_work/portfolio/tools/voice-pipeline/inbox/</code> にドラッグ。</p>
+</div>
+<div class="step">
+  <div class="step-head"><span class="step-num">後3</span>(オプション) project 手動上書き</div>
+  <p>Claude の project 自動推定がハズれそうな時のみ。 inbox/ に <code>2026-05-22-kitahara-online.project.txt</code> を作って中身に <code>軸B-工務店</code> 等と書く。 通常は不要 (Claude が文字起こしから推定)。</p>
+</div>
+<div class="step">
+  <div class="step-head"><span class="step-num">後4</span>5 分待つ → dev_journal を確認</div>
+  <p>launchd → 01_ingest → 02_transcribe → 03_summarize → 04_insert と自動進行。 完了通知は Mac 通知。 Supabase で確認:</p>
+  <pre><code>SELECT title, body, metadata FROM dev_journal
+WHERE category = 'meeting' ORDER BY created_at DESC LIMIT 1;</code></pre>
+</div>
+
+<h3>後日</h3>
+<div class="step">
+  <div class="step-head"><span class="step-num">日1</span>記事化・戦略整理</div>
+  <p><code>article-source-selector</code> skill が dev_journal を読むので、 商談メモが自動的に記事ネタ候補に上がる。 軸 B 関連は <code>masatoman-article-rules</code> skill の対象外だが、 友人ヒアリング知見は軸 A 記事ネタにも転用できる。</p>
+</div>
+
+<div class="callout good">
+  <strong>失敗してもメモは絶対に失わない</strong>: 録音 .m4a は inbox/ → done/ に常に残る。 文字起こしが失敗しても、 後で手動で whisper-cli を回し直すか、 Voice Memos の Apple Intelligence transcript を保険として使える。
+</div>
+
+<!-- ========= §3 ツール選定 ========= -->
+<h2><span class="num">03</span>ツール選定と理由</h2>
+
+<table>
+<thead><tr><th>役割</th><th>採用</th><th>不採用候補と理由</th></tr></thead>
+<tbody>
+<tr>
+  <td><strong>録音</strong></td>
+  <td>macOS Voice Memos (Tahoe 標準)</td>
+  <td>QuickTime / Audacity は手数多。 Tahoe の Apple Intelligence 自動文字起こし (日本語) が同時に走り、 句読点 backup として使える。 iPhone 録音も iCloud 同期で同パイプラインに乗る</td>
+</tr>
+<tr>
+  <td><strong>文字起こし Plan A</strong></td>
+  <td>whisper.cpp + Metal、 large-v3-turbo Q5_0</td>
+  <td>M4 Pro で 60 分音声を約 8 分。 CLI 安定・JSON 出力枯れていて launchd と相性◎。 MLX Whisper は速いが CLI 周辺が薄い</td>
+</tr>
+<tr>
+  <td><strong>文字起こし Plan B</strong></td>
+  <td>Voice Memos の Apple Intelligence transcript</td>
+  <td>句読点・話者切れが意外と良い。 Plan A と diff して固有名詞 (北原 / たましん / GビズID) を補完用に</td>
+</tr>
+<tr>
+  <td><strong>監視・パイプ</strong></td>
+  <td>launchd LaunchAgent (<code>WatchPaths</code>)</td>
+  <td>Hammerspoon は GUI 常駐必要。 fswatch は別途 daemon 化必要。 launchd 単体で macOS 再起動後も自動復帰・依存ゼロ</td>
+</tr>
+<tr>
+  <td><strong>整形 LLM</strong></td>
+  <td>claude CLI (<code>-p --output-format json</code>)</td>
+  <td>OpenAI / Gemini は従量課金。 Claude Code MAX 定額で十分。 prompt は固定 .md ファイルにして git 管理</td>
+</tr>
+<tr>
+  <td><strong>INSERT</strong></td>
+  <td>supabase-js + session-recap skill schema 流用</td>
+  <td>MCP は対話セッション必須で cron 不可。 psql 直叩きは jsonb escape 地獄。 session-recap の payload schema を仕様書として固定すれば二重実装回避</td>
+</tr>
+</tbody>
+</table>
+
+<!-- ========= §4 ファイル配置 ========= -->
+<h2><span class="num">04</span>ファイル配置</h2>
+
+<pre><code>~/home_work/portfolio/tools/voice-pipeline/
+├── inbox/              # Shortcuts.app から .m4a を投下する着地点 (launchd 監視対象)
+├── work/               # 16kHz wav / json / raw.txt 中間置き場 (.gitignore)
+├── out/                # 要約 md / dev_journal payload json (.gitignore)
+├── done/               # 処理済 .m4a 退避 (180 日 cron で自動削除)
+├── prompts/
+│   └── summarize.md    # claude -p の整形 prompt 本体
+├── vendor/whisper.cpp/ # git clone (.gitignore)
+└── bin/
+    ├── 01_ingest.sh    # m4a → 16kHz mono wav (ffmpeg)
+    ├── 02_transcribe.sh # whisper.cpp → raw.txt + segments.json
+    ├── 03_summarize.sh # claude -p → payload.json
+    ├── 04_insert.sh    # session-recap 仕様で dev_journal INSERT
+    └── run_all.sh      # 01→04 orchestrator、 失敗で work/ に残し exit
+
+~/Library/LaunchAgents/net.masatoman.voice-pipeline.plist  # WatchPaths = inbox/</code></pre>
+
+<p>各 shell script は「入力 1 個 → 出力 1 個 → ログ 1 行」 だけ。 巨大化させない。 どの段で落ちても <code>work/</code> に途中ファイルが残り、 そこから再実行可能。</p>
+
+<!-- ========= §5 dev_journal row 設計 ========= -->
+<h2><span class="num">05</span>dev_journal row 設計</h2>
+
+<p><code>session-recap</code> skill の既存 schema に合わせる前提。 商談用に新 <code>category=meeting</code> を追加 (skill 側にまだ無ければ追記)。</p>
+
+<table>
+<thead><tr><th>カラム</th><th>値の例</th><th>備考</th></tr></thead>
+<tbody>
+<tr><td><code>project</code></td><td>軸B-工務店</td><td>Claude が文字起こしから推定。 推定失敗時 <code>$NAME.project.txt</code> で手動上書き</td></tr>
+<tr><td><code>category</code></td><td>meeting</td><td>session-recap の <code>decision</code>/<code>insight</code> とは別軸の新カテゴリ</td></tr>
+<tr><td><code>kind</code></td><td>negotiation / interview / field-visit</td><td>商談 / ヒアリング / 現場訪問 の区別</td></tr>
+<tr><td><code>title</code></td><td>2026-05-22 北原氏オンライン面談</td><td>日付 + 相手 + 形式 (ファイル名から自動)</td></tr>
+<tr><td><code>body</code></td><td>3 部構成 markdown</td><td>① Claude 要約 300-500 字 (決定 / 宿題 / 温度感) ② 引用 5 件 (タイムスタンプ付き) ③ <code>&lt;details&gt;</code> 内に全文</td></tr>
+<tr><td><code>metadata</code></td><td>jsonb</td><td><code>{ audio_path, duration_sec, transcribe_engine, model_quant, recorded_at, source: "voice-memos" }</code></td></tr>
+</tbody>
+</table>
+
+<div class="callout info">
+  <strong>「全文だけ」 だと検索性ゼロ、 「要約だけ」 だと固有名詞ロスト</strong> → 両方併記が必須。 Supabase の Full Text Search で全文ヒット、 LLM 食わせは要約使用、 という二段使いが効く。
+</div>
+
+<!-- ========= §6 セットアップ手順 ========= -->
+<h2><span class="num">06</span>セットアップ手順 (実コマンド)</h2>
+
+<h3>A. 依存ツール</h3>
+<pre><code># cmake と node を install (ffmpeg, jq は既存)
+brew install cmake node</code></pre>
+
+<h3>B. ディレクトリ作成</h3>
+<pre><code>mkdir -p ~/home_work/portfolio/tools/voice-pipeline/\
+{inbox,work,out,done,prompts,bin,vendor}</code></pre>
+
+<h3>C. whisper.cpp ビルド (Metal-only)</h3>
+<pre><code>cd ~/home_work/portfolio/tools/voice-pipeline/vendor
+git clone --depth 1 https://github.com/ggerganov/whisper.cpp
+cd whisper.cpp
+cmake -B build -DGGML_METAL=1 -DWHISPER_COREML=0
+cmake --build build -j --config Release
+bash ./models/download-ggml-model.sh large-v3-turbo-q5_0</code></pre>
+
+<h3>D. 疎通テスト</h3>
+<pre><code>./build/bin/whisper-cli \
+  -m ./models/ggml-large-v3-turbo-q5_0.bin \
+  -f ./samples/jfk.wav -nt
+# → "And so, my fellow Americans..." と表示されれば OK</code></pre>
+
+<h3>E. shell script 4 本 + orchestrator</h3>
+<p><code>bin/01_ingest.sh</code> 〜 <code>bin/run_all.sh</code> を実装。 <code>~/.claude/skills/session-recap/SKILL.md</code> の dev_journal INSERT 仕様を参照しながら schema を揃える。</p>
+
+<h3>F. claude CLI 整形</h3>
+<pre><code>claude -p --output-format json \
+  --append-system "$(cat prompts/summarize.md)" \
+  < work/$ID.raw.txt > out/$ID.payload.json</code></pre>
+
+<h3>G. LaunchAgent 登録</h3>
+<pre><code>launchctl bootstrap gui/$UID \
+  ~/Library/LaunchAgents/net.masatoman.voice-pipeline.plist
+launchctl enable gui/$UID/net.masatoman.voice-pipeline</code></pre>
+
+<h3>H. Shortcuts.app オートメーション</h3>
+<p>GUI で 1 回設定: 「Voice Memos に新規録音が追加されたら <code>~/home_work/portfolio/tools/voice-pipeline/inbox/</code> にコピー」。 これで iPhone 録音も iCloud 経由で inbox に着地。</p>
+
+<!-- ========= §7 ハマりポイント・フォールバック ========= -->
+<h2><span class="num">07</span>ハマりポイントとフォールバック</h2>
+
+<h3>ハマり 3 大ポイント</h3>
+<ol>
+<li><strong>Voice Memos の保存先がサンドボックス保護</strong>: <code>~/Library/Group Containers/group.com.apple.VoiceMemos.shared/</code> は launchd 直接監視で権限エラー → Shortcuts.app 経由で inbox/ にコピーする中継が必須。</li>
+<li><strong>m4a を whisper.cpp に直食わせると不安定</strong>: <code>ffmpeg -i in.m4a -ac 1 -ar 16000 -c:a pcm_s16le out.wav</code> で 16kHz mono PCM 正規化必須。 <code>01_ingest.sh</code> の唯一の責務。</li>
+<li><strong>日本語句読点が入らない / 固有名詞誤認 (北原・たましん・GビズID 等)</strong>: <code>--prompt "以下は日本語商談の音声です。 句読点を適切に。 固有名詞: 北原 / たましん / 補助金 / 商工会議所 / アトツギ / DX 認定 / IT 導入補助金 / 都 DX 推進助成金"</code> を whisper.cpp に initial prompt として渡すと体感 2 割改善。 + Voice Memos の Apple Intelligence transcript を Plan B として claude に diff 補正させる。</li>
+</ol>
+
+<h3>フォールバック階層</h3>
+<table>
+<thead><tr><th>失敗箇所</th><th>残るデータ</th><th>復旧手順</th></tr></thead>
+<tbody>
+<tr><td>whisper.cpp 落ちる</td><td>done/ に .m4a + Voice Memos 内 transcript</td><td>手動で whisper-cli を回し直す。 完全失敗時は Apple Intelligence transcript をコピーして手動 INSERT</td></tr>
+<tr><td>claude -p が JSON 壊す</td><td>work/$ID.raw.txt + out/$ID.payload.json (壊れた状態)</td><td>JSON を手動編集 → <code>04_insert.sh</code> だけ再実行</td></tr>
+<tr><td>Supabase INSERT 失敗</td><td>out/$ID.payload.json (完全)</td><td>後で <code>session-recap</code> skill 経由で流す or psql で手動 INSERT</td></tr>
+</tbody>
+</table>
+
+<div class="callout good">
+  <strong>各段の中間ファイルが残るので、 どこで失敗しても録音 .m4a は絶対に失われない</strong>。 商談の一次情報は何があっても保持される設計。
+</div>
+
+<!-- ========= §8 進捗 + 残タスク ========= -->
+<h2><span class="num">08</span>進捗 + 残タスク</h2>
+
+<h3>2026-05-15 完了</h3>
+<ul>
+<li><span class="pill good">DONE</span> cmake 4.3.2 install (Intel Homebrew 経由)</li>
+<li><span class="pill good">DONE</span> voice-pipeline ディレクトリ階層作成</li>
+<li><span class="pill good">DONE</span> whisper.cpp Metal-only build (Core ML 抜き、 Rosetta 経由 x86_64)</li>
+<li><span class="pill good">DONE</span> large-v3-turbo-q5_0 モデル DL (547MB)</li>
+<li><span class="pill good">DONE</span> JFK 英語サンプル疎通 = <strong>7.6x realtime</strong> (M4 Pro Metal 認識 OK)</li>
+<li><span class="pill warn">TODO</span> 日本語精度未確認 (<code>say</code> コマンドが Bash sandbox で動かず延期)</li>
+</ul>
+
+<h3>2026-05-17 以降 残タスク (優先順)</h3>
+<ol>
+<li><span class="pill info">P0</span> <code>~/.claude/skills/session-recap/SKILL.md</code> を読んで dev_journal INSERT 仕様確定</li>
+<li><span class="pill info">P0</span> <code>bin/01_ingest.sh</code> (m4a → 16kHz mono wav)</li>
+<li><span class="pill info">P0</span> <code>bin/02_transcribe.sh</code> (whisper-cli ラッパ、 initial prompt で固有名詞補正)</li>
+<li><span class="pill info">P0</span> <code>bin/03_summarize.sh</code> + <code>prompts/summarize.md</code> (claude -p → JSON payload)</li>
+<li><span class="pill info">P0</span> <code>bin/04_insert.sh</code> (supabase-js、 portfolio 既存 SUPABASE_SERVICE_ROLE_KEY 流用)</li>
+<li><span class="pill info">P0</span> <code>bin/run_all.sh</code> orchestrator</li>
+<li><span class="pill info">P1</span> LaunchAgent plist 作成 + 登録</li>
+<li><span class="pill info">P1</span> Shortcuts.app オートメーション (GUI 1 回設定)</li>
+<li><span class="pill info">P1</span> 日本語音声で疎通 (iPhone ボイスメモ 30 秒録音を inbox 投下)</li>
+</ol>
+
+<div class="callout warn">
+  <strong>5/22 北原氏オンライン面談 (14:00 想定)</strong> までに上記 P0 完了が目標。 5/19-21 で 10 分独り言録音による本番リハ。 間に合わなければ 5/22 当日は録音のみ取って、 翌日以降に手動 whisper-cli で処理する fallback で対応。
+</div>
+
+<!-- ========= §9 既知の課題 ========= -->
+<h2><span class="num">09</span>既知の課題</h2>
+
+<ul>
+<li><strong>Intel Homebrew + Rosetta build</strong> のため M4 Pro ARM ネイティブ性能の 60-80%。 7.6x realtime で実用十分だが、 もし大量バックログ処理が必要になったら ARM cmake 化検討 (cmake.org から ARM macOS 用 cmake を DL → 別 build dir でリビルド)</li>
+<li><strong><code>say</code> コマンドが Bash tool sandbox で動かない</strong>: <code>say -v Kyoko -o file.aiff</code> が無声で失敗。 日本語疎通検証は iPhone ボイスメモの実音声でやる方針に変更</li>
+<li><strong>Core ML 化未着手</strong>: 現状 Metal-only。 Core ML 化すると encode 段で 2-3 倍速くなる可能性 (要 Python coremltools)。 速度に不満が出たら検討</li>
+<li><strong>話者分離 (diarization) 未対応</strong>: whisper.cpp + WhisperX で話者ラベル付与可能だが現状未導入。 1 対 1 の商談なら不要、 3 人以上の場で必要になったら追加</li>
+</ul>
+
+<!-- ========= §10 拡張アイデア ========= -->
+<h2><span class="num">10</span>拡張アイデア (将来)</h2>
+
+<ul>
+<li><strong>X 投稿ネタ自動生成</strong>: dev_journal の商談メモを定期的に読んで「商談で気づいた一次情報」 を post_queue に提案 (<code>x-post-rules</code> skill 連動)</li>
+<li><strong>記事ネタ自動 score</strong>: <code>article-source-selector</code> skill が自動で軸 A 記事候補に上げる (既存実装)</li>
+<li><strong>面談直後の Slack 通知</strong>: INSERT 完了時に Slack DM で「商談メモが入りました → 要約 link」 通知</li>
+<li><strong>議事録 PDF 自動生成</strong>: dev_journal row から面談ごとに PDF 議事録を生成 (相手に共有用)</li>
+<li><strong>多人数会議対応</strong>: WhisperX + pyannote-audio で話者分離、 dev_journal の body に「【北原氏】 ... 【井原】 ...」 と話者ラベル付与</li>
+</ul>
+
+<footer>
+  <p>Ihara Frontend — voice-pipeline 設計 + 使い方 v1<br>
+  関連: <code>~/.claude/plans/mac-ultrathink-gentle-charm.md</code> (設計ノート) / <code>~/.claude/skills/session-recap/SKILL.md</code> (INSERT 仕様)</p>
+</footer>
+
+</div>
+</body>
+</html>
