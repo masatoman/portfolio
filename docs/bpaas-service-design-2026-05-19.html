@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="created-at" content="2026-05-19">
+<title>BPaaS 5 サービス設計 v1 / 工務店向け業務代行 / 2026-05-19</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --accent: #b85c3a;
+  --warn: #c34a1f;
+  --good: #2d6a4f;
+  --card: #ffffff;
+  --border: #e4ddd1;
+  --confirmed: #e6f0ea;
+  --pending: #fef5e7;
+  --speculation: #fde8e0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 12mm 14mm;
+  margin: 8mm auto;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+}
+
+header {
+  border-bottom: 2px solid var(--fg);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+header h1 { font-size: 16px; font-weight: 700; }
+header .meta { font-size: 9.5px; color: var(--muted); }
+
+.section { margin-bottom: 12px; }
+.section h2 {
+  font-size: 11.5px;
+  font-weight: 700;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 2px 8px;
+  margin-bottom: 5px;
+  letter-spacing: 0.05em;
+}
+.section h3 {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 6px 0 3px 0;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 2px;
+}
+.section p { margin-bottom: 4px; }
+
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+.box {
+  background: #fdfbf6;
+  border: 1px solid var(--border);
+  padding: 6px 8px;
+  border-radius: 3px;
+}
+.box.warn {
+  background: var(--speculation);
+  border-color: var(--warn);
+}
+.box.fact {
+  background: var(--confirmed);
+  border-color: var(--good);
+}
+.box .label {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10.5px;
+  margin: 4px 0 6px 0;
+}
+th, td {
+  padding: 3px 6px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+th {
+  background: #f4ede0;
+  font-weight: 700;
+  font-size: 9.5px;
+}
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.center { text-align: center; }
+
+ul { padding-left: 14px; }
+ul li { margin-bottom: 2px; }
+
+.tag {
+  display: inline-block;
+  font-size: 8.5px;
+  padding: 0 4px;
+  border-radius: 2px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+}
+.tag.fact { background: var(--good); color: white; }
+.tag.spec { background: var(--warn); color: white; }
+.tag.todo { background: var(--accent); color: white; }
+
+.service-card {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  background: #fdfbf6;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}
+.service-card h3 {
+  border: none;
+  padding: 0;
+  margin: 0 0 4px 0;
+  font-size: 12px;
+}
+.service-card .price-line {
+  font-size: 10.5px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.service-card .price-line strong { color: var(--fg); font-size: 12px; }
+
+.warn-block {
+  background: var(--speculation);
+  border-left: 3px solid var(--warn);
+  padding: 5px 8px;
+  margin: 4px 0;
+  font-size: 10.5px;
+}
+.warn-block strong { color: var(--warn); }
+
+.fact-block {
+  background: var(--confirmed);
+  border-left: 3px solid var(--good);
+  padding: 5px 8px;
+  margin: 4px 0;
+  font-size: 10.5px;
+}
+
+footer {
+  margin-top: 14px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+  font-size: 9.5px;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media print {
+  body { background: white; }
+  .page { box-shadow: none; margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<header>
+  <h1>BPaaS 5 サービス設計 v1 — 工務店向け業務代行</h1>
+  <div class="meta">2026-05-19 / 内部設計書 / 信ぴょう性ラベル付</div>
+</header>
+
+<div class="section">
+  <h2>0. このドキュメントの位置付け</h2>
+  <p>
+    2026-05-18 BPaaS / AI エージェント 戦略転換 (memory <code>komuten-bpaas-ai-agent-strategy-2026-05-18</code>) を受けて、
+    demo-gallery 8 デモを 5 代行サービスにリフレーミングした初版設計書。
+    <strong>5/22 北原氏面談 Q12 + 友人 Phase 3 (N=2-3 ヒアリング) で検証する仮説の整理</strong>であって、 確定した値ではない。
+  </p>
+  <p>各セクションに <span class="tag fact">確認済</span> / <span class="tag spec">推測</span> / <span class="tag todo">要裏取り</span> ラベルを付与。 §6 に信ぴょう性の所在をまとめる。</p>
+</div>
+
+<div class="section">
+  <h2>1. 全体サマリ</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>サービス</th>
+        <th class="num">BPaaS 月額</th>
+        <th class="num">SaaS 月額</th>
+        <th class="num">労力/月</th>
+        <th class="num">時給</th>
+        <th>主リスク</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>①</td><td>現場写真 整理代行</td>
+        <td class="num">¥15,000</td><td class="num">¥6,000</td>
+        <td class="num">3-4h</td><td class="num">3,750-5,000 円</td>
+        <td>学習データ蓄積期間</td>
+      </tr>
+      <tr>
+        <td>②</td><td>領収書・経理代行</td>
+        <td class="num">¥30,000</td><td class="num">¥10,000</td>
+        <td class="num">6-10h</td><td class="num">3,000-5,000 円</td>
+        <td>税理士法 52 条 グレーゾーン</td>
+      </tr>
+      <tr>
+        <td>③</td><td>日報作成代行</td>
+        <td class="num">¥20,000</td><td class="num">¥8,000</td>
+        <td class="num">5-13h</td><td class="num">1,500-4,000 円</td>
+        <td>需要薄 (友人 N=1 は紙)</td>
+      </tr>
+      <tr>
+        <td>④</td><td>見積書作成代行</td>
+        <td class="num">¥30,000</td><td class="num">¥12,000</td>
+        <td class="num">3.5-10h</td><td class="num">3,000-8,500 円</td>
+        <td>初回学習コスト</td>
+      </tr>
+      <tr>
+        <td>⑤</td><td>顧客連絡代行</td>
+        <td class="num">¥20,000</td><td class="num">¥6,000</td>
+        <td class="num">4-8h</td><td class="num">2,500-5,000 円</td>
+        <td>クレーム責任分界</td>
+      </tr>
+      <tr style="background:#f4ede0;font-weight:700;">
+        <td>—</td><td>フルコース合計</td>
+        <td class="num">¥115,000</td><td class="num">¥42,000</td>
+        <td class="num">22-45h</td><td class="num">—</td>
+        <td>属人化 (1 人運用)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:10px;color:var(--muted);"><strong>BPaaS:SaaS 価格比 ≈ 2.7-3.4 倍</strong>。 BPaaS は全部代行、 SaaS は工務店が LINE bot 経由で自分で実行する形態。</p>
+</div>
+
+<div class="section">
+  <h2>2. サービス別 詳細設計</h2>
+
+  <div class="service-card">
+    <h3>① 現場写真 整理代行</h3>
+    <div class="price-line"><strong>BPaaS ¥15,000/月</strong> → SaaS ¥6,000/月 (40%)</div>
+    <p><strong>代行内容</strong>: LINE で受信した現場写真を工事番号別に仕分け → 月末に PDF 台帳生成 (完了報告 / 施主アルバム / 保証書添付 の 3 テンプレ)</p>
+    <table>
+      <thead><tr><th>工程</th><th class="num">時間</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr><td>写真受信 + 初期分類 (月 100-300 枚)</td><td class="num">1.5-2.5h</td><td>EXIF + 顧客コメントで紐付け</td></tr>
+        <tr><td>工事番号確定 + タイトル付け</td><td class="num">30 分</td><td></td></tr>
+        <tr><td>PDF 生成 (テンプレ化済)</td><td class="num">30 分</td><td></td></tr>
+        <tr><td>顧客 LINE 返信 / 月末配送</td><td class="num">30 分</td><td></td></tr>
+        <tr style="font-weight:700;background:#fdfbf6;"><td>合計</td><td class="num">3-4h</td><td>時給 3,750-5,000 円</td></tr>
+      </tbody>
+    </table>
+    <div class="warn-block">
+      <strong>⚠️ 推測根拠</strong>: 写真 1 枚 30 秒の処理時間は <span class="tag spec">推測</span>。 実際は OCR (現場黒板) や工事番号推定の精度次第。 月 100-300 枚も <span class="tag spec">推測</span> (友人 N=1 で確認していない)。
+    </div>
+  </div>
+
+  <div class="service-card">
+    <h3>② 領収書・経理代行</h3>
+    <div class="price-line"><strong>BPaaS ¥30,000/月</strong> → SaaS ¥10,000/月 (33%)</div>
+    <p><strong>代行内容</strong>: 領収書・請求書を LINE 写真送信 → OCR 仕訳 / 請求書発行 (月 10-20 件) / 入金消込 / 月次レポート (売上・経費・粗利)</p>
+    <table>
+      <thead><tr><th>工程</th><th class="num">時間</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr><td>領収書 OCR + 仕訳 (50-100 枚)</td><td class="num">2-4h</td><td>freee / MoneyForward 投入</td></tr>
+        <tr><td>請求書発行 (10-20 件)</td><td class="num">2-3h</td><td>顧客承認後送付</td></tr>
+        <tr><td>入金消込</td><td class="num">1-2h</td><td>銀行明細チェック</td></tr>
+        <tr><td>月次レポート</td><td class="num">1h</td><td></td></tr>
+        <tr style="font-weight:700;background:#fdfbf6;"><td>合計</td><td class="num">6-10h</td><td>時給 3,000-5,000 円</td></tr>
+      </tbody>
+    </table>
+    <div class="warn-block">
+      <strong>⚠️ 税理士法 52 条の壁 <span class="tag fact">確認済</span></strong>: 仕訳・記帳代行は「経理事務代行」 として OK だが、 税務相談・申告書作成に踏み込むと無資格営業で違法。 線引きをパンフレット明記必須。 5/22 北原氏 Q12 で 「事務代行の範囲」 を確認推奨。
+    </div>
+    <div class="warn-block">
+      <strong>⚠️ 推測根拠</strong>: 月次の領収書 50-100 枚 / 請求書 10-20 件 は <span class="tag spec">推測</span>。 5-30 人規模工務店の実際の業務量を <span class="tag todo">要裏取り</span> (友人 N=2-3 + 業界統計 or freee 工務店事例)。
+    </div>
+  </div>
+
+  <div class="service-card">
+    <h3>③ 日報作成代行</h3>
+    <div class="price-line"><strong>BPaaS ¥20,000/月</strong> → SaaS ¥8,000/月 (40%)</div>
+    <p><strong>代行内容</strong>: 現場で音声録音 (1 件 30 秒-2 分) → LINE 送信 → Whisper 文字起こし → Claude で整形 (現場名 / 作業内容 / 人工 / 翌日予定) → 日次 PDF + 月末まとめ</p>
+    <table>
+      <thead><tr><th>工程</th><th class="num">時間</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr><td>音声受信 (日 1-3 件 × 月 25 日)</td><td class="num">(自動)</td><td>50-75 件</td></tr>
+        <tr><td>AI 文字起こし後の整形 (1 件 5-10 分)</td><td class="num">4-12h</td><td>主にここ</td></tr>
+        <tr><td>月末 PDF 製本</td><td class="num">1h</td><td></td></tr>
+        <tr style="font-weight:700;background:#fdfbf6;"><td>合計</td><td class="num">5-13h</td><td>時給 1,500-4,000 円 (最低)</td></tr>
+      </tbody>
+    </table>
+    <div class="warn-block">
+      <strong>⚠️ 需要不確実 <span class="tag fact">確認済</span></strong>: 友人 N=1 で「日報は紙」 と判明 (memory <code>friend-hearing-result-2026-05-14</code>)。 訴求軸は「紙より楽」 ではなく「日報書く 1 時間がもう一現場の見積に変わる」 へ。 5 サービスで撤退判定の可能性最有力。
+    </div>
+    <div class="warn-block">
+      <strong>⚠️ 推測根拠</strong>: 整形 1 件 5-10 分は <span class="tag spec">推測</span>。 Whisper 精度と現場用語 (人工・歩掛・型枠等) のカスタム辞書次第で 2-15 分にブレる。
+    </div>
+  </div>
+
+  <div class="service-card">
+    <h3>④ 見積書作成代行</h3>
+    <div class="price-line"><strong>BPaaS ¥30,000/月</strong> → SaaS ¥12,000/月 (40%)</div>
+    <p><strong>代行内容</strong>: 初回オンボーディングで過去見積 10-30 件をベクトル DB 学習 (5-10h、 1 回のみ)。 月次は新規案件依頼 LINE 受信 → 類似案件参照 → ドラフト生成 → 顧客確認 → 修正 → 確定。</p>
+    <table>
+      <thead><tr><th>工程</th><th class="num">時間</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr><td>見積依頼受領 (月 5-15 件)</td><td class="num">1h</td><td></td></tr>
+        <tr><td>ドラフト生成 + 確認 (1 件 30 分)</td><td class="num">2.5-7.5h</td><td>類似案件 3 件参照</td></tr>
+        <tr><td>顧客との往復修正</td><td class="num">1-2h</td><td></td></tr>
+        <tr style="font-weight:700;background:#fdfbf6;"><td>合計 (運用後)</td><td class="num">3.5-10h</td><td>時給 3,000-8,500 円 (最高)</td></tr>
+      </tbody>
+    </table>
+    <div class="fact-block">
+      <strong>💡 価値訴求</strong>: 「半日 → 10 分」 の時短価値は工務店オーナーが理解しやすい。 BPaaS 単価が 5 サービス中で最高水準を維持できるのもこのため。 SaaS 化後も値崩れしにくい。
+    </div>
+    <div class="warn-block">
+      <strong>⚠️ 推測根拠</strong>: 月 5-15 件は <span class="tag spec">推測</span>。 5-30 人規模工務店の実際の月次見積数を <span class="tag todo">要裏取り</span>。 初回学習 5-10h も Claude + ベクトル DB の精度次第。
+    </div>
+  </div>
+
+  <div class="service-card">
+    <h3>⑤ 顧客連絡代行</h3>
+    <div class="price-line"><strong>BPaaS ¥20,000/月</strong> → SaaS ¥6,000/月 (30%)</div>
+    <p><strong>代行内容</strong>: 工事進捗写真 + 一言コメント受信 → 施主向け定期メッセージ作成 (週 1-2 回) → LINE/メール/SMS 送信 → クレーム兆候検出 → 工務店エスカレ。</p>
+    <table>
+      <thead><tr><th>工程</th><th class="num">時間</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr><td>進捗写真受信 (週 2-3 回)</td><td class="num">30 分</td><td></td></tr>
+        <tr><td>メッセージ作成 (月 8-12 件 × 10-15 分)</td><td class="num">2-3h</td><td></td></tr>
+        <tr><td>施主応対 (返信時)</td><td class="num">2-5h</td><td>変動大</td></tr>
+        <tr><td>クレーム エスカレ判断</td><td class="num">30 分</td><td></td></tr>
+        <tr style="font-weight:700;background:#fdfbf6;"><td>合計</td><td class="num">4-8h</td><td>時給 2,500-5,000 円</td></tr>
+      </tbody>
+    </table>
+    <div class="fact-block">
+      <strong>💡 主顧客の最痛点に直撃 <span class="tag fact">確認済</span></strong>: 友人 N=1 で「個人客 9 割」 判明 (memory <code>friend-hearing-result-2026-05-14</code>)。 5 サービス中で B2C 接点を肩代わりするのはこれだけ → 最重要候補。
+    </div>
+    <div class="warn-block">
+      <strong>⚠️ クレーム責任分界</strong>: 施主との誤発信 → 工務店信用毀損のリスク。 契約書で「代行範囲」「最終判断は工務店」「賠償上限」 を明示必須。 5/22 北原氏 Q12 で「事業者損害保険」 込みで相談推奨。
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>3. 価格設計の根拠</h2>
+  <div class="row2">
+    <div class="box">
+      <div class="label">BPaaS:SaaS 価格比 = 2.7-3.4 倍 <span class="tag spec">推測</span></div>
+      <p style="font-size:10.5px;">
+        フルマネージド代行 vs セルフサービス SaaS の一般相場は 3-4 倍と<strong>言われている</strong>が、
+        工務店業界で同等の代行サービス相場を <span class="tag todo">要裏取り</span>。
+        Bizer (経理代行) / Tanomu (受発注) / 経理プラス 等の月額調査未実施。
+      </p>
+    </div>
+    <div class="box">
+      <div class="label">時給 3,000-5,000 円ライン <span class="tag spec">推測</span></div>
+      <p style="font-size:10.5px;">
+        masatoman の本業時給感覚 (受託 5,000-8,000 円/h) より低めだが、
+        副業 + 1 人運用なら許容。
+        ③ 日報代行のみ 1,500-4,000 円で要警戒。
+      </p>
+    </div>
+  </div>
+  <div class="fact-block" style="margin-top:6px;">
+    <strong>BPaaS の「高価格」 が正当化される理由</strong>: 主顧客 (IT 弱者の工務店オーナー) は「自分で操作したくない」 という核心特性 (memory <code>customer-target</code>)。
+    SaaS は学習コスト障壁で受け入れ困難 → BPaaS で「LINE に送るだけ」 という入口を作る → 一度慣れると SaaS に動かない (粘着性) → BPaaS が安定収益源として残る、
+    という<strong>戦略的価格構造</strong> ([[komuten-bpaas-ai-agent-strategy-2026-05-18]])。
+  </div>
+</div>
+
+<div class="section">
+  <h2>4. キャパシティ試算</h2>
+  <table>
+    <thead>
+      <tr><th>顧客数</th><th>プラン構成</th><th class="num">月稼働時間</th><th class="num">MRR</th><th>余力</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1 顧客</td><td>フルコース</td><td class="num">22-45h</td><td class="num">¥115K</td><td>余裕</td></tr>
+      <tr><td>2 顧客</td><td>フルコース</td><td class="num">44-90h</td><td class="num">¥230K</td><td>キャパ上限近い</td></tr>
+      <tr><td>3 顧客</td><td>フルコース</td><td class="num">66-135h</td><td class="num">¥345K</td><td>外注 or SaaS 化必須</td></tr>
+      <tr><td>5 顧客</td><td>部分プラン (写真+顧客連絡 等)</td><td class="num">35-60h</td><td class="num">¥175K</td><td>適正</td></tr>
+      <tr><td>10 顧客</td><td>部分プラン平均 ¥35K</td><td class="num">70-100h</td><td class="num">¥350K</td><td>BPaaS 受付停止 / SaaS 移行強制</td></tr>
+    </tbody>
+  </table>
+  <div class="fact-block">
+    <strong>masatoman の月稼働時間枠</strong>: 平日 4-12 日 + 土日で BPaaS 専任 ≈ 週 15-20h × 4 = <strong>60-80h/月</strong>
+    (memory <code>user-work-time-constraint</code>) <span class="tag fact">確認済</span>。
+    <br>→ <strong>フルコース 1-2 顧客 で 12 ヶ月後 MRR ¥30-60K 目標 ([[pivot-from-speedy-to-careful-2026-05-15]]) は十分達成可能</strong>。
+    <br>→ 「3 顧客取れたら SaaS 化準備 / 5 顧客で SaaS 移行強制 / 10 顧客で BPaaS 受付停止」 が運用ロジック。
+  </div>
+</div>
+
+<div class="section">
+  <h2>5. 設計上の検証必要事項 (5/22 北原氏 / 友人 N=2-3 で確認)</h2>
+  <ol style="padding-left:18px;">
+    <li><strong>税理士法 52 条のグレーゾーン線引き</strong>: 経理代行を「事務代行」 内に留めるための具体的線引きを 5/22 Q12 で相談</li>
+    <li><strong>日報代行の需要</strong>: 友人 N=1 で「紙」 判明 → N=2-3 で再確認、 撤退判定の可能性</li>
+    <li><strong>クレーム責任分界</strong>: 顧客連絡代行で施主からの訴訟リスク発生時の責任を契約書でどう書くか</li>
+    <li><strong>5 サービスの順位</strong>: 友人 Phase 3 ヒアリング 30 分 で「これ全部出されたらどれから欲しいか」 を順位付け</li>
+    <li><strong>属人化</strong>: masatoman 1 人運用は病気・休暇で全停止、 5 顧客超えたら 副業外注 (シニア経理経験者 / 元現場監督) 検討</li>
+    <li><strong>業界相場ベンチマーク</strong>: Bizer / Tanomu / 経理プラス / 写真整理代行 / 日報代行サービス の月額調査</li>
+    <li><strong>工務店の実業務量</strong>: 領収書枚数 / 月次見積件数 / 写真枚数 を友人 N=2-3 で実数確認</li>
+  </ol>
+</div>
+
+<div class="section">
+  <h2>6. ⚠️ 信ぴょう性の所在 — 事実 vs 推測 vs 要裏取り</h2>
+
+  <h3 style="color:var(--good);">✅ 確認済 (一次情報源あり)</h3>
+  <div class="fact-block">
+    <ul>
+      <li><strong>masatoman 月稼働 60-80h</strong>: memory <code>user-work-time-constraint</code> 一次情報</li>
+      <li><strong>友人 N=1 ヒアリング結果</strong>: 買い切り嬉しい / 個人客 9 割 / 日報紙 / 横つながり弱 / メール 3 割不可 (memory <code>friend-hearing-result-2026-05-14</code>)</li>
+      <li><strong>税理士法 52 条</strong>: 税理士業務 (税務代理 / 税務書類作成 / 税務相談) の独占。 法令確認可能</li>
+      <li><strong>主顧客特性 (IT 弱者・自分で操作したくない)</strong>: memory <code>customer-target</code> + issue-finder 235 件痛みクラスタ</li>
+      <li><strong>BPaaS 戦略仮説</strong>: memory <code>komuten-bpaas-ai-agent-strategy-2026-05-18</code> (5/18 別 claude.ai セッション)</li>
+    </ul>
+  </div>
+
+  <h3 style="color:var(--warn);">⚠️ 推測 (一次情報源なし、 検証必要)</h3>
+  <div class="warn-block">
+    <ul>
+      <li><strong>5 サービスの労力試算 全て</strong>: 写真 1 枚 30 秒 / OCR 仕訳 1 件 2 分 / 整形 1 件 5-10 分 等は全部 masatoman + Claude の机上推測。 実測ゼロ</li>
+      <li><strong>BPaaS 月額価格 ¥15K-30K</strong>: 業界比較なし、 freee 経理代行 / Bizer / Tanomu 等の月額調査ゼロ</li>
+      <li><strong>SaaS 価格 = BPaaS の 30-40%</strong>: 「市場相場」 と書いたが出典なし</li>
+      <li><strong>月次業務量</strong>: 領収書 50-100 枚 / 請求書 10-20 件 / 見積 5-15 件 / 写真 100-300 枚 / 音声 50-75 件 は全部推測</li>
+      <li><strong>クレーム発生率</strong>: 顧客連絡代行のリスク量定量化なし</li>
+      <li><strong>5 サービスの需要順位</strong>: 友人 N=1 でも個別質問していない</li>
+    </ul>
+  </div>
+
+  <h3 style="color:var(--accent);">🔍 要裏取り (確認可能、 5/22 までに or 友人 N=2-3 で)</h3>
+  <div class="box" style="background:#fef5e7;">
+    <ul>
+      <li><strong>業界代行サービス相場</strong>: WebSearch で Bizer / Tanomu / 経理プラス / 写真整理代行 / 日報代行 の月額調査 (1-2h で可能)</li>
+      <li><strong>税理士法 52 条の具体線引き</strong>: 国税庁サイト + 税理士会 Q&A、 5/22 Q12 で北原氏に確認</li>
+      <li><strong>1 人運用代行業の天井ライン</strong>: 業界統計 (中小企業庁 / 経済センサス)、 副業ガイドライン</li>
+      <li><strong>工務店の実際の月次業務量</strong>: 友人 N=2-3 ヒアリングで実数取得 (Phase 3 質問追加)</li>
+      <li><strong>事業者損害保険の費用感</strong>: 顧客連絡代行のクレームリスク対策、 5/22 Q12 ついでに北原氏に</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <h2>7. 次のアクション</h2>
+  <ol style="padding-left:18px;">
+    <li><strong>2026-05-19〜21</strong>: WebSearch で業界代行サービス相場調査 (Bizer / Tanomu / 経理プラス 等 1-2h)</li>
+    <li><strong>2026-05-22 (金)</strong>: 北原氏面談 Q12 で本設計の妥当性 + 税理士法 52 条線引き + 事業者損害保険を相談 (memory <code>komuten-bpaas-ai-agent-strategy-2026-05-18</code> Step 7)</li>
+    <li><strong>5-6 月 友人 N=2-3 ヒアリング Phase 3</strong>: 5 サービスを順位付け + 実業務量取得</li>
+    <li><strong>7-9 月 仮説修正期</strong>: 上記結果を踏まえ v2 設計書に書換、 撤退サービス確定</li>
+    <li><strong>10-12 月 MVP 投入期</strong>: 確定した 2-3 サービスで 1-2 社目契約目標</li>
+  </ol>
+</div>
+
+<footer>
+  BPaaS 5 サービス設計 v1 / 2026-05-19 作成 / 内部設計書 (顧客向けではない)<br>
+  関連: memory <code>komuten-bpaas-ai-agent-strategy-2026-05-18</code> / <code>friend-hearing-result-2026-05-14</code> / <code>pivot-from-speedy-to-careful-2026-05-15</code> / STRATEGY.md §4 軸 B
+</footer>
+
+</div>
+
+</body>
+</html>

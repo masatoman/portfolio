@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="created-at" content="2026-05-20">
+<title>工務店 アナログ業務運用支援 事業構想 / 5/22 北原様 面談用 / 井原 誠斗</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --paper: #ffffff;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --line: #d6cfc2;
+  --accent: #b85c3a;
+  --accent-soft: #f4dfd2;
+  --good: #2d6a4f;
+  --good-soft: #e6f0ea;
+  --info: #1e3a5f;
+  --info-soft: #dde6f0;
+  --warn: #c34a1f;
+  --warn-soft: #fde8e0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: #e8e0d4;
+  color: var(--fg);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.slide {
+  width: 297mm;
+  min-height: 200mm;
+  padding: 18mm 22mm;
+  margin: 8mm auto;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.slide-num {
+  position: absolute;
+  top: 10mm;
+  right: 18mm;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+.slide-meta {
+  position: absolute;
+  top: 10mm;
+  left: 22mm;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+h1 {
+  font-size: 30px;
+  border-bottom: 3px solid var(--fg);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+  margin-top: 16px;
+}
+h1 .sub {
+  font-size: 15px;
+  color: var(--muted);
+  font-weight: normal;
+  margin-left: 12px;
+}
+h2 {
+  font-size: 19px;
+  color: var(--accent);
+  margin-top: 22px;
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+p { margin-bottom: 10px; font-size: 14px; }
+
+.body { flex: 1; display: flex; flex-direction: column; }
+
+.footer-bar {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* タイトルスライド */
+.title-slide {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.title-slide .eyebrow {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.3em;
+  margin-bottom: 28px;
+}
+.title-slide h1 {
+  font-size: 36px;
+  border: none;
+  padding: 0;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+.title-slide .lead {
+  font-size: 18px;
+  color: var(--muted);
+  margin-bottom: 50px;
+  line-height: 1.7;
+}
+.title-slide .self-intro {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: left;
+  background: #fdfbf6;
+  border-left: 4px solid var(--accent);
+  padding: 16px 22px;
+  font-size: 14px;
+  line-height: 1.9;
+}
+.title-slide .self-intro strong { color: var(--accent); }
+.title-slide .agenda {
+  margin-top: 40px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.title-slide .agenda strong { color: var(--fg); }
+
+/* 顧客像カード */
+.customer-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.persona {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+.persona .role {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.persona .name {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.persona .desc { font-size: 12.5px; line-height: 1.65; }
+
+/* 3 プランカード */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 16px 0;
+}
+.plan {
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 18px;
+  background: #fdfbf6;
+}
+.plan.l1 { border-color: var(--info); }
+.plan.l2 { border-color: var(--accent); }
+.plan.l3 { border-color: var(--good); }
+.plan .level {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: var(--muted);
+}
+.plan .plan-name {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 4px 0 6px;
+}
+.plan .price {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.plan ul { font-size: 12px; padding-left: 16px; line-height: 1.7; }
+.plan .target {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+
+/* 3 つのキーメッセージ */
+.key-msgs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 14px 0;
+}
+.key-msg {
+  background: var(--accent-soft);
+  border-radius: 6px;
+  padding: 18px 20px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* サービス一覧 */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 10px 0;
+}
+.svc-card {
+  background: #fdfbf6;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 11px 14px;
+}
+.svc-card .svc-name {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.svc-card .svc-desc {
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.svc-card.p1 { border-left: 4px solid var(--info); }
+.svc-card.p2 { border-left: 4px solid var(--accent); }
+.svc-card.p3 { border-left: 4px solid var(--good); }
+
+/* 3 段階フェーズ */
+.phases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 12px 0;
+}
+.phase {
+  background: white;
+  border-top: 5px solid var(--line);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+.phase.p1 { border-top-color: var(--info); }
+.phase.p2 { border-top-color: var(--accent); }
+.phase.p3 { border-top-color: var(--good); }
+.phase .ph-no {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  font-weight: 700;
+}
+.phase .ph-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 4px 0 2px;
+}
+.phase .ph-period {
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.phase ul { font-size: 12px; padding-left: 16px; line-height: 1.7; }
+.phase .ph-goal {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+  font-size: 12px;
+}
+.phase .ph-goal strong { color: var(--accent); }
+
+/* バイラル拡散図 */
+.viral-diagram {
+  background: #fdfbf6;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 22px 26px;
+  margin: 16px 0;
+  text-align: center;
+}
+.viral-flow {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0;
+}
+.viral-node {
+  background: white;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
+.viral-node.center { background: var(--accent); color: white; border-color: var(--accent); }
+.viral-node .num { font-size: 18px; }
+.viral-arrow { font-size: 28px; color: var(--accent); }
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 12.5px;
+}
+.compare-table th {
+  background: var(--fg);
+  color: white;
+  padding: 8px 10px;
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+.compare-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+}
+.compare-table tr:nth-child(even) td { background: #fbf8f3; }
+.win { color: var(--good); font-weight: 700; }
+.lose { color: var(--muted); }
+
+/* 相談 5 項目 */
+.consults {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+.consult-card {
+  background: var(--info-soft);
+  border-left: 4px solid var(--info);
+  border-radius: 4px;
+  padding: 14px 18px;
+}
+.consult-card .c-no {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--info);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.consult-card .c-q {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+.consult-card .c-bg {
+  font-size: 12px;
+  color: var(--fg);
+  line-height: 1.7;
+}
+.consult-card.priority { background: #fff2f2; border-left-color: #b91c1c; }
+.consult-card.priority .c-no { color: #b91c1c; }
+
+/* 紹介依頼 */
+.intro-list {
+  background: var(--good-soft);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin: 14px 0;
+}
+.intro-list h3 { color: var(--good); margin-bottom: 8px; }
+.intro-list ul { font-size: 13px; padding-left: 18px; line-height: 1.8; }
+.intro-list strong { color: var(--good); }
+
+/* 次のアクション */
+.next-actions {
+  background: #fdfbf6;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 12px 0;
+}
+.next-actions ol {
+  font-size: 13px;
+  padding-left: 22px;
+  line-height: 1.9;
+}
+
+/* 強調 */
+.highlight {
+  background: linear-gradient(transparent 60%, var(--accent-soft) 60%);
+  padding: 0 2px;
+}
+
+/* バージョン履歴ボックス */
+.version-box {
+  background: var(--warn-soft);
+  border-left: 4px solid var(--warn);
+  padding: 10px 14px;
+  font-size: 12px;
+  margin: 12px 0;
+}
+
+@media print {
+  body { background: white; }
+  .slide { box-shadow: none; margin: 0; page-break-after: always; }
+  @page { size: A4 landscape; margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- スライド 1: タイトル + 自己紹介 -->
+<!-- ============================================ -->
+<div class="slide title-slide">
+  <span class="slide-meta">2026-05-22 (金) オンライン面談用</span>
+  <span class="slide-num">01 / 07</span>
+
+  <div class="eyebrow">東京創業ステーション · コンシェルジュ面談</div>
+
+  <h1>工務店 アナログ業務 運用支援 事業構想<br><span style="font-size:22px; color:var(--accent); display:block; margin-top:8px;">FAX / 郵送 / 電話 を主軸に「DX しなくていい仕組み」 を中小工務店に届ける</span></h1>
+
+  <div style="max-width: 720px; margin: 16px auto 24px; padding: 14px 22px; background: var(--accent-soft); border-radius: 6px; text-align: center;">
+    <p style="font-size: 11px; color: var(--accent); letter-spacing: 0.2em; margin-bottom: 6px; font-weight: 700;">HERO STATEMENT</p>
+    <p style="font-size: 16px; font-weight: 700; line-height: 1.6; color: var(--fg); margin: 0;">「ANDPAD で詰まった工務店向けに、<br>FAX / 電話 / LINE どれでも OK の運用支援を、 月 ¥3-5 万円から」</p>
+  </div>
+
+  <p class="lead">本日 30-40 分でご相談したい 6 つの論点と、 ご紹介のお願い</p>
+
+  <div class="self-intro">
+    <p><strong>井原 誠斗 (いはら まさと)</strong> · 多摩・分倍河原在住 · たましん取引</p>
+    <p>個人事業主 / フルスタックエンジニア。 受託開発を本業とし、 1 人で Web サービスを設計から運用まで完結できる職人型エンジニアです。</p>
+    <p>2026 年 5 月より <strong>多摩地区の中小工務店向けに、 FAX / 郵送 / 電話 を主軸にしたアナログ業務の運用支援</strong> 事業を立ち上げ中。 現場監督への一次情報ヒアリング + 業界の声 48 件 + 競合 5 社調査を経て、 商品仮説を組み立てています。</p>
+  </div>
+
+  <div class="agenda">
+    <strong>本日のアジェンダ (40 分想定):</strong>　事業構想の説明 15 分 / 競合との戦い方 5 分 / ご相談 5 項目 15 分 / ご紹介のお願い 5 分
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- スライド 2: 事業全体像 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">事業全体像</span>
+  <span class="slide-num">02 / 07</span>
+
+  <h1>事業全体像 <span class="sub">主顧客像 / 提供価値 / 3 プラン制</span></h1>
+
+  <div class="body">
+
+    <h2>主にお届けしたい顧客像 (3 層)</h2>
+    <div class="customer-card">
+      <div class="persona">
+        <div class="role">決裁者</div>
+        <div class="name">社長 (60-70 代)</div>
+        <div class="desc">IT に弱い。 LINE もメールも苦手。 <strong>FAX と電話と訪問</strong> が主な仕事の進め方。 「覚えるのが面倒」 が本音。</div>
+      </div>
+      <div class="persona">
+        <div class="role">経理</div>
+        <div class="name">奥さま (60 代)</div>
+        <div class="desc">領収書整理 / 請求書発行 / 確定申告で月末月初がパンク。 freee 等の会計ソフトは設定が壁。 <strong>紙の帳簿</strong> 中心。</div>
+      </div>
+      <div class="persona">
+        <div class="role">推進役</div>
+        <div class="name">2 代目 / 3 代目 (30-40 代)</div>
+        <div class="desc">スマホは普通に使える。 「父親に説得材料を渡したい」 のが本音。 IT 化推進のキーパーソンだが、 本人は現場で忙しい。</div>
+      </div>
+    </div>
+
+    <h2>提供価値 = 3 つのキーメッセージ</h2>
+    <div class="key-msgs">
+      <div class="key-msg">FAX / 郵送 / 電話 で OK</div>
+      <div class="key-msg">いつもどおりで OK</div>
+      <div class="key-msg">必要ならこちらでやる</div>
+    </div>
+
+    <div class="version-box">
+      <strong>方針転換の経緯 (重要):</strong> 当初「LINE 送るだけ」 訴求で設計していましたが、 主顧客 (60-70 代 IT 弱者) は LINE すら使いこなせていない実態を考慮し、 <strong>FAX / 郵送 / 電話を主軸に組み替え</strong> ました。 既存業界の通信構造に合わせる方向に方針転換しています。
+    </div>
+
+    <h2>3 プラン制 (「導入しますか?」 → 「どこまで任せますか?」 へ営業話法を転換)</h2>
+    <div class="plans">
+      <div class="plan l1">
+        <div class="level">PLAN 1 · ライト</div>
+        <div class="plan-name">運用ルール提供 + 月次チェック</div>
+        <div class="price">月 ¥5K-10K</div>
+        <ul>
+          <li>FAX / 郵送 / 電話の運用ルール設計</li>
+          <li>フォルダ / 帳票テンプレ提供</li>
+          <li>月次品質チェック (電話 + 月 1 訪問)</li>
+        </ul>
+        <div class="target">対象: 2 代目 / 自分でやれる中堅</div>
+      </div>
+      <div class="plan l2">
+        <div class="level">PLAN 2 · スタンダード</div>
+        <div class="plan-name">初期 1 ヶ月伴走 + 教育込み</div>
+        <div class="price">月 ¥15K-25K</div>
+        <ul>
+          <li>初期 1 ヶ月、 訪問 + 電話で運用構築</li>
+          <li>奥さま / アトツギに直接指導</li>
+          <li>困ったら電話 / FAX で相談窓口</li>
+        </ul>
+        <div class="target">対象: IT 苦手だが学ぶ意欲ある中堅</div>
+      </div>
+      <div class="plan l3">
+        <div class="level">PLAN 3 · フルサポート</div>
+        <div class="plan-name">必要部分は受け取って代行</div>
+        <div class="price">月 ¥30K-50K</div>
+        <ul>
+          <li>Plan 2 全部 +</li>
+          <li>FAX / 郵送で受け取った書類を整理 → 返却</li>
+          <li>顧客は <strong>いつもどおりに送るだけ</strong></li>
+        </ul>
+        <div class="target">対象: 60-70 代 IT 弱者オーナー (主顧客)</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 アナログ業務 運用支援 / 井原 誠斗</span>
+    <span>2026-05-22 面談用</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- スライド 3: 6 サービス + 3 段階 ロードマップ -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">商品ラインナップ + ロードマップ</span>
+  <span class="slide-num">03 / 07</span>
+
+  <h1>6 サービス + 3 段階 ロードマップ <span class="sub">12 ヶ月で月次売上 30-60 万円 (現実線)</span></h1>
+
+  <div class="body">
+
+    <h2>提供する 6 サービス (FAX / 郵送 / 電話 主軸)</h2>
+    <div class="services">
+      <div class="svc-card p1">
+        <div class="svc-name">① 現場写真の運用支援</div>
+        <div class="svc-desc">SD カード / 紙焼き写真を月末まとめて郵送 → 整理 → PDF 台帳を <strong>郵送 + FAX で返却</strong>。 業界の声で需要最大。</div>
+      </div>
+      <div class="svc-card p1">
+        <div class="svc-name">② 議事録の自動整理</div>
+        <div class="svc-desc">IC レコーダーや SD カードを郵送 → 文字起こし + 要点抽出 → <strong>郵送で要約資料を返却</strong> + 電話で口頭報告。</div>
+      </div>
+      <div class="svc-card p1">
+        <div class="svc-name">③ ANDPAD 運用支援</div>
+        <div class="svc-desc">元請けから ANDPAD 必須を強いられている下請工務店向け。 <strong>FAX で「ANDPAD にこう書いて」 指示書</strong> + 入力代行で「使える状態」 にする。</div>
+      </div>
+      <div class="svc-card p2">
+        <div class="svc-name">④ 領収書・経理補助</div>
+        <div class="svc-desc">領収書 / 請求書を <strong>月 1 回まとめて郵送</strong> → freee 入力 → 月次レポート郵送 + 電話報告。 提携税理士が申告担当。</div>
+      </div>
+      <div class="svc-card p2">
+        <div class="svc-name">⑤ 補助金の事業計画作成補助</div>
+        <div class="svc-desc">IT 導入補助金 (通常枠 1/2)。 訪問 + 電話でヒアリング → 事業計画書作成補助 → 提携行政書士が申請書類化。</div>
+      </div>
+      <div class="svc-card p3">
+        <div class="svc-name">⑥ 家の困りごと地域相談窓口</div>
+        <div class="svc-desc">行政 / 信金から委託。 施主からの相談を <strong>電話 / FAX</strong> で受付 → 工務店本人が連絡する構造を維持。</div>
+      </div>
+    </div>
+
+    <h2>3 段階 ロードマップ (2026 年 5 月 - 2027 年 4 月)</h2>
+    <div class="phases">
+      <div class="phase p1">
+        <div class="ph-no">FIRST · 5-9 月 (5 ヶ月)</div>
+        <div class="ph-title">第 1 段階: 軽量導入</div>
+        <div class="ph-period">現場接触 + 信頼形成</div>
+        <ul>
+          <li>① 写真 + ② 議事録 + ③ ANDPAD を 1-3 社で試験提供</li>
+          <li>友人 (現場監督) ネットワーク 4-5 件にヒアリング深掘り</li>
+          <li>建材屋営業マン経由で工務店紹介を増やす</li>
+          <li>たましん 価値創造事業部に相談</li>
+        </ul>
+        <div class="ph-goal"><strong>目標:</strong> 1-3 社契約 / 月次売上 3-15 万円</div>
+      </div>
+
+      <div class="phase p2">
+        <div class="ph-no">SECOND · 10-12 月 (3 ヶ月)</div>
+        <div class="ph-title">第 2 段階: 運用支援強化</div>
+        <div class="ph-period">深い運用支援 + 法務提携</div>
+        <ul>
+          <li>④ 経理 + ⑤ 補助金 をアップセル提供</li>
+          <li>認定支援機関税理士 + 行政書士と業務提携</li>
+          <li>IT 導入補助金 (通常枠 1/2) で 1-2 件採択を目指す</li>
+          <li>商品設計を確定版に書き換え</li>
+        </ul>
+        <div class="ph-goal"><strong>目標:</strong> 月次売上 10-30 万円 / 商品方向性確定</div>
+      </div>
+
+      <div class="phase p3">
+        <div class="ph-no">THIRD · 1-4 月 (4 ヶ月)</div>
+        <div class="ph-title">第 3 段階: 地域インフラ化</div>
+        <div class="ph-period">B2G 委託 + スケール検討</div>
+        <ul>
+          <li>⑥ 地域相談窓口 を本格発動</li>
+          <li>たましん or 商工会議所と委託契約獲得</li>
+          <li>業界紙取材で信用補強</li>
+          <li>3-5 社契約累計の中堅事業へ</li>
+        </ul>
+        <div class="ph-goal"><strong>目標:</strong> 月次売上 30-60 万円達成</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 アナログ業務 運用支援 / 井原 誠斗</span>
+    <span>2026-05-22 面談用</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- スライド 4: 競合との戦い方 / FAX バイラル拡散 (新規) -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">競合との戦い方</span>
+  <span class="slide-num">04 / 07</span>
+
+  <h1>競合との戦い方 <span class="sub">既存業界の通信構造 (FAX 文化) を逆手に取った差別化戦略</span></h1>
+
+  <div class="body">
+
+    <h2>競合状況: 工務店向け事務代行 BPO は 5 社存在</h2>
+    <table class="compare-table">
+      <thead>
+        <tr><th style="width:24%;">競合</th><th style="width:34%;">サービス内容</th><th style="width:18%;">価格帯</th><th>主顧客との重なり</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>ANDPAD BPO</strong></td><td>黒板 / 写真台帳 / 議事録代行 (ANDPAD 利用前提)</td><td>月 10 万円〜</td><td>大企業向けで価格帯が違う</td></tr>
+        <tr><td><strong>ツクノビ事務</strong></td><td>安全書類 / 工事写真整理 / CCUS 入力</td><td>不明</td><td>デジタル中心で FAX 文化に乗らない</td></tr>
+        <tr><td><strong>建設事務代行センター</strong></td><td><strong>書類作成 + 電話 + FAX 受信</strong></td><td>不明 (要調査)</td><td>🚨 最近接 (5/22 前に調査予定)</td></tr>
+        <tr><td><strong>ノンコア</strong></td><td>即日チーム編成、 大企業向け</td><td>大型受注前提</td><td>小規模工務店は射程外</td></tr>
+        <tr><td><strong>Bricks&UK</strong></td><td>建設業経理アウトソーシング</td><td>不明</td><td>経理特化で訴求軸違う</td></tr>
+      </tbody>
+    </table>
+
+    <h2>差別化の核心 = FAX バイラル拡散構造</h2>
+    <p style="font-size:13px;">業界の通信構造 (見積書 / 注文書 / 請求書 / 写真台帳が <strong>FAX と郵送で業者間を回覧</strong> される文化) を逆手に取る。 LINE / メールは個人間で閉じるが、 <strong>FAX 1 通は 5-10 人に視認される</strong> 業界特性。</p>
+
+    <div class="viral-diagram">
+      <h3>FAX バイラル拡散の仕組み</h3>
+      <div class="viral-flow">
+        <div class="viral-node center"><div class="num">1</div>井原<br>→ FAX 送信</div>
+        <div class="viral-arrow">→</div>
+        <div class="viral-node">工務店<br>(顧客)</div>
+        <div class="viral-arrow">→</div>
+        <div class="viral-node">建材屋<br>元請け<br>設計事務所</div>
+        <div class="viral-arrow">→</div>
+        <div class="viral-node center"><div class="num">5-10</div>関係業者に<br>視認</div>
+      </div>
+      <p style="font-size:12px; color: var(--muted); margin-top: 8px;">FAX フッターに <strong>「井原 誠斗 多摩工務店 事務運用支援 / 042-XXX-XXXX」</strong> を毎回入れる → 業界内で自然に認知される</p>
+    </div>
+
+    <h2>競合 5 社が見えていない領域 (推定)</h2>
+    <table class="compare-table">
+      <thead>
+        <tr><th style="width:30%;">差別化軸</th><th>井原</th><th>競合 5 社</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>① FAX バイラル拡散戦略</td><td class="win">⭕ フッター広告 + 代理発信 + 業界紙連動</td><td class="lose">未活用 (ANDPAD 内 / デジタル完結で閉じる)</td></tr>
+        <tr><td>② 多摩地区限定 + たましん信用補完</td><td class="win">⭕ 地域密着 + 信金紹介経路</td><td class="lose">全国 BPO で地域接点なし</td></tr>
+        <tr><td>③ 一人運営 + 月 ¥3-5 万円帯</td><td class="win">⭕ 小規模工務店に刺さる価格</td><td class="lose">大企業向け月 10 万円〜</td></tr>
+        <tr><td>④ ANDPAD 未導入の超アナログ層</td><td class="win">⭕ FAX / 郵送だけで完結</td><td class="lose">ANDPAD アカウント前提が多い</td></tr>
+        <tr><td>⑤ 「DX しなくていい」 反主流ポジ</td><td class="win">⭕ 業界紙取材材料として強力</td><td class="lose">「DX 推進」 訴求が主流</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 アナログ業務 運用支援 / 井原 誠斗</span>
+    <span>2026-05-22 面談用</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- スライド 5: 本日相談したい 5 つの論点 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">本日の相談</span>
+  <span class="slide-num">05 / 07</span>
+
+  <h1>本日 ご相談したい 6 つの論点 <span class="sub">中小企業経営支援のご経験から ご意見をいただきたい</span></h1>
+
+  <div class="body">
+
+    <p style="margin-bottom: 14px; font-size: 13px;">事業構想は <span class="highlight">仮説段階</span> です。 現場ヒアリング (現場監督 1 名) + 業界の声 48 件分析 + 競合 5 社調査で組み立てましたが、 経営支援のプロから見て成立するか、 ご意見をいただきたい論点です。</p>
+
+    <div class="consults">
+
+      <div class="consult-card priority">
+        <div class="c-no">論点 ① 最重要</div>
+        <div class="c-q">「FAX バイラル拡散戦略」 は工務店業界で実際に機能するか?</div>
+        <div class="c-bg">FAX フッターに連絡先を入れて 1 通 → 5-10 人視認、 取引先経由で紹介発生という仮説。 中小企業経営支援のご経験から、 こうした業界文化を逆手に取った拡散戦略が実際に機能した事例はありますか? 紹介経路として何月程度で効果が出ますか?</div>
+      </div>
+
+      <div class="consult-card priority">
+        <div class="c-no">論点 ② 最重要</div>
+        <div class="c-q">事業仮説をこのまま確定 vs もう少し検証 — どちらが現実的か?</div>
+        <div class="c-bg">5 月 14 日からの 6 日間で戦略を 4-5 回見直しています (現場ヒアリング結果反映 → 業務代行集中 → 部分代行 + 運用支援 → FAX 主軸へ転換)。 自分でも「ピボットしすぎ」 という自覚があります。 商品仮説を確定するタイミングはどう判断すべきですか?</div>
+      </div>
+
+      <div class="consult-card">
+        <div class="c-no">論点 ③</div>
+        <div class="c-q">「ANDPAD 運用支援」 は中堅工務店オーナーに刺さるか?</div>
+        <div class="c-bg">ANDPAD 必須を強いられているのは下請工務店 (元請けが指定) で、 多摩地区の中堅工務店オーナーは元請け側 = 強制されていない可能性。 業界の声では感情度最高ですが、 対象層が狭い懸念。 多摩地区の ANDPAD 導入実態についてご存じであれば。</div>
+      </div>
+
+      <div class="consult-card">
+        <div class="c-no">論点 ④</div>
+        <div class="c-q">「家の困りごと地域相談窓口」 (B2G) は今動くべきか?</div>
+        <div class="c-bg">行政 / 信金からの委託契約は信用補完 + 紹介経路として戦略的に重要だが、 契約獲得まで時間がかかります。 第 1 段階で動かすか、 第 3 段階で本格化するかで方針が変わります。 多摩地区での先例 (UR / 自治体 / 信金が運営する似た窓口) はありますか?</div>
+      </div>
+
+      <div class="consult-card">
+        <div class="c-no">論点 ⑤</div>
+        <div class="c-q">「DX しなくていい」 反主流ポジは業界紙取材で機能するか?</div>
+        <div class="c-bg">「FAX で工務店 DX」 という反主流ポジは、 業界紙 (新建ハウジング / 建築知識 / 日経ホームビルダー) の取材材料として強い仮説。 取材依頼のご経験があれば、 反主流ポジのテーマで実際に取り上げられる確率はどれくらいですか?</div>
+      </div>
+
+      <div class="consult-card" style="background: #fff2f2; border-left-color: #b91c1c; grid-column: 1 / -1;">
+        <div class="c-no" style="color: #b91c1c;">論点 ⑥ メタ質問 (新規)</div>
+        <div class="c-q">創業期の「アイディア過多」 を捌く判断基準は何か?</div>
+        <div class="c-bg">他の AI から戦略マップ提案 (10 アイディア) をもらいましたが、 厳密に評価すると 3 つは採用 / 6 つは保留 / 1 つは不採用としました。 中小企業経営支援のご経験から、 ① この判定は偏っていないか / ② 「Phase 2 で再評価」 という保留の置き方は機能するか / ③ <strong>6 ヶ月の戦略凍結期間 (5/23 〜 11/22)</strong> を設定する判断は中小企業の現場では普通ですか? を相談したいです。</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 アナログ業務 運用支援 / 井原 誠斗</span>
+    <span>2026-05-22 面談用</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- スライド 6: 契約締結後「初日 5 リスト」 (新規) -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">契約後オペ設計</span>
+  <span class="slide-num">06 / 07</span>
+
+  <h1>契約締結後「初日 5 リスト」 <span class="sub">半年後の失敗は最初の 1 週間の設計で防げる</span></h1>
+
+  <div class="body">
+
+    <p style="font-size:13px; margin-bottom: 10px;">他の代行サービスが解約に至る最大の理由は <strong>「導入時のオペ設計が甘い」</strong> こと。 契約から最初の 1 週間で以下 5 つを完了させ、 顧客が「価値が見える」 状態を作ります。 これは商談段階で「契約後すぐにここまで進みます」 と提示する材料にもなります。</p>
+
+    <table style="margin-top: 8px; font-size: 12px;">
+      <thead>
+        <tr>
+          <th style="width:5%;">#</th>
+          <th style="width:25%;">初日 5 リスト</th>
+          <th style="width:30%;">具体内容 (v5 FAX 主軸版)</th>
+          <th>防げる失敗</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1</strong></td>
+          <td>受付チャネル設定 + 月 1 送信ルール定義</td>
+          <td>顧客の通信手段 (FAX / 電話 / LINE) を確認、 専用受付フロー設計、 月 1 送付タイミング合意</td>
+          <td>「送り忘れる」 / 「どこに送るんだっけ」 で 3 週目に脱落</td>
+        </tr>
+        <tr>
+          <td><strong>2</strong></td>
+          <td>フォーマット定義書の作成 + 郵送</td>
+          <td>写真整理 / 議事録 / 経理 / それぞれ A4 1 枚のテンプレを顧客に郵送 + 訪問時に説明</td>
+          <td>「写真にコメント書く?」 で迷いが生じて運用停止</td>
+        </tr>
+        <tr>
+          <td><strong>3</strong></td>
+          <td>アップセルロードマップの口頭説明</td>
+          <td>「3 ヶ月後に経理代行を追加検討」 「6 ヶ月後に補助金申請伴走」 等の段階を口頭で約束</td>
+          <td>「これ以上拡がる気がしない」 で 4 ヶ月目に解約</td>
+        </tr>
+        <tr>
+          <td><strong>4</strong></td>
+          <td>SOP 作成 + バックアップスタッフ確保</td>
+          <td>masatoman 病気時の対応フローを文書化、 外注パートナー 1 名を確保 (NDA 締結)</td>
+          <td>「井原さんが入院したらどうなる?」 への不安で発注見送り</td>
+        </tr>
+        <tr>
+          <td><strong>5</strong></td>
+          <td>削減レポート 第 1 号を翌月 5 日に送る約束</td>
+          <td>「時間削減 ○h」「金額換算 ○万円」 をビジュアル化した月次レポートを毎月 5 日までに送付</td>
+          <td>「払ってる金額の価値が見えない」 で 4-6 ヶ月目に解約 (価値可視化の失敗)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>商談での使い方</h2>
+    <div class="callout" style="background: var(--accent-soft); border-left: 4px solid var(--accent);">
+      契約検討中の工務店オーナーに対して、 <strong>「契約後 1 週間でここまで進めます」</strong> という工程表として提示。 これにより「契約してから何が起きるのか分からない」 という不安を解消し、 契約締結率を上げる効果が期待できる。 + 「やります」 と言われた瞬間に <strong>その場でフォーマット定義書 1 枚を渡す</strong> ことで体験を開始する (体験が先、 契約書は後)。
+    </div>
+
+    <h2>このオペ設計の背景</h2>
+    <p style="font-size: 12px;">外部 AI 提案 (戦略マップ + プレモータム分析) から採用したオペ設計フレームワーク。 5 つの失敗シナリオ (① ヒアリング偽陽性 / ② オペ詰まり / ③ 写真機密問題 / ④ 学習コスト化 / ⑤ 大手参入) のうち、 多くが <strong>契約締結時の設計でしか防げない</strong> という洞察に基づきます。</p>
+
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 アナログ業務 運用支援 / 井原 誠斗</span>
+    <span>2026-05-22 面談用</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- スライド 7: 次のアクション + ご紹介のお願い -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">次のアクション + ご紹介依頼</span>
+  <span class="slide-num">07 / 07</span>
+
+  <h1>次のアクション + ご紹介のお願い <span class="sub">5/22 面談後の動き + 北原様にお願いしたいご紹介</span></h1>
+
+  <div class="body">
+
+    <h2>5/22 面談後の私のアクション</h2>
+    <div class="next-actions">
+      <ol>
+        <li><strong>本日の論点 5 つへのご意見を整理</strong> → 事業計画を確定版に修正 (5/23-25)</li>
+        <li><strong>建設事務代行センターの価格・サービス内容を電話確認</strong> → 直接競合の差別化軸を再評価 (5/23)</li>
+        <li><strong>公庫融資 (新規開業資金 100 万円) 申込</strong> → 個人事業主のうちに 5 月末-6 月初旬に申請 (初期投資: ScanSnap + クラウド FAX + 050 番号 等)</li>
+        <li><strong>友人 (現場監督) ヒアリング 2-3 件追加</strong> → 第 1 段階の商品仮説検証 + FAX 拡散の現実性確認 (6 月)</li>
+        <li><strong>たましん 価値創造事業部 訪問予定</strong> → 既取引の渉外担当者から橋渡しを受け、 6 月後半-7 月に訪問本番</li>
+        <li><strong>住宅デー (6/25 全建総連 全国一斉) 関連の関与判定</strong> → 友人経由で地元支部に接触</li>
+      </ol>
+    </div>
+
+    <h2>北原様にお願いしたいご紹介 (4 種類)</h2>
+
+    <div class="intro-list">
+      <h3>🏢 ご紹介 ① : 認定支援機関の税理士 / 行政書士</h3>
+      <ul>
+        <li>第 2 段階で <strong>業務提携</strong> する税理士 (経理代行の申告・税務相談を担当) と行政書士 (補助金申請書類を担当) を探しています</li>
+        <li>多摩地区で工務店 / 建設業の支援経験がある方を 1-2 名ご紹介いただけると助かります</li>
+      </ul>
+    </div>
+
+    <div class="intro-list">
+      <h3>🏗️ ご紹介 ② : 多摩地区の中小工務店オーナー</h3>
+      <ul>
+        <li>東京創業ステーション経由で <strong>過去にコンシェルジュ相談された工務店オーナー</strong> がいらっしゃれば、 ヒアリングをさせていただきたい</li>
+        <li>特に <strong>2 代目 / 3 代目</strong> (アトツギ世代 30-40 代) は IT 化推進のキーパーソン</li>
+      </ul>
+    </div>
+
+    <div class="intro-list">
+      <h3>🏪 ご紹介 ③ : 建材屋営業マン / 設計事務所</h3>
+      <ul>
+        <li><strong>FAX バイラル拡散の起点</strong> として最重要のチャネル</li>
+        <li>多摩地区の建材屋営業マン (LIXIL ショールーム / ナフコ / 地元卸) や、 設計事務所経営者を 1-2 名ご紹介いただきたい</li>
+      </ul>
+    </div>
+
+    <div class="intro-list">
+      <h3>📰 ご紹介 ④ : 業界紙 / 業界団体 / 商工会議所</h3>
+      <ul>
+        <li>新建ハウジング / 建築知識 / 日経ホームビルダー など <strong>業界紙への取材依頼ルート</strong></li>
+        <li>「DX しなくていい代行屋」 反主流ポジで取材依頼を仕掛けたい</li>
+        <li>府中 / 立川 商工会議所の IT 化推進担当者、 全建総連 多摩西部支部 (住宅デー 6/25 関連)</li>
+      </ul>
+    </div>
+
+    <p style="margin-top: 14px; font-size: 13px; padding: 12px 16px; background: var(--accent-soft); border-radius: 4px;">
+      <strong>本日は貴重なお時間をいただきありがとうございます。</strong> 経営支援のご経験から、 仮説を磨くためのご意見を率直にいただけますと幸いです。
+    </p>
+
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 アナログ業務 運用支援 事業構想 / 井原 誠斗 (masatoman)</span>
+    <span>2026-05-22 (金) 東京創業ステーション 北原様 面談用 / END</span>
+  </div>
+</div>
+
+</body>
+</html>

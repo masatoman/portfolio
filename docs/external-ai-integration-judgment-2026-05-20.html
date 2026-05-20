@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="created-at" content="2026-05-20">
+<title>外部 AI 提案 統合判定 + 戦略凍結準備 / 2026-05-20 / 内部用</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --paper: #ffffff;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --line: #d6cfc2;
+  --accent: #b85c3a;
+  --good: #2d6a4f;
+  --good-soft: #e6f0ea;
+  --warn: #c34a1f;
+  --warn-soft: #fde8e0;
+  --danger: #b91c1c;
+  --danger-soft: #fff2f2;
+  --info: #1e3a5f;
+  --info-soft: #dde6f0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: #e8e0d4;
+  color: var(--fg);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.slide {
+  width: 297mm;
+  min-height: 200mm;
+  padding: 16mm 20mm;
+  margin: 8mm auto;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.slide-num {
+  position: absolute;
+  top: 8mm;
+  right: 16mm;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+.slide-meta {
+  position: absolute;
+  top: 8mm;
+  left: 20mm;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+h1 {
+  font-size: 28px;
+  border-bottom: 3px solid var(--fg);
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+  letter-spacing: 0.02em;
+  margin-top: 12px;
+}
+h1 .sub {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: normal;
+  margin-left: 12px;
+}
+h2 {
+  font-size: 17px;
+  color: var(--accent);
+  margin-top: 18px;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+p { margin-bottom: 8px; font-size: 13px; }
+.body { flex: 1; display: flex; flex-direction: column; }
+.footer-bar {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 10px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-slide { justify-content: center; align-items: center; text-align: center; }
+.title-slide h1 { font-size: 38px; border: none; padding: 0; margin-bottom: 16px; line-height: 1.4; }
+.title-slide .eyebrow { font-size: 12px; color: var(--muted); letter-spacing: 0.3em; margin-bottom: 24px; }
+.title-slide .lead { font-size: 16px; color: var(--muted); margin-bottom: 36px; line-height: 1.7; }
+.title-slide .summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.title-slide .summary-card {
+  padding: 18px 16px;
+  border-radius: 6px;
+  text-align: center;
+}
+.title-slide .summary-card .num { font-size: 36px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+.title-slide .summary-card .label { font-size: 12px; letter-spacing: 0.1em; font-weight: 700; }
+.title-slide .summary-card.go { background: var(--good-soft); color: var(--good); }
+.title-slide .summary-card.hold { background: var(--warn-soft); color: var(--warn); }
+.title-slide .summary-card.no { background: var(--danger-soft); color: var(--danger); }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 8px 0;
+}
+table th {
+  background: var(--fg);
+  color: white;
+  padding: 7px 9px;
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+table td {
+  padding: 7px 9px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+table tr:nth-child(even) td { background: #fbf8f3; }
+.go-cell { background: var(--good-soft) !important; }
+.hold-cell { background: var(--warn-soft) !important; }
+.no-cell { background: var(--danger-soft) !important; }
+.go-text { color: var(--good); font-weight: 700; }
+.hold-text { color: var(--warn); font-weight: 700; }
+.no-text { color: var(--danger); font-weight: 700; }
+
+.callout {
+  background: #fdfbf6;
+  border-left: 4px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin: 12px 0;
+  font-size: 13px;
+}
+.callout.warn { background: var(--warn-soft); border-left-color: var(--warn); }
+.callout.danger { background: var(--danger-soft); border-left-color: var(--danger); }
+.callout.good { background: var(--good-soft); border-left-color: var(--good); }
+.callout.info { background: var(--info-soft); border-left-color: var(--info); }
+
+.essence-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+.essence-card {
+  background: var(--info-soft);
+  border-left: 4px solid var(--info);
+  padding: 12px 16px;
+  border-radius: 4px;
+}
+.essence-card h3 { color: var(--info); font-size: 13px; margin-bottom: 6px; }
+.essence-card p { font-size: 12px; line-height: 1.7; }
+
+.timeline {
+  position: relative;
+  padding-left: 30px;
+  margin: 12px 0;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: var(--accent);
+}
+.tl-item {
+  position: relative;
+  margin-bottom: 14px;
+  padding-left: 12px;
+}
+.tl-item::before {
+  content: "";
+  position: absolute;
+  left: -27px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.tl-item .tl-date {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.tl-item .tl-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.tl-item ul { font-size: 12px; padding-left: 18px; line-height: 1.7; }
+
+.three-msg {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 12px 0;
+}
+.three-msg .msg {
+  background: var(--good-soft);
+  color: var(--good);
+  border-radius: 6px;
+  padding: 18px 14px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+@media print {
+  body { background: white; }
+  .slide { box-shadow: none; margin: 0; page-break-after: always; }
+  @page { size: A4 landscape; margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- Slide 1: タイトル + 結論サマリ -->
+<!-- ============================================ -->
+<div class="slide title-slide">
+  <span class="slide-meta">内部用判断資料</span>
+  <span class="slide-num">01 / 09</span>
+
+  <div class="eyebrow">EXTERNAL AI INTEGRATION JUDGMENT · 2026-05-20</div>
+
+  <h1>外部 AI 提案 統合判定<br><span style="font-size:22px; color:var(--accent);">+ 戦略凍結準備</span></h1>
+
+  <p class="lead">他 AI からの戦略マップ 10 提案を厳密に評価 / ピボット連鎖を止めるための判断資料</p>
+
+  <div class="summary-grid">
+    <div class="summary-card go">
+      <div class="num">3</div>
+      <div class="label">採用</div>
+    </div>
+    <div class="summary-card hold">
+      <div class="num">6</div>
+      <div class="label">保留</div>
+    </div>
+    <div class="summary-card no">
+      <div class="num">1</div>
+      <div class="label">不採用</div>
+    </div>
+  </div>
+
+  <p style="margin-top: 32px; font-size: 13px; color: var(--muted);">
+    結論: <strong style="color: var(--fg);">「統合」 という行為自体がピボット連鎖の罠</strong>。 真に必要なのは収束 + 絞る + 凍結。
+  </p>
+</div>
+
+<!-- ============================================ -->
+<!-- Slide 2: メタ視点 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">メタ視点</span>
+  <span class="slide-num">02 / 09</span>
+
+  <h1>「統合」 が罠になる理由 <span class="sub">6 日で 4-5 ピボットの真因と対処</span></h1>
+
+  <div class="body">
+
+    <h2>表面的な見え方 vs 実態</h2>
+    <table>
+      <thead><tr><th style="width:35%;">表面</th><th>実態</th></tr></thead>
+      <tbody>
+        <tr><td>外部 AI 提案を統合 = 事実整理</td><td>10+ の新規アイディアを並べる = <strong>6 回目のピボット候補を増やす行為</strong></td></tr>
+        <tr><td>「採用 / 保留 / 不採用」 判定 = 中立</td><td>Claude が次々と判定を出す = <strong>判断疲れ + 思考発散の悪化</strong></td></tr>
+        <tr><td>「もっと良い案がある」 = 改善</td><td>判断疲れ + 並列タスク過多 = <strong>「次の案」 に飛びつきやすい状態</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h2>真に必要な行動</h2>
+    <div class="callout good">
+      <strong>1. アイディアを増やさない (収束)</strong> · 2. 採用するものを 2-3 個に絞る · 3. 「保留」 を明確化して思考から外す · 4. 戦略凍結宣言を本気で運用する
+    </div>
+
+    <h2>判断疲れの真因</h2>
+    <p>masatoman は本業 (受託) + 軸 A masatoman.net + 軸 B 工務店事業 + 5/22 北原氏面談 + 公庫融資 + たましん紹介経路 + 友人ヒアリング を <strong>同時進行</strong> している。 これだけ並列にタスクがあると、 判断疲れで「次の良いアイディア」 に飛びつきやすい状態。</p>
+
+    <div class="callout warn">
+      <strong>解決:</strong> タスクの並列度を下げる。 5/22 まで「戦略議論」 と「資料準備」 だけに集中。
+    </div>
+
+    <h2>外部 AI 提案 全体評価</h2>
+    <div class="callout">外部 AI 提案 10 個を厳密に評価すると、 大半が <strong>「Claude セッション内で既に議論済 + 一次情報不足 + Phase 2-3 の話」</strong>。 新規かつ採用すべきは <strong>3 つだけ</strong>。</div>
+
+  </div>
+
+  <div class="footer-bar"><span>外部 AI 提案 統合判定</span><span>2026-05-20 内部用</span></div>
+</div>
+
+<!-- ============================================ -->
+<!-- Slide 3: 判定一覧 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">判定一覧</span>
+  <span class="slide-num">03 / 09</span>
+
+  <h1>外部 AI 提案 10 個 判定一覧 <span class="sub">採用 3 / 保留 6 / 不採用 1</span></h1>
+
+  <div class="body">
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:5%;">#</th>
+          <th style="width:24%;">提案</th>
+          <th style="width:10%;">判定</th>
+          <th style="width:30%;">理由 (1 行)</th>
+          <th>反映先 / 時期</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="go-cell">
+          <td><strong>1</strong></td>
+          <td>ヒアリング「今日決める?」 質問</td>
+          <td><span class="go-text">⭕ 採用</span></td>
+          <td>友人 N=1 で価格反応未確認の罠を本質的に対策</td>
+          <td>友人 N=2-3 質問リスト</td>
+        </tr>
+        <tr class="go-cell">
+          <td><strong>2</strong></td>
+          <td>初日 5 リスト (オペ設計)</td>
+          <td><span class="go-text">⭕ 採用</span></td>
+          <td>「半年後の失敗は最初の 1 週間の設計で防げる」 が本質的</td>
+          <td>北原氏資料 + 内部 14 枚</td>
+        </tr>
+        <tr class="go-cell">
+          <td><strong>3</strong></td>
+          <td>Hero Statement「ANDPAD で詰まった工務店向け」</td>
+          <td><span class="go-text">⭕ 採用</span></td>
+          <td>競合 5 社との差別化を 1 行で説明できる強力フレーズ</td>
+          <td>全資料 Lead</td>
+        </tr>
+        <tr class="hold-cell">
+          <td><strong>4</strong></td>
+          <td>妻 (経理) 解放パッケージ ¥35K</td>
+          <td><span class="hold-text">🟡 保留</span></td>
+          <td>一次情報ゼロ + 価格アンカリング崩壊 + 家族権力構造侵入</td>
+          <td>友人 N=2-3 で妻インタビュー後</td>
+        </tr>
+        <tr class="hold-cell">
+          <td><strong>5</strong></td>
+          <td>ANDPAD 移行支援 ¥20 万スポット</td>
+          <td><span class="hold-text">🟡 保留</span></td>
+          <td>違約金リスク + データ救出グレー + 利益相反 + ロスリーダー</td>
+          <td>Phase 2 法務確認後</td>
+        </tr>
+        <tr class="hold-cell">
+          <td><strong>6</strong></td>
+          <td>業界紙専属コラム化 (月 1 連載)</td>
+          <td><span class="hold-text">🟡 保留</span></td>
+          <td>時給 ¥300-2,000 + 単発取材実績ゼロで連載依頼通らない</td>
+          <td>Phase 2 取材 1-2 件実現後</td>
+        </tr>
+        <tr class="hold-cell">
+          <td><strong>7</strong></td>
+          <td>アトツギコミュニティ ハブ化</td>
+          <td><span class="hold-text">🟡 保留</span></td>
+          <td>Year 2-3 で意味、 Year 1 で着手すると主商品工数を食う</td>
+          <td>Year 2-3</td>
+        </tr>
+        <tr class="hold-cell">
+          <td><strong>8</strong></td>
+          <td>Google ビジネス代行 多摩 3-5 社一括</td>
+          <td><span class="hold-text">🟡 保留</span></td>
+          <td>月 ¥7.5K = 副業レベル、 単独商品にする価値ナシ</td>
+          <td>主商品のアップセル枠</td>
+        </tr>
+        <tr class="hold-cell">
+          <td><strong>9</strong></td>
+          <td>補助金不採択事例 連載</td>
+          <td><span class="hold-text">🟡 保留</span></td>
+          <td>masatoman 自身に補助金代行実績ゼロ = 信憑性ゼロ</td>
+          <td>Phase 2 提携税理士後</td>
+        </tr>
+        <tr class="no-cell">
+          <td><strong>10</strong></td>
+          <td>議事録 AI ハラスメント抑止オプション</td>
+          <td><span class="no-text">❌ 不採用</span></td>
+          <td>法務グレー (個情法 + 労基法) + 弁護士コスト + 訴訟リスク</td>
+          <td>永続的に不採用</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn">
+      <strong>注目:</strong> プレモータム 5 失敗シナリオ のうち <strong>4 つは Claude セッション内で既に議論済</strong> (オペ詰まり / 写真機密 / LINE 学習コスト / 大手 SaaS 参入)。 新規は ① ヒアリング偽陽性 のみ。
+    </div>
+
+  </div>
+
+  <div class="footer-bar"><span>外部 AI 提案 統合判定</span><span>2026-05-20 内部用</span></div>
+</div>
+
+<!-- ============================================ -->
+<!-- Slide 4: 採用 3 つの詳細 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">採用 3 つ 詳細</span>
+  <span class="slide-num">04 / 09</span>
+
+  <h1>採用 3 つの中身 <span class="sub">これだけは 5/20-22 に組み込む</span></h1>
+
+  <div class="body">
+
+    <h2>① ヒアリング「今日決める?」 型</h2>
+    <div class="callout good">
+      <p><strong>背景:</strong> 友人 N=1 で「いいね」 と言われたが、 価格反応 (月 ¥30K 払うか?) を聞いていない。 ヒアリング偽陽性の罠。</p>
+      <p><strong>対策:</strong> N=2-3 ヒアリング時、 価格提示後に <strong>「今週から無料試用、 来月末から月 ¥3 万で本契約」 のコミット</strong> を取る運用に変える。 「親方に聞く」 が出たら 48h 以内の親方面談をデフォルト化。</p>
+      <p><strong>反映先:</strong> friend-hearing-checklist.html / 6 月の N=2-3 ヒアリング設計</p>
+    </div>
+
+    <h2>② 初日 5 リスト (オペ設計)</h2>
+    <div class="callout good">
+      <p><strong>背景:</strong> 「半年後の失敗は最初の 1 週間の設計で防げる」。 契約締結時のオペ設計が甘いと、 3-6 ヶ月後の解約に直結。</p>
+      <table style="margin-top: 6px;">
+        <thead><tr><th style="width:50%;">契約締結 1 週間以内にやること</th><th>v5 (FAX 主軸) 反映版</th></tr></thead>
+        <tbody>
+          <tr><td>1. LINE グループ設定 + リマインド</td><td>FAX 番号設定 + 月 1 送信ルール定義</td></tr>
+          <tr><td>2. フォーマット定義書の作成</td><td>写真整理 / 議事録 / 経理 別テンプレ郵送</td></tr>
+          <tr><td>3. アップセルロードマップの口頭説明</td><td>L1 → L2 → L3 の段階を訪問時説明</td></tr>
+          <tr><td>4. SOP 作成 + バックアップ確保</td><td>masatoman 病気時の対応 (外注先 1 名確保)</td></tr>
+          <tr><td>5. 削減レポートの第 1 号を翌月 5 日に送る約束</td><td>「時間削減○h」「金額換算○万円」 を可視化</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 8px;"><strong>反映先:</strong> 北原氏資料 Slide 6 (次のアクション) + 内部 14 枚 v6 改訂時</p>
+    </div>
+
+    <h2>③ Hero Statement</h2>
+    <div class="callout good">
+      <p style="font-size: 15px;"><strong>「ANDPAD で詰まった工務店向けに、 FAX / 電話 / LINE どれでも OK の運用支援を、 月 ¥3-5 万円から」</strong></p>
+      <p>競合 5 社 (ANDPAD BPO / ツクノビ事務 / 建設事務代行センター 等) との差別化を <strong>1 行で説明できる</strong>。</p>
+      <p><strong>反映先:</strong> 北原氏資料 Slide 1 + 内部 14 枚 v6 改訂時</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bar"><span>外部 AI 提案 統合判定</span><span>2026-05-20 内部用</span></div>
+</div>
+
+<!-- ============================================ -->
+<!-- Slide 5: 保留 6 つの理由 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">保留 6 つ 理由</span>
+  <span class="slide-num">05 / 09</span>
+
+  <h1>保留 6 つの真の理由 <span class="sub">「良いアイディア」 に見えるが今やるべきではない</span></h1>
+
+  <div class="body">
+
+    <h2>共通する落とし穴</h2>
+    <div class="callout warn">
+      6 つすべてに <strong>「実績ゼロの段階で着手すると逆効果」</strong> の構造がある。 主商品 (L3 フルサポート + 1 社目契約) を確立してから着手すべき。
+    </div>
+
+    <table>
+      <thead><tr><th style="width:25%;">保留アイディア</th><th style="width:35%;">深く考えた真の問題</th><th>解凍条件</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>妻解放パッケージ ¥35K</td>
+          <td>一次情報ゼロ (妻の声未取得) + ¥35K = 単品 ¥63K より安くアンカリング崩壊 + 家族権力構造に侵入リスク (妻の自負を奪う)</td>
+          <td>友人 N=2-3 で妻インタビュー追加</td>
+        </tr>
+        <tr>
+          <td>ANDPAD 移行支援 ¥20 万</td>
+          <td>違約金リスク (要法務) + データ救出は ANDPAD 利用規約違反グレー + masatoman 商品販売との利益相反 + ロスリーダー単独収益ゼロ</td>
+          <td>Phase 2 法務確認 + 抑制的表現で実装</td>
+        </tr>
+        <tr>
+          <td>業界紙専属コラム 月 1 連載</td>
+          <td>月 5-10h × 報酬 ¥3-10K = 時給 ¥300-2,000 で割に合わない + 単発取材実績ゼロで連載依頼は通らない</td>
+          <td>Phase 2 単発取材 1-2 件実現後</td>
+        </tr>
+        <tr>
+          <td>アトツギコミュニティ ハブ化</td>
+          <td>月 10h 工数 + 月 ¥3-5K コスト = Year 1 で着手すると主商品工数を食う + 紹介資産化は Year 2-3 で意味</td>
+          <td>Year 2-3 (主商品 30 社契約後)</td>
+        </tr>
+        <tr>
+          <td>Google ビジネス代行 多摩独占</td>
+          <td>月 ¥1.5K × 5 社 = 月 ¥7.5K = 副業レベル + 単独商品にする価値ナシ + L3 顧客のアップセル枠で十分</td>
+          <td>主商品契約後のアップセル枠</td>
+        </tr>
+        <tr>
+          <td>補助金不採択事例 連載</td>
+          <td>masatoman 自身に補助金代行実績ゼロ = 信憑性ゼロ + 「机上の評論家」 ラベル + 提携先未確保</td>
+          <td>Phase 2 提携税理士の事例取材後</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>memory に記録すべきこと</h2>
+    <div class="callout info">
+      <strong>「保留リスト」 を memory `external-ai-proposals-deferred-2026-05-20.md` として記録する</strong>。 凍結期間中 (5/23 〜 11/22) は触らない。 解凍条件が満たされた時のみ Phase 2-3 で再評価。
+    </div>
+
+  </div>
+
+  <div class="footer-bar"><span>外部 AI 提案 統合判定</span><span>2026-05-20 内部用</span></div>
+</div>
+
+<!-- ============================================ -->
+<!-- Slide 6: 不採用 1 つの理由 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">不採用 1 つ</span>
+  <span class="slide-num">06 / 09</span>
+
+  <h1>不採用 1 つの理由 <span class="sub">永続的に採用しない判断 + 同種リスクへの教訓</span></h1>
+
+  <div class="body">
+
+    <h2>議事録 AI ハラスメント抑止オプション</h2>
+
+    <div class="callout danger">
+      <p><strong>外部 AI の提案:</strong> 議事録 AI に「現場での会話の任意録音 → ハラスメント検知アラート」 オプション追加。 商談では「現場での意思疎通記録」 と婉曲表現にして、 結果としてハラスメント抑止になる、 という打ち方。</p>
+    </div>
+
+    <h2>不採用の理由 (3 軸)</h2>
+
+    <table>
+      <thead><tr><th style="width:25%;">軸</th><th>問題</th></tr></thead>
+      <tbody>
+        <tr><td><span class="no-text">法務リスク</span></td><td>個人情報保護法 + 労働基準法 + プライバシー侵害の境界線上 / 弁護士コスト高 / 訴訟リスク発生時の損失上限が読めない</td></tr>
+        <tr><td><span class="no-text">商談での婉曲表現</span></td><td>「現場意思疎通記録」 と言って実体は「ハラスメント監視」 は <strong>後で問題になる類型</strong> / 顧客側で問題発覚した時に masatoman が責任を負う構造</td></tr>
+        <tr><td><span class="no-text">主顧客整合性</span></td><td>主顧客 (60-70 代 IT 弱者社長) は「録音される」 こと自体を拒否する可能性高い / 商品設計の難度に対してリターンが小さい</td></tr>
+      </tbody>
+    </table>
+
+    <h2>同種リスクへの教訓</h2>
+    <div class="callout warn">
+      <p><strong>「婉曲表現で実体を隠す」 商品は永続的に不採用。</strong> 商品名と提供内容に乖離があると、 顧客トラブル発生時に masatoman が法的責任を負う構造になる。 これは BPaaS / DX 運用支援の信頼ブランドを毀損する。</p>
+      <p>同種リスク商品の判断基準:</p>
+      <ul style="font-size: 12px; padding-left: 20px; line-height: 1.7;">
+        <li>商品名と実体が一致しない → 不採用</li>
+        <li>法務確認なしに「グレー」 と認識している → 不採用 or 法務確認まで保留</li>
+        <li>顧客トラブル発生時の損失上限が読めない → 不採用</li>
+      </ul>
+    </div>
+
+    <h2>memory への反映</h2>
+    <p style="font-size: 12px;"><code>feedback-products-with-vague-naming-deprecated.md</code> として記録。 将来同種の提案が来た時に即座に判断できるよう、 不採用基準を明文化する。</p>
+
+  </div>
+
+  <div class="footer-bar"><span>外部 AI 提案 統合判定</span><span>2026-05-20 内部用</span></div>
+</div>
+
+<!-- ============================================ -->
+<!-- Slide 7: 5 本質 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">深く考えた 5 本質</span>
+  <span class="slide-num">07 / 09</span>
+
+  <h1>ultrathink で見えた 5 本質 <span class="sub">表面の判定より重要な構造的気付き</span></h1>
+
+  <div class="body">
+
+    <div class="essence-grid">
+
+      <div class="essence-card">
+        <h3>本質 1: 戦略発散は Claude のせいではなく「決断疲れ」</h3>
+        <p>masatoman は本業 + 軸 A + 軸 B + 5/22 面談 + 公庫融資 + たましん + 友人ヒアリング を同時進行。 並列タスク過多で判断疲れ → 「次の良いアイディア」 に飛びつきやすい状態。</p>
+        <p style="color: var(--accent); font-weight: 700; margin-top: 6px;">解決: タスクの並列度を下げる。 5/22 まで「戦略議論」 と「資料準備」 だけに集中。</p>
+      </div>
+
+      <div class="essence-card">
+        <h3>本質 2: 「3 プラン × 2 ターゲット = 6 セグメント」 は実装不可能</h3>
+        <p>前ターンで出した統合フレームワークは一見綺麗だが、 一人運営で 6 セグメント別商品を維持するのは物理的に無理。</p>
+        <p style="color: var(--accent); font-weight: 700; margin-top: 6px;">解決: L3 フルサポート (60-70 代 / FAX 主軸 / 月 ¥30-50K) に絞る。 L1/L2 は派生商品扱い。</p>
+      </div>
+
+      <div class="essence-card">
+        <h3>本質 3: 妻解放パッケージは一次情報ゼロで仮説の積み上げ</h3>
+        <p>「妻が経理で苦しんでる」 は世間の通説。 友人 N=1 ヒアリングでは妻の声未取得。 [[friend-hearing-result-2026-05-14]] N=1 で前提崩壊した経験を繰り返す危険。</p>
+        <p style="color: var(--accent); font-weight: 700; margin-top: 6px;">解決: 友人 Phase 3 で「妻にヒアリングできるか」 を確認 → 妻 N=1 取得 → 商品設計。</p>
+      </div>
+
+      <div class="essence-card">
+        <h3>本質 4: 5/22 北原氏面談の本当の役割</h3>
+        <p>「事業計画を確定する場」 ではなく <strong>「戦略凍結を第三者証人化する場」</strong> にすべき。 冒頭 5 分でメタ宣言: 「5/22 を最後のピボットタイミングと決めました。 5/23 以降 6 ヶ月は商品仮説変更を禁止します」。</p>
+        <p style="color: var(--accent); font-weight: 700; margin-top: 6px;">これだけで Claude / 他 AI / 自分の発散思考に対する強制力ができる。</p>
+      </div>
+
+      <div class="essence-card" style="grid-column: 1 / -1;">
+        <h3>本質 5: 「採用しないリスト」 を明確化する重要性</h3>
+        <p>統合作業の本質は「<strong>何を採用するか</strong>」 ではなく「<strong>何を採用しないか</strong>」。 採用候補は無限にあるが、 一人運営の工数は有限。 保留 6 + 不採用 1 を memory に書き込み、 凍結期間中は触らない。 これが思考の収束を物理的に強制する。</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer-bar"><span>外部 AI 提案 統合判定</span><span>2026-05-20 内部用</span></div>
+</div>
+
+<!-- ============================================ -->
+<!-- Slide 8: 進め方タイムライン -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">進め方</span>
+  <span class="slide-num">08 / 09</span>
+
+  <h1>進め方タイムライン <span class="sub">今日 → 5/22 → 5/23 以降 (戦略凍結期間)</span></h1>
+
+  <div class="body">
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-date">2026-05-20 (今日) 残り</div>
+        <div class="tl-title">採用 3 つを北原氏資料に反映</div>
+        <ul>
+          <li>北原氏資料 (6 枚) → 7 枚に拡張: Hero Statement + 初日 5 リスト 追加</li>
+          <li>保留 6 + 不採用 1 を memory に記録 (<code>external-ai-proposals-deferred-2026-05-20.md</code>)</li>
+          <li>このセッションを閉じる (これ以上の議論は禁止)</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2026-05-21 (明日)</div>
+        <div class="tl-title">他 AI で同じ判定を白紙状態で検証</div>
+        <ul>
+          <li>ChatGPT or Gemini に「採用 3 / 保留 6 / 不採用 1 の判定」 を投げて比較</li>
+          <li>Claude バイアスの検証 (大きく食い違ったら再考)</li>
+          <li>北原氏資料を最終チェック → 5/22 朝までに PDF 送付</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2026-05-22 (金) 北原氏面談</div>
+        <div class="tl-title">冒頭 5 分で戦略凍結宣言 (第三者証人化)</div>
+        <ul>
+          <li>「5/22 を最後のピボットタイミングと決めました。 5/23 以降 6 ヶ月 (〜 11/22) は商品仮説変更禁止」 を北原氏に宣言</li>
+          <li>残り 30 分で相談 5 項目 + 紹介依頼</li>
+          <li>面談録音 → 戦略判定の根拠ログとして残す</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2026-05-23 〜 2026-11-22 (戦略凍結期間 6 ヶ月)</div>
+        <div class="tl-title">商品仮説変更禁止 / 微調整のみ</div>
+        <ul>
+          <li>月次 KPI 未達 3 回連続でのみ戦略再考権発動</li>
+          <li>友人 N=2-3 ヒアリング → 結果を「微調整材料」 として扱う (構造変更しない)</li>
+          <li>保留 6 つは触らない (Phase 2-3 で解凍条件満たした時のみ再評価)</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2026-05-23 〜 25 (週末)</div>
+        <div class="tl-title">内部 14 枚を v6 として大規模改訂</div>
+        <ul>
+          <li>採用 3 つ (Hero Statement + 初日 5 リスト + 「今日決める?」) を反映</li>
+          <li>保留 6 つを「Phase 2 検討事項」 スライドに集約</li>
+          <li>戦略凍結期間ボックスを追加</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer-bar"><span>外部 AI 提案 統合判定</span><span>2026-05-20 内部用</span></div>
+</div>
+
+<!-- ============================================ -->
+<!-- Slide 9: 5/22 北原氏 新規論点 ⑥ -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">5/22 北原氏 新規論点</span>
+  <span class="slide-num">09 / 09</span>
+
+  <h1>5/22 北原氏面談に追加すべき論点 ⑥ <span class="sub">アイディア過多を捌く判断基準を経営支援のプロから聞く</span></h1>
+
+  <div class="body">
+
+    <h2>新規論点 ⑥</h2>
+    <div class="callout info">
+      <p style="font-size: 15px;"><strong>「他の AI から戦略マップ提案をもらいましたが、 ほぼ全部保留にしました。 中小企業経営支援のご経験から、 創業期の『アイディア過多』 を捌く判断基準を教えていただけますか?」</strong></p>
+    </div>
+
+    <h2>北原氏に確認したい 3 点</h2>
+    <table>
+      <thead><tr><th style="width:30%;">確認内容</th><th>具体質問</th></tr></thead>
+      <tbody>
+        <tr><td>判断基準の妥当性</td><td>「採用 3 / 保留 6 / 不採用 1」 の判定は、 経営支援のプロから見て偏っていませんか?</td></tr>
+        <tr><td>保留の解凍タイミング</td><td>「Phase 2 で再評価」 という保留の置き方は、 中小企業の現場では機能しますか? それとも「やる / やらない」 の二択の方が良いですか?</td></tr>
+        <tr><td>戦略凍結の妥当性</td><td>6 ヶ月の戦略凍結期間 (5/23 〜 11/22) を設定する判断は、 中小企業の現場では普通ですか? 短すぎる / 長すぎる?</td></tr>
+      </tbody>
+    </table>
+
+    <h2>5/22 北原氏面談 論点リスト (最終版)</h2>
+    <table>
+      <thead><tr><th style="width:8%;">#</th><th>論点</th><th style="width:20%;">優先度</th></tr></thead>
+      <tbody>
+        <tr><td>①</td><td>FAX バイラル拡散戦略は機能するか</td><td><strong style="color: var(--danger);">最重要</strong></td></tr>
+        <tr><td>②</td><td>事業仮説をこのまま確定 vs もう少し検証 (戦略凍結タイミング)</td><td><strong style="color: var(--danger);">最重要</strong></td></tr>
+        <tr><td>③</td><td>ANDPAD 運用支援は中堅工務店オーナーに刺さるか</td><td>通常</td></tr>
+        <tr><td>④</td><td>地域窓口 B2G は今動くべきか、 Phase 3 で本格化か</td><td>通常</td></tr>
+        <tr><td>⑤</td><td>「DX しなくていい」 反主流ポジは業界紙取材で機能するか</td><td>通常</td></tr>
+        <tr style="background: var(--info-soft);"><td><strong>⑥ NEW</strong></td><td><strong>アイディア過多を捌く判断基準 + 戦略凍結の妥当性</strong></td><td><strong style="color: var(--info);">メタ質問</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout good" style="margin-top: 12px;">
+      <strong>論点 ⑥ の戦略的価値:</strong> 戦略の中身ではなく <strong>「戦略の作り方」 自体</strong> を経営支援のプロに相談する。 これは創業者の判断スピード問題を北原氏に共有 = 戦略凍結宣言の第三者証人化に直結。 5/22 面談で最も価値ある 5 分間になる。
+    </div>
+
+  </div>
+
+  <div class="footer-bar"><span>外部 AI 提案 統合判定 / 井原 誠斗 (masatoman)</span><span>2026-05-20 内部用 / END</span></div>
+</div>
+
+</body>
+</html>

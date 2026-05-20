@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="created-at" content="2026-05-19">
+<title>BPaaS 上位 3 サービス 深掘り分析 / issue-finder 48 件ベース / 2026-05-19</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --paper: #ffffff;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --line: #d6cfc2;
+  --accent: #b85c3a;
+  --accent-soft: #f4dfd2;
+  --warn: #c34a1f;
+  --good: #2d6a4f;
+  --good-soft: #e6f0ea;
+  --gold: #c9912a;
+  --silver: #8a8a8a;
+  --bronze: #9a6b3e;
+  --danger: #b91c1c;
+  --danger-soft: #fde2e2;
+  --info: #1e3a5f;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+.deck {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+.slide {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: 0 2px 14px rgba(31, 28, 24, 0.08);
+  padding: 40px 56px 32px;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  page-break-after: always;
+}
+.slide::after {
+  content: attr(data-page) " / 14";
+  position: absolute;
+  right: 24px;
+  bottom: 16px;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+.slide::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 50%, var(--accent-soft) 50%, var(--accent-soft) 100%);
+}
+.slide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 2px solid var(--fg);
+  padding-bottom: 10px;
+  margin-bottom: 22px;
+}
+.slide-header .title { font-size: 22px; font-weight: 700; letter-spacing: 0.02em; }
+.slide-header .subtitle { font-size: 12px; color: var(--muted); letter-spacing: 0.1em; }
+.slide-footer {
+  position: absolute;
+  left: 56px;
+  bottom: 16px;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* タイトル */
+.title-slide {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(180deg, var(--paper) 0%, var(--bg) 100%);
+}
+.title-slide .eyebrow {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.3em;
+  margin-bottom: 24px;
+}
+.title-slide h1 {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  margin-bottom: 18px;
+}
+.title-slide h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.title-slide .lead {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 880px;
+  margin: 0 auto 36px;
+  line-height: 1.7;
+}
+.title-slide .meta-block {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+.title-slide .meta-block strong { color: var(--fg); }
+
+.lead-text {
+  font-size: 16px;
+  color: var(--fg);
+  margin-bottom: 18px;
+  line-height: 1.7;
+}
+.callout {
+  background: var(--accent-soft);
+  border-left: 4px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 3px;
+  margin: 12px 0;
+  font-size: 14px;
+}
+.callout.good { background: var(--good-soft); border-color: var(--good); }
+.callout.warn { background: #fde2e2; border-color: var(--danger); }
+.callout.info { background: #eef2f7; border-color: var(--info); }
+
+/* 3 軸スコアテーブル */
+table.score {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+table.score th, table.score td {
+  border: 1px solid var(--line);
+  padding: 8px 12px;
+}
+table.score thead th {
+  background: var(--fg);
+  color: var(--paper);
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+table.score td.center { text-align: center; }
+table.score .total { font-weight: 700; font-size: 16px; }
+table.score .gold td { background: #fff7e0; }
+table.score .silver td { background: #f3f3f3; }
+table.score .bronze td { background: #f9eee1; }
+.medal { font-size: 18px; margin-right: 4px; }
+.stars { letter-spacing: 0.15em; color: var(--accent); font-size: 14px; }
+
+/* 詳細 grid */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 28px;
+  flex: 1;
+}
+.detail-left h2 {
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.detail-left h2 .rank-badge { font-size: 22px; }
+.detail-left .tag-line {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+.detail-left .stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.stat-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 10px 12px;
+}
+.stat-card .label {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+.stat-card .value { font-size: 17px; font-weight: 700; }
+.stat-card .value small { font-size: 11px; color: var(--muted); font-weight: 400; }
+
+.detail-right h3 {
+  font-size: 14px;
+  border-left: 3px solid var(--accent);
+  padding-left: 8px;
+  margin: 14px 0 6px;
+  letter-spacing: 0.02em;
+}
+.detail-right h3:first-child { margin-top: 0; }
+.detail-right ul { list-style: none; padding: 0; }
+.detail-right li {
+  font-size: 12.5px;
+  padding: 3px 0 3px 16px;
+  position: relative;
+  line-height: 1.5;
+}
+.detail-right li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+.issue-evidence {
+  font-size: 11.5px;
+  color: var(--muted);
+  font-style: italic;
+  background: #fcfaf6;
+  border-left: 2px solid var(--line);
+  padding: 6px 10px;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* 実装フロー */
+.flow-box {
+  background: #fcfaf6;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin: 10px 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.7;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* 全景カード */
+.svc-cards-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  flex: 1;
+  align-content: start;
+}
+.svc-card {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+}
+.svc-card.gold { border-top: 5px solid var(--gold); background: #fffbef; }
+.svc-card.silver { border-top: 5px solid var(--silver); background: #f8f8f8; }
+.svc-card.bronze { border-top: 5px solid var(--bronze); background: #f9efe2; }
+.svc-card .medal-row {
+  font-size: 26px;
+  margin-bottom: 4px;
+}
+.svc-card .svc-name {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.svc-card .svc-tag {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+.svc-card .price {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+.svc-card .meta-line {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.svc-card .score-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  margin-top: auto;
+}
+.svc-card .score-line strong { color: var(--fg); font-size: 14px; }
+
+/* Phase ロードマップ */
+.phase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  flex: 1;
+  align-content: start;
+}
+.phase-card {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 18px 18px 16px;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+}
+.phase-card.p1 { border-top: 5px solid var(--good); }
+.phase-card.p2 { border-top: 5px solid var(--gold); }
+.phase-card.p3 { border-top: 5px solid var(--info); }
+.phase-card .ph-no {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+}
+.phase-card .ph-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 4px 0 2px;
+}
+.phase-card .ph-period {
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.phase-card .ph-services {
+  background: var(--bg);
+  border-radius: 3px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.phase-card .ph-services strong { color: var(--accent); }
+.phase-card .ph-kpi {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.phase-card .ph-kpi strong { color: var(--fg); font-size: 13px; }
+.phase-card ul { list-style: none; padding: 0; font-size: 12px; }
+.phase-card li {
+  position: relative;
+  padding: 2px 0 2px 14px;
+}
+.phase-card li::before { content: "・"; position: absolute; left: 0; color: var(--accent); }
+
+/* キャパシティ */
+.capacity-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+  flex: 1;
+}
+.capacity-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.capacity-table th, .capacity-table td {
+  border: 1px solid var(--line);
+  padding: 8px 10px;
+  text-align: left;
+}
+.capacity-table thead th {
+  background: var(--fg);
+  color: var(--paper);
+  font-size: 11.5px;
+  text-align: center;
+}
+.capacity-table tr.good td { background: var(--good-soft); }
+.capacity-table tr.warn td { background: #fff3e8; }
+.capacity-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* AI エージェント道筋 */
+.ai-roadmap {
+  display: grid;
+  grid-template-columns: 1fr 30px 1fr 30px 1fr;
+  gap: 8px;
+  align-items: center;
+  margin: 14px 0;
+}
+.roadmap-step {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 12px 14px;
+  text-align: center;
+}
+.roadmap-step.phase1 { border-top: 4px solid var(--good); }
+.roadmap-step.phase2 { border-top: 4px solid var(--gold); }
+.roadmap-step.phase3 { border-top: 4px solid var(--info); }
+.roadmap-step .step-label {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  margin-bottom: 4px;
+}
+.roadmap-step .step-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.roadmap-step .step-detail {
+  font-size: 11px;
+  color: var(--muted);
+}
+.roadmap-arrow {
+  text-align: center;
+  font-size: 20px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* セット販売 */
+.set-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.set-table th, .set-table td {
+  border: 1px solid var(--line);
+  padding: 10px 12px;
+}
+.set-table thead th {
+  background: var(--fg);
+  color: var(--paper);
+  font-size: 11.5px;
+}
+.set-table td.center { text-align: center; }
+.set-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.set-table tr.recommend td { background: var(--good-soft); font-weight: 700; }
+
+/* 次のアクション */
+.action-list {
+  display: grid;
+  grid-template-columns: 80px 1fr 200px;
+  gap: 8px 18px;
+  font-size: 13px;
+  align-items: start;
+}
+.action-list .a-when {
+  background: var(--fg);
+  color: var(--paper);
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  font-weight: 600;
+}
+.action-list .a-link {
+  color: var(--muted);
+  font-size: 11px;
+  padding: 2px 0;
+  font-family: ui-monospace, Menlo, monospace;
+}
+
+/* point card */
+.point-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  flex: 1;
+  align-content: start;
+}
+.point-card {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 16px 18px;
+  background: var(--paper);
+}
+.point-card.warn { border-left: 5px solid var(--warn); background: #fff8f1; }
+.point-card.good { border-left: 5px solid var(--good); background: #f1f7f3; }
+.point-card.danger { border-left: 5px solid var(--danger); background: #fff2f2; }
+.point-card.info { border-left: 5px solid var(--info); background: #f4f6fa; }
+.point-card .pc-head {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.point-card .pc-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.point-card .pc-body { font-size: 12.5px; line-height: 1.7; }
+.point-card .pc-body strong { background: linear-gradient(transparent 60%, var(--accent-soft) 60%); padding: 0 2px; }
+
+@media print {
+  body { background: white; }
+  .deck { padding: 0; gap: 0; max-width: none; }
+  .slide {
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    width: 297mm;
+    height: 210mm;
+    aspect-ratio: auto;
+    border-radius: 0;
+  }
+  @page { size: A4 landscape; margin: 0; }
+}
+@media (max-width: 1100px) {
+  .slide { aspect-ratio: auto; padding: 28px 32px; }
+  .detail-grid, .phase-grid, .point-grid, .capacity-grid { grid-template-columns: 1fr; }
+  .svc-cards-3 { grid-template-columns: 1fr; }
+  .ai-roadmap { grid-template-columns: 1fr; }
+  .roadmap-arrow { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+<!-- ============================================ -->
+<!-- スライド 1: タイトル -->
+<!-- ============================================ -->
+<section class="slide title-slide" data-page="01">
+  <div class="eyebrow">BPaaS TOP 3 DEEP DIVE · 2026-05-19</div>
+  <h1>上位 3 サービス <em>深掘り分析</em><br>issue-finder 48 件痛みクラスタ ベース</h1>
+  <p class="lead">
+    BPaaS 8 代行サービス比較で 3 軸スコア (時給効率 × ストック性 × 拡張性) 上位の
+    <strong>🥇 A 写真整理 (14/15) / 🥈 B 顧客連絡 (13/15) / 🥉 F 議事録 (12/15)</strong>
+    を一次情報・代行内容・実装・営業導線まで深掘り。 5/22 北原氏面談 Q12 + 友人 Phase 3 (30 分新設計) で
+    最終裏取りする前の 設計確定資料。
+  </p>
+  <div class="meta-block">
+    <div>対象 issue <strong>48 件</strong> / 関連 6 痛みクラスタ</div>
+    <div>3 サービス 総合 <strong>39 / 45</strong> 点</div>
+    <div>Phase 1 想定 MRR <strong>¥45K-180K</strong></div>
+    <div>masatoman 工数 <strong>30-40h/月</strong></div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- スライド 2: なぜこの 3 つか -->
+<!-- ============================================ -->
+<section class="slide" data-page="02">
+  <div class="slide-header">
+    <div class="title">なぜこの 3 サービスか</div>
+    <div class="subtitle">3 軸スコア 12-14 / 15 — 工数低 + 利益率高 + 主顧客整合 + AI エージェント化容易</div>
+  </div>
+
+  <p class="lead-text">
+    issue-finder 48 件痛みクラスタを業務代行 (BPaaS) で解決可能な 8 サービスに分解、 3 軸スコアで評価した結果、
+    上位 3 が <strong>共通して 4 条件を満たす</strong>:
+    ① 工数 3-15h/社 (月 30-40h で 2-3 社こなせる) /
+    ② 利益率 70-80% (本業より高効率) /
+    ③ 主顧客 (60-70 代 IT 弱者) 整合 (学習コスト 0 で LINE 完結) /
+    ④ AI エージェント化への二段ロケットが見える
+  </p>
+
+  <table class="score">
+    <thead>
+      <tr>
+        <th style="width: 22%;">代行サービス</th>
+        <th>① 時給効率 <small>(単価 ÷ 工数)</small></th>
+        <th>② ストック性 <small>(継続率 + 主顧客整合)</small></th>
+        <th>③ 拡張性 <small>(AI エージェント化 + アップセル)</small></th>
+        <th style="width: 12%;">総合</th>
+        <th>位置付け</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="gold">
+        <td><span class="medal">🥇</span><strong>A 写真整理代行</strong></td>
+        <td class="center">¥5K-7.5K/h <span class="stars">★★★★★</span></td>
+        <td class="center"><span class="stars">★★★★☆</span></td>
+        <td class="center"><span class="stars">★★★★☆</span></td>
+        <td class="center total">14 / 15</td>
+        <td>最速ローンチ候補</td>
+      </tr>
+      <tr class="silver">
+        <td><span class="medal">🥈</span><strong>B 顧客連絡代行</strong></td>
+        <td class="center">¥3K-5K/h <span class="stars">★★★☆☆</span></td>
+        <td class="center"><span class="stars">★★★★★</span> 最強</td>
+        <td class="center"><span class="stars">★★★★☆</span></td>
+        <td class="center total">13 / 15</td>
+        <td>顧客資産化の柱</td>
+      </tr>
+      <tr class="bronze">
+        <td><span class="medal">🥉</span><strong>F 議事録代行</strong></td>
+        <td class="center">¥3K-5K/h <span class="stars">★★★☆☆</span></td>
+        <td class="center"><span class="stars">★★★☆☆</span></td>
+        <td class="center"><span class="stars">★★★★★</span> 即作れる</td>
+        <td class="center total">12 / 15</td>
+        <td>AI エージェント 試作枠</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout good" style="margin-top: 16px;">
+    <strong>本資料の構成:</strong> 各サービスを 3 スライド (概要 / 実装 / 営業) で deep dive →
+    最後にクロスセル相関 + キャパ + Phase 計画 + 次のアクション。
+  </div>
+
+  <div class="slide-footer">出典: bpaas-service-comparison-2026-05-19.html / issue-finder 48 件分析 / 友人 N=1 (2026-05-14)</div>
+</section>
+
+<!-- ============================================ -->
+<!-- スライド 3: 3 サービス全景 -->
+<!-- ============================================ -->
+<section class="slide" data-page="03">
+  <div class="slide-header">
+    <div class="title">3 サービス全景 — Phase 1 で着手する 3 つ</div>
+    <div class="subtitle">セット販売 月 ¥45K-90K / 2-3 社 = MRR ¥90K-270K</div>
+  </div>
+
+  <div class="svc-cards-3">
+    <div class="svc-card gold">
+      <div class="medal-row">🥇</div>
+      <div class="svc-name">A 写真整理代行</div>
+      <div class="svc-tag">issue #19 / #14 / #10 — 解の質 平均 74</div>
+      <div class="price">¥15-30K<span style="font-size:14px; color:var(--muted); font-weight: 400;">/月</span></div>
+      <div class="meta-line">3-5h/月 · 利益率 75% · 時給 ¥5-7.5K · 規制リスクなし</div>
+      <div class="score-line">
+        <span>総合 <strong>14/15</strong></span>
+        <span>★★★★★ 時給</span>
+      </div>
+    </div>
+
+    <div class="svc-card silver">
+      <div class="medal-row">🥈</div>
+      <div class="svc-name">B 顧客連絡代行</div>
+      <div class="svc-tag">issue #3 (イシュー度 70 = 全 48 件最高) / #7</div>
+      <div class="price">¥20-40K<span style="font-size:14px; color:var(--muted); font-weight: 400;">/月</span></div>
+      <div class="meta-line">5-15h/月 · 利益率 70% · 継続率最高 · 個人客 9 割整合</div>
+      <div class="score-line">
+        <span>総合 <strong>13/15</strong></span>
+        <span>★★★★★ ストック</span>
+      </div>
+    </div>
+
+    <div class="svc-card bronze">
+      <div class="medal-row">🥉</div>
+      <div class="svc-name">F 議事録代行</div>
+      <div class="svc-tag">issue #25 — 施主要望二転三転 (解の質 50)</div>
+      <div class="price">¥10-20K<span style="font-size:14px; color:var(--muted); font-weight: 400;">/月</span></div>
+      <div class="meta-line">3-5h/月 · 利益率 80% · 2 日で MVP 実装可</div>
+      <div class="score-line">
+        <span>総合 <strong>12/15</strong></span>
+        <span>★★★★★ 拡張性</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 16px;">
+    <strong>共通の訴求軸:</strong> 「LINE 投げるだけ」で完結。 学習コスト 0、 主顧客 (60-70 代) 受容度高。 SaaS では届かなかった層に、 業務代行という形で月額固定費を取りに行く。
+  </div>
+
+  <div class="slide-footer">3 軸スコア出典: bpaas-service-comparison-2026-05-19.html スライド 4</div>
+</section>
+
+<!-- ============================================ -->
+<!-- スライド 4: A 写真整理 概要 + 痛み -->
+<!-- ============================================ -->
+<section class="slide" data-page="04">
+  <div class="slide-header">
+    <div class="title">🥇 A. 写真整理代行 — 概要 + 一次情報</div>
+    <div class="subtitle">総合 14/15 · 最速ローンチ候補 · issue #19 #14 #10</div>
+  </div>
+
+  <div class="detail-grid">
+    <div class="detail-left">
+      <h2><span class="rank-badge">🥇</span>写真整理代行</h2>
+      <div class="tag-line">対象 issue: #19 (解の質 85) / #14 (75) / #10 (61)</div>
+
+      <div class="stat-grid">
+        <div class="stat-card"><div class="label">月工数 / 1 社</div><div class="value">3-5<small> h</small></div></div>
+        <div class="stat-card"><div class="label">想定月額単価</div><div class="value">¥15K-30K</div></div>
+        <div class="stat-card"><div class="label">利益率</div><div class="value">75%</div></div>
+        <div class="stat-card"><div class="label">時給効率</div><div class="value">¥5K-7.5K<small>/h</small></div></div>
+        <div class="stat-card"><div class="label">継続率予測</div><div class="value">高</div></div>
+        <div class="stat-card"><div class="label">規制リスク</div><div class="value" style="color: var(--good);">なし</div></div>
+      </div>
+
+      <div class="callout good">
+        <strong>3 社契約 = 月 ¥45K-90K / 工数 9-15h</strong> — masatoman 月 30-40h 制約の 1/2 で 1 サービス完結。 12 ヶ月後 MRR ¥30-60K 目標を A 単独で達成可能。
+      </div>
+    </div>
+
+    <div class="detail-right">
+      <h3>痛みの一次情報 (issue #19 解の質 85)</h3>
+      <div class="issue-evidence">
+        「写真管理は施工の一連の流れを撮らないと。 作業完了したら前の状態は二度と撮れない、 作業員さんを写真待ちにするのも良くない」 (note)
+      </div>
+      <div class="issue-evidence">
+        「夜遅くまで写真整理や次の日の掃除で残るのが嫌で嫌で」 (Yahoo 知恵袋)
+      </div>
+      <div class="issue-evidence">
+        「現場で 100 枚撮って、 帰ってから整理に 1-2 時間。 元請けに提出する写真台帳のフォーマット指定が現場ごとに違う」 (建設業 Twitter)
+      </div>
+
+      <h3>このサービスが届く核心</h3>
+      <ul>
+        <li><strong>夜遅く / 次の日の準備</strong> という時間的痛み (家族との時間とトレードオフ)</li>
+        <li><strong>元請け毎にフォーマット違い</strong> という属人化痛み</li>
+        <li>主顧客 (60-70 代社長 + 30-40 代アトツギ) は「写真台帳が必須」 を理解</li>
+        <li>友人 N=1 でも「写真台帳ある」 と確認済 (memory <code>friend-hearing-result-2026-05-14</code>)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide-footer">issue-finder 出典 / 235 件 koumuten-reviews-pipeline / 1/4 痛み削減実証</div>
+</section>
+
+<!-- ============================================ -->
+<!-- スライド 5: A 写真整理 実装設計 -->
+<!-- ============================================ -->
+<section class="slide" data-page="05">
+  <div class="slide-header">
+    <div class="title">🥇 A. 写真整理代行 — 実装設計 + 月末対策</div>
+    <div class="subtitle">LINE Messaging API + 黒板 OCR + AI 仕分け + PDF 生成</div>
+  </div>
+
+  <div class="detail-grid">
+    <div class="detail-left">
+      <h3 style="font-size:14px; border-left: 3px solid var(--accent); padding-left:8px; margin-bottom:8px;">アーキテクチャ</h3>
+
+      <div class="flow-box">[現場監督 LINE]
+   ↓ 写真送信 (現場黒板 + 工事写真)
+[LINE 公式アカウント]
+   ↓ Webhook (即 200 + webhookEventId 重複排除)
+[Vercel Function]
+   ↓ Content API で即 fetch (1 週間以内)
+[Supabase Storage] (顧客別 prefix)
+   ↓
+[AI 仕分けエンジン]
+   - 黒板 OCR (工事名 / 工種 / 日付)
+   - EXIF 補完 (撮影時刻 + GPS)
+   - 工事番号自動推定
+   ↓
+[PDF 台帳生成 (3 テンプレ)]
+   - 完了報告書用 / 施主アルバム用 / 保証書添付用
+   ↓
+[Reply Message で配送]
+</div>
+
+      <h3 style="font-size:14px; border-left: 3px solid var(--accent); padding-left:8px; margin: 14px 0 8px;">月工数 内訳 (3-5h / 月)</h3>
+      <ul style="font-size: 12.5px; padding-left: 16px;">
+        <li>写真受信 + 初期分類 (月 100-300 枚): 1.5-2.5h</li>
+        <li>工事番号確定 + タイトル付け: 30 分</li>
+        <li>PDF 生成 (テンプレ化済): 30 分</li>
+        <li>顧客 LINE 返信 + 配送: 30 分</li>
+      </ul>
+    </div>
+
+    <div class="detail-right">
+      <h3>月末集中対策</h3>
+      <ul>
+        <li><strong>「工事完了タイミング配送」 + 「週次 dashboard」</strong> に分散 (月末固定をやめる)</li>
+        <li>顧客契約時に 5/10/15/20/25/末 から締め日選択</li>
+        <li>3 社でも月末ピーク 2-3h に抑える</li>
+      </ul>
+
+      <h3>競合との差別化</h3>
+      <ul>
+        <li>蔵衛門 ¥3,300/月 (3 人) → 工務店オーナーが「自分で操作」 必要</li>
+        <li>ANDPAD カメラ (23 万社シェア) → UI 不満 + 写真消失で離脱層多い</li>
+        <li>ノンコア 時間チャージ ¥1,375-1,750/30 分 → 中小工務店には重い</li>
+        <li><strong>masatoman = 「LINE 投げるだけで全部やってくれる人」</strong></li>
+      </ul>
+
+      <h3>AI エージェント化への二段ロケット</h3>
+      <ul>
+        <li>Phase 1: BPaaS 月 ¥20K (3-5h 人手介在)</li>
+        <li>Phase 2: 黒板 OCR + AI 画像認識で 9 割自動化</li>
+        <li>Phase 3: AI エージェント SaaS 月 ¥5K-10K にダウングレード版を後付け</li>
+      </ul>
+
+      <h3>リスク</h3>
+      <ul>
+        <li>個人情報保護法 — 施主の自宅外観 / 表札が写る画像は個人情報該当、 委託範囲明示必須</li>
+        <li>初回学習データ蓄積 (1-2 ヶ月) で工事番号推定精度が安定するまでは人手介在比率高</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide-footer">LINE Messaging API 仕様: コミュニケーションプラン ¥0 (200 通) で MVP 可能</div>
+</section>
+
+<!-- ============================================ -->
+<!-- スライド 6: A 写真整理 営業導線 + KPI -->
+<!-- ============================================ -->
+<section class="slide" data-page="06">
+  <div class="slide-header">
+    <div class="title">🥇 A. 写真整理代行 — 営業導線 + KPI</div>
+    <div class="subtitle">紹介経路 + マーケ材料化 + 7/30 判定基準</div>
+  </div>
+
+  <div class="point-grid" style="grid-template-columns: 1fr 1fr;">
+    <div class="point-card good">
+      <div class="pc-head">紹介経路 (STRATEGY.md §4 統合)</div>
+      <div class="pc-title">中間業者 + たましん経由</div>
+      <div class="pc-body">
+        建材屋営業マン + 設計事務所が ◎×◎ 主戦場 (memory <code>komuten-channel-strategy</code> 紹介 51.5%)。
+        <strong>「現場監督さんが夜遅くまで写真整理してませんか?」</strong> という 1 行で会話が始まる。
+        たましん価値創造事業部 Step 3 でも紹介しやすい商品 (営業ストーリー明快)。
+      </div>
+    </div>
+    <div class="point-card">
+      <div class="pc-head">マーケ材料化</div>
+      <div class="pc-title">Before / After PDF サンプル</div>
+      <div class="pc-body">
+        スマホで撮ったバラバラ写真 → 工事番号別 PDF 台帳 への Before/After を
+        <strong>1 枚絵で見せられる</strong>。
+        demo-gallery `/local-business/site-photo` に統合してデモ提示。
+        業界紙 (新建ハウジング 等) の取材依頼ネタにもなる。
+      </div>
+    </div>
+
+    <div class="point-card info">
+      <div class="pc-head">7/30 判定基準</div>
+      <div class="pc-title">2-3 社契約 = Phase 1 商品方向性確定</div>
+      <div class="pc-body">
+        7 月末時点で <strong>A 写真整理 単独で 2-3 社契約</strong> できているかが軸 B 7/30 判定の主指標。
+        達成 → Phase 2 へ (補助金 + 議事録 AI 投入)。
+        未達 → ターゲット再考 (アトツギ / 中堅 / 別業種) or 商品撤退判定。
+      </div>
+    </div>
+    <div class="point-card warn">
+      <div class="pc-head">想定リスク</div>
+      <div class="pc-title">ANDPAD 統合提案で潰される可能性</div>
+      <div class="pc-body">
+        中堅工務店 (10-30 名) は既に ANDPAD 採用済の可能性 → ANDPAD カメラに統合する選択肢 +
+        コスト ¥36K/月 が比較対象。
+        <strong>対抗策</strong>: 5-15 名規模の零細工務店 (ANDPAD 未導入層) に絞り込む + 「LINE 投げるだけ」 訴求を一貫。
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 16px;">
+    <strong>Phase 1 KPI</strong> (5-9 月): A 単独で <strong>2-3 社契約 / MRR ¥45K-90K / 工数 9-15h/月</strong>。
+    残り工数 15-25h を B 顧客連絡 + F 議事録の試作に充てる。
+  </div>
+
+  <div class="slide-footer">5/22 北原氏 Q12 で「A 写真整理を最速ローンチ商品として」 の妥当性を相談</div>
+</section>
+
+<!-- ============================================ -->
+<!-- スライド 7: B 顧客連絡 概要 + 痛み -->
+<!-- ============================================ -->
+<section class="slide" data-page="07">
+  <div class="slide-header">
+    <div class="title">🥈 B. 顧客連絡代行 — 概要 + 一次情報</div>
+    <div class="subtitle">総合 13/15 · 顧客資産化の柱 · issue #3 イシュー度 70 = 全 48 件最高</div>
+  </div>
+
+  <div class="detail-grid">
+    <div class="detail-left">
+      <h2><span class="rank-badge">🥈</span>顧客連絡代行</h2>
+      <div class="tag-line">対象 issue: #3 (イシュー度 70 = 全 48 件最高) / #7 (解の質 75)</div>
+
+      <div class="stat-grid">
+        <div class="stat-card"><div class="label">月工数 / 1 社</div><div class="value">5-15<small> h</small></div></div>
+        <div class="stat-card"><div class="label">想定月額単価</div><div class="value">¥20K-40K</div></div>
+        <div class="stat-card"><div class="label">利益率</div><div class="value">70%</div></div>
+        <div class="stat-card"><div class="label">時給効率</div><div class="value">¥3K-5K<small>/h</small></div></div>
+        <div class="stat-card"><div class="label">継続率予測</div><div class="value" style="color: var(--good);">⭐最高</div></div>
+        <div class="stat-card"><div class="label">対象主顧客</div><div class="value">個人客 9 割整合</div></div>
+      </div>
+
+      <div class="callout">
+        <strong>引きはがし困難 = 顧客資産化が最強</strong> — 過去 10 年分の施主リストを預かれば、 工務店は二度と他社に乗り換えられない。 BPaaS の中で最も粘着性が高い。
+      </div>
+    </div>
+
+    <div class="detail-right">
+      <h3>痛みの一次情報 (issue #3 イシュー度 70 = 48 件最高)</h3>
+      <div class="issue-evidence">
+        「13 年前に注文住宅で家を建てました。 新築から半年程して不具合が 3 箇所あり、 対応をお願いしましたが、 一向に対応してくれませんでした。 数年経ち定期点検にもくるのですが、 そこで伝えてもなにも連絡なし。 本当に後悔してます」 (★ 1 レビュー)
+      </div>
+      <div class="issue-evidence">
+        「見積もりの依頼をしたところお盆だから忙しくお盆明けに行くといわれましたが 2 カ月ほど連絡がありません」 (issue #7 解の質 75)
+      </div>
+
+      <h3>このサービスが届く核心 (3 つの主顧客整合)</h3>
+      <ul>
+        <li><strong>個人客 9 割</strong> [[friend-hearing-result-2026-05-14]] = アフター連絡が営業の主戦場、 BPaaS で代行する価値最大</li>
+        <li><strong>紹介 51.5%</strong> [[komuten-channel-strategy]] = 既存施主の紹介ルート保守 = 売上の柱</li>
+        <li><strong>アトツギ説得材料</strong> = 「父親の見落とし顧客を救う」 役割で 30-40 代に響く</li>
+      </ul>
+
+      <h3>5/18 BPaaS 原案には未明記の「伏兵」</h3>
+      <ul>
+        <li>当初 5 代行案には含まれていなかったが、 issue-finder 分析で <strong>イシュー度 70 (全 48 件最高クラス)</strong> が判明</li>
+        <li>本来の最重要サービスだった可能性 → 5/22 Q12 で重点的に紹介経路相談</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide-footer">★ 1 レビュー出典: koumuten-reviews-pipeline / 794 件レビュー / 7 クラスタ</div>
+</section>
+
+<!-- ============================================ -->
+<!-- スライド 8: B 顧客連絡 サービス範囲 + 実装 -->
+<!-- ============================================ -->
+<section class="slide" data-page="08">
+  <div class="slide-header">
+    <div class="title">🥈 B. 顧客連絡代行 — サービス範囲 + 実装</div>
+    <div class="subtitle">4 業務領域 + CRM 自動化 + AI エージェント化</div>
+  </div>
+
+  <div class="detail-grid">
+    <div class="detail-left">
+      <h3 style="font-size:14px; border-left: 3px solid var(--accent); padding-left:8px; margin-bottom:8px;">4 業務領域</h3>
+
+      <div style="background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px; margin-bottom: 12px;">
+        <strong style="color: var(--accent); font-size: 13px;">① 過去施主アフター</strong><br>
+        <span style="font-size: 12px;">10 年分の施主リスト整理 + 連絡先取得 (家族 + 紹介ルート含む) → 不具合発生時の 1 次受け + 工務店エスカレ</span>
+      </div>
+      <div style="background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px; margin-bottom: 12px;">
+        <strong style="color: var(--accent); font-size: 13px;">② 定期点検リマインド</strong><br>
+        <span style="font-size: 12px;">6 ヶ月 / 1 年 / 3 年 / 5 年 / 10 年 の自動リマインド LINE 送信 → 工務店から訪問日時連絡 → 完了報告</span>
+      </div>
+      <div style="background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px; margin-bottom: 12px;">
+        <strong style="color: var(--accent); font-size: 13px;">③ 見積後追客</strong><br>
+        <span style="font-size: 12px;">見積提出後 1 週間以内に LINE 追客 → 反応に応じて電話 1 次受け → 「お盆明けに行く」 等の <strong>放置防止</strong></span>
+      </div>
+      <div style="background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px;">
+        <strong style="color: var(--accent); font-size: 13px;">④ 季節挨拶 一括代行</strong><br>
+        <span style="font-size: 12px;">年賀状 / 暑中見舞い / 工事完了 1 年記念 メッセージを LINE / メール / SMS で一括送信</span>
+      </div>
+    </div>
+
+    <div class="detail-right">
+      <h3>月工数 内訳 (5-15h / 月)</h3>
+      <ul>
+        <li>初期セットアップ (施主リスト整理): 5-10h (1 回のみ)</li>
+        <li>定期リマインド送信 (週 1-2 回): 1-2h/月</li>
+        <li>見積後追客 (案件発生時): 1-3h/月</li>
+        <li>1 次受け対応 (返信時): 2-5h/月</li>
+        <li>クレーム エスカレ判断: 1h/月</li>
+      </ul>
+
+      <h3>AI エージェント化への道</h3>
+      <ul>
+        <li>Phase 1: 人手で施主リスト整理 + LINE Bot で定期リマインド自動送信 (BPaaS ¥30K)</li>
+        <li>Phase 2: 1 次受けを AI が応答 (Claude + ベクトル DB で過去対応参照)、 困難ケースのみ人手</li>
+        <li>Phase 3: 工務店向け CRM SaaS 月 ¥8-15K にダウングレード版を後付け</li>
+      </ul>
+
+      <h3>競合との差別化</h3>
+      <ul>
+        <li><strong>競合完全不在</strong> — ANDPAD 施主アプリは「自社で運用するツール」、 代行は市場ゼロ</li>
+        <li>kintone / Salesforce 等の汎用 CRM → 工務店オーナー (IT 弱者) に届かない</li>
+        <li><strong>「過去 10 年の施主全部 LINE で繋がってます」 という状態を作る価値</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide-footer">サービス範囲は別資料 (bpaas-service-comparison-2026-05-19.html) スライド 6 を継承</div>
+</section>
+
+<!-- ============================================ -->
+<!-- スライド 9: B 顧客連絡 リスク + 営業 -->
+<!-- ============================================ -->
+<section class="slide" data-page="09">
+  <div class="slide-header">
+    <div class="title">🥈 B. 顧客連絡代行 — リスク + 営業導線</div>
+    <div class="subtitle">クレーム責任 + 個情法 + アトツギ訴求</div>
+  </div>
+
+  <div class="point-grid" style="grid-template-columns: 1fr 1fr;">
+    <div class="point-card warn">
+      <div class="pc-head">リスク #1: 大量施主リスト預かり</div>
+      <div class="pc-title">個人情報保護法 2022 改正 対応必須</div>
+      <div class="pc-body">
+        過去 10 年分 = <strong>100-500 名の施主情報</strong> を預かる規模。
+        漏洩時の影響大 → サイバー保険年 ¥30-50K 必須、 暗号化 Storage + アクセスログ + 月次バックアップ。
+        漏洩時 個情委 <strong>3-5 日速報 / 30 日確報</strong> + 本人通知義務 (個情法 26 条)。
+      </div>
+    </div>
+    <div class="point-card warn">
+      <div class="pc-head">リスク #2: 誤発信</div>
+      <div class="pc-title">クレーム発生確率高 → 契約書で限定</div>
+      <div class="pc-body">
+        施主への誤発信 (敬称ミス / 日時間違い / 工事番号取り違え) で工務店信用毀損 →
+        <strong>賠償上限 = 月額委託料 1-3 ヶ月分</strong> を契約書で明示必須。
+        「最終判断は工務店」「masatoman は事務代行のみ」 を分界明示。
+      </div>
+    </div>
+
+    <div class="point-card good">
+      <div class="pc-head">営業導線 #1</div>
+      <div class="pc-title">アトツギ世代に訴求</div>
+      <div class="pc-body">
+        <strong>「父親の見落とし顧客 100 名を救いませんか?」</strong> という 1 行が刺さる。
+        memory <code>atotsugi-decision-maker</code> 整合: 工務店意思決定 3 層 (決裁=社長 / 経理=妻 / 推進=アトツギ) の 30-40 代に直接訴求。
+        DX 認定 + 補助金よりも「過去顧客が成仏する」 の方が現場で響く。
+      </div>
+    </div>
+    <div class="point-card">
+      <div class="pc-head">営業導線 #2</div>
+      <div class="pc-title">紹介経路でクロスセル</div>
+      <div class="pc-body">
+        建材屋営業マン + 設計事務所 から紹介された工務店に、 まず <strong>A 写真整理</strong> で入口を作る →
+        3 ヶ月後に B 顧客連絡をアップセル。
+        <strong>「写真台帳作ってる中で過去施主のアフター抜けてませんか?」</strong> という会話で自然に提案。
+      </div>
+    </div>
+  </div>
+
+  <div class="callout good" style="margin-top: 16px;">
+    <strong>Phase 1 KPI</strong>: A 既存顧客 (2-3 社) のうち <strong>1 社が B もアップセル契約</strong> = 月 ¥30K 上積み。
+    A だけで MRR ¥45-90K + B 1 社で +¥20-40K = <strong>合計 MRR ¥65-130K</strong> を 9 月末までに。
+  </div>
+
+  <div class="slide-footer">5/22 北原氏 Q12 で「アトツギ世代に B 顧客連絡代行が刺さるか」 を相談</div>
+</section>
+
+<!-- ============================================ -->
+<!-- スライド 10: F 議事録 概要 + 痛み -->
+<!-- ============================================ -->
+<section class="slide" data-page="10">
+  <div class="slide-header">
+    <div class="title">🥉 F. 議事録代行 — 概要 + 一次情報</div>
+    <div class="subtitle">総合 12/15 · AI エージェント 試作枠 · issue #25 施主要望二転三転</div>
+  </div>
+
+  <div class="detail-grid">
+    <div class="detail-left">
+      <h2><span class="rank-badge">🥉</span>議事録代行</h2>
+      <div class="tag-line">対象 issue: #25 施主要望二転三転 (解の質 50)</div>
+
+      <div class="stat-grid">
+        <div class="stat-card"><div class="label">月工数 / 1 社</div><div class="value">3-5<small> h</small></div></div>
+        <div class="stat-card"><div class="label">想定月額単価</div><div class="value">¥10K-20K</div></div>
+        <div class="stat-card"><div class="label">利益率</div><div class="value">80%</div></div>
+        <div class="stat-card"><div class="label">実装難易度</div><div class="value" style="color: var(--good);">超低</div></div>
+        <div class="stat-card"><div class="label">自動化余地</div><div class="value" style="color: var(--good);">⭐極高</div></div>
+        <div class="stat-card"><div class="label">規制リスク</div><div class="value" style="color: var(--good);">なし</div></div>
+      </div>
+
+      <div class="callout good">
+        <strong>Whisper + Claude で 2 日で MVP 動く</strong> — masatoman の Claude Code 環境 + lab-tools 既存資産 (Anthropic API 接続 + magic link 認証 + Supabase) で即実装可能。 BPaaS → SaaS / AI エージェント 化の試作枠として最適。
+      </div>
+    </div>
+
+    <div class="detail-right">
+      <h3>痛みの一次情報 (issue #25)</h3>
+      <div class="issue-evidence">
+        「毎回間取りがコロコロ変わるとイラつきますか? ちょこちょこ間取りの変更をお願いしています」 (施主の遠慮 / SUUMO 相談)
+      </div>
+      <div class="issue-evidence">
+        「闇雲にインスタ見まくって、 根拠もなく繰り返されるとまとまらない」 (設計士の本音 / Twitter)
+      </div>
+      <div class="issue-evidence">
+        「打ち合わせのたびに前回の話が共有されてなくて、 毎回ゼロから話し直し」 (施主レビュー)
+      </div>
+
+      <h3>このサービスが届く核心 (二転三転問題への直接打撃)</h3>
+      <ul>
+        <li>打ち合わせ録音 → <strong>「前回からの変更点」 を diff 表示</strong>で二転三転を可視化</li>
+        <li>施主は「前回こう言いましたよね」 を確認できる → 設計士は要望整理が楽に</li>
+        <li>工務店 - 施主 双方の認識ズレを構造的に解消</li>
+      </ul>
+
+      <h3>BPaaS / SaaS 共通の価値</h3>
+      <ul>
+        <li>「打ち合わせ 1 回 = 議事録 1 通 + 変更点リスト 1 通」 が <strong>24h 以内に LINE で届く</strong></li>
+        <li>工務店オーナー / 設計士 の打ち合わせ後の議事録作成工数 (1-2h × 月 5-10 件) を一括ゼロに</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide-footer">issue-finder #25 出典 / SUUMO / Twitter / 794 件レビュー</div>
+</section>
+
+<!-- ============================================ -->
+<!-- スライド 11: F 議事録 実装 + AI エージェント道筋 -->
+<!-- ============================================ -->
+<section class="slide" data-page="11">
+  <div class="slide-header">
+    <div class="title">🥉 F. 議事録代行 — 実装 + AI エージェント 二段ロケット</div>
+    <div class="subtitle">2 日 MVP → SaaS 化 → 独立プロダクト化候補</div>
+  </div>
+
+  <h3 style="font-size:14px; border-left: 3px solid var(--accent); padding-left:8px; margin: 6px 0 10px;">3 段階ロードマップ</h3>
+
+  <div class="ai-roadmap">
+    <div class="roadmap-step phase1">
+      <div class="step-label">PHASE 1 (5-9 月)</div>
+      <div class="step-title">BPaaS 完全代行</div>
+      <div class="step-detail">録音 LINE 受領 → Whisper 文字起こし → Claude 要望リスト化 + diff → PDF 議事録 24h 以内納品<br><br><strong>¥10-20K/月</strong></div>
+    </div>
+    <div class="roadmap-arrow">→</div>
+    <div class="roadmap-step phase2">
+      <div class="step-label">PHASE 2 (10-12 月)</div>
+      <div class="step-title">AI エージェント SaaS</div>
+      <div class="step-detail">工務店が自分で録音アップロード → AI が議事録 + diff 自動生成 → ダッシュボードで確認<br><br><strong>¥5K-8K/月</strong> (ダウングレード版)</div>
+    </div>
+    <div class="roadmap-arrow">→</div>
+    <div class="roadmap-step phase3">
+      <div class="step-label">PHASE 3 (1-4 月)</div>
+      <div class="step-title">独立プロダクト化</div>
+      <div class="step-detail">工務店向け録音アプリ + 議事録自動生成 SaaS として水平展開。 工務店業界用語特化 (間取り変更 / 仕様確認) で差別化<br><br><strong>¥5-15K/月 × N 社</strong></div>
+    </div>
+  </div>
+
+  <div class="detail-grid" style="margin-top: 14px;">
+    <div class="detail-left">
+      <h3 style="font-size:14px; border-left: 3px solid var(--accent); padding-left:8px; margin-bottom:8px;">実装スタック (既存 lab-tools と整合)</h3>
+      <ul style="list-style: none; padding: 0; font-size: 13px;">
+        <li style="padding: 4px 0;">▸ <strong>LINE 公式アカウント</strong> (録音ファイル受信 / 議事録返信)</li>
+        <li style="padding: 4px 0;">▸ <strong>Whisper API</strong> (OpenAI / 文字起こし 0.006$/分)</li>
+        <li style="padding: 4px 0;">▸ <strong>Claude API</strong> (要望抽出 + diff 生成)</li>
+        <li style="padding: 4px 0;">▸ <strong>Supabase</strong> (議事録 / 顧客マスタ / 履歴管理)</li>
+        <li style="padding: 4px 0;">▸ <strong>Vercel Function</strong> (Webhook + 処理)</li>
+        <li style="padding: 4px 0;">▸ <strong>magic link 認証</strong> (lab-tools 既存資産)</li>
+      </ul>
+
+      <p style="font-size: 12px; color: var(--muted); margin-top: 10px;">
+        <strong>2 日実装の根拠</strong>: lab-tools 既存資産 (Anthropic 接続 + magic link + Supabase + IP rate limit) で 6 割完成、 残りは Whisper 統合 + プロンプト + LINE Webhook で実質 2 日。
+      </p>
+    </div>
+
+    <div class="detail-right">
+      <h3>競合との差別化</h3>
+      <ul>
+        <li>汎用議事録 AI (Notta / tl;dv / Otter.ai) はあるが <strong>工務店業界用語に弱い</strong></li>
+        <li>「間取り変更」「仕様確認」「軸組」「金物」 等のドメイン特化辞書で精度向上</li>
+        <li>masatoman の AI 知見 + 工務店ドメイン理解の組み合わせが堀になる</li>
+      </ul>
+
+      <h3>Phase 1 KPI</h3>
+      <ul>
+        <li>5/24-30 に MVP を lab-tools/meeting-recorder に追加</li>
+        <li>友人 (現場監督) に 試作版を 1 ヶ月無料提供 → フィードバック取得</li>
+        <li>7 月末までに 1 社契約 = 月 ¥10-20K</li>
+      </ul>
+
+      <h3>戦略的位置付け</h3>
+      <ul>
+        <li><strong>AI エージェント 化への試作枠</strong>として lab-tools に追加</li>
+        <li>BPaaS → SaaS への移行モデルケースを作る</li>
+        <li>F が成立 → A 写真整理 / B 顧客連絡 も同じ二段ロケット適用可能と実証</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide-footer">5/24-30 着手予定 / 関連 memory: lab-tools-status / aidesigner-agent</div>
+</section>
+
+<!-- ============================================ -->
+<!-- スライド 12: 3 サービス クロスセル + セット販売 -->
+<!-- ============================================ -->
+<section class="slide" data-page="12">
+  <div class="slide-header">
+    <div class="title">3 サービスのクロスセル + セット販売</div>
+    <div class="subtitle">単機能ではなくセットで価値最大化 — 競合 (蔵衛門 / ANDPAD) から守る</div>
+  </div>
+
+  <p class="lead-text">
+    A 写真整理を「フック」 → B 顧客連絡へアップセル → F 議事録を Add-on の流れ。
+    主顧客 (IT 弱者) は「全部 LINE で送るだけ、 工務店業務 まるごと丸投げ」 を求める。 単機能 SaaS では届かない層に届く戦略。
+  </p>
+
+  <table class="set-table">
+    <thead>
+      <tr>
+        <th style="width: 22%;">セット構成</th>
+        <th class="num">月額</th>
+        <th>狙い</th>
+        <th>適合主顧客</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>A 単独 (写真整理)</td>
+        <td class="num">¥15-30K</td>
+        <td>最速ローンチ、 入口商品</td>
+        <td>5-15 名規模、 ANDPAD 未導入の零細工務店</td>
+      </tr>
+      <tr>
+        <td>A + F (写真 + 議事録)</td>
+        <td class="num">¥25-50K</td>
+        <td>現場 + 設計事務所 のセット、 業務代行 + AI 試作枠</td>
+        <td>設計事務所兼工務店、 注文住宅特化</td>
+      </tr>
+      <tr class="recommend">
+        <td><strong>A + B (写真 + 顧客連絡) ★ Phase 1 推奨</strong></td>
+        <td class="num"><strong>¥35-70K</strong></td>
+        <td>現場業務 + 過去施主資産化、 個人客 9 割整合</td>
+        <td>個人客中心の地域工務店 (友人 N=1 タイプ)</td>
+      </tr>
+      <tr>
+        <td>A + B + F (フル)</td>
+        <td class="num">¥45-90K</td>
+        <td>業務丸ごと代行、 12 ヶ月後 MRR ¥30-60K を 1 社で達成</td>
+        <td>アトツギ世代主導 (30-40 代推進 + 60 代決裁)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="point-grid" style="margin-top: 16px; grid-template-columns: 1fr 1fr;">
+    <div class="point-card good">
+      <div class="pc-head">クロスセル相関</div>
+      <div class="pc-title">A ⇄ B / A → F の双方向誘導</div>
+      <div class="pc-body">
+        <strong>A → B</strong>: 「写真台帳作る中で過去施主のアフター抜けてませんか?」 <br>
+        <strong>B → A</strong>: 「定期点検時の現場写真整理もやりましょうか」 <br>
+        <strong>A → F</strong>: 「打ち合わせ録音も議事録化しませんか」
+      </div>
+    </div>
+    <div class="point-card info">
+      <div class="pc-head">セット販売の論理</div>
+      <div class="pc-title">単機能では蔵衛門 / ANDPAD に潰される</div>
+      <div class="pc-body">
+        A 単独 ¥18K は蔵衛門 ¥3,300 と価格差 5-6 倍 → 営業困難。
+        <strong>セットなら「全部丸投げ」 という主顧客 (IT 弱者) の core 価値を満たす</strong> →
+        SaaS では実現できないポジション。
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">月末集中対策は別資料 (bpaas-service-design-v2 §5) 参照 - 工程分散 + 15 日中間処理</div>
+</section>
+
+<!-- ============================================ -->
+<!-- スライド 13: キャパシティ + Phase 計画 -->
+<!-- ============================================ -->
+<section class="slide" data-page="13">
+  <div class="slide-header">
+    <div class="title">キャパシティ試算 + Phase 計画</div>
+    <div class="subtitle">月 30-40h 制約下で 12 ヶ月 MRR ¥30-60K を現実的に積む</div>
+  </div>
+
+  <div class="capacity-grid">
+    <div>
+      <h3 style="font-size:14px; border-left: 3px solid var(--accent); padding-left:8px; margin-bottom:8px;">顧客数 × 工数 / MRR 試算</h3>
+      <table class="capacity-table">
+        <thead>
+          <tr>
+            <th>顧客数 / 構成</th>
+            <th class="num">月工数</th>
+            <th class="num">MRR</th>
+            <th>余裕度</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A 1 社</td>
+            <td class="num">3-5h</td>
+            <td class="num">¥15-30K</td>
+            <td>大</td>
+          </tr>
+          <tr>
+            <td>A 2 社</td>
+            <td class="num">6-10h</td>
+            <td class="num">¥30-60K</td>
+            <td>大</td>
+          </tr>
+          <tr class="good">
+            <td><strong>A 3 社 ★ 7/30 判定</strong></td>
+            <td class="num">9-15h</td>
+            <td class="num"><strong>¥45-90K</strong></td>
+            <td>余裕大</td>
+          </tr>
+          <tr class="good">
+            <td><strong>A 3 + B 1 社 (推奨)</strong></td>
+            <td class="num">14-30h</td>
+            <td class="num"><strong>¥65-130K</strong></td>
+            <td>適正</td>
+          </tr>
+          <tr class="good">
+            <td>A 3 + B 2 + F 1 (Phase 2)</td>
+            <td class="num">22-50h</td>
+            <td class="num">¥95-190K</td>
+            <td>キャパ上限</td>
+          </tr>
+          <tr class="warn">
+            <td>A 5 + B 3 + F 2 (Phase 3)</td>
+            <td class="num">31-100h</td>
+            <td class="num">¥175-350K</td>
+            <td>外注必須</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size: 11px; color: var(--muted); margin-top: 8px;">
+        masatoman 月稼働 30-40h ([[user-work-time-constraint]] 60-80h から軸 A + 工務店メディア並走 20-30h を引いた純粋 BPaaS 時間)。
+      </p>
+    </div>
+
+    <div>
+      <h3 style="font-size:14px; border-left: 3px solid var(--accent); padding-left:8px; margin-bottom:8px;">Phase 1-3 計画 (12 ヶ月)</h3>
+
+      <div class="phase-grid" style="grid-template-columns: 1fr; gap: 10px;">
+        <div class="phase-card p1" style="padding: 12px 14px;">
+          <div class="ph-no">PHASE 1 (5-9 月)</div>
+          <div class="ph-title" style="font-size: 15px;">一次情報取得期</div>
+          <div class="ph-services" style="padding: 6px 10px; font-size: 12px;">
+            🥇 A + 🥈 B セット販売<br>月 ¥35K-70K / 1-3 社
+          </div>
+          <div class="ph-kpi"><strong>KPI:</strong> A 2-3 社 + B 0-1 社 / MRR ¥45-130K</div>
+        </div>
+
+        <div class="phase-card p2" style="padding: 12px 14px;">
+          <div class="ph-no">PHASE 2 (10-12 月)</div>
+          <div class="ph-title" style="font-size: 15px;">MVP 投入期</div>
+          <div class="ph-services" style="padding: 6px 10px; font-size: 12px;">
+            Phase 1 維持 + 🥉 F 議事録 SaaS 化<br>+ C 補助金代行 (税理士提携)
+          </div>
+          <div class="ph-kpi"><strong>KPI:</strong> 補助金 1-2 社採択 / MRR ¥100-300K</div>
+        </div>
+
+        <div class="phase-card p3" style="padding: 12px 14px;">
+          <div class="ph-no">PHASE 3 (1-4 月)</div>
+          <div class="ph-title" style="font-size: 15px;">スケール検討期</div>
+          <div class="ph-services" style="padding: 6px 10px; font-size: 12px;">
+            F SaaS 水平展開 + D 経理 アップセル + 副業外注組込
+          </div>
+          <div class="ph-kpi"><strong>KPI:</strong> 3-5 社累計 / <strong>MRR ¥30-60K 達成判定</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">7/30 判定は A 写真整理 2-3 社契約 / 商品方向性確定が主指標 (STRATEGY.md §9)</div>
+</section>
+
+<!-- ============================================ -->
+<!-- スライド 14: 結論 + 次のアクション -->
+<!-- ============================================ -->
+<section class="slide" data-page="14">
+  <div class="slide-header">
+    <div class="title">結論 + 次のアクション</div>
+    <div class="subtitle">即時 → 1 週間 → 1 ヶ月 → 3 ヶ月後判定</div>
+  </div>
+
+  <div class="callout good">
+    <strong>結論:</strong> Phase 1 (5-9 月) は <strong>🥇 A 写真整理 + 🥈 B 顧客連絡</strong> のセット販売に集中。
+    🥉 F 議事録 は 5/24-30 に MVP プロトタイプを lab-tools に追加して試作枠で並行検証。
+    7/30 時点で A 2-3 社契約が達成できていれば Phase 2 突入、 補助金 + 議事録 AI に展開する。
+  </div>
+
+  <div class="action-list" style="flex: 1; align-content: start; margin-top: 12px;">
+
+    <div class="a-when">即時</div>
+    <div><strong>本分析を memory に反映</strong> — komuten-bpaas-ai-agent-strategy-2026-05-18 に 8 代行 + 3 軸スコア + 上位 3 深掘り + Phase 1-3 計画を追記。 🥈 B 顧客連絡代行 (5/18 原案未明記) を主役級に格上げ。</div>
+    <div class="a-link">memory/komuten-bpaas-<br>ai-agent-strategy-<br>2026-05-18.md</div>
+
+    <div class="a-when">即時</div>
+    <div><strong>友人ヒアリング Phase 3 を 3 代行 順位付けに集約</strong> — 旧 5 代行 → 上位 3 代行 (A 写真整理 / B 顧客連絡 / F 議事録) で 30 分の順位付け Q を設計。 issue-finder の痛み一次情報を引用しながら聞く。</div>
+    <div class="a-link">docs/friend-hearing-<br>checklist.html</div>
+
+    <div class="a-when">5/20</div>
+    <div><strong>business-summary-2026-05-22.html v3 §8 を本分析で書き換え</strong> — 上位 3 サービスの深掘り表 + Phase 1-3 推奨ポートフォリオ + 規制リスク注意指標 を追加。</div>
+    <div class="a-link">docs/business-summary-<br>2026-05-22.html</div>
+
+    <div class="a-when">5/20</div>
+    <div><strong>consultation-questions-2026-05-22.html v3 内部 + v2 public の Q12 差し替え</strong> — B 顧客連絡 (#3 イシュー度 70) の市場感 + アトツギ訴求 + たましん紹介角度 の 3 質問に置換。</div>
+    <div class="a-link">docs/consultation-<br>questions-2026-05-22*<br>.html</div>
+
+    <div class="a-when">5/22</div>
+    <div><strong>北原氏面談 Q12 で本 3 代行案を提示</strong> — A 写真整理を最速ローンチ商品として / B 顧客連絡をアトツギ訴求として / F 議事録を AI エージェント試作枠として、 紹介経路との角度を相談。</div>
+    <div class="a-link">面談録音 → memory に<br>結果反映</div>
+
+    <div class="a-when">5/24-30</div>
+    <div><strong>F 議事録代行 MVP プロトタイプを lab-tools に追加</strong> — Whisper + Claude で 2 日実装可能 (lab-tools 既存資産活用)。 issue-finder と同じ SKILL 経路 + magic link 認証。</div>
+    <div class="a-link">app/lab/tools/<br>meeting-recorder/</div>
+
+    <div class="a-when">6 月</div>
+    <div><strong>友人 N=2-3 で本 3 代行を順位付け検証</strong> — Phase 3 ヒアリングで A/B/F を最優先に検証 + 月次業務量実数取得 + 個人客 9 割 / アフター抜け の業界視点取得。</div>
+    <div class="a-link">memory/friend-<br>hearing-result-<br>2026-06-xx.md</div>
+
+    <div class="a-when">7/30</div>
+    <div><strong>3 ヶ月後判定: Phase 1 商品方向性確定 or ピボット</strong> — A 単独で 2-3 社契約 が判定軸。 達成 → Phase 2 (補助金 + 議事録 SaaS 化) 突入。 未達 → ターゲット再考 (アトツギ / 中堅 / 別業種) or 撤退。</div>
+    <div class="a-link">STRATEGY.md §9 /<br>軸 B 3 ヶ月後判定</div>
+
+  </div>
+
+  <div class="slide-footer">本資料の親 docs: bpaas-service-design-2026-05-19-v2.html / 出典: bpaas-service-comparison-2026-05-19.html</div>
+</section>
+
+</div>
+
+</body>
+</html>

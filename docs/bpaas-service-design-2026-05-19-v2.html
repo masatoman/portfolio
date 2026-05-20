@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="created-at" content="2026-05-19">
+<title>BPaaS 5 サービス設計 v2 / 4 軸リサーチ反映 / 2026-05-19</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --accent: #b85c3a;
+  --warn: #c34a1f;
+  --good: #2d6a4f;
+  --card: #ffffff;
+  --border: #e4ddd1;
+  --confirmed: #e6f0ea;
+  --pending: #fef5e7;
+  --speculation: #fde8e0;
+  --critical: #ffe0e0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 12mm 14mm;
+  margin: 8mm auto;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+}
+
+header {
+  border-bottom: 2px solid var(--fg);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+header h1 { font-size: 15px; font-weight: 700; }
+header .meta { font-size: 9.5px; color: var(--muted); }
+
+.section { margin-bottom: 12px; }
+.section h2 {
+  font-size: 11.5px;
+  font-weight: 700;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 2px 8px;
+  margin-bottom: 5px;
+  letter-spacing: 0.05em;
+}
+.section h3 {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 6px 0 3px 0;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 2px;
+}
+.section p { margin-bottom: 4px; }
+
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+.box {
+  background: #fdfbf6;
+  border: 1px solid var(--border);
+  padding: 6px 8px;
+  border-radius: 3px;
+  font-size: 10.5px;
+}
+.box.warn { background: var(--speculation); border-color: var(--warn); }
+.box.fact { background: var(--confirmed); border-color: var(--good); }
+.box.critical { background: var(--critical); border-left: 3px solid var(--warn); }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+  margin: 4px 0 6px 0;
+}
+th, td {
+  padding: 3px 6px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+th {
+  background: #f4ede0;
+  font-weight: 700;
+  font-size: 9.5px;
+}
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.center { text-align: center; }
+tr.summary-row { background: #f4ede0; font-weight: 700; }
+tr.recommend { background: #e6f0ea; }
+tr.dropped { background: #fde8e0; color: var(--muted); text-decoration: line-through; }
+th.col-go { background: #d4e9dc; }
+th.col-drop { background: #f5e0d8; color: var(--muted); }
+tr.group td { background: #1f1c18; color: white; padding: 2px 8px; font-size: 9.5px; font-weight: 700; letter-spacing: 0.05em; }
+.score-good { color: #2d6a4f; font-weight: 700; }
+.score-bad { color: #c34a1f; font-weight: 700; }
+
+ul { padding-left: 14px; }
+ul li { margin-bottom: 2px; }
+ol { padding-left: 18px; }
+ol li { margin-bottom: 3px; }
+
+.tag {
+  display: inline-block;
+  font-size: 8.5px;
+  padding: 0 4px;
+  border-radius: 2px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+}
+.tag.fact { background: var(--good); color: white; }
+.tag.spec { background: var(--warn); color: white; }
+.tag.todo { background: var(--accent); color: white; }
+.tag.drop { background: var(--muted); color: white; }
+.tag.go { background: var(--good); color: white; }
+
+.service-card {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  background: #fdfbf6;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  border-radius: 3px;
+}
+.service-card.go {
+  border-left-color: var(--good);
+  background: #f6faf7;
+}
+.service-card.drop {
+  border-left-color: var(--muted);
+  background: #f8f5f0;
+  opacity: 0.85;
+}
+.service-card h3 {
+  border: none;
+  padding: 0;
+  margin: 0 0 4px 0;
+  font-size: 12px;
+}
+.service-card .price-line {
+  font-size: 10.5px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.service-card .price-line strong { color: var(--fg); font-size: 12px; }
+
+.warn-block {
+  background: var(--speculation);
+  border-left: 3px solid var(--warn);
+  padding: 5px 8px;
+  margin: 4px 0;
+  font-size: 10.5px;
+}
+.warn-block strong { color: var(--warn); }
+
+.fact-block {
+  background: var(--confirmed);
+  border-left: 3px solid var(--good);
+  padding: 5px 8px;
+  margin: 4px 0;
+  font-size: 10.5px;
+}
+
+.critical-block {
+  background: var(--critical);
+  border-left: 3px solid var(--warn);
+  padding: 6px 10px;
+  margin: 5px 0;
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.archi-flow {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 9.5px;
+  background: #f4ede0;
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  white-space: pre;
+  overflow-x: auto;
+  border-radius: 3px;
+  margin: 4px 0;
+}
+
+footer {
+  margin-top: 14px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+  font-size: 9.5px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.toc {
+  background: #fdfbf6;
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  font-size: 10px;
+  margin-bottom: 10px;
+}
+.toc strong { display: block; margin-bottom: 3px; }
+
+@media print {
+  body { background: white; }
+  .page { box-shadow: none; margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<header>
+  <h1>BPaaS サービス設計 v2 — 工務店向け業務代行 (4 軸リサーチ反映)</h1>
+  <div class="meta">2026-05-19 / v1 全面書き直し / 競合 + 法務 + 税理士法 + LINE API 調査済</div>
+</header>
+
+<div class="toc">
+  <strong>このドキュメントの構成</strong>
+  §1 v1 からの主要変更点 (10 件) / §2 全体サマリ / §3 競合マップ (調査結果反映) / §4 サービス別詳細 (5 → 3 推奨に絞り込み) / §5 月末集中問題への対策 / §6 LINE 公式アカウント アーキテクチャ / §7 法務・契約・個情法・税理士法 / §8 損害保険・インボイス・フリーランス新法 / §9 キャパシティ試算 (再検証) / §10 価格設計の根拠 (業界相場ベース) / §11 信ぴょう性の所在 / §12 5/22 北原氏面談 + 友人 Phase 3 で確認したい論点 / §13 次のアクション
+</div>
+
+<div class="section">
+  <h2>1. v1 (2026-05-19 朝) からの主要変更点</h2>
+  <p style="font-size:10.5px;">v1 は labor 試算と価格を主に推測で組んだ初版。 v2 は <strong>競合 / 法務 / 税理士法 / LINE API の 4 軸並列リサーチ</strong>を反映し、 v1 で見落としていた 10 件の論点を反映。</p>
+  <table>
+    <thead>
+      <tr><th style="width:30%;">変更点</th><th>内容</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>① 月末集中問題</td><td>建設業の月末締めは業界慣習として確立 (建設業法 24 条の 3 でも月末締め前提)、 顧客側の締め日分散は期待しにくい → §5 で 5 つの対策案</td></tr>
+      <tr><td>② LINE 受信の物理的不可</td><td>個人 LINE 経由は API 規約違反 + 画像 14 日期限。 LINE 公式アカウント (Messaging API) 必須、 Content API は即時 fetch + 自社 Storage 保存が前提 → §6</td></tr>
+      <tr><td>③ ANDPAD BPO 大手競合</td><td>業界 No.1 ANDPAD (23 万社 / 68 万ユーザー) が BPO 提供中。 ただし「初期 ¥100K + 月額 ¥36K〜 60ID」 は 5-30 人規模に重く中小工務店向きでない可能性 → §3</td></tr>
+      <tr><td>④ ノンコア (建設業 BPO)</td><td>20h ¥77K / 120h ¥396K の時間チャージ型、 写真整理を明示業務化。 masatoman ¥15K/月は時給換算で衝突</td></tr>
+      <tr><td>⑤ 日報代行・見積代行は競合不在 = 需要不在の可能性</td><td>市場に「日報代行サービス」 が単独業務として存在しない / 見積代行は機密性ハードルで外注文化なし → §4 で 5 → 3 推奨に絞り込み</td></tr>
+      <tr><td>⑥ 施主連絡代行は市場空白</td><td>競合発見されず。 主顧客の「個人客 9 割」 (友人 N=1) に直撃する最重要サービス候補</td></tr>
+      <tr><td>⑦ 税理士法 52 条 OK/NG 線</td><td>2025-05 警視庁初の名義貸し摘発 (3 年 / 300 件 / 報酬 1.3 億)。 推奨形態 = A 分業モデル (代行業者 + 提携税理士の 2 本立て契約) → §7</td></tr>
+      <tr><td>⑧ 個人情報保護法 2022 改正</td><td>5,000 件以下小規模事業者除外撤廃で個人事業主も全件対象。 漏洩時 3-5 日速報 / 30 日確報、 罰金 100 万円 → §7</td></tr>
+      <tr><td>⑨ 損害保険必須</td><td>FREENANCE 無料 + フリーランス協会 ¥10K + サイバー保険 ¥30-50K = 年 ¥40-60K を固定費に組込 → §8</td></tr>
+      <tr><td>⑩ フリーランス新法 (2024-11)</td><td>副業外注を使うと「発注側」 にも該当、 60 日支払期日 + 書面交付義務 + 7 つの禁止行為 → §8</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <h2>2. 全体サマリ (v2 推奨構成)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th><th>サービス</th>
+        <th class="num">BPaaS 月額</th><th class="num">SaaS 月額</th>
+        <th class="num">労力/月</th><th>v2 判定</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="recommend">
+        <td>①</td><td>現場写真整理代行</td>
+        <td class="num">¥18,000</td><td class="num">¥7,000</td>
+        <td class="num">3-4h</td><td><span class="tag go">GO</span> 競合相場と整合、 蔵衛門 + α ポジション</td>
+      </tr>
+      <tr class="recommend">
+        <td>②</td><td>領収書・経理代行</td>
+        <td class="num">¥30,000</td><td class="num">¥10,000</td>
+        <td class="num">6-10h</td><td><span class="tag go">GO</span> 業界相場上限、 工務店特化プレミアム成立</td>
+      </tr>
+      <tr class="dropped">
+        <td>③</td><td>日報作成代行</td>
+        <td class="num">¥20,000</td><td class="num">¥8,000</td>
+        <td class="num">5-13h</td><td><span class="tag drop">DROP / 保留</span> 競合不在 = 需要不在、 友人 N=1 でも紙文化</td>
+      </tr>
+      <tr class="dropped">
+        <td>④</td><td>見積書作成代行</td>
+        <td class="num">¥30,000</td><td class="num">¥12,000</td>
+        <td class="num">3.5-10h</td><td><span class="tag drop">DROP / 保留</span> 機密性 (粗利率含む) で外注文化なし、 競合不在</td>
+      </tr>
+      <tr class="recommend">
+        <td>⑤</td><td>施主連絡代行</td>
+        <td class="num">¥25,000</td><td class="num">¥8,000</td>
+        <td class="num">4-8h</td><td><span class="tag go">GO ★</span> 市場空白、 個人客 9 割に直撃する最重要サービス</td>
+      </tr>
+      <tr class="summary-row">
+        <td>—</td><td>v2 推奨 3 サービス フル</td>
+        <td class="num">¥73,000</td><td class="num">¥25,000</td>
+        <td class="num">13-22h</td><td>1 顧客で 12 ヶ月後 MRR ¥30-60K 目標達成</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="critical-block">
+    <strong>v2 の核心判断</strong>: 5 サービス並列 → <strong>3 サービス推奨 (写真整理 + 経理 + 施主連絡)</strong> + 日報・見積は <strong>友人 Phase 3 ヒアリングで需要確認後に判断</strong>。
+    v1 の「フルコース ¥115K」 は競合不在 = 需要不在の罠を含んでいた。
+  </div>
+</div>
+
+<div class="section">
+  <h2>3. 競合マップ (4 軸リサーチ反映)</h2>
+
+  <h3>3.1 工務店向け統合 SaaS / BPO</h3>
+  <table>
+    <thead><tr><th>事業者</th><th>形態</th><th class="num">月額</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td><strong>ANDPAD</strong></td><td>SaaS</td><td class="num">非公開 (個別見積)</td><td>23 万社 / 68 万ユーザー、 シェア No.1。 ただし App Store 評価 2.8/5 で「20-30 人で割高」「高齢者の壁」 不満</td></tr>
+      <tr><td><strong>ANDPAD BPO</strong></td><td>BPaaS</td><td class="num">初期 ¥100K + 月 ¥36K〜 (60ID)</td><td>5-30 人規模工務店向けには重い構造</td></tr>
+      <tr><td>ダンドリワーク</td><td>SaaS</td><td class="num">非公開</td><td>中小工務店向け</td></tr>
+      <tr><td>建て役者</td><td>SaaS</td><td class="num">初期 ¥30K + 年額 ¥48K (≒月 ¥4K)</td><td>720 社導入、 廉価ポジション</td></tr>
+      <tr><td>アイピア</td><td>SaaS</td><td class="num">月 ¥10K〜</td><td>見積 + 原価 + 工程の一元管理</td></tr>
+      <tr><td>建設BPOセンター</td><td>BPaaS</td><td class="num">非公開</td><td>大規模案件中心</td></tr>
+    </tbody>
+  </table>
+
+  <h3>3.2 写真整理 (蔵衛門 / ノンコア)</h3>
+  <table>
+    <thead><tr><th>事業者</th><th>形態</th><th class="num">料金</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td><strong>蔵衛門クラウド</strong></td><td>SaaS</td><td class="num">¥880-1,100/人/月</td><td>業界デファクト、 中小も利用。 masatoman ¥18K = 3 人パック ¥3,300 の 5-6 倍</td></tr>
+      <tr><td><strong>ノンコア</strong></td><td>BPaaS チャージ</td><td class="num">20h ¥77K / 120h ¥396K (¥1,375-1,750/30分)</td><td>写真整理を明示業務化、 時間チャージ型</td></tr>
+      <tr><td>ANDPAD カメラ/写真台帳</td><td>SaaS</td><td class="num">ANDPAD 統合</td><td>シェア No.1 内包</td></tr>
+    </tbody>
+  </table>
+
+  <h3>3.3 経理代行 (¥6K-30K が業界相場)</h3>
+  <table>
+    <thead><tr><th>事業者</th><th class="num">月額</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>Bizer 士業相談</td><td class="num">¥2,980/月 + 決算 ¥50K〜</td><td>個人事業主向け</td></tr>
+      <tr><td>KANBEI</td><td class="num">¥1,100〜</td><td>freee 対応記帳代行</td></tr>
+      <tr><td>タクシタ経理</td><td class="num">¥38,000〜 (チケット制)</td><td>記帳 + 請求書 + 経費 + 給与</td></tr>
+      <tr><td>記帳代行 (個人税理士)</td><td class="num">¥6K-30K/月 (個人事業主) / ¥100/仕訳</td><td>業界相場、 顧問契約抱き合わせが多い</td></tr>
+      <tr><td><strong>CASTER BIZ accounting</strong></td><td class="num">¥225K〜 (20名以下 30h)</td><td>中小フル代行、 別レイヤー</td></tr>
+      <tr><td><strong>Remoba 経理</strong></td><td class="num">¥180-200K</td><td>中小フル代行</td></tr>
+      <tr><td>HELP YOU</td><td class="num">¥100-200K</td><td>チーム型</td></tr>
+    </tbody>
+  </table>
+  <div class="fact-block">
+    <strong>仕訳単価相場 <span class="tag fact">確認済</span></strong>: PDF/Excel 入稿 ¥40 以下、 紙 ¥50〜、 バラバラ紙 ¥60〜、 特急 +¥20。 月 100-200 仕訳で ¥10-30K が市場ど真ん中。 <strong>masatoman ¥30K は工務店特化プレミアムで成立</strong>。
+  </div>
+
+  <h3>3.4 オンラインアシスタント (一般秘書系)</h3>
+  <table>
+    <thead><tr><th>事業者</th><th class="num">月額</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>フジ子さん</td><td class="num">¥33K〜</td><td>10h 〜</td></tr>
+      <tr><td>i-STAFF</td><td class="num">¥79-102K</td><td>30h 〜</td></tr>
+      <tr><td>My Assistant</td><td class="num">¥27.5-44K</td><td>個人 / 小規模向け</td></tr>
+    </tbody>
+  </table>
+
+  <div class="critical-block">
+    <strong>競合分析の核心</strong>:
+    <ul style="margin-top:3px;">
+      <li><strong>勝てる場所</strong>: 中小工務店 (5-30 人) 向けの廉価 BPaaS は市場として薄い。 ANDPAD BPO は重すぎ、 ノンコアは時間チャージで使いにくい、 CASTER BIZ は ¥22.5 万でオーバースペック</li>
+      <li><strong>負ける場所</strong>: ANDPAD 統合提案 (23 万社シェア)、 蔵衛門 (¥3,300 で写真整理) との価格差 5-6 倍の正当化が必要</li>
+      <li><strong>差別化軸</strong>: 「LINE に送るだけ」 + 「工務店特化 (建設業簿記 + 施主連絡)」 + 「IT 弱者 OK」 の 3 点セット</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <h2>4. サービス別詳細 (5 → 3 推奨に絞り込み)</h2>
+
+  <div class="service-card go">
+    <h3>① 現場写真整理代行 <span class="tag go">GO</span></h3>
+    <div class="price-line"><strong>BPaaS ¥18,000/月</strong> → SaaS ¥7,000/月 (40%)</div>
+    <p>LINE で受信 → 工事番号別仕分け → 月末に PDF 台帳 3 テンプレ (完了報告 / 施主アルバム / 保証書添付)</p>
+    <p style="font-size:10px; color:var(--muted);"><strong>v1 ¥15K から +¥3K</strong>: 蔵衛門 ¥3,300/月との差別化 (代行 + 工事番号自動推定 + 3 テンプレ自動生成) で +¥3K 正当化。 月 100-300 枚処理を契約上限化、 超過分は別料金</p>
+  </div>
+
+  <div class="service-card go">
+    <h3>② 領収書・経理代行 <span class="tag go">GO</span></h3>
+    <div class="price-line"><strong>BPaaS ¥30,000/月</strong> → SaaS ¥10,000/月 (33%)</div>
+    <p>領収書・請求書を LINE 写真送信 → OCR 仕訳 / 請求書発行 / 入金消込 / 月次レポート</p>
+    <div class="warn-block">
+      <strong>⚠️ 税理士法 52 条 <span class="tag fact">調査済</span></strong>: 仕訳・記帳代行 OK、 個別勘定科目判断・節税アドバイス・申告書作成 NG。 <strong>推奨 = A 分業モデル</strong> (代行業者 + 提携税理士の 2 本立て契約)。 認定支援機関税理士の事前確保が事業開始の前提条件。 詳細 §7
+    </div>
+    <p style="font-size:10px;"><strong>v1 ¥30K 据え置き</strong>: 業界相場 ¥6-30K の上限近辺。 仕訳 100-200 件 / 月想定で工務店特化プレミアム成立。 ただし建設業簿記の最低限知識 (完成工事高 / 完成工事原価 / 未成工事支出金 等 5 勘定科目) は習得必須</p>
+  </div>
+
+  <div class="service-card drop">
+    <h3>③ 日報作成代行 <span class="tag drop">DROP / 保留</span></h3>
+    <div class="price-line">v1: BPaaS ¥20,000/月 → <strong>v2 で一旦保留</strong></div>
+    <p>音声 LINE 送信 → Whisper 文字起こし + Claude 整形 → 日次/月末 PDF</p>
+    <div class="warn-block">
+      <strong>⚠️ 競合不在 = 需要不在の罠</strong>:
+      <ul style="margin-top:3px;">
+        <li>市場に「日報代行サービス」 が単独業務として存在しない (一般化していない)</li>
+        <li>日報革命 / nanoty 等の SaaS はあるが、 工務店特化代行は発見されず</li>
+        <li>友人 N=1 で「日報は紙」 と判明 (memory <code>friend-hearing-result-2026-05-14</code>)</li>
+        <li>労力 5-13h で時給 1,500-4,000 円 = 5 サービス中で最低</li>
+      </ul>
+      <strong>判断</strong>: <strong>Phase 3 友人ヒアリングで需要確認後、 復活 or 撤退判定</strong>。 「日報書く時間がもう一現場分になる」 訴求が刺さるか、 そもそも日報書いてないかで判断
+    </div>
+  </div>
+
+  <div class="service-card drop">
+    <h3>④ 見積書作成代行 <span class="tag drop">DROP / 保留</span></h3>
+    <div class="price-line">v1: BPaaS ¥30,000/月 → <strong>v2 で一旦保留</strong></div>
+    <p>過去見積 ベクトル DB 学習 → 新規案件 LINE 受信 → ドラフト生成 → 顧客確認 → 確定</p>
+    <div class="warn-block">
+      <strong>⚠️ 機密性ハードルで外注文化なし</strong>:
+      <ul style="margin-top:3px;">
+        <li>見積は粗利率を含むため工務店が外部委託しにくい (営業判断 + 機密性)</li>
+        <li>建て役者 ¥4K/月 / アイピア ¥10K/月 等の SaaS で十分対応している市場</li>
+        <li>初回オンボーディング 5-10h の負担が顧客にも masatoman にも重い</li>
+      </ul>
+      <strong>判断</strong>: <strong>「テンプレ作成支援」 or 「初回学習だけスポット ¥50K」 にリフレーミング</strong>を検討、 月額 BPaaS としては撤退。 5/22 北原氏 Q12 で外注の心理障壁を確認
+    </div>
+  </div>
+
+  <div class="service-card go">
+    <h3>⑤ 施主連絡代行 <span class="tag go">GO ★ 最重要</span></h3>
+    <div class="price-line"><strong>BPaaS ¥25,000/月</strong> → SaaS ¥8,000/月 (32%)</div>
+    <p>工事進捗写真 + 一言コメント受信 → 施主向け定期メッセージ作成 (週 1-2 回) → LINE/メール/SMS 送信 → クレーム兆候検出 → 工務店エスカレ</p>
+    <div class="fact-block">
+      <strong>💡 v1 ¥20K → v2 ¥25K に値上げ</strong>:
+      <ul style="margin-top:3px;">
+        <li><strong>市場空白 <span class="tag fact">調査済</span></strong>: 「施主への進捗連絡代行」 は単独サービスとして競合発見されず</li>
+        <li>ANDPAD 施主アプリは「自社で運用するツール」 で代行ではない</li>
+        <li>友人 N=1 で「個人客 9 割」 判明 → B2C 接点肩代わりは主顧客痛点直撃</li>
+        <li>masatoman の本業 (受託) と最も近いスキル領域 = 文章生成・コミュニケーション</li>
+      </ul>
+      → 5 サービス中で <strong>最も差別化が効き値上げ余地がある</strong>
+    </div>
+    <div class="warn-block">
+      <strong>⚠️ クレーム責任分界 <span class="tag fact">必須対応</span></strong>: 契約書で「代行範囲」「最終判断は工務店」「賠償上限 = 月額 1-3 ヶ月分」 明示 + サイバー保険必須。 詳細 §7-8
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>4.5 多軸比較表 — 5 サービスを 18 軸で比較</h2>
+  <p style="font-size:10.5px;">v2 推奨 3 サービス (① 写真整理 / ② 経理 / ⑤ 施主連絡) と DROP/保留中の 2 サービス (③ 日報 / ④ 見積) を 18 軸で評価。 緑のヘッダ = v2 推奨、 赤茶のヘッダ = DROP/保留。 ★ は 5 段階。 数値は実測 / 推測 (§11 信ぴょう性参照)。</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:22%;">指標</th>
+        <th class="col-go">① 写真整理</th>
+        <th class="col-go">② 経理</th>
+        <th class="col-drop">③ 日報</th>
+        <th class="col-drop">④ 見積</th>
+        <th class="col-go">⑤ 施主連絡 ★</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="group"><td colspan="6">A. 収益関連</td></tr>
+      <tr>
+        <td>BPaaS 月額</td>
+        <td class="num">¥18,000</td>
+        <td class="num">¥30,000</td>
+        <td class="num">¥20,000</td>
+        <td class="num">¥30,000</td>
+        <td class="num">¥25,000</td>
+      </tr>
+      <tr>
+        <td>SaaS 移行時月額</td>
+        <td class="num">¥7,000</td>
+        <td class="num">¥10,000</td>
+        <td class="num">¥8,000</td>
+        <td class="num">¥12,000</td>
+        <td class="num">¥8,000</td>
+      </tr>
+      <tr>
+        <td>工数 (h/顧客/月)</td>
+        <td class="num">3-4</td>
+        <td class="num">6-10</td>
+        <td class="num">5-13</td>
+        <td class="num">3.5-10</td>
+        <td class="num">4-8</td>
+      </tr>
+      <tr>
+        <td>時給換算 (円)</td>
+        <td class="num"><span class="score-good">¥4,500-6,000</span></td>
+        <td class="num">¥3,000-5,000</td>
+        <td class="num"><span class="score-bad">¥1,538-4,000</span></td>
+        <td class="num"><span class="score-good">¥3,000-8,571</span></td>
+        <td class="num">¥3,125-6,250</td>
+      </tr>
+      <tr>
+        <td>粗利率 (固定費控除後)</td>
+        <td class="num">78%</td>
+        <td class="num"><span class="score-good">87%</span></td>
+        <td class="num">80%</td>
+        <td class="num"><span class="score-good">87%</span></td>
+        <td class="num">84%</td>
+      </tr>
+      <tr>
+        <td>オンボーディング工数</td>
+        <td class="num"><span class="score-good">1-2h</span></td>
+        <td class="num"><span class="score-bad">5-10h</span></td>
+        <td class="num">2-3h</td>
+        <td class="num"><span class="score-bad">5-10h</span></td>
+        <td class="num">2-3h</td>
+      </tr>
+
+      <tr class="group"><td colspan="6">B. 実装・運用</td></tr>
+      <tr>
+        <td>実装しやすさ (MVP まで)</td>
+        <td><span class="score-good">★★★★</span></td>
+        <td><span class="score-bad">★★</span></td>
+        <td>★★★</td>
+        <td><span class="score-bad">★★</span></td>
+        <td>★★★</td>
+      </tr>
+      <tr>
+        <td>SaaS 化容易度 (将来自動化)</td>
+        <td>★★★★</td>
+        <td><span class="score-bad">★★</span></td>
+        <td><span class="score-good">★★★★★</span></td>
+        <td>★★★</td>
+        <td><span class="score-bad">★★</span></td>
+      </tr>
+      <tr>
+        <td>masatoman 学習コスト</td>
+        <td><span class="score-good">低</span></td>
+        <td><span class="score-bad">高 (建設業簿記)</span></td>
+        <td>中 (Whisper)</td>
+        <td><span class="score-bad">高 (見積知識)</span></td>
+        <td>中 (文章作成)</td>
+      </tr>
+      <tr>
+        <td>属人化リスク (1 人運用依存)</td>
+        <td>中</td>
+        <td><span class="score-bad">高</span></td>
+        <td><span class="score-good">低</span></td>
+        <td><span class="score-bad">高</span></td>
+        <td><span class="score-bad">高</span></td>
+      </tr>
+      <tr>
+        <td>副業外注しやすさ</td>
+        <td><span class="score-good">◎</span></td>
+        <td>△ (建設業簿記)</td>
+        <td><span class="score-good">◎</span></td>
+        <td>× (機密性)</td>
+        <td>△ (トーン感)</td>
+      </tr>
+
+      <tr class="group"><td colspan="6">C. 市場・需要</td></tr>
+      <tr>
+        <td>競合密度</td>
+        <td><span class="score-bad">高 (蔵衛門/ANDPAD/ノンコア)</span></td>
+        <td>中 (記帳代行多数)</td>
+        <td>低-不在</td>
+        <td>不在</td>
+        <td><span class="score-good">不在 (空白)</span></td>
+      </tr>
+      <tr>
+        <td>需要確実性</td>
+        <td>中</td>
+        <td><span class="score-good">高 (中堅工務店)</span></td>
+        <td><span class="score-bad">低 (友人 N=1 紙)</span></td>
+        <td><span class="score-bad">低 (機密性)</span></td>
+        <td><span class="score-good">高 (個人客 9 割)</span></td>
+      </tr>
+      <tr>
+        <td>主顧客痛点距離</td>
+        <td>中</td>
+        <td><span class="score-good">高 (経理 = 妻)</span></td>
+        <td>低</td>
+        <td>中</td>
+        <td><span class="score-good">最高</span></td>
+      </tr>
+      <tr>
+        <td>クロスセル価値</td>
+        <td><span class="score-good">高 (施主連絡と双方向)</span></td>
+        <td>中</td>
+        <td>低</td>
+        <td>中</td>
+        <td><span class="score-good">高 (写真整理と双方向)</span></td>
+      </tr>
+      <tr>
+        <td>マーケ材料化容易度</td>
+        <td><span class="score-good">高 (Before/After)</span></td>
+        <td>中 (機密性)</td>
+        <td>中</td>
+        <td>中 (機密性)</td>
+        <td>中 (顧客特定避要)</td>
+      </tr>
+
+      <tr class="group"><td colspan="6">D. リスク</td></tr>
+      <tr>
+        <td>法務リスク</td>
+        <td><span class="score-good">低 (個情のみ)</span></td>
+        <td><span class="score-bad">高 (税理士法 52 条)</span></td>
+        <td><span class="score-good">低</span></td>
+        <td>中 (機密性)</td>
+        <td><span class="score-bad">高 (クレーム + 個情)</span></td>
+      </tr>
+      <tr>
+        <td>クレーム発生確率</td>
+        <td>低</td>
+        <td>中 (税務影響)</td>
+        <td>低</td>
+        <td>中 (見積ミス)</td>
+        <td><span class="score-bad">高 (誤発信)</span></td>
+      </tr>
+
+      <tr class="group"><td colspan="6">E. 総合判定</td></tr>
+      <tr>
+        <td><strong>v2 判定</strong></td>
+        <td><strong class="score-good">GO</strong></td>
+        <td><strong class="score-good">GO</strong><br><small>税理士提携要</small></td>
+        <td><strong style="color:var(--muted);">DROP/保留</strong></td>
+        <td><strong style="color:var(--muted);">DROP/保留</strong></td>
+        <td><strong class="score-good">GO ★ 最重要</strong></td>
+      </tr>
+      <tr>
+        <td><strong>5/22 後の優先度</strong></td>
+        <td><strong>A</strong></td>
+        <td><strong>A</strong></td>
+        <td>C</td>
+        <td>C</td>
+        <td><strong class="score-good">S</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>多軸比較から見える各サービスの「勝ち筋 / 負け筋」</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:18%;">指標 (極値)</th>
+        <th>勝ち筋</th>
+        <th>裏返しの罠</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>時給最強</strong></td>
+        <td>見積代行 ¥8,571/h (¥30K ÷ 3.5h)</td>
+        <td><span class="score-bad">需要不在 + 機密性で実現困難 → DROP</span></td>
+      </tr>
+      <tr>
+        <td><strong>粗利率最強</strong></td>
+        <td>経理 + 見積で 87%</td>
+        <td>経理は税理士法、 見積は機密性で参入障壁</td>
+      </tr>
+      <tr>
+        <td><strong>実装最楽</strong></td>
+        <td>写真整理 ★★★★ (画像保存 + AI 仕分け + PDF)</td>
+        <td><span class="score-bad">蔵衛門 ¥3,300 と価格差 5-6 倍、 営業困難</span></td>
+      </tr>
+      <tr>
+        <td><strong>SaaS 化最容易</strong></td>
+        <td>日報代行 ★★★★★ (Whisper + Claude で 90% 自動化)</td>
+        <td><span class="score-bad">需要不在 = SaaS でも誰も買わない</span></td>
+      </tr>
+      <tr>
+        <td><strong>市場空白</strong></td>
+        <td>施主連絡 (競合不在 + 主顧客痛点最高)</td>
+        <td><span class="score-bad">クレーム責任 + 個情リスクが法務 TOP2</span></td>
+      </tr>
+      <tr>
+        <td><strong>主顧客痛点最高</strong></td>
+        <td>施主連絡 (個人客 9 割の B2C 接点肩代わり)</td>
+        <td>友人 N=1 のみ、 N=2-3 で再確認必要</td>
+      </tr>
+      <tr>
+        <td><strong>クロスセル起点</strong></td>
+        <td>施主連絡 ⇔ 写真整理 の双方向</td>
+        <td>経理単独では波及効果弱い</td>
+      </tr>
+      <tr>
+        <td><strong>副業外注しやすさ</strong></td>
+        <td>写真整理 + 日報 (マニュアル化容易)</td>
+        <td>経理 / 見積 / 施主連絡は属人化、 5 顧客超で詰まる起点</td>
+      </tr>
+      <tr>
+        <td><strong>オンボーディング最楽</strong></td>
+        <td>写真整理 1-2h (LINE 友だち追加 + 工事番号説明のみ)</td>
+        <td>経理 5-10h (建設業簿記 + freee 連携 + 税理士紹介) が新規開拓のボトルネック</td>
+      </tr>
+      <tr>
+        <td><strong>マーケ材料化</strong></td>
+        <td>写真整理 (Before/After PDF サンプル提示しやすい)</td>
+        <td>経理 / 見積 / 施主連絡は機密性で公開デモ困難</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="critical-block">
+    <strong>多軸比較の核心結論</strong>
+    <ol style="margin-top:4px;">
+      <li><strong>「実装容易 × 競合密度高」 の罠</strong>: 写真整理は実装楽 + 粗利 78% だが競合密集 (蔵衛門 ¥3,300 と価格差 5-6 倍)。 単独販売だと営業困難 → クロスセル起点として施主連絡とセット運用前提</li>
+      <li><strong>「時給最強 × 需要不在」 の罠</strong>: 見積代行は時給 ¥8,571 まで上がるが市場に競合がない = 工務店が外注しない構造 (機密性 + 営業判断)。 数字だけで飛びつくと撤退</li>
+      <li><strong>「需要最高 × クレーム最高」 の交差点</strong>: 施主連絡は最重要 (S 優先) だが、 法務 + 損害保険 + 契約書整備が必須。 税理士法の経理と並ぶリスク TOP2</li>
+      <li><strong>「学習コスト × 属人化」 が経理の最大壁</strong>: 建設業簿記 + 税理士法線引き + 提携税理士確保で参入障壁高、 一度乗り越えれば差別化堀になる</li>
+      <li><strong>3 推奨セット (写真 + 経理 + 施主) の補完性</strong>: 競合密度 / 需要 / リスク のバランス良し。 単独販売ではなく <strong>「セットで月 ¥73K」 で価値最大化</strong>。 単機能だけだと競合 (蔵衛門 / 記帳代行) に潰される</li>
+      <li><strong>1 つだけ着手するなら写真整理</strong>: 実装最楽 + マーケ材料化容易 + クロスセル起点 + 法務リスク低 で MVP として最適。 ただし利益単独では細いので、 写真整理を「フック」 にして経理 + 施主連絡へ誘導するセット販売を前提に</li>
+    </ol>
+  </div>
+</div>
+
+<div class="section">
+  <h2>5. 月末集中問題への対策</h2>
+
+  <div class="critical-block">
+    <strong>v1 の致命的見落とし</strong>: 「月末に PDF 配送」 設計だと 3 顧客契約で月末 5 営業日に 18-24h 業務集中 = 物理不可能。
+    建設業の月末締めは業界慣習として確立済 (建設業法 24 条の 3 が月末締め前提)、 顧客側の締め日分散は期待しにくい。
+  </div>
+
+  <h3>対策 5 案</h3>
+  <table>
+    <thead><tr><th style="width:18%;">案</th><th>内容</th><th>採否</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>A: 顧客毎の締め日分散</td>
+        <td>契約時に 5/10/15/20/25/末 から選択、 1 締め日に最大 2 顧客制限</td>
+        <td>△ 業界慣習が月末締めなので顧客受容度低い</td>
+      </tr>
+      <tr style="background:#e6f0ea;">
+        <td>B: 工程分散化 (月末 PDF 廃止) ★</td>
+        <td>「月末配送」 → 「工事完了タイミング配送」「毎週金曜 dashboard 更新」 に変更</td>
+        <td><strong>◎ 採用</strong>: 写真整理 + 施主連絡で適用、 経理は月末固定</td>
+      </tr>
+      <tr style="background:#e6f0ea;">
+        <td>C: 段階別請求 (15 日中間処理) ★</td>
+        <td>領収書 1-14 日分を 15 日処理、 15-月末分を月末処理</td>
+        <td><strong>◎ 採用</strong>: 経理代行の月末工数を半減</td>
+      </tr>
+      <tr>
+        <td>D: 自動化フル投入</td>
+        <td>PDF 生成 / 仕訳 / レポートを 99% 自動化、 masatoman は週 1 確認のみ</td>
+        <td>△ 開発 50-100h + AI 精度の壁、 SaaS 化してしまう</td>
+      </tr>
+      <tr>
+        <td>E: 月末ピーク用 副業外注</td>
+        <td>シニア経理経験者を月末 3-5 日 時給 ¥2,000-3,000 でスポット雇用</td>
+        <td>○ 顧客 5+ で導入、 フリーランス新法対応必要 (§8)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="fact-block">
+    <strong>v2 推奨方針</strong>: <strong>B + C のハイブリッド</strong>
+    <ul style="margin-top:3px;">
+      <li>写真整理 ① + 施主連絡 ⑤ = 月末配送やめて週次/工事完了配送 (案 B)</li>
+      <li>経理 ② = 15 日 中間処理日 + 月末処理日 の 2 山構成 (案 C)</li>
+      <li>3 顧客でも月末ピーク 8-12h で済む計算 (v1 では 18-24h)</li>
+      <li>5 顧客超で 案 E (副業外注) 導入準備</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <h2>6. LINE 公式アカウント アーキテクチャ <span class="tag fact">調査済</span></h2>
+
+  <div class="critical-block">
+    <strong>個人 LINE 経由は不可</strong>: API 経由メッセージ取得は LINE 利用規約違反 + 画像 14 日期限。 <strong>LINE 公式アカウント (Messaging API) 必須</strong>。
+  </div>
+
+  <h3>料金プラン (2026 年現在)</h3>
+  <table>
+    <thead><tr><th>プラン</th><th class="num">月額</th><th>送信通数</th><th>追加</th></tr></thead>
+    <tbody>
+      <tr><td><strong>コミュニケーション (推奨開始)</strong></td><td class="num">¥0</td><td>200 通/月</td><td>不可</td></tr>
+      <tr><td>ライト</td><td class="num">¥5,000</td><td>5,000 通/月</td><td>不可</td></tr>
+      <tr><td>スタンダード</td><td class="num">¥15,000</td><td>30,000 通/月</td><td>〜¥3/通</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:10px;"><strong>受信メッセージは無料カウント外</strong>。 <strong>応答メッセージ (Reply) も無料</strong>。 Push のみカウント。 顧客 10 社 × 月 5-10 通 Push 想定なら ¥0 で MVP 開始可能、 顧客超過時にライト ¥5K 移行。</p>
+
+  <h3>推奨アーキテクチャ</h3>
+  <div class="archi-flow">[工務店オーナーの LINE]
+   ↓ (QR で「井原工務店サポート」 LINE 公式アカウント 友だち追加)
+[LINE Platform]
+   ↓ Webhook (HTTPS、 署名検証、 即 200 返却、 webhookEventId 重複排除)
+[Vercel Function or Supabase Edge Function]
+   ↓ (Content API で即 fetch、 数秒以内、 自動削除前)
+[Supabase Storage] (顧客毎 prefix: /customers/{userId}/)
+   ↓
+[管理 UI (社内ツール)] — 受信一覧 + 作業状態 + 納品メッセージ送信
+   ↓ Reply Message (応答 = 無料)
+[工務店オーナーの LINE] — 納品受領
+</div>
+
+  <h3>実装上の重要設計判断</h3>
+  <ul>
+    <li><strong>Webhook 再送は Console で有効化</strong> (デフォルト OFF、 忘れがち)</li>
+    <li><strong>重複排除</strong>: <code>webhookEventId</code> で確実に</li>
+    <li><strong>リトライキー</strong>: <code>X-Line-Retry-Key</code> ヘッダで API 冪等性</li>
+    <li><strong>Content API 即時 fetch 必須</strong>: 自動削除前 (公式は具体日数非公表、 実装界隈で「2 週間」 説)</li>
+    <li><strong>顧客 = 同一公式アカウントで userId 識別</strong>: 別アカウント運用は規約 OK だが BAN 連帯リスクで非推奨</li>
+    <li><strong>LIFF (LINE Mini App) は Phase 2</strong>: 業務代行依頼フォームを LIFF で実装すると依頼漏れ削減、 初期 100-300 万のため MVP 後</li>
+  </ul>
+
+  <h3>主顧客の LINE 受容度 <span class="tag fact">調査済</span></h3>
+  <table>
+    <thead><tr><th>年齢層</th><th>LINE 利用率</th><th>公式アカウント友だち追加経験</th></tr></thead>
+    <tbody>
+      <tr><td>60 代</td><td>約 86%</td><td>約 86%</td></tr>
+      <tr><td>70 代</td><td>約 53%</td><td>約 53%</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:10px;">→ 主顧客の LINE 公式アカウント追加抵抗は低い。 美容院/整骨院/飲食店の運用事例が普及済 = 工務店オーナーに通る訴求。</p>
+
+  <h3>代替手段比較 (全部学習コスト壁で脱落)</h3>
+  <table>
+    <thead><tr><th>手段</th><th class="num">月額</th><th>主顧客学習コスト</th><th>判定</th></tr></thead>
+    <tbody>
+      <tr><td>LINE 公式アカウント</td><td class="num">¥0〜</td><td>極低</td><td><strong>◎ 採用</strong></td></tr>
+      <tr><td>LINE WORKS フリー</td><td class="num">¥0 (30 人)</td><td>高 (別アプリ DL)</td><td>×</td></tr>
+      <tr><td>WhatsApp Business</td><td class="num">従量</td><td>極高 (日本不普及)</td><td>×</td></tr>
+      <tr><td>Chatwork</td><td class="num">¥700/ユーザー</td><td>中-高</td><td>×</td></tr>
+      <tr><td>Slack</td><td class="num">¥850〜</td><td>高 (IT 系特化)</td><td>×</td></tr>
+      <tr><td>Telegram</td><td class="num">¥0</td><td>極高 (日本不普及)</td><td>×</td></tr>
+      <tr><td>メール</td><td class="num">¥0</td><td>高 (友人 N=1 で 3 割不可)</td><td>×</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <h2>7. 法務・契約・個情法・税理士法 <span class="tag fact">調査済</span></h2>
+
+  <h3>7.1 業務委託契約書 必須条項 (17 項目)</h3>
+  <ol style="columns:2; column-gap:14px;">
+    <li>契約類型 = <strong>準委任 (PDF 納品部分のみ請負)</strong> — 完成義務を負わない構造</li>
+    <li>業務範囲の明示 + 対象外業務</li>
+    <li>報酬・支払期日 (60 日以内、 フリーランス新法)</li>
+    <li><strong>損害賠償上限 = 月額委託料 1-3 ヶ月分</strong></li>
+    <li>責任範囲限定 (故意・重過失除外)</li>
+    <li>守秘義務 (契約終了後 5 年)</li>
+    <li>個人情報取扱条項 (個情法 27 条 委託)</li>
+    <li>SLA はベストエフォート表記</li>
+    <li>月間処理量上限 (写真 100 枚 / 仕訳 200 件 等)</li>
+    <li>解約条件 (最低 3 ヶ月 + 1 ヶ月前通知 + 違約金)</li>
+    <li>自動更新 (1 年 + 1 ヶ月前通知)</li>
+    <li>反社条項 (警察庁ひな形)</li>
+    <li>知的財産権 (PDF 著作権は委託料支払と同時譲渡、 ノウハウは masatoman 留保)</li>
+    <li>再委託条項 (副業外注の事前通知)</li>
+    <li>漏洩報告義務 (24h 以内)</li>
+    <li>不可抗力 (病気・天災時の SLA 免責)</li>
+    <li>準拠法・専属合意管轄 (東京地裁)</li>
+  </ol>
+  <p style="font-size:10px;"><strong>契約書テンプレ入手先</strong>: 公正取引委員会 フリーランス新法ガイドライン契約書ひな型 (PDF、 無料、 推奨) + 弁護士 1 時間レビュー (¥30-50K、 商品確定後 10-12 月 MVP 投入期に実施)</p>
+
+  <h3>7.2 個人情報保護法 (2022 改正) <span class="tag fact">確認済</span></h3>
+  <div class="critical-block">
+    <strong>2022 年改正で 5,000 件以下小規模事業者除外撤廃</strong>。 個人事業主も全件対象、 罰金 100 万円。
+  </div>
+  <table>
+    <thead><tr><th style="width:30%;">義務</th><th>具体的対応</th></tr></thead>
+    <tbody>
+      <tr><td>プライバシーポリシー公開</td><td>屋号サイトに掲載、 利用目的・保管期間・第三者提供有無・問合せ窓口</td></tr>
+      <tr><td>利用目的の明示</td><td>契約書に「施主情報は代行業務遂行のためのみ使用」 明記</td></tr>
+      <tr><td>安全管理措置 (技術)</td><td>暗号化 / アクセスログ / バックアップ / マルウェア対策</td></tr>
+      <tr><td>安全管理措置 (組織)</td><td>1 人運用でも情報取扱規程 + インシデント手順書 文書化必須</td></tr>
+      <tr><td>安全管理措置 (人)</td><td>副業外注に誓約書 + 教育記録</td></tr>
+      <tr><td>安全管理措置 (物理)</td><td>自宅 PC 施錠 / 紙資料施錠 / 覗き見防止</td></tr>
+      <tr><td>LINE 画像の取扱</td><td>施主の顔・自宅外観・表札等は<strong>個人情報該当</strong>、 「画像も委託範囲」 明記必須</td></tr>
+      <tr><td>第三者提供 = 委託として処理</td><td>個情法 27 条 5 項 1 号、 副業外注は第三者提供にあたらないが監督義務発生</td></tr>
+      <tr><td><strong>漏洩時報告</strong></td><td>個人情報保護委員会へ <strong>3-5 日速報 → 30 日確報</strong> + 本人通知 義務</td></tr>
+      <tr><td>保管期間・廃棄</td><td>契約終了後 X ヶ月で削除、 削除証明書発行フロー</td></tr>
+      <tr><td>罰則認識</td><td>報告未実施 / 虚偽報告 = 1 年以下懲役 or 100 万円罰金</td></tr>
+    </tbody>
+  </table>
+
+  <h3>7.3 税理士法 52 条 OK/NG 線 <span class="tag fact">確認済</span></h3>
+  <div class="row2">
+    <div class="box fact">
+      <strong>OK (無資格で可能)</strong>
+      <ul>
+        <li>領収書・請求書の整理・スキャン</li>
+        <li>会計ソフトへの記帳 (仕訳入力)</li>
+        <li>試算表 / 貸借対照表の作成 (機械的計算)</li>
+        <li>入金消込・支払代行</li>
+        <li>銀行・カード連携の初期設定</li>
+        <li>インボイス制度の一般説明</li>
+        <li>適格請求書発行事業者登録の事務代行 (記入補助レベル)</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <strong>NG (税理士独占、 違反で 2 年以下懲役 or 100 万円罰金)</strong>
+      <ul>
+        <li>確定申告書 / 法人税申告書の作成・提出</li>
+        <li>個別勘定科目判断 (「会議費で落とせる?」)</li>
+        <li>節税アドバイス (「役員報酬 ¥X 円に」)</li>
+        <li>年末調整の最終確定・源泉徴収票作成</li>
+        <li>税務調査立会・税務署交渉代理</li>
+        <li>個別具体の納税額計算</li>
+        <li>消費税課税 / 免税の選択判断アドバイス</li>
+      </ul>
+    </div>
+  </div>
+  <div class="critical-block">
+    <strong>2025-05 警視庁初の名義貸し摘発</strong>: 54 歳男性が無資格で 3 年間 / 約 300 件の税務書類作成 / 報酬 1.3 億円。 名義貸し税理士に ¥2,500 万、 東京国税局告発 → 警視庁逮捕。 <strong>絶対に名義貸しモデル NG</strong>。
+  </div>
+
+  <h3>7.4 推奨 = A 分業モデル (代行業者 + 提携税理士の 2 本立て)</h3>
+  <ul>
+    <li>代行業者 (masatoman): 記帳 / 仕訳 / 請求書発行 / 入金消込 / 月次レポート</li>
+    <li>提携税理士: 申告 / 決算 / 税務相談 / 監修</li>
+    <li>契約は <strong>顧客 ↔ 代行業者</strong> と <strong>顧客 ↔ 税理士</strong> の 2 本立て (masatoman は税理士を再委託しない)</li>
+    <li>masatoman は顧客に税理士を紹介、 税理士の指示で記帳実施</li>
+    <li><strong>5/22 北原氏 Q12</strong> で認定支援機関税理士の紹介ルートを相談 (商品確定前でも提携税理士確保は先行可能)</li>
+  </ul>
+  <div class="warn-block">
+    <strong>必須準備</strong>:
+    <ul style="margin-top:3px;">
+      <li>NG ワード集の社内マニュアル化 (「経費で落とせる?」 → 「税理士に確認します」 定型応答)</li>
+      <li>建設業簿記の最低限知識 (建設業経理士 3-4 級レベル)</li>
+      <li>認定支援機関税理士 1-2 名と業務提携契約 (商品開発と並行)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <h2>8. 損害保険・インボイス・フリーランス新法 <span class="tag fact">調査済</span></h2>
+
+  <h3>8.1 推奨損害保険パッケージ (年 ¥40-60K)</h3>
+  <table>
+    <thead><tr><th>保険</th><th class="num">料金</th><th>補償</th><th>推奨度</th></tr></thead>
+    <tbody>
+      <tr><td>FREENANCE あんしん補償 (口座開設)</td><td class="num">無料</td><td>業務遂行中 5,000 万 / 業務過誤 500 万 / 情報漏洩・著作権侵害含む</td><td>★★★ 必須</td></tr>
+      <tr><td>FREENANCE あんしん補償プラス</td><td class="num">月 ¥590-1,200</td><td>病気・ケガ時所得補償</td><td>★★ 1 人運用なら推奨</td></tr>
+      <tr><td>フリーランス協会 ベネフィット</td><td class="num">年 ¥10K</td><td>業務遂行中 1 億 / 受託財物・業務過誤 1,000 万</td><td>★★ FREENANCE 補完</td></tr>
+      <tr><td><strong>サイバー保険 (三井住友海上 / 損保ジャパン / AIG)</strong></td><td class="num">年 ¥30-50K</td><td>賠償 1 億 / 費用 3,000 万 / 個情委通知費用</td><td><strong>★★★ 必須</strong></td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:10px;">→ <strong>合計 年 ¥40-60K、 月換算 ¥3.3-5K の固定費</strong>。 BPaaS 売上から確実に控除する経費。</p>
+
+  <h3>8.2 インボイス制度</h3>
+  <div class="fact-block">
+    <strong>masatoman は BtoB 取引なので 5 顧客時点でも登録推奨</strong>。 工務店 (買い手) の仕入税額控除のため、 未登録だと消費税分値引要求 or 競合への切替リスク。 <strong>2 割特例</strong>で実質負担軽 (期間限定、 売上消費税の 2 割のみ納付)。
+  </div>
+
+  <h3>8.3 フリーランス新法 (2024-11 施行)</h3>
+  <p style="font-size:10.5px;">masatoman は工務店相手 = 受注側 (特定受託事業者)、 副業外注を使うと発注側 (特定業務委託事業者) にも該当。 両面影響:</p>
+  <ul>
+    <li>副業外注に発注時、 業務内容・報酬・支払期日等を書面 or 電磁的方法で明示</li>
+    <li>副業外注への支払は受領日から 60 日以内</li>
+    <li>2026-01 以降 振込手数料を外注負担にすると「報酬減額」 違反</li>
+    <li>1 ヶ月以上継続発注で 7 つの禁止行為 (受領拒否 / 報酬減額 / 買いたたき 等)</li>
+    <li>6 ヶ月以上発注で就業環境配慮義務 (妊娠 / 育児 / 介護 / ハラスメント)</li>
+    <li>違反 = 50 万円以下罰金</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>9. キャパシティ試算 (再検証)</h2>
+
+  <h3>9.1 隠れた工数 (v1 で抜けていた)</h3>
+  <table>
+    <thead><tr><th>工数</th><th class="num">月間</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>顧客運用 (3 推奨サービス)</td><td class="num">13-22h/顧客</td><td>v2 設計</td></tr>
+      <tr><td>営業 (新規開拓 + 既存維持)</td><td class="num">5-15h</td><td>中間業者巡回 / LINE 返信 / 商談</td></tr>
+      <tr><td>契約書 / 法務 / 自分の経理</td><td class="num">3-5h</td><td>契約書 / 月次帳簿 / 確定申告準備</td></tr>
+      <tr><td>トラブル対応 (クレーム / 障害)</td><td class="num">2-10h</td><td>誤発信 / システム障害</td></tr>
+      <tr><td>オンボーディング (新規)</td><td class="num">5-10h × N</td><td>初回のみ、 新規取るたび発生</td></tr>
+      <tr><td>学習 / ツール改善</td><td class="num">2-5h</td><td>Whisper 精度 / プロンプト改良</td></tr>
+      <tr><td><strong>軸 A masatoman.net + 工務店メディア</strong></td><td class="num">10-30h</td><td>STRATEGY.md §3 並走</td></tr>
+    </tbody>
+  </table>
+
+  <h3>9.2 真の運用ライン (再試算)</h3>
+  <table>
+    <thead><tr><th>顧客数</th><th>構成</th><th class="num">月稼働</th><th class="num">MRR</th><th>判定</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>3 推奨サービス フル</td><td class="num">28-52h</td><td class="num">¥73K</td><td>余裕、 軸 A/メディア並走可</td></tr>
+      <tr style="background:#e6f0ea;"><td><strong>2</strong></td><td>3 推奨サービス フル</td><td class="num">41-74h</td><td class="num">¥146K</td><td><strong>★ 安全圏ベスト</strong>、 12 ヶ月後目標超達成</td></tr>
+      <tr><td>3</td><td>3 推奨サービス フル</td><td class="num">54-96h</td><td class="num">¥219K</td><td>軸 A/メディア犠牲、 副業外注準備</td></tr>
+      <tr><td>5</td><td>部分プラン平均 ¥40K</td><td class="num">75-110h</td><td class="num">¥200K</td><td>1 人運用上限、 副業外注必須</td></tr>
+      <tr><td>10</td><td>部分プラン + 副業外注 1 名</td><td class="num">100-140h + 外注 30h</td><td class="num">¥400K</td><td>外注組込み、 法人化検討</td></tr>
+      <tr><td>15-20</td><td>外注 2 名</td><td class="num">140h 超</td><td class="num">¥600-900K</td><td>1 人運用物理天井、 雇用 or SaaS 移行</td></tr>
+    </tbody>
+  </table>
+
+  <div class="fact-block">
+    <strong>12 ヶ月後 MRR ¥30-60K 目標</strong> ([[pivot-from-speedy-to-careful-2026-05-15]]) <strong>= 1 顧客で達成可能</strong>。 ただし副業外注組込みは 5 顧客超で必須 (= 2027 年以降の課題)。
+  </div>
+</div>
+
+<div class="section">
+  <h2>10. 価格設計の根拠 (業界相場ベース)</h2>
+
+  <h3>10.1 BPaaS:SaaS 価格比 = 2.5-3.3 倍 <span class="tag fact">調査済</span></h3>
+  <p style="font-size:10.5px;">フルマネージド代行 vs セルフサービス SaaS の価格比は <strong>業界平均 3-4 倍</strong>と言われ、 工務店業界特殊性を考慮して 2.5-3.3 倍に設定。</p>
+
+  <h3>10.2 各サービスの価格根拠</h3>
+  <table>
+    <thead><tr><th>サービス</th><th>競合相場</th><th class="num">v2 BPaaS</th><th>正当化ロジック</th></tr></thead>
+    <tbody>
+      <tr><td>① 写真整理</td><td>蔵衛門 ¥3,300 / ノンコア時給 ¥3,000</td><td class="num">¥18,000</td><td>代行 + 工事番号自動推定 + 3 テンプレ自動生成 + LINE 完結</td></tr>
+      <tr><td>② 経理</td><td>記帳代行 ¥6-30K (相場上限)</td><td class="num">¥30,000</td><td>工務店特化 (建設業簿記) + LINE 完結 + 認定支援機関税理士提携</td></tr>
+      <tr><td>⑤ 施主連絡</td><td><strong>競合不在</strong></td><td class="num">¥25,000</td><td>市場空白、 個人客 9 割の主顧客痛点直撃、 値上げ余地最大</td></tr>
+    </tbody>
+  </table>
+
+  <h3>10.3 BPaaS の「高価格」 が正当化される理由</h3>
+  <div class="fact-block">
+    主顧客 (IT 弱者の工務店オーナー) は「自分で操作したくない」 という核心特性 (memory <code>customer-target</code>)。
+    SaaS は学習コスト障壁で受け入れ困難 → BPaaS で「LINE に送るだけ」 という入口を作る → 一度慣れると SaaS に動かない (粘着性) → BPaaS が安定収益源として残る、
+    という<strong>戦略的価格構造</strong>。
+  </div>
+</div>
+
+<div class="section">
+  <h2>11. 信ぴょう性の所在 — 事実 / 推測 / 要裏取り</h2>
+
+  <h3 style="color:var(--good);">✅ 確認済 (一次情報源あり、 v1 から大幅増加)</h3>
+  <div class="fact-block">
+    <ul>
+      <li><strong>競合相場</strong>: ANDPAD BPO 初期 ¥100K + 月 ¥36K〜、 蔵衛門 ¥1,100/人/月、 ノンコア 20h ¥77K、 経理代行 ¥6-30K — 公式サイト / プレスリリース</li>
+      <li><strong>仕訳単価相場</strong>: PDF ¥40 以下 / 紙 ¥50〜 — 船井総研 2026 + 業界調査</li>
+      <li><strong>税理士法 52 条 OK/NG 線</strong>: 国税庁公式 + 警視庁摘発事例 2025-05</li>
+      <li><strong>個人情報保護法 2022 改正</strong>: 個情委公式 + e-Gov 法令</li>
+      <li><strong>フリーランス新法 2024-11 施行</strong>: 公取委公式</li>
+      <li><strong>LINE Messaging API 料金 / 仕様</strong>: LINE Developers 公式</li>
+      <li><strong>LINE 公式アカウント追加率 (60 代 86% / 70 代 53%)</strong>: ペンシル / モビルス 2025 調査</li>
+      <li><strong>LINE Notify 終了 (2025-03-31)</strong>: LINE 公式発表</li>
+      <li><strong>建設業 IT 浸透度</strong>: ANDPAD 23 万社 (公式) / 国交省 電子契約 1.7% / 野原グループ 2024 調査</li>
+      <li><strong>建設業会計の独自勘定科目</strong>: freee / マネーフォワード 公式</li>
+      <li>友人 N=1 ヒアリング結果 (memory <code>friend-hearing-result-2026-05-14</code>)</li>
+      <li>masatoman 月稼働 60-80h (memory <code>user-work-time-constraint</code>)</li>
+    </ul>
+  </div>
+
+  <h3 style="color:var(--warn);">⚠️ 推測 (一次情報源なし、 検証必要)</h3>
+  <div class="warn-block">
+    <ul>
+      <li><strong>5 サービスの労力試算</strong>: 写真 1 枚 30 秒 / 仕訳 1 件 2 分 等は依然推測。 実測ゼロ</li>
+      <li><strong>v2 価格 ¥18K / ¥30K / ¥25K の最適性</strong>: 業界相場ベースだが工務店オーナーが払うかは未検証</li>
+      <li><strong>月次業務量</strong>: 写真 100-300 枚 / 仕訳 100-200 件 等は依然推測</li>
+      <li><strong>5 サービスの需要順位</strong>: 友人 N=1 では未確認</li>
+      <li><strong>クレーム発生率</strong>: 施主連絡代行のリスク量定量化なし</li>
+      <li><strong>1 人運用天井 15-20 顧客</strong>: 業界事例ベース推定で実証なし</li>
+    </ul>
+  </div>
+
+  <h3 style="color:var(--accent);">🔍 要裏取り (5/22 北原氏 + 友人 Phase 3 で確認可能)</h3>
+  <div class="box" style="background:#fef5e7;">
+    <ul>
+      <li><strong>中小工務店 (5-30 人) の月次仕訳数・写真枚数・見積件数の実数</strong>: 友人 N=2-3 ヒアリングで実測</li>
+      <li><strong>工務店業界の LINE 公式アカウント採用率</strong>: 業種別統計が不在、 5/22 + 友人で確認</li>
+      <li><strong>日報代行 / 見積代行の需要</strong>: 友人 Phase 3 で順位付け検証</li>
+      <li><strong>認定支援機関税理士の紹介ルート</strong>: 5/22 北原氏 Q12 で具体名</li>
+      <li><strong>事業者損害保険の個人事業主向け最安パッケージ料金</strong>: 各社見積もり (5-6 月)</li>
+      <li><strong>工務店オーナーの締め日柔軟性</strong>: 5/22 + 友人で「15 日 / 20 日 締めも OK か」 確認</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <h2>12. 5/22 北原氏面談 + 友人 Phase 3 で確認したい論点</h2>
+
+  <h3>5/22 北原氏 Q12 で深掘り (新規追加)</h3>
+  <ol>
+    <li>BPaaS / SaaS / AI エージェント ハイブリッドの妥当性 (既存 Q12)</li>
+    <li><strong>+追加</strong>: 認定支援機関税理士の紹介ルート (A 分業モデルの提携税理士確保)</li>
+    <li><strong>+追加</strong>: 事業者損害保険 (FREENANCE + サイバー保険) の個人事業主向け最適パッケージ</li>
+    <li><strong>+追加</strong>: 工務店オーナーの締め日柔軟性 (15 日 / 20 日 締めの受容度)</li>
+    <li><strong>+追加</strong>: ANDPAD BPO との競合における中小工務店向け廉価ポジションの妥当性</li>
+    <li><strong>+追加</strong>: 日報代行・見積代行が単独 BPaaS として成立しない理由の業界視点</li>
+  </ol>
+
+  <h3>友人 Phase 3 (30 分新設計) ヒアリング項目</h3>
+  <ol>
+    <li>3 推奨サービス (写真整理 + 経理 + 施主連絡) の順位付け</li>
+    <li>「日報書く時間がもう一現場分になる」 訴求は刺さるか (日報代行復活判定)</li>
+    <li>見積を外注することへの心理障壁 (機密性 + 営業判断)</li>
+    <li>月末締め以外の締め日 (15 日 / 20 日) 受容度</li>
+    <li>月次の写真枚数 / 仕訳件数 / 見積件数の実数取得</li>
+    <li>施主への進捗連絡を「他人に任せる」 ことへの心理的抵抗</li>
+    <li>LINE 公式アカウント友だち追加への抵抗度</li>
+    <li>BPaaS 月額 ¥73K (フル) を払えるか払えないか</li>
+  </ol>
+</div>
+
+<div class="section">
+  <h2>13. 次のアクション</h2>
+  <ol>
+    <li><strong>2026-05-19〜21</strong>: v2 設計書をベースに 5/22 北原氏 Q12 用の追加質問リスト作成、 友人 Phase 3 質問リスト 30 分版作成</li>
+    <li><strong>2026-05-22 (金)</strong>: 北原氏面談で v2 妥当性 + 認定支援機関税理士紹介 + ANDPAD BPO 競合視点 + 締め日柔軟性 を相談</li>
+    <li><strong>5-6 月 友人 N=2-3 Phase 3 ヒアリング</strong>: 3 推奨サービス順位付け + 月次業務量実数取得 + 日報・見積代行の需要判定</li>
+    <li><strong>7-9 月 仮説修正期</strong>: 上記結果を踏まえ v3 設計書に書換、 撤退サービス確定、 認定支援機関税理士提携完了</li>
+    <li><strong>10-12 月 MVP 投入期</strong>: 確定した 2-3 サービスで 1-2 社目契約目標。 LINE 公式アカウント実装 + 業務委託契約書 弁護士レビュー + 個情法対応 + 損害保険加入 完了</li>
+    <li><strong>2027-01〜04 スケール検討期</strong>: 3-5 社契約累計、 副業外注組込み、 12 ヶ月後 MRR ¥30-60K 達成判定</li>
+  </ol>
+</div>
+
+<footer>
+  BPaaS サービス設計 v2 / 2026-05-19 作成 / 4 軸並列リサーチ反映 (競合 + 法務 + 税理士法 + LINE API)<br>
+  関連 memory: <code>komuten-bpaas-ai-agent-strategy-2026-05-18</code> / <code>friend-hearing-result-2026-05-14</code> / <code>pivot-from-speedy-to-careful-2026-05-15</code> / <code>customer-target</code><br>
+  関連 STRATEGY.md §4 軸 B / Appendix A
+</footer>
+
+</div>
+
+</body>
+</html>

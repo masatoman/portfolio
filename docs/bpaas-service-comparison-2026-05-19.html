@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="created-at" content="2026-05-19">
+<title>工務店 DX 運用支援 多軸比較 v4 / 6 サービス × 22 軸 / 覚えなくていい DX / 2026-05-20</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --accent: #b85c3a;
+  --warn: #c34a1f;
+  --good: #2d6a4f;
+  --good-light: #d4e9dc;
+  --bad-light: #fde8e0;
+  --card: #ffffff;
+  --border: #e4ddd1;
+  --gold: #c9912a;
+  --new: #1e6091;
+  --new-soft: #dde9f2;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: #e8e0d4;
+  color: var(--fg);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.slide {
+  width: 297mm;
+  min-height: 200mm;
+  padding: 14mm 18mm;
+  margin: 8mm auto;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.slide-num {
+  position: absolute;
+  top: 8mm;
+  right: 14mm;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+.slide h1 {
+  font-size: 28px;
+  border-bottom: 3px solid var(--fg);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+.slide h1 .sub {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: normal;
+  margin-left: 12px;
+  letter-spacing: 0;
+}
+.slide h1 .v3 {
+  display: inline-block;
+  background: var(--new);
+  color: white;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-left: 8px;
+  letter-spacing: 0.1em;
+  vertical-align: middle;
+}
+.slide h2 {
+  font-size: 17px;
+  color: var(--accent);
+  margin-top: 14px;
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+.slide h3 {
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+.slide .body { flex: 1; display: flex; flex-direction: column; }
+
+.slide table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  margin-top: 4px;
+}
+.slide table th, .slide table td {
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+}
+.slide table th {
+  background: var(--fg);
+  color: white;
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  text-align: center;
+}
+.slide table th.col-go { background: var(--good); }
+.slide table th.col-new { background: var(--new); }
+.slide table tr.group td {
+  background: #f4ede0;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--fg);
+  padding: 2px 6px;
+}
+.slide table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.slide table td.center { text-align: center; }
+
+.footer-bar {
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+.big-num {
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.go-text { color: var(--good); font-weight: 700; }
+.bad-text { color: var(--warn); font-weight: 700; }
+.new-text { color: var(--new); font-weight: 700; }
+
+/* タイトルスライド */
+.title-slide { justify-content: center; align-items: center; text-align: center; min-height: 200mm; }
+.title-slide h1 { font-size: 42px; border: none; margin-bottom: 8px; padding: 0; }
+.title-slide .lead { font-size: 20px; color: var(--muted); margin-bottom: 28px; }
+.title-slide .meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  width: 90%;
+  margin: 30px auto 0;
+}
+.title-slide .meta-card {
+  background: #fdfbf6;
+  border-left: 3px solid var(--accent);
+  padding: 10px 14px;
+  text-align: left;
+}
+.title-slide .meta-card.new-card { border-left-color: var(--new); }
+.title-slide .meta-card .label {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.title-slide .meta-card .value { font-size: 13px; font-weight: 700; }
+
+/* 6 サービスカード (3 × 2 グリッド) */
+.cards-6 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+  flex: 1;
+}
+.card-svc {
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+  background: #fdfbf6;
+  display: flex;
+  flex-direction: column;
+}
+.card-svc.go { border-color: var(--good); background: #f6faf7; }
+.card-svc.new { border-color: var(--new); background: var(--new-soft); }
+.card-svc .name { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.card-svc .badge {
+  display: inline-block;
+  font-size: 9.5px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  margin-bottom: 10px;
+  align-self: flex-start;
+}
+.card-svc .badge.go { background: var(--good); color: white; }
+.card-svc .badge.new { background: var(--new); color: white; }
+.card-svc .price {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.card-svc .price-saas {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.card-svc .reason {
+  font-size: 11px;
+  color: var(--fg);
+  flex: 1;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+}
+.card-svc .reason strong { display: block; margin-bottom: 3px; font-size: 10px; color: var(--accent); letter-spacing: 0.05em; }
+.card-svc.new .reason strong { color: var(--new); }
+
+/* Deep dive */
+.dive-numbers {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.num-card {
+  background: #fdfbf6;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 10px;
+}
+.num-card .label {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.num-card .value { font-size: 18px; font-weight: 700; line-height: 1.1; }
+.num-card .value .small { font-size: 11px; font-weight: normal; color: var(--muted); }
+
+.pros-cons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+.pros-cons .pros, .pros-cons .cons {
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+.pros { background: #e6f0ea; border-left: 3px solid var(--good); }
+.cons { background: #fde8e0; border-left: 3px solid var(--warn); }
+.pros strong, .cons strong { display: block; font-size: 11px; letter-spacing: 0.05em; margin-bottom: 5px; }
+.pros ul, .cons ul { padding-left: 16px; }
+.pros ul li, .cons ul li { margin-bottom: 3px; }
+
+/* バーチャート */
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+.bar-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 140px;
+  align-items: center;
+  gap: 10px;
+}
+.bar-row .bar-name { font-size: 12px; font-weight: 700; }
+.bar-row .bar-track {
+  height: 20px;
+  background: #f4ede0;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+.bar-row .bar-fill {
+  height: 100%;
+  background: var(--good);
+  border-radius: 3px;
+}
+.bar-row .bar-fill.bad { background: var(--warn); }
+.bar-row .bar-fill.mid { background: var(--accent); }
+.bar-row .bar-fill.new { background: var(--new); }
+.bar-row .bar-value { font-size: 12px; font-weight: 700; text-align: right; }
+
+/* マトリクス (4 象限) */
+.matrix-wrap {
+  position: relative;
+  margin: 30px 90px 50px 90px;
+  flex: 1;
+  min-height: 280px;
+}
+.matrix-box {
+  position: relative;
+  border: 2px solid var(--fg);
+  width: 100%;
+  height: 280px;
+  background:
+    linear-gradient(to right, transparent 49.5%, var(--fg) 49.5%, var(--fg) 50.5%, transparent 50.5%),
+    linear-gradient(to bottom, transparent 49.5%, var(--fg) 49.5%, var(--fg) 50.5%, transparent 50.5%);
+}
+.matrix-box .quadrant-label {
+  position: absolute;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  padding: 6px 10px;
+}
+.matrix-box .q1 { top: 0; right: 0; }
+.matrix-box .q2 { top: 0; left: 0; }
+.matrix-box .q3 { bottom: 0; left: 0; }
+.matrix-box .q4 { bottom: 0; right: 0; }
+
+.matrix-box .point {
+  position: absolute;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  white-space: nowrap;
+}
+.matrix-box .point.go { background: var(--good); color: white; }
+.matrix-box .point.warn { background: var(--warn); color: white; }
+.matrix-box .point.mid { background: var(--accent); color: white; }
+.matrix-box .point.new { background: var(--new); color: white; }
+
+.axis-x-label {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: 700;
+}
+.axis-y-label {
+  position: absolute;
+  left: -70px;
+  top: 50%;
+  transform: rotate(-90deg) translateX(50%);
+  transform-origin: right;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* セット価格表示 */
+.set-price-box {
+  background: #f6faf7;
+  border: 2px solid var(--good);
+  border-radius: 6px;
+  padding: 14px 22px;
+  text-align: center;
+  margin-top: 14px;
+}
+.set-price-box .label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-weight: 700;
+}
+.set-price-box .total {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--good);
+  margin: 4px 0;
+}
+.set-price-box .breakdown { font-size: 12px; color: var(--muted); }
+
+/* Phase ロードマップ */
+.phase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
+.phase-card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 12px 14px;
+  background: #fdfbf6;
+}
+.phase-card.p1 { border-top: 4px solid var(--good); }
+.phase-card.p2 { border-top: 4px solid var(--gold); }
+.phase-card.p3 { border-top: 4px solid var(--new); }
+.phase-card .ph-no { font-size: 9.5px; letter-spacing: 0.2em; color: var(--muted); }
+.phase-card .ph-title { font-size: 16px; font-weight: 700; margin: 4px 0 2px; }
+.phase-card .ph-period { font-size: 11px; color: var(--accent); margin-bottom: 10px; letter-spacing: 0.05em; }
+.phase-card .ph-services {
+  background: white;
+  border-radius: 3px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+.phase-card .ph-services strong { color: var(--accent); }
+.phase-card .ph-kpi { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+.phase-card .ph-kpi strong { color: var(--fg); font-size: 12px; }
+.phase-card ul { list-style: none; padding: 0; font-size: 11px; }
+.phase-card li { position: relative; padding: 2px 0 2px 14px; }
+.phase-card li::before { content: "・"; position: absolute; left: 0; color: var(--accent); }
+
+/* 結論 list */
+.conclusion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+.conclusion-card {
+  background: #fdfbf6;
+  border-left: 4px solid var(--accent);
+  padding: 12px 16px;
+}
+.conclusion-card.go-card { border-left-color: var(--good); background: #f6faf7; }
+.conclusion-card.warn-card { border-left-color: var(--warn); background: #fde8e0; }
+.conclusion-card.new-card { border-left-color: var(--new); background: var(--new-soft); }
+.conclusion-card h3 { font-size: 13px; margin-top: 0; }
+.conclusion-card p { font-size: 11.5px; }
+
+@media print {
+  body { background: white; }
+  .slide { box-shadow: none; margin: 0; page-break-after: always; }
+  @page { size: A4 landscape; margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== Slide 1: Title ===================== -->
+<div class="slide title-slide">
+  <span class="slide-num">01 / 14</span>
+  <h1>工務店 DX 運用支援 v4<br><span style="font-size:24px; color:var(--accent);">覚えなくていい DX / SaaS + 必要時 BPaaS / 6 サービス × 22 軸</span></h1>
+  <p class="lead">5/22 北原氏面談 + 友人 Phase 3 ヒアリング向け 内部設計資料 v4 (2026-05-20 大転換)</p>
+
+  <div class="meta-grid">
+    <div class="meta-card">
+      <div class="label">作成日</div>
+      <div class="value">2026-05-20 (v4)</div>
+    </div>
+    <div class="meta-card new-card">
+      <div class="label">v3 → v4 大転換</div>
+      <div class="value">BPaaS → DX 運用支援</div>
+    </div>
+    <div class="meta-card new-card">
+      <div class="label">主価値</div>
+      <div class="value">「学習コスト削減」</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">プラン構造</div>
+      <div class="value">3 段階 (ライト / スタンダード / フル)</div>
+    </div>
+  </div>
+
+  <div style="margin-top:40px; font-size:13px; color:var(--muted);">
+    <strong style="color: var(--fg);">v3 → v4 主要変更点:</strong>
+    ① 中心思想 BPaaS → 覚えなくていい DX / ② ポジ 代行業者 → DX 運用支援会社 / ③ 営業話法「導入するか」 → 「どこまで任せますか」 / ④ Phase 1 主軸 ⑨ B2G → ⑧ ANDPAD (現場接触) / ⑤ ⑨ B2G を Phase 3 に後ろ倒し<br>
+    関連 docs: <code>bpaas-comparison-slides-2026-05-19.html</code> (v2 / 親) / memory: <code>komuten-bpaas-ai-agent-strategy-2026-05-18</code>
+  </div>
+</div>
+
+<!-- ===================== Slide 2: v3 → v4 戦略転換 (新規) ===================== -->
+<div class="slide">
+  <span class="slide-num">02 / 14</span>
+  <h1>v3 → v4 戦略大転換 <span class="v3">v4</span> <span class="sub">BPaaS (代行) → 覚えなくていい DX (運用支援 + 必要時代行)</span></h1>
+
+  <div class="body">
+    <p style="font-size:13px;">現場ヒアリング (友人 N=1 + 業界観察) で <strong>工務店は「費用」 より「学習コスト」 を嫌う</strong> ことが判明。 v3 の「BPaaS = 全部代行」 中心思想は <span class="bad-text">完全代行リスク 6 つ</span> を抱え、 工務店側が拒否反応を示す可能性が高い。 v4 で <strong>「DX 運用支援」</strong> に方向転換。</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; flex: 1;">
+
+      <div class="conclusion-card warn-card">
+        <h3 style="font-size:14px;">❌ v3 BPaaS の問題 (完全代行リスク)</h3>
+        <ul style="font-size:11.5px; padding-left: 18px; margin-top: 4px; line-height: 1.6;">
+          <li>社内知識が蓄積されない → 解約時に戻せない</li>
+          <li>属人化 (masatoman 依存)</li>
+          <li>「仕事を奪われる」 懸念 (奥さん経理問題)</li>
+          <li>社員が運用を覚えない → DX が根付かない</li>
+          <li>「AI で人削減」 訴求は工務店に刺さらない</li>
+          <li>顧客ごとの重カスタム → スケールしない</li>
+        </ul>
+        <p style="font-size:11px; margin-top: 8px; color: var(--warn);"><strong>工務店の本音:</strong> 「人を減らしたい」 ではなく「楽になりたい」</p>
+      </div>
+
+      <div class="conclusion-card go-card">
+        <h3 style="font-size:14px;">⭕ v4 「DX 運用支援」 = 覚えなくていい DX</h3>
+        <p style="font-size:12px; margin-bottom: 6px;"><strong>新ポジ:</strong> DX ツール販売会社 ではなく <strong>DX を最後まで運用できるよう支援する会社</strong></p>
+        <p style="font-size:11.5px; margin-bottom: 8px;"><strong>v4 軸メッセージ (3 本):</strong></p>
+        <ul style="font-size:12px; padding-left: 18px; line-height: 1.7;">
+          <li><strong style="color: var(--good);">「LINE 送るだけ」</strong></li>
+          <li><strong style="color: var(--good);">「覚えなくていい」</strong></li>
+          <li><strong style="color: var(--good);">「必要ならこちらでやる」</strong></li>
+        </ul>
+        <p style="font-size:11px; margin-top: 8px; color: var(--good);"><strong>顧客から見た masatoman:</strong> 「AI 会社」 ではなく 「DX の面倒を一緒に整理してくれる人」</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 14px;">工務店の本当の痛み = 「DX 運用疲れ」</h2>
+    <p style="font-size:12px;">工務店が嫌なのは <strong>入力 / 学習 / ルール化 / 写真整理 / 通知地獄 / 情報散乱 / LINE 管理</strong>。 つまり「DX ツール不足」 ではなく「<strong>DX 運用疲れ</strong>」。 ANDPAD を導入していても使いこなせていない (#22 感情度 92 = 「死ぬほど苦痛」)、 一度詰まると触らなくなる、 教える人がいない、 という現実が背景。</p>
+  </div>
+
+  <div class="footer-bar"><span>v4 大転換: 2026-05-20</span><span>関連: 友人 N=1 ヒアリング / [[komuten-bpaas-ai-agent-strategy-2026-05-18]]</span></div>
+</div>
+
+<!-- ===================== Slide 3: 3 プラン設計 (新規) ===================== -->
+<div class="slide">
+  <span class="slide-num">03 / 14</span>
+  <h1>3 プラン設計 <span class="v3">v4</span> <span class="sub">営業話法「どこまで任せますか?」 / Level 1-3 + 最終状態</span></h1>
+
+  <div class="body">
+    <p style="font-size:13px;"><strong>v4 営業転換:</strong> ❌「導入しますか?」 (やらない選択肢に倒れる) → ⭕「どこまで任せますか?」 (選択制で意思決定を変える)。 SaaS だけ / 初期設定込み / 一部代行込み の <strong>3 プラン制</strong>。</p>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px;">
+
+      <div class="phase-card p1">
+        <div class="ph-no">PLAN 1 · LEVEL 1</div>
+        <div class="ph-title">ライト</div>
+        <div class="ph-period">SaaS 導入支援のみ</div>
+        <div class="ph-services">
+          <strong>提供:</strong> LINE 送信 / 写真アップ / 音声入力 / シンプル UI<br>
+          <strong>顧客負担:</strong> 自分で運用<br>
+          <strong>masatoman 工数:</strong> 月 1-2h / 社
+        </div>
+        <div class="ph-kpi" style="margin-top: 8px;">
+          <strong>価格目安:</strong> 月 ¥5-10K / 社<br>
+          想定顧客: アトツギ世代 / IT に強い若手
+        </div>
+      </div>
+
+      <div class="phase-card p2">
+        <div class="ph-no">PLAN 2 · LEVEL 2</div>
+        <div class="ph-title">スタンダード</div>
+        <div class="ph-period">初期設定 + 教育 込み</div>
+        <div class="ph-services">
+          <strong>提供:</strong> ANDPAD 運用整理 / フォルダルール / 写真整理ルール / 通知整理 / 現場運用最適化<br>
+          <strong>顧客負担:</strong> 設定後は自分で運用<br>
+          <strong>masatoman 工数:</strong> 月 3-5h / 社 + 初期 5-10h
+        </div>
+        <div class="ph-kpi" style="margin-top: 8px;">
+          <strong>価格目安:</strong> 月 ¥15-25K / 社 + 初期 ¥30-50K<br>
+          想定顧客: IT 苦手だが学ぶ意欲ある中堅
+        </div>
+      </div>
+
+      <div class="phase-card p3">
+        <div class="ph-no">PLAN 3 · LEVEL 3</div>
+        <div class="ph-title">フルサポート</div>
+        <div class="ph-period">一部入力代行付き</div>
+        <div class="ph-services">
+          <strong>提供:</strong> Plan 2 全部 + 写真整理 / ANDPAD 入力 / 議事録作成 / データ入力 を必要部分だけ代行<br>
+          <strong>顧客負担:</strong> LINE で送るだけ<br>
+          <strong>masatoman 工数:</strong> 月 8-15h / 社
+        </div>
+        <div class="ph-kpi" style="margin-top: 8px;">
+          <strong>価格目安:</strong> 月 ¥30-50K / 社<br>
+          想定顧客: IT 弱者 50-70 代 オーナー (主顧客)
+        </div>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 16px;">SaaS + BPaaS ハイブリッドの構造</h2>
+    <p style="font-size:12px; line-height: 1.7;"><strong>Level 1 SaaS 導入支援</strong> → <strong>Level 2 初期設定 + 教育</strong> → <strong>Level 3 必要部分だけ代行</strong> → <strong>最終状態: 顧客側で回せる状態へ</strong>。 完全代行で終わらせず、 <strong>顧客の自立運用に向かう設計</strong>。 解約されるのは「自分で回せるようになった」 結果として OK (リテンションより自立を優先) = 紹介経路化する戦略。</p>
+  </div>
+
+  <div class="footer-bar"><span>営業話法 v4: 「どこまで任せますか?」</span><span>3 プラン構造 = v3 単一月額から進化</span></div>
+</div>
+
+<!-- ===================== Slide 4: 6 サービス全景 ===================== -->
+<div class="slide">
+  <span class="slide-num">04 / 14</span>
+  <h1>6 サービス全景 <span class="v3">v4</span> <span class="sub">Phase 1 主軸 3 (① ⑥ ⑧) / Phase 2 投入 2 (② ⑦) / Phase 3 地域インフラ 1 (⑨)</span></h1>
+
+  <div class="body">
+    <p style="font-size:13px;">主顧客 (IT 弱者 50-70 代 工務店オーナー) 向けに <strong>「LINE 送るだけ」「覚えなくていい」「必要ならこちらでやる」</strong> の 3 軸メッセージで DX 運用支援を提供。 <span class="new-text">v4 で ⑧ ANDPAD を Phase 1 主軸に昇格 (旧 ①add-on から独立)</span>、 <span class="new-text">⑨ B2G は Phase 3 に後ろ倒し (Phase 1 は超軽量導入で現場接触 + 信頼形成優先)</span>。 ⑤ 施主連絡は構造的不成立で削除済、 ③ 日報 / ④ 見積 も需要不在で除外。</p>
+
+    <div class="cards-6">
+      <div class="card-svc go">
+        <div class="badge go">Phase 1 · L1-L3 全</div>
+        <div class="name">① 写真運用支援<br>+ 必要時整理代行</div>
+        <div class="price">¥5-30K<span style="font-size:14px;font-weight:normal;color:var(--muted);">/月</span></div>
+        <div class="price-saas">3 プラン (L1: ¥5K / L2: ¥15K / L3: ¥30K)</div>
+        <div class="reason"><strong>勝ち筋</strong>「写真フォルダ整理ルール提供」 → 「LINE 送るだけで月末台帳」 まで選択制 / 学習コスト削減訴求 / クロスセル起点</div>
+      </div>
+
+      <div class="card-svc new">
+        <div class="badge new">Phase 1 · L1-L3 全</div>
+        <div class="name">⑥ 議事録支援<br>音声→自動整理 + 修正</div>
+        <div class="price">¥3-15K<span style="font-size:14px;font-weight:normal;color:var(--muted);">/月</span></div>
+        <div class="price-saas">3 プラン (L1: ¥3K / L2: ¥8K / L3: ¥15K)</div>
+        <div class="reason"><strong>AI 試作枠</strong>Whisper+Claude で 2 日 MVP / SaaS 化容易度 No.1 / 「録音 LINE 送るだけ」 で議事録 / Plan L1 ならほぼ SaaS のみ</div>
+      </div>
+
+      <div class="card-svc new">
+        <div class="badge new">Phase 1 ★ · L2-L3 主</div>
+        <div class="name">⑧ ANDPAD 運用支援<br>+ 入力補助</div>
+        <div class="price">¥10-25K<span style="font-size:14px;font-weight:normal;color:var(--muted);">/月</span></div>
+        <div class="price-saas">v4 で Phase 1 主軸に昇格</div>
+        <div class="reason"><strong>v4 昇格</strong>「ANDPAD を入れる」 ではなく「ANDPAD を使える状態にする」 / 感情度 92「死ぬほど苦痛」 を解消 / 通知整理 + フォルダルール + 入力補助 = 運用最適化</div>
+      </div>
+
+      <div class="card-svc go">
+        <div class="badge go">Phase 2 · L3 主</div>
+        <div class="name">② 経理補助</div>
+        <div class="price">¥10-30K<span style="font-size:14px;font-weight:normal;color:var(--muted);">/月</span></div>
+        <div class="price-saas">3 プラン (L1: freee 導入支援 / L3: 記帳代行)</div>
+        <div class="reason"><strong>運用支援に再定義</strong>「全部代行」 ではなく「freee 設定 + 月次チェック + 必要時記帳補助」 = 奥さん経理問題回避 / 税理士法 52 条で提携税理士必須</div>
+      </div>
+
+      <div class="card-svc new">
+        <div class="badge new">Phase 2 · L2-L3</div>
+        <div class="name">⑦ 補助金補助</div>
+        <div class="price">着手 ¥30-50K<span style="font-size:13px;font-weight:normal;color:var(--muted);"> + 成功 10-15%</span></div>
+        <div class="price-saas">事業計画作成補助 (代行ではない)</div>
+        <div class="reason"><strong>運用支援に再定義</strong>「申請代行」 ではなく「事業計画作成補助 + 行政書士提携で書類化」 / 採択後 SaaS 導入支援まで伴走 / 対象 issue 6 件 = 最多</div>
+      </div>
+
+      <div class="card-svc new">
+        <div class="badge new">Phase 3 ★ · B2G</div>
+        <div class="name">⑨ 地域インフラ<br>B2G (Phase 3 化)</div>
+        <div class="price">委託 ¥25-40K<span style="font-size:13px;font-weight:normal;color:var(--muted);">/月</span></div>
+        <div class="price-saas">行政 / 信金 委託料</div>
+        <div class="reason"><strong>v4 で Phase 3 後ろ倒し</strong>Phase 1 は超軽量導入優先のため。 たましん / 商工会議所と「家の困りごと相談窓口」 運営 / 信用補完 B 直接体現</div>
+      </div>
+    </div>
+
+    <div class="set-price-box">
+      <div class="label">Phase 1 推奨セット (① 写真運用 + ⑥ 議事録 + ⑧ ANDPAD 運用) × 3 プラン制</div>
+      <div class="total">¥18K-70K<span style="font-size:18px;font-weight:normal;color:var(--muted);">/月 / 社 (プラン別)</span></div>
+      <div class="breakdown"><strong>L1 ライト:</strong> ¥5K + ¥3K + ¥10K = ¥18K (SaaS 主) / <strong>L2 スタンダード:</strong> ¥15K + ¥8K + ¥18K = ¥41K (運用支援込み) / <strong>L3 フル:</strong> ¥30K + ¥15K + ¥25K = ¥70K (一部代行込み) / 営業話法「どこまで任せますか?」 で 3 プランから選んでもらう</div>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>v3 変更: ⑥ 議事録 / ⑦ 補助金 / ⑧ ANDPAD を新規追加 + Phase 戦略を 3 段階化</span>
+    <span>BPaaS 多軸比較 v3 / 2026-05-19</span>
+  </div>
+</div>
+
+<!-- ===================== Slide 5: 22 軸比較表 ===================== -->
+<div class="slide">
+  <span class="slide-num">05 / 14</span>
+  <h1>22 軸 比較表 <span class="v3">v4</span> <span class="sub">A 収益 / B 実装 / C 市場 / D リスク / E 総合 — v4 サービス名 + Phase 反映</span></h1>
+
+  <div class="body">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:18%;">指標</th>
+          <th class="col-go">① 写真運用<br>支援 + 代行</th>
+          <th class="col-go">② 経理補助</th>
+          <th class="col-new">⑥ 議事録支援</th>
+          <th class="col-new">⑦ 補助金補助</th>
+          <th class="col-new">⑧ ANDPAD<br>運用支援 ★</th>
+          <th class="col-new">⑨ 地域インフラ<br>B2G (Phase 3)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="group"><td colspan="7">A. 収益関連</td></tr>
+        <tr><td>BPaaS / 委託 月額</td><td class="num">¥18,000</td><td class="num">¥30,000</td><td class="num">¥15,000</td><td class="num">¥50K + 成功 10-15%</td><td class="num">+¥5-10K (add-on)</td><td class="num">委託 ¥25-40K</td></tr>
+        <tr><td>SaaS 移行月額</td><td class="num">¥7,000</td><td class="num">¥10,000</td><td class="num">¥5,000</td><td class="num">-</td><td class="num">-</td><td class="num">- (B2G 固有)</td></tr>
+        <tr><td>工数 (h/月)</td><td class="num">3-4</td><td class="num">6-10</td><td class="num">3-5</td><td class="num">20-40/件</td><td class="num">5-10</td><td class="num">15-25</td></tr>
+        <tr><td>時給換算</td><td class="num"><span class="go-text">¥4,500-6,000</span></td><td class="num">¥3,000-5,000</td><td class="num">¥3,000-5,000</td><td class="num"><span class="go-text">¥3K-15K</span><br><small>(成功時)</small></td><td class="num"><span class="bad-text">¥1,500-2,000</span></td><td class="num"><span class="bad-text">¥1,000-2,500</span><br><small>(委託料単独時)</small></td></tr>
+        <tr><td>粗利率</td><td class="num">78%</td><td class="num"><span class="go-text">87%</span></td><td class="num">80%</td><td class="num">80%</td><td class="num">70%</td><td class="num">70%</td></tr>
+        <tr><td>オンボーディング</td><td class="num"><span class="go-text">1-2h</span></td><td class="num"><span class="bad-text">5-10h</span></td><td class="num"><span class="go-text">1-2h</span></td><td class="num"><span class="bad-text">5-10h</span></td><td class="num"><span class="go-text">1-2h</span></td><td class="num"><span class="bad-text">3-6 ヶ月</span><br><small>(パイロット)</small></td></tr>
+
+        <tr class="group"><td colspan="7">B. 実装・運用</td></tr>
+        <tr><td>実装しやすさ</td><td><span class="go-text">★★★★</span></td><td><span class="bad-text">★★</span></td><td><span class="go-text">★★★★★</span></td><td><span class="bad-text">★★</span></td><td><span class="go-text">★★★★</span></td><td>★★★</td></tr>
+        <tr><td>SaaS 化容易度</td><td>★★★★</td><td><span class="bad-text">★★</span></td><td><span class="go-text">★★★★★</span></td><td>★★</td><td>★★★</td><td><span class="bad-text">★★</span><br><small>(本質は人運営)</small></td></tr>
+        <tr><td>masatoman 学習コスト</td><td><span class="go-text">低</span></td><td><span class="bad-text">高 (建設業簿記)</span></td><td><span class="go-text">低</span></td><td><span class="bad-text">高 (補助金制度)</span></td><td><span class="go-text">低</span></td><td>中 (公的機関対応)</td></tr>
+        <tr><td>属人化リスク</td><td>中</td><td><span class="bad-text">高</span></td><td><span class="go-text">低</span></td><td>中</td><td><span class="go-text">低</span></td><td><span class="bad-text">高</span><br><small>(信頼関係ベース)</small></td></tr>
+        <tr><td>副業外注しやすさ</td><td><span class="go-text">◎</span></td><td>△</td><td><span class="go-text">◎</span></td><td>△</td><td><span class="go-text">◎</span></td><td>△</td></tr>
+
+        <tr class="group"><td colspan="7">C. 市場・需要</td></tr>
+        <tr><td>競合密度</td><td><span class="bad-text">高 (蔵衛門/ANDPAD)</span></td><td>中 (記帳代行)</td><td>中 (Notta/tl;dv)</td><td><span class="bad-text">混沌 (悪徳警告)</span></td><td><span class="go-text">不在</span></td><td><span class="go-text">不在 (構造的)</span></td></tr>
+        <tr><td>需要確実性</td><td>中</td><td><span class="go-text">高</span></td><td>中</td><td><span class="go-text">高 (6 件 issue)</span></td><td><span class="go-text">高 (感情 92)</span></td><td>中<br><small>(公的機関次第)</small></td></tr>
+        <tr><td>主顧客痛点距離</td><td>中</td><td><span class="go-text">高 (経理 = 妻)</span></td><td>中</td><td>中</td><td><span class="go-text">高</span></td><td><span class="go-text">高</span><br><small>(受益者は施主)</small></td></tr>
+        <tr><td>クロスセル価値</td><td><span class="go-text">高 (起点)</span></td><td>中</td><td>中</td><td><span class="go-text">高 (採択後 SaaS)</span></td><td>中 (① 依存)</td><td><span class="go-text">⭐⭐ 最高<br>(BPaaS 顧客導線)</span></td></tr>
+        <tr><td>マーケ材料化</td><td><span class="go-text">高 (Before/After)</span></td><td>中</td><td><span class="go-text">高 (時短実証)</span></td><td><span class="go-text">高 (採択額)</span></td><td>低 (ニッチ)</td><td><span class="go-text">⭐⭐ 最高<br>(業界紙取材材料)</span></td></tr>
+        <tr><td>対象 issue 数</td><td class="num">3</td><td class="num">2</td><td class="num">1</td><td class="num"><span class="go-text">6 (最多)</span></td><td class="num">1 (感情 92)</td><td class="num">2 (#3 = 70)</td></tr>
+
+        <tr class="group"><td colspan="7">D. リスク</td></tr>
+        <tr><td>法務リスク</td><td><span class="go-text">低</span></td><td><span class="bad-text">高 (税理士法)</span></td><td><span class="go-text">低</span></td><td><span class="bad-text">中-高 (行政書士法)</span></td><td><span class="go-text">低</span></td><td><span class="go-text">低 (個情のみ)</span></td></tr>
+        <tr><td>クレーム発生確率</td><td>低</td><td>中</td><td>低</td><td>中 (採択失敗)</td><td>低</td><td>中 (振り分けミス)</td></tr>
+
+        <tr class="group"><td colspan="7">E. 総合判定</td></tr>
+        <tr><td><strong>v4 判定</strong></td><td><strong class="go-text">GO Phase 1</strong></td><td><strong class="go-text">GO Phase 2</strong></td><td><strong class="go-text">GO Phase 1</strong></td><td><strong>GO Phase 2</strong></td><td><strong class="go-text">GO Phase 1 ★</strong></td><td><strong class="new-text">Phase 3 後ろ倒し</strong></td></tr>
+        <tr><td><strong>v4 Phase</strong></td><td class="center"><strong class="go-text">1</strong></td><td class="center">2</td><td class="center"><strong class="go-text">1</strong></td><td class="center">2</td><td class="center"><strong class="go-text">1 (Phase 1 主軸)</strong></td><td class="center"><strong class="new-text">3</strong><br><small>(地域インフラ化)</small></td></tr>
+        <tr><td><strong>3 プラン適合</strong></td><td class="center">L1-L3 全</td><td class="center">L3 主</td><td class="center">L1-L3 全</td><td class="center">L2-L3</td><td class="center">L2-L3 主</td><td class="center">B2G 独立</td></tr>
+        <tr><td><strong>5/22 後 優先度</strong></td><td><strong>A</strong></td><td><strong>B</strong></td><td><strong class="new-text">A</strong></td><td><strong>B</strong></td><td><strong class="go-text">A ★</strong><br><small>(Phase 1 昇格)</small></td><td><strong class="new-text">B</strong><br><small>(Phase 3 後ろ倒し)</small></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer-bar">
+    <span>緑 = 強み / 赤 = 弱み / 青 = v3 新規追加</span>
+    <span>★ = 5 段階評価 / S &gt; A &gt; B &gt; C 優先度</span>
+  </div>
+</div>
+
+<!-- ===================== Slide 6: ① 写真運用支援 + 必要時代行 Deep Dive ===================== -->
+<div class="slide">
+  <span class="slide-num">06 / 14</span>
+  <h1>① 写真運用支援 + 必要時整理代行 <span class="v3">v4</span> <span class="sub">Phase 1 GO · L1-L3 全プラン提供 / クロスセル起点</span></h1>
+
+  <div class="body">
+    <div class="dive-numbers">
+      <div class="num-card"><div class="label">BPaaS 月額</div><div class="value">¥18,000</div></div>
+      <div class="num-card"><div class="label">工数 / 月</div><div class="value">3-4<span class="small"> h</span></div></div>
+      <div class="num-card"><div class="label">時給換算</div><div class="value">¥4.5-6K</div></div>
+      <div class="num-card"><div class="label">粗利率</div><div class="value">78%</div></div>
+      <div class="num-card"><div class="label">オンボ工数</div><div class="value">1-2<span class="small"> h</span></div></div>
+      <div class="num-card"><div class="label">対象 issue</div><div class="value">3 件<span class="small"> (#19 #14 #10)</span></div></div>
+    </div>
+
+    <h2>サービス内容 (v4 = 3 プラン制 / Level 1-3 提供範囲)</h2>
+    <table style="margin-top: 4px; font-size: 11px;">
+      <thead><tr><th style="width:14%;">プラン</th><th style="width:40%;">提供内容</th><th style="width:14%;">月額</th><th>顧客負担</th></tr></thead>
+      <tbody>
+        <tr><td><strong>L1 ライト</strong></td><td>写真整理ルール提供 + フォルダ構造設計 + AI 仕分けツール (LINE Bot)</td><td class="num">¥5K</td><td>自分で運用 (LINE 送信)</td></tr>
+        <tr><td><strong>L2 スタンダード</strong></td><td>L1 + 初期 1 ヶ月伴走 (運用支援) + 月次品質チェック + テンプレ修正</td><td class="num">¥15K</td><td>運用は自分、 困ったら相談</td></tr>
+        <tr><td style="background:#f6faf7;"><strong>L3 フル</strong></td><td style="background:#f6faf7;">L2 + 月末に LINE で送られた写真を PDF 台帳化 (完了報告 / 施主アルバム / 保証書添付) を <strong>masatoman が手動整理</strong></td><td class="num" style="background:#f6faf7;">¥30K</td><td style="background:#f6faf7;">LINE で送るだけ</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11.5px; margin-top: 6px;"><strong>v4 ポジ:</strong> 「LINE 送るだけで全部代行」 (旧 v3) ではなく <strong>「写真フォルダがぐちゃぐちゃで諦めてる状態を整理してあげる人」</strong>。 L3 でも顧客は「使い方」 を覚えなくていいが、 「自社の写真がどこにあるか」 はわかる状態に。</p>
+
+    <h2>痛みの一次情報 (issue-finder #19 解の質 85)</h2>
+    <p style="font-size:12px; font-style: italic; background:#fcfaf6; border-left: 2px solid var(--border); padding: 6px 10px;">「写真管理は施工の一連の流れを撮らないと。 作業完了したら前の状態は二度と撮れない、 作業員さんを写真待ちにするのも良くない」 / 「夜遅くまで写真整理や次の日の掃除で残るのが嫌で嫌で」 — 既存 SaaS で 1/4 削減実証あり。</p>
+
+    <div class="pros-cons">
+      <div class="pros">
+        <strong>★ 強み</strong>
+        <ul>
+          <li>実装★★★★ — 画像保存 + AI 仕分け + PDF 生成のロジック単純</li>
+          <li>Before/After PDF サンプルで営業材料化容易</li>
+          <li>オンボーディング 1-2h で新規開拓ハードル低</li>
+          <li>法務リスク低 (個情法のみ、 税理士法・機密性壁なし)</li>
+          <li>クロスセル起点: ⑥ 議事録 / ⑨ 地域窓口 への入口 + ⑧ ANDPAD add-on</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <strong>⚠️ 弱み・リスク</strong>
+        <ul>
+          <li>競合密度高: 蔵衛門 ¥3,300/月 (3 人) との価格差 5-6 倍</li>
+          <li>ANDPAD カメラ (23 万社シェア) と統合提案で潰される可能性</li>
+          <li>ノンコア (時間チャージ 20h ¥77K) との時給比較</li>
+          <li>単独販売だと営業困難 → セット販売前提</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>価格 ¥18,000 の正当化ロジック</h2>
+    <p style="font-size:12px;">蔵衛門 (SaaS ¥3,300) + α: 代行 (時短) + 工事番号自動推定 (AI) + 3 テンプレ自動生成 (汎用 SaaS にない) + LINE 完結 (学習コスト 0)。 「自分で蔵衛門使いますか? それとも LINE で送るだけで毎月台帳届きますか?」 訴求が刺さる主顧客像。</p>
+  </div>
+
+  <div class="footer-bar"><span>競合: 蔵衛門 / ANDPAD カメラ / ノンコア / Photoruction</span><span>5/22 後 優先度 A · Phase 1</span></div>
+</div>
+
+<!-- ===================== Slide 7: ② 経理補助 Deep Dive ===================== -->
+<div class="slide">
+  <span class="slide-num">07 / 14</span>
+  <h1>② 領収書・経理補助 <span class="v3">v4</span> <span class="sub">Phase 2 · L1: freee 導入支援 / L3: 記帳代行 — 「全部代行」 ではなく「奥さん経理を楽にする」</span></h1>
+
+  <div class="body">
+    <div class="dive-numbers">
+      <div class="num-card"><div class="label">BPaaS 月額</div><div class="value">¥30,000</div></div>
+      <div class="num-card"><div class="label">工数 / 月</div><div class="value">6-10<span class="small"> h</span></div></div>
+      <div class="num-card"><div class="label">時給換算</div><div class="value">¥3-5K</div></div>
+      <div class="num-card"><div class="label">粗利率</div><div class="value go-text">87%</div></div>
+      <div class="num-card"><div class="label">オンボ工数</div><div class="value bad-text">5-10<span class="small"> h</span></div></div>
+      <div class="num-card"><div class="label">対象 issue</div><div class="value">#1 #17</div></div>
+    </div>
+
+    <h2>サービス内容</h2>
+    <p style="font-size:13px;">領収書・請求書を LINE 写真送信 → OCR + 仕訳 (freee / MoneyForward 連携) → 請求書発行 (月 10-20 件) → 入金消込 → 月次レポート (売上・経費・粗利)。 仕訳 100-200 件 / 月想定。 + 電帳法・インボイス対応 (#1 イシュー度 52)。</p>
+
+    <div class="pros-cons">
+      <div class="pros">
+        <strong>★ 強み</strong>
+        <ul>
+          <li>粗利率 87% — 6 サービス中最高</li>
+          <li>需要確実性高 — 経理代行市場が既に存在 (Bizer / 経理プラス / 弥生)</li>
+          <li>主顧客痛点高 — 経理は妻 = 工務店家族の月末月初の頭痛</li>
+          <li>業界相場 ¥6-30K の上限近辺、 工務店特化プレミアム成立</li>
+          <li>建設業簿記 = 一度習得すれば差別化堀 (参入障壁を逆活用)</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <strong>⚠️ 弱み・リスク</strong>
+        <ul>
+          <li><span class="bad-text">税理士法 52 条</span> — 個別勘定科目判断・節税アドバイス NG (違反 = 2 年以下懲役 or 100 万円罰金、 2025-05 警視庁初摘発)</li>
+          <li><span class="bad-text">学習コスト高</span> — 建設業簿記 3-4 級レベル習得必須</li>
+          <li>属人化高 — 税理士法判断のマニュアル化困難</li>
+          <li>オンボ 5-10h — freee 連携 + 認定支援機関税理士紹介で重い</li>
+          <li>副業外注 △ — 建設業簿記の知識がある外注探しが難しい</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>必須準備: A 分業モデル (代行業者 + 提携税理士の 2 本立て契約)</h2>
+    <p style="font-size:12px;">masatoman: 記帳 / 仕訳 / 請求書発行 / 入金消込 / 月次レポート。 提携税理士: 申告 / 決算 / 税務相談 / 監修。 契約は <strong>顧客 ↔ masatoman</strong> と <strong>顧客 ↔ 税理士</strong> の 2 本立て (再委託しない)。 5/22 北原氏 Q12 で認定支援機関税理士の紹介ルート確保。 Phase 2 (10-12 月) で開始。</p>
+  </div>
+
+  <div class="footer-bar"><span>競合: Bizer (¥2,980) / 経理プラス / 弥生 / 記帳代行 ¥6-30K</span><span>5/22 後 優先度 B · Phase 2-3</span></div>
+</div>
+
+<!-- ===================== Slide 8: ⑥ 議事録支援 Deep Dive ===================== -->
+<div class="slide">
+  <span class="slide-num">08 / 14</span>
+  <h1>⑥ 議事録支援 (音声→自動整理 + 修正支援) <span class="v3">v4</span> <span class="sub">Phase 1 GO — Whisper+Claude で 2 日 MVP / SaaS 化容易度 No.1</span></h1>
+
+  <div class="body">
+    <div class="dive-numbers">
+      <div class="num-card"><div class="label">BPaaS 月額</div><div class="value">¥15,000</div></div>
+      <div class="num-card"><div class="label">工数 / 月</div><div class="value">3-5<span class="small"> h</span></div></div>
+      <div class="num-card"><div class="label">時給換算</div><div class="value">¥3-5K</div></div>
+      <div class="num-card"><div class="label">粗利率</div><div class="value go-text">80%</div></div>
+      <div class="num-card"><div class="label">SaaS 化</div><div class="value go-text">★★★★★</div></div>
+      <div class="num-card"><div class="label">対象 issue</div><div class="value">#25</div></div>
+    </div>
+
+    <h2>サービス内容</h2>
+    <p style="font-size:13px;">施主との打ち合わせを録音 → LINE で送信 → Whisper 文字起こし + Claude で要望リスト化 → 「前回からの変更点」 を diff で可視化 (二転三転問題への直接打撃) → PDF 議事録を 24h 以内に提出。 月 3-4 回の打ち合わせ想定。</p>
+
+    <h2>痛みの一次情報 (#25 イシュー度 53 / 解の質 50)</h2>
+    <p style="font-size:12px; font-style: italic; background:#fcfaf6; border-left: 2px solid var(--border); padding: 6px 10px;">「毎回間取りがコロコロ変わるとイラつきますか? ちょこちょこ間取りの変更をお願いしています」 (施主の遠慮) / 「闇雲にインスタ見まくって、 根拠もなく繰り返されるとまとまらない」 (設計士の本音) — 120 件中 16 件 (13%) で同パターン観測。</p>
+
+    <div class="pros-cons">
+      <div class="pros">
+        <strong>★ 強み — AI エージェント試作の本命</strong>
+        <ul>
+          <li><span class="go-text">実装最容易 ★★★★★</span> — Whisper API + Claude API で 2 日 MVP 可能</li>
+          <li><span class="go-text">SaaS 化容易度 No.1</span> — 月 ¥5K の汎用 SaaS にダウングレード可能</li>
+          <li>規制リスクなし (議事録は誰でも作れる)</li>
+          <li>masatoman の Claude Code / lab-tools 既存資産との整合 (issue-finder と同じ SKILL 経路で実装可能)</li>
+          <li>属人化リスク 低 — マニュアル化容易、 副業外注 ◎</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <strong>⚠️ 弱み</strong>
+        <ul>
+          <li>単独売り単価が低い (¥15K) → セット販売前提</li>
+          <li>汎用議事録 AI (Notta / tl;dv) との差別化要 — 工務店業界用語 + 「間取り変更」 ドメイン特化で勝負</li>
+          <li>主顧客痛点は中程度 (打ち合わせ二転三転は設計担当が抱える痛みで、 オーナーは間接的)</li>
+          <li>マーケ材料化中 (時短実証 = 「3 時間 → 30 分」)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>v3 で議事録代行を新規追加した理由</h2>
+    <p style="font-size:12px;">issue-finder #25 (施主要望二転三転、 120 件中 16 件) で需要が観測された + masatoman の lab-tools 既存資産 (Whisper + Claude) で MVP 2 日。 BPaaS → AI エージェント 二段ロケットの <strong>試作枠として最低リスク</strong>。 Phase 1 で BPaaS、 Phase 3 で SaaS 化して水平展開する。</p>
+  </div>
+
+  <div class="footer-bar"><span>類似 SaaS: Notta / tl;dv / Granola (工務店特化は不在)</span><span>5/22 後 優先度 A · Phase 1</span></div>
+</div>
+
+<!-- ===================== Slide 9: ⑦ 補助金補助 Deep Dive ===================== -->
+<div class="slide">
+  <span class="slide-num">09 / 14</span>
+  <h1>⑦ 補助金補助 (事業計画作成補助) <span class="v3">v4</span> <span class="sub">Phase 2 — 「申請代行」 ではなく「事業計画作成補助 + 行政書士提携で書類化」</span></h1>
+
+  <div class="body">
+    <div class="dive-numbers">
+      <div class="num-card"><div class="label">着手金</div><div class="value">¥50,000</div></div>
+      <div class="num-card"><div class="label">成功報酬</div><div class="value">10-15%<span class="small"> 採択額</span></div></div>
+      <div class="num-card"><div class="label">工数 / 件</div><div class="value">20-40<span class="small"> h</span></div></div>
+      <div class="num-card"><div class="label">時給 (成功時)</div><div class="value go-text">¥3-15K</div></div>
+      <div class="num-card"><div class="label">粗利率</div><div class="value">80%</div></div>
+      <div class="num-card"><div class="label">対象 issue</div><div class="value go-text">6 件</div></div>
+    </div>
+
+    <h2>サービス内容</h2>
+    <p style="font-size:13px;">IT 通常枠 1/2 等の補助金申請を支援。 (1) GビズIDプライム取得補助 (2) 補助金診断 (どれが該当するか) (3) 事業計画書 AI ドラフト + 顧客レビュー (4) 認定支援機関税理士提携で申請書類化 (5) 採択後実績報告サポート。 採択額 50-450 万円 × 10-15% = 5-67 万円報酬。</p>
+
+    <h2>対象 issue 6 件 (全 48 件中最多ヒット)</h2>
+    <table>
+      <thead><tr><th style="width:8%;">#</th><th>痛み</th><th style="width:10%;">イシュー度</th><th style="width:10%;">解の質</th></tr></thead>
+      <tbody>
+        <tr><td>#11</td><td>公式ページが難解で「自社が対象か」判断できない</td><td class="center">60</td><td class="center">70</td></tr>
+        <tr><td>#18</td><td>事業計画書が書けない、本業の合間に作るのが負担</td><td class="center">56</td><td class="center">65</td></tr>
+        <tr><td>#12</td><td>持続化 / IT / ものづくりのどれが自社に合うか判別できない</td><td class="center">48</td><td class="center">70</td></tr>
+        <tr><td>#15</td><td>GビズIDプライム取得で SMS・暗証番号で挫折</td><td class="center">48</td><td class="center">60</td></tr>
+        <tr><td>#13</td><td>IT 導入支援事業者の選び方が分からず悪徳業者に押し負ける</td><td class="center">48</td><td class="center">55</td></tr>
+        <tr><td>#16</td><td>不採択になっても理由が通知されず再挑戦できない</td><td class="center">48</td><td class="center">35</td></tr>
+      </tbody>
+    </table>
+
+    <div class="pros-cons">
+      <div class="pros">
+        <strong>★ 強み</strong>
+        <ul>
+          <li>対象 issue 6 件 = 6 サービス中最多 / 主顧客の現実的な悩み集中</li>
+          <li>時給最強 (成功時 ¥3-15K)、 採択 1 件で月収レベル</li>
+          <li>採択後 SaaS 導入アップセル容易 (IT 導入補助金本来の趣旨)</li>
+          <li>5/22 北原氏 Q3 「将来 IT 導入支援事業者意向」 と整合</li>
+          <li>悪徳業者警告ありの市場 (#13) = 信頼ポジションで差別化</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <strong>⚠️ 弱み・リスク</strong>
+        <ul>
+          <li><span class="bad-text">行政書士法</span> — 申請書類作成代行は行政書士独占 → masatoman 単独 NG</li>
+          <li>採択率 30-40%、 失敗時は着手金のみで時給暴落</li>
+          <li>継続率低 (年 1-2 件、 ストック性なし)</li>
+          <li>商品確定後 (10-12 月 MVP 投入期) でないと刺さらない</li>
+          <li>オンボ 5-10h (本業ヒアリング + 事業計画聞き取り)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>必須準備</h2>
+    <p style="font-size:12px;">行政書士法対策: 申請書類作成は <strong>認定支援機関税理士 + 行政書士 提携</strong>、 masatoman は <strong>事業計画コンサル + AI 事業計画ジェネレータ提供</strong> の枠で受注 ([[subsidies-positioning]] 整合)。 + IT 導入支援事業者登録完了後にガッツリ訴求 (現状は控えめ訴求)。</p>
+  </div>
+
+  <div class="footer-bar"><span>競合: 悪徳業者警告ありの混沌市場 (#13)、 信頼ポジで差別化</span><span>5/22 後 優先度 B · Phase 2</span></div>
+</div>
+
+<!-- ===================== Slide 10: ⑧ ANDPAD 運用支援 Deep Dive (v4 Phase 1 主軸昇格) ===================== -->
+<div class="slide">
+  <span class="slide-num">10 / 14</span>
+  <h1>⑧ ANDPAD 運用支援 + 入力補助 <span class="v3">v4 ★</span> <span class="sub">Phase 1 主軸昇格 — 「ANDPAD を入れる」 ではなく「ANDPAD を使える状態にする」</span></h1>
+
+  <div class="body">
+    <div class="dive-numbers">
+      <div class="num-card"><div class="label">add-on 月額</div><div class="value">+¥5-10K</div></div>
+      <div class="num-card"><div class="label">工数 / 月</div><div class="value">5-10<span class="small"> h</span></div></div>
+      <div class="num-card"><div class="label">時給換算</div><div class="value bad-text">¥1.5-2K</div></div>
+      <div class="num-card"><div class="label">粗利率</div><div class="value">70%</div></div>
+      <div class="num-card"><div class="label">感情度</div><div class="value go-text">92</div></div>
+      <div class="num-card"><div class="label">対象 issue</div><div class="value">#22</div></div>
+    </div>
+
+    <h2>サービス内容</h2>
+    <p style="font-size:13px;">元請けが ANDPAD 必須にしている下請工務店向けに、 ANDPAD への写真 / 報告書 / 進捗入力を代行。 LINE で写真送れば ANDPAD に転記、 元請けへの報告完了まで肩代わり。 ① 写真整理代行の <strong>add-on (+¥5-10K)</strong> として展開、 単独サービスではなく <strong>抱き合わせ戦略</strong>。</p>
+
+    <h2>痛みの一次情報 (#22 感情度 92 = 全 48 件最高)</h2>
+    <p style="font-size:12px; font-style: italic; background:#fcfaf6; border-left: 2px solid var(--border); padding: 6px 10px;">「ANDPAD の使用を発注側からもとめられてから<strong>死ぬほどこのアプリが苦痛で毎日夜も眠れない</strong>」「バグ 30 件あげても一度も修正されたことがない」「送信前にアプリが落ちると今まで撮っていた数十枚分の工程写真が消える」「<strong>勝手に導入したくせに業者から使用料を取る</strong>」 — 105 件中 17 件 (16%) で同パターン観測。</p>
+
+    <div class="pros-cons">
+      <div class="pros">
+        <strong>★ 強み</strong>
+        <ul>
+          <li>感情度 92 = 全 48 件中最高 = 「金払ってでも逃げたい」 ニーズ</li>
+          <li>競合完全不在 (ANDPAD 本体も補完サービスを提供しない)</li>
+          <li>① 写真整理の add-on で展開すれば 営業コストほぼゼロ</li>
+          <li>規制リスクなし、 副業外注 ◎、 属人化リスク低</li>
+          <li>元請け縛りが続く限り高継続率</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <strong>⚠️ 弱み・リスク</strong>
+        <ul>
+          <li>市場規模が小さい (元請けが ANDPAD 必須にしている下請のみ)</li>
+          <li>時給 ¥1.5-2K と低い → 単独サービスでは赤字</li>
+          <li>ANDPAD API が非公開 → RPA or 手動入力で工数読み難い</li>
+          <li>ANDPAD 仕様変更で工数増加リスク</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>抱き合わせ戦略の理由</h2>
+    <p style="font-size:12px;">単独販売は時給的に赤字だが、 ① 写真整理代行 (¥18K) を契約済の顧客に <strong>「ANDPAD への転記もやります +¥5-10K」</strong> として add-on すれば、 既存の写真整理工数 (3-4h) に +2-4h で完結。 感情度 92 = 顧客の感謝度が異常に高く、 紹介経路としても機能する。</p>
+  </div>
+
+  <div class="footer-bar"><span>競合: 完全不在 (ANDPAD 本体は補完サービスを提供しない)</span><span>5/22 後 優先度 C · Phase 1 (① add-on)</span></div>
+</div>
+
+<!-- ===================== Slide 11: ⑨ 地域インフラ B2G Deep Dive (v4 Phase 3 後ろ倒し) ===================== -->
+<div class="slide">
+  <span class="slide-num">11 / 14</span>
+  <h1>⑨ 地域インフラ B2G <span class="v3">v4 Phase 3</span> <span class="sub">後ろ倒し — Phase 1 は超軽量導入 (現場接触 + 信頼形成) 優先 / B2G は信頼形成後に発動</span></h1>
+
+  <div class="body">
+    <div class="dive-numbers">
+      <div class="num-card"><div class="label">委託料 月額</div><div class="value">¥25-40K</div></div>
+      <div class="num-card"><div class="label">工数 / 月</div><div class="value">15-25<span class="small"> h</span></div></div>
+      <div class="num-card"><div class="label">時給換算</div><div class="value bad-text">¥1-2.5K</div></div>
+      <div class="num-card"><div class="label">粗利率</div><div class="value">70%</div></div>
+      <div class="num-card"><div class="label">委託元 候補</div><div class="value">5 件<span class="small"> (たましん/信金/会議所/都/全建)</span></div></div>
+      <div class="num-card"><div class="label">対象 issue</div><div class="value">#3 + #7</div></div>
+    </div>
+
+    <h2>なぜ ⑤ 施主連絡 → ⑨ 地域窓口に水平思考転換したか</h2>
+    <p style="font-size:12px; background:#fcfaf6; border-left: 2px solid var(--accent); padding: 6px 10px;"><strong>⑤ 施主連絡代行は構造的に成立しない:</strong> (1) 信用毀損リスクが工務店に非対称に跳ね返る (賠償上限 ¥25-75K vs ¥1000 万級ブランドリスク) / (2) 工務店メリットが薄い (連絡 1 通 1 分 × 月数回に ¥25K の価値なし) / (3) 施主は「業者扱い」を嫌がる (テンプレ連絡 = 逆効果) / (4) 競合不在は「ブルーオーシャン」 ではなく「構造的に売れないから誰もやらない」。 → <strong>金を払う主体を工務店 → 行政 / 信金に転換</strong>することで全リスクが解消する。</p>
+
+    <h2>サービス内容</h2>
+    <p style="font-size:13px;">たましん 価値創造事業部 / 商工会議所 / 自治体 と組んで「家の困りごと地域相談窓口」 を masatoman 主体で運営。 施主は工務店ではなく地域窓口に連絡 → masatoman が該当工務店 (5-10 社パートナー) に振り分け → 工務店本人が施主に連絡。 工務店からは金取らない、 <strong>行政 / 信金からの委託料 (年 ¥300-1500K)</strong> で収益化。 工務店ブランド毀損ゼロ。</p>
+
+    <div class="pros-cons">
+      <div class="pros">
+        <strong>★ 強み (既存戦略との接続 6 件)</strong>
+        <ul>
+          <li><span class="go-text">信用補完レイヤー B 直接体現</span> ([[credit-augmentation-dual-layer]])</li>
+          <li><span class="go-text">たましん価値創造事業部 = 委託元筆頭</span> ([[tamashin-keiei-shien-bottleneck]] 解消)</li>
+          <li><span class="go-text">アトツギ向け窓口機能</span> ([[atotsugi-decision-maker]])</li>
+          <li><span class="go-text">業界紙取材材料 = 「地域インフラ運営者」 ポジ</span> ([[industry-press-authority-borrow]])</li>
+          <li>公庫融資 ¥100 万 → Phase 1 パイロット運営資金 + Pマーク取得 ([[koko-loan-before-incorporation]])</li>
+          <li><span class="go-text">BPaaS 顧客導線 (相談所経由で月 2-3 件契約発生)</span> → ⑤ 削除の穴を埋める</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <strong>⚠️ 弱み・リスク</strong>
+        <ul>
+          <li>公務員意思決定が年単位 → Phase 1 パイロットは自費、 本業継続前提</li>
+          <li>工務店パートナー先行構築要 (5-6 月友人 + 建材屋巡回で並行)</li>
+          <li>個人情報保護対応コスト ¥30-50K (Pマーク取得、 公庫融資で対応)</li>
+          <li>時給単独では低い (¥1-2.5K) → 補完収益 (紹介手数料 + BPaaS) で帳尻</li>
+          <li>属人化リスク 高 (信頼関係ベース、 副業外注困難)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>収益カーブ (Phase 1 → 2 → 3)</h2>
+    <table>
+      <thead><tr><th style="width:18%;">Phase</th><th>内容</th><th class="num" style="width:18%;">委託料 / 年</th><th class="num" style="width:18%;">補完 + 月計</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Phase 1 パイロット</strong><br><small>7-9 月</small></td><td>自費運営 + 工務店パートナー 5-10 社確保 + 相談 10-30 件/月 + 紹介 3-5 件 = 実績作り</td><td class="num">¥0</td><td class="num">本業並走</td></tr>
+        <tr><td><strong>Phase 2 委託 1 件目</strong><br><small>10-12 月</small></td><td>たましん or 商工会議所と委託契約獲得</td><td class="num"><span class="go-text">¥300-500K</span></td><td class="num">月 ¥25-40K</td></tr>
+        <tr><td style="background:#e6f0ea;"><strong>Phase 3 スケール</strong><br><small>2027 1-4 月</small></td><td style="background:#e6f0ea;">複数自治体/信金で累計 + 紹介手数料 月 ¥30-50K + BPaaS 顧客化 月 ¥30-90K</td><td class="num" style="background:#e6f0ea;"><span class="go-text">¥800-1500K</span></td><td class="num" style="background:#e6f0ea;"><span class="go-text">月 ¥130-265K</span><br><small>(ルートゴール超過)</small></td></tr>
+      </tbody>
+    </table>
+
+    <h2>5/22 北原氏に聞くこと (Q14 新規追加)</h2>
+    <p style="font-size:12px;">① 多摩地区での先例 (UR / 自治体 / 信金) / ② たましん価値創造事業部の「地域インフラ運営委託」 への関心度 / ③ 委託契約獲得までの典型期間 (パイロット 3-6 ヶ月 + 契約 3-6 ヶ月 = 1 年想定で妥当か) / ④ 該当する公的補助金 (地域 DX 推進 / 中小企業支援 / 移住定住促進) / ⑤ 個人情報保護要件 (Pマーク? ISMS?)</p>
+  </div>
+
+  <div class="footer-bar"><span>競合: 構造的に不在 (民間で行政役を担う事業者は稀)</span><span>5/22 後 優先度 S = 最重要 · Phase 1-2</span></div>
+</div>
+
+<!-- ===================== Slide 12: 軸別ランキング + 罠マトリクス ===================== -->
+<div class="slide">
+  <span class="slide-num">12 / 14</span>
+  <h1>軸別ランキング + 罠マトリクス <span class="v3">v4</span> <span class="sub">時給 / 対象 issue 数 / 4 軸星評価 + 数字魅力度 × 実現容易度</span></h1>
+
+  <div class="body">
+
+    <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 18px; flex: 1;">
+
+      <div>
+        <h2>① 時給換算 (BPaaS 価格 ÷ 工数)</h2>
+        <div class="bar-chart">
+          <div class="bar-row"><span class="bar-name">⑦ 補助金 (成功時)</span><div class="bar-track"><div class="bar-fill new" style="width:100%;"></div></div><span class="bar-value">¥15,000 max</span></div>
+          <div class="bar-row"><span class="bar-name">① 写真整理</span><div class="bar-track"><div class="bar-fill" style="width:40%;"></div></div><span class="bar-value">¥6,000 max</span></div>
+          <div class="bar-row"><span class="bar-name">⑥ 議事録 NEW</span><div class="bar-track"><div class="bar-fill new" style="width:33%;"></div></div><span class="bar-value">¥5,000 max</span></div>
+          <div class="bar-row"><span class="bar-name">② 経理</span><div class="bar-track"><div class="bar-fill mid" style="width:33%;"></div></div><span class="bar-value">¥5,000 max</span></div>
+          <div class="bar-row"><span class="bar-name">⑨ 地域窓口 B2G ★</span><div class="bar-track"><div class="bar-fill new" style="width:17%;"></div></div><span class="bar-value">¥2,500 max<br><small>(+補完収益)</small></span></div>
+          <div class="bar-row"><span class="bar-name">⑧ ANDPAD NEW</span><div class="bar-track"><div class="bar-fill bad" style="width:14%;"></div></div><span class="bar-value">¥2,000 max</span></div>
+        </div>
+
+        <h2>② 対象 issue 数 (48 件中のヒット数)</h2>
+        <div class="bar-chart">
+          <div class="bar-row"><span class="bar-name">⑦ 補助金 NEW</span><div class="bar-track"><div class="bar-fill new" style="width:100%;"></div></div><span class="bar-value">6 件 (最多)</span></div>
+          <div class="bar-row"><span class="bar-name">① 写真整理</span><div class="bar-track"><div class="bar-fill" style="width:50%;"></div></div><span class="bar-value">3 件</span></div>
+          <div class="bar-row"><span class="bar-name">⑨ 地域窓口 B2G ★</span><div class="bar-track"><div class="bar-fill new" style="width:33%;"></div></div><span class="bar-value">2 件 (#3=70)</span></div>
+          <div class="bar-row"><span class="bar-name">② 経理</span><div class="bar-track"><div class="bar-fill mid" style="width:33%;"></div></div><span class="bar-value">2 件</span></div>
+          <div class="bar-row"><span class="bar-name">⑥ 議事録 / ⑧ ANDPAD</span><div class="bar-track"><div class="bar-fill new" style="width:17%;"></div></div><span class="bar-value">1 件 ずつ</span></div>
+        </div>
+
+        <h2>③ 4 軸星評価</h2>
+        <table style="margin-top:6px; font-size:10px;">
+          <thead><tr><th></th><th class="center">①</th><th class="center">②</th><th class="center col-new">⑥</th><th class="center col-new">⑦</th><th class="center col-new">⑧</th><th class="center col-new">⑨</th></tr></thead>
+          <tbody>
+            <tr><td>実装容易度</td><td class="center"><span class="go-text">★★★★</span></td><td class="center"><span class="bad-text">★★</span></td><td class="center"><span class="go-text">★★★★★</span></td><td class="center"><span class="bad-text">★★</span></td><td class="center"><span class="go-text">★★★★</span></td><td class="center">★★★</td></tr>
+            <tr><td>主顧客整合性</td><td class="center"><span class="go-text">★★★★</span></td><td class="center">★★★</td><td class="center">★★★</td><td class="center">★★★</td><td class="center"><span class="go-text">★★★★</span></td><td class="center"><span class="go-text">★★★★★</span></td></tr>
+            <tr><td>規制リスク低</td><td class="center"><span class="go-text">★★★★★</span></td><td class="center"><span class="bad-text">★</span></td><td class="center"><span class="go-text">★★★★★</span></td><td class="center"><span class="bad-text">★★</span></td><td class="center"><span class="go-text">★★★★★</span></td><td class="center"><span class="go-text">★★★★★</span></td></tr>
+            <tr><td>継続率予測</td><td class="center"><span class="go-text">★★★★</span></td><td class="center"><span class="go-text">★★★★</span></td><td class="center">★★★</td><td class="center"><span class="bad-text">★</span></td><td class="center"><span class="go-text">★★★★</span></td><td class="center"><span class="go-text">★★★★★</span></td></tr>
+            <tr><td>戦略接続数</td><td class="center">2</td><td class="center">1</td><td class="center">1</td><td class="center">2</td><td class="center">1</td><td class="center"><span class="go-text">★★★ 6 件</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h2>罠マトリクス: 数字魅力度 × 実現容易度</h2>
+        <div class="matrix-wrap" style="margin: 16px 60px 40px 60px; min-height: 240px;">
+          <div class="axis-y-label">数字魅力度 (高)</div>
+          <div class="matrix-box" style="height: 240px;">
+            <div class="quadrant-label q1" style="font-size:9px;">右上 = GO ★<br>数字 + 容易</div>
+            <div class="quadrant-label q2" style="font-size:9px;">左上 = 慎重に<br>魅力 + 困難</div>
+            <div class="quadrant-label q3" style="font-size:9px;">左下 = 切り捨て</div>
+            <div class="quadrant-label q4" style="font-size:9px;">右下 = 抱き合わせ枠</div>
+
+            <div class="point new" style="top:18%; left:60%; font-size:10px;">⑨ 地域窓口 ★</div>
+            <div class="point go" style="top:32%; left:82%; font-size:10px;">① 写真整理</div>
+            <div class="point new" style="top:48%; left:85%; font-size:10px;">⑥ 議事録</div>
+            <div class="point warn" style="top:22%; left:28%; font-size:10px;">② 経理</div>
+            <div class="point new" style="top:10%; left:22%; font-size:10px;">⑦ 補助金</div>
+            <div class="point new" style="top:65%; left:78%; font-size:10px;">⑧ ANDPAD</div>
+          </div>
+          <div class="axis-x-label" style="bottom: -25px; font-size: 11px;">実現容易度 (高) →</div>
+        </div>
+
+        <div style="display: grid; gap: 8px; margin-top: 36px;">
+          <div class="conclusion-card go-card" style="padding: 10px 14px;">
+            <h3 style="font-size:12px;">右上 + 中央上 (Phase 1 集中 3)</h3>
+            <p style="font-size:10.5px;"><strong>① 写真 + ⑥ 議事録 + ⑨ 地域窓口 ★</strong>: ⑨ は時給単独では低いが <strong>戦略接続 6 件 + 構造的競合不在 + 信用補完 B 直接体現</strong> で総合 No.1。 セット ¥58K で MVP。</p>
+          </div>
+          <div class="conclusion-card warn-card" style="padding: 10px 14px;">
+            <h3 style="font-size:12px;">左上 (Phase 2 投入)</h3>
+            <p style="font-size:10.5px;"><strong>② 経理 + ⑦ 補助金</strong>: 数字魅力 + 法務障壁高 → 提携必須 (税理士 / 行政書士)。 商品確定後に開始。</p>
+          </div>
+          <div class="conclusion-card new-card" style="padding: 10px 14px;">
+            <h3 style="font-size:12px;">右下 (抱き合わせ枠)</h3>
+            <p style="font-size:10.5px;"><strong>⑧ ANDPAD</strong>: 実装容易 + 感情度 92 だが時給低 → ① add-on (+¥5-10K) で展開。</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-bar"><span>マトリクス座標は推測ベース、 友人 N=2-3 で再検証</span><span>BPaaS 多軸比較 v3</span></div>
+</div>
+
+<!-- ===================== Slide 11: 推奨ポートフォリオ + 結論 ===================== -->
+<div class="slide">
+  <span class="slide-num">13 / 14</span>
+  <h1>Phase 戦略 v4 + 結論 <span class="v3">v4</span> <span class="sub">超軽量導入 → 運用支援強化 → 地域インフラ化 / 「覚えなくていい DX」 軸</span></h1>
+
+  <div class="body">
+
+    <div class="phase-grid">
+
+      <div class="phase-card p1">
+        <div class="ph-no">PHASE 1</div>
+        <div class="ph-title">超軽量導入期</div>
+        <div class="ph-period">2026-05 〜 2026-09 (5 ヶ月)<br>= 現場接触 + 信頼形成</div>
+
+        <div class="ph-services">
+          <strong>① 写真運用支援 + ⑥ 議事録支援 + ⑧ ANDPAD 運用支援</strong><br>
+          3 プラン制 月 <strong>¥18K-70K / 社</strong> (L1/L2/L3 別)
+        </div>
+
+        <div class="ph-kpi">
+          <strong>KPI:</strong> 1-3 社契約 (L1-L2 中心) <br>
+          月次売上 ¥30K-150K<br>
+          工数 10-30h/月
+        </div>
+
+        <ul>
+          <li>友人 Phase 3 で 3 プラン制の刺さり方検証</li>
+          <li>5/22 北原氏 Q14 で v4 戦略全体妥当性確認</li>
+          <li>⑥ 議事録 MVP を lab-tools に追加 (5/24-30)</li>
+          <li>⑧ ANDPAD 運用支援を Phase 1 主軸に (旧 add-on から昇格)</li>
+          <li>営業話法「どこまで任せますか?」 の刺さり方検証</li>
+          <li>建材屋巡回 + 友人雪だるまで現場接触</li>
+        </ul>
+      </div>
+
+      <div class="phase-card p2">
+        <div class="ph-no">PHASE 2</div>
+        <div class="ph-title">運用支援強化期</div>
+        <div class="ph-period">2026-10 〜 2026-12 (3 ヶ月)<br>= 信頼形成後の深い運用支援</div>
+
+        <div class="ph-services">
+          Phase 1 維持 +<br>
+          <strong>② 経理補助</strong> (税理士提携) + <strong>⑦ 補助金補助</strong> (行政書士提携) + <strong>LINE 運用支援</strong>
+        </div>
+
+        <div class="ph-kpi">
+          <strong>KPI:</strong> Phase 1 顧客に経理 / 補助金アップセル <br>
+          月次売上 ¥100K-300K<br>
+          商品方向性確定 + 提携完了
+        </div>
+
+        <ul>
+          <li>既存 Phase 1 顧客に IT 導入補助金 1/2 アップセル</li>
+          <li>認定支援機関税理士 + 行政書士 業務提携完了</li>
+          <li>② 経理は L3 プランで「freee 設定 + 月次チェック + 必要時記帳補助」 提供</li>
+          <li>⑦ 補助金は「事業計画作成補助」 として行政書士法対策</li>
+          <li>LINE 運用支援 (グループ整理 / 通知ルール) を追加価値として提供</li>
+        </ul>
+      </div>
+
+      <div class="phase-card p3">
+        <div class="ph-no">PHASE 3</div>
+        <div class="ph-title">地域インフラ化期</div>
+        <div class="ph-period">2027-01 〜 2027-04 (4 ヶ月)<br>= ⑨ B2G + 信用補完二重化</div>
+
+        <div class="ph-services">
+          Phase 2 維持 +<br>
+          <strong>⑨ 地域インフラ B2G ★</strong> (たましん / 商工会議所委託) + <strong>地域相談窓口 + 信金連携</strong>
+        </div>
+
+        <div class="ph-kpi">
+          <strong>KPI:</strong> 3-5 社累計契約 + ⑨ 委託契約 1 件目 <br>
+          <strong>MRR ¥130-265K 達成</strong> (ルートゴール 4-9 倍超過)<br>
+          (ルートゴール判定 4/30)
+        </div>
+
+        <ul>
+          <li>⑨ 地域窓口運営を Phase 3 で本格発動 (v3 では Phase 1-2、 v4 で後ろ倒し)</li>
+          <li>たましん or 商工会議所と委託契約 ¥300-500K/年 締結</li>
+          <li>⑥ 議事録 SaaS 月 ¥5K で水平展開</li>
+          <li>Pマーク取得 (公庫融資 ¥100 万で対応)</li>
+          <li>24 ヶ月後 軸 B 真の単独主軸化 (生活費 6-10 割) 判定準備</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <h2>結論: v4 軸メッセージ「LINE 送るだけ」「覚えなくていい」「必要ならこちらでやる」</h2>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px;">
+      <div style="background:#f6faf7; border:2px solid var(--good); border-radius:6px; padding:12px 16px;">
+        <p style="font-size:13px;"><strong style="color:var(--good); font-size:15px;">1 つだけなら ① 写真運用支援</strong></p>
+        <p style="font-size:11.5px; margin-top:4px;">実装最楽 / オンボ 1-2h / 法務リスク低 / 3 プラン全対応 / クロスセル起点 (⑥ 議事録 + ⑧ ANDPAD への入口)。 L1 SaaS のみ ¥5K で始めて、 顧客の慣れ次第で L2-L3 にアップグレード。</p>
+      </div>
+      <div style="background:var(--new-soft); border:2px solid var(--new); border-radius:6px; padding:12px 16px;">
+        <p style="font-size:13px;"><strong style="color:var(--new); font-size:15px;">3 つで始めるなら Phase 1 セット ①+⑥+⑧</strong></p>
+        <p style="font-size:11.5px; margin-top:4px;"><strong>v4 で ⑧ ANDPAD を Phase 1 主軸に昇格</strong> (旧 add-on から独立)。 感情度 92 で需要強烈、 競合空白。 3 プラン制で <strong>L1: ¥18K / L2: ¥41K / L3: ¥70K</strong> から選んでもらう。 ⑨ B2G は Phase 3 に後ろ倒し (現場接触 + 信頼形成優先)</p>
+      </div>
+    </div>
+
+    <h2>v4 で絶対に避ける方向 + 目指す理想状態</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px;">
+      <div class="conclusion-card warn-card" style="padding: 10px 14px;">
+        <h3 style="font-size:12px;">❌ 絶対に避ける</h3>
+        <p style="font-size:11px;">全部代行 / フル受託化 / 顧客ごとの重カスタム / 人力依存 / 属人運用 / 「AI で人削減」 訴求</p>
+      </div>
+      <div class="conclusion-card go-card" style="padding: 10px 14px;">
+        <h3 style="font-size:12px;">⭕ 目指す理想状態</h3>
+        <p style="font-size:11px;">「AI 会社」 ではなく <strong>「DX の面倒を一緒に整理してくれる人」</strong> として認識される。 最終的に顧客が自分で回せる状態 → 解約は紹介経路化として OK。</p>
+      </div>
+    </div>
+
+    <h2>5/22 北原氏 Q14 で確認すべき 5 項目 (v4 アップデート)</h2>
+    <p style="font-size:12px;">① <strong>v4「覚えなくていい DX」 ポジ</strong> の刺さり方 (工務店オーナー / 中間業者 / アトツギ視点) / ② <strong>3 プラン制 (L1-L3)</strong> の意思決定容易性 (「導入するか」 vs 「どこまで任せますか」 / ③ ⑧ ANDPAD 運用支援の Phase 1 主軸昇格 妥当性 / ④ ⑨ B2G Phase 3 後ろ倒し判断 (多摩地区での先例 / たましん関心度) / ⑤ 認定支援機関税理士 + 行政書士 提携経路</p>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 DX 運用支援 v4 / 2026-05-20 / portfolio repo</span>
+    <span>続く →</span>
+  </div>
+</div>
+
+<!-- ===================== Slide 14: v4 戦略への懸念 5 つ + 5/22 北原氏 判断材料 (新規) ===================== -->
+<div class="slide">
+  <span class="slide-num">14 / 14</span>
+  <h1>v4 戦略への懸念 5 つ + 5/22 北原氏 判断材料 <span class="v3">v4</span> <span class="sub">北原氏意見を仰いで「v4 全採用 / v3 + v4 部分採用 / v3 巻き戻し」 を判定</span></h1>
+
+  <div class="body">
+    <p style="font-size:13px;"><strong>本資料の位置付け:</strong> v4 を確定戦略として打ち出すのではなく、 <strong>「v4 案 + 懸念点 5 つを北原氏に提示して意見を聞く」</strong> 立場で 5/22 面談に臨む。 戦略 6 日で 4 回ピボットしている (5/14 N=1 → 5/15 じっくり型 → 5/18 BPaaS → 5/19 v3 → 5/20 v4) ため [[pivot-from-speedy-to-careful-2026-05-15]] 「じっくり裏取り型」 と矛盾しないよう、 第三者意見で固定する。</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+
+      <div class="conclusion-card warn-card">
+        <h3 style="font-size:13px;">懸念 ① L1 ライト ¥5-10K は売れない仮説 ★★</h3>
+        <p style="font-size:11px;">主顧客 (IT 弱者 60-70 代) は「SaaS だけ買って自分で運用」 を選ばない。 L1 を選ぶ層 = アトツギ / IT 強い若手 = 自走できるので有料で買う動機弱い + LTV 短い (自走できたら離脱)。</p>
+        <p style="font-size:10.5px; margin-top:6px; color: var(--accent);"><strong>北原氏に聞く:</strong> 工務店オーナーは「SaaS だけ ¥5K」 を有料で買うか? L1 を「3 ヶ月限定お試し版」 に再定義すべきか?</p>
+      </div>
+
+      <div class="conclusion-card warn-card">
+        <h3 style="font-size:13px;">懸念 ② ⑧ ANDPAD Phase 1 主軸昇格は時期尚早 ★★</h3>
+        <p style="font-size:11px;">ANDPAD 必須は <strong>下請工務店</strong> (元請けが指定)、 主顧客の中堅工務店オーナーは元請け側 = 強制されてない。 友人 N=1 で「ANDPAD 使ってる」 か未確認。 感情度 92 は強烈だが対象層が狭い可能性。</p>
+        <p style="font-size:10.5px; margin-top:6px; color: var(--accent);"><strong>北原氏に聞く:</strong> 多摩地区中堅工務店の ANDPAD 導入率は? 元請け側 / 下請け側どちらに刺さる商品か?</p>
+      </div>
+
+      <div class="conclusion-card danger" style="background:#fff2f2; border-left: 4px solid var(--danger); padding: 12px 16px;">
+        <h3 style="font-size:13px; color: var(--danger);">懸念 ③ ⑨ B2G Phase 3 後ろ倒しは戦略上の損失大 ★ (最重要)</h3>
+        <p style="font-size:11px;">v3 では ⑨ は「戦略接続 6 件 (信用補完二重化 / たましん bottleneck / アトツギ説得 / 業界紙 / 公庫融資 / BPaaS 顧客導線)」 で総合 No.1 だった。 信用補完は時間がかかる (たましん紹介 半年で 3-5 件) ため <strong>Phase 3 開始では 24 ヶ月後ルートゴール判定に間に合わない</strong>。 5/22 Q14 が宙に浮く。</p>
+        <p style="font-size:10.5px; margin-top:6px; color: var(--danger);"><strong>北原氏に聞く:</strong> ⑨ 地域インフラ B2G は今すぐ動くべきか、 Phase 1 BPaaS で信頼形成してからでも間に合うか?</p>
+      </div>
+
+      <div class="conclusion-card warn-card">
+        <h3 style="font-size:13px;">懸念 ④ 名称変更のみで戦略的進歩弱い ★★★</h3>
+        <p style="font-size:11px;">「② 経理代行 → 経理補助」「⑦ 補助金申請代行 → 補助金補助」 は v3 でも「税理士提携 A 分業 / 行政書士提携で書類化」 で同じ構造だった。 v4 で名称変更したが <strong>提供内容に実質的な進歩がない</strong>。</p>
+        <p style="font-size:10.5px; margin-top:6px; color: var(--accent);"><strong>北原氏に聞く:</strong> 名称「代行」 vs「支援 / 補助」 で工務店オーナーの受け取り方は本当に変わるか? 中身が同じでも訴求効果あるか?</p>
+      </div>
+
+      <div class="conclusion-card danger" style="background:#fff2f2; border-left: 4px solid var(--danger); padding: 12px 16px;">
+        <h3 style="font-size:13px; color: var(--danger);">懸念 ⑤ 戦略転換が早すぎる ★ (じっくり裏取り型と矛盾)</h3>
+        <p style="font-size:11px;"><strong>6 日で 4 回ピボット</strong>: 5/14 N=1 → 5/15 じっくり型 → 5/18 BPaaS → 5/19 v3 (⑨ B2G 追加) → 5/20 v4 (DX 運用支援)。 [[pivot-from-speedy-to-careful-2026-05-15]] 「5-6 月一次情報取得期」 と矛盾。 5/22 面談まで 2 日、 戦略が固まってない状態で打診するリスク。</p>
+        <p style="font-size:10.5px; margin-top:6px; color: var(--danger);"><strong>北原氏に聞く:</strong> 戦略 6 日で 4 回変えている自分の判断スピードは妥当か? 「じっくり裏取り型」 に戻すべきか? それとも v4 で固定して友人 N=2-3 で検証すべきか?</p>
+      </div>
+
+      <div class="conclusion-card go-card" style="padding: 12px 16px;">
+        <h3 style="font-size:13px;">5/22 後の判定シナリオ 3 通り</h3>
+        <ul style="font-size:11px; padding-left: 16px; line-height: 1.7; margin-top: 4px;">
+          <li><strong>A: v4 全採用</strong> — 北原氏が「学習コスト削減」 ポジ + 3 プラン制 + ⑧ Phase 1 主軸を全肯定した場合</li>
+          <li><strong>B: v3 + v4 部分採用</strong> — 「学習コスト」 観点と 3 プラン制 (L2/L3) は採用、 ⑧ Phase 1 主軸 と ⑨ Phase 3 後ろ倒しは v3 維持</li>
+          <li><strong>C: v3 巻き戻し</strong> — 「v4 は早合点、 まず v3 + 友人 N=2-3 で検証してから」 と判断された場合</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <h2 style="margin-top: 14px;">5/22 までに準備すること (本日 5/20 → 5/22 まで 2 日)</h2>
+    <ol style="font-size:12px; padding-left: 20px; line-height: 1.7;">
+      <li>本資料 (v4 + 懸念 5 つ) を PDF 化、 北原氏に事前送付 (5/20-21)</li>
+      <li>v3 HTML を別ファイルでバックアップ保持 (巻き戻し可能性のため)</li>
+      <li>北原氏質問リスト Q14-Q18 を本資料の「北原氏に聞く」 5 項目に統合 (consultation-questions-2026-05-22.html v3 内部版 + v2 public 版 を更新)</li>
+      <li>面談録音準備 (戦略判定の根拠ログとして残す)</li>
+    </ol>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 DX 運用支援 v4 / 2026-05-20 / portfolio repo</span>
+    <span>END · 5/22 北原氏判定待ち</span>
+  </div>
+</div>
+
+</body>
+</html>
