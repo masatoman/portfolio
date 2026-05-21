@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="created-at" content="2026-05-14">
+<meta name="updated-at" content="2026-05-21">
+<title>事業計画書 v7.0 / 工務店向け業務代行 / 北原氏面談用 + 公庫融資申込用 / 2026-05-22</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --accent: #b85c3a;
+  --accent-soft: #f4dfd2;
+  --good: #2d6a4f;
+  --good-soft: #e6f0ea;
+  --warn: #c34a1f;
+  --warn-soft: #fef5e7;
+  --info: #1e3a5f;
+  --info-soft: #dde6f0;
+  --border: #e4ddd1;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 12px;
+  line-height: 1.7;
+}
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 14mm 16mm;
+  margin: 8mm auto;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+  page-break-after: always;
+}
+header {
+  border-bottom: 2px solid var(--fg);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+header h1 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+header .meta { font-size: 10px; color: var(--muted); }
+
+h2 {
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 3px 10px;
+  margin: 14px 0 8px;
+  letter-spacing: 0.04em;
+}
+h3 { font-size: 12.5px; font-weight: 700; margin: 10px 0 5px; color: var(--accent); }
+p { margin-bottom: 6px; }
+ul { padding-left: 18px; margin-bottom: 6px; }
+li { margin-bottom: 2px; }
+
+.motive-box {
+  background: var(--good-soft);
+  border-left: 4px solid var(--good);
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+}
+.motive-box h3 { color: var(--good); margin: 0 0 6px; font-size: 13px; }
+.motive-box p { font-size: 12px; margin-bottom: 4px; }
+
+.q-box {
+  background: var(--info-soft);
+  border-left: 4px solid var(--info);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin: 10px 0;
+}
+.q-box .q-label { font-size: 10px; letter-spacing: 0.15em; color: var(--info); font-weight: 700; margin-bottom: 4px; }
+.q-box .q-text { font-size: 13px; font-weight: 700; line-height: 1.5; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  margin: 8px 0;
+}
+table th { background: var(--fg); color: white; padding: 5px 7px; text-align: left; font-size: 10.5px; }
+table td { padding: 5px 7px; border-bottom: 1px solid var(--border); vertical-align: top; }
+table tr:nth-child(even) td { background: #fbf8f3; }
+
+.eval-table td.good { color: var(--good); font-weight: 700; text-align: center; }
+.eval-table td.bad { color: var(--warn); font-weight: 700; text-align: center; }
+.eval-table td.mid { color: var(--accent); font-weight: 700; text-align: center; }
+.eval-table tr.recommended td { background: var(--good-soft) !important; }
+
+.callout {
+  background: #fdfbf6;
+  border-left: 3px solid var(--accent);
+  padding: 8px 11px;
+  margin: 8px 0;
+  font-size: 11.5px;
+}
+.callout.good { background: var(--good-soft); border-left-color: var(--good); }
+.callout.warn { background: var(--warn-soft); border-left-color: var(--warn); }
+.callout.info { background: var(--info-soft); border-left-color: var(--info); }
+
+.muted-text { color: var(--muted); }
+.highlight { background: linear-gradient(transparent 60%, var(--accent-soft) 60%); padding: 0 3px; }
+
+@media print {
+  body { background: white; }
+  .page { box-shadow: none; margin: 0; }
+  @page { size: A4; margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- Page 1: 動機 + 主顧客 + 6 候補 + 5 軸評価 -->
+<!-- ============================================ -->
+<div class="page">
+
+<header>
+  <h1>事業計画書 <span style="font-size: 12px; color: var(--accent); margin-left: 6px;">v7.0</span> — 工務店向け業務代行</h1>
+  <div class="meta">作成: 2026-05-14 / 更新: 2026-05-21 / 用途: 北原氏面談メイン + 公庫融資申込補助 / 井原 誠斗 (いはら まさと)</div>
+</header>
+
+<div class="motive-box">
+  <h3>📌 動機 (なぜ工務店向けに事業を始めたか)</h3>
+  <p>① 知り合いに <strong>工務店で働く現場監督</strong> がいて、 直接悩みを聞ける環境にある</p>
+  <p>② 自分は <strong>個人事業主 / フルスタックエンジニア</strong> として、 1 人で Web サービスを設計から運用まで完結できる職人型スキルを持つ</p>
+  <p>③ 業界の悩み (アナログ業務の負担 / IT 導入の障壁) を、 自分のスキルで <strong>軽量に解決できる仮説</strong> がある</p>
+</div>
+
+<h2>1. 主顧客像 (3 層構造、 工務店の意思決定モデル)</h2>
+<table>
+  <thead><tr><th style="width:18%;">層</th><th style="width:22%;">具体像</th><th>特徴 + 通信手段</th></tr></thead>
+  <tbody>
+    <tr><td><strong>決裁者</strong></td><td>社長 60-70 代</td><td>IT 弱者。 LINE もメールも苦手。 <strong>FAX / 電話 / 訪問 / 郵送</strong> が業務の中心。 「覚えるのが面倒」 が本音、 月額契約を渋る</td></tr>
+    <tr><td><strong>経理担当</strong></td><td>奥さま 60 代</td><td>領収書整理 / 請求書発行 / 確定申告で月末月初パンク。 紙の帳簿中心、 freee 等の会計ソフトは設定が壁</td></tr>
+    <tr><td><strong>推進役</strong></td><td>2 代目 / 3 代目 30-40 代 (アトツギ)</td><td>スマホは普通に使える。 「父親に説得材料を渡したい」 のが本音。 IT 化推進のキーパーソンだが本人は現場で忙しい</td></tr>
+  </tbody>
+</table>
+
+<h2>2. ネットで調べて考えた 6 サービス候補</h2>
+<table>
+  <thead><tr><th style="width:5%;">#</th><th style="width:22%;">候補サービス</th><th>提供内容</th><th style="width:13%;">想定単価 / 月</th></tr></thead>
+  <tbody>
+    <tr><td>①</td><td>現場写真整理代行</td><td>SD カード / 紙焼き写真を月末郵送受領 → 整理 + フォルダ分け + タグ付け → PDF 台帳を郵送 + FAX 返却</td><td>¥1.5-3 万</td></tr>
+    <tr><td>②</td><td>議事録支援</td><td>IC レコーダー / SD カードを郵送 → Whisper + Claude で文字起こし + 要約 → 郵送返却 + 電話報告</td><td>¥1-2 万</td></tr>
+    <tr><td>③</td><td>ANDPAD 運用支援</td><td>元請けから ANDPAD 強制の下請工務店向け。 FAX で「ANDPAD にこう書いて」 指示書 + 入力代行</td><td>¥1-2.5 万</td></tr>
+    <tr><td>④</td><td>領収書・経理補助</td><td>領収書 / 請求書を月 1 回まとめて郵送 → freee 入力 → 月次レポート郵送 + 電話報告 (税理士提携前提)</td><td>¥1-3 万</td></tr>
+    <tr><td>⑤</td><td>補助金事業計画作成補助</td><td>IT 導入補助金 (通常枠 1/2)。 訪問 + 電話ヒアリング → 事業計画書作成補助 → 提携行政書士が申請書類化</td><td>着手 ¥3-5 万 + 成功 10-15%</td></tr>
+    <tr><td>⑥</td><td>家の困りごと地域相談窓口</td><td>行政 / 信金からの委託で運営。 施主からの相談を電話 / FAX で受付 → 工務店本人が連絡する構造維持</td><td>委託 ¥2.5-4 万 (B2G)</td></tr>
+  </tbody>
+</table>
+
+<h2>3. 6 候補 5 軸評価 (私の仮選定 + 北原氏ご評価いただきたい部分)</h2>
+<table class="eval-table">
+  <thead><tr><th style="width:24%;">候補</th><th style="width:11%;">痛みの<br>明確さ</th><th style="width:11%;">代行<br>可能性</th><th style="width:11%;">差別化</th><th style="width:11%;">価格<br>成立</th><th style="width:11%;">AI 接続</th><th>備考</th></tr></thead>
+  <tbody>
+    <tr class="recommended"><td><strong>① 現場写真整理代行 ⭐</strong></td><td class="good">◎</td><td class="good">◎</td><td class="good">◎</td><td class="good">◎</td><td class="good">◎</td><td>5 軸全 ⭕ + AI 化筋道きれい (私の推し)</td></tr>
+    <tr><td>② 議事録支援</td><td class="mid">△</td><td class="good">◎</td><td class="mid">△</td><td class="mid">△</td><td class="good">◎</td><td>現場監督より本社向き、 既存 SaaS 強い</td></tr>
+    <tr><td>③ ANDPAD 運用支援</td><td class="good">◎</td><td class="mid">○</td><td class="mid">○</td><td class="bad">✕</td><td class="mid">△</td><td>ターゲット逆転 (下請零細層、 主顧客と違う)</td></tr>
+    <tr><td>④ 領収書・経理補助</td><td class="mid">○</td><td class="mid">○</td><td class="mid">△</td><td class="mid">△</td><td class="mid">○</td><td>税理士事務所と競合、 差別化薄い</td></tr>
+    <tr><td>⑤ 補助金事業計画作成補助</td><td class="mid">○</td><td class="mid">△</td><td class="mid">○</td><td class="mid">○</td><td class="mid">△</td><td>専門知識要、 行政書士提携必須</td></tr>
+    <tr><td>⑥ 家の困りごと地域相談窓口</td><td class="mid">△</td><td class="bad">✕</td><td class="mid">△</td><td class="mid">△</td><td class="mid">△</td><td>B2G、 委託契約まで 6 ヶ月以上、 Phase 3 向き</td></tr>
+  </tbody>
+</table>
+
+<div class="q-box">
+  <div class="q-label">論点 ① · 6 候補評価</div>
+  <p class="q-text">この 6 候補の評価をどう見ますか? 私の推し「現場写真整理代行」 で良いか、 別の候補にすべきか、 中小企業経営支援のご経験からお聞かせください。</p>
+</div>
+
+</div>
+
+<!-- ============================================ -->
+<!-- Page 2: SaaS / BPaaS / 両方 + 探し方 + 悩み + 紹介依頼 -->
+<!-- ============================================ -->
+<div class="page">
+
+<header>
+  <h1>事業計画書 v7.0 (続き) — 提供形態 / 集客 / 顧客理解 / 紹介依頼</h1>
+  <div class="meta">2026-05-22 / 井原 誠斗</div>
+</header>
+
+<h2>4. 提供形態の選択肢 (SaaS / BPaaS / 両方)</h2>
+<table>
+  <thead><tr><th style="width:18%;">形態</th><th style="width:28%;">内容</th><th style="width:18%;">単価 / 月</th><th>主顧客 (60-70 代 IT 弱者) との適合性</th></tr></thead>
+  <tbody>
+    <tr><td><strong>SaaS</strong></td><td>ツール販売 (顧客が自分で操作)</td><td>月額 ¥3-10K (低単価)</td><td>⚠️ 学習コスト = 壁、 60-70 代 IT 弱者は使えない可能性</td></tr>
+    <tr><td><strong>BPaaS</strong></td><td>業務代行 (こちらがやる)</td><td>月額 ¥1.5-5 万 (中単価)</td><td>⭕ 学習コスト 0、 主顧客に最も刺さる仮説</td></tr>
+    <tr><td><strong>両方 (ハイブリッド)</strong></td><td>BPaaS で開始 → 顧客がやり方を覚えたら SaaS に移行</td><td>月額 ¥1-3 万 (中単価から低単価へ)</td><td>○ 中長期で SaaS 化すれば AI エージェント化筋道と整合</td></tr>
+  </tbody>
+</table>
+
+<div class="q-box">
+  <div class="q-label">論点 ② · 提供形態</div>
+  <p class="q-text">工務店業界で受け入れられやすいのは SaaS / BPaaS / 両方 のどれですか? 業界の習慣 + 主顧客 (60-70 代 IT 弱者) の特性から、 北原氏のご経験でどう見えますか?</p>
+</div>
+
+<h2>5. お客さんの探し方 (集客戦略の候補)</h2>
+<table>
+  <thead><tr><th style="width:24%;">経路カテゴリ</th><th style="width:38%;">具体経路</th><th>想定コスト / 期間</th></tr></thead>
+  <tbody>
+    <tr><td><strong>紹介経路</strong></td><td>友人 (現場監督) / 建材屋営業マン / 設計事務所 / 業界紙</td><td>低コスト、 中期間 (3-6 ヶ月で 3-5 件)</td></tr>
+    <tr><td><strong>公的経路</strong></td><td>東京創業ステーション / 商工会議所 / 信金 (たましん 価値創造事業部) / 公庫 / 認定支援機関</td><td>中コスト、 長期間 (Step 1-3 で約 1 ヶ月)</td></tr>
+    <tr><td><strong>直接営業</strong></td><td>FAX バイラル拡散 (フッター広告) / 電話 / 訪問</td><td>低コスト、 中期間 (3 ヶ月で問合せ 10-15 件想定)</td></tr>
+    <tr><td><strong>イベント / 業界紙</strong></td><td>住宅デー 6/25 (全建総連) / 新建ハウジング 取材依頼 / 多摩 LIXIL ショールーム巡回</td><td>低コスト、 効果出るまで 3-6 ヶ月</td></tr>
+  </tbody>
+</table>
+
+<div class="q-box">
+  <div class="q-label">論点 ③ · 集客戦略</div>
+  <p class="q-text">中小工務店オーナーに最初に出会う最適な経路はどれですか? 1 件目契約までの典型的な道筋を北原氏のご経験から教えてください。</p>
+</div>
+
+<h2>6. お客さんの悩み (私の仮説 + 北原氏ご経験からの追加期待)</h2>
+<div class="callout">
+<p><strong>私の仮説 (5/14 友人 N=1 + 業界の声 48 件 + 競合 5 社調査):</strong></p>
+<ul>
+  <li>現場写真が SD カードに溜まる、 整理する時間がない (痛み度: 高)</li>
+  <li>奥さまが領収書 / 請求書整理で月末月初パンク (痛み度: 高)</li>
+  <li>ANDPAD 必須を強いられているが操作覚えられない (下請零細層、 痛み度: 最高)</li>
+  <li>補助金申請したいが書類作成が壁 (痛み度: 中)</li>
+  <li>後継者 (アトツギ) と社長で IT 化温度差 (痛み度: 高、 関係性問題)</li>
+</ul>
+</div>
+
+<div class="q-box">
+  <div class="q-label">論点 ④ · 顧客理解</div>
+  <p class="q-text">北原様が東京創業ステーションで工務店オーナーから相談を受けた経験から、 私が気づいてない <strong>深い悩み / 業界の暗黙のルール</strong> があれば教えてください。 経営支援のプロから見て、 商品設計を変えるべき視点はありますか?</p>
+</div>
+
+<h2>7. ご紹介のお願い (1 つに絞る)</h2>
+<div class="callout good">
+  <h3 style="color: var(--good); margin-bottom: 6px;">🏗️ 最優先: 多摩地区の中小工務店オーナー (アトツギ世代 30-40 代) 1 名ご紹介</h3>
+  <p style="font-size: 11.5px;">東京創業ステーション経由で過去にコンシェルジュ相談された工務店オーナーがいれば、 ヒアリングをさせていただきたいです。 友人 N=2-3 達成への最短ルート = 商品検証に直結します。</p>
+  <p style="font-size: 11px; color: var(--muted); margin-bottom: 0;">他のご紹介 (税理士・建材屋・業界紙) は商品が固まる Phase 2 (10 月) 以降に改めてお願いに上がります。 今は商品検証に集中したいため、 まずは工務店オーナー 1 名で十分です。</p>
+</div>
+
+</div>
+
+<!-- ============================================ -->
+<!-- Page 3: 公庫融資申込補助 (5 年計画 + 初期投資 + リスク) -->
+<!-- ============================================ -->
+<div class="page">
+
+<header>
+  <h1>事業計画書 v7.0 (続き) — 公庫融資申込補助 (5 年計画 / 初期投資 / リスク)</h1>
+  <div class="meta">2026-05-22 / 井原 誠斗 / ※ 北原氏面談で聞かれた時に開く</div>
+</header>
+
+<h2>8. 5 年収支計画 (現場写真整理代行 仮選定ベース)</h2>
+<table>
+  <thead><tr><th style="width:10%;">Year</th><th style="width:14%;">時期</th><th>主アクション</th><th style="width:14%;">契約社数</th><th style="width:14%;">月商</th><th>年商</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Year 1</strong></td><td>2026-Q2〜2027-Q1</td><td>個人事業、 商品検証 + 初期顧客 + 半自動化ツール内製</td><td>1-10 社</td><td>¥1.5-30 万</td><td>¥0.5-3M</td></tr>
+    <tr><td><strong>Year 2</strong></td><td>2027</td><td>合同会社設立、 副業外注 3 名、 AI エージェント版リリース (補助金 IT 通常枠 1/2 採択)</td><td>30 社</td><td>¥100 万</td><td>¥12M</td></tr>
+    <tr><td><strong>Year 3</strong></td><td>2028</td><td>副業外注 10 名、 多摩 5% 達成、 B2G 委託 (地域相談窓口) 1-3 件</td><td>65 社</td><td>¥250 万</td><td>¥30M</td></tr>
+    <tr><td><strong>Year 4</strong></td><td>2029</td><td>正社員 3 名、 フランチャイズ準備</td><td>100 社</td><td>¥400 万</td><td>¥48M</td></tr>
+    <tr><td><strong>Year 5</strong></td><td>2030</td><td>関東フランチャイズ展開、 全国 1% シェア</td><td>250 社</td><td>¥600 万</td><td>¥72M</td></tr>
+  </tbody>
+</table>
+
+<h2>9. 市場分析</h2>
+<p style="font-size: 11.5px;"><strong>TAM:</strong> 全国の中小工務店 (1-5 人規模) 約 5 万社 / <strong>SAM:</strong> 多摩 + 城南 + 関東主要都市 約 1.5 万社 (引越し前は多摩 1,500-3,000 社) / <strong>SOM:</strong> 5 年で多摩 5% = 75-100 社、 月商 ¥3-5M、 年商 ¥36-60M</p>
+
+<h2>10. 初期投資 (公庫融資 100 万円で賄う)</h2>
+<table>
+  <thead><tr><th style="width:30%;">項目</th><th style="width:18%;">金額</th><th>用途</th></tr></thead>
+  <tbody>
+    <tr><td>クラウド FAX (月額)</td><td>月 ¥1.5-3K</td><td>FAX 受信 + 自動 PDF 化</td></tr>
+    <tr><td>ScanSnap iX1600</td><td>¥5-7 万</td><td>写真 / 領収書スキャン</td></tr>
+    <tr><td>050 番号</td><td>月 ¥0-500</td><td>ビジネス用通話 + 録音</td></tr>
+    <tr><td>複合機 (FAX + 印刷)</td><td>¥2-3 万</td><td>顧客への返送用</td></tr>
+    <tr><td>物理保管棚</td><td>¥1-2 万</td><td>7 年税法保管 (5 社で本棚 1 つ)</td></tr>
+    <tr><td>初期営業費用</td><td>¥10-15 万</td><td>名刺 / 訪問交通費 / FAX 配信費</td></tr>
+    <tr><td>Pマーク取得</td><td>¥30-50 万</td><td>Phase 2 開始前</td></tr>
+    <tr><td>運転資金</td><td>¥25-40 万</td><td>本業との両立期の生活費補助</td></tr>
+    <tr><td><strong>合計</strong></td><td><strong>¥100 万</strong></td><td>公庫融資 (新規開業資金) で全額カバー</td></tr>
+  </tbody>
+</table>
+
+<h2>11. 競合分析 (2026-05-21 公式サイト確認)</h2>
+<table>
+  <thead><tr><th style="width:22%;">競合</th><th style="width:18%;">月額</th><th>井原との重なり</th></tr></thead>
+  <tbody>
+    <tr><td>ANDPAD BPO</td><td>価格非公開</td><td>ANDPAD アカウント前提、 大企業導入実績</td></tr>
+    <tr><td>ツクノビ事務</td><td>¥10 万 / 月 定額</td><td>デジタル完結、 写真整理は弱い</td></tr>
+    <tr style="background:#fef5e7;"><td><strong>建設事務代行センター 🔴</strong></td><td>¥5K-30K 帯</td><td><strong>最近接:</strong> FAX 代行 ¥5K + 単品 ¥2K、 中小工務店向け (5/23 電話確認予定)</td></tr>
+    <tr><td>ノンコア (noncore)</td><td>¥16 万 (120h)</td><td>時間チャージ大企業向け、 中小工務店は射程外</td></tr>
+    <tr><td>Bricks&UK</td><td>仕訳数ベース変動</td><td>経理特化、 写真整理対象外</td></tr>
+  </tbody>
+</table>
+
+<h2>12. リスクと対策 (プレモータム 5 + メタ 1)</h2>
+<table>
+  <thead><tr><th style="width:24%;">リスク</th><th>対策</th></tr></thead>
+  <tbody>
+    <tr><td>① ヒアリング偽陽性 (受注 0 のまま夏が過ぎる)</td><td>3 ヶ月 (8/22) 時点で商談 5 件未満なら紹介経路を見直す</td></tr>
+    <tr><td>② オペが 10 社目で詰まる (一人運営上限)</td><td>3 社で工数 25-48h、 5 社以上は副業外注必須、 Year 2 で法人化 + 外注 3-5 名</td></tr>
+    <tr><td>③ 写真機密問題で 1 社目導入が止まる</td><td>契約書に「施主同意取得は工務店側責任」 明記、 写真処理は顧客 Google Drive 内のみ</td></tr>
+    <tr><td>④ 商品が顧客に刺さらない</td><td>3 ヶ月 N=3 商談で有償申込 0 件なら商品定義を見直す (本日北原氏ご相談で評価いただく)</td></tr>
+    <tr><td>⑤ 大手 SaaS が代行付きプラン参入</td><td>ANDPAD 非対応 / 既存 SaaS 不満層に特化、 地域密着 + 信用補完で価格競争回避</td></tr>
+    <tr><td>⑥ 戦略ピボット連鎖 (7 日で 4-5 ピボット問題)</td><td>本日北原氏ご相談で <strong>商品 1 つに絞る判断</strong> をご確認いただく → 6 ヶ月凍結 (5/23 〜 11/22)</td></tr>
+  </tbody>
+</table>
+
+<h2>13. 結論</h2>
+<div class="callout good">
+<p><strong>本事業は仮説段階です</strong>。 本日 北原様のご経験から (1) 6 候補の評価 / (2) 提供形態 (SaaS / BPaaS / 両方) / (3) お客さんの探し方 / (4) お客さんの悩み の 4 点をご相談し、 事業計画を v8.0 (確定版) に書き換えて公庫融資申込 (5 月末-6 月初旬) + Phase 1 (6-9 月) 検証に進みます。 5/23 〜 11/22 の 6 ヶ月間は商品定義の変更を凍結し、 経営支援パートナーとして 8/22 中間報告 + 11/22 凍結期間終了でアポを再度お願いします。</p>
+</div>
+
+<footer style="margin-top: 14px; font-size: 9.5px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 6px;">
+事業計画書 v7.0 / 工務店向け業務代行 / 北原氏面談メイン + 公庫融資申込補助 / 井原 誠斗 (masatoman) / 3 / 3 / END
+</footer>
+</div>
+
+</body>
+</html>
