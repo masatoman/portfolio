@@ -3,260 +3,251 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>北原氏面談 質問リスト (事前共有版) / 2026-05-22</title>
+<meta name="created-at" content="2026-05-13">
+<meta name="updated-at" content="2026-05-21">
+<title>北原氏ご相談 質問リスト v5.1 / 工務店アナログ業務運用支援 / 2026-05-22</title>
 <style>
 :root {
   --bg: #faf7f2;
   --fg: #1f1c18;
   --muted: #6b6359;
   --accent: #b85c3a;
+  --accent-soft: #f4dfd2;
   --warn: #c34a1f;
+  --warn-soft: #fef5e7;
   --good: #2d6a4f;
-  --card: #ffffff;
+  --good-soft: #e6f0ea;
+  --info: #1e3a5f;
+  --info-soft: #dde6f0;
   --border: #e4ddd1;
 }
-* { box-sizing: border-box; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
   background: var(--bg);
   color: var(--fg);
-  line-height: 1.75;
-  font-size: 14px;
+  font-size: 12px;
+  line-height: 1.7;
 }
-.container { max-width: 820px; margin: 0 auto; padding: 28px 22px 60px; }
-
-header { border-bottom: 2px solid var(--fg); padding-bottom: 14px; margin-bottom: 22px; }
-header .tag { display: inline-block; font-size: 11px; letter-spacing: .15em; background: var(--fg); color: var(--bg); padding: 3px 10px; border-radius: 2px; margin-bottom: 8px; }
-header h1 { font-size: 22px; margin: 0 0 4px; font-weight: 700; }
-header .meta { color: var(--muted); font-size: 12px; }
-
-.intro {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 14px 18px;
-  margin-bottom: 22px;
-  font-size: 13px;
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 14mm 16mm;
+  margin: 8mm auto;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+  page-break-after: always;
 }
-.intro p { margin: 4px 0; }
+
+header {
+  border-bottom: 2px solid var(--fg);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+}
+header h1 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+header .meta { font-size: 10px; color: var(--muted); }
 
 h2 {
-  font-size: 16px;
-  margin: 30px 0 10px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-h2 .pri {
-  display: inline-block;
-  font-size: 10px;
-  letter-spacing: .1em;
-  padding: 3px 8px;
-  border-radius: 2px;
+  font-size: 14px;
   font-weight: 700;
-}
-h2 .pri.must { background: var(--warn); color: white; }
-h2 .pri.head { background: var(--accent); color: white; }
-h2 .pri.open { background: var(--good); color: white; }
-h2 .time { font-size: 11px; color: var(--muted); font-weight: 400; margin-left: auto; }
-
-.q {
-  background: var(--card);
-  border: 1px solid var(--border);
+  margin-top: 16px;
+  margin-bottom: 6px;
+  color: var(--accent);
   border-left: 4px solid var(--accent);
-  border-radius: 4px;
-  padding: 14px 18px;
-  margin-bottom: 12px;
+  padding-left: 8px;
 }
-.q.must { border-left-color: var(--warn); }
-.q.head { border-left-color: var(--accent); }
-.q.open { border-left-color: var(--good); }
-.q .num {
-  font-size: 11px;
-  letter-spacing: .15em;
+p { margin-bottom: 8px; }
+
+.hero-box {
+  background: var(--accent-soft);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.hero-box .hero-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
   color: var(--accent);
   font-weight: 700;
+  margin-bottom: 4px;
 }
-.q.must .num { color: var(--warn); }
-.q.open .num { color: var(--good); }
-.q .text {
+.hero-box .hero-text {
   font-size: 14px;
-  margin: 6px 0 0;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.q-card {
+  border: 1px solid var(--border);
+  background: #fdfbf6;
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+.q-card.priority { background: var(--warn-soft); border-left: 4px solid var(--warn); }
+.q-card.meta { background: var(--info-soft); border-left: 4px solid var(--info); }
+.q-num {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.q-card.priority .q-num { color: var(--warn); }
+.q-card.meta .q-num { color: var(--info); }
+.q-text {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  line-height: 1.5;
+}
+.q-bg {
+  font-size: 11.5px;
   line-height: 1.7;
 }
 
-.note {
-  background: #fff8ea;
-  border-left: 3px solid #d4a72c;
-  padding: 10px 14px;
-  margin: 16px 0;
-  font-size: 13px;
-  color: #5a4a1f;
-  border-radius: 0 4px 4px 0;
+.intro-box {
+  background: var(--good-soft);
+  border-left: 4px solid var(--good);
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
 }
-.note strong { color: #1f1c18; }
-
-footer.thanks {
-  margin-top: 32px;
-  padding: 14px 18px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+.intro-box h3 {
   font-size: 13px;
-  color: var(--muted);
+  color: var(--good);
+  margin-bottom: 4px;
 }
+.intro-box ul { padding-left: 16px; font-size: 11.5px; line-height: 1.8; }
 
 @media print {
-  body { background: white; font-size: 11px; }
-  .container { max-width: none; padding: 8mm; }
-  .q { break-inside: avoid; }
-  h2 { break-after: avoid; }
+  body { background: white; }
+  .page { box-shadow: none; margin: 0; }
+  @page { size: A4; margin: 0; }
 }
 </style>
-  <meta name="created" content="2026-05-19T04:58:53.596Z">
 </head>
 <body>
-<div class="container">
+
+<div class="page">
 
 <header>
-  <div class="tag">CONSULTATION QUESTIONS — PUBLIC</div>
-  <h1>北原様 面談 質問リスト (事前共有版)</h1>
-  <div class="meta">面談予定: 2026-05-22 / 東京創業ステーション (オンライン) / masatoman</div>
+  <h1>北原氏ご相談 質問リスト <span style="font-size: 12px; color: var(--accent); margin-left: 6px;">v5.1</span></h1>
+  <div class="meta">2026-05-22 (金) 東京創業ステーション オンライン面談 30-40 分 / 井原 誠斗 (いはら まさと)</div>
 </header>
 
-<div class="intro">
-  <p>当日の進行をスムーズにするため、 ご相談したい内容を事前に整理してお送りします。 全部を時間内に伺いきれないかもしれませんが、 優先順位は <strong>A (法人化判断 + IT 導入支援事業者) → B (工務店経営者へのアプローチ・紹介)</strong> を必達、 C 以降は時間に応じて、 という形で考えています。</p>
-  <p>事前にお目通しいただき、 当日は気になった部分から自由にお話しいただいて構いません。</p>
+<div class="hero-box">
+  <div class="hero-label">事業構想</div>
+  <div class="hero-text">「ANDPAD で詰まった工務店向けに、 FAX / 電話 / 郵送 どれでも OK の運用支援を、 月 ¥5K-50K (3 プラン制)」</div>
 </div>
 
-<!-- ====================================================== -->
-<h2><span class="pri must">デモ</span>0. 8 デモ評価 + 機能仮説 (面談冒頭) <span class="time">10 分目安</span></h2>
+<p style="font-size: 12px;">本日 30-40 分のオンライン面談で、 中小企業経営支援のご経験から <strong>6 つの論点</strong> についてご意見をいただきたいです。 + 認定支援機関税理士 / 工務店オーナー / 建材屋営業マン / 業界紙 などの <strong>ご紹介のお願い</strong> も最後にあります。</p>
 
-<div class="note">
-  <strong>進行</strong>: PC 画面共有で 8 デモを順に動かしてご覧いただきます。 全部だと散漫なので、 業界仮説に直結する <strong>① estimate-organizer ② call-memo-board ③ site-photo-organizer ④ voice-daily-report</strong> の 4 つを優先表示、 残り 4 つ (client-progress-page / receipt-expense-camera / drawing-quick-viewer / website-refresh) は時間があれば。
+<h2>本日 ご相談したい 6 つの論点</h2>
+
+<div class="q-card priority">
+  <div class="q-num">論点 ① · 最重要</div>
+  <div class="q-text">「FAX バイラル拡散戦略」 は工務店業界で実際に機能するか?</div>
+  <div class="q-bg">FAX フッターに連絡先を入れて 1 通 → 5-10 人視認、 取引先経由で紹介発生という仮説を持っています。 中小企業経営支援のご経験から、 こうした業界文化を逆手に取った拡散戦略が実際に機能した事例はありますか? 紹介経路として効果が出るまで何月程度かかりますか?</div>
 </div>
 
-<div class="q must">
-  <div class="num">Q0-a (デモ評価)</div>
-  <div class="text">8 つのデモの <strong>UI プロトタイプを実装済</strong>です (各 1 分でお見せします。 実機能 = 音声認識・OCR 等 は第 1 号ユーザーと共同開発する設計)。<br>
-  ① <strong>estimate-organizer</strong> (見積整理 / みつも郎 17 二重入力対策)<br>
-  ② <strong>call-memo-board</strong> (通話メモ構造化 / 情報散逸対策)<br>
-  ③ <strong>site-photo-organizer</strong> (現場写真整理 / 現場完結)<br>
-  ④ <strong>voice-daily-report</strong> (日報音声投稿 / 移動時間活用)<br>
-  ⑤〜⑧ receipt-expense-camera / drawing-quick-viewer / client-progress-page / website-refresh<br>
-  <br>
-  工務店オーナー / 現場監督に見せたとして、 <strong>どれが最も刺さりますか?</strong> 逆に「これは要らない」 「優先度が低い」 のはどれですか?</div>
+<div class="q-card priority">
+  <div class="q-num">論点 ② · 最重要</div>
+  <div class="q-text">事業仮説をこのまま確定 vs もう少し検証 — どちらが現実的か?</div>
+  <div class="q-bg">5 月 14 日からの 6 日間で戦略を 4-5 回見直しています (現場ヒアリング結果反映 → BPaaS 戦略転換 → 「覚えなくていい DX」 → FAX 主軸へ転換)。 自分でも「ピボットしすぎ」 という自覚があります。 商品仮説を確定するタイミングはどう判断すべきですか? + 後述の戦略凍結宣言 (5/23-11/22 の 6 ヶ月凍結) の妥当性についてもご意見ください。</div>
 </div>
 
-<div class="q must">
-  <div class="num">Q0-b (未実装案の評価)</div>
-  <div class="text">8 デモ以外で「これあったら工務店刺さりますよ」 という機能仮説はありますか? 例えば「補助金申請書の下書き自動生成」 「建設業許可関連の書類管理」 「下請け業者との発注連絡」 等を検討中ですが、 北原様の実務感覚で「これは作る価値ある / 作る価値ない」 を教えてください。</div>
+<div class="q-card">
+  <div class="q-num">論点 ③</div>
+  <div class="q-text">「ANDPAD 運用支援」 は中堅工務店オーナーに刺さるか?</div>
+  <div class="q-bg">ANDPAD 必須を強いられているのは下請工務店 (元請けが指定) で、 中堅工務店オーナーは元請け側 = 強制されていない可能性があります。 業界の声では感情度最高 (「死ぬほど苦痛」) ですが、 対象層が狭い懸念があります。 中堅工務店の ANDPAD 導入実態についてご存じであれば。</div>
 </div>
 
-<div class="q must">
-  <div class="num">Q0-c (投票ページの活用)</div>
-  <div class="text">8 デモは <strong>https://ihara-frontend.com/demo-gallery</strong> で投票ページ化して公開済です。 主顧客 40-60 代向けに UI を調整しました (最大 3 つ選択 / 拒否理由 9 択 / 連絡先任意入力 / LINE 共有ボタン 等)。 SNS 告知はターゲット外混入を避けて控え、 <strong>友人経由の LINE 拡散で増やす方針</strong>です。<br>
-  <br>
-  <strong>① このページ設計、 40-60 代 IT 弱者の心理と合っていますか? 改善点はありますか?<br>
-  ② 北原様の顧問先 (工務店オーナー) で投票してくれそうな方をご紹介可能ですか?<br>
-  ③ 票数より「拒否理由分布」 「連絡先取得率」 を主軸に判断する方針、 違和感はありますか?</strong></div>
+<div class="q-card">
+  <div class="q-num">論点 ④</div>
+  <div class="q-text">「家の困りごと地域相談窓口」 (B2G) は今動くべきか、 Phase 3 で本格化か?</div>
+  <div class="q-bg">行政 / 信金からの委託契約は信用補完 + 紹介経路として戦略的に重要だが、 契約獲得まで時間がかかります。 第 1 段階で動かすか、 第 3 段階 (2027 年 1-4 月) で本格化するかで方針が変わります。 信金や自治体が運営する似た「困りごと窓口」 の先例はご存じですか?</div>
 </div>
 
-<!-- ====================================================== -->
-<h2><span class="pri must">必達 1</span>A. 法人化判断 + IT 導入支援事業者登録 <span class="time">15 分目安</span></h2>
-
-<div class="note">
-  <strong>前提</strong>: 当初「2026/6 マイクロ法人設立予定」 でしたが、 検討の結果<strong>当面は個人事業主のまま継続</strong>する方針に転換しました。 法人固定費 (年 7 万円〜) より検証フェーズの現金優先、 工務店 SaaS が軌道に乗ってから (所得 900 万超目安) 改めて法人化を検討する形に。 小規模企業共済 (月 7 万 = 年 84 万控除) は実施済です。
+<div class="q-card">
+  <div class="q-num">論点 ⑤</div>
+  <div class="q-text">「DX しなくていい」 反主流ポジは業界紙取材で機能するか?</div>
+  <div class="q-bg">「FAX で工務店 DX」 という反主流ポジは、 業界紙 (新建ハウジング / 建築知識 / 日経ホームビルダー) の取材材料として強い仮説。 取材依頼のご経験があれば、 反主流ポジのテーマで実際に取り上げられる確率はどれくらいですか? + 月 1 専属コラム化のような連載化の現実性は?</div>
 </div>
 
-<div class="q must">
-  <div class="num">Q1 (判断基準)</div>
-  <div class="text">「工務店 SaaS が軌道に乗ったら法人化する」 という方針です。 この<strong>「軌道に乗った」 のベストな判断基準</strong>は何でしょうか? 例えば「月商 X 万円」 「顧客 X 社」 「所得 X 万円」 「PMF 後」 など、 北原様のご経験から決め手にすべき指標を教えてください。</div>
+<div class="q-card meta">
+  <div class="q-num">論点 ⑥ · メタ質問 (新規)</div>
+  <div class="q-text">創業期の「アイディア過多」 を捌く判断基準は何か?</div>
+  <div class="q-bg">他の AI から戦略マップ提案 (10 アイディア) をもらいましたが、 厳密に評価して 3 つは採用 / 6 つは保留 / 1 つは不採用としました。 中小企業経営支援のご経験から、 ① この判定は偏っていないか / ② 「Phase 2 で再評価」 という保留の置き方は機能するか / ③ <strong>6 ヶ月の戦略凍結期間 (5/23 〜 11/22) を設定する判断は中小企業の現場では普通ですか?</strong> を相談したいです。</div>
 </div>
 
-<div class="q must">
-  <div class="num">Q2 (信用度)</div>
-  <div class="text">工務店オーナーから見て、 取引相手が<strong>個人事業主か法人か</strong>で信用度や決裁プロセスに差が出ますか? 当面は個人事業主のまま工務店ビジネスを進める予定ですが、 これが<strong>受注機会を逃す要因</strong>になることはありますか? 信用度を補強するために個人事業主としてできる工夫はありますか?</div>
 </div>
 
-<div class="q must">
-  <div class="num">Q3 (IT 導入支援事業者)</div>
-  <div class="text">個人事業主のまま <strong>IT 導入支援事業者登録</strong>するには、 既存事業者のコンソーシアムに構成員参画する形になると理解しています。 北原様の感覚で、 個人事業主が構成員参画して実際に補助金訴求できるようになるまで、 どの程度の現実性 / 期間 / 販売実績ハードルがありますか?</div>
+<div class="page">
+
+<header>
+  <h1>ご紹介のお願い + 5/22 後のアクション</h1>
+  <div class="meta">2026-05-22 (金) 東京創業ステーション 北原氏 面談用 / 井原 誠斗</div>
+</header>
+
+<h2>北原様にお願いしたいご紹介 (4 種類)</h2>
+
+<div class="intro-box">
+  <h3>🏢 ご紹介 ① : 認定支援機関の税理士 / 行政書士</h3>
+  <ul>
+    <li>第 2 段階 (2026 年 10-12 月) で <strong>業務提携</strong> する税理士 (経理代行の申告・税務相談担当) と行政書士 (補助金申請書類担当) を探しています</li>
+    <li>多摩地区で工務店 / 建設業の支援経験がある方を 1-2 名ご紹介いただけると助かります</li>
+  </ul>
 </div>
 
-<!-- ====================================================== -->
-<h2><span class="pri must">必達 2</span>B. 工務店経営者へのアプローチ・紹介 <span class="time">10 分目安</span></h2>
-
-<div class="q must">
-  <div class="num">Q4 (アプローチ)</div>
-  <div class="text">工務店経営者にアプローチする際の<strong>業界マナー・注意点</strong>はありますか? 「個人開発者だが本気で工務店業務改善を支援したい」 と伝える際、 やってはいけない切り出し方や、 逆に効果的な前置きを教えていただきたいです。</div>
+<div class="intro-box">
+  <h3>🏗️ ご紹介 ② : 多摩地区の中小工務店オーナー</h3>
+  <ul>
+    <li>東京創業ステーション経由で <strong>過去にコンシェルジュ相談された工務店オーナー</strong> がいらっしゃれば、 ヒアリングをさせていただきたい</li>
+    <li>特に <strong>2 代目 / 3 代目</strong> (アトツギ世代 30-40 代) は IT 化推進のキーパーソン</li>
+  </ul>
 </div>
 
-<div class="q must">
-  <div class="num">Q5 (紹介)</div>
-  <div class="text">北原様の建設業顧問先で、 <strong>業務改善や IT 化に課題感のある方</strong>をご紹介いただけますか? まずは売り込みではなくヒアリング (現状の課題感を聞きたい) からお願いできれば。 1 件でもご紹介いただけると、 私の側で雪だるまを転がせます。</div>
+<div class="intro-box">
+  <h3>🏪 ご紹介 ③ : 建材屋営業マン / 設計事務所</h3>
+  <ul>
+    <li><strong>FAX バイラル拡散の起点</strong> として最重要のチャネル</li>
+    <li>多摩地区の建材屋営業マン (LIXIL ショールーム / ナフコ / 地元卸) や、 設計事務所経営者を 1-2 名ご紹介いただきたい</li>
+  </ul>
 </div>
 
-<!-- ====================================================== -->
-<h2><span class="pri head">頭出し</span>C. 業界慣習・決裁プロセス <span class="time">5 分目安</span></h2>
-
-<div class="q head">
-  <div class="num">Q6 (頭出し)</div>
-  <div class="text">工務店業界特有の<strong>決裁プロセス・商習慣</strong>で、 個人開発者の私が知らないとハマりそうなポイントを 1〜2 つだけ教えていただけますか? (例: 見積もり 3 社体勢の作法、 工期・支払いサイトの慣習、 反社チェック等)</div>
+<div class="intro-box">
+  <h3>📰 ご紹介 ④ : 業界紙 / 業界団体 / 商工会議所</h3>
+  <ul>
+    <li>新建ハウジング / 建築知識 / 日経ホームビルダー など <strong>業界紙への取材依頼ルート</strong></li>
+    <li>「DX しなくていい代行屋」 反主流ポジで取材依頼を仕掛けたい</li>
+    <li>府中 / 立川 商工会議所の IT 化推進担当者、 全建総連 多摩西部支部 (住宅デー 6/25 関連)</li>
+  </ul>
 </div>
 
-<!-- ====================================================== -->
-<h2><span class="pri head">頭出し</span>D. 補助金活用タイミング戦略 <span class="time">5 分目安</span></h2>
+<h2>5/22 面談後の私のアクション</h2>
 
-<div class="q head">
-  <div class="num">Q7 (頭出し)</div>
-  <div class="text">現在は補助金訴求を<strong>控えめ</strong>にして、 GビズID プライム取得・IT 導入支援事業者登録完了後にガッツリ訴求へ昇格する方針です。 この昇格タイミングの<strong>ベストプラクティス</strong>はありますか? 何の実績 (申請件数・採択件数等) ができたら前面に出すべきでしょうか?</div>
+<div class="q-card">
+<ol style="padding-left: 20px; line-height: 1.9;">
+  <li><strong>本日の論点 6 つへのご意見を整理</strong> → 事業計画を確定版に修正 (5/23-25)</li>
+  <li><strong>戦略凍結宣言の本格運用開始</strong> (2026-05-23 〜 2026-11-22 の 6 ヶ月)</li>
+  <li><strong>建設事務代行センターの価格・サービス内容を電話確認</strong> → 直接競合の差別化軸を再評価 (5/23)</li>
+  <li><strong>公庫融資 (新規開業資金 100 万円) 申込</strong> → 個人事業主のうちに 5 月末-6 月初旬に申請</li>
+  <li><strong>友人 (現場監督) ヒアリング 2-3 件追加</strong> → 第 1 段階の商品仮説検証 + FAX 拡散の現実性確認 (6 月)</li>
+  <li><strong>たましん 価値創造事業部 訪問予定</strong> → 既取引の渉外担当者から橋渡しを受け、 6 月後半-7 月に訪問本番</li>
+  <li><strong>住宅デー (6/25 全建総連 全国一斉) 関連の関与判定</strong> → 友人経由で地元支部に接触</li>
+</ol>
 </div>
 
-<!-- ====================================================== -->
-<h2><span class="pri open">自由</span>E. 見落としているリスク <span class="time">5 分目安</span></h2>
-
-<div class="q open">
-  <div class="num">Q8 (オープン)</div>
-  <div class="text">最後に、 ここまでお話しを聞いていただいて、 私が<strong>見落としているリスク</strong>や<strong>先に潰しておくべき仮説</strong>があれば率直に教えてください。 半年前に Froski (英語×フリーランス) で「市場前提が崩れる」 失敗をしているので、 同じ轍を踏まない判断軸を取りに来ています。</div>
+<div style="background: var(--accent-soft); border-radius: 4px; padding: 12px 16px; margin-top: 16px;">
+<p style="font-size: 12.5px; font-weight: 700; text-align: center;">本日は貴重なお時間をいただきありがとうございます。 経営支援のご経験から、 仮説を磨くためのご意見を率直にいただけますと幸いです。</p>
 </div>
 
-<!-- ====================================================== -->
-<h2><span class="pri head">追加</span>F. 補助金・事業承継 関連 (時間あれば) <span class="time">5-10 分目安</span></h2>
-
-<div class="note">
-  Part A〜E の中で自然に話題に上がれば個別に伺います。 残った時間で F としてまとめて伺います。 全部伺えなくても構いません。
-</div>
-
-<div class="q head">
-  <div class="num">Q9 (補助金スキームの 3 業種パートナー紹介)</div>
-  <div class="text">補助金訴求 (実質負担を抑える提案) を商談武器化 + 申請実務まで一気通貫でご提供するには <strong>「税理士 + 行政書士 + 中小企業診断士」 の 3 業種パートナー</strong> が必要だと考えています。 多摩地区で工務店向けに共同提案できる方を、 以下 3 業種でご<strong>紹介可能</strong>ですか?
-    <ul style="margin:6px 0 6px 18px;padding:0;font-size:13px;">
-      <li><strong>認定経営革新等支援機関 税理士</strong> — 信用補完の柱、 業務提携 or 顧問先紹介</li>
-      <li><strong>行政書士</strong> — 補助金申請書類作成・採択後成果報告の実務担当</li>
-      <li><strong>中小企業診断士</strong> — 補助金計画書・経営戦略との整合審査</li>
-    </ul>
-    私単独で申請代行屋になるのは重いので、 「自社 SaaS + 補助金活用提案」 = 入口、 「申請実務」 = 3 業種パートナー、 という<strong>ハブモデル</strong>を想定しています。 紹介料 10-20% バックの業務委託契約が相場と理解しています。</div>
-</div>
-
-<div class="q head">
-  <div class="num">Q10 (補助金 同時申請の前提)</div>
-  <div class="text">商談武器として <strong>IT 導入補助金 (3/4 補助) + 東京都 DX 推進助成金 (1/2 補助、 残り部分)</strong> を同時申請する設計を考えています。 同一経費への二重補助は不可と認識していますが、 別経費 (SaaS 本体 = IT 補助金 / 運用・サーバー = 都 DX 助成金) に分けて申請する形なら通りますか? また<strong>都 DX 推進助成金の 2026 年度 公募スケジュール</strong>はご存知でしょうか?</div>
-</div>
-
-<div class="q head">
-  <div class="num">Q11 (アトツギ世代 窓口化)</div>
-  <div class="text">工務店の意思決定は <strong>3 層 (決裁=社長 60 代 IT 弱 / 経理=妻 60 代 / 推進=アトツギ 30-40 代 IT 強)</strong> という構造で捉えています。 アトツギ世代 (2 代目 3 代目) を窓口にすると、 父親説得材料として SaaS を欲しがる心理が動く想定です。 北原様の顧問先で、 <strong>父親世代の社長より、 2 代目・3 代目を窓口にしたい工務店</strong>はありませんか? もしいればアトツギ経由でアプローチさせていただきたいです。</div>
-</div>
-
-<!-- ====================================================== -->
-<footer class="thanks">
-  上記はあくまで当日の議論のたたき台です。 順番や深掘り箇所は北原様の判断にお任せします。 当日はどうぞよろしくお願いいたします。
+<footer style="margin-top: 14px; font-size: 9.5px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 6px;">
+北原氏ご相談 質問リスト v5.1 / 工務店アナログ業務運用支援 / 井原 誠斗 (masatoman) / 2 / 2 / END
 </footer>
-
 </div>
+
 </body>
 </html>

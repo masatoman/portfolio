@@ -3,445 +3,404 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>北原氏面談 質問リスト v2 / 2026-05-22 東京創業ステーション</title>
+<meta name="created-at" content="2026-05-13">
+<meta name="updated-at" content="2026-05-21">
+<title>北原氏ご相談 質問リスト v5 内部版 / 想定回答 + 自分メモ + 当日進行 / 2026-05-22</title>
 <style>
 :root {
   --bg: #faf7f2;
   --fg: #1f1c18;
   --muted: #6b6359;
   --accent: #b85c3a;
+  --accent-soft: #f4dfd2;
   --warn: #c34a1f;
+  --warn-soft: #fef5e7;
   --good: #2d6a4f;
-  --card: #ffffff;
+  --good-soft: #e6f0ea;
+  --info: #1e3a5f;
+  --info-soft: #dde6f0;
+  --danger: #b91c1c;
+  --danger-soft: #fff2f2;
   --border: #e4ddd1;
 }
-* { box-sizing: border-box; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
   background: var(--bg);
   color: var(--fg);
-  line-height: 1.7;
-  font-size: 14px;
+  font-size: 11.5px;
+  line-height: 1.65;
 }
-.container { max-width: 820px; margin: 0 auto; padding: 24px 20px 60px; }
-
-header { border-bottom: 2px solid var(--fg); padding-bottom: 14px; margin-bottom: 24px; }
-header .tag { display: inline-block; font-size: 11px; letter-spacing: .15em; background: var(--fg); color: var(--bg); padding: 3px 10px; border-radius: 2px; margin-bottom: 8px; }
-header h1 { font-size: 22px; margin: 0 0 4px; font-weight: 700; }
-header .meta { color: var(--muted); font-size: 12px; }
-
-.intro {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 14px 18px;
-  margin-bottom: 20px;
-  font-size: 13px;
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 12mm 14mm;
+  margin: 8mm auto;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+  page-break-after: always;
 }
-.intro p { margin: 4px 0; }
-
-h2 {
-  font-size: 16px;
-  margin: 28px 0 10px;
+header {
+  border-bottom: 2px solid var(--fg);
   padding-bottom: 6px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-h2 .pri {
-  display: inline-block;
-  font-size: 10px;
-  letter-spacing: .1em;
-  padding: 3px 8px;
-  border-radius: 2px;
-  font-weight: 700;
-}
-h2 .pri.must { background: var(--warn); color: white; }
-h2 .pri.head { background: var(--accent); color: white; }
-h2 .pri.open { background: var(--good); color: white; }
-h2 .time { font-size: 11px; color: var(--muted); font-weight: 400; margin-left: auto; }
-
-.q {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--accent);
-  border-radius: 4px;
-  padding: 12px 18px;
   margin-bottom: 10px;
 }
-.q.must { border-left-color: var(--warn); }
-.q.head { border-left-color: var(--accent); }
-.q.open { border-left-color: var(--good); }
-.q .num {
-  font-size: 11px;
-  letter-spacing: .15em;
-  color: var(--accent);
-  font-weight: 700;
-}
-.q.must .num { color: var(--warn); }
-.q.open .num { color: var(--good); }
-.q .text {
-  font-weight: 700;
-  font-size: 14px;
-  margin: 2px 0 6px;
-  line-height: 1.5;
-}
-.q .reason {
+header h1 { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+header h1 .internal { background: var(--danger); color: white; font-size: 10px; padding: 1px 6px; border-radius: 3px; margin-left: 6px; }
+header .meta { font-size: 9.5px; color: var(--muted); }
+
+h2 {
   font-size: 12px;
-  color: var(--muted);
+  font-weight: 700;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 2px 8px;
+  margin: 10px 0 6px;
+  letter-spacing: 0.04em;
+}
+h3 { font-size: 11.5px; font-weight: 700; margin: 6px 0 4px; }
+p { margin-bottom: 4px; }
+
+.callout {
   background: #fdfbf6;
-  padding: 6px 10px;
-  border-radius: 3px;
-  margin-bottom: 4px;
+  border-left: 3px solid var(--accent);
+  padding: 6px 9px;
+  margin: 6px 0;
+  font-size: 10.5px;
 }
-.q .expect {
-  font-size: 12px;
-  color: var(--muted);
-}
-.q .expect strong { color: var(--good); }
+.callout.warn { background: var(--warn-soft); border-left-color: var(--warn); }
+.callout.danger { background: var(--danger-soft); border-left-color: var(--danger); }
+.callout.good { background: var(--good-soft); border-left-color: var(--good); }
+.callout.info { background: var(--info-soft); border-left-color: var(--info); }
 
-.forbidden {
-  background: #fdf0eb;
-  border-left: 3px solid var(--warn);
-  padding: 10px 14px;
-  margin: 20px 0;
-  font-size: 13px;
-  color: #5a2e1f;
-  border-radius: 0 4px 4px 0;
-}
-.forbidden strong { color: var(--warn); }
-.forbidden ul { margin: 6px 0 0; padding-left: 20px; }
-
-.checklist {
-  background: var(--card);
+.q-internal {
   border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 14px 18px;
-  margin-top: 20px;
-}
-.checklist h3 { margin: 0 0 8px; font-size: 14px; }
-.checklist ul { margin: 0; padding-left: 22px; font-size: 13px; }
-.checklist li { margin-bottom: 3px; }
-.check { display: inline-block; width: 13px; height: 13px; border: 1.5px solid var(--muted); margin-right: 6px; vertical-align: middle; border-radius: 2px; }
-
-.note {
-  background: #fff8ea;
-  border-left: 3px solid #d4a72c;
-  padding: 10px 14px;
-  margin: 16px 0;
-  font-size: 13px;
-  color: #5a4a1f;
-  border-radius: 0 4px 4px 0;
-}
-.note strong { color: #1f1c18; }
-
-.toc {
-  background: #f4ede0;
-  padding: 10px 16px;
   border-radius: 4px;
-  margin-bottom: 20px;
-  font-size: 13px;
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
+  margin-bottom: 10px;
+  background: #fdfbf6;
 }
-.toc strong { color: var(--fg); }
-.toc a { color: var(--accent); text-decoration: none; }
-.toc .badge {
-  display: inline-block;
-  padding: 1px 6px;
-  border-radius: 2px;
-  font-size: 10px;
-  letter-spacing: .1em;
-  font-weight: 700;
-  margin-right: 4px;
+.q-internal .q-header {
+  background: var(--fg);
   color: white;
+  padding: 4px 10px;
+  border-radius: 3px 3px 0 0;
 }
-.toc .badge.must { background: var(--warn); }
-.toc .badge.head { background: var(--accent); }
-.toc .badge.open { background: var(--good); }
+.q-internal.priority .q-header { background: var(--warn); }
+.q-internal.meta .q-header { background: var(--info); }
+.q-internal .q-header .q-no { font-size: 10px; letter-spacing: 0.1em; opacity: 0.85; }
+.q-internal .q-header .q-text { font-size: 12px; font-weight: 700; margin-top: 1px; }
+.q-internal .q-body { padding: 6px 10px; font-size: 10.5px; }
+.q-internal .q-body .section-label {
+  font-size: 9px; letter-spacing: 0.1em; color: var(--muted); font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 6px;
+  margin-bottom: 2px;
+}
+.q-internal .q-body .first .section-label { margin-top: 0; }
+.q-internal .q-body p { font-size: 10.5px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10.5px;
+  margin: 6px 0;
+}
+table th { background: var(--fg); color: white; padding: 4px 6px; text-align: left; font-size: 10px; }
+table td { padding: 4px 6px; border-bottom: 1px solid var(--border); }
+
+.time-table th { background: var(--accent); }
 
 @media print {
-  body { background: white; font-size: 11px; }
-  .container { max-width: none; padding: 8mm; }
-  .q { break-inside: avoid; }
-  h2 { break-after: avoid; }
+  body { background: white; }
+  .page { box-shadow: none; margin: 0; }
+  @page { size: A4; margin: 0; }
 }
 </style>
-  <meta name="created" content="2026-05-14T14:20:55+09:00">
 </head>
 <body>
-<div class="container">
+
+<!-- ============================================ -->
+<!-- Page 1: 当日進行スケジュール + 戦略凍結宣言 -->
+<!-- ============================================ -->
+<div class="page">
 
 <header>
-  <div class="tag">CONSULTATION QUESTIONS v3 (内部運用版、 北原氏には別途 public 版送付)</div>
-  <h1>北原氏 (東京創業ステーション) 面談 質問リスト ※ 内部運用版</h1>
-  <div class="meta">2026-05-22 (金) / masatoman / 工務店向け SaaS / BPaaS / AI エージェント 事業計画相談 (じっくり裏取り型) / 30〜40 分 / オンライン面談</div>
+  <h1>北原氏ご相談 質問リスト <span class="internal">内部版 v5</span></h1>
+  <div class="meta">2026-05-22 (金) 14:00-14:40 オンライン面談 / 井原 誠斗 内部用 (北原氏には送らない)</div>
 </header>
 
-<div class="status-alert" style="background:#fee2e2;border-left:4px solid #b91c1c;padding:14px 18px;margin:0 0 20px;font-size:13px;color:#1f1c18;border-radius:0 8px 8px 0;line-height:1.7;">
-  ⚠️ <strong style="color:#b91c1c;">2026-05-15 〜 2026-05-19 戦略大転換アラート (v3 アラート)</strong>: 5/14 Ultrathink 以降 6 件の戦略転換あり、 当初 Q セットは前提崩壊:
-  <ul style="margin:6px 0 0;padding-left:20px;font-size:12px;color:#5f6f89;font-weight:500;">
-    <li><strong>5/17 補助金 1/8 訴求 完全廃止</strong> (制度面 3 段 + 実需面 4 段 で 2 層崩壊、 <code>subsidy-pitch-deprecated-2026-05-17.md</code>)。 <strong>2026-05-19 masatoman 判断</strong>: 商品未確定段階で補助金詳細を踏み込むのは時期尚早 → Q3 (将来意向 + 注意点) に縮小、 Q7 / Q9 / Q10 は削除 (商品確定 10-12 月以降に再相談)</li>
-    <li><strong>5/15 ペース大幅転換</strong>: 「7/30 月次 5-10 万」 廃止 → 12 ヶ月後 MRR ¥30-60K (じっくり裏取り型、 <code>pivot-from-speedy-to-careful-2026-05-15.md</code>)。 5/22 面談は「紹介もらう会」 → 「裏取り深掘り会」 に再定義</li>
-    <li><strong>5/18 戦略主軸転換</strong>: SaaS 一本足 → BPaaS + AI エージェント ハイブリッド (<code>komuten-bpaas-ai-agent-strategy-2026-05-18.md</code> Step 7 = 5/22 提示指定)。 demo-gallery 8 デモを 5 代行サービスにリフレーミング検討。 Q12 として新規追加</li>
-    <li><strong>5/18→19 工務店メディア 別ドメイン</strong>: masatoman.net 内サブカテゴリ → 別ドメイン (<code>komuten-media-strategy-2026-05-18.md</code>)。 軸 A は <strong>5/19 案件獲得 PF 化</strong> ピボット (<code>axis-a-portfolio-pivot-2026-05-19.md</code>)、 5/23-25 週末着手</li>
-    <li><strong>5/14 友人 N=1 結果</strong> で v2.2 前提 5 件崩壊 (買い切り嬉しい / 個人客 9 割 / 日報紙 / 横つながり弱 / メール 3 割不可、 <code>friend-hearing-result-2026-05-14.md</code>)。 N=4-5 まで積む、 5/22 で N=2 化 (Q13 として新規追加)</li>
-    <li><strong>5/15 たましん訂正</strong>: 「経営支援部」 → <strong>「価値創造事業部」</strong> (<code>tamashin-kachi-souzou-jigyobu.md</code>)。 信金接触 Step 1-3 で約 1 ヶ月、 1 回訪問は紹介数より業界情報取得が現実 (<code>tamashin-1st-visit-realistic.md</code>)。 + ドメイン名問題 ihara-frontend.com 工務店オーナーに伝わらない (<code>domain-name-mismatch.md</code>) を Q4 補足に</li>
-  </ul>
-  <strong>面談本体は予定通り実施 (オンライン 5/22 (金))</strong>。 必達 A (Q1-Q3) + B (Q4-Q5)、 時間あれば Part F 優先順位: <strong>Q12 (BPaaS 戦略転換) &gt; Q11 (アトツギ) &gt; Q13 (N=2 化)</strong>。 補助金詳細は商品確定後 (10-12 月以降) に再相談。
+<h2>// 当日進行スケジュール (40 分)</h2>
+<table class="time-table">
+  <thead><tr><th style="width:13%;">時間</th><th style="width:25%;">内容</th><th>具体アクション</th></tr></thead>
+  <tbody>
+    <tr><td>0-5 分</td><td>冒頭挨拶 + <strong>戦略凍結宣言</strong></td><td>後述「凍結宣言文言」 をそのまま読む / 北原氏に第三者証人化のお願い</td></tr>
+    <tr><td>5-15 分</td><td>事業構想説明</td><td>Hero Statement / 3 キーメッセージ / 3 プラン / 6 サービス / 3 段階ロードマップ (kitahara-meeting Slide 2-3)</td></tr>
+    <tr><td>15-20 分</td><td>競合との戦い方</td><td>FAX バイラル拡散 + 5 差別化軸 (kitahara-meeting Slide 4)</td></tr>
+    <tr><td>20-35 分</td><td><strong>相談 6 論点</strong></td><td>論点 ①② 最重要 (各 4 分) / 論点 ③④⑤ 通常 (各 1.5 分) / 論点 ⑥ メタ質問 (3 分)</td></tr>
+    <tr><td>35-40 分</td><td>紹介依頼 + クロージング</td><td>4 種類の紹介依頼 / お礼 / 議事録共有の確認</td></tr>
+  </tbody>
+</table>
+
+<div class="callout warn">
+<strong>⚠️ 時間管理:</strong> 30-40 分はあっという間。 論点 ①② が最重要なので、 各 4 分以内に収める。 論点 ③④⑤ で時間オーバーしたら割愛して⑥ に進む。
 </div>
 
-<div class="intro">
-  <p><strong>面談の位置付け</strong>: 友人ヒアリング (現場監督) とは別軸。 主顧客本人ではなく業界俯瞰視点。 ヒアリング雪だるま 5 件の 2 件目候補。 北原氏は<strong>建設業の許可申請支援が本業</strong>のため、 業界実務に精通。</p>
-  <p><strong>絞り込み方針 (2026-05-13)</strong>: 必達 2 テーマ + 頭出し 2 テーマ + 自由質問 1 + デモ評価で 10 問構成。 「風呂敷を広げすぎない」 を意識。</p>
-  <p><strong>具体物 (2026-05-14 動作確認 + 投票ページ公開)</strong>: <strong>8 デモ UI プロトタイプ 実装済</strong> (call-memo-board / estimate-organizer / website-refresh + 既存 5 デモ) + <strong>https://ihara-frontend.com/demo-gallery で投票ページ公開済</strong>。 業界仮説 4 つ全部に対応。 面談冒頭で iPad ライブ表示 + 投票 UI も触ってもらえる。 <strong>実機能 (音声認識・OCR 等) は 第 1 号ユーザーと 共同開発 する 設計</strong> (補助金 1/8 訴求 で 初期開発費を 圧縮)。 戦略相談を「空中戦」 から「UI プロトタイプ + 需要計測ベース + 共同開発スタンス」 に転換する。</p>
-  <p style="margin-top:6px;"><strong>3 AI レビュー 2 回済</strong>: ChatGPT / Gemini / Claude (別チャット) に投げて、 共通指摘 6 点のうち 4 点を反映 (継続接触の導線 / 拒否理由 9 択 / 「AI」 用語削除 / 役職 select promotion)。 残る構造的指摘 2 点 (「便利そう」 vs 「毎日困ってる」 混在 / 有料トグルの弱さ) は wontfix で運用、 友人ヒアリング後再判断。</p>
+<h2>// 戦略凍結宣言 文言 (冒頭 5 分でそのまま読む)</h2>
+<div class="callout">
+<p style="font-size: 11px;">本日はお時間いただきありがとうございます。 まず冒頭で 1 つ、 メタなご相談をさせてください。</p>
+<p style="font-size: 11px;">5 月 14 日の現場ヒアリング以降、 <strong>6 日間で事業仮説を 4-5 回見直しています</strong>。 自分でも「ピボットしすぎ」 という自覚があります。</p>
+<p style="font-size: 11px;">そこで、 <strong>本日 5 月 22 日を最後のピボットタイミングと決め、 5 月 23 日から 11 月 22 日までの 6 ヶ月間、 商品仮説の変更を凍結する</strong> と決断しました。</p>
+<p style="font-size: 11px;">凍結対象は「商品仮説 + ターゲット顧客像 + 価格構造 + 差別化軸」。 拠点や紹介経路など「地理に依存する要素」 は柔軟に対応します。</p>
+<p style="font-size: 11px;">中小企業経営支援のご経験から、 <strong>この凍結期間 6 ヶ月の判断が妥当か、 そして本日 30 分の面談で本当に確定させて良いのか、 北原様に証人になっていただきたい</strong> と思っています。</p>
+<p style="font-size: 11px;">それでは事業構想を 10 分でご説明させてください。</p>
 </div>
 
-<div class="toc">
-  <strong>進行表 (合計 50 分目安):</strong>
-  <span><span class="badge must">デモ</span><a href="#part-0">0. 8 デモ評価 (10 分)</a></span>
-  <span><span class="badge must">必達 1</span><a href="#part-a">A. 法人化 + IT 導入支援 (15 分)</a></span>
-  <span><span class="badge must">必達 2</span><a href="#part-b">B. 経営者アプローチ・紹介 (10 分)</a></span>
-  <span><span class="badge head">頭出し</span><a href="#part-c">C. 業界慣習 (5 分)</a></span>
-  <span><span class="badge head">頭出し</span><a href="#part-d">D. 補助金タイミング (5 分)</a></span>
-  <span><span class="badge open">自由</span><a href="#part-e">E. リスク (5 分)</a></span>
-  <span><span class="badge head">追加</span><a href="#part-f">F. Ultrathink 追加 (5-10 分、 時間あれば)</a></span>
+<h2>// 持参物 + 事前準備 (5/21 夜 〜 5/22 朝)</h2>
+<table>
+  <thead><tr><th style="width:20%;">準備物</th><th>状況</th></tr></thead>
+  <tbody>
+    <tr><td>北原氏資料 PDF</td><td><code>kitahara-meeting-2026-05-22.html</code> をブラウザで印刷 → PDF 保存 → 北原氏にメール添付 (5/21 夜送付)</td></tr>
+    <tr><td>事業計画サマリ PDF</td><td><code>business-summary-2026-05-22.html</code> (v5.1、 A4 縦 2 枚) → 北原氏に同送</td></tr>
+    <tr><td>質問リスト public PDF</td><td><code>consultation-questions-2026-05-22-public.html</code> → 北原氏に同送</td></tr>
+    <tr><td>内部用 (自分手元)</td><td>本資料 + <code>external-ai-integration-judgment-2026-05-20.html</code> + <code>bpaas-service-comparison-2026-05-19.html</code></td></tr>
+    <tr><td>Zoom URL 確認</td><td>北原氏からの案内メールを再確認 / マイク・カメラテスト (5/22 朝 13:50)</td></tr>
+    <tr><td>録音準備</td><td>Zoom 録画機能 ON / 北原氏に「議事録のため録音させていただきます」 と冒頭確認</td></tr>
+  </tbody>
+</table>
+
 </div>
 
-<!-- ====================================================== -->
-<h2 id="part-0"><span class="pri must">デモ</span>0. 8 デモ評価 + 機能仮説 (面談冒頭) <span class="time">10 分目安</span></h2>
+<!-- ============================================ -->
+<!-- Page 2: 論点 6 つ + 想定回答 -->
+<!-- ============================================ -->
+<div class="page">
 
-<div class="note" style="margin-bottom:14px;">
-  <strong>進行 (オンライン版)</strong>: PC 画面共有でブラウザを共有。 各デモを 1 分ずつ動かして見せる。 北原氏が触れないので、 <strong>自分で操作しながら「ここがポイント」 と説明する形式</strong>に。 全 8 個を一気に見せると散漫なので、 まず業界仮説に直結する <strong>① estimate-organizer ② call-memo-board ③ site-photo-organizer ④ voice-daily-report</strong> の 4 個を優先表示。 残り 4 個 (client-progress-page / receipt-expense-camera / drawing-quick-viewer / website-refresh) は時間あれば。
+<header>
+  <h1>論点 6 つ + 想定回答 + 自分メモ <span class="internal">内部版</span></h1>
+  <div class="meta">想定回答ベースで会話を組み立てる / 想定外の回答が来たら録音から後で整理</div>
+</header>
+
+<div class="q-internal priority">
+<div class="q-header">
+  <div class="q-no">論点 ① · 最重要 · 4 分以内</div>
+  <div class="q-text">「FAX バイラル拡散戦略」 は工務店業界で実際に機能するか?</div>
 </div>
-
-<div class="q must">
-  <div class="num">Q0-a (デモ評価 + 5 代行サービス順位付け)</div>
-  <div class="text">実は 8 つのデモの <strong>UI プロトタイプ を 実装済</strong>です (PC 画面共有でお見せします、 各 1 分。 実機能 = 音声認識・OCR 等 は 第 1 号ユーザーと 共同開発 する 設計):<br>
-  ① <strong>estimate-organizer</strong> (見積整理 / みつも郎 17 二重入力対策)<br>
-  ② <strong>call-memo-board</strong> (通話メモ構造化 / 情報散逸対策)<br>
-  ③ <strong>site-photo-organizer</strong> (現場写真整理 / 現場完結)<br>
-  ④ <strong>voice-daily-report</strong> (日報音声投稿 / 移動時間活用)<br>
-  ⑤〜⑧ receipt-expense-camera / drawing-quick-viewer / client-progress-page / website-refresh<br>
-  <br>
-  工務店オーナー / 現場監督に見せたとして、 <strong>どれが最も刺さりますか?</strong> 逆に「これは要らない」 「優先度が低い」 のはどれですか?<br>
-  <br>
-  <strong>追加で聞きたい (BPaaS 仮説検証)</strong>: 友人 N=1 で「使い方レクチャーがだるい」 と判明し、 上位 5 デモを「代行サービス」 にリフレーミングする仮説を検討中です。 ① 現場写真整理代行 / ② 領収書経理代行 / ③ 日報作成代行 / ④ 見積書作成代行 / ⑤ 顧客連絡代行 の中で、 もし「結果だけ受け取れる」 とすれば工務店に刺さる順位はどうなりそうですか?</div>
-  <div class="reason">→ 戦略相談を「空中戦」 から「具体物ベース」 に転換する起点。 北原氏の建設業実務感覚で「業界が本当に欲しがる順」 を引き出す。 BPaaS 戦略転換 ([[komuten-bpaas-ai-agent-strategy-2026-05-18]]) の仮説検証も Q0-a 段階で済ませて Part F Q12 の前フリにする。</div>
-  <div class="expect"><strong>期待する回答パターン:</strong> 「estimate-organizer は即売れる、 みつも郎の二重入力は実際の現場の不満」 / 「voice-daily は IT 弱者には逆に難しい、 単純な call-memo-board の方が」 / 「代行ならむしろ写真整理が一番刺さる、 工務店オーナーは結果さえ出れば良い」 など。 ツール販売 vs 代行 のどちらが角度として強いかの初期感触も取りに行く</div>
-</div>
-
-<div class="q must">
-  <div class="num">Q0-b (未実装案の評価)</div>
-  <div class="text">8 デモ以外で「これあったら工務店刺さりますよ」 という機能仮説はありますか? 例えば「補助金申請書の下書き自動生成」 「建設業許可関連の書類管理」 「下請け業者との発注連絡」 等を検討中ですが、 北原さんの実務感覚で「これは作る価値ある / 作る価値ない」 を教えてください。</div>
-  <div class="reason">→ 北原さん本業 (建設業許可申請) との隣接領域を聞き出す。 紹介経路 (Q5) の前段として「相談者の専門領域に寄せた質問」 で関係構築。</div>
-  <div class="expect"><strong>期待する回答パターン:</strong> 「許可更新の期限管理は需要ある」 / 「下請け発注は ANDPAD と被るので避けた方がいい」 / 「補助金申請書下書きは私の本業と被るので一緒にやるなら可能性ある」</div>
-</div>
-
-<div class="q must">
-  <div class="num">Q0-c (投票ページの活用 / Part B 紹介依頼への前フリ)</div>
-  <div class="text">8 デモは <strong>https://ihara-frontend.com/demo-gallery</strong> で投票ページ化して公開済です。 主顧客 40-60 代向けに「3 AI レビュー 2 回」 で UI 調整しました (最大 3 つ選択 / 拒否理由 9 択 / 連絡先任意入力 / LINE 共有ボタン 等)。 X 告知はターゲット外混入を避けて wontfix、 <strong>友人経由の LINE 拡散で増やす方針</strong>です。<br>
-  <br>
-  <strong>① このページ設計、 40-60 代 IT 弱者の心理と合ってますか? 改善点ありますか?<br>
-  ② 北原さんの顧問先 (工務店オーナー) で投票してくれそうな方を紹介可能ですか? (= Q5 紹介依頼の前フリ)<br>
-  ③ 票数より「拒否理由分布」 「連絡先取得率」 を主軸に相談に持ち込む方針、 違和感ありますか?</strong></div>
-  <div class="reason">→ 3 AI 共通助言「数字より痛みの強さ / なぜ既存ツールでダメか を主軸に」 を北原氏で再検証。 Part B (Q5) 紹介依頼の自然な前フリにする。</div>
-  <div class="expect"><strong>期待する回答パターン:</strong> 「拒否理由分布の方が説得力ある」 / 「顧問先に LINE で送るのは OK」 / 「役職別の傾向の方が業界実務で重要」 等。</div>
-</div>
-
-<!-- ====================================================== -->
-<h2 id="part-a"><span class="pri must">必達 1</span>A. 法人化判断 + IT 導入支援事業者登録 <span class="time">15 分目安</span></h2>
-
-<div class="note" style="margin-bottom:14px;">
-  <strong>前提 (2026-05-13 方針転換)</strong>: 当初「2026/6 マイクロ法人設立予定」 だったが、 検討の結果<strong>当面は個人事業主のまま継続</strong>する方針に転換。 法人固定費 (年 7 万円〜) より検証フェーズの現金優先、 工務店 SaaS が軌道に乗ってから (所得 900 万超目安) 改めて法人化を検討する形に。 小規模企業共済 (月 7 万 = 年 84 万控除) は実施済。
-</div>
-
-<div class="q must">
-  <div class="num">Q1 (判断基準 + 公庫融資先行)</div>
-  <div class="text">「工務店 SaaS が軌道に乗ったら法人化する」 という方針です。 この<strong>「軌道に乗った」 のベストな判断基準</strong>は何でしょうか? 例えば「月商 X 万円」 「顧客 X 社」 「所得 X 万円」 「PMF 後」 など、 北原さんの経験から見て決め手にすべき指標を教えてください。<br>
-  <br>
-  <strong>補足</strong>: 公庫融資 100 万円 (新規開業資金) は <strong>法人化より先に通す方針</strong>です (法人化後だと「法人としての実績ゼロ」 で再評価され創業融資が通りにくいため)。 5/22 面談後 (5 月末-6 月初旬) に申込予定。 この順序についてもご意見いただけますか?</div>
-  <div class="reason">→ 相談予約 #3 法人化のベストタイミング + memory [[koko-loan-before-incorporation]] 公庫融資先行の妥当性。 軌道指標は memory [[user-work-time-constraint]] (月 30-40h、 12 ヶ月後 MRR ¥30-60K 現実的) を踏まえて聞く。</div>
-</div>
-
-<div class="q must">
-  <div class="num">Q2 (信用度 + 信用度ルート合同会社設立要否)</div>
-  <div class="text">工務店オーナーから見て、 取引相手が<strong>個人事業主か法人か</strong>で信用度や決裁プロセスに差が出ますか? 当面は個人事業主のまま工務店ビジネスを進める予定ですが、 これが <strong>受注機会を逃す要因</strong>になることはありますか? 信用度を補強するために個人事業主としてできる工夫はありますか?<br>
-  <br>
-  <strong>補足</strong>: もし「個人事業主だと不利」 と確認できれば、 <strong>節税効果なしでも信用度目的で合同会社設立 (6-7 月)</strong> を別ルートとして検討しています (節税目的のマイクロ法人 2026/6 設立予定は 5/13 撤回済、 これとは独立した「信用度ルート」)。 この方針はどう思われますか?</div>
-  <div class="reason">→ 相談予約 #3。 個人事業主継続の妥当性確認 + memory [[business-form-roadmap]] 信用度ルート (節税抜き合同会社) の要否を独立 ルートとして判断したい。</div>
-</div>
-
-<div class="q must">
-  <div class="num">Q3 (IT 導入支援事業者、 将来意向 + 注意点)</div>
-  <div class="text">将来的には <strong>IT 導入支援事業者</strong>として登録できる方向で動きたい意向があります。 ただし商品自体が IT 導入補助金 対象になりそうか確定するまでは具体的な動きは控える方針です (商品確定は早くて <strong>10-12 月 MVP 投入期</strong> 想定)。 個人事業主のまま動くなら既存事業者のコンソーシアムに構成員参画する道筋になると理解しています。<br>
-  <br>
-  現時点では、 <strong>個人事業主 → IT 導入支援事業者 ルート で 今のうちから 念頭に置くべき 注意点 (準備しておくべきこと / よくある失敗 / コンソーシアム参画先の探し方)</strong> があれば伺っておきたいです。 詳細 (採択事例 / 申請代行費用感 / パートナー紹介) は商品確定後に改めてご相談する形で。</div>
-  <div class="reason">→ 相談予約 #4。 商品未確定で 補助金詳細を踏み込みすぎないよう トーンダウン (masatoman 判断 2026-05-19: 「商品が補助金対象だったら進める / まだ商品も決まってないのに補助金導入は時期尚早」)。 memory <code>subsidies-positioning</code> + <code>pivot-from-speedy-to-careful-2026-05-15</code> と整合 (じっくり裏取り型、 商品確定後に補助金詳細を再検討)。</div>
-</div>
-
-<!-- ====================================================== -->
-<h2 id="part-b"><span class="pri must">必達 2</span>B. 工務店経営者へのアプローチ・紹介 <span class="time">10 分目安</span></h2>
-
-<div class="q must">
-  <div class="num">Q4 (アプローチ + ドメイン名問題)</div>
-  <div class="text">工務店経営者にアプローチする際の<strong>業界マナー・注意点</strong>はありますか? 「個人開発者だが本気で工務店業務改善を支援したい」 と伝える際、 やってはいけない切り出し方や、 逆に効果的な前置きを教えていただきたいです。<br>
-  <br>
-  <strong>補足 (ドメイン名問題)</strong>: 現在のドメイン <code>ihara-frontend.com</code> は IT 業界用語で、 主顧客 (IT 弱者の工務店オーナー) には意味不明だと自覚しています。 6 月以降 多摩工務店向け別ドメイン (<code>tama-koumuten-it.jp</code> 等) 取得を検討中です。 北原さんから見て、 ドメイン名は工務店オーナーから見てどう映りますか? 別ドメイン取得は妥当ですか?</div>
-  <div class="reason">→ 相談予約 #2。 接触初期での失敗パターンを潰す + memory [[domain-name-mismatch]] (5/15 致命的盲点 #1) のヒアリング。</div>
-</div>
-
-<div class="q must">
-  <div class="num">Q5 (紹介 + アトツギ世代窓口化)</div>
-  <div class="text">北原さんの建設業顧問先で、 <strong>業務改善や IT 化に課題感のある方</strong>をご紹介いただけますか? まずは売り込みではなくヒアリング (現状の課題感を聞きたい) からお願いできれば。 1 件でもご紹介いただけると、 私の側で雪だるまを転がせます。<br>
-  <br>
-  <strong>補足 (アトツギ世代窓口化)</strong>: 工務店の意思決定は 3 層構造 (決裁=社長 60 代 IT 弱 / 経理=妻 60 代 / 推進=アトツギ 30-40 代 IT 強) と捉えており、 <strong>アトツギ世代 (2 代目・3 代目) を窓口にできる工務店</strong>を優先的にご紹介いただけると、 父親説得材料として SaaS / BPaaS / AI エージェント を提示しやすいです。 「3 ヶ月以内に紹介可能 1-2 社」 でも構いません。</div>
-  <div class="reason">→ 相談予約 #6。 ヒアリング雪だるま 5 件の 2-3 件目開拓 + memory [[atotsugi-decision-maker]] アトツギ世代窓口化。 「ヒアリング」 という低圧力な提案 + 「もしいらっしゃれば 1-2 社」 のトーンダウン (じっくり裏取り型 [[pivot-from-speedy-to-careful-2026-05-15]] と整合)。</div>
-</div>
-
-<!-- ====================================================== -->
-<h2 id="part-c"><span class="pri head">頭出し</span>C. 業界慣習・決裁プロセス <span class="time">5 分目安</span></h2>
-
-<div class="q head">
-  <div class="num">Q6 (頭出し)</div>
-  <div class="text">工務店業界特有の<strong>決裁プロセス・商習慣</strong>で、 個人開発者の私が知らないとハマりそうなポイントを 1〜2 つだけ教えていただけますか? (例: 見積もり 3 社体勢の作法、 工期・支払いサイトの慣習、 反社チェック等)</div>
-  <div class="reason">→ 相談予約 #1。 時間があれば深掘り、 なければ「後日メールで補足質問」 でも OK。</div>
-</div>
-
-<!-- ====================================================== -->
-<!-- Part D (補助金活用タイミング戦略 / 旧 Q7) は 2026-05-19 masatoman 判断で削除
-     理由: 商品未確定段階で補助金詳細を踏み込むのは時期尚早。 商品確定後 (10-12 月 MVP 投入期) に再相談する形に。
-     現在の補助金関連質問は Q3 (IT 導入支援事業者、 将来意向 + 注意点のみ) に集約済 -->
-
-<!-- ====================================================== -->
-<h2 id="part-e"><span class="pri open">自由</span>E. 見落としているリスク <span class="time">5 分目安</span></h2>
-
-<div class="q open">
-  <div class="num">Q8 (オープン)</div>
-  <div class="text">最後に、 ここまでお話しを聞いていただいて、 私が<strong>見落としているリスク</strong>や<strong>先に潰しておくべき仮説</strong>があれば率直に教えてください。 半年前に Froski (英語×フリーランス) で「市場前提が崩れる」 失敗をしているので、 同じ轍を踏まない判断軸を取りに来ています。</div>
-  <div class="reason">→ オープン質問で「想定外」 を取りに行く。 経験豊富な専門家ほど良い回答が出る。</div>
-  <div class="expect"><strong>期待する回答パターン:</strong> 「主顧客の請求書発行頻度を確認していますか?」 「廃業率の高い業界で 5 年継続できる事業者の割合は?」 「副業のままで耐えられる売上水準は?」 など、 自分の盲点</div>
-</div>
-
-<!-- ====================================================== -->
-<h2 id="part-f"><span class="pri head">追加</span>F. 戦略転換確認 (BPaaS / 補助金 / アトツギ / N=2 化、 時間あれば) <span class="time">5-15 分目安</span></h2>
-
-<div class="note" style="margin-bottom:14px;">
-  <strong>5/14 Ultrathink → 5/17 1/8 廃止 → 5/18 BPaaS 戦略転換 → 5/19 v3 整理 + 補助金詳細を商品確定後に後回し の 経緯反映</strong>: Part A〜E の 中で 自然に 出れば 個別に 取り込み、 残った 時間で Part F として まとめて 聞く。 全部 聞けなくても OK、 優先順位 は <strong>Q12 (BPaaS / AI エージェント 戦略転換、 memory <code>komuten-bpaas-ai-agent-strategy-2026-05-18.md</code> Step 7 = 5/22 提示指定 / 必達寄り) &gt; Q11 (アトツギ) &gt; Q13 (N=2 化)</strong>。 補助金詳細 (旧 Q9 / Q10) は商品確定後 (10-12 月以降) に Q3 拡張版として再相談する形に変更済 (masatoman 2026-05-19 判断)。
-</div>
-
-<!-- Q9 (3 業種パートナー紹介) + Q10 (1/2 採択事例 + 申請代行費用感) は 2026-05-19 masatoman 判断で削除
-     理由: 商品未確定段階で補助金詳細パートナー固定するのは時期尚早。
-     商品確定後 (10-12 月 MVP 投入期) に Q3 拡張版として 改めて北原氏 or 公社に再相談する。
-     現在の補助金関連質問は Q3 (将来意向 + 注意点) に集約済 -->
-
-<div class="q head">
-  <div class="num">Q11 (アトツギ世代 窓口化)</div>
-  <div class="text">工務店 の 意思決定 は <strong>3 層 (決裁=社長 60 代 IT 弱 / 経理=妻 60 代 / 推進=アトツギ 30-40 代 IT 強)</strong> という 構造 で 捉えて います。 アトツギ世代 (2 代目 3 代目) を 窓口に すると、 父親説得 材料 として SaaS / BPaaS / AI エージェント を 欲しがる 心理が 動く 想定です。 北原さん の 顧問先で、 <strong>父親世代の 社長 より、 2 代目・3 代目 を 窓口に したい 工務店</strong> ありませんか? もし いれば アトツギ 経由 で アプローチ させて いただきたい です。<br>
-  <br>
-  なお 補助金訴求は <strong>1/2 訴求 + 廃止解説</strong> ベース (旧 1/8 訴求は 5/17 廃止) で アトツギに説明予定。</div>
-  <div class="reason">→ Ultrathink アトツギ窓口化 memory <code>atotsugi-decision-maker.md</code>。 既存 Q5 (紹介依頼) の 角度を 変える 補足質問。 アトツギ 単独 決裁できない ので 父親同席前提。 1/8 廃止反映で「1/2 訴求 + 廃止解説」 ベースに更新。</div>
-  <div class="expect"><strong>期待する回答パターン:</strong> 「事業承継準備中 の アトツギ X さん いる」 / 「アトツギ 単独 では 決裁不可、 必ず 父親 同席 が 必要」 / 「アトツギ甲子園 経由 で 探す と 早い」</div>
-</div>
-
-<div class="q head">
-  <div class="num">Q12 (BPaaS / AI エージェント 戦略転換の妥当性) <span style="font-size:11px;color:var(--warn);">必達寄り</span></div>
-  <div class="text">友人 N=1 ヒアリングで「使い方レクチャーがだるい」 と判明、 主顧客 (IT 弱者) は <strong>「便利 vs 不便」 ではなく「自分でやる vs やらなくていい」</strong>で判断している可能性が浮上しました。 これを受けて戦略を <strong>SaaS 一本足 → BPaaS (業務代行) + AI エージェント (一社一カスタム) のハイブリッド</strong> に再設計する仮説を検討中です:<br>
-  <ul style="margin:6px 0 6px 18px;padding:0;font-size:12px;">
-    <li><strong>BPaaS</strong>: 業務まるごと請け負う、 学習コスト 0、 月 1.5-3 万円 / 社 × 5 社 = 月 10-15 万収益を早期確保</li>
-    <li><strong>AI エージェント</strong>: BPO 顧客に後付け販売、 一社一エージェント、 月 5-30 万円 / 社、 IT 導入補助金 AI 活用類型と相性 ◎</li>
-    <li>demo-gallery 8 デモを 5 代行サービスにリフレーミング、 友人ヒアリング Phase 3 で順位付け検証予定</li>
-  </ul>
-  北原さん視点で、 工務店向け <strong>「ツール販売 (SaaS) vs 業務代行 (BPaaS) のどちらの角度</strong>が刺さりますか? 顧問先に提案する場合、 どちらの紹介経路が動きやすいですか? AI エージェント (月 5-30 万) は工務店オーナーから見て怖がられますか?</div>
-  <div class="reason">→ memory <code>komuten-bpaas-ai-agent-strategy-2026-05-18.md</code> Step 7 = 5/22 北原氏面談で「二重データ (便利度 + 代行需要) + ツール vs 代行 どちらが工務店紹介の角度として強いか相談」 と明記された質問。 友人ヒアリング Phase 3 (代行モデル順位付け) はまだ未実施なので、 仮説段階での北原氏意見を取りに行く。 主軸戦略の前提に関わるので Part F 優先順位 1 位 (必達寄り)。</div>
-  <div class="expect"><strong>期待する回答パターン:</strong> 「代行の方が刺さる、 工務店オーナーは結果さえ出れば良い」 / 「両方併用、 BPaaS で関係構築 → AI エージェント追加が定石」 / 「AI 怖がる人多いから BPaaS 先行が安全」 / 「ツール販売はアトツギ層、 業務代行は社長層」 / 「業界紙で AI エージェント特集すれば紹介経路の一つになる」</div>
-</div>
-
-<div class="q head">
-  <div class="num">Q13 (友人 N=1 結果 N=2 化、 業界俯瞰検証)</div>
-  <div class="text">友人 (工務店現場監督) N=1 ヒアリング (5/14 実施) で <strong>5 件の前提崩壊</strong>が出ました。 中堅工務店 (5-30 人) の業界俯瞰視点で、 これらが <strong>1 件特殊なのか / 業界全体の傾向なのか</strong> を教えてください:<br>
-  <ul style="margin:6px 0 6px 18px;padding:0;font-size:12px;">
-    <li>「買い切りの方が嬉しい」 → 中堅工務店でも <strong>月額 SaaS より買い切り好まれる傾向</strong>はありますか?</li>
-    <li>「個人客が 9 割、 会社案件 1 割」 → 中堅工務店の <strong>顧客構成の平均比率</strong>はどの程度?</li>
-    <li>「工務店間の横のつながりが薄い」 → 紹介経路として <strong>OB 施主 / 設計事務所 / 建材屋 のどれが本当に効きますか?</strong> 工務店間紹介は機能しない前提で良いか?</li>
-    <li>「メール使えない 3 割、 ファックス・郵送・孫の Gmail」 → これも業界全体の傾向ですか?</li>
-  </ul></div>
-  <div class="reason">→ memory <code>friend-hearing-result-2026-05-14.md</code> の Q7-Q9 として整理されていた追加質問群。 N=1 から N=2 化することで v3 商品設計の方向性を確度高める。 BPaaS / AI エージェント / 補助金 1/2 訴求 すべてに影響する基礎前提なので Part F 中位優先。</div>
-  <div class="expect"><strong>期待する回答パターン:</strong> 「買い切り傾向は地方の中小に多い、 都市部の中堅は月額に慣れてる」 / 「個人客 vs 会社 案件 比率は規模依存、 5-10 人なら 8:2、 30 人なら 5:5」 / 「OB 施主紹介が最強、 建材屋経由は副次、 工務店間はほぼ機能しない」 / 「メール使えない傾向は 60 代以上社長で顕著、 アトツギ世代は普通に使う」</div>
-</div>
-
-<!-- ====================================================== -->
-<div class="forbidden">
-  <strong>禁止訴求 (memory 整合)</strong>
-  <ul>
-    <li>「AI で何でもできる」 → memory <code>ai-positioning</code>: AI を前面に出さない、 機能訴求で</li>
-    <li>「補助金で 9 割引」 / 「1/8 訴求」 → memory <code>subsidies-positioning</code> + <code>subsidy-pitch-deprecated-2026-05-17</code>: 控えめ訴求を維持、 1/8 廃止確定済 (1/2 訴求 + 廃止解説 ベースに)</li>
-    <li>「マイクロ法人で節税」 → memory <code>business-form-roadmap</code>: 5/13 撤回済、 マイクロ法人話を「節税自慢」 として話さない (相談として聞く姿勢、 信用度ルートは Q2 で別途相談)</li>
-    <li>「7 月末月次 5-10 万」 / 「爆速ルート」 → memory <code>pivot-from-speedy-to-careful-2026-05-15</code>: 5/15 廃止済、 「12 ヶ月後 MRR ¥30-60K (現実的)」 + 「じっくり裏取り型」 で話す</li>
-    <li>「軸 B 単独主軸化」 (実態と乖離) → memory <code>axis-b-rhetoric-vs-reality</code>: 中長期方向性で、 12 ヶ月後実態は「強化期 / 副業並列」、 北原氏には現実版で話す</li>
-  </ul>
-</div>
-
-<!-- ====================================================== -->
-<div class="checklist">
-  <h3>当日準備チェックリスト (オンライン面談用)</h3>
-  <p style="font-size:12px;color:var(--muted);margin:4px 0 8px;">※ オンライン面談なので memory <code>feedback-prep-after-appointment</code> の「アポ確定後 1-2 日前」 ルールは適用、 PDF バックアップ等の物理準備は不要 (画面共有で完結)。 質問リスト整理 + 動作確認 + Obsidian メモ準備 のみ。</p>
-
-  <h4 style="margin-top:8px;font-size:13px;color:var(--accent);">📅 事前 (5/20 頃)</h4>
-  <ul>
-    <li><span class="check"></span>business-summary + consultation-questions-public を PDF 化して北原氏に事前送付 (Chrome で「印刷」 → 「PDF として保存」)</li>
-    <li><span class="check"></span>Zoom URL / 会議ツール確認 (届いたら早めに動作テスト)</li>
-    <li><span class="check"></span>マイク・カメラ・スピーカー動作確認</li>
-    <li><span class="check"></span>画面共有テスト (1 回練習推奨)</li>
-  </ul>
-
-  <h4 style="margin-top:8px;font-size:13px;color:var(--accent);">🕐 当日 (面談 30 分前から)</h4>
-  <ul>
-    <li><span class="check"></span>PC 起動 + ヘッドホン or 外部マイク準備</li>
-    <li><span class="check"></span><code>cd ~/home_work/portfolio && npx next dev</code> で localhost:3000 起動</li>
-    <li><span class="check"></span>各デモが HTTP 200 で開けるか軽く確認</li>
-    <li><span class="check"></span>ブラウザで <strong>business-summary</strong> と <strong>このページ (質問リスト)</strong> を別タブで開いておく</li>
-    <li><span class="check"></span>Obsidian を起動して <code>reports/2026-05-22-kitahara-consultation.md</code> を新規作成 (メモ用)</li>
-    <li><span class="check"></span>商談ペライチ 2 版・Google マップ分析レポートも別タブで (時間あれば共有)</li>
-    <li><span class="check"></span>Zoom (or 指定ツール) で会議室入室テスト</li>
-  </ul>
-
-  <h4 style="margin-top:8px;font-size:13px;color:var(--accent);">🔁 オフライン→オンライン置換</h4>
-  <ul style="font-size:12px;">
-    <li>❌ 印刷物 → ✅ PDF 事前送付 + 画面共有</li>
-    <li>❌ iPad で触ってもらう → ✅ PC 画面共有 (自分で操作しながら説明)</li>
-    <li>❌ 物理名刺 → ✅ <code>ihara-frontend.com</code> URL をチャットに投げる</li>
-    <li>❌ メモ用紙 + ペン → ✅ Obsidian で直接記録 (ショートカット <code>⌘N</code> で即書き出し)</li>
-  </ul>
-</div>
-
-<div class="note" style="margin-top:20px;">
-  <strong>面談後にやること</strong>: 結果メモを <code>docs/consultation-result-2026-05-22.md</code> に書き出し。 Q1 で得た「軌道判断指標」 + 公庫融資先行への意見を memory [[business-form-roadmap]] + [[koko-loan-before-incorporation]] に記録。 Q2 で信用度ルート (合同会社) 要否が確定したら memory [[business-form-roadmap]] 更新。 Q3 で得たコンソーシアム参画ルートの現実性を踏まえて、 既存 IT 導入支援事業者へのリサーチを開始 (memory [[subsidies-positioning]] 推奨動き #4)。 Q4 で得たドメイン名フィードバックは memory [[domain-name-mismatch]] に追記、 6 月以降の別ドメイン取得判断材料に。 Q5 で紹介経路が得られたら memory [[friend-hearing-may-2026]] と同じ形式でヒアリング memo を新規作成。 Q7 で得た補助金 1/2 訴求の現実性を memory [[subsidies-positioning]] + [[subsidy-pitch-deprecated-2026-05-17]] に反映。<br><br>
-  <strong>Part F 結果反映 (Q11 / Q12 / Q13)</strong>:<br>
-  <strong>Q11 (アトツギ世代窓口化)</strong> で アトツギ系 工務店 紹介が 得られたら memory [[atotsugi-decision-maker]] に 紹介先リスト を 追記 + 父親同席前提 で 商談設計。<br>
-  <strong>Q12 (BPaaS / AI エージェント 戦略転換) ← 必達寄り</strong> で「代行の方が刺さる」 「両方併用」 「AI 怖がる」 等のどの回答が出たかを memory [[komuten-bpaas-ai-agent-strategy-2026-05-18]] に追記。 友人ヒアリング Phase 3 (代行モデル順位付け) を実施するかどうかの優先度判断材料に。 BPaaS 単独軸でいくか / SaaS / 受託ハイブリッドに戻すか / BPaaS + AI エージェント 二段ロケットを維持するか の最終判定は N=4-5 まで集めてから (7-9 月 仮説修正期)。<br>
-  <strong>Q13 (友人 N=1 結果 N=2 化)</strong> で買い切り傾向 / 個人客比率 / 紹介経路の業界俯瞰回答が得られたら memory [[friend-hearing-result-2026-05-14]] に「N=2 化結果」 セクションを追加。 v3 商品設計 (7-9 月 仮説修正期) の根拠データに。<br>
-  <br>
-  <strong>補助金詳細 (旧 Q7 / Q9 / Q10) は 5/22 では聞かず、 商品確定後 (10-12 月以降) に Q3 拡張版として再相談</strong>。 必要に応じて公社直電 (03-3251-7889) も並行活用。 5/22 では Q3 で「将来意向 + 注意点」 だけ伺う。
-</div>
-
-<nav class="cross-links" style="margin:24px 0 12px;padding:16px 18px;background:#f4f7fc;border:1px solid #e4ddd1;border-radius:8px;font-size:12px;color:#33496d;">
-  <strong style="color:#1f1c18;display:block;margin-bottom:8px;font-size:13px;">🔗 5/22 北原氏面談 + 5/15-16 たましん起動 セット (相互参照)</strong>
-  <div style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:8px;">
-    <a href="komuten-fast-track-strategy-2026-05-14.html" style="color:#b85c3a;text-decoration:none;font-weight:700;">⚡ Ultrathink 戦略 (爆速ルート)</a>
-    <a href="tamashin-call-script-2026-05-15.html" style="color:#b85c3a;text-decoration:none;font-weight:700;">🔥 たましん台本 (5/15-16)</a>
-    <a href="business-summary-2026-05-22.html" style="color:#b85c3a;text-decoration:none;font-weight:700;">📋 事業計画サマリ (5/22)</a>
-    <span style="color:#c34a1f;font-weight:800;">❓ 北原氏 質問リスト (現在ページ)</span>
+<div class="q-body">
+  <div class="first">
+    <div class="section-label">具体的に聞く内容</div>
+    <p>FAX フッターに連絡先入れて 1 通 → 5-10 人視認、 取引先経由で紹介発生という仮説。 これが実際に機能する事例はあるか? 効果が出るまで何月程度か?</p>
   </div>
-  <div style="font-size:11px;color:#6b6359;">
-    関連 memory: <code>atotsugi-decision-maker</code> / <code>credit-augmentation-dual-layer</code> / <code>subsidy-1-8th-burden-pitch</code> / <code>subsidy-direct-kousha-call</code> / <code>tokyo-startup-station-may-2026</code> / <code>friend-hearing-result-2026-05-14</code> / <code>axis-b-rhetoric-vs-reality</code> / <code>user-work-time-constraint</code>
+  <div class="section-label">想定回答 3 パターン + 各対応</div>
+  <p><strong>A. 「機能する」</strong> → 「ありがとうございます。 6 ヶ月の凍結期間 (6 月 〜 11 月) を本戦略で動かして、 月次の紹介数を KPI 化します」</p>
+  <p><strong>B. 「業界による」</strong> → 「業界特性を見極めるために、 友人 N=2-3 ヒアリング (6 月) で確認します。 + 建材屋営業マン経由で実証検証も並行」</p>
+  <p><strong>C. 「機能しない」</strong> → 「ありがとうございます。 代替の紹介経路として何が現実的か、 続けてお聞きしたいです (→ 建材屋経路 / たましん経路 / 業界紙経路 を選択肢として再提示)」</p>
+  <div class="section-label">自分メモ</div>
+  <p>本論点は事業の核。 「機能する」 を期待して聞いてるが、 否定された場合の備えとして紹介経路 3 案を準備済。</p>
+</div>
+</div>
+
+<div class="q-internal priority">
+<div class="q-header">
+  <div class="q-no">論点 ② · 最重要 · 4 分以内</div>
+  <div class="q-text">事業仮説をこのまま確定 vs もう少し検証 — どちらが現実的か?</div>
+</div>
+<div class="q-body">
+  <div class="first">
+    <div class="section-label">具体的に聞く内容</div>
+    <p>6 日で 4-5 ピボットの自覚 + 商品仮説確定タイミング判断 + 戦略凍結 6 ヶ月の妥当性</p>
   </div>
-</nav>
+  <div class="section-label">想定回答 3 パターン</div>
+  <p><strong>A. 「凍結 OK」</strong> → 「ありがとうございます。 凍結宣言を本格運用します。 北原様に証人になっていただいた旨を memory に記録します」</p>
+  <p><strong>B. 「凍結は早い、 N=2-3 検証してから」</strong> → 「期間を 3 ヶ月凍結 (8/22 まで) に短縮 + 友人 N=2-3 結果次第で 11 月凍結延長判断、 という二段構えで OK ですか?」</p>
+  <p><strong>C. 「凍結より KPI 連動の柔軟運用」</strong> → 「具体的に何の KPI を、 どれくらいで未達なら戦略変更を発動する設計が望ましいか、 詳しくお聞きしたいです」</p>
+</div>
+</div>
+
+<div class="q-internal">
+<div class="q-header">
+  <div class="q-no">論点 ③ · 通常 · 1.5 分以内</div>
+  <div class="q-text">「ANDPAD 運用支援」 は中堅工務店オーナーに刺さるか?</div>
+</div>
+<div class="q-body">
+  <div class="first">
+    <div class="section-label">具体的に聞く内容</div>
+    <p>ANDPAD 必須は下請工務店、 中堅オーナーは元請け側 = 強制されてない可能性。 多摩地区中堅工務店の ANDPAD 導入実態は?</p>
+  </div>
+  <div class="section-label">想定外回答への対応</div>
+  <p>「ANDPAD 知らない」 → 「商談時に ANDPAD を出さず、 シンプルに『現場写真整理』 だけ訴求しなおします」<br>「ANDPAD 使ってる工務店多い」 → 「Phase 1 主軸として ⑧ ANDPAD 運用支援を継続」</p>
+</div>
+</div>
+
+<div class="q-internal">
+<div class="q-header">
+  <div class="q-no">論点 ④ · 通常 · 1.5 分以内</div>
+  <div class="q-text">「家の困りごと地域相談窓口」 (B2G) は今動くべきか、 Phase 3 で本格化か?</div>
+</div>
+<div class="q-body">
+  <div class="first">
+    <div class="section-label">具体的に聞く内容</div>
+    <p>信金 / 自治体が運営する似た「困りごと窓口」 の先例はあるか? 委託契約獲得まで何月かかるか?</p>
+  </div>
+  <div class="section-label">想定外回答への対応</div>
+  <p>「先例あり、 すぐ動くべき」 → 「Phase 1 (6-9 月) で並行着手、 紹介ルート確保を最優先化」<br>「Phase 3 で OK」 → 「現在の計画通り 2027 年 1-4 月で本格化」</p>
+</div>
+</div>
+
+<div class="q-internal">
+<div class="q-header">
+  <div class="q-no">論点 ⑤ · 通常 · 1.5 分以内</div>
+  <div class="q-text">「DX しなくていい」 反主流ポジは業界紙取材で機能するか?</div>
+</div>
+<div class="q-body">
+  <div class="first">
+    <div class="section-label">具体的に聞く内容</div>
+    <p>新建ハウジング / 建築知識 / 日経ホームビルダー で反主流ポジは取材されるか? 月 1 連載化の現実性は?</p>
+  </div>
+  <div class="section-label">期待する展開</div>
+  <p>北原氏の業界紙コネクションがあれば、 取材ルート紹介依頼につなげる (Slide 9 紹介依頼 ④ と連動)</p>
+</div>
+</div>
+
+<div class="q-internal meta">
+<div class="q-header">
+  <div class="q-no">論点 ⑥ · メタ質問 · 3 分以内</div>
+  <div class="q-text">創業期の「アイディア過多」 を捌く判断基準は何か?</div>
+</div>
+<div class="q-body">
+  <div class="first">
+    <div class="section-label">具体的に聞く内容</div>
+    <p>他 AI から戦略マップ 10 提案受領 → 採用 3 / 保留 6 / 不採用 1 の判定。 ① 判定は偏ってないか / ② 「Phase 2 で再評価」 という保留の置き方は機能するか / ③ 6 ヶ月戦略凍結 (5/23 〜 11/22) は中小企業の現場で普通か?</p>
+  </div>
+  <div class="section-label">本論点の戦略的価値</div>
+  <p>戦略の中身ではなく「戦略の作り方」 自体を経営支援のプロに相談。 北原氏との関係性を深めるメタ質問。 5/22 面談で最も価値ある 5 分間。</p>
+</div>
+</div>
 
 </div>
+
+<!-- ============================================ -->
+<!-- Page 3: 想定外への対応 + 5/22 後アクション -->
+<!-- ============================================ -->
+<div class="page">
+
+<header>
+  <h1>想定外への対応 + 5/22 後アクション <span class="internal">内部版</span></h1>
+  <div class="meta">想定外の質問・意見への対応 + 面談後の動き</div>
+</header>
+
+<h2>// 想定外の質問への対応 (8 パターン)</h2>
+
+<div class="q-internal">
+<div class="q-header">
+  <div class="q-no">想定外 ①</div>
+  <div class="q-text">「事業計画書はあるか? 公庫融資の準備はできてるか?」</div>
+</div>
+<div class="q-body">
+  <p><strong>対応:</strong> 「公庫融資 100 万円を 5 月末-6 月初旬に申込予定です。 事業計画書は本日の議論を反映して 5/23-25 に確定版を作成します」 + 既に作成済の <code>business-plan-2026-05-22.html</code> (内部用) があることを伝える</p>
+</div>
+</div>
+
+<div class="q-internal">
+<div class="q-header">
+  <div class="q-no">想定外 ②</div>
+  <div class="q-text">「マネタイズの見込みが甘い (個人事業レベル)」</div>
+</div>
+<div class="q-body">
+  <p><strong>対応:</strong> 「ご指摘ありがとうございます。 12 ヶ月後 MRR ¥30-60 万 = 個人事業継続レベルなのは承知しています。 24 ヶ月後の単独主軸化 (生活費 6-10 割) を目指す『じっくり裏取り型』 戦略です。 Year 2 で法人化 + 副業外注 5 名 / Year 3 で月商 ¥250 万 / Year 5 でフランチャイズ展開 = 多摩 5% シェア (75-100 社) を目指す 5 年計画です」</p>
+</div>
+</div>
+
+<div class="q-internal">
+<div class="q-header">
+  <div class="q-no">想定外 ③</div>
+  <div class="q-text">「FAX バイラル戦略は古いのでは? デジタル化が進んでる」</div>
+</div>
+<div class="q-body">
+  <p><strong>対応:</strong> 「ご指摘ありがとうございます。 主顧客が 60-70 代 IT 弱者の中小工務店オーナーで、 LINE もメールも苦手な層です。 そこに『DX しなくていい』 反主流ポジで刺さる仮説。 競合 5 社 (ANDPAD BPO / ツクノビ事務 等) はデジタル前提なので、 ここの隙間が市場機会です。 ただし業界全体としてはデジタル化が進むため、 中長期では FAX 主軸の顧客プールが縮小する懸念は認識しています。 これは Year 3-5 で再評価予定です」</p>
+  <p style="font-size: 10px; color: var(--muted); margin-top: 3px;"><strong>自分メモ:</strong> 5/21 公式裏取りで <strong>建設事務代行センター</strong> だけは FAX 受信あり + 中小工務店向け = 近接競合と判明 (¥5K-30K 帯)。 ただし訪問教育なし / FAX バイラル拡散なし なので、 ① FAX バイラル + ④ 反主流ポジ + 訪問教育 で差別化可能。 他 4 社 (ANDPAD BPO / ツクノビ / ノンコア / Bricks&UK) はデジタル前提 or 大企業向けで隔たりあり。</p>
+</div>
+</div>
+
+<div class="q-internal">
+<div class="q-header">
+  <div class="q-no">想定外 ④</div>
+  <div class="q-text">「五反田引越し計画があるなら多摩戦略はどうなる?」</div>
+</div>
+<div class="q-body">
+  <p><strong>対応:</strong> 「FAX / 郵送 / 電話 主軸 = 地理依存ナシなので、 引越しは戦略に影響しません。 多摩地区での既存顧客は遠隔運用継続、 引越し後は新規開拓を東京都内全域で行います。 たましんとは小規模企業共済の振込先として個人事業主取引を維持します」</p>
+</div>
+</div>
+
+<div class="q-internal">
+<div class="q-header">
+  <div class="q-no">想定外 ⑤</div>
+  <div class="q-text">「他の AI と相談してるなら、 ここで相談する意味は何?」</div>
+</div>
+<div class="q-body">
+  <p><strong>対応:</strong> 「AI は判断材料を出してくれますが、 経営支援の現場知見は持っていません。 + AI に質問し続けると確証バイアスで思考が発散します。 北原様のような中小企業経営支援の専門家から、 中立的な第三者意見をいただくのが今日の本質的な目的です。 + 戦略凍結宣言を北原様に証人になっていただくこと自体が、 私の発散思考を止める強制力になります」</p>
+</div>
+</div>
+
+<div class="q-internal">
+<div class="q-header">
+  <div class="q-no">想定外 ⑥</div>
+  <div class="q-text">「アトツギ 30-40 代を窓口にする戦略、 父親 (社長 60-70 代) を説得する材料はどこまで準備できてる?」</div>
+</div>
+<div class="q-body">
+  <p><strong>対応:</strong> 「アトツギ向け説得材料として 4 ツール準備済 (検証段階含む) です。 ① <strong>IT 導入補助金 通常枠 1/2</strong> 申請サポート (10-12 月から行政書士提携前提)、 ② <strong>業界紙取材記事</strong> (新建ハウジング / 建築知識 / 日経ホームビルダー、 5/30 取材依頼予定)、 ③ <strong>同業他社の導入事例</strong> (Phase 1 で 1-3 社実証後にケーススタディ化)、 ④ <strong>痛みクラスタ + 地域レビューデータ</strong> (issue-finder 235 件 + Google マップ 794 件、 自分が業界を読み込んでいる証拠)。 加えてアトツギ甲子園 / 事業承継支援センターとの接点ルートを探索中です。」</p>
+  <p style="font-size: 10px; color: var(--muted); margin-top: 3px;"><strong>自分メモ:</strong> memory <code>atotsugi-decision-maker</code> + <code>industry-press-authority-borrow</code> + <code>komuten-reviews-pipeline</code> 参照。 アトツギ甲子園紹介ルートを北原氏に追加依頼するチャンス。</p>
+</div>
+</div>
+
+<div class="q-internal">
+<div class="q-header">
+  <div class="q-no">想定外 ⑦</div>
+  <div class="q-text">「FAX バイラル拡散の数字根拠は? 黒字化まで何月想定?」</div>
+</div>
+<div class="q-body">
+  <p><strong>対応:</strong> 「保守的な試算で以下です。 ① <strong>1 通あたり視認</strong>: 事務員 1 人 + コピー回覧 1-2 人 = <strong>2-3 人</strong> (5-10 人は理想値、 保守シナリオで 2-3 人)、 ② <strong>視認 → 問合せ率</strong> 2% (業界平均 1-3% の中央値)、 ③ <strong>月送信</strong>: Phase 1 軽量導入期で <strong>50 通 / 月</strong> (1 日 2-3 通)、 ④ <strong>Phase 1 累計</strong> (6-10 月 5 ヶ月) 250 通 → <strong>500-750 人視認 → 10-15 件問合せ → 5-7 件商談 → 2-3 件契約</strong> 見込み。 ⑤ <strong>黒字化月数</strong>: 工務店事業のみでは Phase 2 末 (12 月) に月 ¥150-200K で到達想定。 ただし公庫融資 ¥100 万 + 既存受託で生活費はカバーできるため、 個人キャッシュフローの黒字は 6 月以降継続です。」</p>
+  <p style="font-size: 10px; color: var(--muted); margin-top: 3px;"><strong>自分メモ:</strong> 数字は仮説、 一次情報源なし。 北原氏に「業界の紹介率実態」 を逆質問するチャンス。 5/23-25 で memory に試算経緯を保存。</p>
+</div>
+</div>
+
+<div class="q-internal">
+<div class="q-header">
+  <div class="q-no">想定外 ⑧</div>
+  <div class="q-text">「訪問教育 = 移動時間 + 人件費。 月 ¥30K 顧客に訪問入れると時給割れしないか? 60-70 代寄り添いの具体内容は?」</div>
+</div>
+<div class="q-body">
+  <p><strong>対応:</strong> 「訪問は<strong>プランごとに分けて</strong>います。 ① Plan 1 (¥5-10K) = <strong>訪問なし</strong>、 電話 + 郵送のみ。 ② Plan 2 (¥15-25K) = <strong>初期 1 ヶ月のみ訪問</strong>、 その後は電話中心。 ③ Plan 3 (¥30-50K) = 初期 1 ヶ月 + 月 1 回訪問 (移動 1.5h + 対応 1h = 2.5h) で <strong>時給換算 ¥12-20K = 受託相場 ¥6-10K/h を上回る</strong>。 60-70 代寄り添いの具体は: (a) <strong>電話骨太対応</strong> (急ぎ相談 30 分以内コールバック)、 (b) <strong>FAX スキャン代行</strong> (受信 FAX を PDF 化して顧問先メール)、 (c) <strong>漢字フリガナ + 大文字フォント</strong> の帳票、 (d) 契約書類は<strong>紙印刷 + 訪問説明</strong>。 この『手間を惜しまない』 が建設事務代行センターとの最大の差です。」</p>
+  <p style="font-size: 10px; color: var(--muted); margin-top: 3px;"><strong>自分メモ:</strong> Plan 1 訪問なし は v5.1 サマリ // 02 と整合済。 寄り添い 4 項目は 5/23-25 で SaaS / 運用ルール docs に正式追加予定。</p>
+</div>
+</div>
+
+<h2>// 5/22 後 アクション ロードマップ</h2>
+<table>
+  <thead><tr><th style="width:14%;">日付</th><th>アクション</th></tr></thead>
+  <tbody>
+    <tr><td><strong>5/22 (金)</strong></td><td>面談録音 → 議事録作成 (Whisper + Claude) → 北原氏に共有 (お礼メール添付)</td></tr>
+    <tr><td>5/23 (土)</td><td>建設事務代行センターに電話 → 価格・サービス内容ヒアリング</td></tr>
+    <tr><td>5/23-25 週末</td><td>事業計画 v6 (確定版) 作成 / memory `kitahara-meeting-result-2026-05-22.md` 作成</td></tr>
+    <tr><td>5/26-31</td><td>公庫融資 100 万円 申込 (新規開業資金) / 既存受託契約書類別紙添付</td></tr>
+    <tr><td>6 月前半</td><td>友人 (現場監督) N=2-3 ヒアリング Phase 3 / Q18b「今日決める?」 で価格反応検証 / 妻インタビュー打診</td></tr>
+    <tr><td>6 月後半-7 月</td><td>たましん 価値創造事業部 訪問本番 / 五反田引越し (検討中なら 6 月中)</td></tr>
+    <tr><td>6/25</td><td>住宅デー (全建総連 全国一斉) 関与判定 / 多摩西部支部経由で接触</td></tr>
+    <tr style="background: var(--info-soft);"><td><strong>8/22 (金)</strong></td><td><strong>北原氏 中間報告アポ依頼</strong> (オンライン 15-20 分): 凍結期間中間 (6 ヶ月の半分) / N=2-3 ヒアリング結果 + 1-2 社契約進捗 + 戦略凍結維持判断を共有 / 証人化関係の継続維持</td></tr>
+    <tr><td>11/22</td><td>戦略凍結期間終了 → 商品方向性の最終確定 / 月次 KPI 評価で Phase 2 へ移行判断</td></tr>
+  </tbody>
+</table>
+
+<h2>// 録音 議事録作成 ルール</h2>
+<div class="callout info">
+<p><strong>録音設定:</strong> Zoom 録画機能 ON + ローカル録画も並走 (バックアップ)</p>
+<p><strong>議事録作成:</strong> 録音ファイルを Whisper で文字起こし → Claude で「論点別 要点 + 北原氏の見解 + 自分のフォローアップ」 形式に整理 (5/22 当日中)</p>
+<p><strong>北原氏共有:</strong> 議事録を北原氏にメール送付 (お礼 + 確認依頼)。 これが Phase 1 顧客向けの「削減レポート」 のテンプレ検証にもなる (初日 5 リスト #5 と連動)</p>
+</div>
+
+<footer style="margin-top: 14px; font-size: 9.5px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 6px;">
+質問リスト v5 内部版 / 工務店アナログ業務運用支援 / 井原 誠斗 (masatoman) / 3 / 3 / END
+</footer>
+</div>
+
 </body>
 </html>

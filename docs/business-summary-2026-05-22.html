@@ -3,19 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>事業計画サマリ v2 / 工務店向け SaaS / 2026-05-22</title>
+<meta name="created-at" content="2026-05-13">
+<meta name="updated-at" content="2026-05-21">
+<title>事業計画サマリ v5.1 / 工務店アナログ業務 運用支援 / 2026-05-22 北原氏面談用</title>
 <style>
 :root {
   --bg: #faf7f2;
   --fg: #1f1c18;
   --muted: #6b6359;
   --accent: #b85c3a;
+  --accent-soft: #f4dfd2;
   --warn: #c34a1f;
   --good: #2d6a4f;
+  --good-soft: #e6f0ea;
   --card: #ffffff;
   --border: #e4ddd1;
-  --confirmed: #e6f0ea;
-  --pending: #fef5e7;
+  --info: #1e3a5f;
+  --info-soft: #dde6f0;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -32,6 +36,7 @@ body {
   margin: 8mm auto;
   background: white;
   box-shadow: 0 0 8px rgba(0,0,0,0.08);
+  page-break-after: always;
 }
 
 header {
@@ -56,6 +61,8 @@ header .meta { font-size: 9.5px; color: var(--muted); }
   letter-spacing: 0.05em;
 }
 .section p { margin-bottom: 4px; }
+.section ul { padding-left: 16px; margin-bottom: 4px; }
+.section li { margin-bottom: 2px; }
 
 .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
@@ -73,324 +80,295 @@ header .meta { font-size: 9.5px; color: var(--muted); }
   font-weight: 700;
   margin-bottom: 2px;
 }
-.box .value {
-  font-size: 11px;
-}
+.box .value { font-size: 11px; }
 .box .value strong { font-size: 12.5px; }
+
+.hero-box {
+  background: var(--accent-soft);
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.hero-box .hero-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.hero-box .hero-text {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
 
 table {
   width: 100%;
   border-collapse: collapse;
   font-size: 10.5px;
+  margin: 4px 0;
 }
-th, td {
-  padding: 3px 6px;
+table th {
+  background: var(--fg);
+  color: white;
+  padding: 4px 6px;
   text-align: left;
+  font-size: 9.5px;
+  letter-spacing: 0.04em;
+}
+table td {
+  padding: 4px 6px;
   border-bottom: 1px solid var(--border);
   vertical-align: top;
 }
-th {
-  background: #f4ede0;
-  font-weight: 700;
-  font-size: 9.5px;
+table tr:nth-child(even) td { background: #fbf8f3; }
+
+.good-text { color: var(--good); font-weight: 700; }
+.warn-text { color: var(--warn); font-weight: 700; }
+.muted-text { color: var(--muted); }
+.highlight {
+  background: linear-gradient(transparent 60%, var(--accent-soft) 60%);
+  padding: 0 2px;
 }
-td.num { text-align: right; }
 
-ul { padding-left: 14px; }
-ul li { margin-bottom: 2px; }
-ol { padding-left: 16px; }
-ol li { margin-bottom: 3px; }
+.callout {
+  background: #fdfbf6;
+  border-left: 3px solid var(--accent);
+  padding: 6px 9px;
+  margin: 6px 0;
+  font-size: 10.5px;
+}
+.callout.warn { background: #fef5e7; border-left-color: var(--warn); }
+.callout.good { background: var(--good-soft); border-left-color: var(--good); }
+.callout.info { background: var(--info-soft); border-left-color: var(--info); }
 
-.status-card {
+.three-msg {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin: 4px 0;
+}
+.three-msg .msg {
+  background: var(--accent-soft);
+  color: var(--accent);
   border-radius: 4px;
-  padding: 8px 12px;
-  margin-bottom: 6px;
-  border-left: 3px solid;
-  font-size: 10.5px;
-}
-.status-card.confirmed { background: var(--confirmed); border-left-color: var(--good); }
-.status-card.pending { background: var(--pending); border-left-color: #b8862e; }
-.status-card .badge {
-  display: inline-block;
-  font-size: 9px;
-  letter-spacing: .1em;
-  padding: 1px 5px;
-  border-radius: 2px;
-  font-weight: 700;
-  margin-right: 6px;
-  vertical-align: middle;
-}
-.status-card.confirmed .badge { background: var(--good); color: white; }
-.status-card.pending .badge { background: #b8862e; color: white; }
-.status-card .title { font-weight: 700; display: inline; }
-.status-card .body { margin-top: 3px; }
-
-.lesson {
-  background: #fdf0eb;
-  border-left: 3px solid var(--warn);
-  padding: 6px 10px;
-  font-size: 10.5px;
-  border-radius: 0 3px 3px 0;
-  margin-bottom: 6px;
-}
-.lesson strong { color: var(--warn); }
-
-footer {
-  margin-top: 10px;
-  padding-top: 6px;
-  border-top: 1px solid var(--border);
-  font-size: 9px;
-  color: var(--muted);
+  padding: 8px 10px;
   text-align: center;
+  font-size: 11.5px;
+  font-weight: 700;
+  line-height: 1.4;
 }
+
+.plans-mini {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin: 4px 0;
+}
+.plan-mini {
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 6px 8px;
+}
+.plan-mini .pm-label { font-size: 9px; letter-spacing: 0.1em; color: var(--muted); font-weight: 700; }
+.plan-mini .pm-name { font-size: 11px; font-weight: 700; margin: 2px 0; }
+.plan-mini .pm-price { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.plan-mini .pm-desc { font-size: 10px; line-height: 1.5; }
 
 @media print {
   body { background: white; }
   .page { box-shadow: none; margin: 0; }
+  @page { size: A4; margin: 0; }
 }
 </style>
-  <meta name="created" content="2026-05-14T14:20:55+09:00">
 </head>
 <body>
+
+<!-- ============================================ -->
+<!-- Page 1: 事業全体像 + Hero Statement -->
+<!-- ============================================ -->
 <div class="page">
 
 <header>
-  <div>
-    <h1>工務店向け 業務改善サービス 事業計画サマリ (仮説検証中)</h1>
-    <div class="meta">作成: 2026-05-13 / 更新: 2026-05-19 / 面談予定: 2026-05-22 北原氏 (東京創業ステーション) / <strong>オンライン面談</strong> / 個人事業主</div>
-  </div>
-  <div style="text-align:right;font-size:9px;color:var(--muted);">
-    masatoman<br>
-    分倍河原 (府中市) / 多摩信用金庫取引<br>
-    masatoman.net / ihara-frontend.com
-  </div>
+  <h1>事業計画サマリ <span style="font-size: 11px; color: var(--accent); margin-left: 6px;">v5.1 (FAX / 郵送 / 電話 主軸 + 競合裏取り)</span></h1>
+  <div class="meta">作成: 2026-05-13 / 更新: 2026-05-21 / 面談予定: 2026-05-22 北原氏 (東京創業ステーション)</div>
 </header>
 
-<!-- 01 / 事業概要 -->
 <div class="section">
-  <h2>// 01 / 事業概要 (仮説検証中)</h2>
-  <div class="row3">
-    <div class="box">
-      <div class="label">対象</div>
-      <div class="value"><strong>多摩地区の中小工務店 (5〜30 人規模)</strong><br><span style="font-size:9.5px;color:var(--muted);">主顧客像は IT 弱者中小工務店、 ただし友人 N=1 で実需面前提が一部崩壊 → アトツギ層 (30-40 代後継者) への拡張を併走検討中</span></div>
-    </div>
-    <div class="box">
-      <div class="label">提供形態 (仮説)</div>
-      <div class="value"><strong>SaaS / BPaaS / AI エージェント ハイブリッド</strong><br><span style="font-size:9.5px;color:var(--muted);">SaaS は学習コストが障壁、 BPaaS (業務代行) は学習コスト 0。 主顧客への適合度を 5/22 + 友人ヒアリング N=4-5 で確認</span></div>
-    </div>
-    <div class="box">
-      <div class="label">スケジュール / 目標</div>
-      <div class="value"><strong>じっくり裏取り型</strong><br><span style="font-size:9.5px;color:var(--muted);">5-6 月 一次情報取得 → 7-9 月 仮説修正 → 10-12 月 MVP 投入 → 1-4 月 スケール / 12 ヶ月後 MRR ¥30-60K (現実的シナリオ)</span></div>
-    </div>
+<div class="hero-box">
+  <div class="hero-label">HERO STATEMENT</div>
+  <div class="hero-text">「ANDPAD で詰まった工務店向けに、 FAX / 電話 / 郵送 どれでも OK の運用支援を、 月 ¥5K-50K (3 プラン制)」</div>
+</div>
+</div>
+
+<div class="section">
+<h2>// 01 / 事業概要 (仮説検証中)</h2>
+<div class="row2">
+  <div>
+    <p><strong>事業内容:</strong> 中小工務店向け <span class="highlight">アナログ業務の運用支援 + 必要時代行</span> サービス。 FAX / 郵送 / 電話 を主軸に「DX しなくていい仕組み」 を提供。</p>
+    <p><strong>提供形態:</strong> 業務代行 (BPaaS) + 運用支援サービス + ツール提供。 通信手段 = 社長宛 FAX / 郵送 / 電話、 社員 (若手担当) 宛 LINE。</p>
+    <p><strong>主顧客像 (3 層):</strong> 決裁 = 社長 60-70 代 (IT 弱者) / 経理 = 奥さま 60 代 (紙帳簿中心) / 推進 = 2 代目アトツギ 30-40 代 (IT 強)</p>
   </div>
-  <p style="font-size:9.5px;color:var(--muted);margin-top:6px;">
-    ※「単独事業として軌道に乗せる」 のは 24 ヶ月以降の中長期目標。 当面は既存受託 (フロントエンド) と並走しながら一次情報を積み上げ、 商品設計を仮説検証する。 半年前の Froski 撤退 (英語×フリーランス、 市場前提崩壊) を踏まえ、 「作る前の調査不足」 を構造的に塞ぐ運びにしている。
-  </p>
-</div>
-
-<!-- 02 / 4 仮説 -->
-<div class="section">
-  <h2>// 02 / 業界の課題仮説 (4 つ) ← SaaS の対象痛点</h2>
-  <table>
-    <thead>
-      <tr><th>#</th><th>仮説</th><th>解決アプローチ案</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>①</td><td><strong>ANDPAD が高機能すぎて現場で使われていない</strong></td><td>必要最小機能のシンプル代替</td></tr>
-      <tr><td>②</td><td><strong>PDF 見積書をみつも郎 17 に手入力する二重作業</strong></td><td>PDF → 構造化データの自動入力支援</td></tr>
-      <tr><td>③</td><td><strong>電話・LINE 通話記録が残らず情報散逸</strong></td><td>通話録音 + 文字起こし + 自動保存</td></tr>
-      <tr><td>④</td><td><strong>遠現場の片道 2 時間移動で帰宅後深夜作業</strong></td><td>現場で完結する記録 / 入力ツール</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- 02-b / 8 デモ UI プロトタイプ 実装済 (実機能は 第 1 号ユーザーと 共同開発) -->
-<div class="section">
-  <h2>// 02-b / 8 デモ UI プロトタイプ 実装済 × 4 仮説 対応 (= 具体的な商品の素案、 実機能は 第 1 号ユーザーと 共同開発)</h2>
-  <table>
-    <thead>
-      <tr><th>仮説</th><th>対応デモ</th><th>役割</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>① ANDPAD 高機能</td><td>全デモ共通</td><td>シンプル代替路線</td></tr>
-      <tr><td>② みつも郎 二重入力</td><td><strong>estimate-organizer</strong></td><td>見積整理 / 自動入力支援</td></tr>
-      <tr><td rowspan="2">③ 通話記録散逸</td><td><strong>call-memo-board</strong></td><td>通話メモを構造化保存</td></tr>
-      <tr><td><strong>voice-daily-report</strong></td><td>日報を音声で投稿</td></tr>
-      <tr><td rowspan="3">④ 移動深夜</td><td><strong>site-photo-organizer</strong></td><td>現場写真を即整理 (現場完結)</td></tr>
-      <tr><td><strong>receipt-expense-camera</strong></td><td>領収書をカメラで OCR</td></tr>
-      <tr><td><strong>drawing-quick-viewer</strong></td><td>現場で図面即確認</td></tr>
-      <tr><td>(補完) 施主進捗共有</td><td><strong>client-progress-page</strong></td><td>施主向けポータル</td></tr>
-      <tr><td>(補完) 工務店 Web 集客</td><td><strong>website-refresh</strong></td><td>工務店サイト改善</td></tr>
-    </tbody>
-  </table>
-  <p style="font-size:10px;color:var(--good);margin-top:4px;"><strong>2026-05-14 動作確認 + 投票ページ公開済</strong>: 全 8 デモ動作確認 + <strong>https://ihara-frontend.com/demo-gallery</strong> を本番公開。 主顧客に「最大 3 つ」 「全部いらない場合は拒否理由を選択」 「リリース時連絡 OK の人は LINE / メール任意入力」 のフォームで需要計測中。 面談時にオンライン画面共有可。</p>
-</div>
-
-<!-- 02-d / 5 代行サービス リフレーミング (BPaaS 仮説、 2026-05-18 追加) -->
-<div class="section">
-  <h2>// 02-d / 5 代行サービス リフレーミング (BPaaS / 業務代行 仮説)</h2>
-  <p style="font-size:10.5px;margin-bottom:6px;">
-    友人 N=1 ヒアリングで判明した「主顧客は学習コスト自体を嫌う」 仮説を受け、 8 デモのうち代行モデルに乗せられる <strong>上位 5 つを「業務代行サービス」 にリフレーミング</strong>する仮説を併走検討中。 SaaS は学習コスト高、 BPaaS は学習コスト 0。 友人ヒアリング Phase 3 (代行モデル順位付け) で需要計測予定。
-  </p>
-  <table>
-    <thead>
-      <tr><th>デモ</th><th>代行向き</th><th>サービス名 (仮)</th><th>初動価格イメージ (仮)</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><strong>site-photo-organizer</strong></td><td>◎</td><td>現場写真整理代行</td><td>月 1.5 万円</td></tr>
-      <tr><td><strong>receipt-expense-camera</strong></td><td>◎</td><td>領収書・経理代行</td><td>月 3 万円</td></tr>
-      <tr><td><strong>voice-daily-report</strong></td><td>◎</td><td>日報作成代行</td><td>月 1.5 万円</td></tr>
-      <tr><td><strong>estimate-organizer</strong></td><td>○</td><td>見積書作成代行</td><td>月 2-3 万円</td></tr>
-      <tr><td><strong>client-progress-page</strong></td><td>○</td><td>顧客連絡代行</td><td>月 2 万円</td></tr>
-      <tr><td>call-memo / drawing / website-refresh</td><td>△〜×</td><td>SaaS / 受託モデルで継続検討</td><td>—</td></tr>
-    </tbody>
-  </table>
-  <p style="font-size:10px;color:var(--good);margin-top:4px;">
-    BPaaS で月 10-20 万収益を早期確保 → BPO 顧客に <strong>AI エージェント (一社一エージェント、 月 5-30 万)</strong> を後付け販売、 という二段ロケット仮説。 IT 導入補助金は「AI 活用類型」 が AI エージェント側で相性 ◎、 BPaaS 単独では対象外。 5/22 北原氏面談で「ツール販売 vs 業務代行、 工務店紹介の角度として強いのはどちらか」 を相談予定。
-  </p>
-</div>
-
-<!-- 02-c / demo-gallery 投票ページ -->
-<div class="section">
-  <h2>// 02-c / demo-gallery 投票ページ (2026-05-14 公開) ← 需要計測の仕掛け</h2>
-  <div class="row2">
-    <div>
-      <strong style="font-size:10.5px;">ページの仕掛け (3 AI 第 2 回フィードバック後)</strong>
-      <ul style="font-size:10.5px;margin-top:2px;">
-        <li>8 デモから「これあったら絶対使う」 を最大 3 つ選ぶ</li>
-        <li>「有料でも使いたい」 任意トグル (具体価格は出さず熱量シグナルのみ)</li>
-        <li><strong>全部いらない場合は 9 択の拒否理由</strong> (既存ツール / LINE / 入力時間 等) で送信可能</li>
-        <li>「結果先に / β テスト / リリース連絡」 3 種チェック + LINE/メール任意</li>
-        <li>投票完了後に LINE 共有 / URL コピーボタン (雪だるま拡散導線)</li>
-        <li>X 告知は wontfix (ターゲット外混入リスク)。 <strong>友人経由 (LINE 拡散) で増やす方針</strong></li>
-      </ul>
-    </div>
-    <div>
-      <strong style="font-size:10.5px;">5/22 で見せる構造 (票数より痛みの強さ)</strong>
-      <ul style="font-size:10.5px;margin-top:2px;">
-        <li><strong>拒否理由分布</strong> = 「なぜ既存ツール (ANDPAD 等) でダメか」</li>
-        <li><strong>連絡先取得率</strong> = 票数より事業性指標として強い (Claude 助言)</li>
-        <li><strong>役職別の質的傾向</strong> = 「現場監督 vs 経営者」 の欲しいツールの差</li>
-        <li>iPad で本番 URL に直接アクセス、 投票 UI もそのまま触ってもらう</li>
-      </ul>
-    </div>
-  </div>
-  <p style="font-size:9.5px;color:var(--muted);margin-top:4px;">設計プロセスは 3 AI (ChatGPT / Gemini / Claude) で 2 回レビュー。 共通指摘の構造的弱点 (「便利そう」 vs 「毎日困ってる」 混在 / 有料トグルの弱さ) は wontfix 運用、 友人ヒアリング後に再判断。</p>
-</div>
-
-<!-- 03 / 法人化方針 + 公庫融資 -->
-<div class="section">
-  <h2>// 03 / 法人化方針 + 公庫融資 (2026-05-13/15 更新、 北原氏面談 主要相談テーマ)</h2>
-  <div class="status-card confirmed">
-    <span class="badge">方針確定</span>
-    <span class="title">当面は個人事業主のまま継続 + 公庫融資は法人化より先</span>
-    <div class="body">
-      検討の結果、 <strong>2026/6 マイクロ法人設立予定を撤回</strong>。 工務店向け事業が軌道に乗ったタイミング (所得 900 万超目安) で改めて法人化を検討。
-      <br><span style="font-size:9.5px;color:var(--muted);">判断理由: 法人固定費 (年 7 万円〜) より検証フェーズの現金優先 / 小規模企業共済 (月 7 万 = 年 84 万控除) 実施済で追加節税を急ぐ必要なし / 軌道後の法人化が節税効果大</span>
-      <br><br>
-      <strong>公庫融資 100 万円 (新規開業資金)</strong>: 法人化すると審査が「法人としての実績ゼロ」 で再評価されるため、 <strong>個人事業主のうちに通す</strong>。 5/22 北原氏面談後 (5 月末〜6 月初旬) に申込予定。 既存受託契約書類 (顧客契約書 / 請書 / 通帳入金記録) を別紙添付で「実態あり」 評価を取りに行く。
-    </div>
-  </div>
-  <div class="status-card pending">
-    <span class="badge">5/22 で確認</span>
-    <span class="title">「軌道」 の判断指標 + 信用度ルート (合同会社、 節税抜き) の要否</span>
-    <div class="body">
-      <ul style="margin:4px 0;padding-left:18px;">
-        <li>軌道判断の指標 (月商 / 顧客数 / 所得など) は何にすべきか</li>
-        <li>工務店オーナーから見て個人事業主だと信用度問題が出るか / 補強策</li>
-        <li>不利と判明した場合、 節税効果なしの合同会社設立 (6-7 月) は妥当か</li>
-        <li>将来的に IT 導入支援事業者として動きたい意向、 現時点で念頭に置くべき注意点 (詳細は商品確定後 10-12 月以降に再相談)</li>
-      </ul>
+  <div>
+    <p><strong>3 つのキーメッセージ:</strong></p>
+    <div class="three-msg">
+      <div class="msg">FAX / 郵送 / 電話 で OK</div>
+      <div class="msg">いつもどおりで OK</div>
+      <div class="msg">必要ならこちらでやる</div>
     </div>
   </div>
 </div>
-
-<!-- 04 / 接点戦略 -->
-<div class="section">
-  <h2>// 04 / 接点戦略 (北原氏面談 主要相談テーマ)</h2>
-  <div class="row2">
-    <div>
-      <strong style="font-size:10.5px;">現状の接点 / 予定</strong>
-      <ul style="font-size:10.5px;margin-top:2px;">
-        <li>友人 (工務店現場監督) ヒアリング — N=1 実施済 (5/14)、 N=4-5 まで追加予定 (5-6 月)</li>
-        <li>居住地 = 分倍河原、 たましん (<strong>「価値創造事業部」</strong>、 直電 042-526-7728) 取引あり = 多摩地区シナジー</li>
-        <li><strong>◎×◎ 主戦場</strong>: 建材屋 営業マン (毎日工務店巡回) + 設計事務所 (工務店を選ぶ立場) → 6 月以降 巡回 / ヒアリング</li>
-        <li><strong>🎯 住宅デー (6/25 全国一斉)</strong> = 工務店オーナー × 地域住民が年 1 回同時集まる戦略機会、 全建総連 多摩西部支部に打診検討</li>
-        <li>たましん訪問は <strong>渉外担当者 Step 1-3 (約 1 ヶ月)</strong> で 6 月以降が現実的、 半年で 3-5 件紹介が業界実態</li>
-        <li>ペライチ 2 版 (中間業者 / 工務店オーナー) 用意済 + demo-gallery 公開済</li>
-        <li>業界紙取材依頼 (新建ハウジング / 建築知識 等) 5 月中 1-2 媒体 PR、 効果は 7-9 月 (仮説修正期)、 10-12 月 MVP 投入時の信用補強材料に</li>
-        <li><strong>北原氏面談で雪だるま 2 件目開拓 (顧問先紹介の依頼予定)</strong></li>
-      </ul>
-    </div>
-    <div>
-      <strong style="font-size:10.5px;">主要相談 (6 項目 + 補助テーマ)</strong>
-      <ol style="font-size:10.5px;margin-top:2px;">
-        <li>建設業界の慣習・決裁プロセス</li>
-        <li>工務店経営者へのアプローチ方法 + ドメイン名 (ihara-frontend.com) の伝わりやすさ</li>
-        <li>法人化のベストタイミング (軌道指標) + 公庫融資先行</li>
-        <li>個人事業主 → 将来的に IT 導入支援事業者になりたい意向 (商品確定後 10-12 月以降に詳細相談、 現時点では注意点のみ)</li>
-        <li><strong>ツール販売 (SaaS) vs 業務代行 (BPaaS / AI エージェント)、 工務店紹介の角度として強いのはどちらか</strong></li>
-        <li><strong>北原氏顧問先で課題感のある方の紹介 (アトツギ世代を窓口にできる工務店優先)</strong></li>
-      </ol>
-      <p style="font-size:9.5px;color:var(--muted);margin-top:6px;">補助テーマ: 友人 N=1 結果の業界俯瞰検証 (買い切り傾向 / 個人客比率 / 紹介経路) を時間あれば伺う。 補助金詳細 (1/2 訴求の採択事例 / 申請代行費用感 / 3 業種パートナー紹介) は商品確定後に再相談予定で 5/22 では踏み込まない。</p>
-    </div>
-  </div>
 </div>
 
-<!-- 05 / Froski の学び + 補強データ + 友人 N=1 結果 -->
 <div class="section">
-  <h2>// 05 / 過去の学び と 補強データ</h2>
-  <div class="lesson">
-    <strong>半年前の撤退 (Froski)</strong>: 英語×フリーランス事業。 Upwork 市場の競合過多で前提が崩れ撤退。 <strong>今回は「市場前提が崩れる失敗を二度としない」 を北原氏面談の主動機にしている</strong>。 これが「じっくり裏取り型」 戦略 + 友人ヒアリング N=4-5 まで積む方針の根拠。
+<h2>// 02 / 3 プラン制 (営業話法: 「どこまで任せますか?」)</h2>
+<div class="plans-mini">
+  <div class="plan-mini">
+    <div class="pm-label">PLAN 1 · ライト</div>
+    <div class="pm-name">運用ルール提供 + 月次チェック</div>
+    <div class="pm-price">月 ¥5-10K</div>
+    <div class="pm-desc">FAX / 郵送 / 電話 の運用ルール設計 + 月次品質チェック / 対象: 2 代目 / IT 強い若手</div>
   </div>
-  <p style="font-size:10.5px;">
-    <strong>裏付けデータ (持参可能、 時間あれば共有します)</strong>:
-  </p>
-  <ul style="font-size:10.5px;margin:4px 0 8px 18px;">
-    <li>Google マップで東京 21 区市の工務店 277 店舗 / レビュー 794 件を収集分析 (低評価 ★3 以下 56 件、 不満カテゴリ 7 種抽出)</li>
-    <li>SNS / 知恵袋 / ブログ 等から工務店業界の悲鳴 235 件を一次情報として収集・クラスタリング</li>
-    <li>demo-gallery 投票ページで需要計測中 (拒否理由 9 択 + 連絡先取得率を主軸に評価)</li>
-  </ul>
-  <p style="font-size:10.5px;color:var(--warn);margin-top:6px;">
-    <strong>⚠️ 友人 (現場監督) N=1 ヒアリング (5/14 実施) で判明した前提崩壊 5 件</strong>:
-  </p>
-  <ul style="font-size:10.5px;margin:4px 0 0 18px;color:var(--fg);">
-    <li>「買い切りの方が嬉しい」 → 月額モデル単独だと刺さらない可能性</li>
-    <li>「個人客が 9 割、 会社 1 割」 → B2B SaaS 仮説そのものに疑問</li>
-    <li>「日報は紙でやる」 → voice-daily-report は用途を「打ち合わせメモ」 に修正必要</li>
-    <li>「工務店は横のつながり弱い」 → 紹介スノーボールの前提揺らぐ、 OB 施主 / 設計事務所 / 建材屋 経由を中軸に</li>
-    <li>「メール使えない工務店 3 割、 ファックス・郵送・孫の Gmail」 → Web 完結戦略の母集団が 7 割に縮小</li>
-  </ul>
-  <p style="font-size:9.5px;color:var(--muted);margin-top:6px;">これらの前提崩壊が、 BPaaS / AI エージェント ハイブリッド + アトツギ層拡張 + 主顧客像 再定義 (5/22 で議論) の検討動機。 N=4-5 まで増やしてから v3 で商品設計を確定する想定。</p>
+  <div class="plan-mini" style="border: 2px solid var(--accent);">
+    <div class="pm-label">PLAN 2 · スタンダード</div>
+    <div class="pm-name">初期 1 ヶ月伴走 + 教育</div>
+    <div class="pm-price">月 ¥15-25K</div>
+    <div class="pm-desc">初期 1 ヶ月の訪問 + 電話で運用構築 / 困ったら相談窓口 / 対象: IT 苦手だが学ぶ意欲ある中堅</div>
+  </div>
+  <div class="plan-mini" style="border: 2px solid var(--good);">
+    <div class="pm-label">PLAN 3 · フルサポート</div>
+    <div class="pm-name">必要部分は受け取って代行</div>
+    <div class="pm-price">月 ¥30-50K</div>
+    <div class="pm-desc">Plan 2 + FAX / 郵送で受け取って整理して返却 / 顧客はいつもどおり送るだけ / 対象: 60-70 代 IT 弱者社長 (主顧客)</div>
+  </div>
+</div>
 </div>
 
-<!-- 06 / 北原氏に最も聞きたいこと -->
 <div class="section">
-  <h2>// 06 / 北原氏に最も聞きたいこと TOP 2 (詳細は別紙 質問リスト)</h2>
-  <div class="row2">
-    <div class="box" style="border-left:3px solid var(--warn);">
-      <div class="label" style="color:var(--warn);">TOP 1</div>
-      <div class="value"><strong>A. 法人化判断 + IT 導入支援事業者登録 + 公庫融資先行</strong><br>
-      <span style="font-size:9.5px;">軌道判断の指標 (月商 / 顧客数 / 所得) / 工務店オーナーから見た個人事業主の信用度 + 信用度ルート (節税抜き合同会社) の要否 / 個人事業主のまま IT 導入支援事業者登録 (コンソーシアム参画) の現実性 / 公庫融資は法人化より先に通す方針</span></div>
-    </div>
-    <div class="box" style="border-left:3px solid var(--warn);">
-      <div class="label" style="color:var(--warn);">TOP 2</div>
-      <div class="value"><strong>B. 工務店経営者へのアプローチ・紹介</strong><br>
-      <span style="font-size:9.5px;">業界マナー・前置きのコツ、 顧問先で課題感ある方の紹介可否 (アトツギ世代を窓口にできる工務店優先)</span></div>
-    </div>
-  </div>
-  <p style="font-size:9.5px;color:var(--muted);margin-top:6px;">
-    時間があれば: C. 業界慣習・決裁プロセス + <strong>ドメイン名 (ihara-frontend.com) の伝わりやすさ</strong> / <strong>D. ツール販売 (SaaS) vs 業務代行 (BPaaS / AI エージェント) どちらの角度が工務店に刺さるか</strong> / E. 友人 N=1 結果 (買い切り傾向 / 個人客 9 割 / 横のつながり) の業界俯瞰検証 / F. 業界紙取材依頼の角度 も頭出しのみ確認。
-  </p>
-  <p style="font-size:9.5px;color:var(--muted);margin-top:4px;">
-    ※ 補助金詳細 (1/2 訴求の採択事例 / 申請代行費用感 / 3 業種パートナー紹介) は商品確定後 (10-12 月 MVP 投入期以降) に改めて相談予定。 商品方向性が固まる前に補助金スキームを固めるのは時期尚早と判断。
-  </p>
+<h2>// 03 / 提供する 6 サービス (FAX / 郵送 / 電話 主軸)</h2>
+<table>
+  <thead><tr><th style="width:5%;">#</th><th style="width:24%;">サービス</th><th style="width:36%;">提供内容</th><th>段階 / 備考</th></tr></thead>
+  <tbody>
+    <tr><td>①</td><td>現場写真の運用支援</td><td>SD カード / 紙焼き写真を月末郵送 → 整理 → PDF 台帳を郵送 + FAX 返却</td><td>第 1 段階 / Phase 1 主軸</td></tr>
+    <tr><td>②</td><td>議事録の自動整理</td><td>IC レコーダー / SD カードを郵送 → 文字起こし + 要約 → 郵送返却 + 電話報告</td><td>第 1 段階 / Whisper + Claude</td></tr>
+    <tr><td>③</td><td>ANDPAD 運用支援</td><td>元請けから ANDPAD 必須を強いられている下請工務店向け。 FAX で「ANDPAD にこう書いて」 指示書</td><td>第 1 段階 / 感情度 92 「死ぬほど苦痛」</td></tr>
+    <tr><td>④</td><td>領収書・経理補助</td><td>領収書 / 請求書を月 1 回まとめて郵送 → freee 入力 → 月次レポート郵送 + 電話報告</td><td>第 2 段階 / 税理士提携必須</td></tr>
+    <tr><td>⑤</td><td>補助金の事業計画作成補助</td><td>IT 導入補助金 (通常枠 1/2)。 訪問 + 電話ヒアリング → 事業計画書作成補助 → 提携行政書士が申請書類化</td><td>第 2 段階 / 検証フェーズ (行政書士提携想定)</td></tr>
+    <tr><td>⑥</td><td>家の困りごと地域相談窓口</td><td>行政 / 信金から委託。 施主からの相談を電話 / FAX で受付 → 工務店本人が連絡する構造を維持</td><td>第 3 段階 / B2G</td></tr>
+  </tbody>
+</table>
 </div>
 
-<footer>
-  関連資料: 商談ペライチ 2 版 / Google マップ レビュー分析 / 8 デモ UI プロトタイプ + 投票ページ (オンライン面談中に画面共有可)
+<div class="section">
+<h2>// 04 / 競合との戦い方 (5 差別化軸)</h2>
+<table>
+  <thead><tr><th style="width:30%;">差別化軸</th><th>井原</th><th>競合 5 社</th></tr></thead>
+  <tbody>
+    <tr><td>① FAX バイラル拡散</td><td class="good-text">⭕ FAX フッター広告で 1 通 → 5-10 人視認</td><td class="muted-text">未活用 (デジタル完結で閉じる)</td></tr>
+    <tr><td>② 3 プラン制 (¥5K-50K)</td><td class="good-text">⭕ ライト ¥5-10K / フル ¥30-50K の幅 + 訪問教育付き</td><td class="muted-text">単一定額 ¥10-16 万 or 単品従量が主流</td></tr>
+    <tr><td>③ ANDPAD 未導入 / 詰まり層</td><td class="good-text">⭕ FAX / 郵送だけで完結</td><td class="muted-text">ANDPAD アカウント前提</td></tr>
+    <tr><td>④ 「DX しなくていい」 反主流ポジ</td><td class="good-text">⭕ 業界紙取材材料として強力</td><td class="muted-text">「DX 推進」 訴求が主流</td></tr>
+    <tr><td>⑤ 地理依存ナシ + 引越し対応</td><td class="good-text">⭕ FAX 主軸で全国どこでも</td><td class="muted-text">地域営業所が必要</td></tr>
+  </tbody>
+</table>
+<p style="font-size: 10px; margin-top: 4px;" class="warn-text"><strong>⚠️ 最近接競合 = 建設事務代行センター</strong> (FAX ¥5K/月 + 単品 ¥2K/件、 中小工務店向け)。 価格帯被るため、 ① FAX バイラル + ④ 反主流ポジ + 訪問教育 + 60-70 代寄り添い で勝負する。</p>
+</div>
+
+<div class="section">
+<h2>// 05 / 競合状況 (2026-05-21 公式サイト確認)</h2>
+<table>
+  <thead><tr><th style="width:23%;">競合</th><th style="width:18%;">月額</th><th>特徴</th></tr></thead>
+  <tbody>
+    <tr><td>ANDPAD BPO</td><td class="muted-text">価格非公開</td><td>ANDPAD アカウント前提、 大企業導入実績、 写真管理 / 施工計画書中心</td></tr>
+    <tr><td>ツクノビ事務 (NITACO)</td><td>¥10 万 / 月 定額</td><td>デジタル完結、 グリーンサイト / CCUS / 安全書類、 500 名スタッフ</td></tr>
+    <tr style="background: #fef5e7;"><td class="warn-text">建設事務代行センター 🔴</td><td class="warn-text">¥5K-30K 帯</td><td><strong>最近接競合:</strong> FAX 代行 ¥5K/月 + 単品 1 件 ¥2K の従量、 中小工務店向け、 訪問教育なし</td></tr>
+    <tr><td>ノンコア (noncore)</td><td>¥16 万 (120h)</td><td>時間チャージ型、 単価高め、 許可申請 / 写真整理 / 図面修正</td></tr>
+    <tr><td>Bricks&amp;UK</td><td class="muted-text">仕訳数ベース変動</td><td>経理特化、 建設業は追加料金、 在籍経理 ¥20-30 万の半額以下訴求</td></tr>
+  </tbody>
+</table>
+</div>
+
+<footer style="margin-top: 10px; font-size: 9px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 4px;">
+事業計画サマリ v5.1 / 工務店アナログ業務運用支援 / 井原 誠斗 (masatoman) / 1 / 2
 </footer>
-
 </div>
+
+<!-- ============================================ -->
+<!-- Page 2: ロードマップ + 凍結宣言 + 6 論点 -->
+<!-- ============================================ -->
+<div class="page">
+
+<header>
+  <h1>事業計画サマリ v5.1 (続き)</h1>
+  <div class="meta">ロードマップ / 戦略凍結宣言 / 北原氏 6 論点</div>
+</header>
+
+<div class="section">
+<h2>// 06 / 3 段階 ロードマップ (2026 年 5 月 〜 2027 年 4 月)</h2>
+<table>
+  <thead><tr><th style="width:14%;">段階</th><th style="width:14%;">期間</th><th>内容</th><th style="width:20%;">目標</th></tr></thead>
+  <tbody>
+    <tr><td><strong>第 1 段階</strong><br>軽量導入</td><td>2026-05 〜 09</td><td>① 写真 + ② 議事録 + ③ ANDPAD を 1-3 社で試験提供 / 友人 N=2-3 ヒアリング深掘り / 建材屋営業マン経由で工務店紹介 / 5 月末-6 月初旬 公庫融資 (新規開業資金 ¥100 万) 申込 / 5/22 北原氏ご相談を踏まえ 6-7 月で合同会社設立要否を判断</td><td>1-3 社契約 / 月次売上 ¥30K-150K</td></tr>
+    <tr><td><strong>第 2 段階</strong><br>運用支援強化</td><td>2026-10 〜 12</td><td>④ 経理 + ⑤ 補助金 をアップセル提供 / 認定支援機関税理士 + 行政書士 提携完了 / IT 導入補助金 (通常枠 1/2) で 1-2 件採択 / 商品設計を確定版に書き換え</td><td>月次売上 ¥100K-300K / 商品方向性確定</td></tr>
+    <tr><td><strong>第 3 段階</strong><br>地域インフラ化</td><td>2027-01 〜 04</td><td>⑥ 地域相談窓口 を本格発動 / 信金 / 商工会議所と委託契約獲得 / 業界紙取材で信用補強 / 3-5 社契約累計</td><td>月次売上 ¥300K-600K 達成</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section">
+<h2>// 07 / 戦略凍結宣言 (5/22 面談で北原氏に第三者証人化)</h2>
+<div class="callout warn">
+<p><strong>背景:</strong> 5 月 14 日の現場ヒアリング以降、 6 日間で事業仮説を 4-5 回見直し (LINE 主軸 → FAX 主軸 + 多摩限定 → 地理依存ナシ + 6 サービス確定)。 自分でも「ピボットしすぎ」 という自覚あり。</p>
+<p><strong>宣言:</strong> 2026 年 5 月 22 日を最後のピボットタイミングとし、 <strong>5 月 23 日から 11 月 22 日まで 6 ヶ月間、 商品仮説の変更を凍結</strong> する。</p>
+<p><strong>凍結対象:</strong> 商品仮説 + ターゲット顧客像 + 価格構造 + 差別化軸。 (地理 + 紹介経路は柔軟に対応 = 五反田引越し検討中のため)</p>
+<p><strong>解除条件:</strong> 月次 KPI 未達 3 回連続でのみ戦略再考権発動。 友人 N=2-3 ヒアリング結果は「微調整材料」 として扱い、 構造変更しない。</p>
+</div>
+</div>
+
+<div class="section">
+<h2>// 08 / 北原氏に ご相談したい 6 つの論点</h2>
+<table>
+  <thead><tr><th style="width:7%;">#</th><th>論点</th><th style="width:18%;">優先度</th></tr></thead>
+  <tbody>
+    <tr><td><strong>①</strong></td><td><strong>「FAX バイラル拡散戦略」 は工務店業界で実際に機能するか?</strong> (FAX フッター広告で 1 通 → 5-10 人視認、 取引先経由で紹介発生という仮説)</td><td class="warn-text">最重要</td></tr>
+    <tr><td><strong>②</strong></td><td><strong>事業仮説をこのまま確定 vs もう少し検証 — どちらが現実的か?</strong> (6 日で 4-5 ピボットの自覚 + 商品仮説確定タイミング判断)</td><td class="warn-text">最重要</td></tr>
+    <tr><td><strong>③</strong></td><td>「ANDPAD 運用支援」 は中堅工務店オーナーに刺さるか? (下請工務店 vs 元請けの ANDPAD 強制実態)</td><td>通常</td></tr>
+    <tr><td><strong>④</strong></td><td>「家の困りごと地域相談窓口」 (B2G) は今動くべきか、 Phase 3 で本格化か? (信金 / 商工会議所委託契約の典型期間)</td><td>通常</td></tr>
+    <tr><td><strong>⑤</strong></td><td>「DX しなくていい」 反主流ポジは業界紙取材で機能するか? (新建ハウジング / 建築知識 / 日経ホームビルダー)</td><td>通常</td></tr>
+    <tr style="background: var(--info-soft);"><td><strong>⑥ NEW</strong></td><td><strong>創業期の「アイディア過多」 を捌く判断基準は何か?</strong> + 6 ヶ月戦略凍結期間の妥当性 (経営支援のご経験から)</td><td style="color: var(--info); font-weight: 700;">メタ質問</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section">
+<h2>// 09 / 北原氏にお願いしたいご紹介 (4 種類)</h2>
+<table>
+  <thead><tr><th style="width:22%;">種類</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>① 認定支援機関 税理士 / 行政書士</td><td>第 2 段階 (10-12 月) で業務提携する税理士 (経理代行の申告・税務相談担当) と行政書士 (補助金申請書類担当) を探しています。 多摩地区で工務店 / 建設業の支援経験がある方を 1-2 名</td></tr>
+    <tr><td>② 多摩地区の中小工務店オーナー</td><td>東京創業ステーション経由で過去にコンシェルジュ相談された工務店オーナー。 特に 2 代目 / 3 代目 (アトツギ世代 30-40 代)</td></tr>
+    <tr><td>③ 建材屋営業マン / 設計事務所</td><td>FAX バイラル拡散の起点として最重要のチャネル。 多摩地区の建材屋営業マン (LIXIL / ナフコ / 地元卸) や設計事務所経営者を 1-2 名</td></tr>
+    <tr><td>④ 業界紙 / 業界団体 / 商工会議所</td><td>新建ハウジング / 建築知識 / 日経ホームビルダー の取材依頼ルート。 「DX しなくていい代行屋」 反主流ポジで取材依頼を仕掛けたい。 + 府中 / 立川 商工会議所、 全建総連 多摩西部支部 (住宅デー 6/25 関連)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section">
+<h2>// 10 / 過去の戦略変更履歴 (6 日で 4-5 ピボット)</h2>
+<p style="font-size: 10px;"><strong>5/14</strong> 友人 N=1 ヒアリング (前提崩壊 5 件: 買い切り嬉しい / 個人客 9 割 / 日報紙 / 横つながり弱 / メール 3 割不可)<br>
+<strong>5/15</strong> 「じっくり裏取り型」 にピボット (爆速ルート廃止、 12 ヶ月後 MRR ¥30-60K 現実線)<br>
+<strong>5/18</strong> BPaaS + AI エージェント 戦略転換 (SaaS 一本足 → ハイブリッド)<br>
+<strong>5/19</strong> ⑤ 施主連絡 → ⑨ 地域窓口 B2G に水平思考転換<br>
+<strong>5/20 朝</strong> 「覚えなくていい DX」 v4 戦略 (LINE 主軸)<br>
+<strong>5/20 昼</strong> LINE 訴求見直し (60-70 代 LINE 使えない判明)<br>
+<strong>5/20 夕</strong> FAX / 郵送主軸 v5 確定 (本資料)</p>
+</div>
+
+<footer style="margin-top: 10px; font-size: 9px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 4px;">
+事業計画サマリ v5.1 / 工務店アナログ業務運用支援 / 井原 誠斗 (masatoman) / 2 / 2 / END
+</footer>
+</div>
+
 </body>
 </html>
