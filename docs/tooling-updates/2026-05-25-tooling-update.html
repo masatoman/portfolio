@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tooling Update 2026-05-25 — Claude Code / Obsidian / Anthropic</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; line-height: 1.7; color: #2c3e50; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { color: #4f46e5; margin-top: 2rem; }
+    .update-item { background: #f8fafc; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 4px; }
+    .update-item.applicable-b { border-left-color: #10b981; }
+    .update-item.applicable-obsidian { border-left-color: #f59e0b; }
+    .update-item.reference-only { border-left-color: #94a3b8; opacity: 0.85; }
+    .tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.85rem; margin-right: 0.5rem; }
+    .tag-b { background: #d1fae5; color: #065f46; }
+    .tag-obsidian { background: #fef3c7; color: #92400e; }
+    .tag-ref { background: #e5e7eb; color: #475569; }
+    .tag-source { background: #e0e7ff; color: #3730a3; }
+    .action { background: #eef2ff; padding: 0.75rem 1rem; border-radius: 4px; margin-top: 0.5rem; }
+    .meta { font-size: 0.85rem; color: #64748b; }
+    .version { font-size: 0.8rem; font-weight: 600; color: #6366f1; margin-left: 0.5rem; }
+    .none-box { background: #f1f5f9; padding: 0.75rem 1.25rem; border-radius: 4px; color: #64748b; font-style: italic; margin: 1rem 0; }
+    .fetch-fail { background: #fff7ed; border-left: 4px solid #f97316; padding: 0.75rem 1.25rem; border-radius: 4px; margin: 0.5rem 0; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>Tooling Update 2026-05-25</h1>
+  <p class="meta">
+    取得日: 2026-05-25 JST &nbsp;/&nbsp;
+    対象期間: 2026-05-18 〜 2026-05-25 &nbsp;/&nbsp;
+    ソース: Claude Code GitHub releases ✅ / Claude Code release notes ⚠️ リダイレクト / Obsidian changelog ❌ 403 / Anthropic news ❌ 403
+  </p>
+
+  <h2>軸 B 工務店プロジェクトに使える更新</h2>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>/usage コマンド — スキル・サブエージェント別使用量内訳</strong>
+    <span class="version">v2.1.149 / 2026-05-22</span>
+    <p>
+      <code>/usage</code> コマンドでスキル・サブエージェント・MCPサーバー・プラグイン別の使用量内訳が確認できるようになった。
+      daily-operator / night-writer / issue-finder daily queue など軸 B の自動ルーチン群が MAX プランの何割を消費しているかをコマンド一発で可視化できる。
+      どのルーチンがコストを食っているか数値で把握し、軽量化 or 廃止判断の根拠として使える。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong> 次回 daily-operator 実行後に <code>/usage</code> を叩き、サブエージェント別消費量を確認する。消費が多いルーチン (特に Explore agent を多用するもの) を特定 → 使用頻度見直しに使う。
+    </div>
+  </div>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>GFM チェックボックス正常表示 (<code>- [ ]</code> / <code>- [x]</code>)</strong>
+    <span class="version">v2.1.149 / 2026-05-22</span>
+    <p>
+      マークダウン内の <code>- [ ]</code> / <code>- [x]</code> タスクリストが Claude Code 上で正しく描画されるようになった。
+      <code>docs/friend-hearing-checklist.html</code> のような工務店ヒアリング用チェックリストや、
+      memory 内の TODO リスト形式 MD を Claude Code で直接編集・確認する場面で視認性が向上する。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong> <code>docs/friend-hearing-checklist.html</code> や memory の <code>friend-hearing-may-2026.md</code> を Claude Code で開き、チェックボックスが正しく表示されるか確認。ヒアリング当日の現場端末利用を想定した表示テストも兼ねる。
+    </div>
+  </div>
+
+  <h2>Obsidian Vault 育成に使える更新</h2>
+
+  <div class="none-box">
+    Obsidian changelog (obsidian.md/changelog/) の取得に失敗 (HTTP 403 Forbidden)。
+    今週の Obsidian 更新情報は取得できなかったため、該当なし。
+  </div>
+
+  <h2>参考のみ (今は使わない)</h2>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>/diff 詳細ビュー — キーボードスクロール対応</strong>
+    <span class="version">v2.1.149 / 2026-05-22</span>
+    <p>
+      <code>/diff</code> の詳細ビューで矢印キー・<code>j/k</code>・PgUp/PgDn・Space・Home/End によるスクロールが可能になった。
+      コードレビュー時の一般的な UX 改善。軸 B の特定ユースケースに直接紐づかないため参考のみ。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>allowAllClaudeAiMcps — エンタープライズ向け設定追加</strong>
+    <span class="version">v2.1.149 / 2026-05-22</span>
+    <p>
+      企業向けに全 Claude.ai MCP を一括許可する設定 <code>allowAllClaudeAiMcps</code> が追加された。
+      個人 MAX プラン運用 (masatoman) では対象外の設定。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>PowerShell 権限回避バグ修正</strong>
+    <span class="version">v2.1.149 / 2026-05-22</span>
+    <p>
+      Windows の PowerShell 環境でのセキュリティ関連バグ修正。開発環境が Linux / macOS であれば無関係。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>Bash <code>find</code> コマンド macOS クラッシュ修正</strong>
+    <span class="version">v2.1.149 / 2026-05-22</span>
+    <p>
+      macOS で大規模ディレクトリツリーを <code>find</code> するとシステムがクラッシュする問題が修正された。
+      本番環境が Linux のため直接影響はないが、macOS ローカル開発環境で Explore agent を多用する場合は安定性向上が見込める。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>Git worktree サンドボックス書き込み許可リスト修正</strong>
+    <span class="version">v2.1.149 / 2026-05-22</span>
+    <p>
+      Git worktree 利用時のサンドボックス書き込み許可リストが正しく適用されるよう修正。
+      issue-finder が worktree を利用する場合に安定性向上の可能性があるが、現状の動作確認が取れていないため参考のみ。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>v2.1.150 — 内部インフラ改善のみ</strong>
+    <span class="version">v2.1.150 / 2026-05-23</span>
+    <p>ユーザー向け変更なし。インフラ整備のみのリリース。</p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>v2.1.148 — Bash exit code 127 回帰バグ修正</strong>
+    <span class="version">v2.1.148 / 2026-05-22</span>
+    <p>
+      一部ユーザーで Bash ツールが全コマンドに対して終了コード 127 を返すようになった回帰バグを修正。
+      v2.1.149 で上書きされているため、現在の最新版では解消済み。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>v2.1.144〜v2.1.147 — その他リリース群</strong>
+    <span class="version">v2.1.144–147 / 2026-05-19–21</span>
+    <p>
+      2026-05-19〜21 の間に v2.1.144・145・146・147 がリリースされた。
+      詳細な変更ログが取得できなかったため内容不明。公式 CHANGELOG で要確認。
+    </p>
+  </div>
+
+  <h2>取得失敗ソース</h2>
+
+  <div class="fetch-fail">
+    <strong>Obsidian changelog</strong> (https://obsidian.md/changelog/) — HTTP 403 Forbidden。サーバー側の制限による取得失敗。
+  </div>
+  <div class="fetch-fail">
+    <strong>Anthropic news</strong> (https://www.anthropic.com/news) — HTTP 403 Forbidden。同上。
+  </div>
+  <div class="fetch-fail">
+    <strong>Claude Code release notes (docs)</strong> (https://docs.claude.com/en/release-notes/claude-code) — 301 → 307 リダイレクトを経由して最終的に GitHub CHANGELOG.md に到達したが、日付情報が埋め込まれていなかったため GitHub releases データで代替取得。
+  </div>
+
+  <hr>
+  <p class="meta">
+    一覧 + フィルタ機能は <a href="./index.html">index.html</a> から。
+    読み終わったら手動で <code>~/.claude/projects/-Users-master-home-work-portfolio/reports/</code> にコピーすると Obsidian Vault で時系列管理できます。
+  </p>
+</body>
+</html>
