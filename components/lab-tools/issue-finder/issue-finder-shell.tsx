@@ -41,18 +41,33 @@ export function IssueFinderShell({
   const [sortKey, setSortKey] = useState<SortKey>("opportunity")
   const [highlightedId, setHighlightedId] = useState<string | null>(null)
   const [hideSubsidy, setHideSubsidy] = useState(false)
+  const [hideLowScore, setHideLowScore] = useState(false)
+  const [hideHardToSolve, setHideHardToSolve] = useState(false)
 
   const subsidyCount = useMemo(
     () => rawIssues.filter((i) => i.profileId === "it-subsidy").length,
     [rawIssues],
   )
 
+  const lowScoreCount = useMemo(
+    () => rawIssues.filter((i) => i.issueScore < 50).length,
+    [rawIssues],
+  )
+
+  const hardToSolveCount = useMemo(
+    () => rawIssues.filter((i) => i.solvabilityScore < 50).length,
+    [rawIssues],
+  )
+
   const filteredIssues = useMemo(
     () =>
-      hideSubsidy
-        ? rawIssues.filter((i) => i.profileId !== "it-subsidy")
-        : rawIssues,
-    [rawIssues, hideSubsidy],
+      rawIssues.filter((i) => {
+        if (hideSubsidy && i.profileId === "it-subsidy") return false
+        if (hideLowScore && i.issueScore < 50) return false
+        if (hideHardToSolve && i.solvabilityScore < 50) return false
+        return true
+      }),
+    [rawIssues, hideSubsidy, hideLowScore, hideHardToSolve],
   )
 
   const issues = useMemo(
@@ -94,9 +109,16 @@ export function IssueFinderShell({
           title="集まった結果"
           note={
             hasDb
-              ? hideSubsidy
-                ? `Supabase ${issues.length}/${dbIssues.length} 件表示 (補助金系 ${subsidyCount} 件除外)`
-                : `Supabase から ${dbIssues.length} 件読込`
+              ? buildResultsNote({
+                  totalCount: dbIssues.length,
+                  visibleCount: issues.length,
+                  hideSubsidy,
+                  subsidyCount,
+                  hideLowScore,
+                  lowScoreCount,
+                  hideHardToSolve,
+                  hardToSolveCount,
+                })
               : "DB が空のためサンプル 8 件を表示中"
           }
           right={
@@ -106,6 +128,20 @@ export function IssueFinderShell({
                   hidden={hideSubsidy}
                   count={subsidyCount}
                   onToggle={() => setHideSubsidy((v) => !v)}
+                />
+              )}
+              {hasDb && lowScoreCount > 0 && (
+                <HideLowScoreToggle
+                  hidden={hideLowScore}
+                  count={lowScoreCount}
+                  onToggle={() => setHideLowScore((v) => !v)}
+                />
+              )}
+              {hasDb && hardToSolveCount > 0 && (
+                <HideHardToSolveToggle
+                  hidden={hideHardToSolve}
+                  count={hardToSolveCount}
+                  onToggle={() => setHideHardToSolve((v) => !v)}
                 />
               )}
               <SortSelect sortKey={sortKey} setSortKey={setSortKey} />
@@ -619,6 +655,95 @@ function HideSubsidyToggle({
   )
 }
 
+function HideLowScoreToggle({
+  hidden,
+  count,
+  onToggle,
+}: {
+  hidden: boolean
+  count: number
+  onToggle: () => void
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      className="border px-2 py-1 font-mono text-[10px] uppercase tracking-widest transition"
+      style={{
+        borderColor: hidden ? LAB_NEON.amber : `${LAB_NEON.amber}40`,
+        color: hidden ? LAB_NEON.amber : "rgba(255,255,255,0.55)",
+        backgroundColor: hidden ? `${LAB_NEON.amber}20` : "transparent",
+      }}
+      title={
+        hidden
+          ? "issueScore < 50 を再表示する"
+          : "issueScore < 50 のイシューを非表示にする"
+      }
+    >
+      📉 {hidden ? `スコア < 50 ${count} 件 非表示中` : `スコア < 50 を隠す (${count})`}
+    </button>
+  )
+}
+
+function HideHardToSolveToggle({
+  hidden,
+  count,
+  onToggle,
+}: {
+  hidden: boolean
+  count: number
+  onToggle: () => void
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      className="border px-2 py-1 font-mono text-[10px] uppercase tracking-widest transition"
+      style={{
+        borderColor: hidden ? LAB_NEON.magenta : `${LAB_NEON.magenta}40`,
+        color: hidden ? LAB_NEON.magenta : "rgba(255,255,255,0.55)",
+        backgroundColor: hidden ? `${LAB_NEON.magenta}20` : "transparent",
+      }}
+      title={
+        hidden
+          ? "solvabilityScore < 50 (解きにくい) を再表示する"
+          : "solvabilityScore < 50 (解きにくい) を非表示にする"
+      }
+    >
+      🔒 {hidden ? `解きにくい ${count} 件 非表示中` : `解きにくいを隠す (${count})`}
+    </button>
+  )
+}
+
+function buildResultsNote({
+  totalCount,
+  visibleCount,
+  hideSubsidy,
+  subsidyCount,
+  hideLowScore,
+  lowScoreCount,
+  hideHardToSolve,
+  hardToSolveCount,
+}: {
+  totalCount: number
+  visibleCount: number
+  hideSubsidy: boolean
+  subsidyCount: number
+  hideLowScore: boolean
+  lowScoreCount: number
+  hideHardToSolve: boolean
+  hardToSolveCount: number
+}): string {
+  const reasons: string[] = []
+  if (hideSubsidy) reasons.push(`補助金系 ${subsidyCount} 件`)
+  if (hideLowScore) reasons.push(`スコア < 50 ${lowScoreCount} 件`)
+  if (hideHardToSolve) reasons.push(`解きにくい ${hardToSolveCount} 件`)
+  if (reasons.length === 0) {
+    return `Supabase から ${totalCount} 件読込`
+  }
+  return `Supabase ${visibleCount}/${totalCount} 件表示 (${reasons.join(" / ")} 除外)`
+}
+
 function CopyMarkdownButton({ issues }: { issues: Issue[] }) {
   const [copied, setCopied] = useState(false)
 
@@ -642,9 +767,9 @@ function CopyMarkdownButton({ issues }: { issues: Issue[] }) {
         borderColor: copied ? LAB_NEON.green : `${LAB_NEON.green}60`,
         backgroundColor: copied ? `${LAB_NEON.green}20` : "transparent",
       }}
-      title="全クラスタを AI 入力用 Markdown に変換してクリップボードへ"
+      title={`表示中の ${issues.length} 件 (絞り込み反映後) を AI 入力用 Markdown に変換してクリップボードへ`}
     >
-      // {copied ? "copied!" : "copy md"}
+      // {copied ? `copied ${issues.length}!` : `copy md (${issues.length})`}
     </button>
   )
 }

@@ -1,0 +1,2604 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="created-at" content="2026-05-23">
+<meta name="updated-at" content="2026-05-23">
+<title>工務店向け B2B 商品 v8.0 化 / 15 候補 評価資料 / 井原 誠斗</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --paper: #ffffff;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --accent: #b85c3a;
+  --accent-soft: #f4dfd2;
+  --good: #2d6a4f;
+  --good-soft: #e6f0ea;
+  --info: #1e3a5f;
+  --info-soft: #dde6f0;
+  --warn: #c34a1f;
+  --warn-soft: #fde8e0;
+  --border: #d6cfc2;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: #e8e0d4;
+  color: var(--fg);
+  font-size: 14px;
+  line-height: 1.7;
+  padding: 20px 0;
+}
+
+.slide {
+  width: 297mm;
+  min-height: 200mm;
+  padding: 18mm 22mm;
+  margin: 8mm auto;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.slide-num {
+  position: absolute;
+  top: 10mm;
+  right: 18mm;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+.slide-meta {
+  position: absolute;
+  top: 10mm;
+  left: 22mm;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+h1 {
+  font-size: 26px;
+  border-bottom: 3px solid var(--fg);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+  margin-top: 14px;
+}
+h1 .sub { font-size: 14px; color: var(--muted); font-weight: normal; margin-left: 12px; }
+h2 { font-size: 16px; color: var(--accent); margin-top: 14px; margin-bottom: 8px; }
+h3 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+p { margin-bottom: 8px; font-size: 13px; }
+
+.body { flex: 1; display: flex; flex-direction: column; }
+.footer-bar {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 10.5px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* タイトルスライド */
+.title-slide { justify-content: flex-start; }
+.title-slide .eyebrow { font-size: 12px; color: var(--muted); letter-spacing: 0.3em; margin-bottom: 14px; text-align: center; }
+.title-slide h1 { font-size: 28px; border: none; padding: 0; margin-bottom: 8px; line-height: 1.4; text-align: center; }
+.title-slide .lead { font-size: 14px; color: var(--muted); margin-bottom: 16px; text-align: center; }
+
+.motive-box {
+  background: var(--good-soft);
+  border-left: 4px solid var(--good);
+  border-radius: 6px;
+  padding: 12px 18px;
+  margin: 0 0 14px;
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+.motive-box h3 { color: var(--good); margin: 0 0 4px; font-size: 14px; }
+.motive-box p { margin-bottom: 4px; font-size: 12.5px; }
+
+.frame-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.frame-box {
+  background: var(--info-soft);
+  border-left: 4px solid var(--info);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 12px;
+  line-height: 1.65;
+}
+.frame-box h3 { color: var(--info); font-size: 13px; margin: 0 0 6px; }
+.frame-box ol { padding-left: 18px; margin: 0; }
+.frame-box li { margin-bottom: 2px; }
+
+table { width: 100%; border-collapse: collapse; margin: 6px 0; font-size: 11.5px; }
+table th { background: var(--fg); color: white; padding: 5px 8px; text-align: left; font-size: 11px; }
+table td { padding: 4px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+table tr:nth-child(even) td { background: #fbf8f3; }
+
+.overview-table td.cat { font-size: 10.5px; color: var(--muted); }
+.overview-table td.score { text-align: center; font-weight: 700; }
+.overview-table td.score.s16 { color: var(--good); }
+.overview-table td.score.s15 { color: var(--accent); }
+.overview-table td.score.s14 { color: var(--muted); }
+.overview-table td.score.s13 { color: var(--muted); }
+.overview-table td.score.s11 { color: var(--warn); }
+.overview-table td.ai { text-align: center; font-size: 11px; }
+.overview-table tr.star td { background: var(--good-soft) !important; }
+.overview-table tr.past td { background: #f5f0ea !important; font-style: italic; color: var(--muted); }
+
+.eval-table td.good { color: var(--good); font-weight: 700; text-align: center; }
+.eval-table td.bad { color: var(--warn); font-weight: 700; text-align: center; }
+.eval-table td.mid { color: var(--accent); font-weight: 700; text-align: center; }
+.eval-table td.unk { color: var(--muted); font-weight: 700; text-align: center; }
+.eval-table tr.recommended td { background: var(--good-soft) !important; }
+
+.q-box {
+  background: var(--info-soft);
+  border-left: 4px solid var(--info);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 10px 0;
+}
+.q-box .q-label { font-size: 11px; letter-spacing: 0.15em; color: var(--info); font-weight: 700; margin-bottom: 4px; }
+.q-box .q-text { font-size: 14px; font-weight: 700; line-height: 1.5; }
+
+.callout {
+  background: #fdfbf6;
+  border-left: 4px solid var(--accent);
+  padding: 10px 14px;
+  margin: 10px 0;
+  font-size: 12.5px;
+}
+.callout.good { background: var(--good-soft); border-left-color: var(--good); }
+.callout.warn { background: var(--warn-soft); border-left-color: var(--warn); }
+
+.composition {
+  background: #fdfbf6;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-size: 11.5px;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+.composition strong { color: var(--fg); }
+
+/* 個別候補ページ用 */
+.product-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--fg);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  margin-top: 14px;
+}
+.product-header .title-block { flex: 1; }
+.product-header .title-block .cand-no {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  margin-bottom: 2px;
+}
+.product-header .title-block h1 {
+  font-size: 24px;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.product-header .badges { display: flex; gap: 8px; margin-bottom: 4px; }
+.product-header .badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 14px;
+  letter-spacing: 0.05em;
+}
+.badge.score-16 { background: var(--good); color: white; }
+.badge.score-15 { background: var(--accent); color: white; }
+.badge.score-14 { background: var(--muted); color: white; }
+.badge.score-13 { background: var(--muted); color: white; }
+.badge.score-11 { background: var(--warn); color: white; }
+.badge.ai-badge { background: var(--info); color: white; }
+.badge.cat-badge { background: var(--accent-soft); color: var(--fg); }
+.badge.past-badge { background: #f5f0ea; color: var(--muted); border: 1px solid var(--border); }
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.summary-box {
+  background: #fdfbf6;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+}
+.summary-box h3 {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+.summary-box p { font-size: 12px; margin: 0; line-height: 1.5; }
+
+.radar-section {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 16px;
+  align-items: start;
+  margin-top: 8px;
+}
+.radar-wrapper {
+  background: #fdfbf6;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px;
+  text-align: center;
+}
+.radar-wrapper .radar-title {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+.radar-wrapper svg { display: block; margin: 0 auto; }
+.radar-wrapper .radar-total {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 4px;
+}
+
+.axis-eval {
+  font-size: 12px;
+}
+.axis-eval ol { list-style: none; padding: 0; counter-reset: ax; }
+.axis-eval li {
+  display: grid;
+  grid-template-columns: 20px 1fr 28px;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px dotted var(--border);
+  align-items: baseline;
+}
+.axis-eval li::before {
+  counter-increment: ax;
+  content: counter(ax);
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 700;
+}
+.axis-eval .ax-name { font-weight: 700; font-size: 11.5px; }
+.axis-eval .ax-name small { font-weight: normal; color: var(--muted); margin-left: 6px; font-size: 10.5px; }
+.axis-eval .ax-mark { text-align: center; font-weight: 700; font-size: 14px; }
+.axis-eval .ax-mark.good { color: var(--good); }
+.axis-eval .ax-mark.mid { color: var(--accent); }
+.axis-eval .ax-mark.bad { color: var(--warn); }
+.axis-eval .ax-mark.unk { color: var(--muted); }
+.axis-eval .ax-note { grid-column: 2 / span 2; font-size: 10.5px; color: var(--muted); line-height: 1.5; margin-top: 1px; }
+
+.verdict-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+.verdict-box {
+  background: var(--good-soft);
+  border-left: 4px solid var(--good);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.verdict-box.warn { background: var(--warn-soft); border-left-color: var(--warn); }
+.verdict-box.info { background: var(--info-soft); border-left-color: var(--info); }
+.verdict-box.accent { background: var(--accent-soft); border-left-color: var(--accent); }
+.verdict-box h3 { font-size: 12px; margin-bottom: 4px; }
+.verdict-box.good h3 { color: var(--good); }
+.verdict-box.warn h3 { color: var(--warn); }
+.verdict-box.info h3 { color: var(--info); }
+.verdict-box.accent h3 { color: var(--accent); }
+.verdict-box p { font-size: 12px; margin-bottom: 4px; }
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s;
+}
+a:hover { opacity: 0.7; }
+a:visited { color: var(--accent); opacity: 0.9; }
+.ref-links {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 22px;
+  margin: 20px auto;
+  max-width: 900px;
+  font-size: 12px;
+}
+.ref-links h2 {
+  font-size: 16px;
+  color: var(--accent);
+  margin-bottom: 12px;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 6px;
+  display: inline-block;
+}
+.ref-links .ref-group { margin-bottom: 12px; }
+.ref-links .ref-group h3 {
+  font-size: 13px;
+  color: var(--ink);
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+.ref-links ul { list-style: none; padding-left: 0; margin: 0; }
+.ref-links ul li {
+  padding: 4px 0;
+  font-size: 12px;
+  line-height: 1.5;
+  border-bottom: 1px dashed var(--border);
+}
+.ref-links ul li:last-child { border-bottom: none; }
+.ref-links .desc { color: var(--ink-soft); font-size: 11px; margin-left: 4px; }
+@media print {
+  body { background: white; padding: 0; }
+  .slide { box-shadow: none; margin: 0; }
+  @page { size: A4 landscape; margin: 0; }
+}
+</style>
+  <meta name="created" content="2026-05-23T06:00:51.951Z">
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- スライド 1: タイトル + 動機 + 評価フレーム + 全候補一覧 -->
+<!-- ============================================ -->
+<div class="slide title-slide">
+  <span class="slide-meta">2026-05-23 (土) v8.0 化検討 / 内部評価資料</span>
+  <span class="slide-num">01 / 33</span>
+
+  <div class="eyebrow">工務店向け B2B 商品 · 候補スクリーニング</div>
+
+  <h1>v8.0 商品方向性 決定のための 15 候補 評価<br><span style="font-size:14px; color:var(--accent); display:block; margin-top:6px;">4 AI 統合判定 + 6 評価軸 + 追加 10 観点</span></h1>
+
+  <p class="lead">5/22 北原氏面談 確定事項 (アトツギ + 展示会層 / ハイブリッド / 紹介芋蔓 / デモ駆動) を前提に、 13 新候補 + 過去 2 候補 = 15 件を評価し、 v8.0 商品方向性を決定する。</p>
+
+  <div class="motive-box">
+    <h3>📌 評価の前提 (5/22 北原氏面談で確定)</h3>
+    <p><strong>主顧客</strong>: 30-40 代 アトツギ + 展示会層 + やる気層 + 儲かってる層 (60 代 IT 弱者 + 大手下請けは除外)</p>
+    <p><strong>提供形態</strong>: SaaS / BPaaS ハイブリッド (トップで IT できる/できない 分岐)</p>
+    <p><strong>集客</strong>: 紹介芋蔓式 + 商工会 / 建設業協会 / フランチャイズ・ボランタリーチェーン / 展示会 (JAPAN BUILD TOKYO 12/2-4 出展候補)</p>
+    <p><strong>原則</strong>: 動くデモ前提 / 工務店業界は儲かってない → 費用対効果説明が必須</p>
+  </div>
+
+  <h2>評価フレーム (基礎 6 軸 + 追加 10 観点)</h2>
+  <div class="frame-grid">
+    <div class="frame-box">
+      <h3>基礎 6 軸 (各候補 ◎○△×?)</h3>
+      <ol>
+        <li>ANDPAD 競合回避度</li>
+        <li>士業領域回避度</li>
+        <li>主顧客整合度 (アトツギ + 展示会 + 儲かってる)</li>
+        <li>痛み解決度 (友人 N=1 / 235 件 / 794 件)</li>
+        <li>労力軸 (工数線形 NG / 自動化 OK / 人雇える単価)</li>
+        <li>費用対効果説明度</li>
+      </ol>
+    </div>
+    <div class="frame-box">
+      <h3>追加 10 観点 (今回新規)</h3>
+      <ol>
+        <li>継続性 (Net Revenue Retention)</li>
+        <li>真の競合 = 現状運用 (Excel / 紙 / LINE / 勘)</li>
+        <li>三層分離 (社長 / 妻 / アトツギ どの層に売るか)</li>
+        <li>離脱パスのプレモータム</li>
+        <li>運用負荷の天井 (N=10 / N=30 / N=100)</li>
+        <li>データ責任 (預かる情報の機密度)</li>
+        <li>販売チャネル先決 (アトツギ / 建材屋 / 北原氏 / 展示会)</li>
+        <li>撤退条件の具体性 (3 ヶ月で MRR ¥30K 未達 等)</li>
+        <li>サブスク正当性 (データ蓄積 / 業務停止 / 継続更新)</li>
+        <li>5 年継続意欲 (masatoman 個人の業界向き合い)</li>
+      </ol>
+    </div>
+  </div>
+
+  <h2>15 候補 一覧 (Score = 4 AI 合議スコア / ⭐ = 4 AI 全員合意)</h2>
+  <table class="overview-table">
+    <thead>
+      <tr>
+        <th style="width:4%;">#</th>
+        <th style="width:25%;">候補名</th>
+        <th style="width:6%;">Score</th>
+        <th style="width:7%;">AI 合意</th>
+        <th style="width:12%;">カテゴリ</th>
+        <th>一言メモ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="star">
+        <td>01</td><td><strong>OB 10 年管理 SaaS</strong> ⭐</td><td class="score s16">16</td><td class="ai">4 / 4</td><td class="cat">データ蓄積</td><td>4 AI 合意。 リフォーム顧客資産 = 工務店の最大未開拓資源</td>
+      </tr>
+      <tr>
+        <td>02</td><td><strong>コンテンツ自動生成 SaaS</strong></td><td class="score s16">16+α</td><td class="ai">3 / 4</td><td class="cat">営業 / 集客</td><td>ドッグフーディング可 (masatoman.net 実証中)</td>
+      </tr>
+      <tr>
+        <td>03</td><td><strong>展示会リード育成 SaaS</strong></td><td class="score s16">16</td><td class="ai">3 / 4</td><td class="cat">営業 / 集客</td><td>JAPAN BUILD 12/2-4 と直結、 助成金 2/3 連動</td>
+      </tr>
+      <tr>
+        <td>04</td><td><strong>経営状況可視化レポート SaaS</strong></td><td class="score s16">16</td><td class="ai">2 / 4</td><td class="cat">経営可視化</td><td>北原氏「経営支援」 軸と整合、 アトツギに刺さりやすい</td>
+      </tr>
+      <tr>
+        <td>05</td><td><strong>LINE 日報 SaaS</strong></td><td class="score s16">16</td><td class="ai">1 / 4</td><td class="cat">業務支援</td><td>友人 N=1「日報は紙」 と整合、 LINE 完結 = 学習コスト 0</td>
+      </tr>
+      <tr>
+        <td>06</td><td><strong>AI 商談議事録 SaaS</strong></td><td class="score s16">16</td><td class="ai">1 / 4</td><td class="cat">業務支援 / AI</td><td>横展開しやすい、 ただし工務店特化の差別化弱い</td>
+      </tr>
+      <tr>
+        <td>07</td><td><strong>暗黙知継承 AI</strong></td><td class="score s16">16</td><td class="ai">1 / 4</td><td class="cat">業務支援 / AI</td><td>事業承継 = アトツギ層 直球、 ただし測定困難</td>
+      </tr>
+      <tr>
+        <td>08</td><td><strong>ベンチマーク経営 DB SaaS</strong></td><td class="score s15">15</td><td class="ai">1 / 4</td><td class="cat">経営可視化 / 🃏</td><td>ジョーカー枠。 issue-finder 応用、 N=10 から成立</td>
+      </tr>
+      <tr>
+        <td>09</td><td>施主体験デザイン (タイムラプス + NPS)</td><td class="score s14">14</td><td class="ai">1 / 4</td><td class="cat">営業 / 集客</td><td>差別化強だが施主側 SaaS = チャネル不明</td>
+      </tr>
+      <tr>
+        <td>10</td><td>カスタム住宅シミュレーター</td><td class="score s14">14</td><td class="ai">1 / 4</td><td class="cat">業務支援 / AI</td><td>建材選定支援、 建材屋経由 販売ルートあり</td>
+      </tr>
+      <tr>
+        <td>11</td><td>ESG 可視化</td><td class="score s13">13</td><td class="ai">1 / 4</td><td class="cat">経営可視化</td><td>規制ドリブン、 大手寄り、 中小工務店動機弱</td>
+      </tr>
+      <tr>
+        <td>12</td><td>プロジェクトリスク予測</td><td class="score s13">13</td><td class="ai">1 / 4</td><td class="cat">経営可視化 / AI</td><td>データ前提、 N=10 までの立ち上がり困難</td>
+      </tr>
+      <tr>
+        <td>13</td><td>競合インテリ</td><td class="score s11">11</td><td class="ai">1 / 4</td><td class="cat">営業 / 集客</td><td>面白いが工務店「儲かってない」 と費用対効果不適合</td>
+      </tr>
+      <tr class="past">
+        <td>14</td><td>集客 BPaaS (Google ビジネス代行)</td><td class="score s15">15</td><td class="ai">過去</td><td class="cat">営業 / BPaaS</td><td>労力線形で撤退判定済 (5/20 ultrathink)、 比較参照のみ</td>
+      </tr>
+      <tr class="past">
+        <td>15</td><td>リード CRM (商談-見積-契約)</td><td class="score s15">15</td><td class="ai">過去</td><td class="cat">業務支援</td><td>痛み未検証、 ANDPAD CRM と競合可能性、 比較参照のみ</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="composition">
+    <strong>本資料の構成 (全 33 ページ)</strong>: P01 タイトル + 全候補一覧 / P02-31 候補 #01-#15 個別評価 (1 製品 2 ページ × 15、 基礎 6 軸 + 追加 10 観点 レーダーチャート 付) / P32 評価マトリクス + 撤退済 3 件 比較 / P33 推奨順位 + v8.0 化 アクション
+  </div>
+
+  <div class="callout warn">
+    <strong>⚠️ 撤退済 3 件 (個別ページなし、 P17 マトリクスで比較のみ)</strong>: 見積もり PDF 管理 (5/22 v7.0 で示唆 → 5/23 議論で撤退判断) / ANDPAD 補完 BPaaS (労力線形 + 元請統制) / 現場写真整理代行 (ANDPAD 完全競合)
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P01</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P02: 候補 #01 OB 10 年管理 SaaS · 基礎 6 軸 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #01 · 基礎 6 軸</span>
+  <span class="slide-num">02 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #01 ⭐ / 4 AI 全員合意</div>
+      <h1>OB 10 年管理 SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">データ蓄積</span>
+      <span class="badge ai-badge">4 / 4 AI</span>
+      <span class="badge score-16">Score 16</span>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-box">
+      <h3>痛み (主顧客の本音)</h3>
+      <p>過去 10 年の OB 顧客名簿が Excel / 紙 / 工事台帳に散逸。 リフォーム時期 (築 10-15 年) にアプローチできず、 競合に取られる。</p>
+    </div>
+    <div class="summary-box">
+      <h3>商品像</h3>
+      <p>顧客台帳 + 工事履歴 + リフォーム時期予測 + アプローチ自動化。 SaaS 主、 BPaaS で初期データ移行 (3-6 ヶ月) を代行。</p>
+    </div>
+    <div class="summary-box">
+      <h3>価格仮 / 単価</h3>
+      <p>SaaS 月 ¥1.5-3 万 / BPaaS 初期 ¥30-50 万 → 月 ¥3-5 万。 リフォーム 1 件 ¥100-500 万 で ROI 6 ヶ月。</p>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">基礎 6 軸 (5 段階)</div>
+      <div class="radar-chart" data-values="4,5,5,4,4,5" data-labels="ANDPAD回避|士業回避|主顧客|痛み|労力|費用対効果"></div>
+      <div class="radar-total">合計 27 / 30</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">ANDPAD 競合回避度</span><span class="ax-mark good">○</span><div class="ax-note">ANDPAD は工事進行管理が中心。 OB 顧客の長期管理は手薄領域 = 競合回避度 ○</div></li>
+        <li><span class="ax-name">士業領域回避度</span><span class="ax-mark good">◎</span><div class="ax-note">税理士 / 行政書士領域 (経理 / 補助金) に踏み込まず、 営業領域に特化</div></li>
+        <li><span class="ax-name">主顧客整合度</span><span class="ax-mark good">◎</span><div class="ax-note">アトツギ「眠ってる OB データ活用したい」 = ど真ん中、 やる気層 + 儲かってる層に刺さる</div></li>
+        <li><span class="ax-name">痛み解決度</span><span class="ax-mark good">○</span><div class="ax-note">Google レビュー 794 件 + 235 件で中位痛み。 ただし潜在的にはリフォーム機会喪失 = 大きい</div></li>
+        <li><span class="ax-name">労力軸</span><span class="ax-mark good">○</span><div class="ax-note">SaaS 主 = 工数線形 NG クリア。 BPaaS 初期データ移行は人雇える単価 (¥30-50 万 / 件) で OK</div></li>
+        <li><span class="ax-name">費用対効果説明度</span><span class="ax-mark good">◎</span><div class="ax-note">リフォーム 1 件 ¥100-500 万、 年 5-10 件で ROI 数十倍 = 「儲かってない」 工務店にも明確</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P02</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P03: 候補 #01 OB 10 年管理 SaaS · 追加 10 観点 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #01 · 追加 10 観点</span>
+  <span class="slide-num">03 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #01 (続) / 追加 10 観点 + 撤退条件</div>
+      <h1>OB 10 年管理 SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">データ蓄積</span>
+      <span class="badge score-16">Score 16</span>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">追加 10 観点 (5 段階)</div>
+      <div class="radar-chart" data-values="5,5,4,4,4,3,5,4,5,4" data-labels="NRR|現状運用|三層|プレモータム|天井|データ責任|チャネル|撤退条件|サブスク|5年継続"></div>
+      <div class="radar-total">合計 43 / 50</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">継続性 NRR</span><span class="ax-mark good">5</span><div class="ax-note">10 年データ蓄積 = 離脱コスト高、 NRR 120%+ 期待</div></li>
+        <li><span class="ax-name">真の競合 = 現状運用</span><span class="ax-mark good">5</span><div class="ax-note">Excel / 紙台帳 / 工事台帳からの置換、 明確</div></li>
+        <li><span class="ax-name">三層分離</span><span class="ax-mark good">4</span><div class="ax-note">アトツギ層直球、 妻 (連絡) 連携、 社長は使わない (狙いどおり)</div></li>
+        <li><span class="ax-name">離脱パスのプレモータム</span><span class="ax-mark good">4</span><div class="ax-note">CSV エクスポート機能で離脱不安解消、 ただし他社移行リスクあり</div></li>
+        <li><span class="ax-name">運用負荷の天井</span><span class="ax-mark good">4</span><div class="ax-note">SaaS で N=100 まで、 BPaaS 初期移行は人雇用で N=30 程度</div></li>
+        <li><span class="ax-name">データ責任</span><span class="ax-mark mid">3</span><div class="ax-note">顧客個人情報 + 工事金額 = 中機密、 セキュリティ要設計 (Supabase RLS 等)</div></li>
+        <li><span class="ax-name">販売チャネル先決</span><span class="ax-mark good">5</span><div class="ax-note">アトツギ + 北原氏紹介 + JAPAN BUILD 12/2-4 全方位で刺さる</div></li>
+        <li><span class="ax-name">撤退条件の具体性</span><span class="ax-mark good">4</span><div class="ax-note">3 ヶ月で MRR ¥30K 未達 / 6 ヶ月で 5 社未達 → 見直し</div></li>
+        <li><span class="ax-name">サブスク正当性</span><span class="ax-mark good">5</span><div class="ax-note">データ蓄積 + 業務停止 (顧客 DB 失う) + 継続更新 三要素揃う</div></li>
+        <li><span class="ax-name">5 年継続意欲</span><span class="ax-mark good">4</span><div class="ax-note">リフォーム業界深掘り可、 ただし飽きリスクあり</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="verdict-grid">
+    <div class="verdict-box good">
+      <h3>✅ 強み</h3>
+      <p>4 AI 全員合意 + 5/22 北原氏面談「儲かってない」 への費用対効果説明 (リフォーム 1 件 ¥100-500 万) が圧倒的。 アトツギ層直球、 サブスク正当性 5/5、 NRR 高。 デモ駆動 (見せられるダッシュボード) 容易。</p>
+    </div>
+    <div class="verdict-box warn">
+      <h3>⚠️ リスク / 撤退条件</h3>
+      <p>初期データ移行 (3-6 ヶ月) で BPaaS 工数大、 人雇える単価か要計算。 撤退条件: 3 ヶ月で MRR ¥30K 未達 / 6 ヶ月で 5 社未達 / データ移行 1 件あたり 50 時間超で BPaaS 単価合わない。</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P03</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P04: 候補 #02 コンテンツ自動生成 SaaS · 基礎 6 軸 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #02 · 基礎 6 軸</span>
+  <span class="slide-num">04 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #02 / ドッグフーディング可 (masatoman.net 実証中)</div>
+      <h1>コンテンツ自動生成 SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">営業 / 集客</span>
+      <span class="badge ai-badge">3 / 4 AI</span>
+      <span class="badge score-16">Score 16+α</span>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-box">
+      <h3>痛み (主顧客の本音)</h3>
+      <p>ホームページ更新が止まる、 ブログ書く時間ない、 SEO 効果出ない。 集客は紹介頼みで先細り、 アトツギは「会社の発信を強化したい」 が手が回らない。</p>
+    </div>
+    <div class="summary-box">
+      <h3>商品像</h3>
+      <p>工事実績 (写真 + メモ) → AI が施工事例記事 / SNS 投稿 / お客様の声を自動生成。 アトツギが Slack / LINE で素材投げるだけ。</p>
+    </div>
+    <div class="summary-box">
+      <h3>価格仮 / 単価</h3>
+      <p>SaaS 月 ¥1-2 万 (記事 10 本 / 月) / BPaaS 月 ¥3-5 万 (記事 30 本 + 配信)。 masatoman.net night-writer 流用可。</p>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">基礎 6 軸 (5 段階)</div>
+      <div class="radar-chart" data-values="5,5,4,3,5,3" data-labels="ANDPAD回避|士業回避|主顧客|痛み|労力|費用対効果"></div>
+      <div class="radar-total">合計 25 / 30</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">ANDPAD 競合回避度</span><span class="ax-mark good">◎</span><div class="ax-note">マーケ / 集客領域、 ANDPAD 完全圏外</div></li>
+        <li><span class="ax-name">士業領域回避度</span><span class="ax-mark good">◎</span><div class="ax-note">士業圏外、 マーケ業者と差別化 (¥10-30 万 / 月 → ¥1-5 万)</div></li>
+        <li><span class="ax-name">主顧客整合度</span><span class="ax-mark good">○</span><div class="ax-note">集客に困るアトツギ層直球。 ただし社長層は SNS 未理解で温度差</div></li>
+        <li><span class="ax-name">痛み解決度</span><span class="ax-mark mid">△</span><div class="ax-note">集客痛みはあるが「コンテンツ生成」 が解になるか N=1 未検証、 効果遅効性</div></li>
+        <li><span class="ax-name">労力軸</span><span class="ax-mark good">◎</span><div class="ax-note">SaaS そのもの。 masatoman.net で実証中 = ドッグフード、 工数最小</div></li>
+        <li><span class="ax-name">費用対効果説明度</span><span class="ax-mark mid">△</span><div class="ax-note">効果遅効性 (SEO 6-12 ヶ月)、 「儲かってない」 工務店には説明困難</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P04</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P05: 候補 #02 コンテンツ自動生成 SaaS · 追加 10 観点 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #02 · 追加 10 観点</span>
+  <span class="slide-num">05 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #02 (続) / 追加 10 観点 + 撤退条件</div>
+      <h1>コンテンツ自動生成 SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">営業 / 集客</span>
+      <span class="badge score-16">Score 16+α</span>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">追加 10 観点 (5 段階)</div>
+      <div class="radar-chart" data-values="4,4,3,3,5,2,4,3,4,5" data-labels="NRR|現状運用|三層|プレモータム|天井|データ責任|チャネル|撤退条件|サブスク|5年継続"></div>
+      <div class="radar-total">合計 37 / 50</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">継続性 NRR</span><span class="ax-mark good">4</span><div class="ax-note">継続生成必要、 コンテンツ蓄積で離脱コストはやや低</div></li>
+        <li><span class="ax-name">真の競合 = 現状運用</span><span class="ax-mark good">4</span><div class="ax-note">「うちは紹介だけで回ってる」 と言われやすい、 外部マーケ業者と比較される</div></li>
+        <li><span class="ax-name">三層分離</span><span class="ax-mark mid">3</span><div class="ax-note">アトツギ + ホームページ担当 (外注) と被る、 妻 / 社長は無関心</div></li>
+        <li><span class="ax-name">離脱パスのプレモータム</span><span class="ax-mark mid">3</span><div class="ax-note">コンテンツ持ち出し可、 効果出ない時点で離脱されやすい</div></li>
+        <li><span class="ax-name">運用負荷の天井</span><span class="ax-mark good">5</span><div class="ax-note">100% SaaS、 N=100+ 容易、 masatoman.net 流用で運用負荷ほぼゼロ</div></li>
+        <li><span class="ax-name">データ責任</span><span class="ax-mark bad">2</span><div class="ax-note">公開コンテンツのみ、 機密度低 = リスク低だが価値も低</div></li>
+        <li><span class="ax-name">販売チャネル先決</span><span class="ax-mark good">4</span><div class="ax-note">masatoman.net 自体が販売チャネル + アトツギ層 SNS 発信</div></li>
+        <li><span class="ax-name">撤退条件の具体性</span><span class="ax-mark mid">3</span><div class="ax-note">効果遅効性で撤退条件設計困難、 6 ヶ月で MRR ¥30K 未達なら見直し</div></li>
+        <li><span class="ax-name">サブスク正当性</span><span class="ax-mark good">4</span><div class="ax-note">継続生成 = サブスク正当性あり、 蓄積で離脱コスト中</div></li>
+        <li><span class="ax-name">5 年継続意欲</span><span class="ax-mark good">5</span><div class="ax-note">masatoman.net 軸 A と統合可、 飽きにくい、 自分のスキル深掘り可</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="verdict-grid">
+    <div class="verdict-box info">
+      <h3>💡 強み (ユニーク)</h3>
+      <p>ドッグフーディング可 (masatoman.net night-writer 流用)、 開発工数最小。 軸 A 案件獲得 PF とコード共有可、 5 年継続意欲 5/5。 アトツギ層 SNS 発信欲求と整合。</p>
+    </div>
+    <div class="verdict-box warn">
+      <h3>⚠️ リスク / 撤退条件</h3>
+      <p>痛み解決度 △ + 費用対効果 △ で「儲かってない」 工務店に売りにくい。 撤退条件: 6 ヶ月で MRR ¥30K 未達 / SEO 効果データ示せない / 友人 N=2-3 で「いらない」 回答 → 見直し。</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P05</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P06: 候補 #03 展示会リード育成 SaaS · 基礎 6 軸 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #03 · 基礎 6 軸</span>
+  <span class="slide-num">06 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #03 / JAPAN BUILD 12/2-4 出展 + 助成金 2/3 連動</div>
+      <h1>展示会リード育成 SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">営業 / 集客</span>
+      <span class="badge ai-badge">3 / 4 AI</span>
+      <span class="badge score-16">Score 16</span>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-box">
+      <h3>痛み (主顧客の本音)</h3>
+      <p>展示会で集めた名刺 500 枚が引き出しに眠る。 個別メール送る時間なく、 1 件契約に繋がらない。 アトツギ「次の展示会前に整理したい」 が時間取れない。</p>
+    </div>
+    <div class="summary-box">
+      <h3>商品像</h3>
+      <p>名刺 OCR + 自動分類 + 段階的メール / LINE 配信 + 商談化スコアリング。 展示会 → 3 ヶ月後の商談化を自動化。</p>
+    </div>
+    <div class="summary-box">
+      <h3>価格仮 / 単価</h3>
+      <p>SaaS 月 ¥2-4 万 (名刺 500 枚 / 月) / BPaaS 展示会 1 回 ¥10-20 万 (OCR + 配信代行)。 名刺 500 → 1 件契約 ¥1000 万 で ROI 即時。</p>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">基礎 6 軸 (5 段階)</div>
+      <div class="radar-chart" data-values="5,5,5,4,4,5" data-labels="ANDPAD回避|士業回避|主顧客|痛み|労力|費用対効果"></div>
+      <div class="radar-total">合計 28 / 30</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">ANDPAD 競合回避度</span><span class="ax-mark good">◎</span><div class="ax-note">集客 / リード管理領域、 ANDPAD 完全圏外</div></li>
+        <li><span class="ax-name">士業領域回避度</span><span class="ax-mark good">◎</span><div class="ax-note">士業圏外、 マーケ業者とも価格帯で差別化</div></li>
+        <li><span class="ax-name">主顧客整合度</span><span class="ax-mark good">◎</span><div class="ax-note">展示会層 = 5/22 北原氏面談確定主顧客ど真ん中、 やる気層</div></li>
+        <li><span class="ax-name">痛み解決度</span><span class="ax-mark good">○</span><div class="ax-note">展示会名刺死蔵 = 業界共通課題、 ただし「やってない」 工務店も多い</div></li>
+        <li><span class="ax-name">労力軸</span><span class="ax-mark good">○</span><div class="ax-note">SaaS 中心、 OCR は外部 API (Google Vision 等)、 初期セットアップ工数中</div></li>
+        <li><span class="ax-name">費用対効果説明度</span><span class="ax-mark good">◎</span><div class="ax-note">名刺 100 枚 → 1 件契約 ¥1000 万 で ROI 明示、 展示会出展助成金 2/3 で実質負担 1/3</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P06</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P07: 候補 #03 展示会リード育成 SaaS · 追加 10 観点 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #03 · 追加 10 観点</span>
+  <span class="slide-num">07 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #03 (続) / 追加 10 観点 + 撤退条件</div>
+      <h1>展示会リード育成 SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">営業 / 集客</span>
+      <span class="badge score-16">Score 16</span>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">追加 10 観点 (5 段階)</div>
+      <div class="radar-chart" data-values="4,5,4,4,4,3,5,4,3,4" data-labels="NRR|現状運用|三層|プレモータム|天井|データ責任|チャネル|撤退条件|サブスク|5年継続"></div>
+      <div class="radar-total">合計 40 / 50</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">継続性 NRR</span><span class="ax-mark good">4</span><div class="ax-note">展示会後数ヶ月の利用、 通年継続要設計 (定期展示会出展層なら NRR 高)</div></li>
+        <li><span class="ax-name">真の競合 = 現状運用</span><span class="ax-mark good">5</span><div class="ax-note">Excel 名簿 / 個別メール / 名刺ファイル放置が現状</div></li>
+        <li><span class="ax-name">三層分離</span><span class="ax-mark good">4</span><div class="ax-note">展示会担当 = アトツギ層が多い、 妻 / 社長は不在</div></li>
+        <li><span class="ax-name">離脱パスのプレモータム</span><span class="ax-mark good">4</span><div class="ax-note">展示会終わると使わない問題、 通年化 (定期 DM 配信) で防止</div></li>
+        <li><span class="ax-name">運用負荷の天井</span><span class="ax-mark good">4</span><div class="ax-note">SaaS、 N=50 程度まで容易、 BPaaS 代行は人雇える単価</div></li>
+        <li><span class="ax-name">データ責任</span><span class="ax-mark mid">3</span><div class="ax-note">名刺 = 個人情報、 中機密 (個人情報保護法対応要)</div></li>
+        <li><span class="ax-name">販売チャネル先決</span><span class="ax-mark good">5</span><div class="ax-note">JAPAN BUILD TOKYO 12/2-4 出展 = 自分が顧客になりつつ販売 (助成金 2/3)</div></li>
+        <li><span class="ax-name">撤退条件の具体性</span><span class="ax-mark good">4</span><div class="ax-note">12/2-4 出展後 1-2 件契約取れない → 見直し、 ¥30K MRR 達成不可なら撤退</div></li>
+        <li><span class="ax-name">サブスク正当性</span><span class="ax-mark mid">3</span><div class="ax-note">通年使うか怪しい、 季節性あり (展示会前後) = 通年化要設計</div></li>
+        <li><span class="ax-name">5 年継続意欲</span><span class="ax-mark good">4</span><div class="ax-note">展示会出展助成事業 R8 全 10 回応募で 5 年継続可、 業界深耕</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="verdict-grid">
+    <div class="verdict-box good">
+      <h3>✅ 強み</h3>
+      <p>主顧客 5/5 + 費用対効果 5/5 で 5/22 北原氏面談「展示会層」 と完全整合。 JAPAN BUILD 12/2-4 出展で「自分も顧客」 = デモ駆動 + 助成金 2/3 で実装費圧縮。 営業ストーリー作りやすい。</p>
+    </div>
+    <div class="verdict-box warn">
+      <h3>⚠️ リスク / 撤退条件</h3>
+      <p>展示会季節性 = サブスク継続性 3/5、 通年化要設計。 撤退条件: 12/2-4 出展後 3 ヶ月で 1-2 件契約取れない / 通年化施策 (定期 DM) 効果なし / R8 助成金第 5 回応募 (8/1-8/14) 不採択 → 見直し。</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P07</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P08: 候補 #04 経営状況可視化レポート SaaS · 基礎 6 軸 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #04 · 基礎 6 軸</span>
+  <span class="slide-num">08 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #04 / 北原氏「経営支援」 軸整合</div>
+      <h1>経営状況可視化レポート SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">経営可視化</span>
+      <span class="badge ai-badge">2 / 4 AI</span>
+      <span class="badge score-16">Score 16</span>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-box">
+      <h3>痛み (主顧客の本音)</h3>
+      <p>月次の利益 / 工事別粗利 / キャッシュフローが税理士月次試算表まで分からず、 アトツギは経営判断が遅れる。 「儲かってない」 が定量化できない。</p>
+    </div>
+    <div class="summary-box">
+      <h3>商品像</h3>
+      <p>会計ソフト (freee / 弥生) + 業務システム (見積 / 工事台帳) 連携 → 月次レポート自動生成。 アトツギ向けダッシュボード。</p>
+    </div>
+    <div class="summary-box">
+      <h3>価格仮 / 単価</h3>
+      <p>SaaS 月 ¥2-5 万 / BPaaS 月 ¥5-10 万 (データ入力代行 + レポート読み込み会)。 経営判断早期化 = ¥数百万判断改善で ROI。</p>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">基礎 6 軸 (5 段階)</div>
+      <div class="radar-chart" data-values="4,3,5,3,4,4" data-labels="ANDPAD回避|士業回避|主顧客|痛み|労力|費用対効果"></div>
+      <div class="radar-total">合計 23 / 30</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">ANDPAD 競合回避度</span><span class="ax-mark good">○</span><div class="ax-note">ANDPAD に経営ダッシュボードあるが弱い、 工務店特化レポートで差別化可</div></li>
+        <li><span class="ax-name">士業領域回避度</span><span class="ax-mark mid">△</span><div class="ax-note">税理士 (月次試算表) と一部競合、 「税理士が出してる」 と言われやすい</div></li>
+        <li><span class="ax-name">主顧客整合度</span><span class="ax-mark good">◎</span><div class="ax-note">アトツギ「経営数字見たい」 直球、 北原氏「経営支援」 軸整合、 中小企業診断士領域</div></li>
+        <li><span class="ax-name">痛み解決度</span><span class="ax-mark mid">△</span><div class="ax-note">痛みはあるが「うちは税理士いるから不要」 と言われやすい、 主顧客整合は高いが説得困難</div></li>
+        <li><span class="ax-name">労力軸</span><span class="ax-mark good">○</span><div class="ax-note">SaaS 中心、 ただし会計ソフト連携で初期工数 (1 社あたり 10-30 時間)</div></li>
+        <li><span class="ax-name">費用対効果説明度</span><span class="ax-mark good">○</span><div class="ax-note">経営判断早期化 = 説明可、 ただし定量化困難 (¥数百万改善は仮説)</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P08</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P09: 候補 #04 経営状況可視化レポート SaaS · 追加 10 観点 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #04 · 追加 10 観点</span>
+  <span class="slide-num">09 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #04 (続) / 追加 10 観点 + 撤退条件</div>
+      <h1>経営状況可視化レポート SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">経営可視化</span>
+      <span class="badge score-16">Score 16</span>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">追加 10 観点 (5 段階)</div>
+      <div class="radar-chart" data-values="5,4,4,3,4,4,4,4,5,4" data-labels="NRR|現状運用|三層|プレモータム|天井|データ責任|チャネル|撤退条件|サブスク|5年継続"></div>
+      <div class="radar-total">合計 41 / 50</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">継続性 NRR</span><span class="ax-mark good">5</span><div class="ax-note">月次レポート = 継続必須、 NRR 高 (止めたら経営判断止まる)</div></li>
+        <li><span class="ax-name">真の競合 = 現状運用</span><span class="ax-mark good">4</span><div class="ax-note">Excel 月次集計 / 税理士月次試算表 / 「分からないまま運営」</div></li>
+        <li><span class="ax-name">三層分離</span><span class="ax-mark good">4</span><div class="ax-note">アトツギ (見たい) + 社長 (見せたい) + 妻 (経理データ提供) 三層全部関与可</div></li>
+        <li><span class="ax-name">離脱パスのプレモータム</span><span class="ax-mark mid">3</span><div class="ax-note">税理士サービスに統合される可能性、 顧問税理士替えで離脱されやすい</div></li>
+        <li><span class="ax-name">運用負荷の天井</span><span class="ax-mark good">4</span><div class="ax-note">SaaS だがデータ連携で個別対応必要、 N=30 程度まで</div></li>
+        <li><span class="ax-name">データ責任</span><span class="ax-mark good">4</span><div class="ax-note">経営数字 = 高機密、 セキュリティ要件厳しい (ISMS 等)</div></li>
+        <li><span class="ax-name">販売チャネル先決</span><span class="ax-mark good">4</span><div class="ax-note">北原氏 (中小企業診断士) ルート最強、 アトツギルートも</div></li>
+        <li><span class="ax-name">撤退条件の具体性</span><span class="ax-mark good">4</span><div class="ax-note">データ連携できない or 月次更新されない → 見直し、 6 ヶ月で 3 社未達なら撤退</div></li>
+        <li><span class="ax-name">サブスク正当性</span><span class="ax-mark good">5</span><div class="ax-note">月次レポート = サブスク以外あり得ない、 正当性最高</div></li>
+        <li><span class="ax-name">5 年継続意欲</span><span class="ax-mark good">4</span><div class="ax-note">経営支援領域、 ただし税理士領域接触で消耗リスク</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="verdict-grid">
+    <div class="verdict-box info">
+      <h3>💡 強み (ユニーク)</h3>
+      <p>NRR 5/5 + サブスク正当性 5/5 + 主顧客整合 5/5 = 継続収益モデル最強候補。 北原氏紹介ルート整合性高、 中小企業診断士の業務拡張として打診可。 三層全部関与で組織深耕可。</p>
+    </div>
+    <div class="verdict-box warn">
+      <h3>⚠️ リスク / 撤退条件</h3>
+      <p>士業壁 (税理士) と痛み解決 △ で「不要」 と言われやすい。 撤退条件: 会計ソフト連携できない / 6 ヶ月で 3 社未達 / 税理士から「うちで出せる」 反論されて受注できない → 見直し。</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P09</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P10: 候補 #05 LINE 日報 SaaS · 基礎 6 軸 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #05 · 基礎 6 軸</span>
+  <span class="slide-num">10 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #05 / 友人 N=1「日報は紙」 検証済</div>
+      <h1>LINE 日報 SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">業務支援</span>
+      <span class="badge ai-badge">1 / 4 AI</span>
+      <span class="badge score-16">Score 16</span>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-box">
+      <h3>痛み (主顧客の本音)</h3>
+      <p>夜 21 時まで紙日報を Excel に打ち直す。 ANDPAD は社長が「使えん」 で導入失敗。 LINE グループに写真送る運用が現状で散漫。</p>
+    </div>
+    <div class="summary-box">
+      <h3>商品像</h3>
+      <p>LINE で写真 + メモ送るだけ → AI が日報 / 工事台帳 / 顧客報告書を自動生成。 PC 不要、 学習コスト 0。 ANDPAD 未満ハードル。</p>
+    </div>
+    <div class="summary-box">
+      <h3>価格仮 / 単価</h3>
+      <p>SaaS 月 ¥1-2 万 (現場 5 人まで) / 月 ¥3 万 (10 人まで)。 写真整理時間 月 20-30 時間削減 = 時給 ¥2K で ¥4-6 万 / 月効果。</p>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">基礎 6 軸 (5 段階)</div>
+      <div class="radar-chart" data-values="3,5,4,5,4,4" data-labels="ANDPAD回避|士業回避|主顧客|痛み|労力|費用対効果"></div>
+      <div class="radar-total">合計 25 / 30</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">ANDPAD 競合回避度</span><span class="ax-mark mid">△</span><div class="ax-note">ANDPAD に日報機能あり、 ただし「LINE で完結 / PC 不要」 が差別化、 ANDPAD 未満ハードル</div></li>
+        <li><span class="ax-name">士業領域回避度</span><span class="ax-mark good">◎</span><div class="ax-note">士業圏外</div></li>
+        <li><span class="ax-name">主顧客整合度</span><span class="ax-mark good">○</span><div class="ax-note">アトツギ + 現場監督層、 ただし主顧客「展示会層」 ではない、 やる気層には届きにくい</div></li>
+        <li><span class="ax-name">痛み解決度</span><span class="ax-mark good">◎</span><div class="ax-note">友人 N=1「日報は紙」 確認済、 235 件でも上位痛み、 一次情報あり</div></li>
+        <li><span class="ax-name">労力軸</span><span class="ax-mark good">○</span><div class="ax-note">SaaS、 LINE API 連携で初期工数中、 BPaaS 化は工数線形になりがち</div></li>
+        <li><span class="ax-name">費用対効果説明度</span><span class="ax-mark good">○</span><div class="ax-note">時間削減 = 説明可、 「ANDPAD は使えなかったが LINE なら使える」 ストーリー</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P10</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P11: 候補 #05 LINE 日報 SaaS · 追加 10 観点 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #05 · 追加 10 観点</span>
+  <span class="slide-num">11 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #05 (続) / 追加 10 観点 + 撤退条件</div>
+      <h1>LINE 日報 SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">業務支援</span>
+      <span class="badge score-16">Score 16</span>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">追加 10 観点 (5 段階)</div>
+      <div class="radar-chart" data-values="4,5,3,3,4,3,4,4,4,3" data-labels="NRR|現状運用|三層|プレモータム|天井|データ責任|チャネル|撤退条件|サブスク|5年継続"></div>
+      <div class="radar-total">合計 37 / 50</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">継続性 NRR</span><span class="ax-mark good">4</span><div class="ax-note">日報は毎日 = 離脱コスト高、 ただし ANDPAD 移行で離脱リスク</div></li>
+        <li><span class="ax-name">真の競合 = 現状運用</span><span class="ax-mark good">5</span><div class="ax-note">紙 / LINE 既存 (個人 LINE で送る) / ANDPAD 高ハードル = 「LINE で完結」 が最大の差別化</div></li>
+        <li><span class="ax-name">三層分離</span><span class="ax-mark mid">3</span><div class="ax-note">現場監督 + アトツギ、 社長 / 妻 はノータッチ = 三層深耕弱</div></li>
+        <li><span class="ax-name">離脱パスのプレモータム</span><span class="ax-mark mid">3</span><div class="ax-note">ANDPAD 等の競合に移行されやすい、 「ANDPAD じゃダメだった」 客は次もダメな可能性</div></li>
+        <li><span class="ax-name">運用負荷の天井</span><span class="ax-mark good">4</span><div class="ax-note">SaaS だが LINE API 制約あり、 N=50 まで</div></li>
+        <li><span class="ax-name">データ責任</span><span class="ax-mark mid">3</span><div class="ax-note">現場写真 + 進捗、 中機密 (個人住宅情報含む)</div></li>
+        <li><span class="ax-name">販売チャネル先決</span><span class="ax-mark good">4</span><div class="ax-note">友人 N=1 経由のアトツギルートが最強、 紹介芋蔓式 (友人 → 知人) で広がる</div></li>
+        <li><span class="ax-name">撤退条件の具体性</span><span class="ax-mark good">4</span><div class="ax-note">3 ヶ月で MRR ¥30K 未達 / 友人ヒアリング N=2-3 で「LINE で十分」 → 見直し</div></li>
+        <li><span class="ax-name">サブスク正当性</span><span class="ax-mark good">4</span><div class="ax-note">日次利用 = サブスク正当性あり、 ただし買い切り嬉しい (N=1) と矛盾</div></li>
+        <li><span class="ax-name">5 年継続意欲</span><span class="ax-mark mid">3</span><div class="ax-note">現場業務領域、 ANDPAD との消耗戦になる可能性、 飽きリスク中</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="verdict-grid">
+    <div class="verdict-box good">
+      <h3>✅ 強み</h3>
+      <p>痛み解決度 5/5 + 真の競合 (現状運用) 5/5 で一次情報あり。 友人 N=1「日報は紙」 確認済、 「ANDPAD じゃダメだった層」 ターゲットで隙間市場。 学習コスト 0 = 主顧客に刺さる。</p>
+    </div>
+    <div class="verdict-box warn">
+      <h3>⚠️ リスク / 撤退条件</h3>
+      <p>主顧客整合 △ (展示会層ではない / 儲かってない下請零細層) + ANDPAD 競合回避 △ で消耗戦リスク。 撤退条件: 友人 N=2-3 で「LINE で十分」 / 3 ヶ月で MRR ¥30K 未達 / ANDPAD に LINE 連携機能追加 → 見直し。</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P11</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P12: 候補 #06 AI 商談議事録 SaaS · 基礎 6 軸 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #06 · 基礎 6 軸</span>
+  <span class="slide-num">12 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #06 / 横展開しやすい、 ただし工務店特化の差別化弱い</div>
+      <h1>AI 商談議事録 SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">業務支援 / AI</span>
+      <span class="badge ai-badge">1 / 4 AI</span>
+      <span class="badge score-16">Score 16</span>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-box">
+      <h3>痛み (主顧客の本音)</h3>
+      <p>施主との打ち合わせ議事録が手書き / 紙メモ。 営業 → 設計 → 施工 の引継ぎで「言った言わない」 が発生、 後で再ヒアリングで時間ロス。</p>
+    </div>
+    <div class="summary-box">
+      <h3>商品像</h3>
+      <p>商談録音 → AI 文字起こし + 要点抽出 + 顧客台帳連携。 アトツギ + 営業担当向け、 OB 10 年管理 SaaS (#01) と連携可能。</p>
+    </div>
+    <div class="summary-box">
+      <h3>価格仮 / 単価</h3>
+      <p>SaaS 月 ¥0.5-1.5 万 / アカウント、 BPaaS なし (汎用 SaaS は労力 0)。 工務店特化なら月 ¥1.5-3 万。</p>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">基礎 6 軸 (5 段階)</div>
+      <div class="radar-chart" data-values="4,5,3,3,5,3" data-labels="ANDPAD回避|士業回避|主顧客|痛み|労力|費用対効果"></div>
+      <div class="radar-total">合計 23 / 30</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">ANDPAD 競合回避度</span><span class="ax-mark good">○</span><div class="ax-note">ANDPAD は商談議事録機能弱、 工事進行管理が主。 競合回避 ○</div></li>
+        <li><span class="ax-name">士業領域回避度</span><span class="ax-mark good">◎</span><div class="ax-note">士業領域圏外、 営業 / 業務効率化領域</div></li>
+        <li><span class="ax-name">主顧客整合度</span><span class="ax-mark mid">△</span><div class="ax-note">汎用すぎ、 工務店特化の差別化が弱い。 アトツギ「あれば便利」 レベルで切迫感弱</div></li>
+        <li><span class="ax-name">痛み解決度</span><span class="ax-mark mid">△</span><div class="ax-note">「LINE + 紙メモで足りてる」 感覚あり (友人 N=1 と整合)、 切迫感弱</div></li>
+        <li><span class="ax-name">労力軸</span><span class="ax-mark good">◎</span><div class="ax-note">100% SaaS、 開発工数最小 (既存 AI API 流用)、 工数線形 NG クリア</div></li>
+        <li><span class="ax-name">費用対効果説明度</span><span class="ax-mark mid">△</span><div class="ax-note">議事録 → 売上直結弱、 「儲かってない」 工務店に説明困難。 時間削減訴求のみ</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P12</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P13: 候補 #06 AI 商談議事録 SaaS · 追加 10 観点 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #06 · 追加 10 観点</span>
+  <span class="slide-num">13 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #06 (続) / 追加 10 観点 + 撤退条件</div>
+      <h1>AI 商談議事録 SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">業務支援 / AI</span>
+      <span class="badge score-16">Score 16</span>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">追加 10 観点 (5 段階)</div>
+      <div class="radar-chart" data-values="3,3,3,3,5,3,3,3,3,3" data-labels="NRR|現状運用|三層|プレモータム|天井|データ責任|チャネル|撤退条件|サブスク|5年継続"></div>
+      <div class="radar-total">合計 32 / 50</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">継続性 NRR</span><span class="ax-mark mid">3</span><div class="ax-note">議事録は離脱しやすい、 蓄積価値中、 NRR 100% 程度</div></li>
+        <li><span class="ax-name">真の競合 = 現状運用</span><span class="ax-mark mid">3</span><div class="ax-note">紙メモ + LINE + notta / tldv (汎用議事録) と競合、 「足りてる」 と言われやすい</div></li>
+        <li><span class="ax-name">三層分離</span><span class="ax-mark mid">3</span><div class="ax-note">アトツギ + 営業のみ、 社長 / 妻 は無関心 = 三層直撃せず</div></li>
+        <li><span class="ax-name">離脱パスのプレモータム</span><span class="ax-mark mid">3</span><div class="ax-note">汎用議事録 SaaS (notta 等) に移行されやすい、 工務店特化機能で防御要</div></li>
+        <li><span class="ax-name">運用負荷の天井</span><span class="ax-mark good">5</span><div class="ax-note">100% SaaS、 AI API 従量、 N=100+ 容易</div></li>
+        <li><span class="ax-name">データ責任</span><span class="ax-mark mid">3</span><div class="ax-note">商談録音 = 中機密 (施主氏名 + 金額 + 契約条件)、 漏洩リスク中</div></li>
+        <li><span class="ax-name">販売チャネル先決</span><span class="ax-mark mid">3</span><div class="ax-note">工務店特化薄 = 紹介経路弱、 北原氏紹介もアトツギ層も「便利だね」 止まり</div></li>
+        <li><span class="ax-name">撤退条件の具体性</span><span class="ax-mark mid">3</span><div class="ax-note">3 ヶ月で MRR ¥30K 未達 / 友人 N=2-3 で「LINE で十分」 → 撤退</div></li>
+        <li><span class="ax-name">サブスク正当性</span><span class="ax-mark mid">3</span><div class="ax-note">継続利用必要だが買い切りでも OK と思われがち、 蓄積価値中</div></li>
+        <li><span class="ax-name">5 年継続意欲</span><span class="ax-mark mid">3</span><div class="ax-note">工務店特化なら継続可だが汎用なら飽きやすい、 業界深掘り中</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="verdict-grid">
+    <div class="verdict-box warn">
+      <h3>⚠️ 検討 (汎用すぎ)</h3>
+      <p>労力軸 5/5 + 運用天井 5/5 だが、 主顧客整合 △ + 痛み △ + 費用対効果 △ で「便利だが買う動機弱」。 工務店特化の差別化機能 (見積もり連携 / 工事台帳連携) を入れないと汎用 SaaS と消耗戦。</p>
+    </div>
+    <div class="verdict-box warn">
+      <h3>⚠️ リスク / 撤退条件</h3>
+      <p>3 ヶ月で MRR ¥30K 未達 / 友人 N=2-3 で「LINE で十分」 回答 / notta / tldv に工務店向けテンプレ機能追加 → 即撤退。 #01 OB 10 年管理 SaaS との連携機能として「付録」 化が現実的。</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P13</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P14: 候補 #07 暗黙知継承 AI · 基礎 6 軸 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #07 · 基礎 6 軸</span>
+  <span class="slide-num">14 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #07 / 事業承継 = アトツギ層 直球、 ただし測定困難</div>
+      <h1>暗黙知継承 AI</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">業務支援 / AI</span>
+      <span class="badge ai-badge">1 / 4 AI</span>
+      <span class="badge score-16">Score 16</span>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-box">
+      <h3>痛み (主顧客の本音)</h3>
+      <p>60 代社長の頭の中 (見積もり経験 / 職人ネットワーク / 仕入れノウハウ / 過去トラブル対応) がアトツギに伝わらない。 引退と共に失われる、 5/22 北原氏「事業承継」 軸ど真ん中。</p>
+    </div>
+    <div class="summary-box">
+      <h3>商品像</h3>
+      <p>AI が社長と週 1 で LINE 通話 → 業務エピソード継続取材 → 知識ベース化。 アトツギが質問 → AI が社長の口調で回答。 BPaaS で取材代行も可。</p>
+    </div>
+    <div class="summary-box">
+      <h3>価格仮 / 単価</h3>
+      <p>SaaS 月 ¥2-3 万 / BPaaS (取材代行) 月 ¥5-10 万。 取材回数で 2 階建て、 蓄積 1 年で 30-50 エピソード。</p>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">基礎 6 軸 (5 段階)</div>
+      <div class="radar-chart" data-values="5,5,4,3,4,3" data-labels="ANDPAD回避|士業回避|主顧客|痛み|労力|費用対効果"></div>
+      <div class="radar-total">合計 24 / 30</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">ANDPAD 競合回避度</span><span class="ax-mark good">◎</span><div class="ax-note">事業承継 / 暗黙知領域、 ANDPAD 完全圏外</div></li>
+        <li><span class="ax-name">士業領域回避度</span><span class="ax-mark good">◎</span><div class="ax-note">事業承継 M&A は士業領域だが、 暗黙知抽出 = 完全圏外</div></li>
+        <li><span class="ax-name">主顧客整合度</span><span class="ax-mark good">○</span><div class="ax-note">アトツギ層直球 (5/22 北原氏「事業承継」 軸)、 ただし社長協力必須で社長拒否リスク</div></li>
+        <li><span class="ax-name">痛み解決度</span><span class="ax-mark mid">△</span><div class="ax-note">痛みは深いが切迫感弱 (「いつかやろう」)、 測定困難で効果実感まで時間</div></li>
+        <li><span class="ax-name">労力軸</span><span class="ax-mark good">○</span><div class="ax-note">SaaS は工数線形 NG クリア、 BPaaS 取材代行は人雇える単価 (¥5-10 万 / 月) なら OK</div></li>
+        <li><span class="ax-name">費用対効果説明度</span><span class="ax-mark mid">△</span><div class="ax-note">定量化困難 (社長引退後の「もしも」)、 アトツギには響くが社長決裁で詰まる</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P14</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P15: 候補 #07 暗黙知継承 AI · 追加 10 観点 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #07 · 追加 10 観点</span>
+  <span class="slide-num">15 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #07 (続) / 追加 10 観点 + 撤退条件</div>
+      <h1>暗黙知継承 AI</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">業務支援 / AI</span>
+      <span class="badge score-16">Score 16</span>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">追加 10 観点 (5 段階)</div>
+      <div class="radar-chart" data-values="4,4,5,3,3,4,4,3,4,5" data-labels="NRR|現状運用|三層|プレモータム|天井|データ責任|チャネル|撤退条件|サブスク|5年継続"></div>
+      <div class="radar-total">合計 39 / 50</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">継続性 NRR</span><span class="ax-mark good">4</span><div class="ax-note">蓄積で価値増 (エピソード 100 件で AI 精度向上)、 離脱コスト中-高</div></li>
+        <li><span class="ax-name">真の競合 = 現状運用</span><span class="ax-mark good">4</span><div class="ax-note">「父子コミュ放棄」 = 大きな空白、 競合 = やってない (放置) が真の競合</div></li>
+        <li><span class="ax-name">三層分離</span><span class="ax-mark good">5</span><div class="ax-note">社長 × アトツギ = 三層のうち 2 層直撃、 「父子分断」 が最大課題 = ど真ん中</div></li>
+        <li><span class="ax-name">離脱パスのプレモータム</span><span class="ax-mark mid">3</span><div class="ax-note">社長拒否 / 飽き / アトツギ多忙でゼロ、 取材継続のコミュ設計が肝</div></li>
+        <li><span class="ax-name">運用負荷の天井</span><span class="ax-mark mid">3</span><div class="ax-note">SaaS は N=100 可、 BPaaS 取材代行は N=10-20 (1 社月 4-8 回取材) で頭打ち</div></li>
+        <li><span class="ax-name">データ責任</span><span class="ax-mark good">4</span><div class="ax-note">経営ノウハウ + 個人エピソード = 高機密、 漏洩で「会社の魂」 失う = サブスク正当性増</div></li>
+        <li><span class="ax-name">販売チャネル先決</span><span class="ax-mark good">4</span><div class="ax-note">アトツギ + 北原氏 (事業承継支援センター) + アトツギコミュ (アトツギ甲子園 等) = 強い</div></li>
+        <li><span class="ax-name">撤退条件の具体性</span><span class="ax-mark mid">3</span><div class="ax-note">測定困難で撤退条件設計難、 6 ヶ月で MRR ¥30K 未達 / 取材継続率 50% 未満 → 見直し</div></li>
+        <li><span class="ax-name">サブスク正当性</span><span class="ax-mark good">4</span><div class="ax-note">継続取材 + 蓄積で価値増、 業務停止 (社長の知識失う) で正当性 ◎</div></li>
+        <li><span class="ax-name">5 年継続意欲</span><span class="ax-mark good">5</span><div class="ax-note">深いテーマで飽きにくい、 事業承継 = 業界共通課題で 5 年深掘り可</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="verdict-grid">
+    <div class="verdict-box info">
+      <h3>💡 ユニーク (測定困難だが本質的)</h3>
+      <p>三層分離 5/5 (社長 × アトツギ ど真ん中) + 5 年継続 5/5 + 5/22 北原氏「事業承継」 軸完全整合。 競合不在 (誰もやってない放置領域)。 アトツギコミュニティ (アトツギ甲子園 等) 経由販売ルートあり。</p>
+    </div>
+    <div class="verdict-box warn">
+      <h3>⚠️ リスク / 撤退条件</h3>
+      <p>痛み △ + 費用対効果 △ で「あれば良い」 止まり、 切迫感弱で買う決裁通らない可能性。 撤退条件: 6 ヶ月で MRR ¥30K 未達 / 取材継続率 50% 未満 / 社長拒否率 50%+ → 見直し。 取材 BPaaS 単価 ¥5-10 万 / 月 で人雇用可能か要検証。</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P15</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P16: 候補 #08 ベンチマーク経営 DB SaaS · 基礎 6 軸 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #08 · 基礎 6 軸</span>
+  <span class="slide-num">16 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #08 🃏 / ジョーカー枠。 issue-finder 応用、 N=10 から成立</div>
+      <h1>ベンチマーク経営 DB SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">経営可視化 / 🃏</span>
+      <span class="badge ai-badge">1 / 4 AI</span>
+      <span class="badge score-15">Score 15</span>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-box">
+      <h3>痛み (主顧客の本音)</h3>
+      <p>自社の経営数字 (粗利率 / 受注単価 / 工期 / 紹介率) が業界平均と比較できない。 アトツギ「うちは儲かってる方なのか? 改善余地は?」 がわからず、 経営判断が勘頼み。</p>
+    </div>
+    <div class="summary-box">
+      <h3>商品像</h3>
+      <p>参加工務店から経営数字を匿名集計 → 同規模・同地域・同業態 平均と比較できるダッシュボード。 issue-finder の集約スコアリング応用、 K-Means クラスタリング流用。</p>
+    </div>
+    <div class="summary-box">
+      <h3>価格仮 / 単価</h3>
+      <p>SaaS 月 ¥1-2 万 (データ提供工務店は割引)、 月 ¥3-5 万 (詳細レポート + コンサル付)。 N=10 から成立、 N=30 で実用、 N=100 で業界標準化。</p>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">基礎 6 軸 (5 段階)</div>
+      <div class="radar-chart" data-values="5,4,4,3,4,3" data-labels="ANDPAD回避|士業回避|主顧客|痛み|労力|費用対効果"></div>
+      <div class="radar-total">合計 23 / 30</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">ANDPAD 競合回避度</span><span class="ax-mark good">◎</span><div class="ax-note">業界横断集計領域、 ANDPAD 完全圏外。 ANDPAD ユーザー数 (10 万社) は参考にされるが直接競合せず</div></li>
+        <li><span class="ax-name">士業領域回避度</span><span class="ax-mark good">○</span><div class="ax-note">税理士の決算書分析と近接するが、 業界比較 = 士業圏外。 認定支援機関税理士提携で補完可</div></li>
+        <li><span class="ax-name">主顧客整合度</span><span class="ax-mark good">○</span><div class="ax-note">アトツギ「比較したい」 直球、 儲かってる層は「経営優位確認」 で買う、 やる気層もハマる</div></li>
+        <li><span class="ax-name">痛み解決度</span><span class="ax-mark mid">△</span><div class="ax-note">「知りたいけど自社数字見せたくない」 矛盾、 N=10 未達期間が長い (鶏卵問題)</div></li>
+        <li><span class="ax-name">労力軸</span><span class="ax-mark good">○</span><div class="ax-note">SaaS + データ集計自動化 (issue-finder 流用)、 ただし初期営業 = 線形工数</div></li>
+        <li><span class="ax-name">費用対効果説明度</span><span class="ax-mark mid">△</span><div class="ax-note">情報財 = 説明困難、 「比較してどう改善するか」 までセットで提示必要 (= 5 年継続価値訴求)</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P16</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P17: 候補 #08 ベンチマーク経営 DB SaaS · 追加 10 観点 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #08 · 追加 10 観点</span>
+  <span class="slide-num">17 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #08 🃏 (続) / 追加 10 観点 + 撤退条件</div>
+      <h1>ベンチマーク経営 DB SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">経営可視化 / 🃏</span>
+      <span class="badge score-15">Score 15</span>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">追加 10 観点 (5 段階)</div>
+      <div class="radar-chart" data-values="5,4,4,3,4,2,3,5,5,4" data-labels="NRR|現状運用|三層|プレモータム|天井|データ責任|チャネル|撤退条件|サブスク|5年継続"></div>
+      <div class="radar-total">合計 39 / 50</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">継続性 NRR</span><span class="ax-mark good">5</span><div class="ax-note">蓄積で価値倍増 (N=10 → N=100 で精度爆増)、 離脱で全比較データ失う = 離脱コスト最高</div></li>
+        <li><span class="ax-name">真の競合 = 現状運用</span><span class="ax-mark good">4</span><div class="ax-note">商工会報統計 = 弱、 帝国データバンク = 大企業向け。 中小工務店向け業界比較は真空地帯</div></li>
+        <li><span class="ax-name">三層分離</span><span class="ax-mark good">4</span><div class="ax-note">アトツギ + 社長 (経営判断層) ど真ん中、 妻 (経理) も部分関与で 3 層全カバー</div></li>
+        <li><span class="ax-name">離脱パスのプレモータム</span><span class="ax-mark mid">3</span><div class="ax-note">N=10 未達で価値ゼロ → 鶏卵問題で初期立ち上がり困難、 6 ヶ月で N=10 達成しないと畳む</div></li>
+        <li><span class="ax-name">運用負荷の天井</span><span class="ax-mark good">4</span><div class="ax-note">SaaS + 集計自動化 (issue-finder 流用)、 ただし匿名性検証 + データ整形は人手要</div></li>
+        <li><span class="ax-name">データ責任</span><span class="ax-mark bad">2</span><div class="ax-note">経営数字 = 最高機密、 漏洩で全顧客信頼喪失。 匿名化 + RLS 厳格化必須、 開発負担増</div></li>
+        <li><span class="ax-name">販売チャネル先決</span><span class="ax-mark mid">3</span><div class="ax-note">商工会 / 建設業協会 / アトツギコミュ経由が現実的、 紹介芋蔓式と整合だが N=10 までの初期営業重い</div></li>
+        <li><span class="ax-name">撤退条件の具体性</span><span class="ax-mark good">5</span><div class="ax-note">N=10 (6 ヶ月で達成しないと撤退) で明確、 ジョーカー枠は撤退基準厳格にして時間箱化必須</div></li>
+        <li><span class="ax-name">サブスク正当性</span><span class="ax-mark good">5</span><div class="ax-note">継続データ更新 + 業界平均は変動 + 蓄積で価値増 = 三要素揃う、 サブスク最適</div></li>
+        <li><span class="ax-name">5 年継続意欲</span><span class="ax-mark good">4</span><div class="ax-note">issue-finder と統合可、 業界深掘りデータ資産化、 飽きにくい</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="verdict-grid">
+    <div class="verdict-box accent">
+      <h3>🃏 ジョーカー (当たれば一発、 鶏卵問題)</h3>
+      <p>NRR 5/5 + サブスク正当性 5/5 + 撤退条件 5/5 で「成立すれば最強、 成立しないと即終了」。 競合不在 (ブルーオーシャン)。 issue-finder の応用 = 開発負担軽。 6 ヶ月で N=10 達成 / 未達 で明確に判定可能 = ジョーカー枠として時間箱化 ◎。</p>
+    </div>
+    <div class="verdict-box warn">
+      <h3>⚠️ リスク / 撤退条件</h3>
+      <p>データ責任 2/5 で漏洩 1 件で全終了、 匿名化 + RLS + 監査ログ 開発負担大。 撤退条件: 6 ヶ月で N=10 未達 / データ漏洩 / 数字提出拒否率 70%+ → 即撤退。 紹介芋蔓 + 商工会経由の初期営業重さで挫折リスク。</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P17</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P18: 候補 #09 施主体験デザイン · 基礎 6 軸 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #09 · 基礎 6 軸</span>
+  <span class="slide-num">18 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #09 / 差別化強だが施主側 SaaS = チャネル不明</div>
+      <h1>施主体験デザイン (タイムラプス + NPS)</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">営業 / 集客</span>
+      <span class="badge ai-badge">1 / 4 AI</span>
+      <span class="badge score-14">Score 14</span>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-box">
+      <h3>痛み (主顧客の本音)</h3>
+      <p>工事中の施主に進捗が見えず不安。 完成後の口コミも依頼しないと取れない、 紹介率上がらない (= 工務店の生命線)。 「いい家建てたのに次に繋がらない」 が業界共通課題。</p>
+    </div>
+    <div class="summary-box">
+      <h3>商品像</h3>
+      <p>現場カメラで自動タイムラプス → 施主に LINE で日次共有、 完成後 NPS 自動取得 → 紹介依頼自動化。 物件ごと「成長アルバム」 を施主に贈呈、 口コミ動画化。</p>
+    </div>
+    <div class="summary-box">
+      <h3>価格仮 / 単価</h3>
+      <p>SaaS 月 ¥1-2 万 / 物件、 BPaaS カメラ設置代行 ¥5-10 万 / 件。 物件単位課金で完了時離脱、 NRR 低リスク。</p>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">基礎 6 軸 (5 段階)</div>
+      <div class="radar-chart" data-values="4,5,3,4,3,4" data-labels="ANDPAD回避|士業回避|主顧客|痛み|労力|費用対効果"></div>
+      <div class="radar-total">合計 23 / 30</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">ANDPAD 競合回避度</span><span class="ax-mark good">○</span><div class="ax-note">施主体験領域、 ANDPAD は施工側のみ = 競合回避 ○</div></li>
+        <li><span class="ax-name">士業領域回避度</span><span class="ax-mark good">◎</span><div class="ax-note">完全圏外、 マーケ / 営業領域</div></li>
+        <li><span class="ax-name">主顧客整合度</span><span class="ax-mark mid">△</span><div class="ax-note">施主側 SaaS = 工務店を間接的にしか動かせない、 アトツギ「いいね」 だが社長決裁が遠い</div></li>
+        <li><span class="ax-name">痛み解決度</span><span class="ax-mark good">○</span><div class="ax-note">紹介率 = 工務店生命線、 痛みは深い。 ただし「やればいい」 と分かっていて手が回らない領域</div></li>
+        <li><span class="ax-name">労力軸</span><span class="ax-mark mid">△</span><div class="ax-note">カメラ設置 + 物件ごとセットアップ = 工数線形リスク、 BPaaS は人雇える単価ギリギリ</div></li>
+        <li><span class="ax-name">費用対効果説明度</span><span class="ax-mark good">○</span><div class="ax-note">紹介 1 件 = 営業コスト ¥0 で受注 ¥1000-3000 万、 ROI 計算明確</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P18</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P19: 候補 #09 施主体験デザイン · 追加 10 観点 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #09 · 追加 10 観点</span>
+  <span class="slide-num">19 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #09 (続) / 追加 10 観点 + 撤退条件</div>
+      <h1>施主体験デザイン (タイムラプス + NPS)</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">営業 / 集客</span>
+      <span class="badge score-14">Score 14</span>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">追加 10 観点 (5 段階)</div>
+      <div class="radar-chart" data-values="2,4,3,3,2,3,2,3,2,3" data-labels="NRR|現状運用|三層|プレモータム|天井|データ責任|チャネル|撤退条件|サブスク|5年継続"></div>
+      <div class="radar-total">合計 27 / 50</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">継続性 NRR</span><span class="ax-mark bad">2</span><div class="ax-note">物件単位課金 = 完成後離脱、 NRR 60-80%、 次物件まで休眠</div></li>
+        <li><span class="ax-name">真の競合 = 現状運用</span><span class="ax-mark good">4</span><div class="ax-note">紹介依頼忘れ / 進捗連絡漏れ = 大きな空白、 施主体験 SaaS 不在 = 真空地帯</div></li>
+        <li><span class="ax-name">三層分離</span><span class="ax-mark mid">3</span><div class="ax-note">営業 + 現場監督が使う、 アトツギは意義理解、 社長 / 妻は無関心</div></li>
+        <li><span class="ax-name">離脱パスのプレモータム</span><span class="ax-mark mid">3</span><div class="ax-note">チャネル不明 = 離脱予測困難、 「施主側に直接売る」 → 「工務店経由で施主に渡す」 で方針揺れる</div></li>
+        <li><span class="ax-name">運用負荷の天井</span><span class="ax-mark bad">2</span><div class="ax-note">カメラ設置 = 物件ごと工数線形、 N=10 / 月 で頭打ち、 自動化困難な物理工程あり</div></li>
+        <li><span class="ax-name">データ責任</span><span class="ax-mark mid">3</span><div class="ax-note">施主個人情報 + 現場映像 = 中機密、 施主同意フロー設計要</div></li>
+        <li><span class="ax-name">販売チャネル先決</span><span class="ax-mark bad">2</span><div class="ax-note">「施主か工務店か」 で販売チャネル設計が真っ二つ、 5/22 北原氏面談前提 (紹介芋蔓 = 工務店側) と矛盾しがち</div></li>
+        <li><span class="ax-name">撤退条件の具体性</span><span class="ax-mark mid">3</span><div class="ax-note">NPS 効果測定 = 物件完成後 6-12 ヶ月 = 撤退判定遅い、 9 ヶ月で MRR ¥30K 未達 → 撤退</div></li>
+        <li><span class="ax-name">サブスク正当性</span><span class="ax-mark bad">2</span><div class="ax-note">物件単発 = 買い切りでも OK、 サブスク正当性弱 → 受託モデルに寄る</div></li>
+        <li><span class="ax-name">5 年継続意欲</span><span class="ax-mark mid">3</span><div class="ax-note">差別化強だが業界向き合い軽 (ハード絡みで疲弊リスク)、 5 年継続意欲中</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="verdict-grid">
+    <div class="verdict-box info">
+      <h3>💡 ユニーク (差別化最強)</h3>
+      <p>真の競合 4/5 + 痛み解決 4/5 + 費用対効果 4/5 で「やる価値はある」、 競合不在 (誰もやってない真空地帯)。 紹介率訴求が「儲かってない」 工務店に響く。</p>
+    </div>
+    <div class="verdict-box warn">
+      <h3>⚠️ リスク / 撤退条件</h3>
+      <p>NRR 2/5 + 天井 2/5 + チャネル 2/5 + サブスク 2/5 = サブスク SaaS としては成立困難、 受託 / 物件単発モデルに寄る。 撤退条件: 9 ヶ月で MRR ¥30K 未達 / 工務店紹介経路確立できず / カメラ設置単価 ¥10 万超で BPaaS 不成立 → 撤退。</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P19</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P20: 候補 #10 カスタム住宅シミュレーター · 基礎 6 軸 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #10 · 基礎 6 軸</span>
+  <span class="slide-num">20 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #10 / 建材選定支援、 建材屋経由 販売ルートあり</div>
+      <h1>カスタム住宅シミュレーター</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">業務支援 / AI</span>
+      <span class="badge ai-badge">1 / 4 AI</span>
+      <span class="badge score-14">Score 14</span>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-box">
+      <h3>痛み (主顧客の本音)</h3>
+      <p>施主との打ち合わせで建材選び (床材 / 壁材 / キッチン) が紙カタログ + 想像。 イメージ齟齬で後でクレーム、 仕様変更で工期延伸 + 利益圧迫。</p>
+    </div>
+    <div class="summary-box">
+      <h3>商品像</h3>
+      <p>AI が間取り + 建材を 3D ビジュアル化 + 価格自動計算、 施主タブレット操作可。 建材屋カタログ連携で「これとこれの組み合わせなら ¥XX 万」 即時提示。</p>
+    </div>
+    <div class="summary-box">
+      <h3>価格仮 / 単価</h3>
+      <p>SaaS 月 ¥3-5 万 (基本機能) / BPaaS 物件ごと ¥10-30 万 (建材選定代行)。 建材屋へのリベートモデルも検討可。</p>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">基礎 6 軸 (5 段階)</div>
+      <div class="radar-chart" data-values="4,5,4,4,3,4" data-labels="ANDPAD回避|士業回避|主顧客|痛み|労力|費用対効果"></div>
+      <div class="radar-total">合計 24 / 30</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">ANDPAD 競合回避度</span><span class="ax-mark good">○</span><div class="ax-note">設計 / プレゼン領域、 ANDPAD は工事進行管理が主 = 競合回避 ○</div></li>
+        <li><span class="ax-name">士業領域回避度</span><span class="ax-mark good">◎</span><div class="ax-note">完全圏外、 建築設計領域 (建築士領域とも軽接触するが SaaS は問題なし)</div></li>
+        <li><span class="ax-name">主顧客整合度</span><span class="ax-mark good">○</span><div class="ax-note">アトツギ営業力強化、 建材屋経由ルート (5/11 Deep Research 接点 ◎×◎ 主戦場) と整合</div></li>
+        <li><span class="ax-name">痛み解決度</span><span class="ax-mark good">○</span><div class="ax-note">打ち合わせ齟齬 → クレーム → 利益圧迫 = 大きな痛み、 ROI 明確</div></li>
+        <li><span class="ax-name">労力軸</span><span class="ax-mark mid">△</span><div class="ax-note">3D エンジン + 建材データベース構築 = 重い、 SaaS 開発工数大で「ひとりで全部」 限界近い</div></li>
+        <li><span class="ax-name">費用対効果説明度</span><span class="ax-mark good">○</span><div class="ax-note">クレーム削減 + 単価アップ (アップグレード提案) + 工期短縮で多面 ROI、 説明しやすい</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P20</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P21: 候補 #10 カスタム住宅シミュレーター · 追加 10 観点 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #10 · 追加 10 観点</span>
+  <span class="slide-num">21 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #10 (続) / 追加 10 観点 + 撤退条件</div>
+      <h1>カスタム住宅シミュレーター</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">業務支援 / AI</span>
+      <span class="badge score-14">Score 14</span>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">追加 10 観点 (5 段階)</div>
+      <div class="radar-chart" data-values="3,4,4,3,2,3,4,3,3,3" data-labels="NRR|現状運用|三層|プレモータム|天井|データ責任|チャネル|撤退条件|サブスク|5年継続"></div>
+      <div class="radar-total">合計 32 / 50</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">継続性 NRR</span><span class="ax-mark mid">3</span><div class="ax-note">物件単位だがリピート工務店なら継続、 NRR 100% 程度、 建材 DB 更新で離脱コスト中</div></li>
+        <li><span class="ax-name">真の競合 = 現状運用</span><span class="ax-mark good">4</span><div class="ax-note">紙カタログ + 想像 = 大きな空白、 既存 3D ソフト (ZWCAD / Vectorworks) は高価で中小工務店は持ってない</div></li>
+        <li><span class="ax-name">三層分離</span><span class="ax-mark good">4</span><div class="ax-note">アトツギ + 営業 + 施主の 3 者直撃、 社長は「いいね」 評価、 妻 (経理) はリベート確認</div></li>
+        <li><span class="ax-name">離脱パスのプレモータム</span><span class="ax-mark mid">3</span><div class="ax-note">既存 3D ソフト導入で離脱可、 建材屋リベートで囲い込み可能</div></li>
+        <li><span class="ax-name">運用負荷の天井</span><span class="ax-mark bad">2</span><div class="ax-note">3D エンジン + 建材 DB 開発負担大、 ひとり開発で N=30 まで、 建材屋ごとカタログ整備で労力線形リスク</div></li>
+        <li><span class="ax-name">データ責任</span><span class="ax-mark mid">3</span><div class="ax-note">物件設計データ + 施主見積 = 中機密、 セキュリティ要設計</div></li>
+        <li><span class="ax-name">販売チャネル先決</span><span class="ax-mark good">4</span><div class="ax-note">建材屋経由販売ルート ◎ (5/11 Deep Research 接点 ◎×◎ 主戦場)、 建材屋リベートモデルで双方 win-win</div></li>
+        <li><span class="ax-name">撤退条件の具体性</span><span class="ax-mark mid">3</span><div class="ax-note">3D 開発工数で先に手詰まり、 6 ヶ月で MVP 完成しない / MRR ¥30K 未達 → 撤退</div></li>
+        <li><span class="ax-name">サブスク正当性</span><span class="ax-mark mid">3</span><div class="ax-note">買い切りでも OK と思われがち、 建材 DB 継続更新 + リベート分配でサブスク正当化</div></li>
+        <li><span class="ax-name">5 年継続意欲</span><span class="ax-mark mid">3</span><div class="ax-note">3D エンジン開発の労力負担で飽きリスク、 建材屋ルート活かせるが業界深掘り中</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="verdict-grid">
+    <div class="verdict-box info">
+      <h3>💡 ユニーク (チャネル強・開発負担大)</h3>
+      <p>三層分離 4/5 + チャネル 4/5 + 痛み 4/5 で「需要 + 販売ルート両揃い」、 建材屋経由販売 (5/11 Deep Research 接点 ◎×◎ 主戦場) と完全整合。 リベートモデルで建材屋も win-win。</p>
+    </div>
+    <div class="verdict-box warn">
+      <h3>⚠️ リスク / 撤退条件</h3>
+      <p>労力軸 △ + 運用天井 2/5 で 3D エンジン + 建材 DB 開発がひとり開発の限界突破リスク。 撤退条件: 6 ヶ月で MVP 完成しない / 建材屋提携 1 社目取れない / 開発工数 200h 超 → 撤退。 「ひとりで全部作れる職人」 ポジ限界の試金石。</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P21</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P22: 候補 #11 ESG 可視化 SaaS · 基礎 6 軸 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #11 · 基礎 6 軸</span>
+  <span class="slide-num">22 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #11 / 規制ドリブン、 大手寄り、 中小工務店動機弱</div>
+      <h1>ESG 可視化 SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">経営可視化</span>
+      <span class="badge ai-badge">1 / 4 AI</span>
+      <span class="badge score-13">Score 13</span>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-box">
+      <h3>痛み (主顧客の本音)</h3>
+      <p>上場企業 / 大手元請から ESG 報告書を要求される下請工務店、 紙ベース対応で時間ロス。 中小工務店本体は規制圏外で動機ゼロ。</p>
+    </div>
+    <div class="summary-box">
+      <h3>商品像</h3>
+      <p>CO2 排出 / 建材リサイクル率 / 多様性 を業務データから自動集計、 ESG 報告書テンプレ出力。 元請の指定フォーマットに自動変換。</p>
+    </div>
+    <div class="summary-box">
+      <h3>価格仮 / 単価</h3>
+      <p>SaaS 月 ¥2-3 万 / BPaaS 報告書代行 月 ¥5-10 万。 規制施行と紐付け、 対応必須化で売る。</p>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">基礎 6 軸 (5 段階)</div>
+      <div class="radar-chart" data-values="5,4,2,2,3,2" data-labels="ANDPAD回避|士業回避|主顧客|痛み|労力|費用対効果"></div>
+      <div class="radar-total">合計 18 / 30</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">ANDPAD 競合回避度</span><span class="ax-mark good">◎</span><div class="ax-note">ESG 領域、 ANDPAD 完全圏外</div></li>
+        <li><span class="ax-name">士業領域回避度</span><span class="ax-mark good">○</span><div class="ax-note">会計士 ESG 監査と近接するが、 集計 SaaS は士業圏外</div></li>
+        <li><span class="ax-name">主顧客整合度</span><span class="ax-mark bad">×</span><div class="ax-note">5/22 北原氏「大手下請けは除外」 と明示 → ESG 規制対象 = 大手下請工務店向け = 主顧客と矛盾</div></li>
+        <li><span class="ax-name">痛み解決度</span><span class="ax-mark bad">×</span><div class="ax-note">中小工務店本体は規制圏外、 動機ゼロ。 規制ドリブン = 強制でないと買わない</div></li>
+        <li><span class="ax-name">労力軸</span><span class="ax-mark mid">△</span><div class="ax-note">SaaS 主だが ESG 定義 + 報告書テンプレ整備 + 規制追従で開発負担大</div></li>
+        <li><span class="ax-name">費用対効果説明度</span><span class="ax-mark bad">×</span><div class="ax-note">規制対応 = 守りの投資、 「儲かってない」 中小工務店に売れない</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P22</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P23: 候補 #11 ESG 可視化 SaaS · 追加 10 観点 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #11 · 追加 10 観点</span>
+  <span class="slide-num">23 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #11 (続) / 追加 10 観点 + 撤退条件</div>
+      <h1>ESG 可視化 SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">経営可視化</span>
+      <span class="badge score-13">Score 13</span>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">追加 10 観点 (5 段階)</div>
+      <div class="radar-chart" data-values="4,3,2,3,4,3,2,4,4,3" data-labels="NRR|現状運用|三層|プレモータム|天井|データ責任|チャネル|撤退条件|サブスク|5年継続"></div>
+      <div class="radar-total">合計 32 / 50</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">継続性 NRR</span><span class="ax-mark good">4</span><div class="ax-note">規制継続 = 離脱コスト中、 ただし元請変更で離脱可</div></li>
+        <li><span class="ax-name">真の競合 = 現状運用</span><span class="ax-mark mid">3</span><div class="ax-note">Excel + 手動報告、 大手 ESG SaaS (高価) は中小工務店は使えず空白あり</div></li>
+        <li><span class="ax-name">三層分離</span><span class="ax-mark bad">2</span><div class="ax-note">社長 + アトツギのみ、 妻 / 経理は無関心 = 三層直撃せず</div></li>
+        <li><span class="ax-name">離脱パスのプレモータム</span><span class="ax-mark mid">3</span><div class="ax-note">大手 ESG ツールに移行されやすい、 元請が指定ツール変えると即離脱</div></li>
+        <li><span class="ax-name">運用負荷の天井</span><span class="ax-mark good">4</span><div class="ax-note">100% SaaS、 N=100 可、 ただし規制追従の開発工数が常時発生</div></li>
+        <li><span class="ax-name">データ責任</span><span class="ax-mark mid">3</span><div class="ax-note">経営数字 + 環境データ = 中機密、 セキュリティ要設計</div></li>
+        <li><span class="ax-name">販売チャネル先決</span><span class="ax-mark bad">2</span><div class="ax-note">大手元請の下請工務店経由 = 主顧客 (アトツギ + 展示会層) と矛盾、 紹介芋蔓不可</div></li>
+        <li><span class="ax-name">撤退条件の具体性</span><span class="ax-mark good">4</span><div class="ax-note">規制施行タイミング明確、 6 ヶ月で MRR ¥30K 未達 / 規制延期 → 撤退</div></li>
+        <li><span class="ax-name">サブスク正当性</span><span class="ax-mark good">4</span><div class="ax-note">規制継続 + 報告書年次更新 = サブスク正当性あり</div></li>
+        <li><span class="ax-name">5 年継続意欲</span><span class="ax-mark mid">3</span><div class="ax-note">規制依存で意欲中、 規制延期で詰む</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="verdict-grid">
+    <div class="verdict-box warn">
+      <h3>⚠️ 主顧客整合矛盾</h3>
+      <p>5/22 北原氏面談「大手下請けは除外」 明示と矛盾。 規制ドリブンで「強制でないと買わない」 = 中小工務店本体に売る動機なし。 ESG 規制対象工務店は大手系列で主顧客から外れる。</p>
+    </div>
+    <div class="verdict-box warn">
+      <h3>⚠️ リスク / 撤退条件</h3>
+      <p>主顧客 ×× + 痛み ×× + 費用対効果 × = 三重矛盾、 売れない。 撤退条件: 主顧客から外れる時点で即撤退、 ESG 規制延期 / 大手 ESG SaaS 中小向け版投入 → 即撤退。 比較参照として #04 経営状況可視化 と差分明確化。</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P23</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P24: 候補 #12 プロジェクトリスク予測 SaaS · 基礎 6 軸 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #12 · 基礎 6 軸</span>
+  <span class="slide-num">24 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #12 / データ前提、 N=10 までの立ち上がり困難</div>
+      <h1>プロジェクトリスク予測 SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">経営可視化 / AI</span>
+      <span class="badge ai-badge">1 / 4 AI</span>
+      <span class="badge score-13">Score 13</span>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-box">
+      <h3>痛み (主顧客の本音)</h3>
+      <p>工期遅延 / 利益圧迫が発生してから気づく、 早期警告がない。 アトツギ「データで判断したい」 欲求はあるが、 そもそもデータが揃ってない。</p>
+    </div>
+    <div class="summary-box">
+      <h3>商品像</h3>
+      <p>過去物件データ → AI が「この物件は工期遅延 ¥X 万損失リスク」 早期警告。 ANDPAD データ連携可だが ANDPAD 非ユーザー狙いで差別化。</p>
+    </div>
+    <div class="summary-box">
+      <h3>価格仮 / 単価</h3>
+      <p>SaaS 月 ¥3-5 万。 データ前提 = 価値証明遅延 (蓄積 6-12 ヶ月で精度確保)、 初期立ち上がり困難。</p>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">基礎 6 軸 (5 段階)</div>
+      <div class="radar-chart" data-values="3,5,3,3,4,3" data-labels="ANDPAD回避|士業回避|主顧客|痛み|労力|費用対効果"></div>
+      <div class="radar-total">合計 21 / 30</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">ANDPAD 競合回避度</span><span class="ax-mark mid">△</span><div class="ax-note">ANDPAD データ連携 = 依存リスク、 非 ANDPAD 工務店向けは差別化可 (主顧客の半数程度)</div></li>
+        <li><span class="ax-name">士業領域回避度</span><span class="ax-mark good">◎</span><div class="ax-note">完全圏外</div></li>
+        <li><span class="ax-name">主顧客整合度</span><span class="ax-mark mid">△</span><div class="ax-note">アトツギ「データ判断したい」 だが社長は「勘で十分」 で温度差、 やる気層には刺さる</div></li>
+        <li><span class="ax-name">痛み解決度</span><span class="ax-mark mid">△</span><div class="ax-note">早期警告ニーズはあるが、 そもそもデータがない状態から始まる = 価値証明 6-12 ヶ月</div></li>
+        <li><span class="ax-name">労力軸</span><span class="ax-mark good">○</span><div class="ax-note">SaaS だが AI モデル学習 + データ整形 + ANDPAD 連携で開発負担あり</div></li>
+        <li><span class="ax-name">費用対効果説明度</span><span class="ax-mark mid">△</span><div class="ax-note">損失回避訴求、 ただし定量化に過去データ必要 = 初回商談で説明困難</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P24</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P25: 候補 #12 プロジェクトリスク予測 SaaS · 追加 10 観点 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #12 · 追加 10 観点</span>
+  <span class="slide-num">25 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #12 (続) / 追加 10 観点 + 撤退条件</div>
+      <h1>プロジェクトリスク予測 SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">経営可視化 / AI</span>
+      <span class="badge score-13">Score 13</span>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">追加 10 観点 (5 段階)</div>
+      <div class="radar-chart" data-values="4,3,3,3,4,3,3,3,4,3" data-labels="NRR|現状運用|三層|プレモータム|天井|データ責任|チャネル|撤退条件|サブスク|5年継続"></div>
+      <div class="radar-total">合計 33 / 50</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">継続性 NRR</span><span class="ax-mark good">4</span><div class="ax-note">蓄積で精度向上 = 離脱コスト中-高、 ただし「予測当たらない」 で離脱リスク</div></li>
+        <li><span class="ax-name">真の競合 = 現状運用</span><span class="ax-mark mid">3</span><div class="ax-note">現場監督の勘 + Excel、 経験値で代替されがち</div></li>
+        <li><span class="ax-name">三層分離</span><span class="ax-mark mid">3</span><div class="ax-note">アトツギ + 現場監督、 社長は「勘で十分」 で温度差</div></li>
+        <li><span class="ax-name">離脱パスのプレモータム</span><span class="ax-mark mid">3</span><div class="ax-note">ANDPAD に予測機能追加で即終了、 「予測当たらない」 で離脱されやすい</div></li>
+        <li><span class="ax-name">運用負荷の天井</span><span class="ax-mark good">4</span><div class="ax-note">100% SaaS、 AI API 従量、 N=100 可</div></li>
+        <li><span class="ax-name">データ責任</span><span class="ax-mark mid">3</span><div class="ax-note">物件データ + 工期 / 利益情報 = 中機密</div></li>
+        <li><span class="ax-name">販売チャネル先決</span><span class="ax-mark mid">3</span><div class="ax-note">アトツギ経由、 ANDPAD 非ユーザー狙い、 ただし「データなし」 で初回断られやすい</div></li>
+        <li><span class="ax-name">撤退条件の具体性</span><span class="ax-mark mid">3</span><div class="ax-note">データ前提 = 撤退タイミング遅い、 12 ヶ月で MRR ¥30K 未達 / 予測精度 60% 未満 → 撤退</div></li>
+        <li><span class="ax-name">サブスク正当性</span><span class="ax-mark good">4</span><div class="ax-note">継続予測 + データ蓄積 = サブスク正当性あり</div></li>
+        <li><span class="ax-name">5 年継続意欲</span><span class="ax-mark mid">3</span><div class="ax-note">AI 競合多 (汎用 BI ツール / Domo / ChatGPT) で飽きリスク</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="verdict-grid">
+    <div class="verdict-box warn">
+      <h3>⚠️ 検討 (データ前提・立ち上がり困難)</h3>
+      <p>痛み △ + 費用対効果 △ + 立ち上がり 6-12 ヶ月 = 投資対効果見えない期間が長すぎる。 AI モデル開発負担 + ANDPAD 連携でフルスタック能力が試される割に主顧客動機弱。</p>
+    </div>
+    <div class="verdict-box warn">
+      <h3>⚠️ リスク / 撤退条件</h3>
+      <p>「データがそもそもない」 で初回商談詰まる、 過去物件 Excel 整備代行 (BPaaS) が前提 → 工数線形。 撤退条件: 12 ヶ月で MRR ¥30K 未達 / 予測精度 60% 未満 / ANDPAD 類似機能追加 → 撤退。</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P25</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P26: 候補 #13 競合インテリ SaaS · 基礎 6 軸 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #13 · 基礎 6 軸</span>
+  <span class="slide-num">26 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #13 / 面白いが工務店「儲かってない」 と費用対効果不適合</div>
+      <h1>競合インテリ SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">営業 / 集客</span>
+      <span class="badge ai-badge">1 / 4 AI</span>
+      <span class="badge score-11">Score 11</span>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-box">
+      <h3>痛み (主顧客の本音)</h3>
+      <p>地域競合工務店の動向 (新商品 / 価格 / マーケ手法 / 求人) が見えない。 アトツギ「他社が何やってるか知りたい」 欲求はあるが切迫感ゼロ。</p>
+    </div>
+    <div class="summary-box">
+      <h3>商品像</h3>
+      <p>同地域工務店のホームページ / SNS / 求人情報 / 業界紙を AI で監視 → アトツギに週次サマリ。 issue-finder の応用。</p>
+    </div>
+    <div class="summary-box">
+      <h3>価格仮 / 単価</h3>
+      <p>SaaS 月 ¥1-3 万。 情報財 = 「儲かってない」 工務店には売れない、 「あれば便利」 止まり。</p>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">基礎 6 軸 (5 段階)</div>
+      <div class="radar-chart" data-values="5,5,2,2,4,1" data-labels="ANDPAD回避|士業回避|主顧客|痛み|労力|費用対効果"></div>
+      <div class="radar-total">合計 19 / 30</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">ANDPAD 競合回避度</span><span class="ax-mark good">◎</span><div class="ax-note">完全圏外</div></li>
+        <li><span class="ax-name">士業領域回避度</span><span class="ax-mark good">◎</span><div class="ax-note">完全圏外</div></li>
+        <li><span class="ax-name">主顧客整合度</span><span class="ax-mark bad">×</span><div class="ax-note">アトツギ「知りたい」 だが社長は無関心、 三層直撃せず、 やる気層も「優先順位低」</div></li>
+        <li><span class="ax-name">痛み解決度</span><span class="ax-mark bad">×</span><div class="ax-note">「あれば便利」 止まり、 切迫感ゼロ。 競合監視で売上は直接上がらない</div></li>
+        <li><span class="ax-name">労力軸</span><span class="ax-mark good">○</span><div class="ax-note">SaaS、 issue-finder 流用可、 開発工数最小</div></li>
+        <li><span class="ax-name">費用対効果説明度</span><span class="ax-mark bad">××</span><div class="ax-note">「儲かってない」 工務店に「情報財」 売れない、 ROI 説明困難 = 最大の障壁</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P26</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P27: 候補 #13 競合インテリ SaaS · 追加 10 観点 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #13 · 追加 10 観点</span>
+  <span class="slide-num">27 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #13 (続) / 追加 10 観点 + 撤退条件</div>
+      <h1>競合インテリ SaaS</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">営業 / 集客</span>
+      <span class="badge score-11">Score 11</span>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">追加 10 観点 (5 段階)</div>
+      <div class="radar-chart" data-values="3,2,2,2,5,4,2,3,2,2" data-labels="NRR|現状運用|三層|プレモータム|天井|データ責任|チャネル|撤退条件|サブスク|5年継続"></div>
+      <div class="radar-total">合計 27 / 50</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">継続性 NRR</span><span class="ax-mark mid">3</span><div class="ax-note">継続監視必要だが、 効果実感弱で離脱されやすい、 NRR 80% 程度</div></li>
+        <li><span class="ax-name">真の競合 = 現状運用</span><span class="ax-mark bad">2</span><div class="ax-note">放置で困らない領域、 「知らなくても受注できてる」 と言われる</div></li>
+        <li><span class="ax-name">三層分離</span><span class="ax-mark bad">2</span><div class="ax-note">アトツギのみ、 社長 / 妻 / 営業は無関心 = 三層直撃せず</div></li>
+        <li><span class="ax-name">離脱パスのプレモータム</span><span class="ax-mark bad">2</span><div class="ax-note">「面白いが買わない」 → 即離脱、 試用後 3 ヶ月で 50%+ 離脱予想</div></li>
+        <li><span class="ax-name">運用負荷の天井</span><span class="ax-mark good">5</span><div class="ax-note">100% SaaS、 N=100+ 容易、 issue-finder 流用で運用負荷ほぼゼロ</div></li>
+        <li><span class="ax-name">データ責任</span><span class="ax-mark good">4</span><div class="ax-note">公開情報集約のみ、 機密度低 = リスク低</div></li>
+        <li><span class="ax-name">販売チャネル先決</span><span class="ax-mark bad">2</span><div class="ax-note">主顧客整合弱でチャネル設計困難、 紹介芋蔓不可</div></li>
+        <li><span class="ax-name">撤退条件の具体性</span><span class="ax-mark mid">3</span><div class="ax-note">3 ヶ月で MRR ¥30K 未達 → 即撤退、 撤退判断速い</div></li>
+        <li><span class="ax-name">サブスク正当性</span><span class="ax-mark bad">2</span><div class="ax-note">継続必要だが「あれば便利」 で買い切り感、 サブスク正当性弱</div></li>
+        <li><span class="ax-name">5 年継続意欲</span><span class="ax-mark bad">2</span><div class="ax-note">面白いが業界深掘り軽、 飽きやすい</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="verdict-grid">
+    <div class="verdict-box warn">
+      <h3>⚠️ 不採用候補 (費用対効果矛盾)</h3>
+      <p>主顧客 ×× + 痛み ×× + 費用対効果 ×× = 三重否定。 5/22 北原氏「工務店業界は儲かってない → 費用対効果説明が特に重要」 と完全矛盾。 issue-finder 流用しやすいが、 ツール側機能として組み込む程度に留める。</p>
+    </div>
+    <div class="verdict-box warn">
+      <h3>⚠️ リスク / 撤退条件</h3>
+      <p>Score 11 で最下位、 商品単独でなく #02 コンテンツ自動生成 SaaS のオプション機能 (競合分析モジュール) として組み込む方向が現実的。 単独立ち上げは即撤退判断。</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P27</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P28: 候補 #14 集客 BPaaS (Google ビジネス代行) · 基礎 6 軸 [過去・撤退判定済] -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #14 · 基礎 6 軸 / 撤退判定済</span>
+  <span class="slide-num">28 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #14 / 過去候補・撤退判定済 (5/20 ultrathink 労力線形 NG)</div>
+      <h1>集客 BPaaS (Google ビジネス代行)</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">営業 / BPaaS</span>
+      <span class="badge ai-badge">過去</span>
+      <span class="badge score-15">Score 15</span>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-box">
+      <h3>痛み (主顧客の本音)</h3>
+      <p>Google ビジネスプロフィール (旧 マイビジネス) の運用が手薄、 口コミ返信 / 写真投稿 / 投稿更新が継続困難。 痛み実在、 Google 集客は工務店の生命線。</p>
+    </div>
+    <div class="summary-box">
+      <h3>商品像</h3>
+      <p>Google ビジネスプロフィール代行 BPaaS。 口コミ返信 + 写真投稿 + 月次レポート + 検索順位改善。 アトツギ × やる気層に刺さるはずだった。</p>
+    </div>
+    <div class="summary-box">
+      <h3>価格仮 / 単価</h3>
+      <p>BPaaS 月 ¥3-5 万 / 件。 ただし人件費控除後 ¥1.5-2.5 万 / 件 = 人雇える単価未満で労力線形 NG が確定。</p>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">基礎 6 軸 (5 段階)</div>
+      <div class="radar-chart" data-values="5,5,3,4,1,4" data-labels="ANDPAD回避|士業回避|主顧客|痛み|労力|費用対効果"></div>
+      <div class="radar-total">合計 22 / 30</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">ANDPAD 競合回避度</span><span class="ax-mark good">◎</span><div class="ax-note">完全圏外、 マーケ領域</div></li>
+        <li><span class="ax-name">士業領域回避度</span><span class="ax-mark good">◎</span><div class="ax-note">完全圏外</div></li>
+        <li><span class="ax-name">主顧客整合度</span><span class="ax-mark mid">△</span><div class="ax-note">アトツギ層中、 やる気層には刺さるが、 5/22 北原氏「やる気あればもう自分でやってる」 という指摘あり</div></li>
+        <li><span class="ax-name">痛み解決度</span><span class="ax-mark good">○</span><div class="ax-note">Google 集客は工務店の生命線、 痛み実在</div></li>
+        <li><span class="ax-name">労力軸</span><span class="ax-mark bad">××</span><div class="ax-note">★ 完全工数線形、 BPaaS は人件費控除後の利益で評価 → 月 ¥3-5 万 × 50% 利益 = ¥1.5-2.5 万 / 件、 人雇える単価未満。 撤退判定の決め手</div></li>
+        <li><span class="ax-name">費用対効果説明度</span><span class="ax-mark good">○</span><div class="ax-note">Google 集客効果は明確、 受注 1 件で年間費用回収可</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P28</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P29: 候補 #14 集客 BPaaS · 追加 10 観点 [過去・撤退判定済] -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #14 · 追加 10 観点 / 撤退判定済</span>
+  <span class="slide-num">29 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #14 (続) / 過去・撤退判定済 (5/20 ultrathink)</div>
+      <h1>集客 BPaaS (Google ビジネス代行)</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">営業 / BPaaS</span>
+      <span class="badge score-15">Score 15</span>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">追加 10 観点 (5 段階)</div>
+      <div class="radar-chart" data-values="5,4,3,4,1,3,3,5,5,1" data-labels="NRR|現状運用|三層|プレモータム|天井|データ責任|チャネル|撤退条件|サブスク|5年継続"></div>
+      <div class="radar-total">合計 34 / 50</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">継続性 NRR</span><span class="ax-mark good">5</span><div class="ax-note">毎月稼働継続必須、 離脱で Google プロフィール劣化 = NRR 120%+ 期待できた</div></li>
+        <li><span class="ax-name">真の競合 = 現状運用</span><span class="ax-mark good">4</span><div class="ax-note">放置の工務店多い = 痛み大、 代行業者は乱立だが工務店特化少ない</div></li>
+        <li><span class="ax-name">三層分離</span><span class="ax-mark mid">3</span><div class="ax-note">アトツギ + 営業、 社長 / 妻は無関心</div></li>
+        <li><span class="ax-name">離脱パスのプレモータム</span><span class="ax-mark good">4</span><div class="ax-note">代行業者多数で消耗戦、 ただし手間が掛かる領域 = 離脱抵抗大</div></li>
+        <li><span class="ax-name">運用負荷の天井</span><span class="ax-mark bad">1</span><div class="ax-note">★ 工数線形、 ひとり 5-10 件で頭打ち、 スケール不可。 5/23 労力軸自覚で確定</div></li>
+        <li><span class="ax-name">データ責任</span><span class="ax-mark mid">3</span><div class="ax-note">Google ログイン情報 = 高機密、 漏洩リスク大、 RLS + 監査ログ必須</div></li>
+        <li><span class="ax-name">販売チャネル先決</span><span class="ax-mark mid">3</span><div class="ax-note">アトツギ + 紹介、 ただし主顧客「やる気あれば自分でやってる」 で買う動機弱</div></li>
+        <li><span class="ax-name">撤退条件の具体性</span><span class="ax-mark good">5</span><div class="ax-note">★ 5/20 ultrathink で「労力線形」 で撤退判定済 = 撤退条件最強・明確</div></li>
+        <li><span class="ax-name">サブスク正当性</span><span class="ax-mark good">5</span><div class="ax-note">継続稼働必須、 サブスク正当性 ◎</div></li>
+        <li><span class="ax-name">5 年継続意欲</span><span class="ax-mark bad">1</span><div class="ax-note">★ BPaaS は飽き + 疲弊リスク最大、 5 年継続意欲ゼロ。 撤退判定の補強</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="verdict-grid">
+    <div class="verdict-box warn">
+      <h3>✗ 撤退判定済 (2026-05-20 ultrathink)</h3>
+      <p>NRR 5/5 + 撤退条件 5/5 + サブスク 5/5 と表面評価高いが、 ★ 労力軸 ×× + 運用天井 1/5 + 5 年継続 1/5 = BPaaS の本質的限界が三重。 「労力 vs 自動化トレードオフ軸」 (5/23 masatoman) で「工数線形 NG / 人雇える単価未満」 確定 → 不採用。</p>
+    </div>
+    <div class="verdict-box warn">
+      <h3>⚠️ 比較参照価値</h3>
+      <p>Score 15 でも「労力軸」 一発で撤退判定 = 4 AI 合議スコアの限界示す事例。 #08 ベンチマーク経営 DB と対比 (Score 15 / 同じ点でも撤退判定 vs ジョーカー枠 = 評価軸の重み付け重要)。 P32 マトリクスで比較材料化。</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P29</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P30: 候補 #15 リード CRM · 基礎 6 軸 [過去・撤退判定済] -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #15 · 基礎 6 軸 / 撤退判定済</span>
+  <span class="slide-num">30 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #15 / 過去候補・撤退判定済 (痛み未検証 + ANDPAD CRM 競合)</div>
+      <h1>リード CRM (商談-見積-契約)</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">業務支援</span>
+      <span class="badge ai-badge">過去</span>
+      <span class="badge score-15">Score 15</span>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-box">
+      <h3>痛み (主顧客の本音)</h3>
+      <p>問い合わせ → 商談 → 見積 → 契約 のリードを管理できてない、 工務店専用 CRM 不在。 ただし痛み N=1 未検証 (友人 N=1「個人客 9 割」 = リードフロー薄い可能性)。</p>
+    </div>
+    <div class="summary-box">
+      <h3>商品像</h3>
+      <p>工務店特化 CRM、 問い合わせフォーム連動 + 見積生成 + ステータス管理。 ANDPAD CRM 機能と完全競合可能性、 差別化弱。</p>
+    </div>
+    <div class="summary-box">
+      <h3>価格仮 / 単価</h3>
+      <p>SaaS 月 ¥1-3 万。 ANDPAD CRM 機能追加で即終了リスク、 設計時点で勝てない構造。</p>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">基礎 6 軸 (5 段階)</div>
+      <div class="radar-chart" data-values="2,5,3,2,4,3" data-labels="ANDPAD回避|士業回避|主顧客|痛み|労力|費用対効果"></div>
+      <div class="radar-total">合計 19 / 30</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">ANDPAD 競合回避度</span><span class="ax-mark bad">××</span><div class="ax-note">★ ANDPAD CRM と完全競合可能性、 ANDPAD 主機能と被る = 撤退判定の決め手</div></li>
+        <li><span class="ax-name">士業領域回避度</span><span class="ax-mark good">◎</span><div class="ax-note">完全圏外</div></li>
+        <li><span class="ax-name">主顧客整合度</span><span class="ax-mark mid">△</span><div class="ax-note">アトツギ「リード管理したい」 だが N=1 未検証、 友人「個人客 9 割」 でリードフロー薄</div></li>
+        <li><span class="ax-name">痛み解決度</span><span class="ax-mark bad">××</span><div class="ax-note">★ 痛み未検証 = 推測ベース。 友人 N=1 で「Excel + 紙で足りてる」 確認、 切迫感ゼロ</div></li>
+        <li><span class="ax-name">労力軸</span><span class="ax-mark good">○</span><div class="ax-note">SaaS、 開発工数中</div></li>
+        <li><span class="ax-name">費用対効果説明度</span><span class="ax-mark mid">△</span><div class="ax-note">見積生成は便利だが ROI 中、 ANDPAD CRM と比較されると価格優位のみで戦うことに</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P30</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P31: 候補 #15 リード CRM · 追加 10 観点 [過去・撤退判定済] -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 #15 · 追加 10 観点 / 撤退判定済</span>
+  <span class="slide-num">31 / 33</span>
+
+  <div class="product-header">
+    <div class="title-block">
+      <div class="cand-no">候補 #15 (続) / 過去・撤退判定済 (痛み未検証 + ANDPAD CRM 競合)</div>
+      <h1>リード CRM (商談-見積-契約)</h1>
+    </div>
+    <div class="badges">
+      <span class="badge cat-badge">業務支援</span>
+      <span class="badge score-15">Score 15</span>
+    </div>
+  </div>
+
+  <div class="radar-section">
+    <div class="radar-wrapper">
+      <div class="radar-title">追加 10 観点 (5 段階)</div>
+      <div class="radar-chart" data-values="4,3,3,2,4,3,3,5,4,2" data-labels="NRR|現状運用|三層|プレモータム|天井|データ責任|チャネル|撤退条件|サブスク|5年継続"></div>
+      <div class="radar-total">合計 33 / 50</div>
+    </div>
+    <div class="axis-eval">
+      <ol>
+        <li><span class="ax-name">継続性 NRR</span><span class="ax-mark good">4</span><div class="ax-note">CRM 移行困難 = 離脱コスト中、 ただし ANDPAD 移行で離脱</div></li>
+        <li><span class="ax-name">真の競合 = 現状運用</span><span class="ax-mark mid">3</span><div class="ax-note">Excel + 紙、 ANDPAD CRM + Salesforce + HubSpot 等多数</div></li>
+        <li><span class="ax-name">三層分離</span><span class="ax-mark mid">3</span><div class="ax-note">アトツギ + 営業</div></li>
+        <li><span class="ax-name">離脱パスのプレモータム</span><span class="ax-mark bad">2</span><div class="ax-note">★ ANDPAD CRM に移行で即終了 = 構造的に勝てない</div></li>
+        <li><span class="ax-name">運用負荷の天井</span><span class="ax-mark good">4</span><div class="ax-note">100% SaaS、 N=100 可</div></li>
+        <li><span class="ax-name">データ責任</span><span class="ax-mark mid">3</span><div class="ax-note">顧客情報 + 商談履歴 = 中機密</div></li>
+        <li><span class="ax-name">販売チャネル先決</span><span class="ax-mark mid">3</span><div class="ax-note">アトツギ + 紹介、 ANDPAD 非ユーザー狙い (限定的)</div></li>
+        <li><span class="ax-name">撤退条件の具体性</span><span class="ax-mark good">5</span><div class="ax-note">★ 5/23 議論で「痛み未検証 + ANDPAD 競合」 で撤退判定済 = 撤退条件明確</div></li>
+        <li><span class="ax-name">サブスク正当性</span><span class="ax-mark good">4</span><div class="ax-note">CRM 継続、 蓄積で価値増</div></li>
+        <li><span class="ax-name">5 年継続意欲</span><span class="ax-mark bad">2</span><div class="ax-note">ANDPAD と消耗戦リスク、 業界深掘り意欲弱</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="verdict-grid">
+    <div class="verdict-box warn">
+      <h3>✗ 撤退判定済 (2026-05-23 議論)</h3>
+      <p>Score 15 で表面評価良いが、 ★ ANDPAD 回避 ×× + 痛み未検証 ×× + プレモータム 2/5 で **「構造的に勝てない + 痛み実在性不明」** 二重否定。 5/23 議論で撤退判定確定 → 不採用。</p>
+    </div>
+    <div class="verdict-box warn">
+      <h3>⚠️ 比較参照価値</h3>
+      <p>Score 15 でも「ANDPAD 回避」 + 「痛み未検証」 で撤退判定 = 表面 Score の限界事例。 #14 集客 BPaaS と並んで「Score 15 でも別軸で不採用」 のパターン例。 #01 OB 10 年管理 SaaS (OB 顧客 = ANDPAD 未注力) との対比で「ANDPAD 回避度」 の重要性証明。</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P31</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P32: 評価マトリクス (15 候補 + 撤退済 3 件) -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">最終整理 · 評価マトリクス</span>
+  <span class="slide-num">32 / 33</span>
+
+  <div class="eyebrow">15 候補 + 撤退済 3 件 一覧</div>
+
+  <h1>評価マトリクス<br><span style="font-size:14px; color:var(--accent); display:block; margin-top:6px;">基礎 6 軸 + 追加 10 観点 + 採用判定</span></h1>
+
+  <p class="lead">全 18 案件 (新候補 13 + 過去 2 + 撤退済 3) を基礎 / 追加 / 合計 / 採用判定で並べる。 合計 60+ で本命圏、 50-60 で検討圏、 50 未満は不採用。 ただし 4 AI スコアと「労力軸」「ANDPAD 回避」 で別軸不採用 (Score 15 でも撤退判定済 = #14 #15) が発生する点が今回の最大の発見。</p>
+
+  <table class="overview-table">
+    <thead>
+      <tr>
+        <th style="width:4%;">#</th>
+        <th style="width:22%;">候補名</th>
+        <th style="width:7%;">基礎/30</th>
+        <th style="width:7%;">追加/50</th>
+        <th style="width:7%;">合計/80</th>
+        <th style="width:11%;">カテゴリ</th>
+        <th style="width:14%;">採用判定</th>
+        <th>決定要因</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="star">
+        <td>01</td><td><strong>OB 10 年管理 SaaS</strong> ⭐</td><td class="score s16">27</td><td class="score s16">43</td><td class="score s16">70</td><td class="cat">データ蓄積</td><td><strong style="color:var(--good)">✅ 本命採用</strong></td><td>4 AI 合意 + リフォーム ROI 圧倒的</td>
+      </tr>
+      <tr>
+        <td>03</td><td><strong>展示会リード育成 SaaS</strong></td><td class="score s16">28</td><td class="score s16">40</td><td class="score s16">68</td><td class="cat">営業 / 集客</td><td><strong style="color:var(--good)">✅ 次点採用</strong></td><td>JAPAN BUILD 12/2-4 + 助成金 2/3 連動</td>
+      </tr>
+      <tr>
+        <td>04</td><td><strong>経営状況可視化レポート SaaS</strong></td><td class="score s16">23</td><td class="score s16">41</td><td class="score s16">64</td><td class="cat">経営可視化</td><td><strong style="color:var(--accent)">💡 副軸採用</strong></td><td>NRR 5/5 + サブスク正当性 5/5 最強</td>
+      </tr>
+      <tr>
+        <td>07</td><td><strong>暗黙知継承 AI</strong></td><td class="score s16">24</td><td class="score s16">39</td><td class="score s16">63</td><td class="cat">業務支援 / AI</td><td><strong style="color:var(--info)">💡 保留枠</strong></td><td>三層直撃 + 5 年継続 5/5、 ただし測定困難</td>
+      </tr>
+      <tr>
+        <td>02</td><td><strong>コンテンツ自動生成 SaaS</strong></td><td class="score s16">25</td><td class="score s16">37</td><td class="score s16">62</td><td class="cat">営業 / 集客</td><td><strong style="color:var(--info)">💡 保留枠</strong></td><td>ドッグフード可、 ただし費用対効果 △</td>
+      </tr>
+      <tr>
+        <td>05</td><td><strong>LINE 日報 SaaS</strong></td><td class="score s16">25</td><td class="score s16">37</td><td class="score s16">62</td><td class="cat">業務支援</td><td><strong style="color:var(--info)">💡 保留枠</strong></td><td>一次情報あり、 ただし ANDPAD 消耗戦</td>
+      </tr>
+      <tr>
+        <td>08</td><td><strong>ベンチマーク経営 DB SaaS</strong> 🃏</td><td class="score s15">23</td><td class="score s16">39</td><td class="score s16">62</td><td class="cat">経営可視化 / 🃏</td><td><strong style="color:var(--accent)">🃏 ジョーカー枠</strong></td><td>6 ヶ月で N=10 達成 / 未達 で明確判定</td>
+      </tr>
+      <tr>
+        <td>10</td><td>カスタム住宅シミュレーター</td><td class="score s14">24</td><td class="score s14">32</td><td class="score s14">56</td><td class="cat">業務支援 / AI</td><td><strong style="color:var(--muted)">⚠️ 検討</strong></td><td>建材屋ルート ◎ だが開発負担大</td>
+      </tr>
+      <tr class="past">
+        <td>14</td><td>集客 BPaaS (Google ビジネス代行)</td><td class="score s15">22</td><td class="score s14">34</td><td class="score s14">56</td><td class="cat">営業 / BPaaS</td><td><strong style="color:var(--warn)">✗ 撤退判定済</strong></td><td><strong>★ Score 15 でも労力軸 ×× で不採用</strong></td>
+      </tr>
+      <tr>
+        <td>06</td><td>AI 商談議事録 SaaS</td><td class="score s14">23</td><td class="score s14">32</td><td class="score s14">55</td><td class="cat">業務支援 / AI</td><td><strong style="color:var(--muted)">⚠️ 検討</strong></td><td>汎用すぎ、 #01 連携機能化が現実的</td>
+      </tr>
+      <tr>
+        <td>12</td><td>プロジェクトリスク予測 SaaS</td><td class="score s14">21</td><td class="score s14">33</td><td class="score s14">54</td><td class="cat">経営可視化 / AI</td><td><strong style="color:var(--muted)">⚠️ 検討</strong></td><td>データ前提、 立ち上がり 6-12 ヶ月困難</td>
+      </tr>
+      <tr class="past">
+        <td>15</td><td>リード CRM (商談-見積-契約)</td><td class="score s15">19</td><td class="score s14">33</td><td class="score s14">52</td><td class="cat">業務支援</td><td><strong style="color:var(--warn)">✗ 撤退判定済</strong></td><td><strong>★ Score 15 でも ANDPAD 回避 ×× で不採用</strong></td>
+      </tr>
+      <tr>
+        <td>11</td><td>ESG 可視化 SaaS</td><td class="score s13">18</td><td class="score s14">32</td><td class="score s14">50</td><td class="cat">経営可視化</td><td><strong style="color:var(--warn)">✗ 不採用</strong></td><td>主顧客整合矛盾 (大手下請向け)</td>
+      </tr>
+      <tr>
+        <td>09</td><td>施主体験デザイン</td><td class="score s14">23</td><td class="score s14">27</td><td class="score s14">50</td><td class="cat">営業 / 集客</td><td><strong style="color:var(--warn)">✗ 不採用</strong></td><td>NRR / 天井 / チャネル / サブスク 全 2/5</td>
+      </tr>
+      <tr>
+        <td>13</td><td>競合インテリ SaaS</td><td class="score s11">19</td><td class="score s11">27</td><td class="score s11">46</td><td class="cat">営業 / 集客</td><td><strong style="color:var(--warn)">✗ 不採用</strong></td><td>費用対効果矛盾、 #02 オプション化のみ</td>
+      </tr>
+      <tr style="background:rgba(217,160,102,0.08); font-style:italic;">
+        <td>—</td><td>見積もり PDF 管理 (5/22 示唆 → 5/23 撤退)</td><td class="score">—</td><td class="score">—</td><td class="score">—</td><td class="cat">業務支援</td><td><strong style="color:var(--warn)">✗ 撤退済</strong></td><td>5/22 v7.0 で示唆 → 5/23 議論で撤退判断</td>
+      </tr>
+      <tr style="background:rgba(217,160,102,0.08); font-style:italic;">
+        <td>—</td><td>ANDPAD 補完 BPaaS</td><td class="score">—</td><td class="score">—</td><td class="score">—</td><td class="cat">業務支援 / BPaaS</td><td><strong style="color:var(--warn)">✗ 撤退済</strong></td><td>労力線形 + 元請統制で撤退</td>
+      </tr>
+      <tr style="background:rgba(217,160,102,0.08); font-style:italic;">
+        <td>—</td><td>現場写真整理代行</td><td class="score">—</td><td class="score">—</td><td class="score">—</td><td class="cat">業務支援 / BPaaS</td><td><strong style="color:var(--warn)">✗ 撤退済</strong></td><td>ANDPAD 完全競合で撤退</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn" style="margin-top:14px;">
+    <strong>⚠️ 最大の発見: Score 15 でも撤退判定済 2 件 (#14 #15)</strong>: 4 AI 合議スコアは「労力軸」「ANDPAD 回避度」 を軽視している。 #14 は労力線形 NG、 #15 は ANDPAD CRM 完全競合で構造的に勝てない。 5/23 masatoman 判断軸「労力 vs 自動化トレードオフ」 + 5/22 北原氏「ANDPAD ど真ん中は避ける」 で別軸不採用が確定。 → 採用判定では Score より「労力軸」「ANDPAD 回避」「主顧客整合」 を優先する。
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P32</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P33: 推奨順位 + v8.0 化アクション -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">最終結論 · 推奨順位 + v8.0 化アクション</span>
+  <span class="slide-num">33 / 33</span>
+
+  <div class="eyebrow">v8.0 化 決定事項</div>
+
+  <h1>推奨順位 + v8.0 化アクション<br><span style="font-size:14px; color:var(--accent); display:block; margin-top:6px;">本命 #01 OB 10 年管理 / 次点 #03 展示会 / 副軸 #04 経営可視化 / ジョーカー #08 ベンチマーク DB</span></h1>
+
+  <h2>推奨順位 (4 段構え)</h2>
+  <div class="frame-grid" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="frame-box" style="background:var(--good-soft); border-left:4px solid var(--good);">
+      <h3 style="color:var(--good);">🥇 本命 / メイン商品</h3>
+      <p><strong>#01 OB 10 年管理 SaaS</strong> ⭐</p>
+      <p style="font-size:11px; line-height:1.5;">基礎 27 + 追加 43 = 70/80。 4 AI 全員合意 + リフォーム 1 件 ¥100-500 万 ROI 圧倒的。 アトツギ層 + 儲かってる層 ど真ん中。 5/23-25 商品設計 v8.0 化、 9-10 月 MVP β、 12 月 1 社目契約目標。</p>
+    </div>
+    <div class="frame-box" style="background:var(--good-soft); border-left:4px solid var(--good);">
+      <h3 style="color:var(--good);">🥈 次点 / 並走商品</h3>
+      <p><strong>#03 展示会リード育成 SaaS</strong></p>
+      <p style="font-size:11px; line-height:1.5;">基礎 28 + 追加 40 = 68/80。 JAPAN BUILD 12/2-4 + 展示会出展助成事業 (¥150 万 / 2/3 助成) 連動。 7-8 月第 5 回応募、 8/1-8/14 締切。 12 月出展で #01 と並べてデモ駆動。</p>
+    </div>
+    <div class="frame-box" style="background:var(--accent-soft); border-left:4px solid var(--accent);">
+      <h3 style="color:var(--accent);">🥉 副軸 / NRR 強化</h3>
+      <p><strong>#04 経営状況可視化レポート SaaS</strong></p>
+      <p style="font-size:11px; line-height:1.5;">基礎 23 + 追加 41 = 64/80。 NRR 5/5 + サブスク正当性 5/5 で「離脱しない SaaS」 設計の本命候補。 #01 と同梱販売 (アドオン月 ¥1 万) でアトツギ満足度向上。 ジョーカー失敗時の保険にもなる。</p>
+    </div>
+    <div class="frame-box" style="background:var(--accent-soft); border-left:4px solid var(--accent);">
+      <h3 style="color:var(--accent);">🃏 ジョーカー枠 (6 ヶ月時間箱)</h3>
+      <p><strong>#08 ベンチマーク経営 DB SaaS</strong></p>
+      <p style="font-size:11px; line-height:1.5;">基礎 23 + 追加 39 = 62/80。 競合不在 + issue-finder 流用 + 撤退条件 5/5 で「成立すれば最強 / N=10 未達で即撤退」。 6 ヶ月で N=10 達成判定、 #01 顧客に「業界比較してみる?」 アップセル可。</p>
+    </div>
+  </div>
+
+  <h2>v8.0 化アクション スケジュール</h2>
+  <table class="overview-table" style="font-size:11px;">
+    <thead>
+      <tr>
+        <th style="width:14%;">時期</th>
+        <th style="width:8%;">主軸</th>
+        <th>具体アクション</th>
+        <th style="width:18%;">完了条件 / 判定</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>5/23-25 (週末)</strong></td><td>#01</td>
+        <td>商品設計 docs v8.0 化 (現行 v7.0 → 「#01 OB 10 年管理 SaaS をメイン + #03 #04 副軸 + #08 ジョーカー」 で 4 段構え明示)。 portfolio memory [[customer-target]] [[saas-pricing]] v8.0 化。 demo-gallery 8 デモのうち #01 直結 (client-progress / call-memo) を強調、 残り低優先化</td>
+        <td>v8.0 docs commit + memory 5 件更新</td>
+      </tr>
+      <tr>
+        <td><strong>5/26-31</strong></td><td>#01</td>
+        <td>公庫融資 100 万円 申込 (個人事業主のうちに、 6 月末入金目標)。 #01 を実需例として申込書に記載</td>
+        <td>申込書提出 / 受領証</td>
+      </tr>
+      <tr>
+        <td><strong>6 月</strong></td><td>#01 / #03</td>
+        <td>友人雪だるま N=2-3 追加 (大工知人 / 設計事務所 / 建材屋経由)。 #01 OB 顧客 10 年管理痛みの再検証 + 展示会層 (#03) アクセス先確認。 6/25 住宅デー関与判定 + 設計事務所経営者 1 件ヒアリング</td>
+        <td>N=3 達成 / #01 痛み確証</td>
+      </tr>
+      <tr>
+        <td><strong>6-7 月</strong></td><td>—</td>
+        <td>たましん価値創造事業部 Step 1-3 (既取引渉外担当者経由)、 Step 3 訪問本番。 北原氏 8/22 中間報告アポ確定。 必要なら合同会社設立 (5/22 北原氏 Q2 結果次第)</td>
+        <td>たましん Step 3 完了 / 北原氏アポ確定</td>
+      </tr>
+      <tr>
+        <td><strong>7-8 月</strong></td><td>#03</td>
+        <td><strong>展示会出展助成事業 第 5 回 (8/1-8/14)</strong> 応募準備 + 提出 (JAPAN BUILD TOKYO 12/2-4 出展用)。 助成限度額 ¥150 万 / 助成率 2/3。 GビズID プライム + J グランツ 電子申請。 経営分析 03-3283-7388 事前相談</td>
+        <td>応募書類提出 / 受理</td>
+      </tr>
+      <tr>
+        <td><strong>8 月</strong></td><td>#01</td>
+        <td>北原氏 8/22 中間報告。 v8.0 化進捗 + 友人 N=4-5 結果 + 助成金応募結果 を報告</td>
+        <td>北原氏面談実施 / 紹介芋蔓追加</td>
+      </tr>
+      <tr>
+        <td><strong>9-10 月</strong></td><td>#01</td>
+        <td>#01 OB 10 年管理 SaaS の MVP β 版作成 (Next.js + Supabase + Stripe)。 アトツギ 1-2 社で試用、 BPaaS 初期データ移行 1 社目を実施。 #04 経営可視化アドオン同時設計</td>
+        <td>β リリース / 試用 1-2 社</td>
+      </tr>
+      <tr>
+        <td><strong>10-12 月</strong></td><td>#01 / #08</td>
+        <td>#01 で 1-2 社契約完了、 #08 ジョーカー枠 6 ヶ月時間箱 開始 (N=10 判定)。 認定支援機関税理士提携 / IT 導入支援事業者コンソーシアム参画手続き本格検討 (補助金本格訴求 解禁)</td>
+        <td>#01 契約 1-2 社 / #08 N=10 達成判定</td>
+      </tr>
+      <tr style="background:rgba(58,124,165,0.08);">
+        <td><strong>12/2-4</strong></td><td>#03</td>
+        <td><strong>JAPAN BUILD TOKYO 出展</strong> (#03 展示会リード育成 SaaS デモ + #01 OB 10 年管理 SaaS 同時展示)。 展示会層リード獲得 50-100 件目標</td>
+        <td>展示会出展 / リード 50+ 件</td>
+      </tr>
+      <tr>
+        <td><strong>2027/1-4</strong></td><td>#01</td>
+        <td>3-5 社契約累計、 MRR ¥30-60 万 達成判定 (4/30 ルートゴール、 §9)。 #08 N=10 未達なら即撤退、 達成なら本格化</td>
+        <td>MRR ¥30-60 万 達成判定</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="verdict-grid" style="margin-top:14px;">
+    <div class="verdict-box good">
+      <h3>✅ 採用判定軸 (今回確立)</h3>
+      <p><strong>1) 主顧客整合 (5/22 北原氏)</strong> = アトツギ + 展示会層 + 儲かってる層、 大手下請け除外 / <strong>2) ANDPAD 回避度</strong> = ど真ん中は避ける / <strong>3) 労力軸</strong> = 工数線形 NG / 人雇える単価 (¥10 万 / 件以上) / <strong>4) 費用対効果</strong> = 「儲かってない」 工務店に説明可能 / <strong>5) サブスク正当性</strong> = データ蓄積 + 業務停止 + 継続更新</p>
+    </div>
+    <div class="verdict-box accent">
+      <h3>🃏 ジョーカー時間箱 (6 ヶ月)</h3>
+      <p>#08 ベンチマーク経営 DB SaaS は **6 ヶ月で N=10 達成 / 未達** の明確基準で時間箱化。 達成なら主軸候補に昇格、 未達なら即撤退。 issue-finder 流用で開発負担軽 = 失敗コスト最小。 #01 顧客に「業界比較」 アップセルとして組み込めば成功率上昇</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店向け B2B 商品 v8.0 化 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 候補評価 / P33 (最終)</span>
+  </div>
+</div>
+
+<section class="ref-links">
+  <h2>📚 参考リンク集 (v8.0 評価マトリクスの根拠)</h2>
+
+  <div class="ref-group">
+    <h3>① 主軸 #01 OB 10 年管理 SaaS / 副軸 #04 経営可視化 — 実需根拠</h3>
+    <ul>
+      <li>🔗 <a href="https://www.mlit.go.jp/" target="_blank" rel="noopener">国土交通省 (住宅着工統計 / リフォーム市場規模)</a> <span class="desc">— OB 顧客 LTV × リフォーム機会の実需試算根拠</span></li>
+      <li>🔗 <a href="https://www.chusho.meti.go.jp/" target="_blank" rel="noopener">中小企業庁</a> <span class="desc">— 中小工務店の月次試算表活用率 30% 以下 (#04 痛み根拠)</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>② 次点 #03 展示会リード育成 SaaS — JAPAN BUILD 連動</h3>
+    <ul>
+      <li>🔗 <a href="https://www.japan-build.jp/tokyo/ja-jp/" target="_blank" rel="noopener">JAPAN BUILD TOKYO 2026 公式</a> <span class="desc">— 12/2-4 東京ビッグサイト、 #03 主要販売チャネル</span></li>
+      <li>🔗 <a href="https://www.tokyo-kosha.or.jp/support/josei/jigyo/tenjikai/r8/index.html" target="_blank" rel="noopener">令和 8 年度 展示会出展助成事業 (公社)</a> <span class="desc">— ¥150 万 / 助成率 2/3 / 全 10 回、 第 5-6 回応募で 12 月出展可</span></li>
+      <li>🔗 <a href="https://www.tokyo-kosha.or.jp/support/josei/jigyo/tenjikai/r8/h0iqeh000000fv8i-att/R8_tenjikai_boshuuyoukou_v1-1.pdf" target="_blank" rel="noopener">R8 募集要項 PDF v1.1</a> <span class="desc">— 申請要件 6 件 / 助成対象展示会 10 要件</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>③ B 群 #07 暗黙知継承 AI — 事業承継軸</h3>
+    <ul>
+      <li>🔗 <a href="https://atotsugi-koshien.go.jp/" target="_blank" rel="noopener">アトツギ甲子園 公式 (中小機構)</a> <span class="desc">— 5/22 北原氏「事業承継」 軸の主要接点ルート</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>④ B 群 #02 コンテンツ自動生成 SaaS — ドッグフード実証中</h3>
+    <ul>
+      <li>🔗 <a href="https://masatoman.net/" target="_blank" rel="noopener">masatoman.net</a> <span class="desc">— night-writer routine で月 30+ 本生成稼働中、 SEO 検索流入の実証データ源</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>⑤ 撤退判定 #14 集客 BPaaS — 比較参照</h3>
+    <ul>
+      <li>🔗 <a href="https://www.google.com/business/" target="_blank" rel="noopener">Google ビジネスプロフィール 公式</a> <span class="desc">— #14 BPaaS 対象サービス、 労力線形 NG で撤退判定済 (5/20 ultrathink)</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>⑥ 公的支援機関 (申請要件 + 補助金)</h3>
+    <ul>
+      <li>🔗 <a href="https://www.keieiryoku.jp/consult/" target="_blank" rel="noopener">無料経営分析 申込 (03-3283-7388)</a> <span class="desc">— R8 申請要件 (4) の起点</span></li>
+      <li>🔗 <a href="https://www.jgrants-portal.go.jp/" target="_blank" rel="noopener">Jグランツ 公式</a> <span class="desc">— R8 助成金 電子申請</span></li>
+      <li>🔗 <a href="https://it-shien.smrj.go.jp/" target="_blank" rel="noopener">IT 導入補助金 公式</a> <span class="desc">— 通常枠 1/2、 商品確定後 10-12 月以降に本格訴求</span></li>
+      <li>🔗 <a href="https://www.startup-station.jp/" target="_blank" rel="noopener">東京創業ステーション</a> <span class="desc">— 5/22 北原氏面談 + 8/22 中間報告 拠点</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>⑦ 関連 docs (本リポ内)</h3>
+    <ul>
+      <li>🔗 <a href="./v8.0-hearing-resource-2026-05-23.html" target="_blank" rel="noopener">v8.0 ヒアリング資料 A4 8p (相手に渡す)</a> <span class="desc">— 6 候補 (A 群 #01/#03/#04 + B 群 #07/#02/#10) を抽出</span></li>
+      <li>🔗 <a href="./v8.0-hearing-design-2026-05-23.html" target="_blank" rel="noopener">v8.0 ヒアリング 内部設計</a> <span class="desc">— 打診先 6 件 + シグナル基準 + NG パターン</span></li>
+      <li>🔗 <a href="./japan-build-tokyo-2026-todo-2026-05-23.html" target="_blank" rel="noopener">JAPAN BUILD TOKYO 出展 TODO リスト</a> <span class="desc">— 助成金 R8 応募 + 出展準備 タイムライン</span></li>
+    </ul>
+  </div>
+</section>
+
+<script>
+(function() {
+  var XMLNS = 'http://www.w3.org/2000/svg';
+
+  function point(cx, cy, r, n, i, value, max) {
+    var a = -Math.PI / 2 + (i * 2 * Math.PI / n);
+    var v = value / max;
+    return [cx + r * v * Math.cos(a), cy + r * v * Math.sin(a)];
+  }
+
+  function angleOf(n, i) { return -Math.PI / 2 + (i * 2 * Math.PI / n); }
+
+  function el(tag, attrs) {
+    var node = document.createElementNS(XMLNS, tag);
+    for (var k in attrs) node.setAttribute(k, attrs[k]);
+    return node;
+  }
+
+  function renderRadar(host) {
+    var values = host.dataset.values.split(',').map(parseFloat);
+    var labels = host.dataset.labels.split('|');
+    var n = values.length;
+    var MAX = 5;
+    var size = n <= 6 ? 220 : 230;
+    var cx = size / 2, cy = size / 2;
+    var r = n <= 6 ? 72 : 68;
+
+    var svg = el('svg', {
+      width: size, height: size,
+      viewBox: '0 0 ' + size + ' ' + size,
+      'aria-hidden': 'true'
+    });
+
+    // grid (5 concentric polygons)
+    for (var level = 1; level <= MAX; level++) {
+      var gpts = [];
+      for (var i = 0; i < n; i++) {
+        gpts.push(point(cx, cy, r, n, i, level, MAX).join(','));
+      }
+      svg.appendChild(el('polygon', {
+        points: gpts.join(' '),
+        fill: 'none',
+        stroke: '#e5dfd2',
+        'stroke-width': level === MAX ? '1.2' : '0.5'
+      }));
+    }
+
+    // axis lines
+    for (var i = 0; i < n; i++) {
+      var p = point(cx, cy, r, n, i, MAX, MAX);
+      svg.appendChild(el('line', {
+        x1: cx, y1: cy, x2: p[0], y2: p[1],
+        stroke: '#d6cfc2', 'stroke-width': '0.6'
+      }));
+    }
+
+    // data polygon
+    var dpts = [];
+    for (var i = 0; i < n; i++) {
+      dpts.push(point(cx, cy, r, n, i, values[i], MAX).join(','));
+    }
+    svg.appendChild(el('polygon', {
+      points: dpts.join(' '),
+      fill: '#b85c3a',
+      'fill-opacity': '0.22',
+      stroke: '#b85c3a',
+      'stroke-width': '1.6',
+      'stroke-linejoin': 'round'
+    }));
+
+    // data points
+    for (var i = 0; i < n; i++) {
+      var p = point(cx, cy, r, n, i, values[i], MAX);
+      svg.appendChild(el('circle', {
+        cx: p[0], cy: p[1], r: '2.4',
+        fill: '#b85c3a'
+      }));
+    }
+
+    // labels
+    for (var i = 0; i < n; i++) {
+      var a = angleOf(n, i);
+      var lx = cx + (r + 12) * Math.cos(a);
+      var ly = cy + (r + 12) * Math.sin(a);
+      var cosA = Math.cos(a);
+      var anchor = 'middle';
+      if (cosA > 0.3) anchor = 'start';
+      else if (cosA < -0.3) anchor = 'end';
+      var text = el('text', {
+        x: lx, y: ly,
+        'font-size': n <= 6 ? '9.5' : '8',
+        fill: '#1f1c18',
+        'text-anchor': anchor,
+        'dominant-baseline': 'middle'
+      });
+      text.textContent = labels[i] || '';
+      svg.appendChild(text);
+    }
+
+    host.appendChild(svg);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.radar-chart').forEach(renderRadar);
+  });
+})();
+</script>
+
+</body>
+</html>

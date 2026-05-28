@@ -22,6 +22,13 @@ export function middleware(req: NextRequest) {
       ) {
         return NextResponse.next()
       }
+      // share URL は token クエリ一致時のみ通す (招待リンク、 ページ側で noindex)
+      if (
+        pathname === "/lab/tools/issue-finder/share" &&
+        req.nextUrl.searchParams.get("token") === process.env.ISSUE_FINDER_SHARE_TOKEN
+      ) {
+        return NextResponse.next()
+      }
       return new NextResponse("Not Found", { status: 404 })
     }
   }

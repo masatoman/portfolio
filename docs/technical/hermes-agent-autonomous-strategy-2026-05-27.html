@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hermes-agent 自律エージェント戦略 — 2026-05-27</title>
+<style>
+  :root {
+    --bg: #0f0f14;
+    --slide-bg: #16161e;
+    --border: #2a2a3a;
+    --text: #e8e8f0;
+    --dim: #7a7a9a;
+    --accent: #6c63ff;
+    --accent2: #00d4aa;
+    --orange: #ff9f43;
+    --red: #ff6b6b;
+    --green: #51cf66;
+    --blue: #339af0;
+    --gradient1: linear-gradient(135deg, #6c63ff, #00d4aa);
+    --gradient2: linear-gradient(135deg, #ff9f43, #ff6b6b);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  /* ─── Slide System ─── */
+  .slide {
+    width: 100%;
+    max-width: 960px;
+    min-height: 540px;
+    margin: 32px auto;
+    background: var(--slide-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 56px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .slide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--gradient1);
+  }
+  .slide-num {
+    position: absolute;
+    bottom: 20px;
+    right: 28px;
+    font-size: 0.75rem;
+    color: var(--dim);
+  }
+
+  /* ─── Cover Slide ─── */
+  .cover { text-align: center; justify-content: center; min-height: 480px; }
+  .cover h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 16px;
+    background: var(--gradient1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cover .subtitle {
+    font-size: 1.05rem;
+    color: var(--dim);
+    margin-bottom: 32px;
+  }
+  .cover .date {
+    font-size: 0.85rem;
+    color: var(--dim);
+  }
+  .badge-row { display: flex; gap: 10px; justify-content: center; margin: 20px 0; flex-wrap: wrap; }
+  .badge {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .badge.purple { background: rgba(108,99,255,0.15); color: var(--accent); border: 1px solid rgba(108,99,255,0.3); }
+  .badge.green { background: rgba(0,212,170,0.15); color: var(--accent2); border: 1px solid rgba(0,212,170,0.3); }
+  .badge.orange { background: rgba(255,159,67,0.15); color: var(--orange); border: 1px solid rgba(255,159,67,0.3); }
+
+  /* ─── Section Title ─── */
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 20px 0 10px;
+    color: var(--accent2);
+  }
+
+  /* ─── Architecture Diagram ─── */
+  .arch-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    margin: 16px 0;
+  }
+  .arch-box .label {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .arch-box .sub { color: var(--dim); margin-left: 20px; }
+  .arch-box .arrow { color: var(--accent2); }
+
+  /* ─── Scenario Cards ─── */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .scenario {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    border-top: 3px solid var(--accent);
+  }
+  .scenario.s2 { border-top-color: var(--accent2); }
+  .scenario.s3 { border-top-color: var(--orange); }
+  .scenario.s4 { border-top-color: var(--blue); }
+  .scenario .num {
+    font-size: 2rem;
+    font-weight: 800;
+    opacity: 0.15;
+    position: absolute;
+    right: 12px;
+    top: 8px;
+  }
+  .scenario h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .scenario p {
+    font-size: 0.82rem;
+    color: var(--dim);
+    line-height: 1.6;
+  }
+
+  /* ─── Chat Mockup ─── */
+  .chat {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+    font-size: 0.85rem;
+  }
+  .chat-msg {
+    margin-bottom: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .chat-msg .avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  .chat-msg.user .avatar { background: var(--accent); color: #fff; }
+  .chat-msg.bot .avatar { background: var(--accent2); color: #000; }
+  .chat-msg.system .avatar { background: var(--border); color: var(--dim); }
+  .chat-bubble {
+    background: var(--slide-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    max-width: 80%;
+    line-height: 1.6;
+  }
+  .chat-msg.bot .chat-bubble { border-color: rgba(0,212,170,0.3); }
+  .chat-time { font-size: 0.7rem; color: var(--dim); margin-top: 2px; }
+
+  /* ─── Comparison Table ─── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.85rem;
+  }
+  th, td {
+    padding: 12px 16px;
+    text-align: left;
+    border: 1px solid var(--border);
+  }
+  th {
+    background: var(--bg);
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── Cost Box ─── */
+  .cost-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .cost-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .cost-card .price {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 8px 0;
+  }
+  .cost-card .price.free { color: var(--green); }
+  .cost-card .price.low { color: var(--accent2); }
+  .cost-card .price.mid { color: var(--orange); }
+  .cost-card .unit { font-size: 0.75rem; color: var(--dim); }
+  .cost-card .name { font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+
+  .total-box {
+    background: rgba(108,99,255,0.08);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 20px 28px;
+    text-align: center;
+    margin: 20px 0;
+  }
+  .total-box .total-price {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .total-box .vs {
+    font-size: 0.85rem;
+    color: var(--dim);
+    margin-top: 4px;
+  }
+  .profit {
+    background: rgba(0,212,170,0.08);
+    border: 2px solid var(--accent2);
+    border-radius: 12px;
+    padding: 16px 24px;
+    text-align: center;
+    margin: 12px 0;
+  }
+  .profit .amount {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent2);
+  }
+
+  /* ─── Timeline ─── */
+  .timeline { margin: 16px 0; }
+  .tl-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  .tl-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: #fff;
+  }
+  .tl-dot.done { background: var(--green); }
+  .tl-dot.next { background: var(--accent); }
+  .tl-dot.future { background: var(--border); color: var(--dim); }
+  .tl-content { flex: 1; }
+  .tl-content .tl-title { font-weight: 600; font-size: 0.95rem; }
+  .tl-content .tl-desc { font-size: 0.8rem; color: var(--dim); margin-top: 2px; }
+  .tl-content .tl-time { font-size: 0.75rem; color: var(--accent); margin-top: 2px; }
+
+  /* ─── Key Message ─── */
+  .key-msg {
+    text-align: center;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  .key-msg .big {
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+  .key-msg .big .hl {
+    background: var(--gradient1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .key-msg .sub { color: var(--dim); font-size: 0.9rem; }
+
+  /* ─── Test Results ─── */
+  .result-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .result-row:last-child { border-bottom: none; }
+  .result-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .result-icon.pass { background: rgba(81,207,102,0.15); color: var(--green); }
+  .result-icon.fail { background: rgba(255,107,107,0.15); color: var(--red); }
+  .result-icon.warn { background: rgba(255,159,67,0.15); color: var(--orange); }
+  .result-text { flex: 1; font-size: 0.88rem; }
+  .result-time { font-size: 0.8rem; color: var(--dim); }
+</style>
+  <meta name="created" content="2026-05-27T11:53:06.678Z">
+</head>
+<body>
+
+<!-- ═══════════════ SLIDE 1: Cover ═══════════════ -->
+<div class="slide cover">
+  <h1>hermes-agent<br>自律 AI エージェント戦略</h1>
+  <div class="subtitle">ローカル実験から BPaaS プロダクトへ</div>
+  <div class="badge-row">
+    <span class="badge purple">hermes-agent 0.14.0</span>
+    <span class="badge green">Ollama ローカル無料</span>
+    <span class="badge orange">OpenRouter ハイブリッド</span>
+  </div>
+  <div class="date">2026-05-27 &nbsp;|&nbsp; masatoman</div>
+  <span class="slide-num">1 / 8</span>
+</div>
+
+<!-- ═══════════════ SLIDE 2: Architecture ═══════════════ -->
+<div class="slide">
+  <h2>本気構成のアーキテクチャ</h2>
+  <div class="arch-box">
+    <div class="label">VPS ($5-20/月)</div>
+    <div class="sub">├── hermes-agent (常駐プロセス)</div>
+    <div class="sub">├── Ollama + qwen3:14b <span style="color:var(--green)">← 簡単なタスク (無料)</span></div>
+    <div class="sub">├── OpenRouter API <span style="color:var(--orange)">← 複雑なタスク (従量)</span></div>
+    <div class="sub">└── Telegram / Slack Bot <span style="color:var(--accent)">← 顧客の入口</span></div>
+    <br>
+    <div class="arrow">    ┌──────────┐</div>
+    <div class="arrow">    │ 自動判定 │ タスク複雑度に応じてローカル / クラウドを振り分け</div>
+    <div class="arrow">    └──────────┘</div>
+  </div>
+  <p style="color:var(--dim);font-size:0.85rem;margin-top:12px;">hermes-agent が自動でタスクの複雑さを判断し、ローカル (無料) とクラウド API (従量) を使い分ける。Mac を閉じても VPS 上で 24 時間稼働。</p>
+  <span class="slide-num">2 / 8</span>
+</div>
+
+<!-- ═══════════════ SLIDE 3: 4 Scenarios ═══════════════ -->
+<div class="slide">
+  <h2>何ができるようになるか</h2>
+  <div class="scenario-grid">
+    <div class="scenario">
+      <h4>1. 寝てる間に動く AI 秘書</h4>
+      <p>夜 23 時に Telegram で「明日の面談資料まとめて」→ hermes が docs/ を検索 → Claude API で要約 → 結果を Telegram に送信。朝スマホを見たら完了している。</p>
+    </div>
+    <div class="scenario s2">
+      <h4>2. 工務店 BPaaS の原型</h4>
+      <p>アトツギが Telegram で現場写真を送信 → 自動リネーム + フォルダ整理 + 日報ドラフト生成。月 3-8 万で売れるサービスがそのまま動く。</p>
+    </div>
+    <div class="scenario s3">
+      <h4>3. 定期レポート自動生成</h4>
+      <p>毎週月曜 9 時に git log + GSC データ + ヒアリング進捗を自動集計 → Telegram に週次レポート送信。Mac 起動不要。</p>
+    </div>
+    <div class="scenario s4">
+      <h4>4. マルチクライアント並列</h4>
+      <p>3 社のアトツギが同時に Telegram で依頼 → セッション分離で並列処理。Claude Code は 1 人しか使えないが、hermes は複数顧客に同時提供できる。</p>
+    </div>
+  </div>
+  <span class="slide-num">3 / 8</span>
+</div>
+
+<!-- ═══════════════ SLIDE 4: Chat Demo ═══════════════ -->
+<div class="slide">
+  <h2>シナリオ 2: 工務店 BPaaS デモ</h2>
+  <div class="chat">
+    <div class="chat-msg user">
+      <div class="avatar">客</div>
+      <div>
+        <div class="chat-bubble">現場の写真 5 枚送ります</div>
+        <div class="chat-time">14:32</div>
+      </div>
+    </div>
+    <div class="chat-msg system">
+      <div class="avatar">⚙</div>
+      <div>
+        <div class="chat-bubble" style="font-size:0.78rem;color:var(--dim)">hermes: 写真受信 → OCR → ローカル 14B でリネーム処理中...</div>
+      </div>
+    </div>
+    <div class="chat-msg bot">
+      <div class="avatar">H</div>
+      <div>
+        <div class="chat-bubble">
+          写真を整理しました:<br><br>
+          📁 2026-05-27_新築A邸/<br>
+          &nbsp;&nbsp;├ 001_基礎配筋.jpg<br>
+          &nbsp;&nbsp;├ 002_型枠設置.jpg<br>
+          &nbsp;&nbsp;├ 003_配管確認.jpg<br>
+          &nbsp;&nbsp;├ 004_アンカーボルト.jpg<br>
+          &nbsp;&nbsp;└ 005_全景.jpg
+        </div>
+        <div class="chat-time">14:33</div>
+      </div>
+    </div>
+    <div class="chat-msg bot">
+      <div class="avatar">H</div>
+      <div>
+        <div class="chat-bubble">
+          日報ドラフトも作りました:<br><br>
+          <strong>5/27 新築 A 邸 基礎工事</strong><br>
+          ・基礎配筋検査 完了<br>
+          ・型枠設置 完了<br>
+          ・配管位置 確認済み<br><br>
+          確認して問題なければ共有します。
+        </div>
+        <div class="chat-time">14:34</div>
+      </div>
+    </div>
+    <div class="chat-msg user">
+      <div class="avatar">客</div>
+      <div>
+        <div class="chat-bubble">👍</div>
+        <div class="chat-time">14:35</div>
+      </div>
+    </div>
+  </div>
+  <p style="text-align:center;color:var(--dim);font-size:0.82rem;">写真送信から日報完成まで 2 分。従来の手作業: 30-60 分。</p>
+  <span class="slide-num">4 / 8</span>
+</div>
+
+<!-- ═══════════════ SLIDE 5: Today's Test Results ═══════════════ -->
+<div class="slide">
+  <h2>本日の実証テスト結果 (2026-05-27)</h2>
+  <p style="color:var(--dim);margin-bottom:16px;">Mac ローカル / Ollama / API キーなし / 完全無料で実施</p>
+
+  <h3>モデル比較</h3>
+  <table>
+    <tr><th>モデル</th><th>サイズ</th><th>ツール呼び出し</th><th>結果</th></tr>
+    <tr><td>qwen2.5-coder:7b</td><td>4.7 GB</td><td>./configure && make を暴発</td><td style="color:var(--red);">失敗</td></tr>
+    <tr><td>qwen2.5-coder:14b</td><td>9.0 GB</td><td>JSON 形式 OK、コマンド不正</td><td style="color:var(--orange);">部分的</td></tr>
+    <tr><td style="color:var(--accent2);font-weight:600;">qwen3:8b</td><td>5.2 GB</td><td>正しいコマンドを自律実行</td><td style="color:var(--green);font-weight:600;">成功</td></tr>
+  </table>
+
+  <h3>qwen3:8b 動作テスト</h3>
+  <div class="result-row">
+    <div class="result-icon pass">✓</div>
+    <div class="result-text">ファイル作成 + 日本語レポート</div>
+    <div class="result-time">1m 45s</div>
+  </div>
+  <div class="result-row">
+    <div class="result-icon pass">✓</div>
+    <div class="result-text">ファイル読み取り + 日本語要約</div>
+    <div class="result-time">19s</div>
+  </div>
+  <div class="result-row">
+    <div class="result-icon pass">✓</div>
+    <div class="result-text">複数ステップ自律実行 (mkdir → 3 ファイル作成 → ls → cat)</div>
+    <div class="result-time">34s</div>
+  </div>
+
+  <span class="slide-num">5 / 8</span>
+</div>
+
+<!-- ═══════════════ SLIDE 6: Cost ═══════════════ -->
+<div class="slide">
+  <h2>コスト構造</h2>
+
+  <div class="cost-grid">
+    <div class="cost-card">
+      <div class="name">Ollama (ローカル)</div>
+      <div class="price free">¥0</div>
+      <div class="unit">簡単なタスク担当</div>
+    </div>
+    <div class="cost-card">
+      <div class="name">VPS (4GB RAM)</div>
+      <div class="price low">¥1,500</div>
+      <div class="unit">〜 3,000 / 月</div>
+    </div>
+    <div class="cost-card">
+      <div class="name">OpenRouter API</div>
+      <div class="price mid">¥750</div>
+      <div class="unit">〜 4,500 / 月 (従量)</div>
+    </div>
+  </div>
+
+  <div class="total-box">
+    <div style="font-size:0.85rem;color:var(--dim);">月額運用コスト</div>
+    <div class="total-price">¥2,250 〜 7,500</div>
+    <div class="vs">Claude Code MAX ($200 = ¥30,000) の 1/4 〜 1/13</div>
+  </div>
+
+  <div class="profit">
+    <div style="font-size:0.85rem;color:var(--dim);margin-bottom:4px;">BPaaS 月 3-8 万で提供した場合</div>
+    <div class="amount">初月から黒字</div>
+    <div style="font-size:0.82rem;color:var(--dim);margin-top:4px;">1 社 ¥30,000 − 運用 ¥7,500 = 粗利 ¥22,500 / 社</div>
+  </div>
+
+  <span class="slide-num">6 / 8</span>
+</div>
+
+<!-- ═══════════════ SLIDE 7: Roadmap ═══════════════ -->
+<div class="slide">
+  <h2>ロードマップ</h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot done">✓</div>
+      <div class="tl-content">
+        <div class="tl-title">ローカル動作確認</div>
+        <div class="tl-desc">Ollama + qwen3:8b でエージェント機能 (ファイル操作・複数ステップ自律実行) を実証</div>
+        <div class="tl-time">2026-05-27 完了</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot next">2</div>
+      <div class="tl-content">
+        <div class="tl-title">Telegram Bot 連携</div>
+        <div class="tl-desc">hermes gateway setup でスマホから遠隔操作。BPaaS チャット UI の原型</div>
+        <div class="tl-time">1-2 時間で設定可能</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot next">3</div>
+      <div class="tl-content">
+        <div class="tl-title">VPS デプロイ + OpenRouter ハイブリッド</div>
+        <div class="tl-desc">Docker で VPS に展開。簡単タスク → ローカル (無料) / 複雑タスク → Claude API (従量)</div>
+        <div class="tl-time">半日</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot future">4</div>
+      <div class="tl-content">
+        <div class="tl-title">工務店向けプロトタイプ</div>
+        <div class="tl-desc">写真整理 + 日報生成 Bot をアトツギに試用してもらう</div>
+        <div class="tl-time">ヒアリングで商品確定後</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot future">5</div>
+      <div class="tl-content">
+        <div class="tl-title">BPaaS サービス化</div>
+        <div class="tl-desc">マルチクライアント対応 + 自己学習蓄積 → 月 3-8 万/社で提供</div>
+        <div class="tl-time">2026 Q4 MVP 投入期</div>
+      </div>
+    </div>
+  </div>
+
+  <span class="slide-num">7 / 8</span>
+</div>
+
+<!-- ═══════════════ SLIDE 8: Key Message ═══════════════ -->
+<div class="slide" style="justify-content:center;">
+  <div class="key-msg">
+    <div class="big">
+      Claude Code は<span class="hl">自分の開発ツール</span><br>
+      hermes-agent は<span class="hl">顧客に売れるプロダクトの基盤</span>
+    </div>
+    <div class="sub" style="margin-bottom: 32px;">
+      開発に使うか、売り物にするか。目的が違う。
+    </div>
+
+    <table style="max-width:600px;margin:0 auto;">
+      <tr><th></th><th>Claude Code</th><th>hermes-agent</th></tr>
+      <tr><td style="font-weight:600;">用途</td><td>自分の開発効率化</td><td>顧客向けサービス基盤</td></tr>
+      <tr><td style="font-weight:600;">稼働</td><td>ターミナル起動中のみ</td><td>24 時間 VPS 常駐</td></tr>
+      <tr><td style="font-weight:600;">ユーザー</td><td>自分 1 人</td><td>複数クライアント並列</td></tr>
+      <tr><td style="font-weight:600;">入口</td><td>CLI / IDE</td><td>Telegram / Slack / WhatsApp</td></tr>
+      <tr><td style="font-weight:600;">コスト</td><td>¥30,000/月 固定</td><td>¥2,250〜7,500/月 従量</td></tr>
+      <tr><td style="font-weight:600;">収益化</td><td>間接 (開発速度 UP)</td><td>直接 (BPaaS 月額課金)</td></tr>
+    </table>
+  </div>
+  <span class="slide-num">8 / 8</span>
+</div>
+
+</body>
+</html>

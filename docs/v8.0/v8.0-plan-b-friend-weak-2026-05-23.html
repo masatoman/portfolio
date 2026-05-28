@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>v8.0 プラン B — 友人弱依存 予備プラン (2026-05-23)</title>
+<meta name="description" content="友人長期不在前提の予備プラン。 5/24 LINE 低負荷送付 + 5/31 反応判定 + プラン C 自動切替。 反応あれば後付けで N=1 化 (7-8 月)、 反応なしで完全プラン C 移行">
+<style>
+:root {
+  --bg: #fcf6e9;
+  --paper: #fff;
+  --ink: #2b261e;
+  --ink-soft: #5a5247;
+  --muted: #8a8478;
+  --accent: #b85c3a;
+  --accent-soft: #f7e5d7;
+  --good: #4a7c4a;
+  --good-soft: #e3edd9;
+  --warn: #c98a2e;
+  --warn-soft: #f5e6c8;
+  --info: #3a7ca5;
+  --info-soft: #d9e7f0;
+  --bad: #a73a3a;
+  --bad-soft: #f0d6d6;
+  --border: #d6cfc2;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  padding: 30px 20px;
+}
+.slide {
+  background: var(--paper);
+  width: 297mm;
+  min-height: 210mm;
+  max-width: 100%;
+  margin: 0 auto 24px;
+  padding: 24px 32px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  position: relative;
+  page-break-after: always;
+}
+.slide-num { position: absolute; top: 16px; right: 24px; font-size: 11px; color: var(--muted); font-weight: 600; }
+.slide-meta { position: absolute; top: 16px; left: 32px; font-size: 11px; color: var(--muted); }
+.eyebrow { font-size: 11px; color: var(--accent); letter-spacing: 0.1em; margin-top: 28px; margin-bottom: 6px; font-weight: 600; }
+.warning-stripe { background: var(--warn-soft); border-left: 4px solid var(--warn); padding: 8px 12px; border-radius: 4px; font-size: 11px; margin-bottom: 10px; }
+.warning-stripe strong { color: var(--warn); }
+h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
+h1 .sub { display: block; font-size: 13px; color: var(--accent); margin-top: 4px; font-weight: 600; }
+h2 { font-size: 14px; font-weight: 700; margin: 18px 0 8px; color: var(--ink); border-bottom: 2px solid var(--accent); padding-bottom: 4px; display: inline-block; }
+h3 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.lead { font-size: 13px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 14px; }
+.box { border-radius: 8px; padding: 12px 14px; margin: 8px 0; font-size: 12px; line-height: 1.7; }
+.box.good { background: var(--good-soft); border-left: 4px solid var(--good); }
+.box.warn { background: var(--warn-soft); border-left: 4px solid var(--warn); }
+.box.info { background: var(--info-soft); border-left: 4px solid var(--info); }
+.box.bad { background: var(--bad-soft); border-left: 4px solid var(--bad); }
+.box.accent { background: var(--accent-soft); border-left: 4px solid var(--accent); }
+.box h3 { font-size: 12px; margin-bottom: 4px; }
+.box.good h3 { color: var(--good); }
+.box.warn h3 { color: var(--warn); }
+.box.info h3 { color: var(--info); }
+.box.bad h3 { color: var(--bad); }
+.box.accent h3 { color: var(--accent); }
+.box ul, .box ol { padding-left: 20px; margin-top: 4px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+table { width: 100%; border-collapse: collapse; font-size: 11px; margin: 10px 0; }
+table th { background: var(--accent); color: white; padding: 6px 8px; text-align: left; font-weight: 600; font-size: 10px; letter-spacing: 0.05em; }
+table td { padding: 6px 8px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+table tr:nth-child(even) { background: rgba(217,160,102,0.04); }
+.title-slide { background: linear-gradient(180deg, var(--paper) 0%, var(--warn-soft) 100%); }
+.title-slide h1 { font-size: 28px; }
+.intern-stamp { display: inline-block; background: var(--bad); color: white; padding: 2px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 6px; }
+.plan-stamp { display: inline-block; background: var(--warn); color: white; padding: 2px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 6px; margin-left: 6px; }
+.footer-bar { margin-top: 18px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); }
+a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { opacity: 0.7; }
+.line-message { background: #f7f3ec; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; font-size: 12px; line-height: 1.7; margin: 8px 0; font-family: -apple-system, sans-serif; white-space: pre-wrap; }
+@media print {
+  body { background: white; padding: 0; }
+  .slide { box-shadow: none; margin: 0; border: none; border-radius: 0; }
+  @page { size: A4 landscape; margin: 8mm; }
+}
+</style>
+  <meta name="created" content="2026-05-23T08:51:48.823Z">
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- P1: 表紙 + プラン B 位置付け -->
+<!-- ============================================ -->
+<div class="slide title-slide">
+  <span class="slide-meta">2026-05-23 v8.0 / プラン B 予備</span>
+  <span class="slide-num">1 / 4</span>
+
+  <div class="intern-stamp">⚠ 内部資料 (相手に見せない)</div>
+  <span class="plan-stamp">プラン B 予備</span>
+
+  <div class="eyebrow">v8.0 プラン B — 友人弱依存 予備プラン</div>
+  <h1>友人弱依存 プラン B<br><span class="sub">5/24 LINE 低負荷送付 → 5/31 反応判定 → 反応なしでプラン C 自動切替</span></h1>
+
+  <div class="warning-stripe">
+    <strong>⚠ プラン B の位置付け</strong> — プラン C (友人完全不在前提) を主軸としつつ、 友人 5/24 LINE 低負荷送付で「反応があれば後付け N=1 化」 を狙う 副次プラン。 LINE 送付は 1 本のみ、 リマインド送らない、 返事なくても気にしない (友人に圧をかけない)。 7-8 月以降に友人から自発的な反応があれば後付けで N=1 化 + 紹介依頼。
+  </div>
+
+  <h2>プラン A / B / C 比較</h2>
+  <table>
+    <thead>
+      <tr><th style="width:14%;">プラン</th><th style="width:25%;">友人扱い</th><th style="width:25%;">期間</th><th>確定発動条件</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>プラン A 旧主軸</strong></td><td>主軸 (#1 訪問 + 紹介芋蔓起点)</td><td>5/23-7/31 (2 ヶ月)</td><td>友人 LINE 即返事 + 訪問アポ確定 → <strong>友人長期不在で前提崩壊済</strong></td></tr>
+      <tr style="background:var(--warn-soft);"><td><strong>プラン B 予備 (本 docs)</strong></td><td>低負荷 LINE 1 本 → 反応待ち</td><td>5/24-31 確認期間 + プラン C 並走</td><td>5/31 までに反応あり → 後付け N=1 化判定 (7-8 月)</td></tr>
+      <tr><td><strong>プラン C 主軸</strong></td><td>完全不在前提 (5/14 N=1 は業界知識として温存)</td><td>5/23-9/30 (4 ヶ月)</td><td>5/31 まで友人反応なし → 確定発動 (実質 5/24 から並列開始)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="grid-3" style="margin-top:14px;">
+    <div class="box accent">
+      <h3>📌 プラン B 目的</h3>
+      <p>友人に <strong>1 本だけ低負荷 LINE</strong> を送って反応を見る。 反応があれば 後付けで N=1 化 + 紹介芋蔓 1 件目起点として復活。 反応なしで自動的にプラン C に移行。</p>
+    </div>
+    <div class="box accent">
+      <h3>🎯 LINE 送付の前提条件</h3>
+      <ul>
+        <li>1 本のみ、 リマインドなし</li>
+        <li>「返事しなくていい」 を明示</li>
+        <li>後継層関与の有無を 軽く確認するだけ</li>
+        <li>友人に「忙しいのに頼まれた」 と思わせない文体</li>
+      </ul>
+    </div>
+    <div class="box accent">
+      <h3>📊 反応シナリオ</h3>
+      <ul>
+        <li><strong>即返事</strong> (5/24-26): プラン A 復活検討、 訪問アポ調整</li>
+        <li><strong>遅返事</strong> (5/27-31): 後継層関与確認のみ、 訪問は 7-8 月で調整</li>
+        <li><strong>無反応</strong> (5/31 まで): プラン C 確定発動</li>
+        <li><strong>後日反応</strong> (6 月以降): 7-8 月後付け N=1 化</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>v8.0 プラン B / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P1 プラン B 位置付け</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P2: LINE 送付内容 + タイミング -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">P2 · LINE 送付内容</span>
+  <span class="slide-num">2 / 4</span>
+
+  <div class="eyebrow">5/24 LINE 1 本 (低負荷、 圧をかけない)</div>
+  <h1>LINE 送付内容 + タイミング</h1>
+
+  <p class="lead">送付タイミングは 5/24 (土) 朝-昼。 平日夜は仕事の続きを連想させるので避ける、 土日朝-昼は仕事と分離しやすい。 文体は「忙しいのに無理させない」 を最重要視、 5/14 ヒアリングの感謝 + 軽い確認 + 「返事しなくていい」 のセット。</p>
+
+  <h2>送付内容案 (主顧客モード適用 — 友人は工務店現場監督)</h2>
+
+  <div class="line-message">この間は ヒアリング 話してくれて ありがとう。
+あれから 友達の話を考えて、 もう少し聞きたいことが 出てきたんだけど、 仕事が落ち着いてから で全然 OK。
+
+ひとつだけ 軽く確認、 友達の会社って 後継ぎ (2 代目 / 3 代目) っているの? それとも 親方は ずっと現役?
+
+忙しいタイミングだと 思うので、 返事なくても 大丈夫。 落ち着いたら ご飯でも 行こう。</div>
+
+  <div class="box info" style="margin-top:10px;">
+    <h3>📌 LINE 内容の設計意図</h3>
+    <ul>
+      <li><strong>「ヒアリング」 という単語</strong>: 5/14 共有済の用語なので OK (一般的な「顧客ヒアリング」 ではなく「話を聞かせてもらった」 の意)</li>
+      <li><strong>「もう少し聞きたいこと」</strong>: 詳細を書かない (後継層関与確認 + 訪問アポ依頼を一気に書くと圧)</li>
+      <li><strong>「ひとつだけ 軽く確認」</strong>: 1 質問のみ、 答えが Yes/No で済む</li>
+      <li><strong>後継ぎ確認</strong>: 5/24-31 プラン分岐の核 (後継層関与なし = N=1 カウントせず、 別ルート)</li>
+      <li><strong>「返事なくても 大丈夫」</strong>: 圧を消す、 友人に「無視していい」 安心感</li>
+      <li><strong>「ご飯でも 行こう」</strong>: 関係性維持の意図、 仕事の話を続ける意図がないシグナル</li>
+    </ul>
+  </div>
+
+  <h2>送付タイミング + 反応待ち期間</h2>
+  <table>
+    <thead>
+      <tr><th style="width:18%;">時期</th><th style="width:24%;">アクション</th><th>判定</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>5/24 (土) 朝-昼</strong></td><td>LINE 送付 (上記内容)</td><td>送付完了 = プラン B トリガー発動</td></tr>
+      <tr><td><strong>5/24-26</strong></td><td>即返事 待ち</td><td>返事あり → プラン A 復活検討 (訪問アポ調整)、 返事なし → 次の枠へ</td></tr>
+      <tr><td><strong>5/27-31</strong></td><td>遅返事 待ち</td><td>返事あり → 後継層関与確認のみ受領、 訪問は 7-8 月予定、 並走でプラン C も継続</td></tr>
+      <tr><td><strong>5/31</strong></td><td><strong>プラン分岐判定</strong></td><td>5/31 23:59 までに反応なし → プラン C 確定発動 (実質 5/24 から並列開始済)、 友人 LINE は閉じる</td></tr>
+      <tr><td><strong>6 月以降</strong></td><td>後日反応 待ち (期待しない)</td><td>友人から自発的反応あり → 7-8 月で後付け N=1 化 + 紹介依頼 (この時点では他経路で N=2-3 達成済の見込み)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box warn" style="margin-top:10px;">
+    <h3>⚠ やってはいけないこと</h3>
+    <ul>
+      <li><strong>5/25-30 にリマインド LINE 送付</strong>: 圧、 友人に「無理させてる」 と思わせる、 関係性に傷</li>
+      <li><strong>「ヒアリング 続編」 として詳細書く</strong>: 5/14 が 1 回完結だった前提を崩す</li>
+      <li><strong>「紹介してほしい」 を冒頭に書く</strong>: 5/22 北原氏「紹介芋蔓式」 を友人に押し付ける構造、 友人忙しい中で重い</li>
+      <li><strong>5/31 までの返事を期待しすぎる</strong>: プラン C を本気で並行起動しない → 期待ハズレで時間ロス</li>
+    </ul>
+  </div>
+
+  <div class="footer-bar">
+    <span>v8.0 プラン B / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P2 LINE 送付内容</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P3: 反応シナリオ別 動き -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">P3 · 反応シナリオ別 動き</span>
+  <span class="slide-num">3 / 4</span>
+
+  <div class="eyebrow">即返事 / 遅返事 / 無反応 / 後日反応 の 4 シナリオ</div>
+  <h1>反応シナリオ別 動き</h1>
+
+  <div class="grid-2" style="gap:14px;">
+    <div class="box good">
+      <h3>① 即返事 (5/24-26) — 確率 10-20%</h3>
+      <p><strong>反応例</strong>: 「うちは 2 代目で俺がやってる」「親方はまだ現役」 等</p>
+      <ul style="font-size:11px;">
+        <li><strong>後継ぎ Yes</strong>: 友人本人がアトツギ → プラン A 復活検討、 6 月前半訪問アポ調整、 N=1 化</li>
+        <li><strong>後継ぎ No (親方現役 + 友人雇われ)</strong>: 友人 N=1 カウントしない、 ただし関係性継続、 「親方や同業の後継ぎを知ってたら 1 人だけ繋いでくれない?」 を 2 週間後に追加打診</li>
+        <li><strong>後継ぎ不明</strong>: 詳細聞かず受領 (友人圧をかけない)、 7-8 月で機会あれば再確認</li>
+      </ul>
+    </div>
+    <div class="box info">
+      <h3>② 遅返事 (5/27-31) — 確率 10-15%</h3>
+      <p><strong>反応例</strong>: 「ごめん 返事遅れた、 ◯◯◯」</p>
+      <ul style="font-size:11px;">
+        <li>後継層関与確認のみ受領、 訪問アポは <strong>提案しない</strong> (友人忙しい)</li>
+        <li>「忙しい時にありがとう、 落ち着いたら ご飯行こう」 のクッション返信のみ</li>
+        <li>プラン C は並走継続、 友人扱いは「業界知識保持」 のまま</li>
+        <li>7-8 月で機会あれば再アプローチ (友人発信であれば乗る、 こちらから送らない)</li>
+      </ul>
+    </div>
+    <div class="box bad">
+      <h3>③ 無反応 (5/31 まで) — 確率 50-70%</h3>
+      <p><strong>反応</strong>: 既読つかず or 既読のみ</p>
+      <ul style="font-size:11px;">
+        <li><strong>5/31 23:59 でプラン C 確定発動</strong></li>
+        <li>友人 LINE は閉じる (リマインド送らない、 6 月以降も自発反応待ち)</li>
+        <li>5/14 N=1 結果は業界知識として温存、 ヒアリング N=1 カウントせず</li>
+        <li>プラン C 6 経路並列を本格起動 (北原氏 + たましん は既に 5/24-31 で接触開始済)</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h3>④ 後日反応 (6 月以降) — 確率 5-10%</h3>
+      <p><strong>反応例</strong>: 「久しぶり、 落ち着いた」 等の自発連絡</p>
+      <ul style="font-size:11px;">
+        <li>この時点で他経路で N=2-3 達成済の可能性</li>
+        <li>友人発信なら乗る、 自然な会話の流れで後継層関与確認 + 訪問依頼</li>
+        <li>7-8 月で N=1 化 + 紹介依頼 (5/22 北原氏「紹介芋蔓式」 を友人雪だるまに再接続)</li>
+        <li><strong>こちらから 6 月以降 LINE 送らない</strong>: 友人の生活ペースを尊重、 機会あれば乗る程度</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box accent" style="margin-top:14px;">
+    <h3>📌 確率の想定根拠</h3>
+    <ul>
+      <li><strong>長期忙しい (半年以上)</strong> = 即返事 + 遅返事 合計 20-35%、 主流は無反応 50-70%</li>
+      <li><strong>5/14 ヒアリング当日は普通に答えてくれた</strong> = 関係性は維持、 後日反応 5-10% は十分あり得る</li>
+      <li><strong>圧をかけない設計</strong>: 返事ハードルを下げることで 即返事率が 5-10% 上がる期待値</li>
+      <li>※ 確率は仮説、 5/31 実績で更新</li>
+    </ul>
+  </div>
+
+  <div class="footer-bar">
+    <span>v8.0 プラン B / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P3 反応シナリオ別 動き</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P4: プラン C との連動 + 関連 docs -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">P4 · プラン C 連動</span>
+  <span class="slide-num">4 / 4</span>
+
+  <div class="eyebrow">プラン B 並走中のプラン C 並走起動</div>
+  <h1>プラン C との連動 + 関連 docs</h1>
+
+  <h2>5/24-31 並走スケジュール (プラン B + プラン C 同時起動)</h2>
+  <table>
+    <thead>
+      <tr><th style="width:14%;">日付</th><th style="width:24%;">プラン B アクション</th><th>プラン C アクション (並走)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>5/24 (土)</strong></td><td>友人 LINE 送付 (朝-昼)</td><td>裏取り期間開始 (業界統計 / 6 候補事例 / demo-gallery 文体調整)</td></tr>
+      <tr><td><strong>5/25 (日)</strong></td><td>友人 反応待ち</td><td>北原氏メール 下書き + Memory health check (Calendar 通知)</td></tr>
+      <tr><td><strong>5/26 (月)</strong></td><td>友人 反応待ち</td><td>北原氏メール送付 (中間報告アポ前倒し依頼) + tooling-update-watch routine 自動実行</td></tr>
+      <tr><td><strong>5/27-29 (火-木)</strong></td><td>友人 反応待ち</td><td>たましん Step 1 開始 (既取引渉外担当者にメール) + 業界統計裏取り進行</td></tr>
+      <tr><td><strong>5/30 (金)</strong></td><td>友人 反応待ち</td><td>業界紙取材依頼メール送付 (5/30 既定タスク) + 6 候補事例裏取り完了</td></tr>
+      <tr style="background:var(--bad-soft);"><td><strong>5/31 (土)</strong></td><td><strong>プラン分岐判定</strong></td><td>友人反応なし → プラン C 確定発動、 6 月前半 4 経路打診開始</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box info" style="margin-top:10px;">
+    <h3>📌 プラン B + C 並走のロジック</h3>
+    <ul>
+      <li><strong>友人反応を待ちつつプラン C も動かす</strong>: 5/31 までの 1 週間を「友人だけに賭ける」 と機会損失 → プラン C 起動 5-6 日遅れに</li>
+      <li><strong>北原氏 / たましん は 5/24-31 中に接触開始</strong>: プラン B の結果に関わらず両ルート起動、 反応あれば後付け統合</li>
+      <li><strong>裏取り 4 タスク (5/24-30) はプラン A/B/C 共通</strong>: どのプランでも必須なので並走に支障なし</li>
+    </ul>
+  </div>
+
+  <h2>反応別 6/1 以降の動き分岐</h2>
+  <table>
+    <thead>
+      <tr><th style="width:24%;">5/31 時点判定</th><th>6/1 以降の動き</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>友人 即返事 + 後継ぎ Yes</strong></td><td>プラン A 復活、 ただし他経路 (北原氏 / たましん) も継続 → 実質 プラン A + C ハイブリッド (友人 + 他経路で N=4-5 達成)</td></tr>
+      <tr><td><strong>友人 即返事 + 後継ぎ No</strong></td><td>プラン C 確定発動、 友人は関係性継続のみ、 2 週間後に紹介打診検討</td></tr>
+      <tr><td><strong>友人 遅返事</strong></td><td>プラン C 確定発動、 友人は業界知識保持のみ、 7-8 月で後付け N=1 化機会を待つ</td></tr>
+      <tr><td><strong>友人 無反応</strong></td><td>プラン C 確定発動、 友人 LINE 閉じる、 自発反応待ち</td></tr>
+    </tbody>
+  </table>
+
+  <h2>関連 docs</h2>
+  <ul style="padding-left:20px; font-size:12px;">
+    <li>🔗 <a href="./v8.0-plan-c-friend-absent-2026-05-23.html" target="_blank" rel="noopener">v8.0 プラン C (友人完全不在前提 主軸)</a> — 本 docs と対になる主軸プラン</li>
+    <li>🔗 <a href="./v8.0-hearing-design-2026-05-23.html" target="_blank" rel="noopener">v8.0 ヒアリング 内部設計 (本 docs と統合運用)</a> — Phase / シグナル基準 / 6 候補 / 撤退軸</li>
+    <li>🔗 <a href="./v8.0-hearing-resource-2026-05-23.html" target="_blank" rel="noopener">v8.0 ヒアリング資料 A4 8p (相手用)</a> — プラン A/B/C どちらでも共通利用</li>
+    <li>🔗 <a href="./v8.0-product-candidates-evaluation-2026-05-23.html" target="_blank" rel="noopener">v8.0 商品候補 33p 評価マトリクス</a> — 6 候補絞り込みの根拠</li>
+  </ul>
+
+  <h2>関連 memory</h2>
+  <ul style="padding-left:20px; font-size:12px;">
+    <li><strong>[[friend-hearing-result-2026-05-14]]</strong> — 5/14 友人 N=1 結果 (業界知識として温存)</li>
+    <li><strong>[[friend-keyperson-dependency-risk-2026-05-23]]</strong> — 本 docs + プラン C と対になる memory (新規作成予定)</li>
+    <li><strong>[[user-work-time-constraint]]</strong> — 月 30-40h 軸 B 投下時間制約</li>
+    <li><strong>[[feedback_no_x_announcement_target_outside]]</strong> — 軸 B 集客 LINE 拡散優先 (友人 LINE 送付の根拠)</li>
+  </ul>
+
+  <div class="footer-bar">
+    <span>v8.0 プラン B / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P4 プラン C 連動 + 関連</span>
+  </div>
+</div>
+
+</body>
+</html>

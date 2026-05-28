@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>v8.0 ヒアリング 内部設計 docs (2026-05-23)</title>
+<meta name="description" content="工務店 後継層 × 儲かってる層 向け 6 候補 ヒアリング 内部設計 (v8.0、 5/23 指摘反映済)。 打診先 / 15→6 写像 / Phase 設計 / シグナル基準 AND 3 必須 / NG パターン / 候補ごと価格レンジ / 記録テンプレ / 撤退軸 3 軸">
+<style>
+:root {
+  --bg: #fcf6e9;
+  --paper: #fff;
+  --ink: #2b261e;
+  --ink-soft: #5a5247;
+  --muted: #8a8478;
+  --accent: #b85c3a;
+  --accent-soft: #f7e5d7;
+  --good: #4a7c4a;
+  --good-soft: #e3edd9;
+  --warn: #c98a2e;
+  --warn-soft: #f5e6c8;
+  --info: #3a7ca5;
+  --info-soft: #d9e7f0;
+  --bad: #a73a3a;
+  --bad-soft: #f0d6d6;
+  --border: #d6cfc2;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  padding: 30px 20px;
+}
+.slide {
+  background: var(--paper);
+  width: 297mm;
+  min-height: 210mm;
+  max-width: 100%;
+  margin: 0 auto 24px;
+  padding: 24px 32px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  position: relative;
+  page-break-after: always;
+}
+.slide-num {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.slide-meta {
+  position: absolute;
+  top: 16px;
+  left: 32px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.eyebrow {
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-top: 28px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.warning-stripe {
+  background: var(--bad-soft);
+  border-left: 4px solid var(--bad);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+.warning-stripe strong { color: var(--bad); }
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+h1 .sub {
+  display: block;
+  font-size: 13px;
+  color: var(--accent);
+  margin-top: 4px;
+  font-weight: 600;
+}
+h2 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 18px 0 8px;
+  color: var(--ink);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 4px;
+  display: inline-block;
+}
+h3 {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.lead {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+.box {
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 8px 0;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.box.good { background: var(--good-soft); border-left: 4px solid var(--good); }
+.box.warn { background: var(--warn-soft); border-left: 4px solid var(--warn); }
+.box.info { background: var(--info-soft); border-left: 4px solid var(--info); }
+.box.bad { background: var(--bad-soft); border-left: 4px solid var(--bad); }
+.box.accent { background: var(--accent-soft); border-left: 4px solid var(--accent); }
+.box h3 { font-size: 12px; margin-bottom: 4px; }
+.box.good h3 { color: var(--good); }
+.box.warn h3 { color: var(--warn); }
+.box.info h3 { color: var(--info); }
+.box.bad h3 { color: var(--bad); }
+.box.accent h3 { color: var(--accent); }
+.box p, .box ul, .box ol { font-size: 12px; line-height: 1.7; }
+.box ul, .box ol { padding-left: 20px; margin-top: 4px; }
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  margin: 10px 0;
+}
+table th {
+  background: var(--accent);
+  color: white;
+  padding: 6px 8px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.5;
+}
+table tr:nth-child(even) { background: rgba(217,160,102,0.04); }
+.phase-row {
+  display: grid;
+  grid-template-columns: 80px 80px 1fr 100px;
+  gap: 10px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.phase-row:nth-child(even) { background: rgba(217,160,102,0.04); }
+.phase-row.head { background: var(--accent); color: white; font-weight: 600; font-size: 10px; }
+.phase-row .phase-num {
+  font-weight: 700;
+  color: var(--accent);
+}
+.phase-row.head .phase-num { color: white; }
+.signal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 10px;
+}
+.signal-card {
+  border-radius: 8px;
+  padding: 14px;
+}
+.signal-card.real { background: var(--good-soft); border: 2px solid var(--good); }
+.signal-card.fake { background: var(--bad-soft); border: 2px solid var(--bad); }
+.signal-card h3 {
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+.signal-card.real h3 { color: var(--good); }
+.signal-card.fake h3 { color: var(--bad); }
+.signal-card .quote {
+  background: var(--paper);
+  border-left: 3px solid currentColor;
+  padding: 6px 10px;
+  margin: 4px 0;
+  font-size: 11px;
+  font-style: italic;
+  line-height: 1.5;
+  border-radius: 0 4px 4px 0;
+}
+.signal-card.real .quote { color: var(--good); }
+.signal-card.fake .quote { color: var(--bad); }
+.footer-bar {
+  margin-top: 18px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--muted);
+}
+.title-slide {
+  background: linear-gradient(180deg, var(--paper) 0%, var(--accent-soft) 100%);
+}
+.title-slide h1 { font-size: 28px; }
+.intern-stamp {
+  display: inline-block;
+  background: var(--bad);
+  color: white;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.checkbox-list {
+  list-style: none;
+  padding-left: 0;
+}
+.checkbox-list li {
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.checkbox-list li::before {
+  content: "☐";
+  color: var(--muted);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s;
+}
+a:hover { opacity: 0.7; }
+a:visited { color: var(--accent); opacity: 0.9; }
+.ref-links {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 20px 0 12px;
+  font-size: 12px;
+}
+.ref-links h2 {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 4px;
+  display: inline-block;
+}
+.ref-links .ref-group { margin-bottom: 10px; }
+.ref-links .ref-group h3 {
+  font-size: 12px;
+  color: var(--ink);
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+.ref-links ul { list-style: none; padding-left: 0; margin: 0; }
+.ref-links ul li {
+  padding: 3px 0;
+  font-size: 11px;
+  line-height: 1.5;
+  border-bottom: 1px dashed var(--border);
+}
+.ref-links ul li:last-child { border-bottom: none; }
+.ref-links .desc { color: var(--ink-soft); font-size: 10px; margin-left: 4px; }
+@media print {
+  body { background: white; padding: 0; }
+  .slide { box-shadow: none; margin: 0; border: none; border-radius: 0; }
+  @page { size: A4 landscape; margin: 8mm; }
+}
+</style>
+  <meta name="created" content="2026-05-23T06:38:51.790Z">
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- P1: 表紙 + 内部資料注記 -->
+<!-- ============================================ -->
+<div class="slide title-slide">
+  <span class="slide-meta">2026-05-23 v8.0 / 内部設計</span>
+  <span class="slide-num">1 / 8</span>
+
+  <div class="intern-stamp">⚠ 内部資料 (相手に見せない)</div>
+
+  <div class="eyebrow">v8.0 ヒアリング 内部設計</div>
+
+  <h1>後継層 × 儲かってる層 向け ヒアリング設計<br><span class="sub">N=3-5 を達成するための打診先 / Phase / シグナル基準 / NG パターン / 記録テンプレ</span></h1>
+
+  <div class="warning-stripe">
+    <strong>⚠ この docs は masatoman 個人用</strong> — ヒアリング相手には絶対に見せないこと。 シグナル基準・打診先・偽シグナル判定は相手が見ると不快感を与える。 ペアになる相手用は <code>docs/v8.0-hearing-resource-2026-05-23.html</code> (A4 8p)
+  </div>
+
+  <h2>このドキュメントの位置づけ</h2>
+  <p class="lead">5/22 北原氏面談 + 5/23 ターゲット確定 (後継層 × 儲かってる層) を受けて、 6 候補ヒアリングを N=3-5 達成するまでの設計図。 33 ページ評価マトリクス (内部秘) は判断材料、 8 ページヒアリング資料は相手に渡すもの、 本 docs は その間の運用設計。</p>
+
+  <div class="grid-3">
+    <div class="box accent">
+      <h3>📌 目的 (確証バイアス排除)</h3>
+      <p>「あったら便利」 「業界の人は欲しがるかも」 ではなく、 <strong>「自分の会社で今すぐ起きてる」「いくらまで出せる」「同業を紹介できる」</strong> の本物のシグナルを N=3-5 取得して、 <strong>主軸 1 + 副軸 1-2 を一次情報で確定</strong>する。 ※ 旧目的「#01 OB 10 年管理 を主軸に確定」 は確証バイアスのため 5/23 内 撤回。</p>
+    </div>
+    <div class="box accent">
+      <h3>🎯 ターゲット (3 条件)</h3>
+      <ul>
+        <li>後継層 (30-40 代、 2 代目 / 3 代目、 決裁または推進に関与)</li>
+        <li>年商 1-5 億 + <strong>後継層現金裁量あり</strong> (※ 仮定義、 業界統計裏取り後 5/30 までに確定)</li>
+        <li>IT 投資の意欲 (現状維持 / 何も決めてない は除外)</li>
+      </ul>
+    </div>
+    <div class="box accent">
+      <h3>📊 期間 + 達成基準</h3>
+      <ul>
+        <li>5/23-7/31 (約 2 ヶ月) で N=3-5 達成</li>
+        <li>N=1 カウント: <strong>AND 3 必須</strong> (① 自社事情の具体化 + ② 価格反応の口頭表明 + ③ 紹介の連絡先取得) — 1 つでも欠ければカウントせず</li>
+        <li>友人 N=1 (5/14、 <strong>後継層関与未確認 = カウント保留中</strong>)、 雪だるま 2-4 件</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box bad" style="margin-top:14px;">
+    <h3>⚠ ヒアリング着手前の必須 裏取りタスク (5/24-30)</h3>
+    <ul>
+      <li><strong>業界統計裏取り</strong>: 工務店業界の利益率分布 + 後継層現金裁量実態 (新建ハウジング / 中小企業庁建設業統計 / 国土交通省) → 「儲かってる層」 定義を確定</li>
+      <li><strong>6 候補 × 事例 1-2 件 + 引用元 URL + 記事日付</strong>: 父親説得材料 (P5) の捏造防止、 アトツギは事実確認に厳しい層</li>
+      <li><strong>demo-gallery アトツギ向け文体調整</strong>: 既存 8 デモは warm editorial 文体 = 5/22 確定前の IT 弱者向け、 後継層向けに文言再フレーミング</li>
+      <li><strong>友人 LINE 低負荷送付 (プラン B トリガー)</strong>: 5/24 LINE 1 本で後継層関与軽く確認 → 5/31 まで反応待ち → 反応なしでプラン C 確定</li>
+      <li><strong>プラン C 並走起動 (5/24-31)</strong>: 北原氏メール送付 (中間報告アポ前倒し依頼) + たましん Step 1 開始 (既取引渉外担当者にメール) を友人反応に関係なく並走</li>
+    </ul>
+  </div>
+
+  <div class="box accent" style="margin-top:10px;">
+    <h3>🔀 プラン A / B / C 切替 (2026-05-23 追加、 友人長期不在判明後の対応)</h3>
+    <table style="margin-top:6px;">
+      <thead>
+        <tr><th style="width:14%;">プラン</th><th style="width:25%;">前提</th><th style="width:25%;">期間 + 主軸確定</th><th>確定発動条件</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>A 旧主軸</strong></td><td>友人訪問 + 紹介芋蔓起点</td><td>5/23-7/31 / 主軸確定 9 月末</td><td>友人長期不在で <strong>前提崩壊済</strong> (5/23 確認)</td></tr>
+        <tr><td><strong>B 予備</strong></td><td>友人 LINE 1 本 → 反応待ち</td><td>5/24-31 確認 + プラン C 並走</td><td>5/31 までに反応あり → 7-8 月後付け N=1 化判定 / 詳細 <a href="./v8.0-plan-b-friend-weak-2026-05-23.html" target="_blank" rel="noopener">v8.0-plan-b-friend-weak-2026-05-23.html</a></td></tr>
+        <tr style="background:var(--bad-soft);"><td><strong>C 主軸</strong></td><td>友人完全不在前提、 6 経路並列</td><td>5/23-9/30 / 主軸確定 11 月末</td><td><strong>5/31 まで友人反応なし → 確定発動</strong> (実質 5/24 から並列開始) / 詳細 <a href="./v8.0-plan-c-friend-absent-2026-05-23.html" target="_blank" rel="noopener">v8.0-plan-c-friend-absent-2026-05-23.html</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>v7.0 旧設計からの主な変更点 (5/14 友人 N=1 経由)</h2>
+  <table>
+    <thead>
+      <tr><th style="width:18%;">項目</th><th style="width:40%;">旧設計 (5/14 友人 N=1 用)</th><th>新設計 (本 docs)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>主顧客像</td><td>IT 弱者 60 代社長 + 妻 + アトツギ 3 層</td><td><strong>後継層 30-40 代 単独</strong>、 親方は「父親説得材料」 として扱う</td></tr>
+      <tr><td>提示候補数</td><td>5 候補 (8 デモ + 商品像 1)</td><td><strong>6 候補 (A 群 3 + B 群 3)</strong>、 痛みを聞いてから提示順序を相手に合わせる</td></tr>
+      <tr><td>価格帯</td><td>SaaS 月 1.5-3 万 / 買い切り訴求</td><td><strong>SaaS 月 3-8 万 / BPaaS 50-150 万</strong> (儲かってる層に合わせ上方修正)</td></tr>
+      <tr><td>シグナル基準</td><td>「いいね = 否定なし」 程度の弱基準</td><td><strong>「いくら? / 父親に見せたい / 紹介可能」 のみ本物</strong>、 「いいね」「業界の人は欲しがるかも」 は偽として記録</td></tr>
+      <tr><td>記録方法</td><td>ヒアリング後の自由記述メモ</td><td><strong>項目別記録テンプレ + シグナル判定欄</strong> (P7 参照)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer-bar">
+    <span>v8.0 ヒアリング 内部設計 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P1</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P2: 打診先 6 件 + 雪だるま戦略 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">P2 · 打診先 6 件</span>
+  <span class="slide-num">2 / 8</span>
+
+  <div class="eyebrow">N=3-5 達成のための打診先</div>
+  <h1>打診先 6 件 + 雪だるま戦略</h1>
+
+  <p class="lead">N=3-5 達成のために 6 件の打診先を並列に動かす。 1 件目を「友人工務店」 で <strong>後継層関与の有無を最初に確認</strong>し、 該当ありなら N=1 化 → 紹介芋蔓式で 2-4 件目に展開、 該当なしなら N=1 カウントせず別ルート (建材屋 / 設計事務所) に切替。 5/22 北原氏面談での確認事項「紹介芋蔓 + 商工会 + フランチャイズ + 展示会」 に沿う。</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:6%;">#</th>
+        <th style="width:18%;">打診先</th>
+        <th style="width:16%;">接触方法 / 時期</th>
+        <th style="width:14%;">後継層確認</th>
+        <th>狙い / 留意点</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><strong>友人工務店 (後継層関与 確認待ち)</strong></td>
+        <td>5/24-31 LINE で <strong>まず後継層関与確認</strong> → 該当ありなら 6 月前半 訪問</td>
+        <td>⚠️ <strong>未確認 (5/14 は現場監督として聞いた、 雇われ職人の可能性)</strong></td>
+        <td>5/14 N=1 は <strong>後継層関与未確認 = カウント保留中</strong>。 LINE で「会社の後継者は誰? あなたは経営判断に関与してる?」 を必ず最初に確認。 該当なしなら N=1 カウントせず、 別ルート (#4 建材屋 / #5 設計事務所) に重み移動</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>友人経由の同世代後継者</strong></td>
+        <td>6 月、 友人に紹介依頼 → 1-2 件</td>
+        <td>○ (友人にスクリーニング依頼)</td>
+        <td>友人雪だるま起点。 「あの会社の 2 代目さん 話聞いてもらえる?」 で繋げる。 友人に紹介資料 (P8 抜粋) を渡す</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>北原氏 (東京創業ステーション) 経由</strong></td>
+        <td>8/22 中間報告アポで依頼、 8-10 月で 1-2 件</td>
+        <td>○ (北原氏が後継層フィルタ済)</td>
+        <td>5/22 で「紹介芋蔓式」 確約取得済。 8/22 報告時に v8.0 候補成果を見せて、 北原氏 ネットワークで紹介依頼</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>建材屋ルート (LIXIL ショールーム / ナフコ / 地元卸)</strong></td>
+        <td>6-7 月 月 2-3 回 巡回、 営業マンと会話</td>
+        <td>△ (建材屋経由 = アトツギ訪問頻度高い)</td>
+        <td>5/11 Deep Research 接点 ◎×◎ 主戦場。 建材屋営業マンに「アトツギで IT 興味ある人いない?」 を 雑談ベースで依頼</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>設計事務所オーナー (多摩、 後継層)</strong></td>
+        <td>6 月中、 知人 or SNS で 1 件</td>
+        <td>○ (設計事務所 = アトツギ密度高い)</td>
+        <td>上流ハブ (客 → 設計事務所 → 工務店) を押さえる。 工務店紹介経路として活用、 設計事務所自身もアトツギ層</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><strong>アトツギ甲子園関係者</strong></td>
+        <td>12-2 月 次回機会 (令和 9 年度 開催に向け 8 月以降情報収集)</td>
+        <td>◎ (アトツギ甲子園 = 完全アトツギ層)</td>
+        <td>長期接点ルート。 N=4-5 拡張または 24 ヶ月後の本格化フェーズで活用</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box info">
+    <h3>📌 雪だるま戦略 (旧 5/14 設計を踏襲)</h3>
+    <p>1 件取れたら必ず最後に「同業の後継者を 1-2 人紹介してください」 を P8 で取る。 紹介の連絡先 (LINE / メール / 名刺写真) まで具体的に取得すること。 「考えとくね」 だけでは偽シグナル扱い。 紹介可能な人がいない場合は「いつなら紹介できそう?」 まで踏み込む。</p>
+  </div>
+
+  <div class="box warn">
+    <h3>⚠ 打診先選定の NG パターン</h3>
+    <ul>
+      <li><strong>大手ハウスメーカー下請工務店</strong> — 5/22 北原氏「除外」 確定。 ツール統制で導入余地なし</li>
+      <li><strong>60 代社長単独 (後継者不在)</strong> — 「現状でいい層」、 動機ゼロで売れない</li>
+      <li><strong>年商 1 億未満 + 後継層現金裁量ゼロ</strong> — 月 3-8 万の SaaS 予算捻出困難、 BPaaS 50-150 万 も無理 (※ 年商だけでは判定不十分、 利益率 + 後継層現金裁量で再確認 — 5/24-30 業界統計裏取り後に閾値確定)</li>
+      <li><strong>受託契約等で利害関係ある相手</strong> — 「気を遣って買う」 になり本物のシグナル取れない</li>
+    </ul>
+  </div>
+
+  <div class="box bad" style="margin-top:10px;">
+    <h3>⚠ 友人 N=1 該当なし時の分岐 (5/24-31 確認後)</h3>
+    <ul>
+      <li><strong>友人が雇われ職人 = 後継層関与なし</strong> → 5/14 ヒアリング結果は「現場監督視点の業界情報」 として温存、 N=1 カウントせず</li>
+      <li><strong>打診先 #1 の重みを #4 建材屋 / #5 設計事務所 に移動</strong> (6 月前半に建材屋巡回開始を前倒し、 設計事務所打診を 6 月中旬 → 6 月前半に)</li>
+      <li><strong>友人経由で別の後継層紹介を依頼</strong> (「あなたの工務店の 2 代目さんとか、 同世代で経営に関わってる人いない?」)</li>
+      <li>判断期限: <strong>5/31 まで</strong>に確認完了、 該当なし判明時は 6/1 から打診先見直し</li>
+    </ul>
+  </div>
+
+  <div class="footer-bar">
+    <span>v8.0 ヒアリング 内部設計 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P2 打診先</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P3: 15 候補 → 6 候補 絞り込み根拠 (5/23 追加) -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">P3 · 15→6 絞り込み根拠</span>
+  <span class="slide-num">3 / 8</span>
+
+  <div class="eyebrow">33p 評価マトリクスから 6 候補への絞り込み</div>
+  <h1>15 候補 → 6 候補 絞り込み根拠</h1>
+
+  <p class="lead">33p 評価マトリクス (<a href="./v8.0-product-candidates-evaluation-2026-05-23.html" target="_blank" rel="noopener">v8.0-product-candidates-evaluation-2026-05-23.html</a>) の 15 候補から 6 候補 (A 群 3 + B 群 3) を選定。 単純な Score 順ではなく <strong>痛みの多様性 + 価格帯バランス + アトツギ訴求力</strong> で再評価。 落とした 9 件の理由を明示することで、 ヒアリング時の説明責任を担保する。</p>
+
+  <h2>A 群 (即効性 / SaaS 月額モデル中心)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:10%;">候補</th>
+        <th style="width:20%;">原候補 (33p)</th>
+        <th style="width:10%;">Score</th>
+        <th>選定理由</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>A-1</strong></td><td>#01 OB 10 年管理 SaaS</td><td>16 (最高)</td><td>5/14 友人「個人客 9 割」 と整合、 リフォーム獲得率改善で ROI 説明しやすい。 母集団最大</td></tr>
+      <tr><td><strong>A-2</strong></td><td>#03 展示会リード育成 SaaS</td><td>15</td><td>JAPAN BUILD TOKYO 12/2-4 と整合、 展示会助成事業 R8 (¥150 万 / 2/3) で実質負担軽減、 アトツギ「業界の流れ」 訴求◎</td></tr>
+      <tr><td><strong>A-3</strong></td><td>#04 経営状況可視化レポート SaaS</td><td>15</td><td>後継層が父親説得に使う材料 (数字で経営語る)。 銀行融資交渉の武器、 月次試算表代替で粗利改善訴求</td></tr>
+    </tbody>
+  </table>
+
+  <h2>B 群 (差別化 / BPaaS or AI エージェント 高単価モデル中心)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:10%;">候補</th>
+        <th style="width:20%;">原候補 (33p)</th>
+        <th style="width:10%;">Score</th>
+        <th>選定理由</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>B-1</strong></td><td>#07 暗黙知継承 AI</td><td>15</td><td>事業承継テーマ直結 (アトツギ甲子園層)、 高単価 (月 5-20 万) 取れる、 父子対談文書化等の差別化材料</td></tr>
+      <tr><td><strong>B-2</strong></td><td>#02 コンテンツ自動生成 SaaS</td><td>14</td><td>masatoman.net 自社実証 (night-writer 月 30+ 本) でドッグフード可、 マーケ業者外注代替で ROI 明確</td></tr>
+      <tr><td><strong>B-3</strong></td><td>#10 カスタム住宅シミュレーター</td><td>14</td><td>建材屋リベート (副収入導線)、 大手 (一条 / トヨタ) との差別化武器、 タブレットプレゼンで現場使用◎</td></tr>
+    </tbody>
+  </table>
+
+  <h2>落とした 9 件と その理由</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:10%;">原候補</th>
+        <th style="width:8%;">Score</th>
+        <th>落とした理由</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>#05 LINE 日報 SaaS</td><td>13</td><td>5/14 友人「日報は紙」「ANDPAD で写真整理済」 = 既存解で満足。 後継層関与の薄い領域 (現場監督マター)、 訴求軸が父親説得に繋がりにくい</td></tr>
+      <tr><td>#06 AI 商談議事録 SaaS</td><td>13</td><td>5/14 友人 voice-daily 反応「打ち合わせメモなら OK」 程度で確度低、 商談頻度自体が個人客 9 割の中小工務店では月数件レベル</td></tr>
+      <tr><td>#08 ベンチマーク経営 DB SaaS</td><td>12</td><td>データ収集ハードル高 (同業他社の数字を集める権限・信用が必要)、 マイクロ法人段階ではデータ蓄積期間が長すぎる</td></tr>
+      <tr><td>#09 施主体験デザイン</td><td>11</td><td>B2C 寄り (施主向け)、 工務店経由 B2B2C は 5/14 友人「横のつながりない」 で間接導線が機能しにくい</td></tr>
+      <tr><td>#11 ESG 可視化 SaaS</td><td>10</td><td>大手向け、 年商 1-5 億の中堅工務店には早すぎる (法令義務化前)、 アトツギ層も優先度低</td></tr>
+      <tr><td>#12 プロジェクトリスク予測</td><td>10</td><td>機械学習データ要件高、 個人客 9 割の小規模案件では予測モデルが機能しにくい</td></tr>
+      <tr><td>#13 競合インテリ SaaS</td><td>9</td><td>5/14 友人「横のつながりない」 = 競合意識自体が薄い層、 訴求文脈が成立しにくい</td></tr>
+      <tr><td>#14 集客 BPaaS</td><td>(撤退済)</td><td>5/22 v7.0 で撤退判定済 (Google ビジネス代行 = 競合飽和 / 単価低)</td></tr>
+      <tr><td>#15 リード CRM</td><td>(撤退済)</td><td>5/22 v7.0 で撤退判定済 (既存 CRM SaaS と差別化困難)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box info" style="margin-top:14px;">
+    <h3>📌 絞り込みロジック (5/23 確定、 ヒアリング前 公開可)</h3>
+    <ul>
+      <li><strong>Score 順ではなく 痛みの多様性で選定</strong>: A 群 = 既知の痛み (OB / 展示会 / 経営数字) / B 群 = 差別化 (暗黙知 / コンテンツ / 3D)</li>
+      <li><strong>5/14 友人 N=1 結果を反映</strong>: 「日報は紙」 で #05、 「商談頻度低」 で #06 を A 群から外す判断</li>
+      <li><strong>価格帯バランス</strong>: A 群 = SaaS 月 3-10 万 中心 / B 群 = 月 5-20 万 or 50-150 万 BPaaS 帯</li>
+      <li><strong>33p 評価の Score 14-16 のみから選定</strong>、 Score 13 以下は意図的に除外</li>
+      <li><strong>ヒアリング時の取扱</strong>: 6 候補は <em>提示候補のプール</em>、 痛みヒアリング後に <strong>事前 4 件に絞り込み提示</strong> (P4 参照)</li>
+    </ul>
+  </div>
+
+  <div class="footer-bar">
+    <span>v8.0 ヒアリング 内部設計 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P3 15→6 絞り込み</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P4 (旧 P3): ヒアリング Phase 5 (痛み → 候補 → 順位 → 価格 → 紹介) -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">P4 · ヒアリング Phase</span>
+  <span class="slide-num">4 / 8</span>
+
+  <div class="eyebrow">ヒアリング 60 分 の進行設計 (5/23 修正: 30-45 分 → 60 分)</div>
+  <h1>ヒアリング Phase 5 (痛み先 → 4 候補に絞って提示)</h1>
+
+  <p class="lead">候補を先に見せると「あなたの会社の痛みは何ですか? → こっちが用意した候補に当てはまる答え」 のバイアスが入る。 必ず痛みを先に聞き、 相手の言葉で痛みが言語化されてから <strong>6 候補プールから事前に 4 件に絞り込んで</strong> 提示する。 候補ごとに動くデモ + 痛みとの紐付け + 反応観察 で実質 5-7 分/候補が必要なため、 ヒアリング全体を 60 分に拡張。</p>
+
+  <div class="phase-row head">
+    <div class="phase-num">Phase</div>
+    <div>所要</div>
+    <div>内容</div>
+    <div>注意点</div>
+  </div>
+  <div class="phase-row">
+    <div class="phase-num">1. アイスブレイク</div>
+    <div>5 分</div>
+    <div>P1 表紙 5 問の問診 (年商 / 受注内訳 / 役職 / IT 投資意欲 / 一番困ってる業務)。 まず相手の業務状況を理解する</div>
+    <div>Q5 自由記述 (困ってる業務) を 一番丁寧に聞く。 ここで出た痛みを後で候補と紐付ける</div>
+  </div>
+  <div class="phase-row">
+    <div class="phase-num">2. 痛み深掘り</div>
+    <div>10-15 分</div>
+    <div>Q5 で出た痛みを「具体的に最近あった話」 まで深掘り。 例:「OB 名簿管理」 と言われたら「最近、 OB に連絡できなかった案件 ありました?」 + 後継層関与確認 (決裁プロセス / 父親世代の関与)</div>
+    <div>★ 候補名を出さない、 ヒントも出さない。 相手の言葉だけで痛みを言語化させる。 沈黙 5-10 秒を許容</div>
+  </div>
+  <div class="phase-row">
+    <div class="phase-num">3. 候補提示</div>
+    <div>20-30 分</div>
+    <div><strong>6 候補プールから事前に 4 件に絞り込んで</strong>提示 (痛み一致度で選定)。 1 候補 5-7 分: ① 動くデモ画面共有 / ② 痛みとの紐付け説明 / ③ 「あなたの会社で起きてる?」 確認 / ④ 反応観察 (本物 / 偽シグナル判定)</div>
+    <div>事前絞り込みは P3 の 6 候補プールから 痛み一致度 + 価格帯バランス で 4 件選定。 順序は痛み一致度順、 興味ない候補は即スキップして残り時間を有望候補に集中</div>
+  </div>
+  <div class="phase-row">
+    <div class="phase-num">4. 順位 + 価格反応</div>
+    <div>10-15 分</div>
+    <div>P8 順位付け + 各候補の価格反応 (<strong>候補ごとに価格レンジを変えて聞く、 P7 参照</strong>)。 1 位の候補について「いつ頃導入検討?」「決裁プロセスは?」「父親はなんて言いそう?」 を必ず聞く</div>
+    <div>★ 価格は必ず 3 段階で聞く (1 段階だと「無料なら使う」 になる)。 価格反応を口にしない相手は本物のシグナルではない。 候補ごとレンジは P7 表参照</div>
+  </div>
+  <div class="phase-row">
+    <div class="phase-num">5. 紹介依頼</div>
+    <div>5-10 分</div>
+    <div>P8 下部の紹介シート。 1-2 名の同業後継者を紹介依頼。 連絡先 (LINE / メール / 名刺写真) まで踏み込む。 「いつ繋げる?」 まで時間軸取得</div>
+    <div>★ 「考えとく」 は偽シグナル扱い (記録)。 「来週 LINE で繋げる」 まで取れたら本物</div>
+  </div>
+
+  <div class="box good" style="margin-top:14px;">
+    <h3>✅ 進行のコツ (旧 5/14 設計 + 5/23 アトツギ調整)</h3>
+    <ul>
+      <li><strong>動くデモを必ず見せる</strong>: 5/22 北原氏「動くデモを先に作る」 確定。 PowerPoint 静止スライドではなく ihara-frontend.com の demo-gallery + ihara-frontend.com/local-business 実機画面共有 (Zoom / 直接画面)。 ⚠️ <strong>既存 8 デモは warm editorial 文体 = 5/22 確定前の IT 弱者向け、 5/24-30 にアトツギ向け文体調整必要</strong></li>
+      <li><strong>父親説得材料を意識</strong>: 後継者は「自分の判断」 だけでは決められない。 「父親にどう説明するか」 を一緒に考える姿勢で「父親と並走する」 トーン</li>
+      <li><strong>同業他社事例を提示</strong>: 「あの工務店もこれで売上 +20%」 のような具体例を 2-3 件用意 (P6 で別途整理、 ⚠️ 5/30 までに引用元裏取り完了必須)</li>
+      <li><strong>業界トレンドを語る</strong>: アトツギは「業界の流れ」 で動く。 「兄ちゃんの SaaS」 ではなく「業界 DX の流れ」 で語る</li>
+    </ul>
+  </div>
+
+  <div class="footer-bar">
+    <span>v8.0 ヒアリング 内部設計 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P4 Phase</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P5 (旧 P4): シグナル基準 (本物 vs 偽) -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">P5 · シグナル基準</span>
+  <span class="slide-num">5 / 8</span>
+
+  <div class="eyebrow">本物のシグナル vs 偽シグナル / N=1 カウントは AND 3 必須</div>
+  <h1>シグナル基準 (5/23 厳密化: AND 3 必須)</h1>
+
+  <p class="lead">「いいね」 「面白い」 は丁寧なノー。 後継層特有のシグナル (父親言及 / 経理母言及 / 自社事情の具体化 / 時間軸の口頭表明 / 紹介の連絡先提示) のみを本物としてカウントする。 偽シグナルは記録するが N=1 にカウントしない。 N=1 カウント条件は <strong>AND 3 必須 (① 自社事情の具体化 / ② 価格反応の口頭表明 / ③ 紹介の連絡先取得)</strong> — 1 つでも欠ければカウントしない。</p>
+
+  <div class="box bad" style="margin-bottom:10px;">
+    <h3>🔒 N=1 カウントの AND 3 必須条件 (5/23 厳密化)</h3>
+    <ol>
+      <li><strong>① 自社事情の具体化</strong>: 「うちの場合 OB が 200 件あって…」 等、 自分の会社の固有事情を具体的に語る (一般論「業界では…」 は不可)</li>
+      <li><strong>② 価格反応の口頭表明</strong>: 候補ごと 3 段階レンジ (P7 表) のうち どれを選ぶか / どれが妥当に感じるかを口にする (「無料なら…」 は不可)</li>
+      <li><strong>③ 紹介の連絡先取得</strong>: 同業後継者 1-2 名 + 連絡先 (LINE / メール / 名刺写真) まで取得 (「考えとく」 は不可)</li>
+    </ol>
+    <p style="margin-top:6px; font-size:11px;">※ 7 つのシグナル種類 (右側カード) のうち 3 種類取得では不十分。 上記 3 条件すべて必須。 旧基準「≥ 3」 は緩すぎたため 5/23 内 厳密化。</p>
+  </div>
+
+  <div class="signal-grid">
+    <div class="signal-card real">
+      <h3>✅ 本物のシグナル種類 (記録対象 / 3 条件判定の材料)</h3>
+      <div class="quote">「これ いくらですか?」 (自発的な価格質問 = ② に該当)</div>
+      <div class="quote">「父親に見せたい」「親父にも声かけて聞いてもらえる?」 (決裁プロセスの言及)</div>
+      <div class="quote">「経理の母 (妻) に確認する」「税理士にも相談する」 (関係者言及)</div>
+      <div class="quote">「うちの場合は OB が 200 件あって…」 (自社事情の具体化 = ① に該当)</div>
+      <div class="quote">「来月から始められる?」「夏前に動きたい」 (時間軸の口頭表明)</div>
+      <div class="quote">「あの会社の 2 代目に紹介する、 LINE で繋げる」 (紹介を連絡先まで提示 = ③ に該当)</div>
+      <div class="quote">「今までやってみた失敗 (◯◯ サービス) を こう考えてる」 (試行錯誤の共有)</div>
+    </div>
+    <div class="signal-card fake">
+      <h3>✗ 偽シグナル (記録するが計上しない)</h3>
+      <div class="quote">「いいね」 「面白いね」 「便利そう」 (具体性ゼロの褒め)</div>
+      <div class="quote">「業界の人は欲しがるかも」 (自分ではなく業界一般)</div>
+      <div class="quote">「父親世代は使わないけど」 (自分の決裁回避)</div>
+      <div class="quote">「考えておきます」「検討します」 (丁寧なノー)</div>
+      <div class="quote">「他にもっと良いツールあるかも」 (買わない理由の予防線)</div>
+      <div class="quote">「無料ならとりあえず使う」 (価格反応ゼロ)</div>
+      <div class="quote">「いつかね」「タイミング見て」 (時間軸が無限大)</div>
+    </div>
+  </div>
+
+  <div class="box warn" style="margin-top:14px;">
+    <h3>⚠ 後継層特有の判定ポイント (5/23 追加)</h3>
+    <ul>
+      <li><strong>「父親に見せたい」 の温度差</strong>: 「父親に見せて怒られるかも」 = 父親に対する遠慮 = 決裁通らない確率高 (50-50)。 「父親が興味持ちそう」 = 既に父親説得の道筋ある = 本物のシグナル</li>
+      <li><strong>「数字で説明してほしい」 要望</strong>: 後継層は ROI 計算書を求める。 「年間 +¥X 万」 を出せ と言われたら本物 (= 父親説得用に欲しがってる)</li>
+      <li><strong>「同業の◯◯さんも使ってる?」</strong>: 業界事例を聞いてくる = 業界トレンドで動く後継層典型。 後で事例を作って渡すことを約束</li>
+      <li><strong>「補助金使える?」</strong>: 5/17 で 1/8 廃止 / IT 通常枠 1/2 のみ言及可。 「商品確定後 IT 導入支援事業者登録予定」 で逃げる。 補助金で買う層は地雷の可能性 (申請通らないと買わない = 商品価値で買ってない)</li>
+    </ul>
+  </div>
+
+  <div class="footer-bar">
+    <span>v8.0 ヒアリング 内部設計 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P5 シグナル</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P6 (旧 P5): 同業他社事例 + 業界トレンド (父親説得材料) -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">P6 · 父親説得材料</span>
+  <span class="slide-num">6 / 8</span>
+
+  <div class="eyebrow">アトツギに渡す事例 + トレンド</div>
+  <h1>同業他社事例 + 業界トレンド (父親説得材料)</h1>
+
+  <p class="lead">アトツギは業界トレンドで動く + 父親説得用に事例を欲しがる。 ヒアリング中に必要に応じて即引用できるよう、 候補ごとに事例 1-2 件 + 業界統計 1 件 を準備しておく。 ※ 事例は公開情報 + 業界紙 (新建ハウジング / 建築知識 等) ベース、 捏造禁止。</p>
+
+  <div class="box bad" style="margin-bottom:10px;">
+    <h3>⚠ 全事例 裏取り未済 (5/30 までに完了必須)</h3>
+    <p>下表の数字 (「中小 20-30% vs 大手 50-60%」「リクシル 2025 調査 80%」「アトツギ甲子園 父子対談文書化」 等) は <strong>現時点では裏取り未済</strong>。 アトツギは事実確認に厳しい層、 「具体的にどこの工務店?」「その記事 URL は?」 と聞かれた時の備えとして <strong>5/30 までに 6 候補 × 1-2 件 + 引用元 URL + 記事日付 を完全裏取り</strong>。 裏取り不能な事例は ⚠️ マークを残したまま削除して、 代替の確実な事例に差し替える。</p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:14%;">候補</th>
+        <th style="width:30%;">同業他社事例 (⚠️ 裏取り未済)</th>
+        <th style="width:30%;">業界トレンド / 統計 (⚠️ 裏取り未済)</th>
+        <th>父親説得時の一言</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>A-1 OB 管理</strong></td>
+        <td>⚠️ 大手ハウスメーカーの OB 顧客 LTV 戦略 (積水ハウス / 大和ハウス) = 中小工務店との差別化点</td>
+        <td>⚠️ OB リフォーム 獲得率 中小 20-30% vs 大手 50-60% (出典・年月日 要確認)</td>
+        <td>「大手と同じ仕組みを 中小規模で安く回せる」</td>
+      </tr>
+      <tr>
+        <td><strong>A-2 展示会</strong></td>
+        <td>⚠️ JAPAN BUILD TOKYO 出展工務店 (5-30 名規模) の名刺活用事例 (フォロー率 30 → 60%、 出典要確認)</td>
+        <td>✅ 東京都展示会出展助成事業 R8 = 助成限度 ¥150 万 / 2/3 / 全 10 回応募可 (公社 03-3283-7388、 PDF 全読済 [[subsidy-exhibition-r8-2026-05-22]])</td>
+        <td>「助成金で実質 1/3 負担 + 展示会後のフォローツール込み」</td>
+      </tr>
+      <tr>
+        <td><strong>A-3 経営可視化</strong></td>
+        <td>⚠️ 多摩エリア年商 3 億工務店 = 月次試算表導入で 1 年で粗利率 +3% 改善事例 (匿名、 出典要確認)</td>
+        <td>⚠️ 月次試算表活用工務店 30% 以下、 後継者世代 60% が「導入したい」 (出典・年月日 要確認)</td>
+        <td>「親方の勘 + 数字 のハイブリッド経営、 銀行融資交渉でも武器」</td>
+      </tr>
+      <tr>
+        <td><strong>B-1 暗黙知</strong></td>
+        <td>⚠️ アトツギ甲子園 ファイナリスト事例 (父子対談を文書化、 業界紙連載化 — 具体的事例名 要確認)</td>
+        <td>⚠️ 中小企業庁 アトツギ施策 2024-2026 = 事業承継支援センター 補助対象 (詳細要確認)</td>
+        <td>「親方の経験を残して、 引退後も会社に貢献し続ける」</td>
+      </tr>
+      <tr>
+        <td><strong>B-2 コンテンツ</strong></td>
+        <td>✅ masatoman.net (弊社) night-writer routine = 月 30+ 本 SEO 検索流入実証中 (ドッグフード、 [[axis-a-implicit-rescaled-2026-05-17]])</td>
+        <td>⚠️ 30-40 代施主の 80% が「ホームページ + Instagram」 で工務店比較 (リクシル 2025 調査の年月・URL 要確認)</td>
+        <td>「マーケ業者外注より 1/3 のコストで同等以上の発信量」</td>
+      </tr>
+      <tr>
+        <td><strong>B-3 3D シミュ</strong></td>
+        <td>⚠️ 大手ハウスメーカー (一条工務店 / トヨタホーム) のタブレットプレゼン = 中小工務店との差別化武器 (公開 IR 要確認)</td>
+        <td>⚠️ 仕様変更によるクレーム = 工事原価の 5-10% / 大手ハウスメーカー流出原因 1 位 (出典要確認)</td>
+        <td>「大手と同じ提案力を タブレット 1 枚で持てる、 建材屋からのリベートも別途」</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box accent" style="margin-top:14px;">
+    <h3>📚 引用元 (要事前準備)</h3>
+    <ul>
+      <li><strong>業界紙</strong>: <a href="https://www.s-housing.jp/" target="_blank" rel="noopener">新建ハウジング</a> / <a href="https://www.xknowledge.co.jp/book/kj/" target="_blank" rel="noopener">建築知識</a> / <a href="https://xtech.nikkei.com/dm/atcl/mag/15/00072/" target="_blank" rel="noopener">日経ホームビルダー</a> / <a href="https://www.reform-online.jp/" target="_blank" rel="noopener">リフォーム産業新聞</a> (5/30 取材依頼予定)</li>
+      <li><strong>業界統計</strong>: <a href="https://www.chusho.meti.go.jp/" target="_blank" rel="noopener">中小企業庁</a> (建設業統計) / <a href="https://www.mlit.go.jp/" target="_blank" rel="noopener">国土交通省</a> (住宅着工統計) / <a href="https://www.lixiljuken.or.jp/" target="_blank" rel="noopener">リクシル住生活財団</a> 等</li>
+      <li><strong>公的支援</strong>: <a href="https://www.tokyo-kosha.or.jp/support/josei/jigyo/tenjikai/r8/index.html" target="_blank" rel="noopener">東京都展示会出展助成事業 R8</a> / <a href="https://it-shien.smrj.go.jp/" target="_blank" rel="noopener">IT 導入補助金 通常枠 1/2</a> / <a href="https://atotsugi-koshien.go.jp/" target="_blank" rel="noopener">アトツギ甲子園公式</a></li>
+      <li><strong>競合事例</strong>: 大手ハウスメーカー公開 IR / 業界紙の中小工務店成功事例</li>
+    </ul>
+    <p style="font-size:11px; color:var(--ink-soft); margin-top:6px;">※ <strong>5/30 までに</strong> 6 候補分 1-2 件の事例 + 引用元 URL / 記事日付 を整理する。 アトツギは事実確認に厳しい層、 ⚠️ マークが残った事例はヒアリング中に引用してはいけない (捏造扱いになる)。</p>
+  </div>
+
+  <div class="footer-bar">
+    <span>v8.0 ヒアリング 内部設計 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P6 父親説得材料</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P7 (旧 P6): NG パターン + バイアス排除 + 候補ごと価格レンジ -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">P7 · NG パターン + 価格レンジ</span>
+  <span class="slide-num">7 / 8</span>
+
+  <div class="eyebrow">誘導尋問 / バイアス防止 / 候補ごと価格レンジ</div>
+  <h1>NG パターン + バイアス排除 + 候補ごと価格レンジ</h1>
+
+  <p class="lead">ヒアリングで最も避けるべきは「自分が欲しい答えを引き出す質問」。 mom-test の鉄則「アイデアを話すな / 過去を聞け / 一般論を排除しろ」 を後継層向けに調整。</p>
+
+  <div class="grid-2">
+    <div class="box bad">
+      <h3>✗ NG 質問パターン (誘導尋問)</h3>
+      <ul>
+        <li><strong>「OB 管理 大変じゃないですか?」</strong> → ✅ 「過去 10 年の OB 顧客、 どう管理してますか?」</li>
+        <li><strong>「これ便利だと思いますか?」</strong> → ✅ 「過去 1 ヶ月で似たような業務 ありましたか?」</li>
+        <li><strong>「月 5 万なら買いますか?」</strong> → ✅ 「<strong>候補ごとに 3 段階レンジ</strong> で聞く (下表参照)」</li>
+        <li><strong>「業界でこれ流行ってるけど」</strong> → ✅ 「あなたの会社では どうですか?」 (個別化)</li>
+        <li><strong>「父親世代は使わないけど後継者なら…」</strong> → ✅ 「決裁プロセスを教えてください」</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h3>⚠ バイアス源 (自覚しておく)</h3>
+      <ul>
+        <li><strong>関係性バイアス</strong>: 友人ヒアリングは「気を遣って褒める」 → 紹介依頼 + 価格反応で本物判定</li>
+        <li><strong>確証バイアス</strong>: 自分が推したい候補 (例: A-1 OB 管理) を最初に提示しがち → 痛みに応じて順序変更、 主軸を事前に固定しない</li>
+        <li><strong>権威バイアス</strong>: 「北原氏紹介」 = 相手は気を遣う → 紹介者経由の場合は特に慎重に偽シグナル判定</li>
+        <li><strong>業界用語バイアス</strong>: BPaaS / NRR / プレモータム は使わない、 「業務代行」「離脱しにくさ」「失敗想定」 と日本語で</li>
+        <li><strong>サンクコストバイアス</strong>: 33 ページ評価で出した結論を擁護したくなる → 一次情報で覆る前提で挑む</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 style="margin-top:14px;">候補ごと 価格 3 段階レンジ (5/23 統一表記廃止 → 候補別レンジ)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:14%;">候補</th>
+        <th style="width:14%;">提供形態</th>
+        <th style="width:30%;">価格 3 段階レンジ</th>
+        <th>聞き方の例</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>A-1 OB 管理</strong></td>
+        <td>SaaS 月額</td>
+        <td>月 3 / 5 / 10 万</td>
+        <td>「OB 200 件の管理 + リフォーム案内自動化で、 月 3 / 5 / 10 万 だとどれが妥当?」</td>
+      </tr>
+      <tr>
+        <td><strong>A-2 展示会</strong></td>
+        <td>BPaaS 一括 (年 1 回)</td>
+        <td>50 / 100 / 150 万</td>
+        <td>「展示会前後の名刺管理 + フォロー代行 込みで、 50 / 100 / 150 万 (助成金前) だとどれ?」</td>
+      </tr>
+      <tr>
+        <td><strong>A-3 経営可視化</strong></td>
+        <td>SaaS 月額</td>
+        <td>月 3 / 5 / 8 万</td>
+        <td>「月次試算表を自動生成して銀行交渉資料化、 月 3 / 5 / 8 万 だとどれが妥当?」</td>
+      </tr>
+      <tr>
+        <td><strong>B-1 暗黙知</strong></td>
+        <td>AI エージェント (一社一カスタム)</td>
+        <td>月 5 / 10 / 20 万</td>
+        <td>「親方の経験を AI で文書化して 引退後も使える状態にする、 月 5 / 10 / 20 万 だとどれ?」</td>
+      </tr>
+      <tr>
+        <td><strong>B-2 コンテンツ</strong></td>
+        <td>SaaS 月額</td>
+        <td>月 3 / 5 / 10 万</td>
+        <td>「ホームページ + Instagram の記事を 月 30 本自動生成、 月 3 / 5 / 10 万 だとどれ?」</td>
+      </tr>
+      <tr>
+        <td><strong>B-3 3D シミュ</strong></td>
+        <td>SaaS 月額 (買い切り可)</td>
+        <td>月 1.5 / 3 / 5 万 (or 買い切り 30 / 60 / 100 万)</td>
+        <td>「タブレットで施主と仕様確認、 月 1.5 / 3 / 5 万 or 買い切り 30 / 60 / 100 万、 どれが妥当?」 ※ 5/14 友人「買い切り嬉しい」 反映</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box info" style="margin-top:10px; font-size:11px;">
+    <strong>レンジ設計の根拠:</strong> 33p 評価マトリクスの候補別「価格仮」 (¥1.5-3 万 〜 ¥3-8 万) と <strong>5/22 北原氏 提供形態ハイブリッド確定</strong> (SaaS / BPaaS / AI エージェント) を整合させた。 5/14 友人「買い切り嬉しい」 は B-3 のみ買い切り並列表記で反映 (他候補は継続課金の必要性が高い)。 業界統計裏取り後 (5/30) に「儲かってる層」 定義が確定したら、 上限値を再調整する可能性あり。
+  </div>
+
+  <div class="box info" style="margin-top:12px;">
+    <h3>📌 mom-test 鉄則 (本ヒアリングでの適用)</h3>
+    <ol>
+      <li><strong>アイデアを話さない</strong> → 痛みを先に聞く (Phase 2)、 候補は痛みに紐付けて出す</li>
+      <li><strong>過去を聞く、 仮定を聞かない</strong> → 「便利だと思う?」 ではなく「最近こんなことありました?」</li>
+      <li><strong>一般論を排除する</strong> → 「業界では…」 ではなく「あなたの会社では…」</li>
+      <li><strong>具体例を求める</strong> → 「OB 多い」 と言われたら「具体的に何件?」「最近連絡した OB は?」</li>
+      <li><strong>沈黙を許容</strong> → 答えに詰まった時に補助しない、 沈黙 5-10 秒で真の悩みが出る</li>
+    </ol>
+  </div>
+
+  <div class="box accent" style="margin-top:12px;">
+    <h3>🎯 アトツギモード (5/23 追加・主顧客モードからの調整)</h3>
+    <ul>
+      <li>カタカナ・製品名 は使ってよい (アトツギは Web 普通に使える層)</li>
+      <li>「父親を変える」 ではなく「父親と並走する」 トーン</li>
+      <li>「兄ちゃんの SaaS」 ではなく「業界の流れ」 で語る</li>
+      <li>補助金 1/8 廃止 / IT 通常枠 1/2 + 展示会助成 2/3 のみ言及可</li>
+      <li>同業他社事例 + 業界統計 + ROI 計算書 を父親説得材料として提供</li>
+    </ul>
+  </div>
+
+  <div class="footer-bar">
+    <span>v8.0 ヒアリング 内部設計 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P7 NG パターン + 価格レンジ</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P8 (旧 P7): 記録テンプレ + N=3-5 達成スケジュール + 撤退軸 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">P8 · 記録 + スケジュール + 撤退軸</span>
+  <span class="slide-num">8 / 8</span>
+
+  <div class="eyebrow">ヒアリング後の記録 + N=3-5 達成までの動き方 + 撤退判断軸</div>
+  <h1>記録テンプレ + スケジュール + 撤退軸</h1>
+
+  <h2>記録テンプレ (各 N の結果を 1 ページに集約)</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:18%;">項目</th>
+        <th>記録内容</th>
+        <th style="width:14%;">判定</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>基本情報</strong></td><td>日付 / 相手名 / 会社名 / 年商 / 受注内訳 / 役職 / 後継層関与 (Y/N)</td><td>—</td></tr>
+      <tr><td><strong>Phase 2 痛み</strong></td><td>Q5 自由記述 (相手の言葉で記録) + 深掘り後の具体エピソード</td><td>痛み具体度 1-5</td></tr>
+      <tr><td><strong>Phase 3 候補反応</strong></td><td>事前絞り込み 4 候補の各反応 (1 文ずつ) + 興味なしで提示しなかった候補は「未提示」 と明記</td><td>各候補 1-5</td></tr>
+      <tr><td><strong>Phase 4 順位</strong></td><td>1-4 位の順位 + 1 位の候補名 + 価格反応 (<strong>候補ごとレンジ P7 表参照</strong>、 どれを丸囲みしたか明記)</td><td>1 位確定度 1-5</td></tr>
+      <tr><td><strong>Phase 4 決裁</strong></td><td>導入時期 (今月 / 来月 / 3 ヶ月 / 半年 / 検討のみ) + 決裁関係者 (父親 / 経理母 / 税理士 / 自分)</td><td>時間軸 1-5</td></tr>
+      <tr><td><strong>Phase 5 紹介</strong></td><td>紹介可能人数 + 連絡先取得 (会社名 / 名前 / LINE or メール) + 紹介タイミング</td><td>紹介度 0-2</td></tr>
+      <tr><td><strong>本物 / 偽シグナル</strong></td><td>引用 (「これ いくらですか?」 等) を直接記録 + 偽シグナル ( 「いいね」 等) も別欄に記録</td><td>本物 ○ / 偽 ×</td></tr>
+      <tr><td><strong>N=1 カウント判定</strong></td><td><strong>AND 3 必須</strong>: ① 自社事情の具体化 (一般論不可) + ② 価格反応の口頭表明 (候補ごとレンジ、 P7 参照) + ③ 紹介の連絡先取得 (LINE / メール / 名刺写真)。 1 つでも欠ければカウントせず (記録は残す)</td><td>Y / N</td></tr>
+    </tbody>
+  </table>
+
+  <h2>N=3-5 達成までのスケジュール (5/23 改訂)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:14%;">時期</th>
+        <th style="width:14%;">N 累積目標</th>
+        <th>主アクション</th>
+        <th style="width:18%;">完了判定</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:var(--bad-soft);">
+        <td><strong>5/24-30</strong></td><td>裏取り期間 + プラン C 並走起動</td>
+        <td><strong>① 業界統計裏取り</strong> (利益率 / 後継層現金裁量) + <strong>② 6 候補 × 事例 1-2 件 + URL + 記事日付 裏取り</strong> + <strong>③ demo-gallery アトツギ向け文体調整</strong> + <strong>④ プラン B: 友人 LINE 低負荷送付 (5/24)</strong> + <strong>⑤ プラン C 並走起動</strong>: 北原氏メール送付 (中間報告アポ前倒し依頼) + たましん Step 1 開始 (既取引渉外担当者にメール)</td>
+        <td>裏取り 3 件 + 友人 LINE + 北原氏 / たましん 接触開始</td>
+      </tr>
+      <tr style="background:var(--bad-soft);">
+        <td><strong>5/31</strong></td><td><strong>プラン A/B/C 分岐判定</strong></td>
+        <td>友人 LINE 反応なし → <strong>プラン C 確定発動</strong>。 反応あり (即返事 + 後継ぎ Yes) → プラン A 復活検討、 反応あり (後継ぎ No or 遅返事) → プラン B 継続 + プラン C 並走</td>
+        <td>プラン確定 + 6 月以降スケジュール確定</td>
+      </tr>
+      <tr>
+        <td><strong>6 月前半</strong></td><td>—</td>
+        <td><strong>プラン A 復活時</strong>: 友人訪問実施 + 紹介依頼。 <strong>プラン C 主軸時</strong>: 北原氏 中間報告アポ調整 + たましん Step 2 橋渡し + 建材屋巡回開始 (LIXIL / ナフコ) + 設計事務所オーナー 1 件打診</td>
+        <td>(プラン A) 友人 N=1 記録 / (プラン C) 4 経路すべて打診開始</td>
+      </tr>
+      <tr>
+        <td><strong>6 月後半</strong></td><td>N=2</td>
+        <td>友人紹介の同世代後継者 N=2 実施 + 建材屋ルート巡回開始 (月 2-3 回)。 設計事務所オーナー 1 件打診</td>
+        <td>N=2 記録完了</td>
+      </tr>
+      <tr>
+        <td><strong>7 月前半</strong></td><td>N=3</td>
+        <td>設計事務所 or 建材屋経由で N=3 実施。 公庫融資申込 と並走 (時間配分要)</td>
+        <td>N=3 記録完了</td>
+      </tr>
+      <tr>
+        <td><strong>7 月後半</strong></td><td>N=3-4</td>
+        <td>たましん価値創造事業部 経由の紹介可能性検討 (Step 3 訪問本番 6-7 月後半想定と整合)</td>
+        <td>N=4 候補打診</td>
+      </tr>
+      <tr>
+        <td><strong>8 月前半</strong></td><td>N=4-5</td>
+        <td>8/22 北原氏 中間報告アポ で N=3-4 結果共有 + 紹介依頼。 8/1-8/14 展示会出展助成事業 第 5 回 応募 と並走</td>
+        <td>N=5 (北原氏紹介) 候補打診</td>
+      </tr>
+      <tr>
+        <td><strong>8 月後半-9 月</strong></td><td>N=5 確定 + 商品方向性決定</td>
+        <td>北原氏紹介の N=5 実施 + 結果統合 → <strong>主軸 1 + 副軸 1-2 を一次情報で確定</strong> (※ ヒアリング前に主軸候補を固定しない) + v9.0 商品設計</td>
+        <td>N=5 記録完了 / 主軸 + 副軸 確定</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box good" style="margin-top:12px;">
+    <h3>✅ N=3-5 達成後の動き (8-9 月以降)</h3>
+    <ul>
+      <li>商品方向性 (主軸 1 + 副軸 1-2) を確定 → v9.0 商品設計 docs 作成 (8-9 月)</li>
+      <li>9-10 月 MVP β 版作成 (主軸候補) + ヒアリング協力者 1-2 社で試用</li>
+      <li>10-12 月 認定支援機関税理士 / IT 導入支援事業者登録 検討開始 (補助金本格訴求)</li>
+      <li>12/2-4 JAPAN BUILD TOKYO 出展 (A-2 採用なら) + 主軸候補デモ並走</li>
+      <li>1-4 月 3-5 社契約累計 → MRR ¥30-60 万 達成判定 (4/30 ルートゴール)</li>
+    </ul>
+  </div>
+
+  <div class="box bad" style="margin-top:8px;">
+    <h3>⚠ 8 月末 戦略撤退/ピボット 判断軸 (5/23 厳密化 3 軸)</h3>
+    <table style="margin-top:6px;">
+      <thead>
+        <tr><th style="width:24%;">判断軸</th><th style="width:24%;">不調ライン</th><th>判定アクション</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>① N 累積</strong></td><td>N=2 以下</td><td>打診先設計の見直し (建材屋 / 設計事務所 / アトツギ甲子園 の重み再配分) + ヒアリング期間 +1 ヶ月延長検討</td></tr>
+        <tr><td><strong>② 本物シグナル取得率</strong></td><td>30% 以下 (AND 3 必須を満たす N / 打診件数)</td><td>候補設計の見直し (痛みと候補のミスマッチ) → 6 候補プールから別 3-4 件への入れ替え検討</td></tr>
+        <tr><td><strong>③ 紹介芋蔓</strong></td><td>1 件目から紹介ゼロ</td><td>5/22 北原氏「紹介芋蔓式」 前提の崩壊 → 別経路 (商工会 / フランチャイズ / 展示会単独) に切替 + 北原氏 8/22 報告で相談</td></tr>
+        <tr style="background:var(--bad-soft);"><td><strong>3 軸ともに不調</strong></td><td>① ② ③ 全て不調ライン</td><td><strong>軸 B ターゲット層自体の見直し (アトツギ × 儲かってる層 → 別業種 / 別層) を 9 月末までに判断</strong>。 サンクコスト回避のため期限固定</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:6px; font-size:11px;">判定後の動きは 8 月末 sync-strategy / memory-link-check 実施で全体整合確認 + STRATEGY.md §9 3 ヶ月後判定 (7/30) と統合運用。</p>
+  </div>
+
+  <div class="footer-bar">
+    <span>v8.0 ヒアリング 内部設計 / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P8 記録 + スケジュール + 撤退軸</span>
+  </div>
+</div>
+
+<section class="ref-links">
+  <h2>📚 参考リンク集 (内部設計サポート)</h2>
+
+  <div class="ref-group">
+    <h3>① 業界紙 (取材依頼 5/30 予定)</h3>
+    <ul>
+      <li>🔗 <a href="https://www.s-housing.jp/" target="_blank" rel="noopener">新建ハウジング</a> <span class="desc">— 中小工務店向け業界紙、 アトツギ事業承継特集多数</span></li>
+      <li>🔗 <a href="https://www.xknowledge.co.jp/book/kj/" target="_blank" rel="noopener">建築知識 (エクスナレッジ)</a> <span class="desc">— 工務店設計者向け、 IT 化事例特集あり</span></li>
+      <li>🔗 <a href="https://xtech.nikkei.com/dm/atcl/mag/15/00072/" target="_blank" rel="noopener">日経ホームビルダー</a> <span class="desc">— 住宅ビルダー業界紙、 経営支援系記事</span></li>
+      <li>🔗 <a href="https://www.reform-online.jp/" target="_blank" rel="noopener">リフォーム産業新聞</a> <span class="desc">— リフォーム特化、 OB 顧客活用事例</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>② 公的支援機関 (アトツギ + 補助金 + 経営支援)</h3>
+    <ul>
+      <li>🔗 <a href="https://atotsugi-koshien.go.jp/" target="_blank" rel="noopener">アトツギ甲子園 公式 (中小機構)</a> <span class="desc">— アトツギ層接点、 12-2 月開催</span></li>
+      <li>🔗 <a href="https://www.chusho.meti.go.jp/" target="_blank" rel="noopener">中小企業庁</a> <span class="desc">— アトツギ施策 / 事業承継支援センター主管</span></li>
+      <li>🔗 <a href="https://www.keieiryoku.jp/" target="_blank" rel="noopener">中小企業活力向上プロジェクトアドバンスプラス</a> <span class="desc">— 無料経営分析 / グロースサポート (03-3283-7388)</span></li>
+      <li>🔗 <a href="https://www.tokyo-kosha.or.jp/support/josei/jigyo/tenjikai/r8/index.html" target="_blank" rel="noopener">東京都中小企業振興公社 R8 展示会出展助成</a> <span class="desc">— ¥150 万 / 2/3 助成 / 助成課 03-3251-7895</span></li>
+      <li>🔗 <a href="https://it-shien.smrj.go.jp/" target="_blank" rel="noopener">IT 導入補助金 公式</a> <span class="desc">— 通常枠 1/2、 商品確定後 10-12 月以降に本格訴求予定</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>③ 業界統計</h3>
+    <ul>
+      <li>🔗 <a href="https://www.mlit.go.jp/" target="_blank" rel="noopener">国土交通省 (住宅着工統計)</a> <span class="desc">— 月次住宅着工件数 / リフォーム市場規模</span></li>
+      <li>🔗 <a href="https://www.lixiljuken.or.jp/" target="_blank" rel="noopener">リクシル住生活財団</a> <span class="desc">— 施主行動調査 / 工務店比較行動データ</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>④ 関連 docs (本リポ内)</h3>
+    <ul>
+      <li>🔗 <a href="./v8.0-product-candidates-evaluation-2026-05-23.html" target="_blank" rel="noopener">v8.0 商品候補 33 ページ評価マトリクス (内部資料)</a> <span class="desc">— 15 候補のレーダー評価 + 落とした 9 件の理由 (15→6 写像は本 docs P3 参照)</span></li>
+      <li>🔗 <a href="./v8.0-hearing-resource-2026-05-23.html" target="_blank" rel="noopener">v8.0 ヒアリング資料 A4 8p (相手に渡す)</a> <span class="desc">— 本 docs と対になる相手用、 表紙 + 6 候補 + 順位 + 紹介シート</span></li>
+      <li>🔗 <a href="./japan-build-tokyo-2026-todo-2026-05-23.html" target="_blank" rel="noopener">JAPAN BUILD TOKYO 出展 TODO リスト</a> <span class="desc">— A-2 展示会候補と紐付く、 助成金応募 + 出展準備 タイムライン</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>⑥ 5/23 改訂履歴 (指摘反映)</h3>
+    <ul>
+      <li>P1 目的「#01 を主軸に確定」 → 「主軸 1 + 副軸 1-2 を一次情報で確定」 に書換 (確証バイアス排除)</li>
+      <li>P1 達成基準: 「友人 N=1 確定済」 → 「後継層関与未確認 = カウント保留中」</li>
+      <li>P1 ターゲット: 「年商 1-5 億」 → 「年商 1-5 億 + 後継層現金裁量あり (※ 仮定義、 5/30 業界統計裏取り後確定)」</li>
+      <li>P2 友人工務店: 「N=1 確定済の安全枠」 → 「後継層関与確認待ち枠」 + 該当なし時の分岐 (#4 #5 重み移動)</li>
+      <li><strong>新 P3</strong>: 15 候補 → 6 候補絞り込み根拠ページ追加 + 落とした 9 件の理由明示</li>
+      <li>P4 (旧 P3): ヒアリング時間 30-45 分 → 60 分。 候補 6 → 事前 4 件絞り込み。 Phase 3 を 20-30 分に拡張</li>
+      <li>P5 (旧 P4): N=1 カウント条件「≥ 3」 → 「AND 3 必須」 (自社事情 + 価格反応 + 紹介連絡先)</li>
+      <li>P6 (旧 P5): 全事例に裏取り未済 ⚠️ マーク + 「5/30 までに 6 候補 × 1-2 件 + URL + 記事日付 完全裏取り」 必須化</li>
+      <li>P7 (旧 P6): 価格反応「月 3/5/10 万」 統一 → 候補ごとレンジ (A-2 BPaaS 50/100/150 万、 B-1 AI 月 5/10/20 万 等)</li>
+      <li>P8 (旧 P7): スケジュールに <strong>5/24-30 裏取り期間</strong> 追加 + 撤退判断軸を 3 軸 (N / 本物率 / 紹介芋蔓) で厳密化 + 9 月末までに軸 B 全体見直し判断</li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>⑤ mom-test / 顧客開発手法</h3>
+    <ul>
+      <li>🔗 <a href="https://momtestbook.com/" target="_blank" rel="noopener">The Mom Test 公式 (Rob Fitzpatrick)</a> <span class="desc">— P6 NG 質問 / 偽シグナル排除の理論根拠</span></li>
+    </ul>
+  </div>
+</section>
+
+</body>
+</html>

@@ -40,3 +40,11 @@ next-env.d.ts.serena/
 /issue-finder-*.yml
 /.serena/
 /.email-previews/
+
+# claude.ai 同期用 snapshot (memory + STRATEGY.md + CLAUDE.md 統合、 ローカル only)
+# 生成: bash scripts/generate-claude-snapshot.sh
+# 第三者情報を除外するが、 念のため git tracked にしない
+/docs/claude-ai-snapshot.md
+
+# voice-pipeline vendor (whisper.cpp 614MB, commit に含めない)
+/tools/voice-pipeline/vendor/

@@ -9,8 +9,8 @@
 //   node scripts/rebuild-docs-index.mjs
 //
 // 対象:
-//   - docs/ 直下の *.html (index.html 自身は除外)
-//   - subdirectory (tooling-updates/ 等) は除外、 footer リンクで案内
+//   - docs/ 直下 + サブディレクトリ (business/, service/, meeting/ 等) の *.html
+//   - index.html 自身は除外
 //
 
 import { readdirSync, readFileSync, writeFileSync, statSync, existsSync } from 'fs';
@@ -22,13 +22,26 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const DOCS_DIR = join(__dirname, '..', 'docs');
 const INDEX_FILE = join(DOCS_DIR, 'index.html');
 
-function categorize(filename) {
+const DIR_CATEGORY_MAP = {
+  business:   { id: 'business',   label: '事業計画' },
+  service:    { id: 'service',    label: 'サービス設計' },
+  meeting:    { id: 'meeting',    label: 'ヒアリング・商談' },
+  'v8.0':     { id: 'v8',        label: 'v8.0' },
+  design:     { id: 'design',     label: 'デザインブリーフ' },
+  channel:    { id: 'channel',    label: '工務店戦略' },
+  operations: { id: 'operations', label: '運用・計画' },
+  technical:  { id: 'technical',  label: '技術' },
+  tamashin:   { id: 'tamashin',   label: 'たましん・補助金' },
+};
+
+function categorize(filename, subdir) {
+  if (subdir && DIR_CATEGORY_MAP[subdir]) return DIR_CATEGORY_MAP[subdir];
   if (/^business-(plan|summary)/.test(filename)) return { id: 'business', label: '事業計画' };
   if (/^design-brief/.test(filename)) return { id: 'design', label: 'デザインブリーフ' };
-  if (/^(komuten|koumuten)/.test(filename)) return { id: 'komuten', label: '工務店戦略' };
-  if (/^(consultation|friend-hearing|tamashin)/.test(filename)) return { id: 'hearing', label: 'ヒアリング・商談' };
-  if (/^(calendar|cowork|integrated|routines)/.test(filename)) return { id: 'automation', label: '自動化整理' };
-  if (/^(saas-pricing|may-action|remaining-tasks|voice-pipeline)/.test(filename)) return { id: 'planning', label: '実務計画' };
+  if (/^(komuten|koumuten)/.test(filename)) return { id: 'channel', label: '工務店戦略' };
+  if (/^(consultation|friend-hearing|tamashin)/.test(filename)) return { id: 'meeting', label: 'ヒアリング・商談' };
+  if (/^(calendar|cowork|integrated|routines)/.test(filename)) return { id: 'operations', label: '運用・計画' };
+  if (/^(saas-pricing|may-action|remaining-tasks|voice-pipeline)/.test(filename)) return { id: 'operations', label: '運用・計画' };
   if (/^(index-|claude-code-features)/.test(filename)) return { id: 'meta', label: '履歴・メタ' };
   return { id: 'other', label: 'その他' };
 }
@@ -110,22 +123,23 @@ function gitLastCommitISO(relativePath) {
 
 let injectedCount = 0;
 
-function extractMeta(filepath, filename) {
+function extractMeta(filepath, filename, subdir) {
   let html = readFileSync(filepath, 'utf8');
   const st = statSync(filepath);
-  const relPath = `docs/${filename}`;
+  const relPath = subdir ? `docs/${subdir}/${filename}` : `docs/${filename}`;
   const { html: updatedHtml, created, injected } = ensureCreatedMeta(filepath, filename, html, st.mtime);
   if (injected) injectedCount++;
   html = updatedHtml;
   const updated = gitLastCommitISO(relPath) || new Date(st.mtime).toISOString();
+  const displayFilename = subdir ? `${subdir}/${filename}` : filename;
   return {
-    filename,
+    filename: displayFilename,
     title: extractTitle(html, filename),
     description: extractDescription(html),
     date: extractDate(filename, st.mtime),
-    created, // ISO 8601、 UI 側で YYYY-MM-DD に切る
+    created,
     updated,
-    category: categorize(filename),
+    category: categorize(filename, subdir),
     size: st.size,
   };
 }
@@ -136,12 +150,28 @@ function rebuild() {
     process.exit(1);
   }
 
-  const files = readdirSync(DOCS_DIR)
-    .filter(f => /\.html$/.test(f) && f !== 'index.html');
+  const entries = [];
 
-  const entries = files
-    .map(f => extractMeta(join(DOCS_DIR, f), f))
-    .sort((a, b) => b.date.localeCompare(a.date));
+  const rootFiles = readdirSync(DOCS_DIR)
+    .filter(f => /\.html$/.test(f) && f !== 'index.html');
+  for (const f of rootFiles) {
+    entries.push(extractMeta(join(DOCS_DIR, f), f, null));
+  }
+
+  const subdirs = readdirSync(DOCS_DIR)
+    .filter(d => {
+      const full = join(DOCS_DIR, d);
+      return statSync(full).isDirectory() && !['legacy', 'issue-finder'].includes(d);
+    });
+  for (const sub of subdirs) {
+    const subPath = join(DOCS_DIR, sub);
+    const subFiles = readdirSync(subPath).filter(f => /\.html$/.test(f));
+    for (const f of subFiles) {
+      entries.push(extractMeta(join(subPath, f), f, sub));
+    }
+  }
+
+  entries.sort((a, b) => b.date.localeCompare(a.date));
 
   const index = readFileSync(INDEX_FILE, 'utf8');
   const entriesText = entries.length === 0

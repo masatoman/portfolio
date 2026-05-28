@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hermes-agent を Ollama で動かしたら 7B モデルの限界が見えた</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-dim: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --red: #f85149;
+    --orange: #d29922;
+    --code-bg: #1c2128;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .meta {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .tag {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 0.75rem;
+    color: var(--accent);
+  }
+  .hook {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 16px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .lead { margin-bottom: 32px; }
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 40px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 28px 0 12px;
+    color: var(--accent);
+  }
+  p { margin-bottom: 14px; }
+  strong { color: #fff; }
+  ul, ol { margin: 0 0 16px 24px; }
+  li { margin-bottom: 6px; }
+
+  /* conclusion box */
+  .conclusion {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--green);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .conclusion ul { margin-bottom: 0; }
+  .conclusion li { margin-bottom: 8px; }
+
+  /* warning box */
+  .warning {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--orange);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 20px 0;
+  }
+  .warning-title {
+    font-weight: 600;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+
+  /* code */
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    overflow-x: auto;
+    margin: 12px 0 20px;
+    line-height: 1.5;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: 0.85rem;
+  }
+
+  /* tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 0.9rem;
+  }
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border: 1px solid var(--border);
+  }
+  th {
+    background: var(--surface);
+    font-weight: 600;
+    color: var(--accent);
+  }
+  td { background: var(--bg); }
+
+  /* error output */
+  .error-output {
+    background: #1a0000;
+    border: 1px solid #5c1a1a;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 12px 0 20px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.83rem;
+    color: var(--red);
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  /* success output */
+  .success-output {
+    background: #0a1a0a;
+    border: 1px solid #1a4a1a;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 12px 0 20px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.83rem;
+    color: var(--green);
+    white-space: pre-wrap;
+  }
+
+  /* summary section */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .summary-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .summary-card .label {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .summary-card .value {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .summary-card .value.ok { color: var(--green); }
+  .summary-card .value.ng { color: var(--red); }
+  .summary-card .value.warn { color: var(--orange); }
+
+  .footer-note {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.8rem;
+  }
+</style>
+  <meta name="created" content="2026-05-27T11:11:46.967Z">
+</head>
+<body>
+
+<h1>hermes-agent を Ollama で動かしたら<br>7B モデルの限界が見えた</h1>
+<div class="meta">
+  2026-05-27 &nbsp;|&nbsp; masatoman.net &nbsp;|&nbsp; 実験ログ
+  <div class="tags">
+    <span class="tag">hermes-agent</span>
+    <span class="tag">Ollama</span>
+    <span class="tag">AI エージェント</span>
+    <span class="tag">ローカル LLM</span>
+    <span class="tag">セットアップ</span>
+  </div>
+</div>
+
+<div class="hook">
+  「AI エージェントフレームワークを試したいけど、API キーに課金するのはまだ早い」
+</div>
+
+<p class="lead">
+  同じことを考えて hermes-agent を Ollama で動かしてみた結果、<strong>動くには動くが、7B モデルだとエージェントとしてはまともに機能しない</strong>ことが分かった。この記事はそのセットアップ全手順と、ハマった 3 箇所の記録。
+</p>
+
+<!-- ───────────── 結論 ───────────── -->
+<h2>結論</h2>
+<div class="conclusion">
+  <ul>
+    <li>hermes-agent + Ollama で<strong>ローカル完全無料構成は成立する</strong></li>
+    <li>ただし hermes-agent は<strong>最低 64K コンテキスト</strong>を要求する。Ollama 側の <code>num_ctx</code> も合わせて設定が必要</li>
+    <li><strong>qwen2.5-coder:7b（32K コンテキスト）ではツール呼び出しが暴発</strong>する。素の会話はできるが、エージェントとしての自律動作は実用に耐えない</li>
+    <li>エージェント機能をまともに使うなら、<strong>14B 以上のモデル</strong>か OpenRouter 等のクラウド API が現実的</li>
+  </ul>
+</div>
+
+<!-- ───────────── 前提環境 ───────────── -->
+<h2>前提環境</h2>
+<table>
+  <tr><th>項目</th><th>バージョン</th></tr>
+  <tr><td>OS</td><td>macOS Sonoma (Darwin 25.3.0)</td></tr>
+  <tr><td>Python</td><td>3.13.7 (システム) / 3.11.13 (hermes venv)</td></tr>
+  <tr><td>uv</td><td>0.8.17</td></tr>
+  <tr><td>Ollama</td><td>0.24.0</td></tr>
+  <tr><td>モデル</td><td>qwen2.5-coder:7b (4.7GB, Q4_K_M)</td></tr>
+  <tr><td>hermes-agent</td><td>0.14.0</td></tr>
+</table>
+<p>Ollama と uv が既にインストールされている前提で進める。なければ先に <code>brew install ollama</code> と <code>brew install uv</code> で入る。</p>
+
+<!-- ───────────── セットアップ手順 ───────────── -->
+<h2>セットアップ手順</h2>
+
+<h3>1. hermes-agent のインストール</h3>
+<p>公式 README のワンライナー:</p>
+<pre><code>curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash</code></pre>
+<p><strong>ここで最初のハマりポイント。</strong></p>
+
+<!-- ハマり 1 -->
+<h3>ハマり 1: <code>curl | bash</code> が失敗する</h3>
+<div class="error-output">bash: line 13: [full: command not found</div>
+<p>原因は不明だが、パイプ経由だとシェルの解釈がおかしくなるケースがある。</p>
+
+<div class="warning">
+  <div class="warning-title">解決策</div>
+  ファイルに保存してから実行する。
+</div>
+
+<pre><code>curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh \
+  -o /tmp/hermes-install.sh
+
+bash /tmp/hermes-install.sh --skip-setup --skip-browser</code></pre>
+
+<p><code>--skip-setup</code> はインタラクティブ設定ウィザードをスキップ（後で config.yaml を直接編集する）。<code>--skip-browser</code> は Playwright/Chromium のインストールをスキップ。</p>
+<p>インストールが完了すると <code>~/.hermes/hermes-agent/</code> にコードが配置され、<code>~/.local/bin/hermes</code> にランチャーが作られる。</p>
+
+<pre><code>source ~/.zshrc  # PATH を反映</code></pre>
+
+<!-- ハマり 2 -->
+<h3>2. config.yaml を Ollama 向けに編集</h3>
+<p><code>~/.hermes/config.yaml</code> を開いて 3 箇所変更する。</p>
+<pre><code>model:
+  default: "qwen2.5-coder:7b"              # ← Ollama のモデル名
+  provider: "custom"                         # ← "auto" から変更
+  base_url: "http://127.0.0.1:11434/v1"    # ← Ollama のエンドポイント</code></pre>
+
+<p>これだけだと動かない。<strong>ここで 2 つ目のハマりポイント。</strong></p>
+
+<h3>ハマり 2: 64K コンテキスト制限</h3>
+<div class="error-output">ValueError: Model qwen2.5-coder:7b has a context window of 32,768 tokens,
+which is below the minimum 64,000 required by Hermes Agent.</div>
+
+<p>hermes-agent はシステムプロンプト + ツール定義 + 会話履歴で大量のコンテキストを消費するため、<strong>最低 64K トークンのコンテキスト長を要求する</strong>。</p>
+
+<div class="warning">
+  <div class="warning-title">解決策</div>
+  config.yaml で hermes 側と Ollama 側の両方のコンテキスト長をオーバーライドする。
+</div>
+
+<pre><code>model:
+  default: "qwen2.5-coder:7b"
+  provider: "custom"
+  base_url: "http://127.0.0.1:11434/v1"
+  context_length: 65536      # ← 追加: hermes 側のコンテキスト長
+  ollama_num_ctx: 65536      # ← 追加: Ollama 側の num_ctx</code></pre>
+
+<!-- ハマり 3 -->
+<h3>3. 動作確認</h3>
+<p>Ollama が起動していることを確認してから:</p>
+<pre><code># Ollama が動いているか確認
+curl -s http://127.0.0.1:11434/api/tags | python3 -m json.tool
+
+# hermes でワンショット実行
+echo "Hello! What model are you?" | ~/.local/bin/hermes -z -</code></pre>
+
+<p><strong>ここで 3 つ目のハマりポイント。</strong></p>
+
+<h3>ハマり 3: 7B モデルのツール呼び出し暴発</h3>
+<p>hermes-agent は起動時にツール定義（terminal, file, web_search 等 40 種以上）をシステムプロンプトに注入する。7B モデルだと<strong>質問に答える代わりにツールを呼ぼうとする</strong>。</p>
+
+<p>実際の出力:</p>
+<div class="error-output">{
+  "name": "terminal",
+  "arguments": {
+    "command": "./configure && make"
+  }
+}</div>
+<p>「What model are you?」と聞いただけなのに <code>./configure && make</code> を実行しようとした。</p>
+
+<div class="warning">
+  <div class="warning-title">解決策</div>
+  ツールを無効化して素の会話モードにする。
+</div>
+
+<pre><code>echo "What is your model name?" | ~/.local/bin/hermes -z - -t ""</code></pre>
+
+<p><code>-t ""</code> でツールセットを空にすると、素の LLM として応答する:</p>
+<div class="success-output">Sorry, I didn't understand your request. Can you please provide more context
+or ask a specific question?</div>
+<p>応答の質は高くないが、Ollama → hermes-agent の接続自体は動作している。</p>
+
+<!-- ───────────── 結果サマリ ───────────── -->
+<h2>何が分かったか</h2>
+
+<div class="summary-grid">
+  <div class="summary-card">
+    <div class="label">Ollama 接続</div>
+    <div class="value ok">&#10003; 動作する（課金ゼロ）</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">素の会話（ツールなし）</div>
+    <div class="value ok">&#10003; 動作する</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">エージェント機能（ツールあり）</div>
+    <div class="value ng">&#10007; 7B では実用不可</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">セットアップ所要時間</div>
+    <div class="value warn">約 30 分（ハマり込み）</div>
+  </div>
+</div>
+
+<table>
+  <tr><th>観点</th><th>結果</th></tr>
+  <tr><td>Ollama 接続</td><td>動作する。API キー不要、課金ゼロ</td></tr>
+  <tr><td>素の会話 (ツールなし)</td><td>動作する。応答品質はモデル依存</td></tr>
+  <tr><td>エージェント機能 (ツールあり)</td><td>7B では実用不可。ツール呼び出しが暴発する</td></tr>
+  <tr><td>セットアップ所要時間</td><td>ハマりポイント込みで約 30 分</td></tr>
+  <tr><td>ディスク消費</td><td>hermes-agent 本体 + venv で約 500MB、モデルは別途 4.7GB</td></tr>
+</table>
+
+<!-- ───────────── 向き不向き ───────────── -->
+<h2>どういう人に向いているか</h2>
+
+<h3>hermes-agent + Ollama が向くケース</h3>
+<ul>
+  <li>AI エージェントフレームワークの構造を理解したい（学習目的）</li>
+  <li>ローカルで API キーなしに素振りしたい</li>
+  <li>記事やブログのための実験データが欲しい</li>
+</ul>
+
+<h3>向かないケース</h3>
+<ul>
+  <li>今すぐエージェント機能を実用したい → OpenRouter 経由で Claude/GPT を使うか、Claude Code を使った方が早い</li>
+  <li>7B モデルでフルスペック動作を期待している → 最低 14B、理想は 70B 以上が必要と思われる（筆者未検証）</li>
+</ul>
+
+<!-- ───────────── まとめ ───────────── -->
+<h2>まとめ</h2>
+<p>hermes-agent は「自己学習する AI エージェント」という面白いコンセプトのフレームワーク。Ollama でローカル完全無料で動かせるが、エージェントとして実用するにはモデルサイズの壁がある。</p>
+
+<p>今回の実験で得た判断基準:</p>
+
+<div class="conclusion">
+  <ul>
+    <li><strong>素振り・学習・記事ネタ</strong> → Ollama + 7B で十分</li>
+    <li><strong>エージェント機能をちゃんと使う</strong> → OpenRouter + Claude Sonnet / GPT-4o が現実解</li>
+    <li><strong>本気で自律エージェントを運用する</strong> → クラウド API + 14B 以上のローカルモデルの併用</li>
+  </ul>
+</div>
+
+<div class="footer-note">
+  実験日: 2026-05-27 &nbsp;|&nbsp; 環境: macOS Sonoma / Ollama 0.24.0 / hermes-agent 0.14.0 / qwen2.5-coder:7b<br>
+  記事中の数値はすべて筆者の実セットアップ時のコマンド出力から取得。14B+ モデルでの動作は未検証（仮説）。
+</div>
+
+</body>
+</html>

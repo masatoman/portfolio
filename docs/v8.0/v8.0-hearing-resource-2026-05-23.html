@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>工務店 IT 化 6 候補 ヒアリング資料 (2026-05-23 v8.0)</title>
+<meta name="description" content="工務店の後継者 (30-40 代) 向け IT 化 6 候補 ヒアリング資料。 痛み・商品像・効果・価格を 1 ページ完結で比較。 A4 8 ページ。">
+<style>
+:root {
+  --bg: #fcf6e9;
+  --paper: #fff;
+  --ink: #2b261e;
+  --ink-soft: #5a5247;
+  --muted: #8a8478;
+  --accent: #b85c3a;
+  --accent-soft: #f7e5d7;
+  --good: #4a7c4a;
+  --good-soft: #e3edd9;
+  --warn: #c98a2e;
+  --warn-soft: #f5e6c8;
+  --info: #3a7ca5;
+  --info-soft: #d9e7f0;
+  --border: #d6cfc2;
+  --price-bg: #fff8eb;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  padding: 30px 20px;
+}
+.slide {
+  background: var(--paper);
+  width: 297mm;
+  min-height: 210mm;
+  max-width: 100%;
+  margin: 0 auto 24px;
+  padding: 24px 32px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  position: relative;
+  page-break-after: always;
+}
+.slide-num {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.slide-meta {
+  position: absolute;
+  top: 16px;
+  left: 32px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.eyebrow {
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-top: 28px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+h1 .sub {
+  display: block;
+  font-size: 13px;
+  color: var(--accent);
+  margin-top: 4px;
+  font-weight: 600;
+}
+h2 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 18px 0 8px;
+  color: var(--ink);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 4px;
+  display: inline-block;
+}
+.lead {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+.intro-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 12px;
+}
+.intro-box {
+  background: var(--accent-soft);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.intro-box h3 {
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.intro-box p { font-size: 12px; line-height: 1.6; }
+.q-block {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.q-block .q-num {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.q-block .q-text {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+.q-block .q-opts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+.q-block .q-opts label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.q-block .q-opts input { transform: scale(0.9); }
+.q-block .q-free {
+  margin-top: 4px;
+  border: 1px dashed var(--border);
+  border-radius: 4px;
+  min-height: 36px;
+  padding: 6px 8px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.candidate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+.cand-box {
+  border-radius: 8px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+}
+.cand-box.pain { background: var(--warn-soft); border-color: var(--warn); }
+.cand-box.product { background: var(--info-soft); border-color: var(--info); }
+.cand-box.effect { background: var(--good-soft); border-color: var(--good); }
+.cand-box.price { background: var(--price-bg); border-color: var(--accent); }
+.cand-box h3 {
+  font-size: 13px;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+.cand-box.pain h3 { color: var(--warn); }
+.cand-box.product h3 { color: var(--info); }
+.cand-box.effect h3 { color: var(--good); }
+.cand-box.price h3 { color: var(--accent); }
+.cand-box p { font-size: 12px; line-height: 1.65; }
+.cand-box ul { font-size: 12px; line-height: 1.7; padding-left: 18px; margin-top: 4px; }
+.price-tier {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+}
+.price-tier .tier {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px;
+  text-align: center;
+}
+.price-tier .tier .amount {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+.price-tier .tier .label {
+  font-size: 10px;
+  color: var(--muted);
+}
+.price-tier .tier .check {
+  margin-top: 6px;
+  font-size: 11px;
+}
+.cand-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 24px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+.cand-header .group-tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.cand-header .group-tag.a { background: var(--good); color: white; }
+.cand-header .group-tag.b { background: var(--info); color: white; }
+.cand-header .cand-id {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.question-section {
+  background: var(--accent-soft);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-top: 12px;
+}
+.question-section h3 {
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.question-section .q-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 14px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.question-section .q-list label {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+}
+.footer-bar {
+  margin-top: 18px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--muted);
+}
+.title-slide {
+  background: linear-gradient(180deg, var(--paper) 0%, var(--accent-soft) 100%);
+}
+.title-slide h1 { font-size: 28px; }
+.welcome-box {
+  background: var(--good-soft);
+  border-left: 4px solid var(--good);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 18px 0;
+}
+.welcome-box p { font-size: 13px; line-height: 1.7; }
+.rank-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.rank-block {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: var(--paper);
+}
+.rank-block h3 {
+  font-size: 13px;
+  color: var(--accent);
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+}
+.rank-list {
+  font-size: 12px;
+  line-height: 1.8;
+}
+.rank-list .rank-row {
+  display: grid;
+  grid-template-columns: 24px 1fr 60px;
+  gap: 6px;
+  align-items: center;
+  border-bottom: 1px dashed var(--border);
+  padding: 3px 0;
+}
+.rank-list .rank-num {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 13px;
+  text-align: center;
+}
+.referral-box {
+  background: var(--info-soft);
+  border-left: 4px solid var(--info);
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-top: 12px;
+}
+.referral-box h3 {
+  font-size: 13px;
+  color: var(--info);
+  margin-bottom: 6px;
+}
+.referral-box .ref-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.referral-box .ref-row input[type="text"] {
+  flex: 1;
+  border: none;
+  border-bottom: 1px dashed var(--muted);
+  background: transparent;
+  font-size: 12px;
+  padding: 2px 4px;
+}
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s;
+}
+a:hover { opacity: 0.7; }
+a:visited { color: var(--accent); opacity: 0.9; }
+.ref-links-mini {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-top: 14px;
+  font-size: 11px;
+}
+.ref-links-mini h3 {
+  font-size: 11px;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.ref-links-mini ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.ref-links-mini li {
+  padding: 2px 0;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.ref-links-mini .desc { color: var(--muted); font-size: 9px; margin-left: 4px; }
+@media print {
+  body { background: white; padding: 0; }
+  .slide { box-shadow: none; margin: 0; border: none; border-radius: 0; }
+  @page { size: A4 landscape; margin: 8mm; }
+}
+</style>
+  <meta name="created" content="2026-05-23T05:58:41.992Z">
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- P1: 表紙 + 5 分問診 -->
+<!-- ============================================ -->
+<div class="slide title-slide">
+  <span class="slide-meta">2026-05-23 v8.0 / 工務店 IT 化 ヒアリング資料</span>
+  <span class="slide-num">1 / 8</span>
+
+  <div class="eyebrow">工務店経営 × IT 化 6 候補</div>
+
+  <h1>あなたの会社の状況を 5 分で教えてください<br><span class="sub">井原 誠斗 (Next.js + Supabase + Stripe フルスタックエンジニア / <a href="https://ihara-frontend.com/" target="_blank" rel="noopener">ihara-frontend.com</a>)</span></h1>
+
+  <div class="welcome-box">
+    <p>工務店経営の現場で、 IT 化が一番効きそうな領域を一緒に探したいと思っています。 6 つの候補を用意しました。 「うちで起きてる」「いくらなら出せる」「これは要らない」 を率直に教えてください。 5/22 までに 200 件超の工務店レビュー + 友人インタビューを集めて作った仮説です。 答えてくださった方には、 完成版を真っ先にお渡しします。</p>
+  </div>
+
+  <h2>あなた自身のこと (5 つだけ)</h2>
+
+  <div class="q-block">
+    <span class="q-num">Q1</span>
+    <div class="q-text">年商規模を教えてください</div>
+    <div class="q-opts">
+      <label><input type="radio" name="q1"> 1 億円未満</label>
+      <label><input type="radio" name="q1"> 1-3 億円</label>
+      <label><input type="radio" name="q1"> 3-5 億円</label>
+      <label><input type="radio" name="q1"> 5-10 億円</label>
+      <label><input type="radio" name="q1"> 10 億円以上</label>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <span class="q-num">Q2</span>
+    <div class="q-text">受注内訳のメインは? (複数選択可)</div>
+    <div class="q-opts">
+      <label><input type="checkbox"> 個人住宅 新築</label>
+      <label><input type="checkbox"> リフォーム</label>
+      <label><input type="checkbox"> 商業施設</label>
+      <label><input type="checkbox"> 公共工事</label>
+      <label><input type="checkbox"> 元請下請</label>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <span class="q-num">Q3</span>
+    <div class="q-text">あなたの立場 (役職)</div>
+    <div class="q-opts">
+      <label><input type="radio" name="q3"> 経営者 (初代)</label>
+      <label><input type="radio" name="q3"> 後継者 (2 代目 / 3 代目)</label>
+      <label><input type="radio" name="q3"> 経理 / 総務</label>
+      <label><input type="radio" name="q3"> 現場 / 営業</label>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <span class="q-num">Q4</span>
+    <div class="q-text">IT 投資の今後 1 年</div>
+    <div class="q-opts">
+      <label><input type="radio" name="q4"> 増やしたい (具体策あり)</label>
+      <label><input type="radio" name="q4"> 増やしたい (何から始めるか未定)</label>
+      <label><input type="radio" name="q4"> 現状維持</label>
+      <label><input type="radio" name="q4"> 何も決めてない</label>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <span class="q-num">Q5</span>
+    <div class="q-text">いま一番困ってる業務は? (自由記述、 3 行ぐらい)</div>
+    <div class="q-free"></div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 IT 化 6 候補 ヒアリング資料</span>
+    <span>2026-05-23 v8.0 / P1</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P2: 候補 A-1 / #01 OB 10 年管理 SaaS -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 A 群 1 / 3</span>
+  <span class="slide-num">2 / 8</span>
+
+  <div class="cand-header">
+    <div>
+      <div class="cand-id">候補 A-1 / OB 顧客資産活用</div>
+      <h1>OB 10 年管理 SaaS<br><span class="sub">過去 10 年の OB 顧客名簿を「眠った資産」 から「リフォーム源泉」 へ</span></h1>
+    </div>
+    <span class="group-tag a">A 群 本命</span>
+  </div>
+
+  <div class="candidate-grid">
+    <div class="cand-box pain">
+      <h3>▶ 痛み (こんなことありませんか?)</h3>
+      <p>過去 10 年に建てた施主さんの名簿が Excel や紙台帳に散らばっていて、 築 10-15 年のリフォーム時期になっても 連絡しそびれる。 親方は「あの人 元気かな」 と気にしてるが、 動けない。 結果、 同じ施主さんが <strong>競合のチラシ広告経由で他社にリフォーム発注</strong> してしまう。</p>
+      <ul>
+        <li>新築 1 件 = リフォーム機会 5-7 回 (10-15 年 / 25-30 年 / 屋根)</li>
+        <li>業界平均: OB リフォーム獲得率 20-30% → 残り 70% は他社に流出</li>
+      </ul>
+    </div>
+
+    <div class="cand-box product">
+      <h3>▶ どんなツール? (動くデモあります)</h3>
+      <p>顧客台帳 + 工事履歴 + リフォーム時期 AI 予測 + アプローチ自動化 を 1 つにまとめた SaaS。 過去の図面・写真・契約書 もまとめて保管。 親方が「次にどの施主に連絡すべきか」 が ダッシュボードで即わかる。</p>
+      <ul>
+        <li>初期 3-6 ヶ月は弊社で Excel / 紙 → SaaS 移行 (BPaaS 代行)</li>
+        <li>その後は SaaS 月額のみ、 親方 + 後継者 + 経理 でログイン共有可</li>
+      </ul>
+    </div>
+
+    <div class="cand-box effect">
+      <h3>▶ 効果 (父親説得用 ROI)</h3>
+      <p>OB 100 件の名簿があれば、 リフォーム平均 ¥150 万 × 獲得率改善 20%→40% = <strong>年 +¥1,500-3,000 万 売上機会</strong>。 1 件取れれば SaaS 月額の 12 ヶ月分以上回収。</p>
+      <ul>
+        <li>IT 導入補助金 通常枠 1/2 対象見込み (商品確定後 IT 導入支援事業者 登録予定)</li>
+        <li>導入実例: 親方も「あの施主に連絡しよう」 が会話ベースで動ける</li>
+      </ul>
+    </div>
+
+    <div class="cand-box price">
+      <h3>▶ 価格 (どれが妥当ですか?)</h3>
+      <div class="price-tier">
+        <div class="tier">
+          <div class="amount">月 3 万円</div>
+          <div class="label">SaaS のみ (移行は自分でやる)</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 安すぎ</label></div>
+        </div>
+        <div class="tier">
+          <div class="amount">月 5 万円</div>
+          <div class="label">SaaS + 月 1 回 操作サポート</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 検討</label></div>
+        </div>
+        <div class="tier">
+          <div class="amount">月 8 万円</div>
+          <div class="label">SaaS + アプローチ代行</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 高すぎ</label></div>
+        </div>
+      </div>
+      <p style="margin-top:6px; font-size:11px;">初期 BPaaS (Excel / 紙 → SaaS 移行): <strong>50 万 / 100 万 / 150 万</strong> の 3 段階で見積もり可 (件数次第)</p>
+    </div>
+  </div>
+
+  <div class="question-section">
+    <h3>▶ あなたの会社で確認させてください</h3>
+    <div class="q-list">
+      <label><input type="checkbox"> 過去 10 年の OB 名簿、 整理されてる?</label>
+      <label><input type="checkbox"> リフォーム時期に連絡できてる?</label>
+      <label><input type="checkbox"> 親方の頭の中だけにある顧客情報ある?</label>
+      <label><input type="checkbox"> 「これ うちで使える」 と思う?</label>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 IT 化 6 候補 ヒアリング資料</span>
+    <span>2026-05-23 v8.0 / P2 候補 A-1</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P3: 候補 A-2 / #03 展示会リード育成 SaaS -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 A 群 2 / 3</span>
+  <span class="slide-num">3 / 8</span>
+
+  <div class="cand-header">
+    <div>
+      <div class="cand-id">候補 A-2 / 展示会出展 → 受注に繋げる</div>
+      <h1>展示会リード育成 SaaS<br><span class="sub">JAPAN BUILD TOKYO 等の展示会で集めた名刺を 6 ヶ月後の受注に繋げる</span></h1>
+    </div>
+    <span class="group-tag a">A 群 本命</span>
+  </div>
+
+  <div class="candidate-grid">
+    <div class="cand-box pain">
+      <h3>▶ 痛み (こんなことありませんか?)</h3>
+      <p>JAPAN BUILD や住宅フェスタで集めた 50-100 件の名刺、 翌週には机に積み上がって動かない。 「あの人どこの会社だっけ」 「興味度合いどうだったっけ」 を忘れていく。 半年後にフォローしようとして もう冷めてる。</p>
+      <ul>
+        <li>業界実態: 展示会後フォロー率 30% 以下、 受注転換は 5% 以下</li>
+        <li>JAPAN BUILD 出展助成 ¥150 万 × 2/3 助成 = 実質 ¥50 万 (R8 令和 8 年度 利用可能)</li>
+      </ul>
+    </div>
+
+    <div class="cand-box product">
+      <h3>▶ どんなツール? (動くデモあります)</h3>
+      <p>展示会名刺を撮影 → AI が会社情報・興味分野を自動補完 → 個別に最適なフォロー LINE / メール を 6 ヶ月かけて自動配信。 「3 ヶ月後に資料請求」「半年後に商談 OK」 のタイミングをスコア化して通知。</p>
+      <ul>
+        <li>JAPAN BUILD TOKYO 12/2-4 出展 + 弊社が同時出展して横で実演可</li>
+        <li>OB 10 年管理 SaaS (候補 A-1) と顧客 DB 共有 → 受注後そのまま OB 管理に移行</li>
+      </ul>
+    </div>
+
+    <div class="cand-box effect">
+      <h3>▶ 効果 (父親説得用 ROI)</h3>
+      <p>展示会 100 件名刺 → フォロー率 30%→60% + 受注転換 5%→10% = <strong>受注 5 件 → 10 件 (年 +¥1 億売上機会)</strong>。 展示会出展助成 2/3 で出展コスト実質 1/3、 ROI 6 ヶ月以内。</p>
+      <ul>
+        <li>展示会出展助成事業 R8 (令和 8 年度): 助成限度 ¥150 万 / 助成率 2/3 / 全 10 回 応募可</li>
+        <li>第 5 回 8/1-8/14 申請 → 12 月 JAPAN BUILD 出展 のタイムラインで動ける</li>
+      </ul>
+    </div>
+
+    <div class="cand-box price">
+      <h3>▶ 価格 (どれが妥当ですか?)</h3>
+      <div class="price-tier">
+        <div class="tier">
+          <div class="amount">月 3 万円</div>
+          <div class="label">SaaS のみ (自社運用)</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 安すぎ</label></div>
+        </div>
+        <div class="tier">
+          <div class="amount">月 5 万円</div>
+          <div class="label">SaaS + 月 1 回 配信改善サポート</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 検討</label></div>
+        </div>
+        <div class="tier">
+          <div class="amount">月 10 万円</div>
+          <div class="label">SaaS + フォロー文面代行</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 高すぎ</label></div>
+        </div>
+      </div>
+      <p style="margin-top:6px; font-size:11px;">展示会出展同行 + 名刺 DB 化代行: 1 回 <strong>50 万 / 100 万 / 150 万</strong> (展示会規模次第)</p>
+    </div>
+  </div>
+
+  <div class="question-section">
+    <h3>▶ あなたの会社で確認させてください</h3>
+    <div class="q-list">
+      <label><input type="checkbox"> 展示会 / 住宅フェスタに 年 1 回以上出てる?</label>
+      <label><input type="checkbox"> 集めた名刺、 翌週フォローできてる?</label>
+      <label><input type="checkbox"> JAPAN BUILD 12/2-4 出展興味ある?</label>
+      <label><input type="checkbox"> 「これ うちで使える」 と思う?</label>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 IT 化 6 候補 ヒアリング資料</span>
+    <span>2026-05-23 v8.0 / P3 候補 A-2</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P4: 候補 A-3 / #04 経営状況可視化レポート -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 A 群 3 / 3</span>
+  <span class="slide-num">4 / 8</span>
+
+  <div class="cand-header">
+    <div>
+      <div class="cand-id">候補 A-3 / 経営状況の見える化</div>
+      <h1>経営状況可視化レポート SaaS<br><span class="sub">「うちは儲かってるのか」 「改善余地はどこか」 を月次でグラフ化</span></h1>
+    </div>
+    <span class="group-tag a">A 群 本命</span>
+  </div>
+
+  <div class="candidate-grid">
+    <div class="cand-box pain">
+      <h3>▶ 痛み (こんなことありませんか?)</h3>
+      <p>決算は税理士から年 1 回 紙の決算書で受け取るだけ、 月次で「今うちは儲かってるのか」 がわからない。 後継者として「もっと数字で判断したい」 が、 親方は「勘でやってきた」 のため、 共通言語がない。</p>
+      <ul>
+        <li>業界実態: 月次試算表を経営判断に使ってる工務店は 30% 以下</li>
+        <li>勘経営 → 数字経営 への移行が「後継者の最初の仕事」 (中小企業庁 統計)</li>
+      </ul>
+    </div>
+
+    <div class="cand-box product">
+      <h3>▶ どんなツール? (動くデモあります)</h3>
+      <p>会計ソフト (弥生 / freee 等) と連携 → 月次粗利率 / 工事別利益 / 受注単価推移 / キャッシュフロー を自動グラフ化。 親方と後継者が同じ画面を見て会話できる。 税理士の決算書を待たずに即判断。</p>
+      <ul>
+        <li>既存会計ソフト データ連携 (弥生 / freee / マネーフォワード)</li>
+        <li>親方が見やすい紙レポート出力 (タブレット拒否層配慮)</li>
+      </ul>
+    </div>
+
+    <div class="cand-box effect">
+      <h3>▶ 効果 (父親説得用 ROI)</h3>
+      <p>赤字案件の早期発見で <strong>年 +¥300-500 万の利益改善</strong> 機会。 受注単価交渉も数字根拠で進められる。 親方への提案も「勘ではなくデータで」 = 後継者の発言権が増す。</p>
+      <ul>
+        <li>後継者が「数字でモノを言える」 = 親方からの信頼獲得材料</li>
+        <li>銀行融資交渉でも月次レポート提示は有利材料 (たましん等)</li>
+      </ul>
+    </div>
+
+    <div class="cand-box price">
+      <h3>▶ 価格 (どれが妥当ですか?)</h3>
+      <div class="price-tier">
+        <div class="tier">
+          <div class="amount">月 3 万円</div>
+          <div class="label">SaaS のみ (会計ソフト連携)</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 安すぎ</label></div>
+        </div>
+        <div class="tier">
+          <div class="amount">月 5 万円</div>
+          <div class="label">SaaS + 月 1 回 レポート解説</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 検討</label></div>
+        </div>
+        <div class="tier">
+          <div class="amount">月 8 万円</div>
+          <div class="label">SaaS + 経営相談 (税理士同席可)</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 高すぎ</label></div>
+        </div>
+      </div>
+      <p style="margin-top:6px; font-size:11px;">初期データ整備 + 会計ソフト連携設定: <strong>50 万 / 100 万 / 150 万</strong> (整備状況次第)</p>
+    </div>
+  </div>
+
+  <div class="question-section">
+    <h3>▶ あなたの会社で確認させてください</h3>
+    <div class="q-list">
+      <label><input type="checkbox"> 月次の利益・粗利率 把握できてる?</label>
+      <label><input type="checkbox"> 親方と数字の話、 通じる?</label>
+      <label><input type="checkbox"> 会計ソフト (弥生 / freee 等) 使ってる?</label>
+      <label><input type="checkbox"> 「これ うちで使える」 と思う?</label>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 IT 化 6 候補 ヒアリング資料</span>
+    <span>2026-05-23 v8.0 / P4 候補 A-3</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P5: 候補 B-1 / #07 暗黙知継承 AI -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 B 群 1 / 3</span>
+  <span class="slide-num">5 / 8</span>
+
+  <div class="cand-header">
+    <div>
+      <div class="cand-id">候補 B-1 / 親方の頭の中を残す</div>
+      <h1>暗黙知継承 AI<br><span class="sub">親方の「経験」 を AI が継続取材 → 後継者が質問できる知識ベース</span></h1>
+    </div>
+    <span class="group-tag b">B 群 副次</span>
+  </div>
+
+  <div class="candidate-grid">
+    <div class="cand-box pain">
+      <h3>▶ 痛み (こんなことありませんか?)</h3>
+      <p>親方の頭の中には 40-50 年分の経験 (見積もりの感覚 / 職人ネットワーク / 仕入れノウハウ / トラブル対応) が詰まっている。 後継者は「聞きたい時に親方がいない」 「親方が言語化を嫌がる」 で 引退と共に失われていく。</p>
+      <ul>
+        <li>事業承継時の知識ロスは 業界全体課題 (アトツギ甲子園 等で頻出論点)</li>
+        <li>「親方 × 後継者の対話」 を強制する場が無い (普段の会話だと脱線する)</li>
+      </ul>
+    </div>
+
+    <div class="cand-box product">
+      <h3>▶ どんなツール?</h3>
+      <p>週 1 回 30 分、 弊社が親方に LINE 通話取材 → AI が業務エピソードを文字起こし + タグ整理。 後継者が「あのトラブル どう対応した?」 と質問すれば AI が親方の口調で回答。 1 年で 30-50 エピソード蓄積。</p>
+      <ul>
+        <li>取材は弊社で代行 (BPaaS)、 親方は話すだけ</li>
+        <li>後継者は質問するだけ、 親方を遠慮なく「呼び出さない」</li>
+      </ul>
+    </div>
+
+    <div class="cand-box effect">
+      <h3>▶ 効果 (後継者と親方の関係性)</h3>
+      <p>親方が「自分の経験を残してる」 と感じる = 引退への安心材料。 後継者は「親方を遠慮なく呼び出さなくていい」 = 自立できる。 <strong>事業承継の「父親と並走する」 装置</strong> として機能。</p>
+      <ul>
+        <li>5/22 北原氏 (東京創業ステーション) 面談「事業承継」 軸ど真ん中</li>
+        <li>引退後も親方の知識を会社に残せる = 業界紙取材ネタにもなる</li>
+      </ul>
+    </div>
+
+    <div class="cand-box price">
+      <h3>▶ 価格 (どれが妥当ですか?)</h3>
+      <div class="price-tier">
+        <div class="tier">
+          <div class="amount">月 3 万円</div>
+          <div class="label">SaaS (取材は自社で実施)</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 安すぎ</label></div>
+        </div>
+        <div class="tier">
+          <div class="amount">月 5 万円</div>
+          <div class="label">SaaS + 週 1 取材代行</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 検討</label></div>
+        </div>
+        <div class="tier">
+          <div class="amount">月 10 万円</div>
+          <div class="label">SaaS + 週 2 取材 + テーマ別深掘り</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 高すぎ</label></div>
+        </div>
+      </div>
+      <p style="margin-top:6px; font-size:11px;">初期 30 エピソード集中取材 (3 ヶ月パッケージ): <strong>50 万 / 100 万 / 150 万</strong></p>
+    </div>
+  </div>
+
+  <div class="question-section">
+    <h3>▶ あなたの会社で確認させてください</h3>
+    <div class="q-list">
+      <label><input type="checkbox"> 親方の経験、 後継者に伝わってる?</label>
+      <label><input type="checkbox"> 「親方が居なくなったら」 不安ある?</label>
+      <label><input type="checkbox"> 親方は話すの 嫌がらない?</label>
+      <label><input type="checkbox"> 「これ うちで使える」 と思う?</label>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 IT 化 6 候補 ヒアリング資料</span>
+    <span>2026-05-23 v8.0 / P5 候補 B-1</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P6: 候補 B-2 / #02 コンテンツ自動生成 SaaS -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 B 群 2 / 3</span>
+  <span class="slide-num">6 / 8</span>
+
+  <div class="cand-header">
+    <div>
+      <div class="cand-id">候補 B-2 / 集客発信を自動化</div>
+      <h1>コンテンツ自動生成 SaaS<br><span class="sub">工事写真を投げるだけで、 施工事例記事 + SNS 投稿 + お客様の声 を AI が量産</span></h1>
+    </div>
+    <span class="group-tag b">B 群 副次</span>
+  </div>
+
+  <div class="candidate-grid">
+    <div class="cand-box pain">
+      <h3>▶ 痛み (こんなことありませんか?)</h3>
+      <p>会社のホームページが何年も更新されてない、 ブログを書く時間がない、 Instagram / Facebook も止まってる。 集客は紹介頼みで先細りを感じる。 後継者として「発信を強化したい」 が、 業務後に書く気力がない。</p>
+      <ul>
+        <li>業界実態: 工務店ホームページ 更新頻度「年 1 回未満」 が 60%</li>
+        <li>30-40 代施主の 80% が「ホームページ + Instagram」 で工務店比較</li>
+      </ul>
+    </div>
+
+    <div class="cand-box product">
+      <h3>▶ どんなツール? (実証中)</h3>
+      <p>工事現場で撮った写真 + 1 行メモ を LINE / Slack に投げる → AI が施工事例記事 / Instagram 投稿 / お客様インタビュー記事 を自動生成 → 後継者が 1 タップで公開承認。 弊社のサイト masatoman.net で実証運用中 (月 30+ 本生成)。</p>
+      <ul>
+        <li>素材を投げてから記事公開まで 1 分以内</li>
+        <li>会社のトーンを学習して書き分け可 (堅め / 親しみ系)</li>
+      </ul>
+    </div>
+
+    <div class="cand-box effect">
+      <h3>▶ 効果 (父親説得用 ROI)</h3>
+      <p>ホームページ + SNS 月 10-30 本更新 = 6-12 ヶ月で SEO 検索流入 +500-1000%。 <strong>新規問い合わせ 月 1-3 件増 = 受注 1 件で年間費用回収</strong>。 マーケ業者外注 (月 ¥10-30 万) より圧倒的に安い。</p>
+      <ul>
+        <li>マーケ外注業者の代替: 月 ¥3-8 万で同等以上の発信量</li>
+        <li>業界紙 (建築知識 / 新建ハウジング) 取材ネタにもなる</li>
+      </ul>
+    </div>
+
+    <div class="cand-box price">
+      <h3>▶ 価格 (どれが妥当ですか?)</h3>
+      <div class="price-tier">
+        <div class="tier">
+          <div class="amount">月 3 万円</div>
+          <div class="label">SaaS (記事 10 本 / 月)</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 安すぎ</label></div>
+        </div>
+        <div class="tier">
+          <div class="amount">月 5 万円</div>
+          <div class="label">SaaS (記事 30 本 + SNS 配信)</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 検討</label></div>
+        </div>
+        <div class="tier">
+          <div class="amount">月 8 万円</div>
+          <div class="label">SaaS + 月 1 回 編集会議 + SEO 改善</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 高すぎ</label></div>
+        </div>
+      </div>
+      <p style="margin-top:6px; font-size:11px;">既存ホームページ リニューアル + コンテンツ移行: <strong>50 万 / 100 万 / 150 万</strong></p>
+    </div>
+  </div>
+
+  <div class="question-section">
+    <h3>▶ あなたの会社で確認させてください</h3>
+    <div class="q-list">
+      <label><input type="checkbox"> ホームページ 半年以上 更新止まってる?</label>
+      <label><input type="checkbox"> SNS (Instagram 等) 投稿頻度 月 1 未満?</label>
+      <label><input type="checkbox"> マーケ外注業者にいくら払ってる?</label>
+      <label><input type="checkbox"> 「これ うちで使える」 と思う?</label>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 IT 化 6 候補 ヒアリング資料</span>
+    <span>2026-05-23 v8.0 / P6 候補 B-2</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P7: 候補 B-3 / #10 カスタム住宅シミュレーター -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">候補 B 群 3 / 3</span>
+  <span class="slide-num">7 / 8</span>
+
+  <div class="cand-header">
+    <div>
+      <div class="cand-id">候補 B-3 / 施主との打ち合わせを 3D ビジュアル化</div>
+      <h1>カスタム住宅シミュレーター<br><span class="sub">施主との建材選び (床 / 壁 / キッチン) を AI が 3D 化 + 価格自動計算</span></h1>
+    </div>
+    <span class="group-tag b">B 群 副次</span>
+  </div>
+
+  <div class="candidate-grid">
+    <div class="cand-box pain">
+      <h3>▶ 痛み (こんなことありませんか?)</h3>
+      <p>施主との打ち合わせで建材を紙カタログ + 想像 で選んでもらってる。 後から「思ってたのと違う」 でクレーム、 仕様変更で工期延伸 + 利益圧迫。 高価な 3D ソフト (ZWCAD / Vectorworks) は中小工務店には合わない。</p>
+      <ul>
+        <li>業界実態: 仕様変更による工期遅延 = 工事原価の 5-10% に相当</li>
+        <li>施主の「イメージ齟齬」 = 大手ハウスメーカーへの流出原因 1 位</li>
+      </ul>
+    </div>
+
+    <div class="cand-box product">
+      <h3>▶ どんなツール?</h3>
+      <p>間取り図 + 建材を AI が 3D ビジュアル化 + 価格自動計算。 施主は タブレットで「この壁紙 → これに変えると ¥3 万円アップ」 が即時にわかる。 建材屋カタログ連携で 仕入れも 1 タップ。</p>
+      <ul>
+        <li>建材屋 (LIXIL / TOTO / ナフコ等) と提携してカタログ自動更新</li>
+        <li>後継者の営業力強化 = 親方より施主が「後継者のほうが頼れる」</li>
+      </ul>
+    </div>
+
+    <div class="cand-box effect">
+      <h3>▶ 効果 (父親説得用 ROI)</h3>
+      <p>仕様変更クレーム削減で <strong>1 物件あたり ¥30-50 万 利益改善</strong>。 + アップグレード提案で 1 物件単価 +¥100-200 万。 年 10 物件で +¥1,300-2,500 万 売上機会。 建材屋からのリベートも別途あり。</p>
+      <ul>
+        <li>建材屋経由販売ルート確立可 (リベートモデル相談可)</li>
+        <li>大手ハウスメーカー対抗の差別化武器</li>
+      </ul>
+    </div>
+
+    <div class="cand-box price">
+      <h3>▶ 価格 (どれが妥当ですか?)</h3>
+      <div class="price-tier">
+        <div class="tier">
+          <div class="amount">月 5 万円</div>
+          <div class="label">SaaS のみ (基本建材 DB)</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 安すぎ</label></div>
+        </div>
+        <div class="tier">
+          <div class="amount">月 8 万円</div>
+          <div class="label">SaaS + 建材屋連携 3 社</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 検討</label></div>
+        </div>
+        <div class="tier">
+          <div class="amount">月 12 万円</div>
+          <div class="label">SaaS + 建材屋連携 + 物件サポート</div>
+          <div class="check"><label><input type="checkbox"> 妥当 / <input type="checkbox"> 高すぎ</label></div>
+        </div>
+      </div>
+      <p style="margin-top:6px; font-size:11px;">物件ごと 3D 化代行 (BPaaS): 1 物件 <strong>50 万 / 100 万 / 150 万</strong> (規模次第)</p>
+    </div>
+  </div>
+
+  <div class="question-section">
+    <h3>▶ あなたの会社で確認させてください</h3>
+    <div class="q-list">
+      <label><input type="checkbox"> 施主との建材打ち合わせで齟齬発生してる?</label>
+      <label><input type="checkbox"> 既存 3D ソフト使ってる?</label>
+      <label><input type="checkbox"> 取引建材屋 と提携深い?</label>
+      <label><input type="checkbox"> 「これ うちで使える」 と思う?</label>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 IT 化 6 候補 ヒアリング資料</span>
+    <span>2026-05-23 v8.0 / P7 候補 B-3</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P8: 順位付け + 価格反応 + 紹介依頼 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">最終確認 · 順位付け + 紹介依頼</span>
+  <span class="slide-num">8 / 8</span>
+
+  <div class="eyebrow">最終確認</div>
+
+  <h1>6 候補の順位付け + 紹介のお願い<br><span class="sub">あなたの会社にとっての優先順位を教えてください</span></h1>
+
+  <h2>1. 6 候補を順位付けしてください</h2>
+  <p style="font-size:12px; color:var(--ink-soft); margin-bottom:10px;">1 位 = 一番欲しい / 6 位 = 一番要らない。 順位 + 一言コメント (自由)</p>
+
+  <div class="rank-grid">
+    <div class="rank-block">
+      <h3>A 群 (本命候補)</h3>
+      <div class="rank-list">
+        <div class="rank-row"><span class="rank-num">_位</span><span>A-1 OB 10 年管理 SaaS</span><span style="font-size:10px; color:var(--muted);">月 ___ 万</span></div>
+        <div class="rank-row"><span class="rank-num">_位</span><span>A-2 展示会リード育成 SaaS</span><span style="font-size:10px; color:var(--muted);">月 ___ 万</span></div>
+        <div class="rank-row"><span class="rank-num">_位</span><span>A-3 経営状況可視化レポート</span><span style="font-size:10px; color:var(--muted);">月 ___ 万</span></div>
+      </div>
+    </div>
+    <div class="rank-block">
+      <h3>B 群 (副次候補)</h3>
+      <div class="rank-list">
+        <div class="rank-row"><span class="rank-num">_位</span><span>B-1 暗黙知継承 AI</span><span style="font-size:10px; color:var(--muted);">月 ___ 万</span></div>
+        <div class="rank-row"><span class="rank-num">_位</span><span>B-2 コンテンツ自動生成 SaaS</span><span style="font-size:10px; color:var(--muted);">月 ___ 万</span></div>
+        <div class="rank-row"><span class="rank-num">_位</span><span>B-3 カスタム住宅シミュレーター</span><span style="font-size:10px; color:var(--muted);">月 ___ 万</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>2. 1 位の候補について追加質問</h2>
+  <div class="q-block">
+    <span class="q-num">Q-A</span>
+    <div class="q-text">1 位の候補、 いつ頃なら導入検討の話を進めたい?</div>
+    <div class="q-opts">
+      <label><input type="radio" name="qa"> 今月中に話を聞きたい</label>
+      <label><input type="radio" name="qa"> 来月以降</label>
+      <label><input type="radio" name="qa"> 3 ヶ月以内</label>
+      <label><input type="radio" name="qa"> 半年以内</label>
+      <label><input type="radio" name="qa"> 検討段階のみ</label>
+    </div>
+  </div>
+  <div class="q-block">
+    <span class="q-num">Q-B</span>
+    <div class="q-text">決裁プロセスを教えてください (誰の OK が必要?)</div>
+    <div class="q-opts">
+      <label><input type="checkbox"> 自分の判断で決められる</label>
+      <label><input type="checkbox"> 親方 (社長) に相談する</label>
+      <label><input type="checkbox"> 経理 / 妻に確認する</label>
+      <label><input type="checkbox"> 税理士 / 顧問に相談する</label>
+    </div>
+  </div>
+
+  <div class="referral-box">
+    <h3>3. 同業の知り合いを紹介していただけますか? (一番のお願いです)</h3>
+    <p style="font-size:12px; margin-bottom:8px;">同じような規模 + IT 化に興味ありそうな工務店経営者 / 後継者 を 1-2 名 紹介していただけると、 仮説検証が一気に進みます。 完成版商品も真っ先にお届けします。</p>
+    <div class="ref-row">
+      <span style="width:60px;">1 人目:</span>
+      <input type="text" placeholder="会社名">
+      <input type="text" placeholder="お名前 / 立場">
+      <input type="text" placeholder="紹介可能なタイミング">
+    </div>
+    <div class="ref-row">
+      <span style="width:60px;">2 人目:</span>
+      <input type="text" placeholder="会社名">
+      <input type="text" placeholder="お名前 / 立場">
+      <input type="text" placeholder="紹介可能なタイミング">
+    </div>
+    <p style="font-size:11px; color:var(--ink-soft); margin-top:6px;">※ 個人 LINE での共有 / 名刺の写真 / 後日のお繋ぎ どれでも OK です。 連絡方法も合わせて教えてください。</p>
+  </div>
+
+  <h2>4. 連絡先 + 完成版希望</h2>
+  <div class="q-block">
+    <div class="q-text" style="margin-bottom:8px;">完成版商品 / 試用版が出来たら最初にお届けしたい先 (任意)</div>
+    <div class="ref-row"><span style="width:80px;">お名前</span><input type="text"></div>
+    <div class="ref-row"><span style="width:80px;">会社名</span><input type="text"></div>
+    <div class="ref-row"><span style="width:80px;">連絡先</span><input type="text" placeholder="電話 / LINE / メール どれでも OK"></div>
+  </div>
+
+  <p style="font-size:11px; color:var(--ink-soft); text-align:center; margin-top:12px;">
+    ご協力ありがとうございました。 井原 誠斗 (<a href="https://ihara-frontend.com/" target="_blank" rel="noopener">ihara-frontend.com</a> / Next.js + Supabase + Stripe フルスタックエンジニア)
+  </p>
+
+  <div class="ref-links-mini">
+    <h3>📚 参考リンク (詳しくはこちらをご覧ください)</h3>
+    <ul>
+      <li>🔗 <a href="https://ihara-frontend.com/" target="_blank" rel="noopener">ihara-frontend.com</a> <span class="desc">— 開発者ポートフォリオ。 工務店向け 8 デモあり</span></li>
+      <li>🔗 <a href="https://ihara-frontend.com/demo-gallery" target="_blank" rel="noopener">ihara-frontend.com/demo-gallery</a> <span class="desc">— 動く 8 デモ + 投票ページ</span></li>
+      <li>🔗 <a href="https://masatoman.net/" target="_blank" rel="noopener">masatoman.net</a> <span class="desc">— 個人開発者向け技術ブログ。 候補 B-2 コンテンツ自動生成 SaaS の実証稼働中</span></li>
+      <li>🔗 <a href="https://www.japan-build.jp/tokyo/ja-jp/" target="_blank" rel="noopener">JAPAN BUILD TOKYO 公式</a> <span class="desc">— 12/2-4 東京ビッグサイト、 候補 A-2 で同時出展候補募集中</span></li>
+      <li>🔗 <a href="https://www.tokyo-kosha.or.jp/support/josei/jigyo/tenjikai/r8/index.html" target="_blank" rel="noopener">令和 8 年度 展示会出展助成事業 (東京都中小企業振興公社)</a> <span class="desc">— ¥150 万 / 助成率 2/3、 候補 A-2 と連動可能</span></li>
+      <li>🔗 <a href="https://it-shien.smrj.go.jp/" target="_blank" rel="noopener">IT 導入補助金 公式</a> <span class="desc">— 通常枠 1/2、 商品確定後に対応予定</span></li>
+    </ul>
+  </div>
+
+  <div class="footer-bar">
+    <span>工務店 IT 化 6 候補 ヒアリング資料</span>
+    <span>2026-05-23 v8.0 / P8 最終</span>
+  </div>
+</div>
+
+</body>
+</html>

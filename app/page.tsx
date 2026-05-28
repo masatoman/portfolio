@@ -74,49 +74,57 @@ const examples = [
     title: "協力業者の見積確認を軽くする",
     desc: "届いた見積書PDFを整理し、項目確認や転記の手間を減らすデモです。",
     href: "/local-business/estimate-organizer",
-    image: "/images/local-business/estimate-organizer-card.svg",
+    image: "/images/demo-mocks/estimate-organizer.webp",
+    orientation: "desktop" as const,
   },
   {
     title: "現場連絡の抜け漏れを減らす",
     desc: "電話内容と次の対応を残し、共有漏れや確認漏れを起こしにくくするデモです。",
     href: "/local-business/call-memo-board",
-    image: "/images/local-business/call-memo-board-card.svg",
+    image: "/images/demo-mocks/call-memo-board.webp",
+    orientation: "desktop" as const,
   },
   {
     title: "架空の工務店サイトを実績として制作",
     desc: "施工実績と会社の姿勢が伝わる、提案用の架空コーポレートサイトを制作した実績ページです。",
     href: "/local-business/website-refresh",
-    image: "/images/local-business/kazenokisha/exterior-day.png",
+    image: "/images/demo-mocks/website-refresh.webp",
+    orientation: "desktop" as const,
   },
   {
     title: "車で しゃべるだけで 日報を作る",
     desc: "帰り道に話すだけで、家に着く頃には日報が出来上がっている仕組み。事務所での残業1時間をなくすデモです。",
     href: "/local-business/voice-daily-report",
-    image: "/images/local-business/voice-daily-report-card.svg",
+    image: "/images/demo-mocks/voice-daily-report.webp",
+    orientation: "mobile" as const,
   },
   {
     title: "現場写真を自動で仕分ける",
     desc: "1日に撮る数百枚の現場写真を、現場名・工程・撮影日で自動仕分け。「あの配筋写真どこ」で探す手間をなくすデモです。",
     href: "/local-business/site-photo-organizer",
-    image: "/images/local-business/site-photo-organizer-card.svg",
+    image: "/images/demo-mocks/site-photo-organizer.webp",
+    orientation: "desktop" as const,
   },
   {
     title: "施主向け 工程進捗ページを自動更新",
     desc: "「今どうなってる？」と聞かれるたびに写真を撮って送る手間を、自動更新の公開ページに置き換えるデモです。",
     href: "/local-business/client-progress-page",
-    image: "/images/local-business/client-progress-page-card.svg",
+    image: "/images/demo-mocks/client-progress-page.webp",
+    orientation: "mobile" as const,
   },
   {
     title: "領収書を撮るだけで経費に",
     desc: "現場のガソリン・建材・食事の紙の領収書を、撮るだけで日付・金額・取引先が自動入力されるデモ。電帳法にも対応。",
     href: "/local-business/receipt-expense-camera",
-    image: "/images/local-business/receipt-expense-camera-card.svg",
+    image: "/images/demo-mocks/receipt-expense-camera.webp",
+    orientation: "mobile" as const,
   },
   {
     title: "図面をスマホで一発呼び出し",
     desc: "現場で「あの図面どこ」の電話をなくす。部屋名で検索 → 該当箇所だけ拡大表示。手袋でも押せる大ボタン UI のデモです。",
     href: "/local-business/drawing-quick-viewer",
-    image: "/samples/floor-plan/sample-1f-framing.png",
+    image: "/images/demo-mocks/drawing-quick-viewer.webp",
+    orientation: "desktop" as const,
   },
 ]
 
@@ -353,7 +361,7 @@ export default function HomePage() {
                     index === 0 ? "lg:col-span-2" : ""
                   }`}
                 >
-                  <div className="relative overflow-hidden rounded-[22px] border border-white/10 bg-[#f7f1e6]">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-[22px] border border-white/10 bg-[#f7f1e6]">
                     <div className="absolute right-4 top-4 z-10 rounded-full bg-[#7a5c38] px-3 py-1 text-[11px] font-semibold tracking-[0.14em] text-white">
                       DEMO
                     </div>
@@ -362,7 +370,9 @@ export default function HomePage() {
                       alt={item.title}
                       width={1200}
                       height={720}
-                      className="w-full transition duration-500 group-hover:scale-[1.02]"
+                      className={`h-full w-full transition duration-500 group-hover:scale-[1.02] ${
+                        item.orientation === "mobile" ? "object-contain p-4" : "object-cover"
+                      }`}
                     />
                   </div>
                   <div className="px-2 pb-3 pt-5">
@@ -474,6 +484,159 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {process.env.NODE_ENV === "development" && (
+          <section
+            id="internal-v8"
+            className="border-t-2 border-dashed border-[#a73a3a] bg-[#fef5f1] px-4 py-12 sm:px-6 sm:py-14"
+          >
+            <div className="mx-auto max-w-[1240px]">
+              <div className="mb-6 flex items-center gap-3">
+                <span className="rounded-full bg-[#a73a3a] px-3 py-1 text-[10px] font-bold tracking-[0.15em] text-white">
+                  ⚠ 内部資料 / 本番非表示
+                </span>
+                <span className="text-[12px] text-[#a73a3a]">
+                  process.env.NODE_ENV === &quot;development&quot; の時のみ表示
+                </span>
+              </div>
+              <h2
+                className={`${headingFont.className} text-[26px] leading-[1.5] tracking-[-0.02em] text-[#1f2a37] sm:text-[32px]`}
+              >
+                v8.0 ヒアリング期間 内部資料 (2026-05-23〜)
+              </h2>
+              <p className="mt-3 max-w-[760px] text-[13px] leading-7 text-[#5f6871]">
+                5/22 北原氏面談 + 5/23 ターゲット確定 (後継層 × 儲かってる層) 関連の戦略 docs 群。
+                Next.js は <code className="rounded bg-[#f1e7df] px-1.5 py-0.5 text-[12px]">docs/</code> 直下を dev serve しないため、
+                <code className="rounded bg-[#f1e7df] px-1.5 py-0.5 text-[12px]">file://</code> リンクまたはターミナル{" "}
+                <code className="rounded bg-[#f1e7df] px-1.5 py-0.5 text-[12px]">open</code> コマンドで開く。
+              </p>
+
+              <div className="mt-6 grid gap-3 lg:grid-cols-2">
+                {[
+                  {
+                    title: "🔥 プラン C 主軸 (友人完全不在前提)",
+                    desc: "6 経路並列 / 期間 5/23-9/30 / 主軸確定 11 月末 / MRR 判定 2027-06-30 (2 ヶ月後ろ倒し)",
+                    file: "v8.0/v8.0-plan-c-friend-absent-2026-05-23.html",
+                    label: "内部秘",
+                    note: "友人長期不在判明 (5/23) で新主軸",
+                  },
+                  {
+                    title: "🟡 プラン B 予備 (友人弱依存)",
+                    desc: "5/24 LINE 1 本 → 5/31 反応判定 → 反応なしでプラン C 自動切替",
+                    file: "v8.0/v8.0-plan-b-friend-weak-2026-05-23.html",
+                    label: "内部秘",
+                    note: "LINE 送付内容 + 4 シナリオ別動き",
+                  },
+                  {
+                    title: "ヒアリング内部設計 (8p)",
+                    desc: "打診先 / 15→6 写像 / Phase / AND 3 必須シグナル / 候補ごと価格レンジ / 撤退軸 3 軸 / プラン A/B/C 切替",
+                    file: "v8.0/v8.0-hearing-design-2026-05-23.html",
+                    label: "内部秘",
+                    note: "P1 に「相手に見せない」 明記",
+                  },
+                  {
+                    title: "ヒアリング資料 (A4 8p、 相手に渡す)",
+                    desc: "表紙 5 問 + 6 候補 + 順位付け + 紹介シート (プラン A/B/C 共通利用)",
+                    file: "v8.0/v8.0-hearing-resource-2026-05-23.html",
+                    label: "限定公開",
+                    note: "ヒアリング相手にのみ渡す想定",
+                  },
+                  {
+                    title: "商品候補 33p 評価マトリクス",
+                    desc: "15 候補 × 16 観点 + 推奨順位 + v8.0 化アクション",
+                    file: "v8.0/v8.0-product-candidates-evaluation-2026-05-23.html",
+                    label: "内部秘",
+                    note: "戦略バレリスク高、 競合に見せない",
+                  },
+                  {
+                    title: "JAPAN BUILD TOKYO 出展 TODO",
+                    desc: "12/2-4 出展準備 + 助成金応募 (第 5 回 8/1-14 or 第 6 回 9/1-14)",
+                    file: "operations/japan-build-tokyo-2026-todo-2026-05-23.html",
+                    label: "限定公開",
+                    note: "出展計画、 競合に動き読まれる",
+                  },
+                  {
+                    title: "v4→v5 戦略変更履歴 (5/21)",
+                    desc: "MRR 目標 ¥30-60K → ¥30-60 万 上方修正 + v5.1 化の内部経緯",
+                    file: "service/v4-to-v5-changes-2026-05-21.html",
+                    label: "限定公開",
+                    note: "内部経緯、 一般公開は想定外",
+                  },
+                  {
+                    title: "📂 docs/ 全 42 件 一覧ハブ",
+                    desc: "日付 / カテゴリ 7 種 / キーワード / ソート フィルタ付き",
+                    file: "index.html",
+                    label: "ハブ",
+                    note: "ここから他の戦略 docs にも遷移",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.file}
+                    className="rounded-xl border border-[#d9c7bc] bg-white/80 p-4 shadow-sm"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="text-[14px] font-semibold leading-snug text-[#1f2a37]">
+                        {item.title}
+                      </h3>
+                      <span
+                        className={`shrink-0 rounded-md px-2 py-0.5 text-[10px] font-bold ${
+                          item.label === "内部秘"
+                            ? "bg-[#a73a3a] text-white"
+                            : item.label === "限定公開"
+                              ? "bg-[#c98a2e] text-white"
+                              : "bg-[#3a7ca5] text-white"
+                        }`}
+                      >
+                        {item.label}
+                      </span>
+                    </div>
+                    <p className="mt-1.5 text-[12px] leading-6 text-[#5f6871]">{item.desc}</p>
+                    <p className="mt-1 text-[10px] text-[#94816a]">{item.note}</p>
+                    <div className="mt-3 space-y-1.5">
+                      <a
+                        href={`file:///Users/master/home_work/portfolio/docs/${item.file}`}
+                        target="_blank"
+                        rel="noopener"
+                        className="block break-all rounded bg-[#1f2a37] px-2.5 py-1.5 text-center text-[11px] text-white hover:bg-[#3a4756]"
+                      >
+                        🔗 file:// で開く
+                      </a>
+                      <code className="block break-all rounded bg-[#f1e7df] px-2 py-1.5 text-[10px] leading-relaxed text-[#5a4a3a]">
+                        open ~/home_work/portfolio/docs/{item.file}
+                      </code>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 rounded-lg border border-[#d9c7bc] bg-white/60 p-4 text-[11px] leading-6 text-[#5f6871]">
+                <strong className="text-[#a73a3a]">📌 一発で関連 docs 全部開く:</strong>{" "}
+                ターミナルで{" "}
+                <code className="rounded bg-[#f1e7df] px-1.5 py-0.5">
+                  open ~/home_work/portfolio/docs/v8.0/*.html ~/home_work/portfolio/docs/operations/japan-build-tokyo-*.html ~/home_work/portfolio/docs/service/v4-to-v5-*.html
+                </code>
+              </div>
+
+              <div className="mt-3 rounded-lg border-2 border-dashed border-[#a73a3a] bg-[#fef5f1] p-4 text-[11px] leading-6 text-[#5f6871]">
+                <strong className="text-[#a73a3a]">🔀 プラン A/B/C 切替トリガー (2026-05-23 友人長期不在判明):</strong>
+                <ul className="mt-2 list-disc pl-5">
+                  <li>
+                    <strong className="text-[#a73a3a]">5/24 (土) 朝-昼</strong>: 友人 LINE 1 本送付 (plan B トリガー、 詳細は plan B docs P2)
+                  </li>
+                  <li>
+                    <strong className="text-[#a73a3a]">5/24-30</strong>: 並走で北原氏メール + たましん Step 1 接触開始 (plan C 並走起動)
+                  </li>
+                  <li>
+                    <strong className="text-[#a73a3a]">5/31</strong>: プラン A/B/C 確定判定 — 反応なし → プラン C 主軸確定
+                  </li>
+                  <li>
+                    <strong>STRATEGY.md 4/30 ルートゴール</strong>: プラン C 適用時は <strong className="text-[#a73a3a]">2027-06-30 に 2 ヶ月後ろ倒し</strong>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        )}
       </main>
 
       <footer className="border-t border-[#d8d0c1] bg-[#f7f3ec] py-10">

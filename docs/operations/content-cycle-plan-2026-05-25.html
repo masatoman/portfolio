@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>masatoman.net データ駆動コンテンツサイクル — 提案資料 2026-05-25</title>
+<style>
+  :root {
+    --bg: #0a0a0a; --surface: #141414; --surface2: #1e1e1e;
+    --border: #2a2a2a; --text: #e0e0e0; --muted: #888;
+    --accent: #6ee7b7; --accent2: #38bdf8; --warn: #fbbf24; --danger: #f87171;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.7; }
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+  h2 { font-size: 1.4rem; font-weight: 600; margin: 48px 0 16px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+  h3 { font-size: 1.1rem; font-weight: 600; margin: 24px 0 8px; color: var(--accent2); }
+  p, li { font-size: 0.95rem; margin-bottom: 8px; }
+  ul { padding-left: 20px; }
+  .subtitle { color: var(--muted); font-size: 1rem; margin-bottom: 32px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 16px 0; }
+  .card-warn { border-color: var(--warn); }
+  .card-accent { border-color: var(--accent); }
+  .card-danger { border-color: var(--danger); }
+  .badge { display: inline-block; font-size: 0.75rem; font-weight: 600; padding: 2px 10px; border-radius: 999px; margin-right: 6px; }
+  .badge-green { background: #064e3b; color: var(--accent); }
+  .badge-blue { background: #0c4a6e; color: var(--accent2); }
+  .badge-yellow { background: #422006; color: var(--warn); }
+  .badge-red { background: #450a0a; color: var(--danger); }
+  .badge-gray { background: #1e1e1e; color: var(--muted); border: 1px solid var(--border); }
+  .flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+  .flow-step { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; text-align: center; min-width: 120px; }
+  .flow-step.active { border-color: var(--accent); }
+  .flow-step.broken { border-color: var(--danger); border-style: dashed; }
+  .flow-arrow { color: var(--muted); font-size: 1.2rem; }
+  .flow-arrow.broken { color: var(--danger); }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  .cycle-diagram { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+  .cycle-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .cycle-box h4 { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .cycle-box.highlight { border-color: var(--accent); background: #0a1a14; }
+  .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0; }
+  .versus { text-align: center; font-size: 1.5rem; font-weight: 700; color: var(--muted); padding: 16px; }
+  .number-big { font-size: 2.5rem; font-weight: 700; color: var(--accent); }
+  .number-label { font-size: 0.85rem; color: var(--muted); }
+  .timeline { position: relative; padding-left: 24px; margin: 24px 0; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+  .timeline-item { position: relative; margin-bottom: 20px; }
+  .timeline-item::before { content: ''; position: absolute; left: -20px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
+  .timeline-item.dim::before { background: var(--border); }
+  .section-divider { border: none; border-top: 2px solid var(--accent); margin: 64px 0 48px; opacity: 0.3; }
+  .quote { border-left: 3px solid var(--accent); padding-left: 16px; color: var(--muted); font-style: italic; margin: 16px 0; }
+  code { background: var(--surface2); padding: 2px 6px; border-radius: 4px; font-size: 0.85rem; }
+  .sql { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin: 12px 0; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; overflow-x: auto; color: var(--accent2); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+  .upgrade-banner { background: linear-gradient(135deg, #064e3b 0%, #0c4a6e 100%); border-radius: 12px; padding: 32px; margin: 32px 0; text-align: center; }
+  .upgrade-banner h2 { color: #fff; border: none; margin: 0 0 8px; }
+  .upgrade-banner p { color: rgba(255,255,255,0.8); }
+</style>
+  <meta name="created" content="2026-05-25T06:25:29.889Z">
+</head>
+<body>
+<div class="container">
+
+<!-- ============ HEADER ============ -->
+<h1>masatoman.net 自動化転換プラン</h1>
+<p class="subtitle">「月 30 本の盲打ち」→「月 5 本の狙い撃ち」+ さらにその先</p>
+
+<!-- ============ 現状の問題 ============ -->
+<h2>1. 現状の問題: PDCA の C→A→P が断絶</h2>
+
+<div class="flow">
+  <div class="flow-step active"><strong>Plan</strong><br><small>dev_journal</small></div>
+  <span class="flow-arrow">→</span>
+  <div class="flow-step active"><strong>Do</strong><br><small>night-writer<br>月30+本</small></div>
+  <span class="flow-arrow">→</span>
+  <div class="flow-step active"><strong>Check</strong><br><small>GA4 / GSC<br>pdca-analyzer</small></div>
+  <span class="flow-arrow broken">✗</span>
+  <div class="flow-step broken"><strong>Act</strong><br><small>???</small></div>
+  <span class="flow-arrow broken">✗</span>
+  <div class="flow-step broken"><strong>Plan</strong><br><small>反映されない</small></div>
+</div>
+
+<div class="card card-danger">
+  <h3 style="color: var(--danger);">構造的ミスマッチ</h3>
+  <p>night-writer は <strong>「中から外」(dev_journal = 自分がやったこと)</strong> で書いている。<br>
+  しかし成果は <strong>「外から中」(検索者が求めること)</strong> で測っている。</p>
+  <p>月 30 本書いても、採用担当 / 案件発注者に刺さるかは <strong>運任せ</strong>。</p>
+</div>
+
+<div class="comparison">
+  <div class="card">
+    <p style="text-align:center; margin-bottom: 12px;"><span class="badge badge-red">現状</span></p>
+    <div style="text-align:center;">
+      <div class="number-big">30+</div>
+      <div class="number-label">本/月 (盲打ち)</div>
+    </div>
+    <ul style="margin-top: 16px;">
+      <li>dev_journal ベースでテーマ選定</li>
+      <li>「何が読まれるか」は事後でしか分からない</li>
+      <li>fabrication (捏造) 混入リスク</li>
+      <li>PV は増えるが案件に繋がらない</li>
+    </ul>
+  </div>
+  <div class="card card-accent">
+    <p style="text-align:center; margin-bottom: 12px;"><span class="badge badge-green">提案</span></p>
+    <div style="text-align:center;">
+      <div class="number-big">5</div>
+      <div class="number-label">本/週 (狙い撃ち)</div>
+    </div>
+    <ul style="margin-top: 16px;">
+      <li>GSC / GA4 データでテーマ選定</li>
+      <li>「何が伸びているか」を先に測ってから書く</li>
+      <li>前週の結果を自動検証してから次を計画</li>
+      <li>コンバージョン (/contact) を KPI に含む</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 提案アーキテクチャ ============ -->
+<h2>2. 提案: データ駆動 週次サイクル (全自動)</h2>
+
+<div class="cycle-diagram">
+  <div class="cycle-box">
+    <h4>日曜 12:00</h4>
+    <p><span class="badge badge-gray">既存</span> <strong>seo-audit-weekly</strong></p>
+    <p>5 Loop SEO 監査 + pv-quality 分類 (A/B/C/D/E) + 統合分析</p>
+  </div>
+  <div class="cycle-box">
+    <h4>月曜 10:00</h4>
+    <p><span class="badge badge-gray">既存</span> <strong>analytics-tracker</strong></p>
+    <p>GA4 CSV + GSC CSV を自動取得・保存</p>
+  </div>
+  <div class="cycle-box highlight">
+    <h4>月曜 11:00</h4>
+    <p><span class="badge badge-green">新設</span> <strong>weekly-content-planner</strong></p>
+    <p>データ収集 → 前週検証 → 今週ブリーフ 5 本生成 → Slack 通知</p>
+  </div>
+  <div class="cycle-box highlight">
+    <h4>火-土 02:00</h4>
+    <p><span class="badge badge-green">新設</span> <strong>content-executor</strong></p>
+    <p>ブリーフから 1 日 1 本自動執筆 → 公開 → 配信パイプライン投入</p>
+  </div>
+</div>
+
+<div class="flow" style="justify-content: center;">
+  <div class="flow-step active"><strong>Check</strong><br><small>日曜: SEO監査<br>月曜: CSV更新</small></div>
+  <span class="flow-arrow">→</span>
+  <div class="flow-step active"><strong>Act + Plan</strong><br><small>月曜: ブリーフ生成<br>前週の検証も自動</small></div>
+  <span class="flow-arrow">→</span>
+  <div class="flow-step active"><strong>Do</strong><br><small>火-土: 自動執筆<br>1日1本ペース</small></div>
+  <span class="flow-arrow">→</span>
+  <div class="flow-step active"><strong>Check</strong><br><small>次の日曜へ...</small></div>
+</div>
+
+<!-- ============ 新設コンポーネント ============ -->
+<h2>3. 新設するもの (3 つだけ)</h2>
+
+<div class="card card-accent">
+  <h3>3-1. <code>weekly-content-planner</code> routine</h3>
+  <p><span class="badge badge-green">新設</span> 毎週月曜 11:00 JST / Claude Code /schedule</p>
+  <table>
+    <tr><th>Phase</th><th>処理</th></tr>
+    <tr><td>1. データ収集</td><td>pv-quality 分類 + seo-integrated 分析 + pdca JSON + GA4/GSC CSV を読み込み</td></tr>
+    <tr><td>2. 前週検証</td><td>前週ブリーフの結果を GA4/GSC で自動計測 → 「狙いが当たったか」評価</td></tr>
+    <tr><td>3. ブリーフ生成</td><td>リライト 2 本 (B/E ランク優先) + 新規 3 本 (GSC 伸びクエリ優先) = 最大 5 本</td></tr>
+    <tr><td>4. 保存</td><td>Supabase <code>content_briefs</code> テーブルに INSERT</td></tr>
+    <tr><td>5. 通知</td><td>Slack に前週結果 + 今週ブリーフの要約を投稿</td></tr>
+  </table>
+</div>
+
+<div class="card card-accent">
+  <h3>3-2. <code>content-executor</code> routine</h3>
+  <p><span class="badge badge-green">新設</span> 火-土 毎日 02:00 JST / Claude Code /schedule</p>
+  <table>
+    <tr><th>Step</th><th>処理</th></tr>
+    <tr><td>1</td><td><code>content_briefs</code> から status=planned の最高優先度を 1 件取得</td></tr>
+    <tr><td>2</td><td>brief_type に応じて新規執筆 or 既存リライト</td></tr>
+    <tr><td>3</td><td><code>lint-article-claims --fix</code> で fabrication チェック (今回実装済)</td></tr>
+    <tr><td>4</td><td>git push → auto-article-merge で CI 通過後に merge</td></tr>
+    <tr><td>5</td><td>status → published に UPDATE + 配信パイプライン投入</td></tr>
+  </table>
+</div>
+
+<div class="card card-accent">
+  <h3>3-3. Supabase <code>content_briefs</code> テーブル</h3>
+  <p><span class="badge badge-green">新設</span> KOBO プロジェクト</p>
+  <div class="sql">CREATE TABLE content_briefs (
+  id              BIGSERIAL PRIMARY KEY,
+  week_start      DATE NOT NULL,
+  brief_type      TEXT NOT NULL,       -- 'new' | 'rewrite'
+  priority        INT NOT NULL,        -- 1-5 (1が最優先)
+  title_proposal  TEXT NOT NULL,       -- 仮タイトル
+  slug_target     TEXT,                -- リライト時は既存slug
+  rationale       TEXT NOT NULL,       -- なぜ書くか (数字根拠)
+  data_evidence   JSONB DEFAULT '{}',  -- GSC/GA4の根拠数値
+  source_type     TEXT,                -- gsc_growing_query等
+  status          TEXT DEFAULT 'planned',
+  result_pv_7d         INT,            -- 前週検証で記入
+  result_gsc_impressions INT,
+  result_evaluation    TEXT,           -- 自動評価テキスト
+  created_at      TIMESTAMPTZ DEFAULT NOW()
+);</div>
+</div>
+
+<!-- ============ 停止するもの ============ -->
+<h2>4. 停止するもの</h2>
+
+<table>
+  <tr><th>routine</th><th>現状</th><th>停止理由</th></tr>
+  <tr>
+    <td><span class="badge badge-red">停止</span> night-writer</td>
+    <td>毎日 02:00、dev_journal から記事生成</td>
+    <td>盲打ち廃止。content-executor に置換</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-red">停止</span> night-publisher</td>
+    <td>night-writer の後続</td>
+    <td>night-writer 依存。content-executor に統合</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-red">停止</span> weekly-auto-article</td>
+    <td>月曜 13:00、週次記事生成</td>
+    <td>planner に統合</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-red">停止</span> tuesday-watchdog</td>
+    <td>火曜、記事監視</td>
+    <td>planner の前週検証に統合</td>
+  </tr>
+</table>
+
+<div class="card">
+  <h3>既存で変更しないもの</h3>
+  <ul>
+    <li><span class="badge badge-gray">維持</span> seo-audit-weekly (日曜 SEO 監査)</li>
+    <li><span class="badge badge-gray">維持</span> analytics-tracker (月曜 CSV 取得)</li>
+    <li><span class="badge badge-gray">維持</span> pdca-analyzer (週次 KPI JSON)</li>
+    <li><span class="badge badge-gray">維持</span> auto-publisher (毎時 X 投稿)</li>
+    <li><span class="badge badge-gray">維持</span> engagement-tracker (X エンゲージメント)</li>
+    <li><span class="badge badge-gray">微修正</span> seo-integrated-analysis (コンバージョンスコア追加)</li>
+  </ul>
+</div>
+
+<!-- ============ ブリーフの中身 ============ -->
+<h2>5. ブリーフの選定ロジック</h2>
+
+<h3>リライト候補 (2 本/週)</h3>
+<table>
+  <tr><th>優先</th><th>ランク</th><th>条件</th><th>アクション</th></tr>
+  <tr><td>1</td><td><span class="badge badge-red">B 重症</span></td><td>PV ≥ 7 + 直帰 ≥ 85%</td><td>構造改善 (冒頭/タイトル)</td></tr>
+  <tr><td>2</td><td><span class="badge badge-yellow">E 機会損失</span></td><td>GSC 表示 ≥ 5 + クリック 0</td><td>タイトル / description 修正</td></tr>
+  <tr><td>3</td><td><span class="badge badge-blue">C 隠れた強</span></td><td>PV ≤ 5 + 滞在 ≥ 150s</td><td>内部リンク + SEO 強化</td></tr>
+</table>
+
+<h3>新規候補 (3 本/週)</h3>
+<table>
+  <tr><th>優先</th><th>ソース</th><th>選定基準</th></tr>
+  <tr><td>1</td><td><span class="badge badge-green">GSC 伸びクエリ</span></td><td>表示数 前週比 +50% 以上 + 対応記事なし</td></tr>
+  <tr><td>2</td><td><span class="badge badge-blue">コンバージョン強化</span></td><td>/contact に最も近い記事の隣接テーマ</td></tr>
+  <tr><td>3</td><td><span class="badge badge-gray">dev_journal</span></td><td>source_selector 基準 35/40 点以上</td></tr>
+</table>
+
+<div class="card card-warn">
+  <h3 style="color: var(--warn);">上限厳守</h3>
+  <p><strong>新規 3 本 + リライト 2 本 = 最大 5 本</strong>。候補不足なら無理に埋めない。<br>
+  「書かない」判断もブリーフに記録。各記事に <strong>「なぜ今週書くか」の数字根拠</strong> を必須化。</p>
+</div>
+
+<!-- ============ 前週検証 ============ -->
+<h2>6. 自己検証ループ (毎週月曜)</h2>
+
+<div class="card">
+  <p>planner が毎週月曜に前週ブリーフの結果を自動評価:</p>
+  <table>
+    <tr><th>評価</th><th>条件</th></tr>
+    <tr><td><span class="badge badge-green">狙い通り</span></td><td>PV ≥ 期待値 80% かつ GSC 表示あり</td></tr>
+    <tr><td><span class="badge badge-yellow">PV のみ</span></td><td>PV OK だが /contact 遷移 0</td></tr>
+    <tr><td><span class="badge badge-yellow">GSC のみ</span></td><td>表示あり + クリック 0</td></tr>
+    <tr><td><span class="badge badge-red">不発</span></td><td>全指標未達</td></tr>
+    <tr><td><span class="badge badge-green">想定以上</span></td><td>PV ≥ 期待値 150%</td></tr>
+  </table>
+  <p style="margin-top: 12px;">この評価結果が <strong>次週のブリーフ選定ロジック</strong> にフィードバック。<br>
+  「不発」だったテーマ系統は次週の優先度を下げる。「想定以上」の系統は追加候補にする。</p>
+</div>
+
+<!-- ============ 実装ステップ ============ -->
+<h2>7. 実装ステップ + 4 週間試運転</h2>
+
+<div class="timeline">
+  <div class="timeline-item">
+    <strong>Step 1: テーブル作成 + routine 停止</strong>
+    <p>content_briefs テーブル作成 + night-writer 等 4 routine を disable</p>
+  </div>
+  <div class="timeline-item">
+    <strong>Step 2: weekly-content-planner 作成 + 手動テスト</strong>
+    <p>/schedule 登録 → 手動 1 回実行 → ブリーフが正しく生成されるか確認</p>
+  </div>
+  <div class="timeline-item">
+    <strong>Step 3: content-executor 作成 + 手動テスト</strong>
+    <p>/schedule 登録 → テスト行で記事が書けるか確認</p>
+  </div>
+  <div class="timeline-item">
+    <strong>Week 1: routine 完走確認</strong>
+    <p>ブリーフ生成 + 自動執筆が動くか。Slack 通知が届くか</p>
+  </div>
+  <div class="timeline-item">
+    <strong>Week 2: 前週検証ループ確認</strong>
+    <p>Phase 2 (前週検証) が正しく評価できるか手動レビュー</p>
+  </div>
+  <div class="timeline-item">
+    <strong>Week 3: 安定稼働 + /contact 計測準備</strong>
+    <p>CTA → /contact?ref={slug} 化。GA4 で記事別コンバージョン計測</p>
+  </div>
+  <div class="timeline-item">
+    <strong>Week 4: Go/No-Go 判定</strong>
+    <p>PV 前月比 -20% 以内 + routine 完走 4/4 → Go</p>
+  </div>
+</div>
+
+<table>
+  <tr><th>Go 条件</th><th>基準</th><th>No-Go 時</th></tr>
+  <tr><td>routine 完走率</td><td>4/4 週 (100%)</td><td>エラー修正して延長</td></tr>
+  <tr><td>ブリーフ根拠</td><td>全週で実データ参照</td><td>prompt 修正</td></tr>
+  <tr><td>PV 変動</td><td>前月比 -20% 以内</td><td>night-writer 一部復活</td></tr>
+  <tr><td>自己検証</td><td>3/4 週で正常動作</td><td>Phase 2 修正</td></tr>
+</table>
+
+<!-- ============ さらに 100 倍 ============ -->
+<hr class="section-divider">
+
+<div class="upgrade-banner">
+  <h2 style="font-size: 1.8rem;">さらに 100 倍: 案件獲得ファネル全体の自動最適化</h2>
+  <p>上のプランは「コンテンツ」の最適化。しかし案件獲得の本当のボトルネックはそこじゃないかもしれない。</p>
+</div>
+
+<h2>8. 気づき: 記事は「入口」でしかない</h2>
+
+<div class="card card-warn">
+  <h3 style="color: var(--warn);">案件獲得ファネル</h3>
+  <div class="flow" style="justify-content: center; margin: 20px 0;">
+    <div class="flow-step"><strong>Discovery</strong><br><small>SEO / SNS で発見</small></div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step"><strong>Credibility</strong><br><small>記事で信頼獲得</small></div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step broken"><strong>Relevance</strong><br><small>「この人に頼みたい」</small></div>
+    <span class="flow-arrow broken">✗</span>
+    <div class="flow-step broken"><strong>Action</strong><br><small>/contact で問い合わせ</small></div>
+  </div>
+  <p>現在の自動化は <strong>Discovery (記事量産)</strong> に全振り。<br>
+  でも採用担当 / 案件発注者が見るのは <strong>Works / 実績 / ポートフォリオ</strong>。<br>
+  「記事は良いが、この人に何が頼めるか分からない」→ 離脱... これが真のボトルネックかも。</p>
+</div>
+
+<h2>9. Phase 2 構想: ポートフォリオ自動最適化エンジン</h2>
+
+<p>週次コンテンツサイクル (Phase 1) が安定したら、<strong>ファネル全体</strong> を自動最適化する Phase 2 に進化できる:</p>
+
+<div class="grid-3">
+  <div class="stat-card">
+    <div style="font-size: 2rem;">📊</div>
+    <strong>ファネル計測</strong>
+    <p style="font-size: 0.85rem; color: var(--muted);">記事 → Works → /contact の遷移率を記事別に自動追跡</p>
+  </div>
+  <div class="stat-card">
+    <div style="font-size: 2rem;">🔄</div>
+    <strong>ケーススタディ自動生成</strong>
+    <p style="font-size: 0.85rem; color: var(--muted);">dev_journal + git history から Works ページのケーススタディを自動更新</p>
+  </div>
+  <div class="stat-card">
+    <div style="font-size: 2rem;">🎯</div>
+    <strong>求人市場連動</strong>
+    <p style="font-size: 0.85rem; color: var(--muted);">求人サイトのトレンドスキルを監視 → ポートフォリオの強調項目を自動調整</p>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Phase 2 の仕組み (Phase 1 安定後)</h3>
+  <table>
+    <tr><th>層</th><th>自動化</th><th>計測</th></tr>
+    <tr>
+      <td><strong>Discovery</strong></td>
+      <td>← Phase 1: データ駆動コンテンツサイクル</td>
+      <td>GSC 表示 / クリック / PV</td>
+    </tr>
+    <tr>
+      <td><strong>Credibility</strong></td>
+      <td>記事品質の自動最適化 (B ランクリライト)</td>
+      <td>滞在時間 / 直帰率</td>
+    </tr>
+    <tr>
+      <td><strong>Relevance</strong></td>
+      <td>Works / ケーススタディの自動更新<br>求人市場トレンドとの連動</td>
+      <td>記事 → Works 遷移率</td>
+    </tr>
+    <tr>
+      <td><strong>Action</strong></td>
+      <td>CTA の自動最適化 (記事内 /contact リンク)</td>
+      <td>/contact 到達率 / 問い合わせ数</td>
+    </tr>
+  </table>
+</div>
+
+<div class="quote">
+  Phase 1 (コンテンツサイクル) で「何を書くか」を自動化。<br>
+  Phase 2 (ファネル最適化) で「書いたものをどう売上に繋げるか」を自動化。<br>
+  両方揃って初めて「案件獲得マシン」が完成する。
+</div>
+
+<h2>10. 推奨: まず Phase 1 を 4 週間回す</h2>
+
+<div class="card card-accent">
+  <p>Phase 2 は魅力的だが、<strong>/contact ページすらまだない</strong>状態で全ファネル最適化は時期尚早。</p>
+  <p>順序:</p>
+  <ol>
+    <li><strong>今日</strong>: Phase 1 (データ駆動コンテンツサイクル) を実装</li>
+    <li><strong>Week 3</strong>: /contact ページ実装 + CTA に ?ref={slug} 付与</li>
+    <li><strong>Week 4</strong>: Go/No-Go 判定 → Go なら Phase 2 設計開始</li>
+    <li><strong>7/30 判定</strong>: Phase 2 の効果を含めて軸 A 評価</li>
+  </ol>
+</div>
+
+<p style="text-align: center; margin-top: 48px; color: var(--muted); font-size: 0.85rem;">
+  2026-05-25 作成 / portfolio CLAUDE.md + STRATEGY.md 準拠
+</p>
+
+</div>
+</body>
+</html>

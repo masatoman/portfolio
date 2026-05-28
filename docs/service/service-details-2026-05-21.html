@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="created-at" content="2026-05-21">
+<title>6 サービス 詳細仕様 / 痛み → 解決 → ベネフィット / 2026-05-21</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --fg: #1f1c18;
+  --muted: #6b6359;
+  --line: #d6cfc2;
+  --accent: #b85c3a;
+  --accent-soft: #f4dfd2;
+  --good: #2d6a4f;
+  --good-soft: #e6f0ea;
+  --warn: #c34a1f;
+  --warn-soft: #fef5e7;
+  --info: #1e3a5f;
+  --info-soft: #dde6f0;
+  --pain: #b91c1c;
+  --pain-soft: #fde2e2;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: #e8e0d4;
+  color: var(--fg);
+  font-size: 11.5px;
+  line-height: 1.65;
+}
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 14mm 16mm;
+  margin: 8mm auto;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.12);
+  page-break-after: always;
+  position: relative;
+}
+.page-num {
+  position: absolute;
+  top: 10mm;
+  right: 16mm;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+header {
+  border-bottom: 2px solid var(--fg);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+header .svc-id {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  font-weight: 700;
+}
+header h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 4px 0 2px;
+}
+header .tagline {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+h2 {
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 3px 10px;
+  margin: 12px 0 8px;
+  letter-spacing: 0.04em;
+}
+h3 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 8px 0 4px;
+}
+p { margin-bottom: 6px; }
+ul { padding-left: 18px; margin-bottom: 6px; }
+li { margin-bottom: 3px; }
+
+/* 痛みボックス */
+.pain-box {
+  background: var(--pain-soft);
+  border-left: 4px solid var(--pain);
+  border-radius: 3px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+.pain-quote {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+.pain-source {
+  font-size: 10px;
+  color: var(--muted);
+}
+.pain-metrics {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+.pain-metric {
+  background: white;
+  border: 1px solid var(--line);
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+.pain-metric .m-label { color: var(--muted); font-size: 9.5px; font-weight: 400; }
+
+/* 解決フロー図 */
+.flow-box {
+  background: var(--good-soft);
+  border-left: 4px solid var(--good);
+  border-radius: 3px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.flow-box h3 { color: var(--good); margin-top: 0; }
+.flow-diagram {
+  display: grid;
+  grid-template-columns: 1fr 30px 1fr 30px 1fr;
+  gap: 6px;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 11px;
+}
+.flow-node {
+  background: white;
+  border: 2px solid var(--good);
+  border-radius: 6px;
+  padding: 10px 8px;
+  text-align: center;
+  min-height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.flow-node .actor {
+  font-size: 9.5px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+.flow-node .action {
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.flow-arrow {
+  text-align: center;
+  color: var(--good);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* ベネフィットボックス */
+.benefit-box {
+  background: var(--info-soft);
+  border-left: 4px solid var(--info);
+  border-radius: 3px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+.benefit-box h3 { color: var(--info); margin-top: 0; }
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 6px;
+}
+.benefit-item {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 8px 10px;
+}
+.benefit-item .b-label {
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.benefit-item .b-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--info);
+}
+.benefit-item .b-detail {
+  font-size: 10px;
+  color: var(--fg);
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10.5px;
+  margin: 6px 0;
+}
+table th {
+  background: var(--fg);
+  color: white;
+  padding: 4px 7px;
+  text-align: left;
+  font-size: 10px;
+}
+table td {
+  padding: 4px 7px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+table tr:nth-child(even) td { background: #fbf8f3; }
+
+.plan-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 6px;
+}
+.plan-box {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 8px 10px;
+  background: #fdfbf6;
+}
+.plan-box.l1 { border-color: var(--info); }
+.plan-box.l2 { border-color: var(--accent); border-width: 2px; }
+.plan-box.l3 { border-color: var(--good); }
+.plan-box .pl { font-size: 9.5px; letter-spacing: 0.1em; color: var(--muted); font-weight: 700; }
+.plan-box .pn { font-size: 11.5px; font-weight: 700; margin: 2px 0 4px; }
+.plan-box .pp { font-size: 14px; font-weight: 700; color: var(--accent); }
+.plan-box .pd { font-size: 10px; line-height: 1.5; margin-top: 4px; }
+
+.callout {
+  background: #fdfbf6;
+  border-left: 3px solid var(--accent);
+  padding: 6px 9px;
+  margin: 6px 0;
+  font-size: 10.5px;
+}
+
+/* タイトルページ */
+.title-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.title-page h1 {
+  font-size: 28px;
+  border: none;
+  margin-bottom: 8px;
+  padding: 0;
+}
+.title-page .subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 30px;
+}
+.title-page .hero-box {
+  background: var(--accent-soft);
+  border-radius: 6px;
+  padding: 14px 22px;
+  margin: 0 auto 30px;
+  max-width: 580px;
+}
+.title-page .hero-box .hero-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  font-weight: 700;
+}
+.title-page .hero-box .hero-text {
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 6px;
+  line-height: 1.6;
+}
+.svc-toc {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+.svc-toc-item {
+  background: #fdfbf6;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 10px 14px;
+}
+.svc-toc-item .toc-no {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  font-weight: 700;
+}
+.svc-toc-item .toc-name {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 2px 0;
+}
+.svc-toc-item .toc-pain {
+  font-size: 10.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+@media print {
+  body { background: white; }
+  .page { box-shadow: none; margin: 0; }
+  @page { size: A4; margin: 0; }
+}
+</style>
+  <meta name="created" content="2026-05-21T07:54:02.570Z">
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- Page 1: タイトル + 目次 -->
+<!-- ============================================ -->
+<div class="page title-page">
+  <span class="page-num">01 / 08</span>
+
+  <h1>6 サービス 詳細仕様</h1>
+  <p class="subtitle">痛み → 解決 → ベネフィット + 仕組み詳細 / 2026-05-21 / 内部用</p>
+
+  <div class="hero-box">
+    <div class="hero-label">事業全体の Hero Statement</div>
+    <div class="hero-text">「ANDPAD で詰まった工務店向けに、 FAX / 電話 / LINE どれでも OK の運用支援を、 月 ¥3-5 万円から」</div>
+  </div>
+
+  <p style="font-size: 12px; max-width: 600px; margin: 0 auto 24px;">本資料は 6 サービスを 1 つずつ <strong>「顧客の痛み (一次情報) → 解決の仕組み (運用フロー図) → ベネフィット (時間 / 金額 / 精神的)」</strong> の構造で詳細展開したもの。 5/22 北原氏面談での説明補助 + 自分の理解整理 + 将来の商談ペライチのベース資料。</p>
+
+  <div class="svc-toc">
+    <div class="svc-toc-item">
+      <div class="toc-no">P.2 · ①</div>
+      <div class="toc-name">現場写真運用支援</div>
+      <div class="toc-pain">夜遅くまで写真整理に追われる現場監督</div>
+    </div>
+    <div class="svc-toc-item">
+      <div class="toc-no">P.3 · ②</div>
+      <div class="toc-name">議事録支援</div>
+      <div class="toc-pain">施主要望が二転三転、 議事録が紙</div>
+    </div>
+    <div class="svc-toc-item">
+      <div class="toc-no">P.4 · ③</div>
+      <div class="toc-name">ANDPAD 運用支援</div>
+      <div class="toc-pain">「死ぬほど苦痛」 (感情度 92)</div>
+    </div>
+    <div class="svc-toc-item">
+      <div class="toc-no">P.5 · ④</div>
+      <div class="toc-name">領収書・経理補助</div>
+      <div class="toc-pain">奥さま経理の月末月初パンク</div>
+    </div>
+    <div class="svc-toc-item">
+      <div class="toc-no">P.6 · ⑤</div>
+      <div class="toc-name">補助金 事業計画作成補助</div>
+      <div class="toc-pain">「公式ページ難解、 計画書 70 時間きつい」</div>
+    </div>
+    <div class="svc-toc-item">
+      <div class="toc-no">P.7 · ⑥</div>
+      <div class="toc-name">家の困りごと地域相談窓口 (B2G)</div>
+      <div class="toc-pain">アフター放置で施主クレーム多発</div>
+    </div>
+  </div>
+
+  <p style="font-size: 11px; color: var(--muted); margin-top: 24px;">P.8 = 6 サービス まとめ比較表</p>
+</div>
+
+<!-- ============================================ -->
+<!-- Page 2: ① 現場写真運用支援 -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="page-num">02 / 08</span>
+
+  <header>
+    <div class="svc-id">SERVICE · ①</div>
+    <h1>現場写真運用支援 + 必要時整理代行</h1>
+    <div class="tagline">「写真フォルダがぐちゃぐちゃで諦めてる状態を整理してあげる人」</div>
+  </header>
+
+  <h2>顧客の痛み (一次情報)</h2>
+  <div class="pain-box">
+    <p class="pain-quote">「夜遅くまで写真整理や次の日の掃除で残るのが嫌で嫌で」</p>
+    <p class="pain-source">— 知恵袋 / 現場監督</p>
+    <p class="pain-quote" style="margin-top: 6px;">「写真管理は施工の一連の流れを撮らないと。 作業完了したら前の状態は二度と撮れない、 作業員さんを写真待ちにするのも良くない」</p>
+    <p class="pain-source">— note / 施工管理</p>
+    <div class="pain-metrics">
+      <div class="pain-metric"><span class="m-label">イシュー度:</span> 56</div>
+      <div class="pain-metric"><span class="m-label">解の質:</span> 85 (全 48 件中最高クラス)</div>
+      <div class="pain-metric"><span class="m-label">該当 issue:</span> #19 #14 #10</div>
+    </div>
+  </div>
+
+  <div class="flow-box">
+    <h3>解決の仕組み (運用フロー)</h3>
+    <div class="flow-diagram">
+      <div class="flow-node">
+        <div class="actor">顧客 (工務店)</div>
+        <div class="action">月末まとめて<br>SD カード / 紙焼き写真を<br>郵送 or LINE 送信</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="actor">井原</div>
+        <div class="action">受領 → 工事番号別仕分け<br>(EXIF + 黒板情報読取) →<br>PDF 台帳 3 テンプレ作成</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="actor">顧客に返却</div>
+        <div class="action">PDF 台帳を郵送 + FAX 返却<br>+ 電話で「届きました?」</div>
+      </div>
+    </div>
+    <p style="font-size: 10.5px; margin-top: 6px;"><strong>顧客が使う道具:</strong> 既存のスマホ / デジカメ / 紙焼き写真。 新しいアプリ不要。 / <strong>井原が使う道具:</strong> ScanSnap (スキャン)、 AI 画像認識 (黒板読取)、 PDF 生成スクリプト。</p>
+  </div>
+
+  <div class="benefit-box">
+    <h3>ベネフィット</h3>
+    <div class="benefit-grid">
+      <div class="benefit-item">
+        <div class="b-label">⏱️ 時間削減</div>
+        <div class="b-value">月 20-30h → 0h</div>
+        <div class="b-detail">現場後の事務作業 (写真整理 + 台帳作成) を完全代行 (仮説、 友人 N=2-3 で検証)</div>
+      </div>
+      <div class="benefit-item">
+        <div class="b-label">💰 金銭換算</div>
+        <div class="b-value">¥30-50K/月</div>
+        <div class="b-detail">時間削減を時給 ¥1,500 換算 = ¥30-45K の機会損失回避</div>
+      </div>
+      <div class="benefit-item">
+        <div class="b-label">😌 精神的</div>
+        <div class="b-value">夜の残業ゼロ</div>
+        <div class="b-detail">翌日への持ち越しゼロ / 写真台帳の品質向上 (施主 / 役所 / 元請け別)</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>3 プラン (どこまで任せますか?)</h2>
+  <div class="plan-row">
+    <div class="plan-box l1">
+      <div class="pl">PLAN 1 · ライト</div>
+      <div class="pn">整理ルール提供のみ</div>
+      <div class="pp">¥5K/月</div>
+      <div class="pd">写真整理ルール + フォルダ構造設計 + AI 仕分けツール提供。 顧客が自分で運用。 対象: 2 代目アトツギ / IT 強い若手。</div>
+    </div>
+    <div class="plan-box l2">
+      <div class="pl">PLAN 2 · スタンダード</div>
+      <div class="pn">月 1 回まとめて代行</div>
+      <div class="pp">¥18K/月</div>
+      <div class="pd">L1 + 初期 1 ヶ月伴走 + 月次品質チェック。 PDF 台帳のテンプレ修正対応。 対象: IT 苦手だが学ぶ意欲ある中堅。</div>
+    </div>
+    <div class="plan-box l3">
+      <div class="pl">PLAN 3 · フル</div>
+      <div class="pn">受け取って整理して返却</div>
+      <div class="pp">¥30K/月</div>
+      <div class="pd">L2 + LINE で送られた写真を月末に PDF 台帳化 (完了報告 / 施主アルバム / 保証書添付) を <strong>井原が手動整理</strong>。 顧客は LINE で送るだけ。 対象: 60-70 代 IT 弱者社長 (主顧客)。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- Page 3: ② 議事録支援 -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="page-num">03 / 08</span>
+
+  <header>
+    <div class="svc-id">SERVICE · ②</div>
+    <h1>議事録支援 (音声 → 自動整理 + 修正支援)</h1>
+    <div class="tagline">「打ち合わせの『言った言わない』 を消す人」</div>
+  </header>
+
+  <h2>顧客の痛み (一次情報)</h2>
+  <div class="pain-box">
+    <p class="pain-quote">「毎回間取りがコロコロ変わるとイラつきますか? ちょこちょこ間取りの変更をお願いしています」</p>
+    <p class="pain-source">— 施主の遠慮 / 知恵袋</p>
+    <p class="pain-quote" style="margin-top: 6px;">「闇雲にインスタ見まくって、 根拠もなく繰り返されるとまとまらない」</p>
+    <p class="pain-source">— 設計士の本音 / SNS</p>
+    <div class="pain-metrics">
+      <div class="pain-metric"><span class="m-label">イシュー度:</span> 53</div>
+      <div class="pain-metric"><span class="m-label">解の質:</span> 50</div>
+      <div class="pain-metric"><span class="m-label">該当 issue:</span> #25</div>
+    </div>
+  </div>
+
+  <div class="flow-box">
+    <h3>解決の仕組み (運用フロー)</h3>
+    <div class="flow-diagram">
+      <div class="flow-node">
+        <div class="actor">顧客 (現場監督)</div>
+        <div class="action">打ち合わせを録音<br>(スマホ or IC レコーダー)<br>→ SD カード郵送 or LINE 送信</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="actor">井原</div>
+        <div class="action">AI で文字起こし →<br>要望リスト化 + 前回からの<br><strong>変更点を diff で可視化</strong></div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="actor">顧客に返却</div>
+        <div class="action">PDF 議事録を 24h 以内<br>郵送 + 電話で口頭報告<br>急ぎは LINE で速報</div>
+      </div>
+    </div>
+    <p style="font-size: 10.5px; margin-top: 6px;"><strong>顧客が使う道具:</strong> 既存のスマホ録音機能 or IC レコーダー。 / <strong>井原が使う道具:</strong> Whisper API (文字起こし)、 Claude API (要約 + 変更点抽出)。 月 3-4 回の打ち合わせ想定。</p>
+  </div>
+
+  <div class="benefit-box">
+    <h3>ベネフィット</h3>
+    <div class="benefit-grid">
+      <div class="benefit-item">
+        <div class="b-label">⏱️ 時間削減</div>
+        <div class="b-value">3h → 30 分</div>
+        <div class="b-detail">議事録作成時間を 1/6 に短縮 (仮説)。 録音送るだけで完成版が届く</div>
+      </div>
+      <div class="benefit-item">
+        <div class="b-label">💰 クレーム予防</div>
+        <div class="b-value">¥50 万-1000 万級</div>
+        <div class="b-detail">「言った言わない」 訴訟の予防 = 1 件で月額の数百倍の価値</div>
+      </div>
+      <div class="benefit-item">
+        <div class="b-label">📋 変更履歴</div>
+        <div class="b-value">diff で可視化</div>
+        <div class="b-detail">「前回からの変更点」 を一目で施主に確認 = 二転三転問題への直接打撃</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>3 プラン</h2>
+  <div class="plan-row">
+    <div class="plan-box l1">
+      <div class="pl">PLAN 1 · ライト</div>
+      <div class="pn">AI 文字起こしツール提供</div>
+      <div class="pp">¥3K/月</div>
+      <div class="pd">録音 → AI で自動文字起こし のシステム提供。 顧客が自分で要約・整形。 対象: PC 使える若手。</div>
+    </div>
+    <div class="plan-box l2">
+      <div class="pl">PLAN 2 · スタンダード</div>
+      <div class="pn">月 4 回まで整形対応</div>
+      <div class="pp">¥8K/月</div>
+      <div class="pd">L1 + 録音を送れば井原が要約 + 整形 + PDF 化。 月 4 回まで。 対象: 設計担当 + 中堅工務店。</div>
+    </div>
+    <div class="plan-box l3">
+      <div class="pl">PLAN 3 · フル</div>
+      <div class="pn">無制限 + 速報対応</div>
+      <div class="pp">¥15K/月</div>
+      <div class="pd">L2 + 月 4 回以上 OK + 24h 以内納品 + 急ぎは LINE で速報。 「前回からの変更点」 diff 付き。 対象: 60-70 代 IT 弱者社長 / 大手元請け対応工務店。</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>将来の SaaS 化候補 No.1:</strong> Whisper + Claude で実装容易 = Phase 3 (2027 年) で月 ¥5K の汎用 SaaS にダウングレードして水平展開可能。 工務店外 (士業 / コンサル) にも横展開できる。
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- Page 4: ③ ANDPAD 運用支援 -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="page-num">04 / 08</span>
+
+  <header>
+    <div class="svc-id">SERVICE · ③</div>
+    <h1>ANDPAD 運用支援 + 入力補助</h1>
+    <div class="tagline">「ANDPAD を入れる」 のではなく「ANDPAD を使える状態にする人」</div>
+  </header>
+
+  <h2>顧客の痛み (一次情報 / 感情度 92 = 全 48 件最高)</h2>
+  <div class="pain-box">
+    <p class="pain-quote"><strong>「ANDPAD の使用を発注側からもとめられてから死ぬほどこのアプリが苦痛で毎日夜も眠れない」</strong></p>
+    <p class="pain-source">— 知恵袋 / 下請工務店</p>
+    <p class="pain-quote" style="margin-top: 6px;">「バグ 30 件あげても一度も修正されたことがない」「送信前にアプリが落ちると今まで撮っていた数十枚分の工程写真が消える」「<strong>勝手に導入したくせに業者から使用料を取る</strong>」</p>
+    <p class="pain-source">— App Store レビュー / 複数</p>
+    <div class="pain-metrics">
+      <div class="pain-metric"><span class="m-label">イシュー度:</span> 55</div>
+      <div class="pain-metric"><span class="m-label">感情度:</span> 92 (全 48 件最高)</div>
+      <div class="pain-metric"><span class="m-label">該当 issue:</span> #22</div>
+    </div>
+  </div>
+
+  <div class="flow-box">
+    <h3>解決の仕組み (運用フロー)</h3>
+    <div class="flow-diagram">
+      <div class="flow-node">
+        <div class="actor">顧客 (下請工務店)</div>
+        <div class="action">現場写真 + 報告内容を<br>LINE / FAX で井原に送る<br>(ANDPAD は触らない)</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="actor">井原</div>
+        <div class="action">受領 → 整理 →<br><strong>ANDPAD に代行入力</strong><br>(顧客のアカウントで)</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="actor">元請け / 顧客に返却</div>
+        <div class="action">ANDPAD 上で元請け確認可<br>+ 顧客には「入力完了」 を<br>LINE で報告</div>
+      </div>
+    </div>
+    <p style="font-size: 10.5px; margin-top: 6px;"><strong>顧客が使う道具:</strong> スマホで写真撮影 + LINE / FAX。 ANDPAD アプリは触らない。 / <strong>井原が使う道具:</strong> ANDPAD Web 版にログイン (顧客の許諾下) + RPA / 手動入力。</p>
+  </div>
+
+  <div class="benefit-box">
+    <h3>ベネフィット</h3>
+    <div class="benefit-grid">
+      <div class="benefit-item">
+        <div class="b-label">😌 精神的負担</div>
+        <div class="b-value">「夜眠れる」</div>
+        <div class="b-detail">「死ぬほど苦痛」 (感情度 92) からの解放 = 金額では測れない価値</div>
+      </div>
+      <div class="benefit-item">
+        <div class="b-label">⏱️ 時間削減</div>
+        <div class="b-value">月 10-15h → 月 2h</div>
+        <div class="b-detail">ANDPAD 入力時間を 1/5 に。 LINE で送るだけで OK</div>
+      </div>
+      <div class="benefit-item">
+        <div class="b-label">🛡️ 失敗予防</div>
+        <div class="b-value">写真消失ゼロ</div>
+        <div class="b-detail">アプリ落ち / 送信失敗で写真消える事故を完全回避</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>3 プラン</h2>
+  <div class="plan-row">
+    <div class="plan-box l1">
+      <div class="pl">PLAN 1 · ライト</div>
+      <div class="pn">ANDPAD 設定ガイド</div>
+      <div class="pp">¥5K/月</div>
+      <div class="pd">ANDPAD の設定整理 (通知 / フォルダ / 写真ルール)。 月 1 回オンライン相談。 対象: ANDPAD 触れる中堅 + アトツギ。</div>
+    </div>
+    <div class="plan-box l2">
+      <div class="pl">PLAN 2 · スタンダード</div>
+      <div class="pn">入力指示書 + 部分代行</div>
+      <div class="pp">¥10K/月</div>
+      <div class="pd">L1 + FAX で「ANDPAD にこう書いて」 指示書送付 + 顧客が悩むポイントを部分代行。 対象: ANDPAD 苦手な下請。</div>
+    </div>
+    <div class="plan-box l3">
+      <div class="pl">PLAN 3 · フル</div>
+      <div class="pn">完全代行</div>
+      <div class="pp">¥25K/月</div>
+      <div class="pd">顧客は LINE / FAX で送るだけ、 井原が ANDPAD に全部入力。 顧客は ANDPAD アプリを開かなくて OK。 対象: 「死ぬほど苦痛」 層。</div>
+    </div>
+  </div>
+
+  <div class="callout" style="background: var(--warn-soft); border-left-color: var(--warn);">
+    <strong>⚠️ 5/22 北原氏に確認すべき点:</strong> 中堅工務店オーナーの多くは「元請け側」 で ANDPAD 強制されていない可能性。 対象層が「下請工務店」 に限られると市場規模が小さい (論点 ③ で確認)。
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- Page 5: ④ 領収書・経理補助 -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="page-num">05 / 08</span>
+
+  <header>
+    <div class="svc-id">SERVICE · ④</div>
+    <h1>領収書・経理補助 (奥さま月末月初パンク救済)</h1>
+    <div class="tagline">「freee を裏で使う、 でも顧客は freee を知らないままで OK」</div>
+  </header>
+
+  <h2>顧客の痛み (一次情報)</h2>
+  <div class="pain-box">
+    <p class="pain-quote">「電帳法はシステム的要件が多いため、 『ますますよく分からない』 というのが実情」</p>
+    <p class="pain-source">— 税理士コラム / 中小企業向け</p>
+    <p class="pain-quote" style="margin-top: 6px;">「freee の値上げで追加された年末調整・社会保険機能は、 マイクロ法人には過剰」</p>
+    <p class="pain-source">— note / 個人事業主</p>
+    <div class="pain-metrics">
+      <div class="pain-metric"><span class="m-label">イシュー度:</span> 52 + 57</div>
+      <div class="pain-metric"><span class="m-label">該当 issue:</span> #1 (電帳法) #17 (freee 値上げ)</div>
+    </div>
+  </div>
+
+  <div class="flow-box">
+    <h3>解決の仕組み (運用フロー)</h3>
+    <div class="flow-diagram">
+      <div class="flow-node">
+        <div class="actor">顧客 (奥さま)</div>
+        <div class="action">領収書 / 請求書を<br>月 1 回まとめて<strong>郵送</strong><br>(封筒に放り込むだけ)</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="actor">井原</div>
+        <div class="action">受領 → スキャン →<br>freee に仕訳入力 (月 100-200 件)<br>→ 月次レポート作成</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="actor">顧客 + 税理士</div>
+        <div class="action">月次レポート PDF を郵送<br>+ 電話で報告 / 提携税理士に<br>申告・税務相談を依頼</div>
+      </div>
+    </div>
+    <p style="font-size: 10.5px; margin-top: 6px;"><strong>顧客が使う道具:</strong> 既存の領収書封筒 / 請求書ファイル。 freee アカウントは必要 (井原が運用)。 / <strong>井原が使う道具:</strong> ScanSnap、 freee API、 提携税理士。</p>
+  </div>
+
+  <div class="benefit-box">
+    <h3>ベネフィット</h3>
+    <div class="benefit-grid">
+      <div class="benefit-item">
+        <div class="b-label">⏱️ 奥さま時間削減</div>
+        <div class="b-value">月 20-40h → 月 2h</div>
+        <div class="b-detail">領収書整理 + 仕訳入力 + 電帳法対応を完全代行。 月末月初パンクから解放</div>
+      </div>
+      <div class="benefit-item">
+        <div class="b-label">💰 金銭換算</div>
+        <div class="b-value">¥40-80K/月</div>
+        <div class="b-detail">奥さま時給 ¥2,000 × 月 20-40h の機会損失回避</div>
+      </div>
+      <div class="benefit-item">
+        <div class="b-label">📜 法対応</div>
+        <div class="b-value">電帳法 OK</div>
+        <div class="b-detail">電子帳簿保存法 + インボイス制度に自動対応 (顧客は意識しなくて OK)</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>3 プラン</h2>
+  <div class="plan-row">
+    <div class="plan-box l1">
+      <div class="pl">PLAN 1 · ライト</div>
+      <div class="pn">freee 設定支援のみ</div>
+      <div class="pp">¥10K/月</div>
+      <div class="pd">freee の初期設定 + 仕訳ルール提供 + 月 1 回チェック。 入力は顧客 (奥さま) が行う。 対象: アトツギ + 学習意欲ある奥さま。</div>
+    </div>
+    <div class="plan-box l2">
+      <div class="pl">PLAN 2 · スタンダード</div>
+      <div class="pn">月次チェック + 困った時補助</div>
+      <div class="pp">¥18K/月</div>
+      <div class="pd">L1 + 月末に入力チェック + 困ったら電話相談。 月次レポート作成。 対象: 経理経験ある奥さま。</div>
+    </div>
+    <div class="plan-box l3">
+      <div class="pl">PLAN 3 · フル</div>
+      <div class="pn">記帳完全代行</div>
+      <div class="pp">¥30K/月</div>
+      <div class="pd">L2 + 領収書 / 請求書を <strong>井原がスキャン入力</strong>。 顧客は月 1 回封筒で郵送するだけ。 提携税理士が申告。 対象: 60-70 代 IT 弱者 + 奥さま (主顧客)。</div>
+    </div>
+  </div>
+
+  <div class="callout" style="background: var(--warn-soft); border-left-color: var(--warn);">
+    <strong>⚠️ 規制リスク:</strong> 税理士法 52 条 (税務相談・申告書作成は税理士独占) のため、 <strong>井原は記帳 / 仕訳 / 請求書発行 / 月次レポートまで</strong>。 申告 / 決算 / 税務相談 は提携税理士が担当する <strong>A 分業モデル</strong>。 違反は 2 年以下懲役 or 100 万円罰金 (2025-05 警視庁初摘発)。
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- Page 6: ⑤ 補助金 事業計画作成補助 -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="page-num">06 / 08</span>
+
+  <header>
+    <div class="svc-id">SERVICE · ⑤</div>
+    <h1>補助金 事業計画作成補助 (申請代行ではない)</h1>
+    <div class="tagline">「補助金で実質 1/2 になる、 ただし計画書 70 時間きつい問題を解決」</div>
+  </header>
+
+  <h2>顧客の痛み (一次情報)</h2>
+  <div class="pain-box">
+    <p class="pain-quote">「自分で調べてみたけどよくわからない」「公式ページは難しくて自社が該当するのかイマイチはっきりしない」「とにかくややこしくて時間ばかりかかるから諦めた」</p>
+    <p class="pain-source">— 公的資金支援協会 / 工務店オーナー声</p>
+    <p class="pain-quote" style="margin-top: 6px;">「『補助金があればこれが出来ます』 とかそういった趣旨になっていると、 『補助金ありき』 の申請書になってしまう」</p>
+    <p class="pain-source">— 行政書士 note / 不採択事例</p>
+    <div class="pain-metrics">
+      <div class="pain-metric"><span class="m-label">対象 issue:</span> 6 件 (全 48 件中最多)</div>
+      <div class="pain-metric"><span class="m-label">該当:</span> #11 #18 #12 #15 #13 #16</div>
+    </div>
+  </div>
+
+  <div class="flow-box">
+    <h3>解決の仕組み (運用フロー)</h3>
+    <div class="flow-diagram">
+      <div class="flow-node">
+        <div class="actor">顧客 (社長)</div>
+        <div class="action">「補助金使いたい」<br>と電話 / FAX で相談<br>→ 訪問 or 電話ヒアリング</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="actor">井原</div>
+        <div class="action"><strong>補助金診断 + 事業計画書ドラフト作成</strong><br>(AI 事業計画ジェネレータ活用)<br>→ 提携行政書士に橋渡し</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="actor">行政書士 + 顧客</div>
+        <div class="action">提携行政書士が<br>申請書類化 + 提出代行 →<br>採択後の SaaS 導入支援 (井原)</div>
+      </div>
+    </div>
+    <p style="font-size: 10.5px; margin-top: 6px;"><strong>顧客が使う道具:</strong> 電話 / FAX / 紙書類。 オンライン申請は井原が代行入力。 / <strong>井原が使う道具:</strong> AI 事業計画ジェネレータ (Claude API)、 提携行政書士。</p>
+  </div>
+
+  <div class="benefit-box">
+    <h3>ベネフィット</h3>
+    <div class="benefit-grid">
+      <div class="benefit-item">
+        <div class="b-label">💰 補助金獲得</div>
+        <div class="b-value">¥50-450 万</div>
+        <div class="b-detail">IT 導入補助金 (通常枠 1/2) で 50-450 万円獲得 (採択時)</div>
+      </div>
+      <div class="benefit-item">
+        <div class="b-label">⏱️ 時間削減</div>
+        <div class="b-value">70h → 10h</div>
+        <div class="b-detail">事業計画書作成時間を 1/7 に短縮 = 本業の機会損失 ¥50-60 万を回避</div>
+      </div>
+      <div class="benefit-item">
+        <div class="b-label">🎯 採択確率</div>
+        <div class="b-value">+ 10-20pt</div>
+        <div class="b-detail">「補助金ありき」 の薄い計画書 → 自社の強みを活かした計画書に改善</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>料金体系 (スポット商品)</h2>
+  <table>
+    <thead><tr><th style="width:25%;">フェーズ</th><th style="width:25%;">料金</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>① 補助金診断</td><td>無料 (LP)</td><td>「あなたの事業はどの補助金が該当するか」 を電話 / FAX で診断</td></tr>
+      <tr><td>② IT 導入支援事業者選定</td><td>¥50K (スポット)</td><td>中立第三者の立場で 3-5 社の支援事業者から選定 (悪徳業者警告ありの混沌市場)</td></tr>
+      <tr><td>③ 事業計画書ドラフト作成補助</td><td>着手金 ¥50K + 成功 10-15%</td><td>AI + ヒアリング で事業計画書ドラフト + 公募要領対応 (申請書類は提携行政書士)</td></tr>
+      <tr><td>④ 採択後の SaaS 導入支援</td><td>採択額の 5%</td><td>採択された SaaS / ツールの導入 + 運用伴走</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="background: var(--warn-soft); border-left-color: var(--warn);">
+    <strong>⚠️ 規制リスク:</strong> 行政書士法で「申請書類作成代行」 は行政書士独占。 井原は <strong>「事業計画作成補助」 + AI ツール提供</strong> までで、 申請書類化は提携行政書士が担当。 + IT 導入補助金 の正式な「IT 導入支援事業者」 になるには <strong>コンソーシアム参画</strong> が必要 (個人事業主単独不可) → Phase 2 で対応。
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- Page 7: ⑥ 家の困りごと地域相談窓口 (B2G) -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="page-num">07 / 08</span>
+
+  <header>
+    <div class="svc-id">SERVICE · ⑥</div>
+    <h1>家の困りごと地域相談窓口 (B2G、 Phase 3)</h1>
+    <div class="tagline">「工務店が金を払う構造ではなく、 行政 / 信金からの委託で運営する」</div>
+  </header>
+
+  <h2>顧客の痛み (一次情報 / イシュー度 70 = 全 48 件最高クラス)</h2>
+  <div class="pain-box">
+    <p class="pain-quote"><strong>「13 年前に注文住宅で家を建てました。 新築から半年程して不具合が 3 箇所あり、 対応をお願いしましたが、 一向に対応してくれませんでした。 数年経ち定期点検にもくるのですが、 そこで伝えてもなにも連絡なし。 本当に後悔してます」</strong></p>
+    <p class="pain-source">— ★ 1 Google レビュー / 施主</p>
+    <div class="pain-metrics">
+      <div class="pain-metric"><span class="m-label">イシュー度:</span> 70 (全 48 件最高クラス)</div>
+      <div class="pain-metric"><span class="m-label">該当 issue:</span> #3 + #7</div>
+      <div class="pain-metric"><span class="m-label">★ 1-3 レビュー:</span> 56 件中 12 件 (21%) 同パターン</div>
+    </div>
+  </div>
+
+  <div class="flow-box">
+    <h3>解決の仕組み (運用フロー / B2G 構造)</h3>
+    <div class="flow-diagram">
+      <div class="flow-node">
+        <div class="actor">施主 (家を持つ人)</div>
+        <div class="action">家の困りごと<br>(雨漏り / 設備不調 等) を<br>電話 / FAX で地域窓口に連絡</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="actor">井原 (地域窓口運営)</div>
+        <div class="action">受付 → 振り分け →<br><strong>該当工務店に連絡</strong><br>(工務店本人が施主に折り返し)</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="actor">工務店 + 施主</div>
+        <div class="action">工務店本人が連絡する構造を<br>維持 (信用毀損ゼロ) +<br>定期点検リマインド自動送信</div>
+      </div>
+    </div>
+    <p style="font-size: 10.5px; margin-top: 6px;"><strong>収益モデル:</strong> <span style="color: var(--pain); font-weight: 700;">工務店からは金を取らない</span>、 <strong>行政 / 信金からの委託料 (年 ¥300-1,500K)</strong> で収益化。 工務店パートナー 5-10 社を地域でネットワーク化。</p>
+  </div>
+
+  <div class="benefit-box">
+    <h3>ベネフィット (3 ステークホルダー別)</h3>
+    <div class="benefit-grid">
+      <div class="benefit-item">
+        <div class="b-label">👤 施主</div>
+        <div class="b-value">困りごと解決</div>
+        <div class="b-detail">「アフター放置」 から解放、 地域窓口に電話するだけで該当工務店に繋がる</div>
+      </div>
+      <div class="benefit-item">
+        <div class="b-label">🏗️ 工務店</div>
+        <div class="b-value">ブランド毀損ゼロ</div>
+        <div class="b-detail">工務店本人が連絡する構造維持 + 紹介経路化 + 既存顧客の再受注機会</div>
+      </div>
+      <div class="benefit-item">
+        <div class="b-label">🏛️ 行政 / 信金</div>
+        <div class="b-value">地域インフラ</div>
+        <div class="b-detail">地域住民の困りごと窓口運営 = 地域 DX 推進 / 中小企業支援 の実績</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>収益計画 (3 フェーズ)</h2>
+  <table>
+    <thead><tr><th style="width:25%;">フェーズ</th><th style="width:20%;">期間</th><th>内容</th><th style="width:20%;">委託料 / 年</th></tr></thead>
+    <tbody>
+      <tr><td>① パイロット</td><td>2026-07 〜 09</td><td>自費運営 + 工務店パートナー 5-10 社確保 + 実績作り</td><td>¥0 (本業並走)</td></tr>
+      <tr><td>② 委託契約 1 件目</td><td>2026-10 〜 12</td><td>たましん or 商工会議所と委託契約獲得</td><td>¥300-500K</td></tr>
+      <tr><td>③ スケール</td><td>2027-01 〜 04</td><td>複数自治体 / 信金 + 紹介手数料 + BPaaS 顧客化</td><td>¥800-1500K + 補完収益</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="background: var(--info-soft); border-left-color: var(--info);">
+    <strong>本サービスの戦略的価値:</strong> 単独収益 (月 ¥25-40K) は控えめだが、 <strong>信用補完レイヤー B (地域ブランド口約束)</strong> として機能 + 業界紙取材材料 + BPaaS 顧客導線 + アトツギ説得材料供給 = 戦略接続 6 件で総合価値高い。 Phase 3 (2027 年 1-4 月) で本格発動。
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- Page 8: 6 サービス まとめ比較表 -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="page-num">08 / 08</span>
+
+  <header>
+    <div class="svc-id">SUMMARY</div>
+    <h1>6 サービス まとめ比較表</h1>
+    <div class="tagline">痛み度 / 解決容易度 / 価格 / フェーズ の一覧</div>
+  </header>
+
+  <h2>6 サービス 一覧</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:5%;">#</th>
+        <th style="width:18%;">サービス</th>
+        <th style="width:18%;">主な痛み</th>
+        <th style="width:15%;">ベネフィット (代表)</th>
+        <th style="width:14%;">L3 価格 (月)</th>
+        <th>フェーズ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>①</td>
+        <td>現場写真運用支援</td>
+        <td>夜の写真整理</td>
+        <td>月 20-30h → 0h</td>
+        <td>¥30K</td>
+        <td>第 1 段階 (主軸)</td>
+      </tr>
+      <tr>
+        <td>②</td>
+        <td>議事録支援</td>
+        <td>施主要望二転三転</td>
+        <td>3h → 30 分 + クレーム予防</td>
+        <td>¥15K</td>
+        <td>第 1 段階</td>
+      </tr>
+      <tr>
+        <td>③</td>
+        <td>ANDPAD 運用支援</td>
+        <td>「死ぬほど苦痛」 (感情度 92)</td>
+        <td>夜眠れる / 月 10-15h → 2h</td>
+        <td>¥25K</td>
+        <td>第 1 段階 (要確認)</td>
+      </tr>
+      <tr>
+        <td>④</td>
+        <td>領収書・経理補助</td>
+        <td>奥さま月末月初パンク</td>
+        <td>月 20-40h → 2h</td>
+        <td>¥30K</td>
+        <td>第 2 段階 (税理士提携)</td>
+      </tr>
+      <tr>
+        <td>⑤</td>
+        <td>補助金 事業計画作成補助</td>
+        <td>「公式ページ難解、 計画書 70h」</td>
+        <td>補助金 ¥50-450 万 + 時間 70h → 10h</td>
+        <td>着手 ¥50K + 成功 10-15%</td>
+        <td>第 2 段階 (行政書士提携)</td>
+      </tr>
+      <tr>
+        <td>⑥</td>
+        <td>地域相談窓口 (B2G)</td>
+        <td>アフター放置 (イシュー度 70)</td>
+        <td>地域インフラ運営</td>
+        <td>委託 ¥25-40K</td>
+        <td>第 3 段階</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>セット販売の組合せ (推奨)</h2>
+  <table>
+    <thead><tr><th style="width:25%;">セット名</th><th style="width:25%;">構成</th><th style="width:15%;">月額合計</th><th>強み</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Phase 1 標準セット</strong></td><td>① 写真 + ② 議事録</td><td>¥45K</td><td>現場接触 + 信頼形成。 法務リスク低、 オペ容易</td></tr>
+      <tr><td><strong>下請工務店セット</strong></td><td>① 写真 + ③ ANDPAD</td><td>¥55K</td><td>感情度 92 への直接打撃 + 写真整理クロスセル</td></tr>
+      <tr><td><strong>家族セット (主顧客向け)</strong></td><td>① 写真 + ④ 経理</td><td>¥60K</td><td>父親 (写真) + 奥さま (経理) を同時解決 = アトツギ説得材料</td></tr>
+      <tr><td><strong>フルセット</strong></td><td>① + ② + ④ + ⑥</td><td>¥100K+</td><td>Phase 2-3 で展開、 信用補完レイヤー A+B 同時</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5/22 北原氏面談での扱い</h2>
+  <div class="callout">
+    本資料は <strong>5/22 当日には使わない</strong>。 自分の理解整理 + 北原氏から「サービスの詳細教えて」 と聞かれた時用。 本日の主資料は <code>kitahara-meeting-2026-05-22.html</code> (7 枚) + <code>business-summary-2026-05-22.html</code> (A4 縦 2 枚) + <code>consultation-questions-2026-05-22-public.html</code> (A4 縦 2 枚)。
+  </div>
+
+  <div class="callout" style="background: var(--good-soft); border-left-color: var(--good);">
+    <strong>将来用途:</strong> 6 月以降の友人 N=2-3 ヒアリングで「6 サービスのどれが刺さるか」 を聞く時の説明資料。 + 1 社目契約時の商談ペライチのベースとして転用可能 (顧客に応じて該当サービスのページだけ抜粋して見せる)。
+  </div>
+
+  <footer style="margin-top: 20px; font-size: 9.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 6px;">
+6 サービス 詳細仕様 / 工務店アナログ業務運用支援 / 井原 誠斗 (masatoman) / 8 / 8 / END
+  </footer>
+</div>
+
+</body>
+</html>

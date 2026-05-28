@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="動画『1人社長で年商数十億』 戦略の masatoman 事業 (軸 A / 軸 B) への適用可否評価。 思想 100% 整合、 ただし AI 版で既に 80% 先取り実装済">
+  <title>1人社長 業務委託化戦略の適用評価 (2026-05-19)</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", sans-serif;
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+      line-height: 1.85;
+      color: #2c3e50;
+      background: #fafaf7;
+    }
+    h1 {
+      border-bottom: 3px solid #4f46e5;
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      color: #4f46e5;
+      margin-top: 2.5rem;
+      padding-left: 0.5rem;
+      border-left: 4px solid #4f46e5;
+    }
+    h3 {
+      color: #1e293b;
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+    }
+    .meta {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+    .conclusion-box {
+      background: #eef2ff;
+      border-left: 4px solid #4f46e5;
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 4px;
+    }
+    .conclusion-box strong {
+      color: #4f46e5;
+    }
+    .verdict {
+      display: inline-block;
+      padding: 0.2rem 0.7rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+    .verdict-yes { background: #d1fae5; color: #065f46; }
+    .verdict-no { background: #fee2e2; color: #991b1b; }
+    .verdict-cond { background: #fef3c7; color: #92400e; }
+    .verdict-watch { background: #e0e7ff; color: #3730a3; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 0.7rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #475569;
+      font-size: 0.9rem;
+    }
+    tr:last-child td { border-bottom: none; }
+    code {
+      background: #f1f5f9;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.88em;
+      color: #4f46e5;
+    }
+    .memory-link {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .memory-link:hover { text-decoration: underline; }
+    .note {
+      background: #fffbeb;
+      border-left: 3px solid #f59e0b;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      font-size: 0.92rem;
+      border-radius: 4px;
+    }
+    .footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e2e8f0;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem 3rem; }
+      table { font-size: 0.9rem; }
+      th, td { padding: 0.5rem 0.7rem; }
+    }
+  </style>
+  <meta name="created" content="2026-05-19T05:34:01.402Z">
+</head>
+<body>
+  <h1>1人社長 業務委託化戦略の適用評価</h1>
+  <p class="meta">作成日: 2026-05-19 / 出典: 動画『【経営者・個人事業主必見】この方法で一人社長でも年商50億はいけます。』 (脱・税理士スガワラくん) / 評価対象: masatoman 事業 (軸 A masatoman.net + 軸 B 工務店プロジェクト)</p>
+
+  <div class="conclusion-box">
+    <strong>結論</strong>: 思想レベルで完全に整合、 ただし AI 版で既に <strong>80% 先取り実装済</strong>。 「人の業務委託」 を 1:1 で取り込むのは時期尚早。 大きな方針転換は不要、 5/23-25 の工務店 SaaS マーケ新ドメイン構築が動画戦略の AI 実装の本丸。
+  </div>
+
+  <h2>1. 既に実践済 (動画戦略の AI 版先取り) <span class="verdict verdict-yes">100% 整合</span></h2>
+  <p>masatoman さんは動画の戦略を <strong>AI エージェント版</strong> で先取り実装している。 「人の業務委託」 をスキップして「Claude Code routine + AI」 で同じ効果を得ている状態。</p>
+
+  <table>
+    <thead>
+      <tr><th>動画戦略</th><th>masatoman の現状</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>固定費極小化</td>
+        <td>個人事業主 / オフィスなし / マイクロ法人撤回済 (<code>business-form-roadmap</code>)</td>
+      </tr>
+      <tr>
+        <td>業務委託フル活用</td>
+        <td>AI エージェント = Claude Code routine <strong>9 件</strong> + Cowork <strong>6 件</strong> + Affiliate Crew で代替済</td>
+      </tr>
+      <tr>
+        <td>ディレクションだけ自分</td>
+        <td>sns-automation / night-writer / weekly-auto-article 等が「外注スタッフ」、 masatoman は指示と判断のみ</td>
+      </tr>
+      <tr>
+        <td>細部にこだわる</td>
+        <td>publish-gate / 自己検証 8 ルール (<code>feedback-claude-self-verification-rules</code>) で品質ガード</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2. 軸 B 工務店プロジェクトでの適用 <span class="verdict verdict-cond">条件付き</span></h2>
+
+  <h3>主顧客への商品として: ❌ 不適合</h3>
+  <ul>
+    <li>主顧客 = 工務店オーナー (IT 弱者、 個人客 9 割、 紙日報) — <code>customer-target</code> / <code>friend-hearing-result-2026-05-14</code></li>
+    <li>工務店は「職人スキル」 が核 = 業務委託化しにくい構造</li>
+    <li>「変動費経営術」 を売り込んでも刺さらない (彼らは月次キャッシュで困っている、 経営思想を学ぶ層ではない)</li>
+  </ul>
+
+  <h3>masatoman 自身の経営体制として: ✅ 既に適用中</h3>
+  <ul>
+    <li>工務店 SaaS / 受託を 1 人 + AI で回す = 動画戦略の AI 実装</li>
+    <li><code>komuten-saas-strategy-overhaul-2026-05-19</code> (5/23-25 新ドメイン Astro マーケ) = 動画戦略の典型例 (1 人で note + YouTube + X + SEO ブログを多媒体展開)</li>
+  </ul>
+
+  <h2>3. 軸 A 案件獲得ポートフォリオ化での適用 <span class="verdict verdict-yes">高適合</span></h2>
+
+  <p><code>axis-a-portfolio-pivot-2026-05-19</code> のフロントエンド受託案件への適用:</p>
+  <ul>
+    <li>案件取得後に「デザインだけ別の業務委託」「文章だけライター」 等の部分外注 → 自分はディレクション + AI 活用 (Claude / Cursor 等)</li>
+    <li>採用担当 / 案件発注者から見ても「AI フル活用で 1 人で全部やる」 ポジショニング (<code>ai-positioning</code>) と整合</li>
+  </ul>
+
+  <h2>4. 衝突する部分 (取り込まない) <span class="verdict verdict-no">不採用</span></h2>
+
+  <table>
+    <thead>
+      <tr><th>動画戦略</th><th>取り込まない理由</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>年商 40-50 億スケール</td>
+        <td>現実的目標は 12 ヶ月 MRR ¥30-60K (<code>pivot-from-speedy-to-careful-2026-05-15</code>)、 スケール感が違う</td>
+      </tr>
+      <tr>
+        <td>「外注を探す外注 (人のディレクター)」</td>
+        <td>今の masatoman は 1 人 + AI で十分、 人の管理レイヤー追加は早い</td>
+      </tr>
+      <tr>
+        <td>信用度ルート法人化との衝突</td>
+        <td>なし — 5/22 北原氏面談 Q2 で合同会社判断時、 「変動費経営」 思想は維持可 (<code>business-form-roadmap</code>)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>5. インボイス制度の注意点 <span class="verdict verdict-watch">要確認</span></h2>
+
+  <div class="note">
+    <strong>⚠️ 注意</strong>: 動画は「委託費 = 課税仕入で消費税節税」 とあるが、 2023-10 以降は <strong>委託先がインボイス登録事業者か確認必要</strong>。 Anthropic API / Claude MAX 課金 / Cowork 等の課税仕入控除を取るには適格請求書発行事業者の登録番号が必要。 5/22 北原氏面談後の経理整備時に確認推奨。
+  </div>
+
+  <h2>6. 結論 <span class="verdict verdict-yes">大きな方針転換不要</span></h2>
+
+  <ul>
+    <li><strong>思想は採用</strong> (既に AI 版で 80% 実装済)</li>
+    <li><strong>新規追加施策</strong>: 軸 A 案件獲得後のフロントエンド案件で部分外注 (デザイン / ライティング) を必要に応じて</li>
+    <li><strong>取り込まない</strong>: スケール目標 / 人のディレクター雇用 / 主顧客への業務委託化訴求</li>
+    <li><strong>5/23-25 工務店 SaaS マーケ新ドメイン</strong> が動画戦略の AI 版実装の本丸 (1 人 + AI で多媒体展開) ← 既に予定済</li>
+  </ul>
+
+  <p>masatoman さんが進んでいる方向と動画戦略は <strong>同じ哲学の異なる実装</strong> (AI vs 人) という整合性。</p>
+
+  <div class="footer">
+    関連 memory:
+    <code>axis-a-portfolio-pivot-2026-05-19</code> /
+    <code>komuten-saas-strategy-overhaul-2026-05-19</code> /
+    <code>business-form-roadmap</code> /
+    <code>customer-target</code> /
+    <code>friend-hearing-result-2026-05-14</code> /
+    <code>pivot-from-speedy-to-careful-2026-05-15</code> /
+    <code>ai-positioning</code> /
+    <code>feedback-claude-self-verification-rules</code>
+  </div>
+</body>
+</html>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>v8.0 プラン C — 友人完全不在前提 主軸プラン (2026-05-23)</title>
+<meta name="description" content="友人キーパーソン長期不在 (半年以上) 前提の軸 B ヒアリング戦略。 6 経路並列で N=3-5 を 5/23-9/30 (4 ヶ月) で達成、 主軸 + 副軸 確定 11 月末。 友人 5/14 N=1 は業界知識として温存、 N=1 カウントせず">
+<style>
+:root {
+  --bg: #fcf6e9;
+  --paper: #fff;
+  --ink: #2b261e;
+  --ink-soft: #5a5247;
+  --muted: #8a8478;
+  --accent: #b85c3a;
+  --accent-soft: #f7e5d7;
+  --good: #4a7c4a;
+  --good-soft: #e3edd9;
+  --warn: #c98a2e;
+  --warn-soft: #f5e6c8;
+  --info: #3a7ca5;
+  --info-soft: #d9e7f0;
+  --bad: #a73a3a;
+  --bad-soft: #f0d6d6;
+  --border: #d6cfc2;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  padding: 30px 20px;
+}
+.slide {
+  background: var(--paper);
+  width: 297mm;
+  min-height: 210mm;
+  max-width: 100%;
+  margin: 0 auto 24px;
+  padding: 24px 32px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  position: relative;
+  page-break-after: always;
+}
+.slide-num { position: absolute; top: 16px; right: 24px; font-size: 11px; color: var(--muted); font-weight: 600; }
+.slide-meta { position: absolute; top: 16px; left: 32px; font-size: 11px; color: var(--muted); }
+.eyebrow { font-size: 11px; color: var(--accent); letter-spacing: 0.1em; margin-top: 28px; margin-bottom: 6px; font-weight: 600; }
+.warning-stripe { background: var(--bad-soft); border-left: 4px solid var(--bad); padding: 8px 12px; border-radius: 4px; font-size: 11px; margin-bottom: 10px; }
+.warning-stripe strong { color: var(--bad); }
+h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
+h1 .sub { display: block; font-size: 13px; color: var(--accent); margin-top: 4px; font-weight: 600; }
+h2 { font-size: 14px; font-weight: 700; margin: 18px 0 8px; color: var(--ink); border-bottom: 2px solid var(--accent); padding-bottom: 4px; display: inline-block; }
+h3 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.lead { font-size: 13px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 14px; }
+.box { border-radius: 8px; padding: 12px 14px; margin: 8px 0; font-size: 12px; line-height: 1.7; }
+.box.good { background: var(--good-soft); border-left: 4px solid var(--good); }
+.box.warn { background: var(--warn-soft); border-left: 4px solid var(--warn); }
+.box.info { background: var(--info-soft); border-left: 4px solid var(--info); }
+.box.bad { background: var(--bad-soft); border-left: 4px solid var(--bad); }
+.box.accent { background: var(--accent-soft); border-left: 4px solid var(--accent); }
+.box h3 { font-size: 12px; margin-bottom: 4px; }
+.box.good h3 { color: var(--good); }
+.box.warn h3 { color: var(--warn); }
+.box.info h3 { color: var(--info); }
+.box.bad h3 { color: var(--bad); }
+.box.accent h3 { color: var(--accent); }
+.box ul, .box ol { padding-left: 20px; margin-top: 4px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+table { width: 100%; border-collapse: collapse; font-size: 11px; margin: 10px 0; }
+table th { background: var(--accent); color: white; padding: 6px 8px; text-align: left; font-weight: 600; font-size: 10px; letter-spacing: 0.05em; }
+table td { padding: 6px 8px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+table tr:nth-child(even) { background: rgba(217,160,102,0.04); }
+.title-slide { background: linear-gradient(180deg, var(--paper) 0%, var(--accent-soft) 100%); }
+.title-slide h1 { font-size: 28px; }
+.intern-stamp { display: inline-block; background: var(--bad); color: white; padding: 2px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 6px; }
+.plan-stamp { display: inline-block; background: var(--info); color: white; padding: 2px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 6px; margin-left: 6px; }
+.footer-bar { margin-top: 18px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); }
+a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { opacity: 0.7; }
+.route-card { border-radius: 8px; padding: 12px 14px; background: var(--paper); border: 1px solid var(--border); margin-bottom: 10px; }
+.route-card h3 { font-size: 13px; color: var(--accent); margin-bottom: 6px; }
+.route-card .priority { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; }
+.priority.high { background: var(--bad); color: white; }
+.priority.mid { background: var(--warn); color: white; }
+.priority.low { background: var(--muted); color: white; }
+@media print {
+  body { background: white; padding: 0; }
+  .slide { box-shadow: none; margin: 0; border: none; border-radius: 0; }
+  @page { size: A4 landscape; margin: 8mm; }
+}
+</style>
+  <meta name="created" content="2026-05-23T08:49:17.236Z">
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- P1: 表紙 + プラン C 位置付け -->
+<!-- ============================================ -->
+<div class="slide title-slide">
+  <span class="slide-meta">2026-05-23 v8.0 / プラン C 主軸</span>
+  <span class="slide-num">1 / 6</span>
+
+  <div class="intern-stamp">⚠ 内部資料 (相手に見せない)</div>
+  <span class="plan-stamp">プラン C 主軸</span>
+
+  <div class="eyebrow">v8.0 プラン C — 友人完全不在前提</div>
+  <h1>軸 B ヒアリング プラン C<br><span class="sub">友人キーパーソン 長期不在 (半年以上) 前提、 6 経路並列で N=3-5 を 4 ヶ月で達成</span></h1>
+
+  <div class="warning-stripe">
+    <strong>⚠ なぜプラン C を主軸にするか</strong> — 友人 (5/14 N=1 取得者) が長期的に忙しく半年以上改善見込みなし。 v8.0 旧設計 (プラン A) は友人を「打診先 #1 安全枠」 + 「紹介芋蔓 1 件目起点」 として依存していたが、 これが致命的依存ポイントとなっていた。 プラン C では友人を 完全に外し、 6 経路並列で N=3-5 を達成する。
+  </div>
+
+  <h2>プラン A / B / C 切替トリガー</h2>
+  <table>
+    <thead>
+      <tr><th style="width:14%;">プラン</th><th style="width:30%;">前提</th><th>トリガー</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>プラン A (旧主軸)</strong></td><td>友人 6 月前半訪問可、 紹介芋蔓 1 件目起点</td><td>友人 LINE 即返事 + 訪問アポ確定 (5/31 まで)</td></tr>
+      <tr><td><strong>プラン B (予備)</strong></td><td>友人 5/24 LINE 反応待ち、 7-8 月後付け N=1 化</td><td>友人 5/24 LINE 送付 → 5/31 まで反応待ち → 反応なしでプラン C 切替</td></tr>
+      <tr style="background:var(--bad-soft);"><td><strong>プラン C (主軸)</strong></td><td><strong>友人完全不在前提</strong>、 友人 5/14 N=1 結果は業界知識として温存 (N=1 カウントせず)</td><td><strong>5/24-31 で確定的に発動</strong> (友人長期不在 = プラン A の前提崩壊済み)、 反応あれば後付けでプラン A/B に上書き</td></tr>
+    </tbody>
+  </table>
+
+  <div class="grid-3" style="margin-top:14px;">
+    <div class="box accent">
+      <h3>📌 プラン C 目的</h3>
+      <p>友人依存をゼロにして 6 経路並列で N=3-5 を達成、 <strong>主軸 1 + 副軸 1-2 を一次情報で確定</strong>する。 友人 5/14 N=1 結果は v8.0 設計の前提として温存 (買い切り嬉しい / 個人客 9 割 / 日報紙 / 横つながり弱 / メール 3 割不可)、 ただし N=1 カウントせず。</p>
+    </div>
+    <div class="box accent">
+      <h3>🎯 ターゲット (変更なし)</h3>
+      <ul>
+        <li>後継層 (30-40 代、 2 代目 / 3 代目)</li>
+        <li>年商 1-5 億 + 後継層現金裁量あり</li>
+        <li>IT 投資の意欲 (現状維持除外)</li>
+      </ul>
+    </div>
+    <div class="box accent">
+      <h3>📊 期間 + 達成基準 (延長)</h3>
+      <ul>
+        <li><strong>5/23-9/30 (4 ヶ月)</strong> で N=3-5 達成 (プラン A の 2 ヶ月 → 4 ヶ月に延長)</li>
+        <li>N=1 カウント: AND 3 必須 (自社事情 + 価格反応 + 紹介連絡先) — プラン A と同じ</li>
+        <li>主軸 + 副軸 確定: <strong>9 月末 → 11 月末に後ろ倒し</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box bad" style="margin-top:14px;">
+    <h3>⚠ プラン C 発動時のリスク + 緩和</h3>
+    <ul>
+      <li><strong>STRATEGY.md ¥30-60 万 目標タイムライン</strong>: 主軸確定 11 月末 → MVP 投入 12-2 月 → スケール 3-6 月 → <strong>MRR 目標達成判定 2027-04-30 → 2027-06-30 に 2 ヶ月後ろ倒し</strong>。 12 ヶ月後ではなく 14 ヶ月後実態に変更</li>
+      <li><strong>5/22 北原氏「紹介芋蔓式」 前提</strong>: 友人雪だるまが起点なくなる → 北原氏 + たましん + 建材屋 を「並列起点」 化 (5/22 確認した 4 経路をすべて並列起動)</li>
+      <li><strong>6 経路並列 = 時間コスト増</strong>: 月 30-40h の軸 B 投下時間で 6 経路を捌くのは厳しい → 経路別優先順位 + 月次でローテーション (P3 参照)</li>
+    </ul>
+  </div>
+
+  <div class="footer-bar">
+    <span>v8.0 プラン C / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P1 プラン C 位置付け</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P2: 6 経路 並列 打診先表 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">P2 · 6 経路並列</span>
+  <span class="slide-num">2 / 6</span>
+
+  <div class="eyebrow">プラン C 打診先 6 経路 (友人外し、 並列化)</div>
+  <h1>6 経路並列 打診先表</h1>
+
+  <p class="lead">プラン A の打診先 6 件のうち 友人関係 2 件 (#1 #2) を外し、 4 件を昇格 + 2 件新規追加。 5/22 北原氏面談で確認した「紹介芋蔓 + 商工会 + 建設業協会 + フランチャイズ + 展示会」 の全経路を並列で動かす。</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:5%;">#</th>
+        <th style="width:18%;">経路</th>
+        <th style="width:10%;">優先度</th>
+        <th style="width:14%;">接触時期</th>
+        <th>狙い / 主アクション</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:var(--bad-soft);">
+        <td>1</td>
+        <td><strong>北原氏 (東京創業ステーション)</strong></td>
+        <td><span class="route-card"><span class="priority high">最高</span></span></td>
+        <td>6 月後半 中間報告アポ 前倒し依頼</td>
+        <td>5/22 で「紹介芋蔓式」 確約済。 「友人忙しくて紹介が詰まったので早めに相談」 で 6/22 〜 7/22 までに中間報告アポ。 N=1-2 を北原氏ネットワークで取得</td>
+      </tr>
+      <tr style="background:var(--bad-soft);">
+        <td>2</td>
+        <td><strong>たましん価値創造事業部</strong></td>
+        <td><span class="route-card"><span class="priority high">最高</span></span></td>
+        <td>Step 1-3 並走、 訪問本番 6 月後半</td>
+        <td>既取引渉外担当者にメール (Step 1) → 橋渡し (Step 2) → 訪問 (Step 3) を 5-6 月で完了。 訪問時に「工務店 後継層を 1-2 名紹介してもらえないか」 を初回から打診</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>建材屋ルート (LIXIL / ナフコ / 地元卸)</strong></td>
+        <td><span class="route-card"><span class="priority mid">高</span></span></td>
+        <td>5 月末 開始、 月 2-3 回 巡回</td>
+        <td>5/11 Deep Research 接点 ◎×◎ 主戦場。 営業マンと「IT 兄ちゃん」 認知形成、 「後継層 アトツギで IT 興味ある人いない?」 を雑談ベースで依頼。 N=1-2 取得期待</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>設計事務所オーナー (多摩、 後継層)</strong></td>
+        <td><span class="route-card"><span class="priority mid">高</span></span></td>
+        <td>6 月前半 1 件打診</td>
+        <td>上流ハブ (客 → 設計事務所 → 工務店)。 設計事務所自身もアトツギ層、 工務店紹介経路として有力。 SNS + 知人 で 6 月前半に 1 件打診</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>多摩商工会議所 (異業種交流会)</strong></td>
+        <td><span class="route-card"><span class="priority mid">中</span></span></td>
+        <td>6-7 月 月 1 回参加</td>
+        <td>5/22 北原氏「商工会経由」 確認済。 多摩エリア 商工会議所 異業種交流会 を月 1 回参加、 工務店オーナー / アトツギ との接点形成。 ただし「来ない層」 (5/11 memory 通り) なので期待値中</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><strong>アトツギ甲子園 関係者</strong></td>
+        <td><span class="route-card"><span class="priority low">中</span></span></td>
+        <td>8 月情報収集 → 9-10 月アプローチ (前倒し)</td>
+        <td>令和 9 年度 (2027 年度) 開催に向け 8 月以降情報収集 + 過去ファイナリストへ SNS 経由打診。 プラン A は 12-2 月だったが、 プラン C は <strong>2 ヶ月前倒し</strong> (N=4-5 拡張枠)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box info" style="margin-top:14px;">
+    <h3>📌 並列起動のロジック (5/22 北原氏 確認済 4 経路 + プラン C 拡張 2 経路)</h3>
+    <ul>
+      <li><strong>5/22 確認済 4 経路 (高優先)</strong>: 北原氏 / たましん / 建材屋 / 設計事務所</li>
+      <li><strong>プラン C 拡張 2 経路</strong>: 多摩商工会議所 (商工会経由) + アトツギ甲子園 (前倒し)</li>
+      <li><strong>並列のコツ</strong>: 6 経路を月次でローテーション、 1 経路あたり月 5-7h 投下 (合計 30-40h、 軸 B 時間制約内)</li>
+      <li><strong>5/22 北原氏「フランチャイズ・ボランタリーチェーン」 経路は除外</strong>: 5/22 北原氏「大手ハウスメーカー下請工務店 = 除外」 と整合させると、 フランチャイズ加盟工務店も統制リスクで除外候補</li>
+    </ul>
+  </div>
+
+  <div class="box warn" style="margin-top:10px;">
+    <h3>⚠ プラン C で「やらない」 こと (機会損失承認)</h3>
+    <ul>
+      <li><strong>友人雪だるま (旧 #2)</strong>: 完全に期待しない、 7-8 月反応あれば後付け扱い</li>
+      <li><strong>住宅デー 6/25</strong>: 友人経由参加が前提だった (5/11 memory)、 単独参加は当日業界知識取得のみで N=1 化困難 → 行くだけ行く程度</li>
+      <li><strong>5/14 友人 N=1 結果の N=1 カウント</strong>: 業界知識として温存するが、 ヒアリング N=1-5 のカウント母集団には入れない</li>
+    </ul>
+  </div>
+
+  <div class="footer-bar">
+    <span>v8.0 プラン C / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P2 6 経路並列</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P3: 経路別 動かし方 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">P3 · 経路別 動かし方</span>
+  <span class="slide-num">3 / 6</span>
+
+  <div class="eyebrow">月 30-40h を 6 経路で配分</div>
+  <h1>経路別 動かし方 + 月次ローテーション</h1>
+
+  <p class="lead">月 30-40h の軸 B 投下時間を 6 経路でローテーション。 ある月は北原氏 + たましん 集中、 別月は建材屋 + 設計事務所 集中、 と切り分けて 1 経路あたり月 5-7h 確保。 全経路同時に動かすと時間が分散しすぎて結果が出ない。</p>
+
+  <div class="route-card">
+    <h3>#1 北原氏 (東京創業ステーション) <span class="priority high">最高</span></h3>
+    <p style="font-size:11px; color:var(--ink-soft);">中間報告アポ前倒し依頼 + 紹介ネットワーク活用。 8/22 → 6/22-7/22 に前倒し。</p>
+    <ul style="font-size:11px; padding-left:18px; margin-top:4px;">
+      <li><strong>5/24-26</strong>: メール送付 「友人忙しくて紹介芋蔓が詰まった、 早めに中間報告 + 紹介相談アポ取りたい」</li>
+      <li><strong>6/22-7/22</strong>: 中間報告アポ (オンライン 60 分)、 v8.0 6 候補 + 5/14 友人 N=1 結果共有 + 後継層紹介依頼</li>
+      <li><strong>投下時間</strong>: 月 5-7h (アポ準備 + 実施 + フォロー)</li>
+      <li><strong>期待 N</strong>: 1-2 件 (北原氏 → 紹介工務店オーナー)</li>
+    </ul>
+  </div>
+
+  <div class="route-card">
+    <h3>#2 たましん価値創造事業部 <span class="priority high">最高</span></h3>
+    <p style="font-size:11px; color:var(--ink-soft);">直電 042-526-7728 / Step 1-3 約 1 ヶ月。 訪問時に工務店紹介を初回から打診。</p>
+    <ul style="font-size:11px; padding-left:18px; margin-top:4px;">
+      <li><strong>5/24-31</strong>: 既取引渉外担当者にメール (Step 1)、 価値創造事業部 橋渡し依頼</li>
+      <li><strong>6 月前半</strong>: 橋渡し (Step 2) + アポ調整、 6 月後半 訪問 (Step 3)</li>
+      <li><strong>訪問時打診</strong>: 「多摩エリア 工務店オーナー / 後継層を 1-2 名紹介してもらえないか」 を初回から (1 回訪問は業界知識主目的 + 紹介の種まき)</li>
+      <li><strong>投下時間</strong>: 月 5-7h (準備 + 訪問 + 後続フォロー)</li>
+      <li><strong>期待 N</strong>: 半年で 3-5 件 ([[tamashin-1st-visit-realistic]] 業界実態)、 9 月末までに 1-2 件</li>
+    </ul>
+  </div>
+
+  <div class="route-card">
+    <h3>#3 建材屋ルート (LIXIL / ナフコ / 地元卸) <span class="priority mid">高</span></h3>
+    <p style="font-size:11px; color:var(--ink-soft);">月 2-3 回 巡回、 営業マンと「IT 兄ちゃん」 認知形成 + 後継層紹介依頼。</p>
+    <ul style="font-size:11px; padding-left:18px; margin-top:4px;">
+      <li><strong>5/末-6 月前半</strong>: LIXIL ショールーム (多摩) / ナフコ / 地元卸 を 月 2-3 回 巡回開始</li>
+      <li><strong>営業マンとの会話</strong>: 「IT で工務店の業務整理してる兄ちゃん」 認知を作る、 雑談ベース</li>
+      <li><strong>後継層紹介依頼</strong>: 2-3 回顔合わせた後に「アトツギで IT 興味ある人いない?」</li>
+      <li><strong>投下時間</strong>: 月 5-7h (巡回時間 + 移動 + 会話)</li>
+      <li><strong>期待 N</strong>: 7-8 月に 1-2 件 (営業マン → 後継層紹介の時間ラグあり)</li>
+    </ul>
+  </div>
+
+  <div class="route-card">
+    <h3>#4 設計事務所オーナー (多摩、 後継層) <span class="priority mid">高</span></h3>
+    <p style="font-size:11px; color:var(--ink-soft);">上流ハブ。 設計事務所自身もアトツギ層なので 直接 N=1 化も可能。</p>
+    <ul style="font-size:11px; padding-left:18px; margin-top:4px;">
+      <li><strong>6 月前半</strong>: 知人 + SNS で 多摩エリア 設計事務所 後継層 1 名 打診</li>
+      <li><strong>ヒアリング</strong>: 設計事務所自体の悩み + 工務店紹介依頼の 2 段構え</li>
+      <li><strong>投下時間</strong>: 月 5h (打診 + ヒアリング)</li>
+      <li><strong>期待 N</strong>: 直接 1 件 + 工務店紹介 1-2 件</li>
+    </ul>
+  </div>
+
+  <div class="route-card">
+    <h3>#5 多摩商工会議所 (異業種交流会) <span class="priority mid">中</span></h3>
+    <p style="font-size:11px; color:var(--ink-soft);">5/22 北原氏「商工会経由」 確認、 ただし「来ない層」 リスクあり。</p>
+    <ul style="font-size:11px; padding-left:18px; margin-top:4px;">
+      <li><strong>6-7 月</strong>: 月 1 回 異業種交流会 参加 (府中 / 立川 / 調布 / 国分寺)</li>
+      <li><strong>狙い</strong>: 工務店オーナー / アトツギ との直接接点、 ない場合は商工会担当者経由の紹介依頼</li>
+      <li><strong>投下時間</strong>: 月 3-5h (参加 + 名刺フォロー)</li>
+      <li><strong>期待 N</strong>: 0-1 件 (期待値中、 主顧客が来ない可能性)</li>
+    </ul>
+  </div>
+
+  <div class="route-card">
+    <h3>#6 アトツギ甲子園 関係者 <span class="priority low">中</span></h3>
+    <p style="font-size:11px; color:var(--ink-soft);">プラン A は 12-2 月、 プラン C は 8-10 月に 2 ヶ月前倒し。</p>
+    <ul style="font-size:11px; padding-left:18px; margin-top:4px;">
+      <li><strong>8 月</strong>: 令和 9 年度 開催情報 + 過去ファイナリスト リスト収集</li>
+      <li><strong>9-10 月</strong>: SNS (X / LinkedIn) 経由 過去ファイナリスト 3-5 名に DM、 ヒアリング依頼</li>
+      <li><strong>投下時間</strong>: 月 3-5h</li>
+      <li><strong>期待 N</strong>: 1-2 件 (アトツギ密度高、 ただし建設業以外含む)</li>
+    </ul>
+  </div>
+
+  <div class="footer-bar">
+    <span>v8.0 プラン C / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P3 経路別 動かし方</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P4: スケジュール 5/23-9/30 + 11 月末確定 -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">P4 · スケジュール</span>
+  <span class="slide-num">4 / 6</span>
+
+  <div class="eyebrow">期間延長 5/23-9/30 (4 ヶ月) → 主軸確定 11 月末</div>
+  <h1>プラン C スケジュール (期間延長版)</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:14%;">時期</th>
+        <th style="width:14%;">N 累積目標</th>
+        <th>主アクション (6 経路並列)</th>
+        <th style="width:18%;">完了判定</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:var(--bad-soft);">
+        <td><strong>5/24-30</strong></td>
+        <td>裏取り期間 (プラン A と同じ)</td>
+        <td>① 業界統計裏取り (利益率 / 後継層現金裁量) + ② 6 候補 × 事例 1-2 件 + URL + 記事日付 + ③ demo-gallery アトツギ向け文体調整 + <strong>④ 友人 LINE 低負荷送付 (プラン B トリガー)</strong> + <strong>⑤ 北原氏メール送付 + たましん Step 1 開始</strong></td>
+        <td>裏取り 3 件 + 友人 LINE + 北原氏 / たましん 接触開始</td>
+      </tr>
+      <tr style="background:var(--bad-soft);">
+        <td><strong>5/31</strong></td>
+        <td>プラン分岐判定</td>
+        <td>友人 LINE 反応なし → プラン C 確定発動。 反応あれば後付けでプラン A/B に上書き判定</td>
+        <td>プラン確定</td>
+      </tr>
+      <tr>
+        <td><strong>6 月前半</strong></td>
+        <td>—</td>
+        <td>北原氏 中間報告アポ調整 + たましん Step 2 橋渡し + 建材屋巡回開始 (LIXIL / ナフコ) + 設計事務所オーナー 1 件打診</td>
+        <td>4 経路すべて打診開始</td>
+      </tr>
+      <tr>
+        <td><strong>6 月後半</strong></td>
+        <td>N=1</td>
+        <td>たましん Step 3 訪問本番 (工務店紹介初回打診) + 北原氏 中間報告アポ実施 (オンライン 60 分) → N=1 取得</td>
+        <td>N=1 (北原氏 or たましん経由)</td>
+      </tr>
+      <tr>
+        <td><strong>7 月</strong></td>
+        <td>N=2</td>
+        <td>北原氏 / たましん 経由紹介ヒアリング実施 + 建材屋ルート 後継層紹介依頼 + 設計事務所オーナー ヒアリング + 多摩商工会議所 異業種交流会 参加</td>
+        <td>N=2 (経路 1-2 経由)</td>
+      </tr>
+      <tr>
+        <td><strong>8 月前半</strong></td>
+        <td>N=3</td>
+        <td>建材屋 or 設計事務所経由ヒアリング実施 + アトツギ甲子園 関係者 情報収集開始 + 公庫融資申込 と並走</td>
+        <td>N=3 記録完了</td>
+      </tr>
+      <tr>
+        <td><strong>8 月後半</strong></td>
+        <td>N=3-4</td>
+        <td>残り経路 (商工会 / アトツギ甲子園) からの紹介待ち + 既取得 N 結果統合 + 撤退判定中間レビュー</td>
+        <td>N=4 候補打診</td>
+      </tr>
+      <tr>
+        <td><strong>9 月前半</strong></td>
+        <td>N=4-5</td>
+        <td>アトツギ甲子園 過去ファイナリスト 3-5 名 SNS DM + 後継層 ヒアリング 1-2 件追加</td>
+        <td>N=5 候補打診</td>
+      </tr>
+      <tr style="background:var(--good-soft);">
+        <td><strong>9 月末</strong></td>
+        <td>N=5 確定</td>
+        <td>結果統合 + 撤退判定 (下記 P5 の 3 軸)、 通過すれば 10 月から仮説修正期へ</td>
+        <td>N=5 記録 + プラン C 通過判定</td>
+      </tr>
+      <tr>
+        <td><strong>10-11 月</strong></td>
+        <td>仮説修正期</td>
+        <td>v3 商品設計書換 + 8 デモ → 2-3 デモ絞り込み + 価格戦略再設計</td>
+        <td>v9.0 商品設計 draft</td>
+      </tr>
+      <tr style="background:var(--accent-soft);">
+        <td><strong>11 月末</strong></td>
+        <td>主軸 + 副軸 確定</td>
+        <td>主軸 1 + 副軸 1-2 確定 + v9.0 商品設計 docs 作成 (プラン A 9 月末 → プラン C 11 月末、 2 ヶ月後ろ倒し)</td>
+        <td>v9.0 商品設計 完成</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box accent" style="margin-top:12px;">
+    <h3>📅 STRATEGY.md ¥30-60 万 目標との整合</h3>
+    <ul>
+      <li><strong>プラン A タイムライン</strong>: 主軸確定 9 月末 → MVP 投入 10-12 月 → スケール 1-4 月 → MRR 判定 4/30 (12 ヶ月後 = 2027-04-30)</li>
+      <li><strong>プラン C タイムライン</strong>: 主軸確定 11 月末 → MVP 投入 12-2 月 → スケール 3-6 月 → MRR 判定 6/30 (14 ヶ月後 = 2027-06-30、 <strong>2 ヶ月後ろ倒し</strong>)</li>
+      <li><strong>STRATEGY.md 触らず</strong>: §9 3 ヶ月後判定 (7/30) + 12 ヶ月後ルートゴール (4/30) は維持、 ただし memory に「プラン C 適用時は 2 ヶ月後ろ倒し」 を記録</li>
+    </ul>
+  </div>
+
+  <div class="footer-bar">
+    <span>v8.0 プラン C / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P4 スケジュール</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P5: 経路別リスク + 撤退軸 + ターゲット見直し -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">P5 · リスク + 撤退軸</span>
+  <span class="slide-num">5 / 6</span>
+
+  <div class="eyebrow">経路別リスク + 9 月末判定 3 軸</div>
+  <h1>経路別リスク + 撤退判定軸 (プラン C 版)</h1>
+
+  <h2>経路別 主リスクと緩和策</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:14%;">経路</th>
+        <th style="width:38%;">主リスク</th>
+        <th>緩和策</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>北原氏</strong></td><td>中間報告アポ前倒し依頼を断られる / アポ取れても紹介ネットワーク反応薄</td><td>「友人忙しくて困ってる」 という素直なフレーミング、 v8.0 6 候補 + 5/14 友人 N=1 結果を持参して具体的相談</td></tr>
+      <tr><td><strong>たましん</strong></td><td>1 回訪問では紹介ゼロ ([[tamashin-1st-visit-realistic]] 半年で 3-5 件)、 価値創造事業部 担当者 異動リスク</td><td>初回訪問は「業界知識取得」 主目的、 2-3 回訪問で関係構築。 担当者異動時は新担当者へ引き継ぎ依頼</td></tr>
+      <tr><td><strong>建材屋</strong></td><td>営業マンが工務店オーナー紹介を渋る (顧客との関係性リスク)、 巡回回数増で時間消費</td><td>「IT 兄ちゃん」 認知形成優先 (即紹介依頼しない)、 3 回目以降に雑談ベース打診</td></tr>
+      <tr><td><strong>設計事務所</strong></td><td>多摩エリア 設計事務所 後継層自体が少ない (推定 10-20 社)</td><td>SNS (Instagram) + 知人経由で 6 月前半に 1 件打診、 ダメなら東京 23 区まで範囲拡張</td></tr>
+      <tr><td><strong>多摩商工会議所</strong></td><td>主顧客 (工務店オーナー / アトツギ) が異業種交流会に来ない可能性 (5/11 memory)</td><td>商工会担当者経由の紹介依頼ルートも並走、 異業種交流会は副次扱い</td></tr>
+      <tr><td><strong>アトツギ甲子園</strong></td><td>過去ファイナリスト が建設業以外多数、 SNS DM 反応薄</td><td>建設業 ファイナリスト に絞って DM、 反応 30% 想定で 3-5 名対象</td></tr>
+    </tbody>
+  </table>
+
+  <h2>9 月末 撤退判定 軸 (プラン A から修正)</h2>
+  <div class="box bad" style="margin-top:6px;">
+    <h3>⚠ プラン C 撤退判定 3 軸 (プラン A 8 月末 → プラン C 9 月末)</h3>
+    <table style="margin-top:6px;">
+      <thead>
+        <tr><th style="width:24%;">判断軸</th><th style="width:24%;">不調ライン</th><th>判定アクション</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>① N 累積</strong></td><td>N=2 以下 (プラン A は N=2 以下 8 月末、 プラン C は 9 月末)</td><td>6 経路の重み再配分 + ヒアリング期間 10 月末まで +1 ヶ月延長検討</td></tr>
+        <tr><td><strong>② 本物シグナル取得率</strong></td><td>30% 以下 (AND 3 必須を満たす N / 打診件数)</td><td>6 候補プールから別 3-4 件への入れ替え検討</td></tr>
+        <tr><td><strong>③ 紹介芋蔓</strong></td><td>北原氏 + たましん 2 経路から紹介ゼロ</td><td>5/22 北原氏「紹介芋蔓式」 前提崩壊 → 別経路 (フランチャイズ / 展示会単独) に切替 + 北原氏 9 月末再相談</td></tr>
+        <tr style="background:var(--bad-soft);"><td><strong>3 軸ともに不調</strong></td><td>① ② ③ 全て不調ライン</td><td><strong>軸 B ターゲット層自体の見直し (アトツギ × 儲かってる層 → 別業種 / 別層) を 10 月末までに判断</strong>。 プラン A は 9 月末判断 → プラン C は 10 月末判断 (1 ヶ月後ろ倒し)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box warn" style="margin-top:10px;">
+    <h3>⚠ ターゲット層見直し時の候補 (撤退判定通過しない場合)</h3>
+    <ul>
+      <li><strong>マイクロ法人オーナー</strong>: アトツギ × 儲かってる層 と隣接、 後継問題はないが IT 投資意欲は同等</li>
+      <li><strong>建設業以外の中小企業 後継層</strong>: アトツギ甲子園 ファイナリスト の半数以上が非建設業、 母集団は大きい</li>
+      <li><strong>多摩エリア 自治体 / 商工会 直接接点</strong>: B2G 路線、 補助金事業者ルート前倒し</li>
+      <li><strong>軸 B 全体凍結 + 軸 A 案件獲得 PF 強化</strong>: 11 月末で軸 A への重点移動も選択肢</li>
+    </ul>
+  </div>
+
+  <div class="footer-bar">
+    <span>v8.0 プラン C / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P5 リスク + 撤退軸</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- P6: 友人結果の温存方法 + 参考リンク -->
+<!-- ============================================ -->
+<div class="slide">
+  <span class="slide-meta">P6 · 友人結果温存 + 参考</span>
+  <span class="slide-num">6 / 6</span>
+
+  <div class="eyebrow">5/14 友人 N=1 結果は業界知識として保持</div>
+  <h1>友人 5/14 N=1 結果の扱い + 参考リンク</h1>
+
+  <h2>友人 5/14 N=1 結果は「業界知識」 として温存</h2>
+  <p class="lead">プラン C では友人 5/14 N=1 を ヒアリング N カウントには入れない (現場監督視点 = 後継層関与不明) が、 取得した 5 件の業界知識は v8.0 設計の前提として引き続き活用する。</p>
+
+  <div class="box good">
+    <h3>✅ 5/14 友人 N=1 から取得した業界知識 5 件 (温存、 [[friend-hearing-result-2026-05-14]])</h3>
+    <ol>
+      <li><strong>「買い切りの方が嬉しい」</strong> → B-3 3D シミュ で 月額 + 買い切り 並列表記の根拠</li>
+      <li><strong>「個人客が 9 割、 会社から 1 割」</strong> → A-1 OB 管理 SaaS の母集団大根拠 (個人客 LTV 戦略)</li>
+      <li><strong>「日報は紙、 ANDPAD で写真整理済」</strong> → #05 LINE 日報 SaaS を 15→6 写像で除外した根拠</li>
+      <li><strong>「工務店は横のつながりがない」</strong> → 紹介経路を OB 施主 / 設計事務所 / 建材屋 主軸にする根拠</li>
+      <li><strong>「メール使えない 3 割、 FAX / 郵送」</strong> → IT 通常枠 1/2 訴求の対象母集団 7 割と認識する根拠</li>
+    </ol>
+    <p style="margin-top:6px; font-size:11px;">これらは N=1 カウントしないが、 6 候補絞り込み + 価格戦略 + 紹介経路設計 の根拠として引き続き有効。</p>
+  </div>
+
+  <h2>プラン A / B との関係</h2>
+  <div class="grid-3">
+    <div class="box info">
+      <h3>プラン A 旧主軸 (5/23 撤回)</h3>
+      <p style="font-size:11px;">友人 訪問 + 紹介芋蔓を主軸。 友人長期不在で <strong>前提崩壊</strong>。 5/14 N=1 結果のみ温存、 設計 docs (v8.0-hearing-design) は P2 + P8 を 3 プラン切替対応に更新する</p>
+    </div>
+    <div class="box warn">
+      <h3>プラン B 予備 (5/24 LINE 1 本)</h3>
+      <p style="font-size:11px;">5/24 友人 LINE 低負荷送付 → 5/31 反応待ち → 反応なしでプラン C 確定。 反応あれば後付けで N=1 化判定 (7-8 月)。 詳細 docs/v8.0-plan-b-friend-weak-2026-05-23.html</p>
+    </div>
+    <div class="box bad">
+      <h3>プラン C 主軸 (本 docs)</h3>
+      <p style="font-size:11px;">5/31 から確定発動 (実質 5/24 から並列開始)。 友人完全不在前提、 6 経路並列で N=3-5 を 4 ヶ月で達成。 主軸確定 11 月末</p>
+    </div>
+  </div>
+
+  <h2>参考リンク (関連 docs)</h2>
+  <ul style="padding-left:20px; font-size:12px;">
+    <li>🔗 <a href="./v8.0-hearing-design-2026-05-23.html" target="_blank" rel="noopener">v8.0 ヒアリング 内部設計 (本 docs と統合運用)</a> — Phase 設計 / シグナル基準 / 6 候補 / 撤退軸</li>
+    <li>🔗 <a href="./v8.0-hearing-resource-2026-05-23.html" target="_blank" rel="noopener">v8.0 ヒアリング資料 A4 8p (相手用)</a> — プラン B / C どちらでも共通利用</li>
+    <li>🔗 <a href="./v8.0-product-candidates-evaluation-2026-05-23.html" target="_blank" rel="noopener">v8.0 商品候補 33p 評価マトリクス</a> — 6 候補絞り込みの根拠</li>
+    <li>🔗 <a href="./v8.0-plan-b-friend-weak-2026-05-23.html" target="_blank" rel="noopener">v8.0 プラン B (友人弱依存 予備)</a> — 5/24 LINE 1 本 + 5/31 判定</li>
+    <li>🔗 <a href="./japan-build-tokyo-2026-todo-2026-05-23.html" target="_blank" rel="noopener">JAPAN BUILD TOKYO 出展 TODO</a> — A-2 展示会候補と連動</li>
+  </ul>
+
+  <h2>関連 memory</h2>
+  <ul style="padding-left:20px; font-size:12px;">
+    <li><strong>[[friend-hearing-result-2026-05-14]]</strong> — 5/14 友人 N=1 結果 (業界知識として温存)</li>
+    <li><strong>[[friend-keyperson-dependency-risk-2026-05-23]]</strong> — 本 docs と対になる memory (新規作成予定)</li>
+    <li><strong>[[kitahara-meeting-result-2026-05-22]]</strong> — 5/22 北原氏面談結果 (紹介芋蔓式 + 商工会 + 建設業協会 + 展示会 確認済)</li>
+    <li><strong>[[tamashin-kachi-souzou-jigyobu]]</strong> — たましん価値創造事業部 直電 042-526-7728</li>
+    <li><strong>[[tamashin-1st-visit-realistic]]</strong> — 1 回訪問は業界知識取得主目的 (紹介数 半年 3-5 件)</li>
+    <li><strong>[[komuten-channel-strategy]]</strong> — 5/11 Deep Research 182 件 接点戦略 (建材屋 + 設計事務所 ◎×◎ 主戦場)</li>
+    <li><strong>[[user-work-time-constraint]]</strong> — 月 30-40h 軸 B 投下時間制約 (6 経路ローテーション設計の根拠)</li>
+  </ul>
+
+  <div class="footer-bar">
+    <span>v8.0 プラン C / 井原 誠斗</span>
+    <span>2026-05-23 v8.0 / P6 友人結果温存 + 参考</span>
+  </div>
+</div>
+
+</body>
+</html>

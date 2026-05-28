@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>JAPAN BUILD TOKYO 2026/12 出展 TODO リスト (2026-05-23)</title>
+<meta name="description" content="JAPAN BUILD TOKYO 12/2-4 出展 + 展示会出展助成事業 R8 第 5 回 8/1-8/14 申請 に向けた 5/23-2027/4 タイムライン TODO チェックリスト">
+<style>
+:root {
+  --bg: #fcf6e9;
+  --paper: #fff;
+  --ink: #2b261e;
+  --ink-soft: #5a5247;
+  --muted: #8a8478;
+  --accent: #b85c3a;
+  --accent-soft: #f7e5d7;
+  --subsidy: #4a7c4a;
+  --subsidy-soft: #e3edd9;
+  --hearing: #c98a2e;
+  --hearing-soft: #f5e6c8;
+  --mvp: #3a7ca5;
+  --mvp-soft: #d9e7f0;
+  --booth: #7a4a8c;
+  --booth-soft: #ebd9f0;
+  --other: #8a8478;
+  --other-soft: #f0ede5;
+  --critical: #a73a3a;
+  --critical-soft: #f5d8d8;
+  --border: #d6cfc2;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  padding: 30px 16px;
+}
+.sheet {
+  background: var(--paper);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 36px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+header {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+header .eyebrow {
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+header h1 .sub {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-weight: 500;
+  margin-top: 4px;
+}
+header .meta {
+  font-size: 11px;
+  color: var(--muted);
+}
+.legend {
+  background: var(--accent-soft);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  font-size: 11px;
+}
+.legend h3 {
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.legend-items span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.legend-items .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot.subsidy { background: var(--subsidy); }
+.dot.hearing { background: var(--hearing); }
+.dot.mvp { background: var(--mvp); }
+.dot.booth { background: var(--booth); }
+.dot.other { background: var(--other); }
+.dot.critical { background: var(--critical); }
+section.month {
+  margin-bottom: 22px;
+  border-left: 4px solid var(--accent);
+  padding-left: 16px;
+}
+section.month.critical {
+  border-left-color: var(--critical);
+  background: var(--critical-soft);
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+}
+section.month h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--accent);
+}
+section.month.critical h2 { color: var(--critical); }
+section.month h2 .phase-label {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 500;
+  margin-left: 8px;
+}
+section.month .month-summary {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+  padding: 6px 10px;
+  background: rgba(217,160,102,0.06);
+  border-radius: 4px;
+}
+.todo {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 8px;
+  padding: 8px 10px;
+  margin: 4px 0;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--paper);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.todo.subsidy { border-left: 3px solid var(--subsidy); background: var(--subsidy-soft); }
+.todo.hearing { border-left: 3px solid var(--hearing); background: var(--hearing-soft); }
+.todo.mvp { border-left: 3px solid var(--mvp); background: var(--mvp-soft); }
+.todo.booth { border-left: 3px solid var(--booth); background: var(--booth-soft); }
+.todo.other { border-left: 3px solid var(--other); background: var(--other-soft); }
+.todo.critical {
+  border: 2px solid var(--critical);
+  background: var(--critical-soft);
+}
+.todo .checkbox {
+  font-size: 16px;
+  color: var(--muted);
+  user-select: none;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.2;
+}
+.todo input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-top: 2px;
+}
+.todo .body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.todo .title-line {
+  font-weight: 600;
+  color: var(--ink);
+}
+.todo .title-line .deadline {
+  display: inline-block;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 8px;
+  margin-left: 6px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.todo.subsidy .deadline { background: var(--subsidy); color: white; }
+.todo.hearing .deadline { background: var(--hearing); color: white; }
+.todo.mvp .deadline { background: var(--mvp); color: white; }
+.todo.booth .deadline { background: var(--booth); color: white; }
+.todo.other .deadline { background: var(--other); color: white; }
+.todo.critical .deadline { background: var(--critical); color: white; }
+.todo .note {
+  font-size: 11px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+.todo .note ol, .todo .note ul {
+  margin: 4px 0 6px 16px;
+  padding-left: 4px;
+}
+.todo .note ol li, .todo .note ul li {
+  padding: 1px 0;
+  font-size: 11px;
+  line-height: 1.55;
+}
+.todo .note strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+.todo .note .speak {
+  display: block;
+  background: rgba(184,92,58,0.08);
+  border-left: 3px solid var(--accent);
+  padding: 4px 8px;
+  margin: 3px 0;
+  font-style: italic;
+  font-size: 11px;
+}
+.todo .note hr {
+  border: none;
+  border-top: 1px dashed var(--border);
+  margin: 6px 0;
+}
+.todo .ref {
+  font-size: 10px;
+  color: var(--muted);
+  font-style: italic;
+}
+.callout {
+  background: var(--accent-soft);
+  border-left: 4px solid var(--accent);
+  padding: 12px 14px;
+  border-radius: 0 6px 6px 0;
+  margin: 16px 0;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.callout strong { color: var(--accent); }
+.callout.warn {
+  background: var(--critical-soft);
+  border-left-color: var(--critical);
+}
+.callout.warn strong { color: var(--critical); }
+footer {
+  margin-top: 24px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s;
+}
+a:hover { opacity: 0.7; }
+a:visited { color: var(--accent); opacity: 0.9; }
+.ref-links {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 20px 0 12px;
+  font-size: 12px;
+}
+.ref-links h2 {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 4px;
+  display: inline-block;
+}
+.ref-links .ref-group {
+  margin-bottom: 10px;
+}
+.ref-links .ref-group h3 {
+  font-size: 12px;
+  color: var(--ink);
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+.ref-links ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.ref-links ul li {
+  padding: 3px 0;
+  font-size: 11px;
+  line-height: 1.5;
+  border-bottom: 1px dashed var(--border);
+}
+.ref-links ul li:last-child { border-bottom: none; }
+.ref-links .desc {
+  color: var(--ink-soft);
+  font-size: 10px;
+  margin-left: 4px;
+}
+@media print {
+  body { background: white; padding: 0; }
+  .sheet { box-shadow: none; border: none; max-width: 100%; }
+  @page { size: A4 portrait; margin: 10mm; }
+}
+</style>
+  <meta name="created" content="2026-05-23T06:09:39.437Z">
+</head>
+<body>
+
+<div class="sheet">
+
+<header>
+  <div class="eyebrow">JAPAN BUILD TOKYO 出展 + 助成金 R8 / 主軸 #01 + 副軸 #03</div>
+  <h1>JAPAN BUILD TOKYO 2026/12 出展 TODO リスト<br>
+    <span class="sub">2026-05-23 起点 / 12/2-4 出展 + 展示会出展助成事業 R8 第 5 回 8/1-8/14 申請 + MVP β リリース逆算</span>
+  </h1>
+  <div class="meta">最終更新: 2026-05-23 / 関連 memory: [[subsidy-exhibition-r8-2026-05-22]] / [[kitahara-meeting-result-2026-05-22]] / STRATEGY.md §4 軸 B</div>
+</header>
+
+<div class="legend">
+  <h3>凡例 (色分けの意味)</h3>
+  <div class="legend-items">
+    <span><span class="dot subsidy"></span> 助成金 / 補助金</span>
+    <span><span class="dot hearing"></span> ヒアリング / 紹介</span>
+    <span><span class="dot mvp"></span> MVP 開発</span>
+    <span><span class="dot booth"></span> 出展準備</span>
+    <span><span class="dot other"></span> その他</span>
+    <span><span class="dot critical"></span> 最重要 (致命的)</span>
+  </div>
+</div>
+
+<div class="callout warn">
+  <strong>⚠ 申請要件 6 件 + クリティカルスケジュール (5/23 公式 PDF v1.1 で確定)</strong>
+  <ul style="margin:6px 0 0 18px; font-size:11px;">
+    <li>申請要件 (1)-(6) <strong>全 6 件 すべて充足が必要</strong>。 masatoman の状態で OK = (1) 中小企業者 (個人事業主) / (2) 都内事業 / (6) 一般要件。 <strong>確認最重要 3 件</strong>: (3) 確定申告 2 期分 (令和 6 + 令和 7、 11 ヶ月以下の期 NG) / (4) <strong>経営分析受診</strong> + 利用有効認定 (公社 03-3283-7388、 受講 1-2 ヶ月先) / (5) 売上減少 or 損失 or グロースサポート</li>
+    <li>助成対象展示会 (6): <strong>申請時点で販売を開始している</strong> 自社商品 or 自社取扱商品 を展示すること = MVP β リリース + ihara-frontend.com 販売 LP 公開済 が必要</li>
+    <li>助成対象期間 = <strong>交付決定日から 1 年 1 ヶ月以内</strong>、 助成限度額 ¥150 万 / 助成率 2/3</li>
+    <li>JAPAN BUILD TOKYO 12/2-4 出展 = 第 5 回 (10/1 交付決定 / 11/1 出展開始) 推奨、 第 6 回 (11/1 交付決定 / 12/1 出展開始) ギリギリ、 <strong>第 7 回以降は出展開始 1/1 → 12/2-4 出展 NG</strong></li>
+    <li>公社問合せ先: <strong>助成課 03-3251-7895</strong> (平日 10-12 時/13-16 時) / <strong>経営分析 03-3283-7388</strong> (平日 9-17 時、 12-13 時除く) ★ 別窓口 / <a href="https://www.tokyo-kosha.or.jp/support/josei/jigyo/tenjikai/r8/index.html" target="_blank" rel="noopener">R8 公式ページ</a> / <a href="https://www.tokyo-kosha.or.jp/support/josei/jigyo/tenjikai/r8/h0iqeh000000fv8i-att/R8_tenjikai_boshuuyoukou_v1-1.pdf" target="_blank" rel="noopener">募集要項 PDF v1.1</a></li>
+  </ul>
+</div>
+
+<!-- ============================================ -->
+<!-- 5 月末 (5/24-31) -->
+<!-- ============================================ -->
+<section class="month critical">
+  <h2>5 月末 (5/24-31) <span class="phase-label">最優先 / 申請要件 6 件 充足判定</span></h2>
+  <div class="month-summary">memory 確認で 申請要件 6 件 すべて充足が必要と確定。 確認最重要 3 件 = (3) 確定申告 2 期分 / (4) 経営分析受診 / (5) 売上減少判定 を 5 月末までに着手。 経営分析の受講予約が 1-2 ヶ月先になる可能性 → 5 月末予約が時間軸の起点。</div>
+
+  <div class="todo critical">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">★ 経営分析 受講予約 = 申請要件 (4) 充足の起点 <span class="deadline">5/28 (木) まで</span></div>
+      <div class="note">
+        <strong>なぜ必要</strong>: R8 募集要項 申請要件 (4) で「所定の経営分析を受け、 助成事業の利用が有効と認められていること」 が明示。 受講後の証明書類が応募書類に添付必須。 受講せず申請しても **書類不備で即却下**。
+        <hr>
+        <strong>手順</strong>:
+        <ol>
+          <li><a href="https://www.keieiryoku.jp/consult/" target="_blank" rel="noopener">keieiryoku.jp/consult</a> の Web フォームから申込 (or 電話 03-3283-7388、 平日 9-17 時 12-13 時除く)</li>
+          <li>「展示会出展助成事業 R8 の申請要件 (4) のため、 無料経営分析を受けたい」 と申込時の用件欄に記載</li>
+          <li>最寄り商工会議所 / 商工会 (府中なら府中商工会議所) で対面 or Web 面談、 約 90-120 分</li>
+          <li>受講後に「経営分析報告書」 等の証明書類が発行される → 8/14 応募書類に添付</li>
+        </ol>
+        <strong>電話で言うこと</strong> (Web 申込でも近い情報を記入):
+        <span class="speak">「令和 8 年度 展示会出展助成事業 (東京都中小企業振興公社) の申請を予定しており、 申請要件 (4) の無料経営分析を受講したいです。 最寄りの商工会議所での予約方法と、 最短の受講可能日を教えてください」</span>
+        <strong>聞いておくこと</strong>:
+        <ul>
+          <li>最短受講可能日 (混雑期は 6 月末-7 月になる可能性、 7/15 までに受講できれば 8/14 応募間に合う)</li>
+          <li>持参物 (確定申告控え 2 期分 / 事業概要 / 出展予定の展示会情報 等)</li>
+          <li>受講証明書の発行タイミング (受講当日 or 後日郵送、 後日なら何日後)</li>
+          <li>受講に伴うグロースサポート併用可否 (申請要件 (5) ウ の手段になる)</li>
+        </ul>
+        <strong>期待される結果</strong>: 6 月後半-7 月前半 に受講予約確定 → Google Calendar 登録
+      </div>
+      <div class="ref">参考: <a href="https://www.keieiryoku.jp/consult/" target="_blank" rel="noopener">無料経営分析 申込ページ</a> / <a href="https://www.keieiryoku.jp/" target="_blank" rel="noopener">アドバンスプラス公式</a> / memory 申請要件 (4)</div>
+    </div>
+  </div>
+
+  <div class="todo critical">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">★ 確定申告 2 期分 (令和 6 + 令和 7) 控え 準備 + 期間判定 <span class="deadline">5/31 (土)</span></div>
+      <div class="note">
+        <strong>なぜ必要</strong>: R8 申請要件 (3) で「所得税及び復興特別所得税の確定申告書 (令和 6 年 + 令和 7 年 の 2 期分) 提出」 が必須。 各期 **12 ヶ月以上 (11 ヶ月以下は対象外)** + 休眠期間混在不可。 個人事業主の開業届出日次第で **令和 6 年が 12 ヶ月未満 → 申請不可** になる可能性あり。
+        <hr>
+        <strong>手順</strong>:
+        <ol>
+          <li>e-Tax / 紙ファイル / 税理士保管 のうち どこにあるか確認 (個人で電子申告なら <a href="https://www.e-tax.nta.go.jp/" target="_blank" rel="noopener">e-Tax</a> から再印刷可)</li>
+          <li>令和 6 年分 (2024 年 1 月-12 月) + 令和 7 年分 (2025 年 1 月-12 月) の 2 期分を揃える</li>
+          <li>第 1 表 (申告書本体) + 第 2 表 + 青色決算書 (or 収支内訳書) を PDF 化 → 申請用フォルダに保存</li>
+          <li><strong>期間判定</strong>: 個人事業の開業届出日を確認 → 令和 6 年に 12 ヶ月以上事業を営んでいるか判定</li>
+          <li>令和 6 年が 12 ヶ月未満なら申請不可、 別年度応募 (R9 募集) or 商品確定後の IT 導入補助金等への切替検討</li>
+        </ol>
+        <strong>準備物</strong>:
+        <ul>
+          <li>e-Tax 利用者識別番号 + 暗証番号 (再印刷時に必要)</li>
+          <li>個人事業の開業・廃業等届出書の控え (期間 12 ヶ月以上の判定根拠)</li>
+          <li>マイナンバーカード or 利用者証明用電子証明書 (e-Tax ログイン用)</li>
+        </ul>
+        <strong>期待される結果</strong>: 令和 6 + 令和 7 の確定申告書 PDF 2 セット が手元、 各期 12 ヶ月以上の確認完了。 <strong>もし令和 6 が 12 ヶ月未満なら即時報告 → 戦略再考</strong>
+      </div>
+      <div class="ref">参考: <a href="https://www.e-tax.nta.go.jp/" target="_blank" rel="noopener">e-Tax 国税電子申告</a> / memory 申請要件 (3) / [[koko-loan-before-incorporation]]</div>
+    </div>
+  </div>
+
+  <div class="todo critical">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">★ 売上減少 / 損失 / グロースサポート の判定 = 申請要件 (5) <span class="deadline">5/31 (土)</span></div>
+      <div class="note">
+        <strong>なぜ必要</strong>: R8 申請要件 (5) で「ア 売上減少 / イ 損失計上 / ウ グロースサポート証明」 のいずれかに該当が必須。 ア・イ どちらも該当しない場合は ウ のグロースサポート別途受講が必要 (経営分析 + グロースサポート は別事業)。
+        <hr>
+        <strong>手順</strong> (確定申告書 2 期分 を見ながら 30 分で判定):
+        <ol>
+          <li><strong>ア 売上減少の判定</strong>: 令和 7 年 vs 令和 6 年 の売上を比較
+            <ul>
+              <li>青色申告: 損益計算書「売上 (収入) 金額 ①」 を比較</li>
+              <li>白色申告: 収支内訳書「売上 (収入) 金額 ①」 を比較</li>
+              <li>R7 売上 &lt; R6 売上 なら ア 該当 ✅ (1 円でも減少していれば OK)</li>
+            </ul>
+          </li>
+          <li><strong>イ 損失の判定</strong>: 直近決算期 (令和 7 年) で
+            <ul>
+              <li>青色申告: 損益計算書 ㉝差引金額 or ㊺所得金額 のいずれかが マイナス</li>
+              <li>白色申告: 収支内訳書 ㉑所得金額 が マイナス</li>
+              <li>該当すれば イ ✅</li>
+            </ul>
+          </li>
+          <li><strong>判定不能 → ウ グロースサポート</strong>: 売上増 + 利益あり の場合のみ ウ が必要。 03-3283-7388 で経営分析とセットで予約可 (経営分析と同じ アドバンスプラス 事業)</li>
+        </ol>
+        <strong>masatoman の推定状況</strong>: 受託開発の個人事業主 = 令和 6 年・令和 7 年の売上推移次第。 受託案件数 / 単価が安定なら 売上ほぼ横ばい → ウ グロースサポート 必要の可能性高い。 5/22 北原氏面談で「儲かってない」 寄り = ア該当の可能性も
+        <br>
+        <strong>期待される結果</strong>: ア / イ / ウ のどれに該当するか確定。 ウ なら経営分析予約時に「グロースサポートも受けたい」 と同時依頼
+      </div>
+      <div class="ref">memory 申請要件 (5) / <a href="https://www.keieiryoku.jp/" target="_blank" rel="noopener">グロースサポート 公式</a></div>
+    </div>
+  </div>
+
+  <div class="todo subsidy">
+    <div class="checkbox"><input type="checkbox" checked></div>
+    <div class="body">
+      <div class="title-line">✅ GビズID プライム アカウント取得済 (個人事業主 / 屋号なし / 井原 誠斗 / kanon02sky@yahoo.co.jp) <span class="deadline">5/23 確認済</span></div>
+      <div class="note">✅ Jグランツ 電子申請の前提条件クリア済。 5 月末は <a href="https://www.jgrants-portal.go.jp/" target="_blank" rel="noopener">Jグランツ</a> にログイン → 過去申請履歴 / プロフィール情報の整合のみ確認すれば OK。 ID 発行待ち 2-3 週間が不要 = 申請開始時に詰まらない安全圏</div>
+      <div class="ref">参考: <a href="https://gbiz-id.go.jp/" target="_blank" rel="noopener">GビズID 公式</a> / <a href="https://www.jgrants-portal.go.jp/" target="_blank" rel="noopener">Jグランツ</a></div>
+    </div>
+  </div>
+
+  <div class="todo subsidy">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">公社 助成課 03-3251-7895 に問合せ (販売開始済の定義 + 過去採択事例) <span class="deadline">5/31 (土) まで</span></div>
+      <div class="note">
+        <strong>なぜ必要</strong>: 助成対象展示会 (6) で「申請時点で販売を開始している自社商品 / 自社取扱商品」 が必須。 Web ダウンロード型 SaaS の「販売開始」 定義は曖昧 = LP 公開 + 決済導線あれば OK か / 利用規約 + プライバシーポリシー必要か を事前確認しないと申請時点で資格不充足リスク。
+        <hr>
+        <strong>手順</strong>:
+        <ol>
+          <li>03-3251-7895 (平日 10-12 時 / 13-16 時) に電話</li>
+          <li>「令和 8 年度 展示会出展助成事業の申請を検討しており、 助成対象展示会 (6) の販売開始済自社商品の要件について確認したい」 と用件を伝える</li>
+          <li>下記の質問リストを順に確認 (15-20 分想定)</li>
+          <li>回答メモ + 担当者名 + 通話日時を Notion / docs に記録 (後で参照)</li>
+        </ol>
+        <strong>電話で言うこと</strong>:
+        <span class="speak">「個人事業主で、 工務店向け SaaS の新規開発をしており、 JAPAN BUILD TOKYO 12 月出展を検討しています。 申請時点での『販売開始』 の判定について、 Web SaaS の場合の具体例を教えてください」</span>
+        <strong>聞いておくこと</strong>:
+        <ul>
+          <li>Web ダウンロード型 SaaS の「販売開始」 定義 = LP 公開 + 決済導線 (Stripe 等) で OK か / 実販売実績 (1 件目契約) が必要か</li>
+          <li>商品 LP の必須記載事項 (利用規約 / プライバシーポリシー / 特商法表記 等)</li>
+          <li>JAPAN BUILD TOKYO が「BtoB 商談主目的」 として認められた過去採択事例</li>
+          <li>第 5 回 8/1-8/14 申請 vs 第 6 回 9/1-9/14 申請、 どちらが採択率高いか</li>
+          <li>過去年度の採択率 + 不採択の主な理由</li>
+          <li>申請書類で躓きやすいポイント Top 3</li>
+          <li>事業計画書 / 出展概要書 のサンプル / 過去採択事例の参考閲覧可否</li>
+        </ul>
+        <strong>期待される結果</strong>: 「販売開始」 の判定基準が明確 → MVP β リリース時の必須条件確定 → 7 月末 MVP リリース計画の精度向上
+      </div>
+      <div class="ref">参考: <a href="https://www.tokyo-kosha.or.jp/support/josei/jigyo/tenjikai/r8/index.html" target="_blank" rel="noopener">R8 公式</a> / memory 問合せ先 / 助成対象展示会 10 要件</div>
+    </div>
+  </div>
+
+  <div class="todo hearing">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">友人工務店 (5/14 N=1) に LINE で再アポ依頼 <span class="deadline">5/28 (木) まで</span></div>
+      <div class="note">
+        <strong>なぜ必要</strong>: 5/14 N=1 は現場監督として聞いたため、 後継層関与の有無が未確認。 v8.0 6 候補 (A 群 #01/#03/#04 + B 群 #07/#02/#10) で再ヒアリング = 後継層関与確認 + 同世代後継者紹介依頼 (雪だるま起点)。
+        <hr>
+        <strong>手順</strong>:
+        <ol>
+          <li>友人に LINE 送信、 6 月前半 1-2 時間訪問アポ取り</li>
+          <li>送信前: <a href="./v8.0-hearing-resource-2026-05-23.html" target="_blank" rel="noopener">v8.0 ヒアリング資料 A4 8p</a> + <a href="./v8.0-hearing-design-2026-05-23.html" target="_blank" rel="noopener">内部設計 docs</a> の質問順序を再読</li>
+          <li>訪問日時確定 → 当日は demo-gallery + ヒアリング資料を持参 (印刷 or タブレット)</li>
+        </ol>
+        <strong>LINE で送る文面 (案)</strong>:
+        <span class="speak">「お疲れさま! 5/14 にお話聞いてくれた件、 あれから候補を 6 件に絞れたから、 もう一度話聞いてもらえるかな? 後継者向け資料で、 30 分くらいでいけると思う。 6 月の都合いい日教えて。 あと、 12 月の JAPAN BUILD TOKYO 出展も検討してて、 もし同業の 2 代目で IT 興味ありそうな知り合いいたら紹介してほしい!」</span>
+        <strong>期待される結果</strong>: 6 月前半に訪問アポ確定、 当日 N=1 → N=2 雪だるま開始
+      </div>
+      <div class="ref">memory [[friend-hearing-result-2026-05-14]] / docs <a href="./v8.0-hearing-resource-2026-05-23.html" target="_blank" rel="noopener">ヒアリング資料</a> / <a href="./v8.0-hearing-design-2026-05-23.html" target="_blank" rel="noopener">内部設計</a></div>
+    </div>
+  </div>
+
+  <div class="todo other">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">公庫融資 100 万円 申込書類整備開始 <span class="deadline">5/31 (土)</span></div>
+      <div class="note">
+        <strong>なぜ必要</strong>: JAPAN BUILD 出展費用 (ブース 50-100 万 + 装飾 + パンフ等) は <strong>先払い</strong> → 助成金 2/3 は <strong>後から実績報告後に振込</strong> のため、 4-5 ヶ月のキャッシュフローギャップが発生。 公庫 100 万 で先行支払い → 助成金で部分回収のキャッシュフロー設計。 法人化前 (= 個人事業主のうち) でないと「法人としての実績ゼロ」 で再評価され通りにくくなる。
+        <hr>
+        <strong>手順</strong>:
+        <ol>
+          <li><a href="https://www.jfc.go.jp/n/finance/search/01_shinkikaigyou_t.html" target="_blank" rel="noopener">日本政策金融公庫 新規開業資金</a> のページで対象要件確認</li>
+          <li>最寄り支店 (国民生活事業) を <a href="https://www.jfc.go.jp/n/branch/index.html" target="_blank" rel="noopener">公庫支店一覧</a> から確認 (多摩エリアなら立川支店 042-525-7321)</li>
+          <li>支店に電話: 「新規開業資金 100 万円 の融資を検討、 申込書類の取り寄せと事前相談を予約したい」</li>
+          <li>必要書類を準備 (下記)</li>
+          <li>6 月前半に持参・面談 → 6 月末入金目標</li>
+        </ol>
+        <strong>準備物</strong>:
+        <ul>
+          <li>創業計画書 (公庫指定様式、 申込書同封 or Web ダウンロード)</li>
+          <li>個人事業の開業届出書の控え</li>
+          <li>確定申告書 2 期分 (R8 助成金準備と兼ねる)</li>
+          <li>既存受託契約書 (実態証明用)</li>
+          <li>本人確認書類 (運転免許証 or マイナンバーカード)</li>
+          <li>通帳 (主要取引銀行 直近 6 ヶ月)</li>
+          <li>納税証明書 (個人事業税 + 住民税)</li>
+        </ul>
+        <strong>電話で言うこと</strong>:
+        <span class="speak">「個人事業主で受託開発をしており、 今後 SaaS 事業の立ち上げを予定しています。 新規開業資金 100 万円 の融資を検討しており、 申込書類の入手方法と事前相談予約の方法を教えてください」</span>
+        <strong>期待される結果</strong>: 6 月前半に申込書類提出 + 面談 → 6 月末-7 月前半に審査結果 + 入金
+      </div>
+      <div class="ref">memory [[koko-loan-before-incorporation]] / 参考: <a href="https://www.jfc.go.jp/n/finance/search/01_shinkikaigyou_t.html" target="_blank" rel="noopener">新規開業資金 公式</a> / <a href="https://www.jfc.go.jp/n/branch/index.html" target="_blank" rel="noopener">公庫支店一覧</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- 6 月 -->
+<!-- ============================================ -->
+<section class="month">
+  <h2>6 月 <span class="phase-label">出展申込締切確認 + 友人 N=2-3 + 融資申込</span></h2>
+  <div class="month-summary">RX Japan に出展申込問い合わせ + 友人雪だるま開始 + 公庫融資申込実行。 第 5 回 vs 第 6 回 応募 確定する月。</div>
+
+  <div class="todo critical">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">RX Japan に JAPAN BUILD TOKYO 出展申込締切 + ブース費用 + 助成金対象範囲 を問い合わせ <span class="deadline">6/10 (水) まで</span></div>
+      <div class="note">
+        <strong>なぜ必要</strong>: 主催者の出展申込締切は一般に 3-4 ヶ月前 = 8-9 月想定。 助成金第 5 回 (8/14 申請) と並走するため、 ブース費用の見積取得 + 申込タイミングを 6 月前半までに確定しないと「助成金応募時のブース費用算定」 ができない。
+        <hr>
+        <strong>手順</strong>:
+        <ol>
+          <li><a href="https://www.japan-build.jp/tokyo/ja-jp/" target="_blank" rel="noopener">JAPAN BUILD TOKYO 公式</a> の出展案内ページ確認</li>
+          <li>「出展のお問い合わせ」 フォーム or 電話で主催者 (RX Japan) に問合せ</li>
+          <li>下記の質問リストを順に確認 (15-20 分想定)</li>
+          <li>ブース見積を取得 → 助成金応募書類の経費算定 + 公庫融資 100 万の使途明確化</li>
+        </ol>
+        <strong>聞いておくこと</strong>:
+        <ul>
+          <li>出展申込締切日 (公式 + 早期割引 がある場合の各日付)</li>
+          <li>ブース規模別費用 (1 小間 / 2 小間 / 3 小間 の単価 + 平米単価)</li>
+          <li>標準装備 (パネル / 電源 / カーペット 等) と オプション装飾の費用</li>
+          <li>個人事業主の出展可否 (法人のみの場合は法人化を検討)</li>
+          <li>支払いタイミング (申込時 / 開催前 / 分割可否)</li>
+          <li>キャンセル規定 (R8 助成金 不採択時の対応)</li>
+          <li>過去の中小工務店向け SaaS 出展事例 + 来場者層のデータ</li>
+          <li>出展者向けセミナー / 展示協力 / 同時出展制度の有無</li>
+        </ul>
+        <strong>問い合わせ文 (フォーム入力例)</strong>:
+        <span class="speak">「個人事業主で工務店向け SaaS の開発をしており、 JAPAN BUILD TOKYO 2026/12 出展を検討しています。 ブース費用見積と出展申込締切、 個人事業主の出展可否について資料を送付いただけますでしょうか。 また、 東京都展示会出展助成事業との連動についての相談も可能でしょうか」</span>
+        <strong>期待される結果</strong>: ブース費用見積 ¥50-150 万、 申込締切 8-9 月 を確定 → 助成金応募書類の経費欄が埋まる
+      </div>
+      <div class="ref">参考: <a href="https://www.japan-build.jp/tokyo/ja-jp/" target="_blank" rel="noopener">JAPAN BUILD TOKYO 公式</a> / <a href="https://www.rxjapan.jp/" target="_blank" rel="noopener">RX Japan 公式</a></div>
+    </div>
+  </div>
+
+  <div class="todo subsidy">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">助成金第 5 回 (8/1-8/14) vs 第 6 回 (9/1-9/14) 応募タイミング確定 <span class="deadline">6/15</span></div>
+      <div class="note">公社直電結果 + MVP β リリース可能日 + 出展申込締切 の 3 要素で決定。 第 5 回 = 交付決定 10/1 / 出展開始 11/1 = MVP 前倒し必須。 第 6 回 = 交付決定 11/1 / 出展開始 12/1 = MVP β 9 月リリース直後で間に合う。 <strong>第 7 回以降 (10/1- 申請、 交付決定 12/1、 出展開始 令和 9 年 1/1) は 12/2-4 出展に間に合わない</strong></div>
+      <div class="ref">memory [[subsidy-exhibition-r8-2026-05-22]] スケジュール全 10 回 / クリティカルパス</div>
+    </div>
+  </div>
+
+  <div class="todo critical">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">★ 経営分析 受講実施 = 申請要件 (4) 充足 <span class="deadline">6 月中-7 月前半</span></div>
+      <div class="note">
+        <strong>なぜ必要</strong>: 5 月末予約の続き。 受講 + 完了 + 証明書発行 まで完了しないと 8/14 (or 9/14) 応募時に書類不備となる。
+        <hr>
+        <strong>当日の動き</strong> (90-120 分想定):
+        <ol>
+          <li>会場 (最寄り商工会議所 / 商工会、 府中なら府中商工会議所) に予約時間の 10 分前到着</li>
+          <li>中小企業診断士 (or 経営指導員) と面談</li>
+          <li>事業概要 → 経営状況 → 直近 2 期の売上推移 → 課題 → 展示会出展助成事業の活用妥当性 を順に説明</li>
+          <li>「展示会出展助成事業 R8 の申請要件 (4) を充足するための受講です」 と冒頭で明示</li>
+          <li>面談中に「利用が有効と認められた」 ことを確認、 証明書類の発行タイミングを確認</li>
+          <li>(売上減少 ア・損失 イ どちらも該当しないなら) グロースサポート併用申込</li>
+        </ol>
+        <strong>持参物</strong>:
+        <ul>
+          <li>確定申告書 2 期分 (令和 6 + 令和 7)</li>
+          <li>事業概要書 (1 枚、 受託開発実績 + SaaS 立ち上げ計画)</li>
+          <li>出展予定の展示会情報 (JAPAN BUILD TOKYO 2026/12 公式パンフ or 印刷)</li>
+          <li>v8.0 商品候補資料 (主軸 #01 OB 10 年管理 SaaS + 副軸 #03 #04)</li>
+          <li>名刺 + 筆記具</li>
+        </ul>
+        <strong>準備しておくべき自分の話 (面談で聞かれる)</strong>:
+        <ul>
+          <li>事業の現状: 受託開発 (年商 / 案件数 / 主要取引先)</li>
+          <li>事業の課題: 受託の労力線形 NG / SaaS 化で時間 ROI 改善が必要</li>
+          <li>展示会出展の目的: 工務店向け SaaS の販路開拓、 JAPAN BUILD で年 50-100 件リード獲得目標</li>
+          <li>助成金活用の妥当性: 個人事業主の単独出展は ¥50-150 万 ブース費用が負担、 助成 2/3 で実現可能化</li>
+        </ul>
+        <strong>期待される結果</strong>: 「経営分析報告書」 等の証明書類 を受領 → 8/14 (or 9/14) 応募書類に添付。 グロースサポート併用なら別途証明書類も取得
+      </div>
+      <div class="ref">memory 申請要件 (4) / <a href="https://www.keieiryoku.jp/consult/" target="_blank" rel="noopener">経営分析 申込ページ</a></div>
+    </div>
+  </div>
+
+  <div class="todo hearing">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">友人工務店 N=1 確認ヒアリング実施 + 紹介依頼 (連絡先まで) <span class="deadline">6/15 まで</span></div>
+      <div class="note">v8.0 ヒアリング資料 (A4 8p) を使う。 P8 紹介シートで同世代後継者 1-2 名の連絡先 (LINE / 名刺写真) まで取得。 雑談で「12 月 JAPAN BUILD 同時出展」 を伏線</div>
+      <div class="ref">docs v8.0-hearing-resource-2026-05-23.html / v8.0-hearing-design-2026-05-23.html</div>
+    </div>
+  </div>
+
+  <div class="todo hearing">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">建材屋ルート 月 2-3 回 巡回開始 (LIXIL ショールーム / ナフコ / 地元卸) <span class="deadline">6 月全期</span></div>
+      <div class="note">建材屋営業マンに「アトツギ層で IT 興味あり + 12 月 JAPAN BUILD 出展候補 いない?」 を雑談ベースで依頼。 5/11 Deep Research 接点 ◎×◎ 主戦場</div>
+      <div class="ref">memory [[komuten-channel-strategy]]</div>
+    </div>
+  </div>
+
+  <div class="todo hearing">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">友人紹介経由 同世代後継者 N=2 ヒアリング実施 <span class="deadline">6/30</span></div>
+      <div class="note">友人雪だるま 1 件目。 v8.0 ヒアリング資料使用、 紹介依頼必須 + 12 月出展同伴打診</div>
+      <div class="ref">docs v8.0-hearing-design-2026-05-23.html P2 打診先 #2</div>
+    </div>
+  </div>
+
+  <div class="todo other">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">公庫融資 100 万 申込実施 <span class="deadline">6/5-10</span></div>
+      <div class="note">個人事業主のうちに申込、 既存受託契約書類別紙添付。 6 月末入金目標</div>
+      <div class="ref">memory [[koko-loan-before-incorporation]] / 参考: <a href="https://www.jfc.go.jp/n/finance/search/01_shinkikaigyou_t.html" target="_blank" rel="noopener">日本政策金融公庫 新規開業資金</a></div>
+    </div>
+  </div>
+
+  <div class="todo other">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">6/25 住宅デー (全建総連 全国一斉) 関与判定 <span class="deadline">6/20</span></div>
+      <div class="note">多摩西部支部経由で 当日参加可否確認。 アトツギ層接点として 12 月出展へのリード獲得経路にもなる</div>
+      <div class="ref">memory [[komuten-channel-strategy]]</div>
+    </div>
+  </div>
+
+  <div class="todo mvp">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">MVP β (#01 OB 10 年管理 SaaS) リリース前倒し可能性 技術設計 <span class="deadline">6/25</span></div>
+      <div class="note">7 月末リリース可能か検討。 Next.js + Supabase + Stripe 既存資産流用、 顧客台帳 + 工事履歴 + リフォーム時期予測 の MVP 機能定義</div>
+      <div class="ref">関連: portfolio /local-business 既存 demo 流用可能性</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- 7 月 -->
+<!-- ============================================ -->
+<section class="month">
+  <h2>7 月 <span class="phase-label">MVP β 開発本番 + 助成金応募書類作成 + N=3-4</span></h2>
+  <div class="month-summary">第 5 回応募ならこの月で全準備完了。 MVP β リリース + 応募書類 + N=3-4 同時並行。</div>
+
+  <div class="todo mvp">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">MVP β (#01 OB 10 年管理 SaaS) 開発着手 <span class="deadline">7/1 着手</span></div>
+      <div class="note">Next.js + Supabase + Stripe。 顧客台帳 + 工事履歴 + リフォーム時期 AI 予測 + アプローチ自動化 (LINE 連携)。 ihara-frontend.com サブパスで運用 or 新ドメイン (5/22 後判断)</div>
+      <div class="ref">memory [[customer-target]] (5/23 v8.0 化予定) / docs v8.0-hearing-resource P2</div>
+    </div>
+  </div>
+
+  <div class="todo subsidy">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">助成金応募書類 作成開始 (事業計画書 / 出展構想 / 売上予測 / 自社商品立証資料) <span class="deadline">7/15 ドラフト完成</span></div>
+      <div class="note">J グランツ 電子申請、 GビズID プライム アカウント準備済確認。 公社経営分析 03-3283-7388 で事前相談可</div>
+      <div class="ref">memory [[subsidy-exhibition-r8-2026-05-22]]</div>
+    </div>
+  </div>
+
+  <div class="todo hearing">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">N=3 ヒアリング実施 (設計事務所オーナー or 建材屋経由紹介) <span class="deadline">7/15</span></div>
+      <div class="note">多摩エリア、 アトツギ層、 年商 1-5 億の条件で打診。 紹介可能な人がいない場合「いつなら紹介できそう?」 まで踏み込む</div>
+      <div class="ref">docs v8.0-hearing-design-2026-05-23.html P2 打診先 #4-5</div>
+    </div>
+  </div>
+
+  <div class="todo hearing">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">N=4 ヒアリング (たましん 価値創造事業部 経由可能性検討、 Step 3 訪問本番) <span class="deadline">7/31</span></div>
+      <div class="note">たましん訪問本番 6-7 月後半想定と整合。 Step 1-2 で既取引渉外担当者 → 価値創造事業部橋渡し が必要</div>
+      <div class="ref">memory [[tamashin-kachi-souzou-jigyobu]] / [[shinkin-introduction-flow]]</div>
+    </div>
+  </div>
+
+  <div class="todo subsidy">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">公社 助成課 03-3251-7895 に問合せ (応募書類ドラフトの相談) <span class="deadline">7/25</span></div>
+      <div class="note">★ 経営分析窓口 03-3283-7388 とは別、 助成課が応募書類の窓口。 電子申請前に書類内容 + 添付書類リストを助成課担当者にチェックしてもらう、 不採択リスク削減</div>
+      <div class="ref">memory [[subsidy-exhibition-r8-2026-05-22]] 問合せ先</div>
+    </div>
+  </div>
+
+  <div class="todo mvp">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">MVP β α版 動作確認 + ihara-frontend.com 内で販売ページ公開準備 <span class="deadline">7/31</span></div>
+      <div class="note">「販売開始済」 立証用 = 8/1 第 5 回応募の場合は LP + 決済導線 + 利用規約 必須。 第 6 回応募なら 8 月末まで猶予</div>
+      <div class="ref">関連: docs/saas-pricing-strategy.html v8.0 化予定</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- 8 月 -->
+<!-- ============================================ -->
+<section class="month critical">
+  <h2>8 月 <span class="phase-label">助成金応募実行 + MVP β リリース + 北原氏中間報告</span></h2>
+  <div class="month-summary">8/1-8/14 第 5 回 助成金応募 (or 9 月第 6 回準備) + 8/22 北原氏中間報告 + JAPAN BUILD 出展申込が集中する月。</div>
+
+  <div class="todo critical">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">展示会出展助成事業 R8 第 5 回 応募実施 (8/1-8/14、 各回最終日 16 時締切) <span class="deadline">8/14 16:00 厳守</span></div>
+      <div class="note">J グランツ 電子申請。 GビズID プライム アカウントログイン → 申請書類アップロード → 送信。 受領通知保存。 採択なら交付決定 10/1 → 事務手続き説明会 10/8 (木) 参加必須 → 出展開始可能 11/1 ~ 事業終了 令和 9 年 10/31 (1 年 1 ヶ月)</div>
+      <div class="ref">memory [[subsidy-exhibition-r8-2026-05-22]] / 助成課 03-3251-7895 / 経営分析 03-3283-7388</div>
+    </div>
+  </div>
+
+  <div class="todo critical">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">MVP β リリース (8/14 までに販売開始証明可能な状態) <span class="deadline">8/14 まで</span></div>
+      <div class="note">ihara-frontend.com 内 LP 公開 + 決済導線 + 利用規約 + プライバシーポリシー 整備。 申請書類に LP URL + スクリーンショット添付</div>
+      <div class="ref">関連: 第 6 回応募の場合は 9/14 まで猶予</div>
+    </div>
+  </div>
+
+  <div class="todo booth">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">JAPAN BUILD TOKYO 出展申込 (RX Japan 締切想定 8 月末-9 月) <span class="deadline">8/31 想定</span></div>
+      <div class="note">RX Japan 6 月問い合わせ結果に従う。 ブース費用先払い → 助成金 2/3 で後から回収のキャッシュフロー</div>
+      <div class="ref">関連: 6 月 RX Japan 問い合わせ TODO</div>
+    </div>
+  </div>
+
+  <div class="todo hearing">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">8/22 北原氏 中間報告 アポ確定 + 資料準備 <span class="deadline">8/10</span></div>
+      <div class="note">N=3-4 ヒアリング結果 + MVP β リリース報告 + 助成金応募結果 共有 + 北原氏ネットワーク経由 N=5 紹介依頼</div>
+      <div class="ref">memory [[kitahara-meeting-result-2026-05-22]]</div>
+    </div>
+  </div>
+
+  <div class="todo hearing">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">8/22 北原氏 中間報告 実施 <span class="deadline">8/22 (金) 19:00</span></div>
+      <div class="note">Zoom オンライン (前回と同じ MacBook Air カメラ使用)。 紹介芋蔓 2-3 件 + JAPAN BUILD 同時出展候補相談</div>
+      <div class="ref">memory [[kitahara-meeting-result-2026-05-22]]</div>
+    </div>
+  </div>
+
+  <div class="todo subsidy">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">第 5 回応募の場合は結果待ち (採択通知 8 月末-9 月想定) <span class="deadline">8 月末</span></div>
+      <div class="note">不採択の場合は第 6 回 (9/1-9/14) で再応募。 採択の場合はブース費用支払い → 助成対象工事 着手</div>
+      <div class="ref">memory [[subsidy-exhibition-r8-2026-05-22]]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- 9 月 -->
+<!-- ============================================ -->
+<section class="month">
+  <h2>9 月 <span class="phase-label">N=5 確定 + 商品方向性確定 + 第 6 回応募 (必要なら)</span></h2>
+  <div class="month-summary">N=3-5 達成 → 商品方向性 (#01 主軸確定 or 別候補) を決め、 v9.0 商品設計 docs 作成。</div>
+
+  <div class="todo hearing">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">N=5 ヒアリング (北原氏紹介経由) <span class="deadline">9/15</span></div>
+      <div class="note">8/22 北原氏中間報告で紹介された相手 1-2 名 にヒアリング。 N=5 で本物のシグナル ≥ 3 + 価格反応 + 紹介可能 が揃えば商品方向性確定</div>
+      <div class="ref">docs v8.0-hearing-design-2026-05-23.html P7 記録テンプレ</div>
+    </div>
+  </div>
+
+  <div class="todo subsidy">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">第 6 回 (9/1-9/14) 応募 (第 5 回不採択 or 第 5 回未応募の場合) <span class="deadline">9/14 締切</span></div>
+      <div class="note">第 5 回応募実績反映 + 第 5 回からの修正点 (公社フィードバック反映) で再応募</div>
+      <div class="ref">memory [[subsidy-exhibition-r8-2026-05-22]]</div>
+    </div>
+  </div>
+
+  <div class="todo mvp">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">v9.0 商品設計 docs 作成 (主軸 1 + 副軸 1-2 確定) <span class="deadline">9/30</span></div>
+      <div class="note">N=5 結果踏まえ、 主軸 (#01 OB 管理 想定) + 副軸 1-2 (#03 展示会 / #04 経営可視化 等) 確定。 demo-gallery 整理</div>
+      <div class="ref">memory [[customer-target]] v9.0 化</div>
+    </div>
+  </div>
+
+  <div class="todo mvp">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">MVP β 試用 1-2 社 開始 (ヒアリング協力者経由) <span class="deadline">9 月後半</span></div>
+      <div class="note">無料 or 半額 で 1-2 社が試用 → 課題抽出 → 11 月までに改善 → 12 月出展時にデモ公開</div>
+      <div class="ref">関連: 友人 N=1 or N=2 経由打診</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- 10 月 -->
+<!-- ============================================ -->
+<section class="month">
+  <h2>10 月 <span class="phase-label">出展準備本格化 + 認定支援機関手続き</span></h2>
+  <div class="month-summary">ブース装飾 + パンフ + 名刺管理ツール (#03 ドッグフード) 準備開始。 補助金本格訴求への移行も始める。</div>
+
+  <div class="todo booth">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">ブース装飾デザイン依頼 (AIDesigner agent 流用) <span class="deadline">10/15</span></div>
+      <div class="note">主軸 #01 OB 管理 デモ画面 + 副軸 2-3 デモ + パンフ陳列 + 名刺取得導線。 暖色系 (warm editorial スタイル) で統一</div>
+      <div class="ref">memory [[aidesigner-agent]] / [[design-direction]]</div>
+    </div>
+  </div>
+
+  <div class="todo booth">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">パンフレット A4 4-8p デザイン + 印刷手配 <span class="deadline">10/31</span></div>
+      <div class="note">v8.0 ヒアリング資料 P2-P7 をベースに、 商談者向けに再構成。 印刷 500-1000 部、 出展 3 日で配布 + 持ち帰り想定</div>
+      <div class="ref">docs v8.0-hearing-resource-2026-05-23.html ベース</div>
+    </div>
+  </div>
+
+  <div class="todo mvp">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">名刺管理ツール (#03 展示会リード育成 SaaS) MVP 実機準備 = 出展でドッグフード <span class="deadline">10/31</span></div>
+      <div class="note">出展当日にこのツール自体で名刺 DB 化 → 12 月後半-1 月のフォロー自動配信。 ツール販売の最強実証材料</div>
+      <div class="ref">候補 A-2 docs/v8.0-hearing-resource P3</div>
+    </div>
+  </div>
+
+  <div class="todo other">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">業界紙取材依頼 (新建ハウジング / 建築知識) で 12 月出展告知 <span class="deadline">10/20</span></div>
+      <div class="note">JAPAN BUILD 出展 + アトツギ層特化 SaaS を訴求軸に。 取材記事化されれば来場者集客 + 信用補強</div>
+      <div class="ref">memory [[industry-press-authority-borrow]]</div>
+    </div>
+  </div>
+
+  <div class="todo subsidy">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">認定支援機関税理士提携 / IT 導入支援事業者 登録手続き本格検討 <span class="deadline">10 月全期</span></div>
+      <div class="note">MVP β 試用結果 + 出展準備で「販売開始済 + 実需あり」 と立証可能なタイミング = 補助金本格訴求への昇格</div>
+      <div class="ref">memory [[subsidies-positioning]] / [[credit-augmentation-dual-layer]]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- 11 月 -->
+<!-- ============================================ -->
+<section class="month">
+  <h2>11 月 <span class="phase-label">出展直前準備 + リハーサル</span></h2>
+  <div class="month-summary">ブース搬入計画 + スタッフ手配 + デモ最終確認。 12 月当日にトラブルゼロを目指す。</div>
+
+  <div class="todo booth">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">ブース搬入計画 + 装飾実機作成 <span class="deadline">11/20</span></div>
+      <div class="note">パネル印刷 + ロールアップバナー + テーブル / 椅子手配 (RX Japan オプション or 持込)</div>
+      <div class="ref">RX Japan 出展マニュアル参照</div>
+    </div>
+  </div>
+
+  <div class="todo booth">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">パンフレット印刷完了 + 当日配布物 一式準備 <span class="deadline">11/15</span></div>
+      <div class="note">パンフ + 名刺 + ペン + メモ用紙 + QR コード掲示 (#03 SaaS 名刺取得導線)</div>
+      <div class="ref">10 月パンフ TODO の続き</div>
+    </div>
+  </div>
+
+  <div class="todo booth">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">スタッフ手配 (1-2 名、 知人 or 業務委託) <span class="deadline">11/10</span></div>
+      <div class="note">3 日間 (12/2-4) シフト組み、 自分は終日詰め、 補助 1 名で交代休憩 + デモ実演分担</div>
+      <div class="ref">関連: 知人で IT わかる人 = ヒアリング N=2-3 の同世代後継者に逆依頼の可能性</div>
+    </div>
+  </div>
+
+  <div class="todo mvp">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">出展前 最終確認 (動くデモ 3 候補: #01 OB 管理 / #03 展示会リード / #04 経営可視化) <span class="deadline">11/25</span></div>
+      <div class="note">3 候補すべてリハーサル動作確認、 Wi-Fi トラブル想定でオフラインデモ版も用意</div>
+      <div class="ref">関連: MVP β 試用 1-2 社のフィードバック反映済確認</div>
+    </div>
+  </div>
+
+  <div class="todo hearing">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">ヒアリング相手 (N=3-5) と紹介経由相手にブース招待状送付 <span class="deadline">11/15</span></div>
+      <div class="note">「12/2-4 JAPAN BUILD TOKYO 出展、 ブースに来てください」 LINE / メール 一斉送付。 紹介芋蔓の総決算</div>
+      <div class="ref">memory [[komuten-channel-strategy]] 紹介芋蔓式</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- 12 月 -->
+<!-- ============================================ -->
+<section class="month critical">
+  <h2>12 月 (12/2-4 出展本番 + 後半フォロー) <span class="phase-label">出展実施 + リードフォロー</span></h2>
+  <div class="month-summary">3 日間出展 + リード 50-100 件取得目標 + 出展後すぐ自動フォロー開始。</div>
+
+  <div class="todo critical">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">JAPAN BUILD TOKYO 出展 (12/2-4 3 日間) <span class="deadline">12/2-4</span></div>
+      <div class="note">ブース運営 + 名刺取得 + デモ実演 (3 候補) + 業界紙記者対応。 リード目標 50-100 件 + 商談アポ 5-10 件</div>
+      <div class="ref">RX Japan 出展マニュアル</div>
+    </div>
+  </div>
+
+  <div class="todo mvp">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">名刺リード DB 化 (#03 SaaS で実演 = ドッグフード実証) <span class="deadline">12/2-4 リアルタイム</span></div>
+      <div class="note">名刺撮影 → AI 自動補完 → 興味分野タグ付け をその場で実演。 「これ自体が SaaS です、 ¥X 万 / 月」 で商談化</div>
+      <div class="ref">候補 A-2 #03 展示会リード育成 SaaS の最強デモ</div>
+    </div>
+  </div>
+
+  <div class="todo hearing">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">出展リード フォロー開始 (#03 SaaS 自動配信) <span class="deadline">12/5 開始</span></div>
+      <div class="note">6 ヶ月 自動配信スケジュール: 翌週 / 1 ヶ月 / 3 ヶ月 / 6 ヶ月 タイミングで 個別最適化メッセージ</div>
+      <div class="ref">候補 A-2 商品ロジック</div>
+    </div>
+  </div>
+
+  <div class="todo hearing">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">1 月以降の商談アポ取得 (リード 50-100 件 → アポ 5-10 件目標) <span class="deadline">12/20</span></div>
+      <div class="note">高興味リードに 12 月後半に個別フォロー連絡 → 1-2 月で商談実施 → 3-4 月で 1-2 社契約目標</div>
+      <div class="ref">memory STRATEGY.md §9 / §10-12 月 MVP 投入期</div>
+    </div>
+  </div>
+
+  <div class="todo subsidy">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">助成金 実施報告 (採択者のみ、 出展実施後) <span class="deadline">12 月後半-1 月</span></div>
+      <div class="note">ブース費用領収書 + 実施報告書 提出 → 助成金 2/3 振込。 期日厳守</div>
+      <div class="ref">memory [[subsidy-exhibition-r8-2026-05-22]]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- 2027/1-4 -->
+<!-- ============================================ -->
+<section class="month">
+  <h2>2027/1-4 <span class="phase-label">リード経由契約 + MRR 達成判定</span></h2>
+  <div class="month-summary">出展リード経由で 1-2 社契約 → MRR ¥30-60 万 達成判定 (4/30 ルートゴール)。</div>
+
+  <div class="todo hearing">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">出展リード経由 商談 5-10 件 実施 → 1-2 社契約 <span class="deadline">1-3 月</span></div>
+      <div class="note">主軸 #01 + 副軸 #03 #04 同梱販売 (アドオン月 ¥1 万 等)。 BPaaS 初期データ移行も組み込み</div>
+      <div class="ref">memory STRATEGY.md §4 軸 B 10-12 月 MVP 投入期 → 1-4 月 スケール</div>
+    </div>
+  </div>
+
+  <div class="todo other">
+    <div class="checkbox"><input type="checkbox"></div>
+    <div class="body">
+      <div class="title-line">MRR ¥30-60 万 達成判定 (4/30 ルートゴール) <span class="deadline">2027/4/30</span></div>
+      <div class="note">3-5 社契約累計 + 月次売上 ¥30-60 万 達成判定。 達成なら本格化、 未達なら戦略再考</div>
+      <div class="ref">memory STRATEGY.md §9</div>
+    </div>
+  </div>
+</section>
+
+<div class="callout">
+  <strong>📌 本 TODO リストの使い方</strong> — 毎週末に進捗確認 + 翌週 TODO の状況更新。 5 月末 / 6 月中旬 / 8 月初旬 が判断分岐点 (公社直電結果 / 第 5 回 vs 第 6 回 確定 / 助成金応募実行) で、 ここでの判断が全体を左右します。 ScheduleWakeup / Google Calendar で 5 月末 / 6 月中旬 / 8 月初旬 の判定日にリマインダーを設定推奨。
+</div>
+
+<section class="ref-links">
+  <h2>📚 参考リンク集</h2>
+
+  <div class="ref-group">
+    <h3>① 展示会出展助成事業 R8 (公社) — 申請要件・募集要項</h3>
+    <ul>
+      <li>🔗 <a href="https://www.tokyo-kosha.or.jp/support/josei/jigyo/tenjikai/r8/index.html" target="_blank" rel="noopener">令和 8 年度 展示会出展助成事業 公式ページ (公社)</a><span class="desc">— 限度額 ¥150 万 / 助成率 2/3 / 全 10 回応募</span></li>
+      <li>🔗 <a href="https://www.tokyo-kosha.or.jp/support/josei/jigyo/tenjikai/r8/h0iqeh000000fv8i-att/R8_tenjikai_boshuuyoukou_v1-1.pdf" target="_blank" rel="noopener">R8 募集要項 PDF v1.1</a><span class="desc">— 申請要件 6 件 / 助成対象展示会 10 要件 / 経費区分の詳細</span></li>
+      <li>🔗 <a href="https://www.metro.tokyo.lg.jp/information/press/2026/03/2026032602" target="_blank" rel="noopener">都庁 R8 展示会出展助成 プレスリリース (2026/03)</a><span class="desc">— 制度全体概要</span></li>
+      <li>🔗 <a href="https://www.tokyo-kosha.or.jp/support/josei/jigyo/tenjikai/r6tenjikai.html" target="_blank" rel="noopener">令和 6 年度 展示会出展助成事業 (参考)</a><span class="desc">— 前年度実績</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>② 申請要件 (4) 経営分析受診 — 中小企業活力向上プロジェクトアドバンスプラス</h3>
+    <ul>
+      <li>🔗 <a href="https://www.keieiryoku.jp/consult/" target="_blank" rel="noopener">無料経営分析 申込ページ</a><span class="desc">— 03-3283-7388 (平日 9-17 時、 12-13 時除く)</span></li>
+      <li>🔗 <a href="https://www.keieiryoku.jp/" target="_blank" rel="noopener">中小企業活力向上プロジェクトアドバンスプラス 公式</a><span class="desc">— 経営分析 / グロースサポート 主催</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>③ 電子申請 — Jグランツ / GビズID プライム</h3>
+    <ul>
+      <li>🔗 <a href="https://www.jgrants-portal.go.jp/" target="_blank" rel="noopener">Jグランツ 公式 (補助金電子申請システム)</a><span class="desc">— R8 助成金応募ルート</span></li>
+      <li>🔗 <a href="https://gbiz-id.go.jp/" target="_blank" rel="noopener">GビズID 公式 (プライム取得)</a><span class="desc">— Jグランツ利用に必須、 国審査で 2-3 週間</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>④ JAPAN BUILD TOKYO 出展 (12/2-4)</h3>
+    <ul>
+      <li>🔗 <a href="https://www.japan-build.jp/tokyo/ja-jp/" target="_blank" rel="noopener">JAPAN BUILD TOKYO 2026 公式</a><span class="desc">— 建築・建設関連 BtoB 展示会、 12/2-4 東京ビッグサイト</span></li>
+      <li>🔗 <a href="https://www.rxjapan.jp/" target="_blank" rel="noopener">RX Japan 株式会社 (主催)</a><span class="desc">— 出展問合せ先</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>⑤ 融資 / 信金関連</h3>
+    <ul>
+      <li>🔗 <a href="https://www.jfc.go.jp/n/finance/search/01_shinkikaigyou_t.html" target="_blank" rel="noopener">日本政策金融公庫 新規開業資金</a><span class="desc">— 100 万融資、 個人事業主のうちに申込推奨</span></li>
+      <li>🔗 <a href="https://www.tamashin.co.jp/" target="_blank" rel="noopener">多摩信用金庫 (たましん) 公式</a><span class="desc">— 価値創造事業部 (直電 042-526-7728) 経由の紹介ルート</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>⑥ 関連補助金 (商品確定後 10-12 月以降に本格検討)</h3>
+    <ul>
+      <li>🔗 <a href="https://it-shien.smrj.go.jp/" target="_blank" rel="noopener">IT 導入補助金 公式 (中小機構)</a><span class="desc">— 通常枠 1/2、 IT 導入支援事業者登録手続き本格検討は商品確定後</span></li>
+      <li>🔗 <a href="https://atotsugi-koshien.go.jp/" target="_blank" rel="noopener">アトツギ甲子園 公式 (中小機構)</a><span class="desc">— アトツギ層接点 + 事業承継支援センター連動</span></li>
+      <li>🔗 <a href="https://www.chusho.meti.go.jp/" target="_blank" rel="noopener">中小企業庁</a><span class="desc">— 中小企業活力向上プロジェクト + アトツギ施策の主管</span></li>
+    </ul>
+  </div>
+
+  <div class="ref-group">
+    <h3>⑦ 関連 docs (本リポ内)</h3>
+    <ul>
+      <li>🔗 <a href="./v8.0-product-candidates-evaluation-2026-05-23.html" target="_blank" rel="noopener">v8.0 商品候補 33 ページ評価マトリクス (内部資料)</a><span class="desc">— 15 候補のレーダー評価 + 推奨順位</span></li>
+      <li>🔗 <a href="./v8.0-hearing-resource-2026-05-23.html" target="_blank" rel="noopener">v8.0 ヒアリング資料 A4 8p (相手に渡す)</a><span class="desc">— 6 候補 + 順位付け + 紹介依頼シート</span></li>
+      <li>🔗 <a href="./v8.0-hearing-design-2026-05-23.html" target="_blank" rel="noopener">v8.0 ヒアリング 内部設計 (masatoman 個人用)</a><span class="desc">— 打診先 6 件 + シグナル基準 + NG パターン + 記録テンプレ</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <span>JAPAN BUILD TOKYO 2026/12 出展 TODO / 井原 誠斗</span>
+  <span>2026-05-23 作成 / v1.0</span>
+</footer>
+
+</div>
+
+</body>
+</html>
