@@ -48,3 +48,7 @@ next-env.d.ts.serena/
 
 # voice-pipeline vendor (whisper.cpp 614MB, commit に含めない)
 /tools/voice-pipeline/vendor/
+
+# LEVEL UP STAGE 原本資料 (書籍 PDF = 著作権物、 ES docx 原本、 サムネ素材、 12MB)
+# ローカル保持のみ、 git には入れない
+/参考/

@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>父親説得 AI コーチ — MVP 仕様書</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafafa;
+    --card: #ffffff;
+    --text: #1a202c;
+    --text-muted: #4a5568;
+    --text-faint: #718096;
+    --border: #e2e8f0;
+    --accent: #2c5282;
+    --accent-light: #4299e1;
+    --success: #16a34a;
+    --success-bg: #dcfce7;
+    --warning: #d97706;
+    --warning-bg: #fef3c7;
+    --danger: #c53030;
+    --danger-bg: #fee2e2;
+    --info: #0284c7;
+    --info-bg: #e0f2fe;
+    --purple: #7c3aed;
+    --purple-bg: #ede9fe;
+    --neutral: #6b7280;
+    --code-bg: #1e293b;
+    --code-text: #e2e8f0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #6b21a8 0%, #2c5282 50%, #16a34a 100%);
+    color: #fff;
+    padding: 64px 24px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero .container { position: relative; }
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.9;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .hero h1 {
+    font-size: 38px;
+    line-height: 1.3;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .hero-sub {
+    font-size: 17px;
+    opacity: 0.93;
+    max-width: 820px;
+    line-height: 1.65;
+  }
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px 24px;
+    margin-top: 32px;
+    font-size: 13px;
+    opacity: 0.85;
+  }
+  .hero-meta span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hero-meta code { background: rgba(255,255,255,0.18); padding: 2px 8px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; }
+
+  /* TL;DR */
+  .tldr {
+    background: #fff;
+    margin-top: 32px;
+    border-radius: 16px;
+    padding: 32px 36px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    border-left: 6px solid var(--purple);
+  }
+  .tldr-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--purple);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .tldr h2 {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--text);
+    margin: 0 0 14px;
+  }
+  .tldr p { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+  .tldr strong { color: var(--text); background: var(--warning-bg); padding: 1px 6px; border-radius: 3px; }
+
+  /* TOC */
+  .toc {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 32px 0;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .toc h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+  .toc ol {
+    list-style: none;
+    counter-reset: toc;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 8px 24px;
+  }
+  .toc ol li {
+    counter-increment: toc;
+    padding: 6px 0 6px 36px;
+    position: relative;
+    font-size: 14px;
+  }
+  .toc ol li::before {
+    content: counter(toc);
+    position: absolute;
+    left: 0; top: 6px;
+    width: 26px; height: 26px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .toc a { color: var(--text); text-decoration: none; transition: color 0.15s; }
+  .toc a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section { padding: 56px 0 16px; }
+  h2.section-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  h2.section-title .num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: #e6f0fb;
+    padding: 5px 12px;
+    border-radius: 4px;
+    letter-spacing: 0.1em;
+  }
+  .section-lead {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 28px;
+    max-width: 880px;
+  }
+  h3.subsection {
+    font-size: 17px;
+    font-weight: 700;
+    margin: 28px 0 12px;
+    color: var(--text);
+  }
+  h4.minor {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 20px 0 8px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* CARDS */
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 16px 0;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .card.accent { border-left: 5px solid var(--accent); }
+  .card.success { border-left: 5px solid var(--success); }
+  .card.warning { border-left: 5px solid var(--warning); }
+  .card.danger { border-left: 5px solid var(--danger); }
+  .card.purple { border-left: 5px solid var(--purple); }
+
+  /* 5-MIN DEMO TIMELINE */
+  .timeline-demo {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 20px 0;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  .demo-step {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .demo-step:last-child { border-bottom: none; }
+  .demo-time {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-align: center;
+    height: fit-content;
+    letter-spacing: 0.02em;
+  }
+  .demo-content { font-size: 14px; line-height: 1.75; color: var(--text); }
+  .demo-content strong { color: var(--text); }
+  .demo-content .demo-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+    margin: 8px 0 4px;
+  }
+  .demo-card-mini {
+    background: var(--info-bg);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 13px;
+    border-left: 3px solid var(--info);
+  }
+
+  /* ARCHITECTURE DIAGRAM */
+  .arch-diagram {
+    background: var(--code-bg);
+    color: var(--code-text);
+    border-radius: 12px;
+    padding: 28px 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: auto;
+    margin: 16px 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  }
+  .arch-diagram pre { color: inherit; font-family: inherit; }
+  .arch-diagram .arrow { color: #fbbf24; font-weight: 700; }
+  .arch-diagram .comment { color: #94a3b8; }
+
+  /* CODE BLOCK */
+  pre.code {
+    background: var(--code-bg);
+    color: var(--code-text);
+    border-radius: 8px;
+    padding: 20px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.65;
+    overflow-x: auto;
+    margin: 14px 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  pre.code .kw { color: #c084fc; }
+  pre.code .str { color: #86efac; }
+  pre.code .num { color: #fbbf24; }
+  pre.code .com { color: #94a3b8; }
+
+  code.inline {
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  /* UI MOCKUP */
+  .ui-mockup {
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .ui-mockup-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--warning);
+    margin-bottom: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .ui-frame {
+    background: linear-gradient(180deg, #fafafa 0%, #f1f5f9 100%);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 22px;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .ui-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text);
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+  .ui-textarea {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin: 8px 0;
+    color: var(--text-muted);
+    font-size: 13px;
+    min-height: 80px;
+  }
+  .ui-button {
+    background: var(--success);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-block;
+    margin: 8px 4px;
+  }
+  .ui-button.secondary { background: var(--neutral); }
+  .ui-coach-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 10px 0;
+    border-left: 4px solid;
+    font-size: 13px;
+    color: var(--text);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .ui-coach-card.psychology { border-left-color: var(--purple); }
+  .ui-coach-card.example { border-left-color: var(--info); }
+  .ui-coach-card.economic { border-left-color: var(--warning); }
+  .ui-coach-card.subsidy { border-left-color: var(--success); }
+  .ui-coach-card.objection { border-left-color: var(--danger); }
+  .ui-coach-card .ui-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .ui-conversation-steps {
+    background: linear-gradient(135deg, #fef9f3 0%, #fef3c7 100%);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
+  .ui-conversation-steps ol {
+    padding-left: 22px;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.85;
+  }
+
+  /* FILE TREE */
+  .file-tree {
+    background: var(--code-bg);
+    color: var(--code-text);
+    border-radius: 10px;
+    padding: 22px 26px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.7;
+    overflow-x: auto;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .file-tree .dir { color: #fbbf24; font-weight: 700; }
+  .file-tree .new { color: #86efac; }
+  .file-tree .comment { color: #94a3b8; }
+
+  /* SPRINT TABLE */
+  .sprint-table {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    margin: 16px 0;
+  }
+  .sprint-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .sprint-table th, .sprint-table td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .sprint-table thead th {
+    background: linear-gradient(135deg, #166534 0%, #16a34a 100%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  .sprint-table tbody tr:hover { background: #f9fafb; }
+  .sprint-table .day-num {
+    font-weight: 700;
+    color: var(--success);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+  .sprint-table .hours {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .sprint-table tr.total { background: #f0fdf4; }
+  .sprint-table tr.total td {
+    font-weight: 700;
+    color: var(--success);
+    border-top: 2px solid var(--success);
+  }
+
+  /* ROADMAP TABLE */
+  .roadmap-table {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    margin: 16px 0;
+  }
+  .roadmap-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .roadmap-table th, .roadmap-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .roadmap-table thead th { background: linear-gradient(135deg, #1e3a8a 0%, #2c5282 100%); color: #fff; font-weight: 700; font-size: 13px; }
+  .roadmap-table tbody tr:hover { background: #f9fafb; }
+  .roadmap-table .period { font-weight: 700; color: var(--accent); white-space: nowrap; }
+
+  /* CHECKLIST */
+  .checklist {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 16px 0;
+    border: 1px solid var(--border);
+  }
+  .checklist li {
+    list-style: none;
+    padding: 8px 0 8px 32px;
+    position: relative;
+    border-bottom: 1px dashed var(--border);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '☐';
+    position: absolute;
+    left: 4px; top: 6px;
+    font-size: 18px;
+    color: var(--warning);
+    font-weight: 700;
+  }
+  .checklist.danger li::before { color: var(--danger); }
+  .checklist.success li::before { color: var(--success); }
+  .checklist.success li.checked::before { content: '✓'; color: var(--success); }
+  .checklist li strong { color: var(--text); }
+
+  /* RISK TABLE */
+  .risk-table {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    margin: 16px 0;
+  }
+  .risk-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .risk-table th, .risk-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .risk-table thead th { background: linear-gradient(135deg, #991b1b 0%, #c53030 100%); color: #fff; font-weight: 700; font-size: 13px; }
+
+  /* ACTION STEPS */
+  .action-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .action-step {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    color: #fff;
+    border-radius: 12px;
+    padding: 22px 24px;
+    box-shadow: 0 4px 16px rgba(22, 163, 74, 0.15);
+  }
+  .action-step .step-num {
+    background: rgba(255,255,255,0.25);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  .action-step .step-date {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    opacity: 0.9;
+    margin-bottom: 6px;
+  }
+  .action-step h4 { font-size: 15px; font-weight: 700; line-height: 1.45; }
+
+  /* FOOTER */
+  footer {
+    margin-top: 80px;
+    padding: 40px 0 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-faint);
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  footer code { background: #f1f5f9; padding: 1px 6px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { padding: 48px 20px 40px; }
+    .hero h1 { font-size: 26px; }
+    .container { padding: 0 16px; }
+    h2.section-title { font-size: 21px; flex-wrap: wrap; gap: 10px; }
+    .demo-step { grid-template-columns: 1fr; gap: 10px; }
+    .toc ol { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">LEVEL UP STAGE 2026 / 仮設プロダクト MVP 仕様書</div>
+    <h1>父親説得 AI コーチ — MVP 仕様書</h1>
+    <p class="hero-sub">
+      アトツギ (工務店 2 代目 / 3 代目) が父親世代に IT 導入を説得したい時、 AI が「父親世代の心理 + 業界事例 + 補助金情報 + 反論対処」 を即時生成するコーチング SaaS。
+      5/28-6/3 で MVP 完成 → N=1 ヒアリング道具 + 11/10 最終 5 分実演 + ES 設問 4 「実装力の証拠」。
+    </p>
+    <div class="hero-meta">
+      <span>📅 2026-05-28 作成</span>
+      <span>🏷 申込番号 20278</span>
+      <span>⚡ 1 週間スプリント 25h</span>
+      <span>🎯 GOLD 狙い 尖り重視</span>
+    </div>
+  </div>
+</div>
+
+<!-- TL;DR -->
+<div class="container">
+  <div class="tldr">
+    <div class="tldr-label">尖り戦略</div>
+    <h2>「全員に刺すデモ = 埋もれる」 を避け、 <strong>池原真佐子 (Mentor For 代表) を 95+ 点で殺しに行く</strong>尖り</h2>
+    <p>
+      競合不在の空白市場 (工務店 DX 系で「父親説得 AI」 は誰もやっていない)。 5 分実演で wow が出る (アトツギの悩みに AI がリアルタイムコーチする画)。 ES Round 2 統合判定の「翻訳業」 主軸と完全整合。 十河 (京王) と佐藤 (公庫) はあえて捨てる覚悟。
+    </p>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <h3>目次</h3>
+    <ol>
+      <li><a href="#sec1">プロダクト概要</a></li>
+      <li><a href="#sec2">5 分実演フロー</a></li>
+      <li><a href="#sec3">技術アーキテクチャ</a></li>
+      <li><a href="#sec4">UI 仕様 (3 画面)</a></li>
+      <li><a href="#sec5">プロンプト設計</a></li>
+      <li><a href="#sec6">ファイル構成</a></li>
+      <li><a href="#sec7">1 週間スプリント</a></li>
+      <li><a href="#sec8">11/10 までの磨き上げ</a></li>
+      <li><a href="#sec9">ES への反映方針</a></li>
+      <li><a href="#sec10">アンチパターン警戒</a></li>
+      <li><a href="#sec11">検証ポイント</a></li>
+      <li><a href="#sec12">リスクと対策</a></li>
+    </ol>
+  </div>
+</div>
+
+<!-- §1 PRODUCT OVERVIEW -->
+<section class="container" id="sec1">
+  <h2 class="section-title"><span class="num">§ 1</span>プロダクト概要</h2>
+  <p class="section-lead">何を作るのか、 なぜ今やるのか。</p>
+
+  <div class="card purple">
+    <h3 class="subsection">1 行サマリ</h3>
+    <p style="font-size: 17px; font-weight: 500; color: var(--text); line-height: 1.7;">
+      アトツギ (工務店 2 代目 / 3 代目、 30-40 代) が父親世代に IT 導入を説得したい時、 AI が「父親世代の心理 + 業界事例 + 補助金情報 + 反論対処」 を即時生成するコーチング SaaS。
+    </p>
+  </div>
+
+  <div class="card accent">
+    <h3 class="subsection">Why now</h3>
+    <ul style="padding-left: 22px; font-size: 14.5px; line-height: 2; color: var(--text-muted);">
+      <li>工務店の 3 層意思決定構造 (社長 60 代 IT 弱・経理の妻・アトツギ 30-40 代 IT 強) で <strong style="color: var(--text);">アトツギが真のキーパーソン</strong></li>
+      <li>アトツギは「父親説得材料」 を欲しがっているが、 父親世代の心理を理解する材料が散在</li>
+      <li>工務店 DX 系の競合 (ANDPAD / KANNA / DANDORI WORK) は <strong style="color: var(--text);">誰も「父親説得」 をプロダクト化していない</strong> = 空白市場</li>
+    </ul>
+  </div>
+</section>
+
+<!-- §1.5 COGNITIVE LOAD DESIGN PHILOSOPHY -->
+<section class="container" id="sec1-5">
+  <h2 class="section-title"><span class="num">§ 1.5</span>設計哲学: 教育不要 / 認知負荷削減</h2>
+  <p class="section-lead">機能追加ではなく <strong>「考える量を減らす」</strong> が価値。 これは UX 改善ではなく事業戦略の核。 父親説得 AI コーチの UI 設計はこの哲学に従う。</p>
+
+  <div class="card purple">
+    <h3 class="subsection">なぜ建設業では「教育不要」 が決定的か</h3>
+    <p style="font-size: 14.5px; line-height: 1.8;">
+      多くの DX サービスは「機能追加」 で価値を出そうとするが、 建設業ターゲット (アトツギ + 父親 + 妻) は <strong>「考える量を減らす」</strong> 方が価値になる。 スマホアプリ黎明期 (Dropbox / Uber / Instagram / ChatGPT) が <strong>「説明不要」</strong> で勝ったのと同じ構造。
+    </p>
+    <p style="font-size: 14.5px; line-height: 1.8; margin-top: 12px;">
+      建設業の現場 = 疲れてる / 急いでる / 手が汚れてる / 移動中 / 注意散漫 → <strong>「集中して入力する」 操作が成立しない</strong>。 片手 / 3 秒 / 雑に / 中断あり が前提。
+    </p>
+  </div>
+
+  <h3 class="subsection">教育不要の 5 原則</h3>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 16px 0;">
+    <div class="card success" style="margin: 0;">
+      <h4 class="minor" style="color: var(--success);">① マニュアル読まない</h4>
+      <p style="font-size: 13px;">トップに「3 秒で使い方」 アニメーション、 説明文章ゼロ</p>
+    </div>
+    <div class="card success" style="margin: 0;">
+      <h4 class="minor" style="color: var(--success);">② 研修いらない</h4>
+      <p style="font-size: 13px;">チェックボックス + 1 タップで完結する操作</p>
+    </div>
+    <div class="card success" style="margin: 0;">
+      <h4 class="minor" style="color: var(--success);">③ 触ればわかる</h4>
+      <p style="font-size: 13px;">入力例 1 クリックで自動入力、 自分の状況に最も近い例から始める</p>
+    </div>
+    <div class="card success" style="margin: 0;">
+      <h4 class="minor" style="color: var(--success);">④ 今の運用変えない</h4>
+      <p style="font-size: 13px;">LINE / 紙 / 電話の既存運用に AI が後付けで寄り添う</p>
+    </div>
+    <div class="card success" style="margin: 0;">
+      <h4 class="minor" style="color: var(--success);">⑤ 勝手に便利になる</h4>
+      <p style="font-size: 13px;">ユーザーが意識しないところで AI が整理・入力・要約・分類・報告書化</p>
+    </div>
+  </div>
+
+  <h3 class="subsection">弱い DX vs 強い DX (本プロダクトはどちらか)</h3>
+  <div style="background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.04); margin: 16px 0;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <thead>
+        <tr>
+          <th style="background: var(--neutral); color: #fff; padding: 12px 16px; text-align: left; font-size: 13px;">観点</th>
+          <th style="background: var(--danger); color: #fff; padding: 12px 16px; text-align: left; font-size: 13px;">弱い DX (頑張らせる)</th>
+          <th style="background: var(--success); color: #fff; padding: 12px 16px; text-align: left; font-size: 13px;">強い DX (頑張らない)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 600; background: #f9fafb;">入力</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--danger);">「このフォーマットで入力してください」</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--success);">「LINE 投げたら AI が整理します」</td></tr>
+        <tr><td style="padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 600; background: #f9fafb;">学習</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--danger);">「研修受けてください」</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--success);">「触ればわかります」</td></tr>
+        <tr><td style="padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 600; background: #f9fafb;">運用</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--danger);">「導入後に運用を変えてください」</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--success);">「今の運用そのままで OK」</td></tr>
+        <tr><td style="padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 600; background: #f9fafb;">訴求</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--danger);">「AI 搭載!」</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--success);">「写真探さなくて済む」</td></tr>
+        <tr><td style="padding: 12px 16px; font-weight: 600; background: #f9fafb;">ターゲット心理</td><td style="padding: 12px 16px; color: var(--danger);">「めんどい」</td><td style="padding: 12px 16px; color: var(--success);">「え、 勝手にやっといてくれるの?」</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subsection">AI 感を出さない原則</h3>
+  <div class="card warning">
+    <p style="font-size: 14.5px; line-height: 1.85;">
+      ターゲット (アトツギ + 父親) は「<strong>AI</strong>」 という単語に温度差がある。 アトツギは AI 慣れているが、 父親は警戒する。 訴求では <strong>AI を表に出さない</strong>:
+    </p>
+    <ul style="padding-left: 22px; margin-top: 12px; font-size: 13.5px; line-height: 2;">
+      <li>❌ 「AI コーチが説得材料を生成」 → ✅ 「父親に何て言えばいいか、 1 タップで出ます」</li>
+      <li>❌ 「AI 自動分類」 → ✅ 「写真を放り込むだけ」</li>
+      <li>❌ 「AI 搭載 SaaS」 → ✅ 「見積もり書がすぐ見つかります」</li>
+    </ul>
+    <p style="font-size: 14px; line-height: 1.8; margin-top: 12px;">
+      AI は <strong>不可視のインフラ</strong> として裏で動かす、 ユーザーには「便利」 だけ届ける。
+    </p>
+  </div>
+
+  <h3 class="subsection">設計者 (masatoman) の武器 = めんどくさがり</h3>
+  <div class="card accent">
+    <p style="font-size: 14.5px; line-height: 1.85;">
+      masatoman は自分自身を「めんどくさがり」 と認識している。 これはプロダクト設計上 <strong>強い武器</strong>:
+    </p>
+    <ul style="padding-left: 22px; margin-top: 10px; font-size: 13.5px; line-height: 1.9;">
+      <li>「こんなの毎回入力したくない」 に敏感</li>
+      <li>「この操作だるい」 に敏感</li>
+      <li>「2 タップ多い」 に敏感</li>
+      <li>「マニュアル読みたくない」 に敏感</li>
+    </ul>
+    <p style="font-size: 14px; line-height: 1.85; margin-top: 12px;">
+      建設業 DX は <strong>真面目で几帳面な人ほど "理想運用" を作って失敗</strong> する分野。 「めんどくさがり」 の当事者性は、 「雑に使って成立する」 設計の出発点 = 競合 (ANDPAD / KANNA 等) が陥らない強み。
+    </p>
+  </div>
+
+  <div class="card" style="background: linear-gradient(135deg, #fef9f3 0%, #fef3c7 100%); border-left: 5px solid var(--warning); margin-top: 20px;">
+    <h4 class="minor" style="color: var(--warning);">⚠️ §4 UI 仕様への影響</h4>
+    <p style="font-size: 14px; line-height: 1.85;">
+      § 4 で示した「テキストエリア 10 行 + 状況を文章で入力」 は <strong>「ユーザーが頑張る」 SaaS 前提の弱い DX 設計</strong>。 5/29 実装時に以下に再設計する:
+    </p>
+    <ul style="padding-left: 22px; margin-top: 10px; font-size: 13.5px; line-height: 1.9;">
+      <li>テキストエリア → <strong>チェックボックス 5 つ (代表的な状況) + 音声入力 + 1 タップ入力例</strong></li>
+      <li>「説得材料を出す」 → <strong>「父親に何て言えばいい?」</strong> (アトツギの言葉)</li>
+      <li>出力 = ブラウザ画面のテキスト → <strong>LINE 画面に貼れるスクショ</strong> (父親に直接送れる形)</li>
+      <li>初回訪問 → <strong>3 秒アニメーションで使い方</strong> (マニュアル不要)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- §1.6 PARALLEL HYPOTHESIS STRATEGY -->
+<section class="container" id="sec1-6">
+  <h2 class="section-title"><span class="num">§ 1.6</span>並列仮説検証 戦略 (既存 14 デモ + 父親説得 AI コーチ = 15 個並列)</h2>
+  <p class="section-lead">「1 つの正解を N=1 で当てる」 ではなく <strong>「10 個ぶつけて 1 個刺さる」</strong> startup スタイル。 父親説得 AI コーチは既存 14 デモに加わる <strong>15 個目</strong> として並列にぶつけ、 反応分布で刺さる仮説を測定する。</p>
+
+  <div class="card purple">
+    <h3 class="subsection">なぜ並列仮説検証か (claude.ai 修正 ① 順序逆転への代替)</h3>
+    <p style="font-size: 14.5px; line-height: 1.85;">
+      claude.ai は「6/3 デプロイ前に紙モック → N=1 → 本実装」 の順序逆転を提案した。 ただし <strong>現実的な制約</strong>:
+    </p>
+    <ul style="padding-left: 22px; margin-top: 10px; font-size: 13.5px; line-height: 1.9;">
+      <li>北原氏アプローチは 2 週間かかる (面談後の関係性でも紹介依頼 → 返信 → アポは時間がかかる)</li>
+      <li>友達 (現場監督) は長期不在 (プラン C 主軸の理由)</li>
+      <li>1 個ぶつけてボツ → リカバリーに 2 週間 = 6/30 期限に間に合わない</li>
+    </ul>
+    <p style="font-size: 14.5px; line-height: 1.85; margin-top: 12px;">
+      代替: <strong>15 個並列にぶつけて、 LP 上の反応分布で刺さる仮説を当てる</strong>。 demo-gallery 投票方式 ([[demo-gallery-status]]) + v8.0 6 候補並列開発 ([[v8.0-6-candidates-confirmed-2026-05-23]]) と同じパターン。
+    </p>
+  </div>
+
+  <h3 class="subsection">既存 14 デモ + 1 新規 = 15 個のイシュー × ソリューション</h3>
+  <div style="background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.04); margin: 16px 0;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 13.5px;">
+      <thead>
+        <tr>
+          <th style="background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%); color: #fff; padding: 12px 14px; text-align: left; font-size: 12px; width: 5%;">#</th>
+          <th style="background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%); color: #fff; padding: 12px 14px; text-align: left; font-size: 12px; width: 25%;">パス</th>
+          <th style="background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%); color: #fff; padding: 12px 14px; text-align: left; font-size: 12px; width: 35%;">イシュー</th>
+          <th style="background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%); color: #fff; padding: 12px 14px; text-align: left; font-size: 12px;">ソリューション</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12px;">/site-photo</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">現場写真整理に夜 21 時まで</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">写真台帳代行 (LINE → PDF)</td></tr>
+        <tr><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">2</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12px;">/estimate</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">見積もり書類が散在</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">見積書作成代行</td></tr>
+        <tr><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">3</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12px;">/call-memo</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">顧客電話の内容を覚えていられない</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">通話メモ自動要約</td></tr>
+        <tr><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">4</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12px;">/voice-daily</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">日報を書く時間がない</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">音声日報</td></tr>
+        <tr><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">5</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12px;">/receipt</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">領収書整理に妻が疲弊</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">領収書経理代行</td></tr>
+        <tr><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">6</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12px;">/drawing</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">図面確認が現場でやりづらい</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">図面ブラウザ</td></tr>
+        <tr><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">7</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12px;">/client-progress</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">施主に進捗報告が手間</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">顧客進捗報告</td></tr>
+        <tr><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">8</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12px;">/website-refresh</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">ホームページ古くて訪問 0</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">サイト更新代行</td></tr>
+        <tr><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">9</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12px;">/ob-management</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">OB 顧客台帳が散在</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">OB 10 年管理</td></tr>
+        <tr><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">10</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12px;">/content-auto</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">SNS / ブログ更新できない</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">コンテンツ自動生成</td></tr>
+        <tr><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">11</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12px;">/lead-cultivation</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">展示会の名刺が放置</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">展示会リード育成</td></tr>
+        <tr><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">12</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12px;">/business-metrics</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">経営状況が見えない</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">経営可視化</td></tr>
+        <tr><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">13</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12px;">/tacit-knowledge</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">親方の暗黙知が消える</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">暗黙知継承 AI</td></tr>
+        <tr><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">14</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12px;">/home-simulator</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">施主に住宅プランを説明しづらい</td><td style="padding: 9px 14px; border-bottom: 1px solid var(--border);">カスタム住宅シミュ</td></tr>
+        <tr style="background: linear-gradient(90deg, #ede9fe 0%, transparent 80%);">
+          <td style="padding: 9px 14px; font-weight: 700; color: var(--purple);">15 ★</td>
+          <td style="padding: 9px 14px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--purple); font-weight: 600;">/atotsugi-coach</td>
+          <td style="padding: 9px 14px; font-weight: 600;">アトツギが父親を IT 導入に説得できない</td>
+          <td style="padding: 9px 14px; font-weight: 600;">父親説得 AI コーチ (本仕様)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subsection">⚠️ 重要: 動く 1 + コンセプト 14 の誠実ラベリング</h3>
+  <div class="card danger">
+    <p style="font-size: 14.5px; line-height: 1.85;">
+      既存 14 デモは <strong>動かない (UI モック + ダミーデータ のみ)</strong> 状態。 [[demo-role-redefinition-2026-05-25]] の「名刺 + 痛みのきっかけ」 再定義で割り切ったため、 動作実装は意図的に省略済。
+    </p>
+    <p style="font-size: 14.5px; line-height: 1.85; margin-top: 12px;">
+      → 父親説得 AI コーチ (15 個目) <strong>のみ動く実装</strong>、 既存 14 はコンセプト提示のまま。 LP では <strong>誠実なラベリング</strong>で区別する:
+    </p>
+    <ul style="padding-left: 22px; margin-top: 10px; font-size: 13.5px; line-height: 1.9;">
+      <li>父親説得 AI コーチ = <strong style="color: var(--success);">「動作デモ」 緑バッジ</strong> (実際に AI が答える)</li>
+      <li>既存 14 デモ = <strong style="color: var(--neutral);">「アイデア紹介」 灰バッジ</strong> (興味あればご連絡を)</li>
+    </ul>
+    <p style="font-size: 13.5px; line-height: 1.8; margin-top: 12px; color: var(--text-muted);">
+      ※ 「動かないものを動くと偽らない」 = 「めんどくさがり当事者性」 (誠実なユーザー視点) の延長。 真面目で几帳面な人ほど「全部完璧に作ろう」 として失敗する建設業 DX で、 「動く範囲で誠実に提示」 が逆に信頼を生む。
+    </p>
+  </div>
+
+  <h3 class="subsection">反応分布の取り方 (「興味方向」 投票)</h3>
+  <div class="card accent">
+    <p style="font-size: 14.5px; line-height: 1.85;">
+      demo-gallery 投票機能 ([[demo-gallery-status]]) を <strong>15 デモ全体に拡張</strong>。 ただし「使った結果」 ではなく <strong>「興味の方向」</strong> だけ取る (= 動かないものを「使った」 と聞けないため):
+    </p>
+    <ul style="padding-left: 22px; margin-top: 10px; font-size: 13.5px; line-height: 1.9;">
+      <li>「<strong>あなたが今、 最も困っている悩みはどれですか?</strong>」 投票 (15 デモから 1 つ選択)</li>
+      <li>「他にも気になる」 = 複数選択可</li>
+      <li>「動作デモを試したい」 (= 父親説得 AI コーチ への誘導)</li>
+      <li>連絡先 (LINE / メール、 任意)</li>
+      <li>役職 (アトツギ / 親方 / 妻 / 建材屋 / 設計事務所 / その他)</li>
+    </ul>
+    <p style="font-size: 14px; line-height: 1.85; margin-top: 12px;">
+      → 反応分布で <strong>「本当に刺さるイシュー」</strong> を特定。 11/10 までに刺さった 1-2 個を「動かす実装」 に昇格させ磨き上げ集中。
+    </p>
+  </div>
+
+  <h3 class="subsection">スプリント全体構成 (5/29-6/30)</h3>
+  <div class="card success">
+    <ul style="padding-left: 22px; margin: 10px 0; font-size: 13.5px; line-height: 1.95;">
+      <li><strong>Phase 1 (5/29-6/3)</strong>: 父親説得 AI コーチ MVP 実装 (動く 1 個、 25h) — § 7 スプリント維持、 修正 ②③ 反映 (架空数字削除 + 補助金ハードコード)</li>
+      <li><strong>Phase 2 (6/4-6/14)</strong>: 既存 14 デモに「アイデア紹介」 灰バッジ追加 + demo-gallery を 15 デモ拡張 + LP 化 (10-15h)</li>
+      <li><strong>Phase 3 (6/15-6/25)</strong>: LINE 拡散実施 + 反応分布収集 (友人 / アトツギ甲子園 SNS / 商工会議所 / 北原氏紹介) + 反応データの ES 反映 (10h)</li>
+      <li><strong>Phase 4 (6/26-6/30)</strong>: ES 本文ドラフト v1 仕上げ + docx 転記 + 補足資料 PDF 化 + 提出 (5-10h)</li>
+    </ul>
+    <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">
+      合計 50-60h (= 軸 B 月 30-40h × 1.5 ヶ月 弱)、 ギリギリ。 反応分布収集が遅れた場合 Phase 4 圧縮 / Phase 3 短縮で対応。
+    </p>
+  </div>
+</section>
+
+<!-- §2 5-MIN DEMO -->
+<section class="container" id="sec2">
+  <h2 class="section-title"><span class="num">§ 2</span>5 分実演フロー</h2>
+  <p class="section-lead">11/10 最終審査で見せる絵。 アトツギの悩みに AI が answer する瞬間を 5 分で。</p>
+
+  <div class="timeline-demo">
+    <div class="demo-step">
+      <div class="demo-time">0:00-0:30</div>
+      <div class="demo-content">
+        <strong>オープニング</strong>: 「アトツギは IT を使いたい、 でも父親が首を縦に振らない」 という痛みの提示
+      </div>
+    </div>
+    <div class="demo-step">
+      <div class="demo-time">0:30-1:30</div>
+      <div class="demo-content">
+        <strong>入力デモ</strong>: アトツギ役の俳優 (or masatoman 自身) が画面上で入力:<br>
+        <em style="background: var(--info-bg); padding: 8px 12px; border-radius: 4px; display: block; margin-top: 8px; font-style: normal; font-size: 13px;">「うちは個人客 9 割で日報も紙、 ANDPAD も使ってない。 父さんは『今までこれで回ってきた』 と言うが、 自分が後継ぎになる前に IT 化したい。 どう説得すれば?」</em>
+      </div>
+    </div>
+    <div class="demo-step">
+      <div class="demo-time">1:30-3:30</div>
+      <div class="demo-content">
+        <strong>AI が 5 つのカードを出力</strong>:
+        <div class="demo-cards">
+          <div class="demo-card-mini">🧠 ① 父親世代の心理: 「変える = 過去否定」 と感じる傾向、 まず実績を肯定する</div>
+          <div class="demo-card-mini">📊 ② 業界事例: 多摩の○○工務店 (年商 3 億、 2 代目 35 歳) が ANDPAD 導入で月 40h 削減</div>
+          <div class="demo-card-mini">💰 ③ 経済効果: 月 40h × 時給 3,000 円 = 月 12 万、 年間 144 万の節約</div>
+          <div class="demo-card-mini">📜 ④ 補助金: IT 導入補助金 通常枠 1/2 で導入費 100 万 → 50 万負担</div>
+          <div class="demo-card-mini">⚔️ ⑤ 想定反論 + 対処: 「使い方分からん」 → 最初の 1 ヶ月は息子が代わりに入力</div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-step">
+      <div class="demo-time">3:30-4:30</div>
+      <div class="demo-content">
+        <strong>「父親に話す時の順序」 を AI が提示</strong>:
+        <div class="ui-conversation-steps" style="margin-top: 8px;">
+          <ol>
+            <li><strong>STEP 1</strong>: 「これまでよくやってきた」 と肯定 (5 秒)</li>
+            <li><strong>STEP 2</strong>: 「俺が次の代を考えてる」 と動機を伝える (10 秒)</li>
+            <li><strong>STEP 3</strong>: 業界事例を 1 つだけ出す (30 秒)</li>
+            <li><strong>STEP 4</strong>: 補助金で半額になることを伝える (10 秒)</li>
+            <li><strong>STEP 5</strong>: 「最初の 1 ヶ月は俺がやる」 で安心させる (5 秒)</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="demo-step">
+      <div class="demo-time">4:30-5:00</div>
+      <div class="demo-content">
+        <strong>クロージング</strong>: 「今、 多摩のアトツギ × ○ 名で N=1 ヒアリング中。 父親説得は親子関係そのもの、 だから AI 1 つで終わらせず、 me:rise 立川で『父親説得カフェ』 を月 1 開催し、 アトツギ同士が経験を交換する場を作る」
+      </div>
+    </div>
+  </div>
+
+  <div class="card success" style="margin-top: 24px;">
+    <h4 class="minor" style="color: var(--success);">⭐ Wow ポイント</h4>
+    <p style="font-size: 14.5px; color: var(--text);">
+      AI が「父親世代の心理」 + 「数字」 + 「会話順序」 を一気に出す = アトツギの悩みに <strong>1 分以内で answer</strong>。 競合 (ANDPAD 等) は「効率化機能」 しか提示できない、 ここで完全に差別化。
+    </p>
+  </div>
+</section>
+
+<!-- §3 ARCHITECTURE -->
+<section class="container" id="sec3">
+  <h2 class="section-title"><span class="num">§ 3</span>技術アーキテクチャ</h2>
+  <p class="section-lead">Next.js + Anthropic API + Supabase。 既存 portfolio に追加する形。</p>
+
+  <div class="arch-diagram">
+<pre>
+┌────────────────────────────────────────────┐
+│  Frontend (Next.js 16 App Router)          │
+│  - /local-business/atotsugi-coach          │ <span class="comment">← 新規ページ</span>
+│  - 入力フォーム + ストリーミング表示             │
+└────────────┬───────────────────────────────┘
+             │ Server Action
+             <span class="arrow">▼</span>
+┌────────────────────────────────────────────┐
+│  API Route (/api/coach)                    │
+│  - 入力バリデーション                          │
+│  - Claude API 呼び出し (streaming)          │
+└────────────┬───────────────────────────────┘
+             │
+             <span class="arrow">▼</span>
+┌────────────────────────────────────────────┐
+│  Claude API (claude-sonnet-4-6)            │
+│  - System prompt: 父親説得コーチ役            │
+│  - Few-shot 5 例 (業界事例 + 補助金)          │
+│  - Structured Output (JSON Schema)         │
+└────────────────────────────────────────────┘
+
+<span class="comment">オプション (後付け):</span>
+┌────────────────────────────────────────────┐
+│  Supabase                                  │
+│  - consultations テーブル (履歴)              │
+│  - profiles テーブル (アトツギ情報)            │
+└────────────────────────────────────────────┘
+</pre>
+  </div>
+
+  <h3 class="subsection">スタック</h3>
+  <ul style="padding-left: 22px; font-size: 14px; line-height: 2;">
+    <li><strong>Frontend</strong>: Next.js 16 App Router (既存 portfolio の Next.js プロジェクトに追加)</li>
+    <li><strong>AI</strong>: Anthropic API (<code class="inline">@anthropic-ai/sdk</code>、 Claude Sonnet 4.6 想定)</li>
+    <li><strong>DB (任意)</strong>: Supabase (既存 portfolio で稼働中、 新規テーブル追加)</li>
+    <li><strong>UI</strong>: Tailwind CSS + shadcn/ui (既存 portfolio で利用済)</li>
+    <li><strong>デプロイ</strong>: Vercel (既存 portfolio で稼働中)</li>
+  </ul>
+
+  <h3 class="subsection">環境変数</h3>
+  <pre class="code"><span class="kw">ANTHROPIC_API_KEY</span>=sk-ant-... <span class="com"># LEVEL UP STAGE 用に新規発行</span>
+<span class="kw">NEXT_PUBLIC_SUPABASE_URL</span>=... <span class="com"># 既存</span>
+<span class="kw">SUPABASE_SERVICE_ROLE_KEY</span>=... <span class="com"># 既存</span></pre>
+</section>
+
+<!-- §4 UI MOCKUP -->
+<section class="container" id="sec4">
+  <h2 class="section-title"><span class="num">§ 4</span>UI 仕様 (3 画面)</h2>
+  <p class="section-lead">入力 → コーチング結果 → (任意) 履歴。 MVP は最初の 2 画面のみ。</p>
+
+  <div class="ui-mockup">
+    <div class="ui-mockup-title">画面 1: 入力フォーム (/local-business/atotsugi-coach)</div>
+    <div class="ui-frame">
+      <div class="ui-title">父親説得 AI コーチ</div>
+      <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">あなたの状況を教えてください:</div>
+      <div class="ui-textarea">例: うちは個人客 9 割で日報も紙、 ANDPAD も使ってない。 父さんは『今までこれで回ってきた』 と言うが、 自分が後継ぎになる前に IT 化したい。 どう説得すれば...</div>
+      <div class="ui-button">説得材料を出す</div>
+      <div style="font-size: 12px; color: var(--text-faint); margin-top: 14px;">💡 入力例 (クリックで自動入力):</div>
+      <div style="font-size: 12px; color: var(--text-muted); padding-left: 12px; margin-top: 4px;">
+        • 父親が IT を嫌がる<br>
+        • 補助金を使いたいが説得方法分からない<br>
+        • 妻 (経理) を味方につけたい
+      </div>
+    </div>
+  </div>
+
+  <div class="ui-mockup">
+    <div class="ui-mockup-title">画面 2: コーチング結果 (ストリーミング表示)</div>
+    <div class="ui-frame">
+      <div class="ui-title">📋 説得材料 5 つ + 会話順序</div>
+
+      <div class="ui-coach-card psychology">
+        <div class="ui-label">🧠 1. 父親世代の心理</div>
+        「変える = 過去否定」 と感じる傾向、 まず実績を肯定するのが第一歩
+      </div>
+      <div class="ui-coach-card example">
+        <div class="ui-label">📊 2. 業界事例</div>
+        多摩の○○工務店 (年商 3 億、 2 代目 35 歳) が ANDPAD 導入で月 40h 削減
+      </div>
+      <div class="ui-coach-card economic">
+        <div class="ui-label">💰 3. 経済効果</div>
+        月 40h × 時給 3,000 円 = 月 12 万、 年間 144 万の節約
+      </div>
+      <div class="ui-coach-card subsidy">
+        <div class="ui-label">📜 4. 補助金</div>
+        IT 導入補助金 通常枠 1/2 で導入費 100 万 → 50 万負担
+      </div>
+      <div class="ui-coach-card objection">
+        <div class="ui-label">⚔️ 5. 想定反論 + 対処</div>
+        「使い方分からん」 → 最初の 1 ヶ月は息子が代わりに入力
+      </div>
+
+      <div class="ui-conversation-steps">
+        <div style="font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--warning);">💬 会話順序 (5 STEP)</div>
+        <ol>
+          <li>「これまでよくやってきた」 と肯定 (5 秒)</li>
+          <li>「俺が次の代を考えてる」 動機を伝える (10 秒)</li>
+          <li>業界事例を 1 つだけ出す (30 秒)</li>
+          <li>補助金で半額になることを伝える (10 秒)</li>
+          <li>「最初の 1 ヶ月は俺がやる」 で安心 (5 秒)</li>
+        </ol>
+      </div>
+
+      <div style="margin-top: 14px;">
+        <span class="ui-button secondary">もう一度入力する</span>
+        <span class="ui-button">PDF として保存</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="background: #f9fafb; margin-top: 24px;">
+    <h4 class="minor">画面 3: 履歴 (任意、 後付け)</h4>
+    <p style="font-size: 13.5px; color: var(--text-muted);">Supabase 連携時に追加。 過去の説得材料を一覧表示、 検索可。 MVP では不要、 9-10 月の磨き上げ段階で導入検討。</p>
+  </div>
+
+  <h3 class="subsection">使用する shadcn/ui コンポーネント</h3>
+  <ul style="padding-left: 22px; font-size: 14px; line-height: 2;">
+    <li><code class="inline">&lt;Card&gt;</code>: 5 つの説得材料カード</li>
+    <li><code class="inline">&lt;Textarea&gt;</code>: 入力フォーム</li>
+    <li><code class="inline">&lt;Button&gt;</code>: 「説得材料を出す」 「PDF として保存」</li>
+    <li><code class="inline">&lt;Badge&gt;</code>: 「父親世代の心理」 「業界事例」 等のラベル</li>
+  </ul>
+</section>
+
+<!-- §5 PROMPT -->
+<section class="container" id="sec5">
+  <h2 class="section-title"><span class="num">§ 5</span>プロンプト設計</h2>
+  <p class="section-lead">System Prompt + Few-shot 3 例 + Structured Output (JSON Schema)。</p>
+
+  <h3 class="subsection">System Prompt</h3>
+  <pre class="code"><span class="com">// lib/coach/prompt.ts</span>
+<span class="kw">export const</span> SYSTEM_PROMPT = <span class="str">`</span>
+<span class="str">あなたは工務店のアトツギ (2 代目 / 3 代目、 30-40 代) を支援する</span>
+<span class="str">「父親説得コーチ」 です。</span>
+
+<span class="str">アトツギは父親 (60-70 代、 IT 弱者、 工務店オーナー) に</span>
+<span class="str">IT 導入や事業改革を説得したい状況です。 あなたの役割は、</span>
+<span class="str">アトツギが父親を効果的に説得できるよう、 5 つの観点で</span>
+<span class="str">具体的な材料を提供することです:</span>
+
+<span class="str">1. 父親世代の心理: 60-70 代経営者が新しいことに抵抗する</span>
+<span class="str">   理由を 1 つ特定し、 それを和らげる第一歩を提示</span>
+<span class="str">2. 業界事例: 多摩地区周辺の中小工務店 (年商 1-5 億) で</span>
+<span class="str">   似た改革に成功した例 (会社名・年商・年齢・効果を含む)</span>
+<span class="str">3. 経済効果: 数字で示せる金額 (時給 × 削減時間 = 月額 → 年額)</span>
+<span class="str">4. 補助金: 該当しうる補助金を 1 つ (IT 導入補助金 通常枠 1/2</span>
+<span class="str">   / 東京都 DX 助成金 等)、 自己負担額を計算</span>
+<span class="str">5. 想定反論 + 対処: 父親が言いそうな反論 1 つと対処法</span>
+
+<span class="str">加えて、 これらを父親に話す時の「会話順序」 を 5 STEP で</span>
+<span class="str">示してください (各 STEP の所要時間も明記)。</span>
+
+<span class="str">ルール (claude.ai 修正 ②③ 反映後):</span>
+<span class="str">- 出力は JSON Schema に従う構造化データのみ</span>
+<span class="str">- 業界事例: 数字は出さない (プレースホルダ「あなたの地域の</span>
+<span class="str">  類似事例をここに表示」)。 ★ 実例は N=1 ヒアリング後に</span>
+<span class="str">  本物の引用に差し替え</span>
+<span class="str">- 経済効果: 数字は出さない (「時間が浮く」 等の定性表現のみ)</span>
+<span class="str">  ★ ROI 捏造禁止 (demo-role-redefinition との整合)</span>
+<span class="str">- 補助金カードは LLM 生成しない → 固定ハードコード</span>
+<span class="str">  (subsidy-pitch-deprecated-2026-05-17 確定情報)</span>
+<span class="str">- 「父さん」「親父」 等の呼称は使わず「父親」 と書く</span>
+<span class="str">- アトツギの心理 (焦り・尊敬・葛藤) に共感する temperate</span>
+<span class="str">  なトーン</span>
+<span class="str">`</span>;</pre>
+
+<div class="card danger" style="margin-top: 20px;">
+  <h4 class="minor" style="color: var(--danger);">⚠️ claude.ai Round 3 修正 ②③ の経緯</h4>
+  <p style="font-size: 13.5px; line-height: 1.8;">
+    旧プロンプトは「業界事例は架空 OK」 + 「補助金情報は LLM 生成」 と書いていた。 これは <strong>2 つの致命的盲点</strong>:
+  </p>
+  <ul style="padding-left: 22px; margin: 8px 0; font-size: 13px; line-height: 1.85;">
+    <li><strong>修正 ②</strong>: 5 分実演で「月 40h 削減 = 年 144 万節約」 と AI が出した瞬間、 佐藤審査員に「実例は実在しますか?」 と聞かれたら詰む。 demo-role-redefinition で「数字全削除」 と決めた原則と矛盾</li>
+    <li><strong>修正 ③</strong>: Claude は補助金制度の細部 (年度 / 類型 / 上限 / 併用可否) を「もっともらしく間違える」。 subsidy-pitch-deprecated で学んだ領域を、 最も幻覚しやすいコンポーネントに任せていた</li>
+  </ul>
+  <p style="font-size: 13.5px; line-height: 1.8; margin-top: 8px;">
+    上記プロンプトは修正後版。 補助金カードは LLM 出力ではなく <strong>固定 React コンポーネント</strong> として実装する。
+  </p>
+</div>
+
+  <h3 class="subsection">Structured Output (JSON Schema 抜粋)</h3>
+  <pre class="code"><span class="com">// lib/coach/schema.ts</span>
+<span class="kw">export const</span> COACH_SCHEMA = {
+  <span class="str">"type"</span>: <span class="str">"object"</span>,
+  <span class="str">"properties"</span>: {
+    <span class="str">"psychology"</span>: {
+      <span class="str">"type"</span>: <span class="str">"object"</span>,
+      <span class="str">"properties"</span>: {
+        <span class="str">"reason"</span>: { <span class="str">"type"</span>: <span class="str">"string"</span> },
+        <span class="str">"first_step"</span>: { <span class="str">"type"</span>: <span class="str">"string"</span> }
+      },
+      <span class="str">"required"</span>: [<span class="str">"reason"</span>, <span class="str">"first_step"</span>]
+    },
+    <span class="str">"industry_example"</span>: {
+      <span class="str">"properties"</span>: {
+        <span class="str">"company_name"</span>: { <span class="str">"type"</span>: <span class="str">"string"</span> },
+        <span class="str">"location"</span>: { <span class="str">"type"</span>: <span class="str">"string"</span> },
+        <span class="str">"revenue"</span>: { <span class="str">"type"</span>: <span class="str">"string"</span> },
+        <span class="str">"successor_age"</span>: { <span class="str">"type"</span>: <span class="str">"number"</span> },
+        <span class="str">"improvement"</span>: { <span class="str">"type"</span>: <span class="str">"string"</span> }
+      }
+    },
+    <span class="str">"economic_effect"</span>: { <span class="com">/* 月時間・時給・月額・年額 */</span> },
+    <span class="str">"subsidy"</span>: { <span class="com">/* 名前・補助率・導入費・自己負担 */</span> },
+    <span class="str">"objection_handling"</span>: { <span class="com">/* 反論・対処 */</span> },
+    <span class="str">"conversation_steps"</span>: {
+      <span class="str">"type"</span>: <span class="str">"array"</span>,
+      <span class="str">"minItems"</span>: <span class="num">5</span>,
+      <span class="str">"maxItems"</span>: <span class="num">5</span>
+    }
+  }
+};</pre>
+
+  <h3 class="subsection">Few-shot (3 例)</h3>
+  <ul style="padding-left: 22px; font-size: 14px; line-height: 1.9;">
+    <li><strong>例 1</strong>: 「個人客 9 割、 日報紙」 入力 → 写真台帳代行 SaaS 訴求出力</li>
+    <li><strong>例 2</strong>: 「補助金使いたいが説得方法分からない」 → IT 通常枠 1/2 + 妻味方化戦略</li>
+    <li><strong>例 3</strong>: 「妻 (経理) を味方につけたい」 → 妻向け補助金 + 帳簿効率化訴求</li>
+  </ul>
+</section>
+
+<!-- §6 FILE TREE -->
+<section class="container" id="sec6">
+  <h2 class="section-title"><span class="num">§ 6</span>ファイル構成</h2>
+  <p class="section-lead">portfolio リポジトリへの追加ファイル。</p>
+
+  <div class="file-tree">
+<pre>
+portfolio/
+├── <span class="dir">app/</span>
+│   └── <span class="dir">local-business/</span>
+│       └── <span class="dir new">atotsugi-coach/</span>                <span class="comment"># 新規</span>
+│           ├── <span class="new">page.tsx</span>                  <span class="comment"># 入力フォーム + 結果表示</span>
+│           ├── <span class="dir new">components/</span>
+│           │   ├── <span class="new">input-form.tsx</span>        <span class="comment"># フォーム</span>
+│           │   ├── <span class="new">coaching-result.tsx</span>   <span class="comment"># 結果カード 5 つ + 会話順序</span>
+│           │   ├── <span class="new">card-psychology.tsx</span>
+│           │   ├── <span class="new">card-example.tsx</span>
+│           │   ├── <span class="new">card-economic.tsx</span>
+│           │   ├── <span class="new">card-subsidy.tsx</span>
+│           │   ├── <span class="new">card-objection.tsx</span>
+│           │   └── <span class="new">conversation-steps.tsx</span>
+│           └── <span class="new">actions.ts</span>                <span class="comment"># Server Action (Claude API)</span>
+├── <span class="dir">lib/</span>
+│   └── <span class="dir new">coach/</span>                          <span class="comment"># 新規</span>
+│       ├── <span class="new">prompt.ts</span>                    <span class="comment"># System prompt + Few-shot</span>
+│       ├── <span class="new">schema.ts</span>                    <span class="comment"># JSON Schema 定義</span>
+│       └── <span class="new">client.ts</span>                    <span class="comment"># Anthropic SDK ラッパー</span>
+└── <span class="dir">docs/levelupstage/</span>
+    └── atotsugi-coach-spec-2026-05-28.html  <span class="comment"># 本仕様書</span>
+</pre>
+  </div>
+</section>
+
+<!-- §7 SPRINT -->
+<section class="container" id="sec7">
+  <h2 class="section-title"><span class="num">§ 7</span>1 週間スプリント (5/28-6/3)</h2>
+  <p class="section-lead">合計 25h、 軸 B 月 30-40h 予算内。 1 日 3-5h を確保。</p>
+
+  <div class="sprint-table">
+    <table>
+      <thead>
+        <tr>
+          <th width="10%">DAY</th>
+          <th width="14%">日付</th>
+          <th>作業</th>
+          <th width="10%">時間</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="day-num">DAY 1</span></td>
+          <td>5/28 (木)</td>
+          <td>仕様書最終確認 (今) + ブランチ切り <code class="inline">feature/atotsugi-coach</code> + 環境変数準備 (ANTHROPIC_API_KEY 発行)</td>
+          <td class="hours">1h</td>
+        </tr>
+        <tr>
+          <td><span class="day-num">DAY 2</span></td>
+          <td>5/29 (金)</td>
+          <td>UI 静的版 (page.tsx + input-form.tsx + コーチング結果カード 5 つ 仮データ表示)</td>
+          <td class="hours">4h</td>
+        </tr>
+        <tr>
+          <td><span class="day-num">DAY 3</span></td>
+          <td>5/30 (土)</td>
+          <td>Anthropic SDK 連携 (lib/coach/client.ts + prompt.ts + schema.ts) + Server Action 実装</td>
+          <td class="hours">5h</td>
+        </tr>
+        <tr>
+          <td><span class="day-num">DAY 4</span></td>
+          <td>5/31 (日)</td>
+          <td>Few-shot 3 例 完成 + プロンプト微調整 (実際の出力確認 × 5 回)</td>
+          <td class="hours">4h</td>
+        </tr>
+        <tr>
+          <td><span class="day-num">DAY 5</span></td>
+          <td>6/1 (月)</td>
+          <td>ストリーミング表示対応 + ローディング UX + エラーハンドリング</td>
+          <td class="hours">4h</td>
+        </tr>
+        <tr>
+          <td><span class="day-num">DAY 6</span></td>
+          <td>6/2 (火)</td>
+          <td>スタイリング仕上げ (shadcn/ui + Tailwind) + レスポンシブ + 印刷用 CSS</td>
+          <td class="hours">4h</td>
+        </tr>
+        <tr>
+          <td><span class="day-num">DAY 7</span></td>
+          <td>6/3 (水)</td>
+          <td>Vercel デプロイ + 動作確認 5 ケース + 5 分実演リハーサル</td>
+          <td class="hours">3h</td>
+        </tr>
+        <tr class="total">
+          <td colspan="3">合計</td>
+          <td class="hours">25h</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- §8 ROADMAP -->
+<section class="container" id="sec8">
+  <h2 class="section-title"><span class="num">§ 8</span>11/10 までの磨き上げ</h2>
+  <p class="section-lead">MVP 完成後の改善ロードマップ。 N=1 フィードバック → プログラム → セミファイナル → 最終 で 3 回改善。</p>
+
+  <div class="roadmap-table">
+    <table>
+      <thead>
+        <tr>
+          <th width="20%">時期</th>
+          <th>やること</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="period">6/4-6/14</td>
+          <td>N=1 アトツギに見せる → フィードバック → 改善 1 回目 (例: カード順序変更、 業界事例を実例に置き換え)</td>
+        </tr>
+        <tr>
+          <td class="period">6/15-6/30</td>
+          <td>ES 本文と並行で、 Few-shot を「実際のアトツギの悩み」 で増やす (= 一次データ反映)</td>
+        </tr>
+        <tr>
+          <td class="period">7-8 月</td>
+          <td>1 次面接で画面共有 → 面接審査者の反応で改善 2 回目</td>
+        </tr>
+        <tr>
+          <td class="period">8/18-9/15</td>
+          <td>レベルアッププログラム で他参加者・メンターのフィードバック → 改善 3 回目</td>
+        </tr>
+        <tr>
+          <td class="period">9-10 月</td>
+          <td>Supabase 連携 (履歴機能追加) + 入口顧客 N=3 に有料化 (月 1-3 万)</td>
+        </tr>
+        <tr>
+          <td class="period">10/16</td>
+          <td>セミファイナルで実演 + 動画化</td>
+        </tr>
+        <tr style="background: linear-gradient(90deg, #dcfce7 0%, transparent 60%);">
+          <td class="period" style="color: var(--success);">11/10</td>
+          <td><strong>最終審査 5 分実演、 アトツギの悩みを実時間で AI コーチング</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- §9 ES REFLECTION -->
+<section class="container" id="sec9">
+  <h2 class="section-title"><span class="num">§ 9</span>ES への反映方針</h2>
+  <p class="section-lead">Round 2 統合判定の設問別修正アクションに、 「父親説得 AI コーチ」 を組み込む。</p>
+
+  <div class="card warning">
+    <h4 class="minor">設問 1 タイトル副題 (両方試して本文ドラフト v1-A / v1-B 比較)</h4>
+    <p style="font-size: 14.5px; line-height: 1.8;">
+      <strong>v1-A 案 (Round 2 主案 維持)</strong>: 「黒字なのに継げずに消える工務店を、 跡継ぎと AI で残す。 <strong>— 多摩・工務店承継プロジェクト</strong>」<br>
+      <strong>v1-B 案 (副題変更)</strong>: 「黒字なのに継げずに消える工務店を、 跡継ぎと AI で残す。 <strong>— 父親説得 AI コーチ プロジェクト</strong>」
+    </p>
+    <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">
+      ※ claude.ai Round 3 警告: 副題「父親説得 AI コーチ プロジェクト」 にすると <strong>看板倒れ</strong>リスク (タイトル「事業承継」 という大きな約束 vs 中身「父親説得チャットボット」 = 伊藤「頂点と底辺の落差」 が逆向きに発生)。 本文ドラフト v1-A / v1-B 両方作成して比較した上で最終選定
+    </p>
+  </div>
+
+  <div class="card warning">
+    <h4 class="minor">設問 2 内容 (主軸を AI コーチに)</h4>
+    <p style="font-size: 14.5px;">
+      「アトツギが父親を説得する材料を AI が即時生成する <strong>『父親説得 AI コーチ』</strong> から始める。 BPaaS (業務代行) と AI エージェント (一社一カスタム) は、 父親説得が成立した後の段階で導入支援する」 に再構造化
+    </p>
+  </div>
+
+  <div class="card warning">
+    <h4 class="minor">設問 4 強み 5 つ目 追加</h4>
+    <p style="font-size: 14.5px;"><strong>「実装力の証拠 = LEVEL UP STAGE エントリーから 6 日で MVP を実装・公開」</strong> を追加</p>
+  </div>
+
+  <div class="card warning">
+    <h4 class="minor">設問 4 強み 6 つ目 追加 (めんどくさがり当事者性)</h4>
+    <p style="font-size: 14.5px;">
+      <strong>「めんどくさがりの当事者性」</strong> — 「2 タップ多い」「研修だるい」「マニュアル読まない」 に敏感、 だから「LINE 投げたら勝手に整理」 設計ができる。 真面目で几帳面な人ほど "理想運用押し付け" の罠に陥る建設業 DX で、 当事者として「雑に使って成立する」 設計を作れる
+    </p>
+  </div>
+
+  <div class="card warning">
+    <h4 class="minor">設問 4 強み 7 つ目 追加 (15 案見せて 1 案集中)</h4>
+    <p style="font-size: 14.5px; line-height: 1.85;">
+      <strong>「15 案のコンセプトを見せて、 1 案のみ動かす設計力」</strong> — claude.ai 「広く見せて、 狭く実行する」 の体現。 既存 14 デモは「アイデア紹介」 として並列提示 + 父親説得 AI コーチ 1 つのみ動かす実装。
+    </p>
+    <p style="font-size: 13.5px; line-height: 1.85; margin-top: 10px;">
+      Solution looking for problem アンチパターンへの構造的対処 = <strong>「正解 1 つを N=1 で当てる」</strong> (claude.ai 修正 ① / 北原氏 2 週間 + 友人不在で時間制約) ではなく <strong>「広く見せて反応分布で当てる」</strong>。 demo-gallery + v8.0 6 候補並列開発と同じ一貫思想。
+    </p>
+    <p style="font-size: 13.5px; line-height: 1.85; margin-top: 10px;">
+      誠実なラベリング (動作デモ = 緑バッジ / アイデア紹介 = 灰バッジ) が <strong>「めんどくさがり当事者性」 の延長</strong> = 「動かないものを動くと偽らない」 = 建設業 DX で「全部完璧に作ろうとして失敗する」 罠を回避。
+    </p>
+  </div>
+
+  <div class="card success" style="margin-top: 16px;">
+    <h4 class="minor" style="color: var(--success);">補足資料 1 枚目: 動作デモ証拠</h4>
+    <p style="font-size: 14.5px; line-height: 1.85;">
+      <strong>父親説得 AI コーチ MVP 動作スクショ + 5 分実演動画 URL + ihara-frontend.com/local-business/atotsugi-coach</strong>。 「実際に動く 1 つ」 が証拠 = 池原 + 佐藤 直撃
+    </p>
+  </div>
+
+  <div class="card success" style="margin-top: 16px;">
+    <h4 class="minor" style="color: var(--success);">補足資料 2 枚目: 15 デモ コンセプトカタログ + 反応分布</h4>
+    <p style="font-size: 14.5px; line-height: 1.85;">
+      <strong>15 デモ (動作 1 + コンセプト 14) の一覧 + 6/11-25 拡散実施で取得した反応分布スナップショット</strong> = 「興味の方向」 データ。 「分布を測定した」 ことが証拠 = 「正解を当てた」 ではなく「広く問いを投げた」 ことが起業家としての誠実さ
+    </p>
+  </div>
+
+  <div class="card warning">
+    <h4 class="minor">任意プロセス (マイルストーン書き換え)</h4>
+    <p style="font-size: 14.5px;">7-8 月マイルストーンを「<strong>父親説得 AI コーチ N=1 有料化 + N=3 試行</strong>」 に書き換え</p>
+  </div>
+
+  <div class="card warning">
+    <h4 class="minor">任意自由</h4>
+    <p style="font-size: 14.5px;">「父親説得カフェ (me:rise 立川 月 1 開催)」 と「父親説得 AI コーチ」 の連動を強調 = <strong>「AI で材料を出し、 カフェで人が支え合う」 ハイブリッド構造</strong></p>
+  </div>
+
+  <div class="card success">
+    <h4 class="minor" style="color: var(--success);">補足資料 1 枚目 ★</h4>
+    <p style="font-size: 14.5px;"><strong>父親説得 AI コーチ MVP スクショ + 5 分実演動画 URL + ihara-frontend.com/local-business/atotsugi-coach</strong> = 「実装済」 が証拠 (= 池原 + 佐藤 直撃)</p>
+  </div>
+
+  <div class="card success">
+    <h4 class="minor" style="color: var(--success);">補足資料 2 枚目</h4>
+    <p style="font-size: 14.5px;">アトツギ N=1 ヒアリング書き起こし (6/15 後)</p>
+  </div>
+</section>
+
+<!-- §10 ANTIPATTERN -->
+<section class="container" id="sec10">
+  <h2 class="section-title"><span class="num">§ 10</span>アンチパターン警戒</h2>
+  <p class="section-lead">memory <code class="inline">demo-role-redefinition-2026-05-25</code> のアンチパターン 3 つを実装前に再確認。</p>
+
+  <div class="card danger" style="margin-bottom: 20px;">
+    <h4 class="minor" style="color: var(--danger);">⚠️ claude.ai Round 3 で発覚した盲点</h4>
+    <p style="font-size: 13.5px; line-height: 1.8;">
+      旧版で「Solution looking for problem 回避 ✅」 と書いたが <strong>半分嘘だった</strong>。 「父親説得材料が欲しい」 は <code class="inline">atotsugi-decision-maker</code> memory 自体が <strong>Claude 推論 3 層の仮説</strong> (友人 N=1 + 794 件レビュー + 235 件クラスタリング)、 一次情報のアトツギ N=0。
+    </p>
+    <p style="font-size: 13.5px; line-height: 1.8; margin-top: 8px;">
+      <strong>構造的対処</strong>: 1 つの正解を N=1 で当てる (claude.ai 修正 ① の順序逆転) ではなく、 <strong>15 仮説並列ぶつけ</strong> (§ 1.6) で確率的に当てる方向に転換。 これが新しい Solution looking for problem への答え。
+    </p>
+  </div>
+
+  <ul class="checklist success">
+    <li class="checked"><strong>Solution looking for a problem 構造的対処</strong>: 1 案ではなく 15 案並列ぶつけ (§ 1.6)、 反応分布で「本当に刺さる仮説」 を確率的に当てる</li>
+    <li class="checked"><strong>Feature showcase demo 回避</strong>: デモは「機能紹介」 ではなく「アトツギの悩みに AI が answer する瞬間」 を見せる = ストーリー型</li>
+    <li class="checked"><strong>Premature optimization 回避</strong>: 単一案デザインで作る、 3 案比較しない (UI 自体は 1 つ)</li>
+    <li class="checked"><strong>数字過大広告回避</strong>: プロンプトから「業界事例は架空 OK」「経済効果数字」 削除 (修正 ②)。 数字はプレースホルダのみ、 実例は N=1 ヒアリング後に本物に差し替え</li>
+    <li class="checked"><strong>補助金 LLM 生成禁止</strong>: 補助金カードは固定 React コンポーネント (修正 ③)、 subsidy-pitch-deprecated 確定情報のハードコード</li>
+    <li class="checked"><strong>「ハブ」「インフラ」 表現禁止</strong>: 設問・本文・UI で使わない、 代わりに「コーチ」「相談相手」 と書く</li>
+  </ul>
+</section>
+
+<!-- §11 VERIFICATION -->
+<section class="container" id="sec11">
+  <h2 class="section-title"><span class="num">§ 11</span>検証ポイント (実装後)</h2>
+  <p class="section-lead">6/3 デプロイ後、 動作確認 5 ケース実施。</p>
+
+  <ul class="checklist">
+    <li>5 つの説得材料が <strong>JSON Schema 通りに必ず生成</strong>される</li>
+    <li>経済効果の金額が妥当な範囲 (月 5-50 万円)</li>
+    <li>補助金情報が 2026 年度の実態と整合 (デジタル化基盤類型 廃止済、 通常枠 1/2 のみ等、 memory <code class="inline">subsidy-pitch-deprecated-2026-05-17</code> 参照)</li>
+    <li>業界事例の年商が <strong>1-5 億 (主顧客フィルタ)</strong> に収まる</li>
+    <li>会話順序 5 STEP の総所要時間が 60-90 秒に収まる</li>
+    <li>スマホ (375px) で読める</li>
+    <li>ストリーミング表示で 30 秒以内に最初のカードが表示される</li>
+  </ul>
+</section>
+
+<!-- §12 RISKS -->
+<section class="container" id="sec12">
+  <h2 class="section-title"><span class="num">§ 12</span>リスクと対策</h2>
+  <p class="section-lead">事前に想定されるリスク 5 つと、 それぞれの対策。</p>
+
+  <div class="risk-table">
+    <table>
+      <thead>
+        <tr>
+          <th width="35%">リスク</th>
+          <th>対策</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Claude API のコスト超過 ($50+)</td>
+          <td>Anthropic API の Budget Cap 設定 (<strong>$10/月</strong>)</td>
+        </tr>
+        <tr>
+          <td>業界事例の架空 → 訴求弱</td>
+          <td>N=1 ヒアリング後、 <strong>実例 1-2 件に置き換え</strong> (6/15 以降)</td>
+        </tr>
+        <tr>
+          <td>プロンプトインジェクション</td>
+          <td>入力テキストを構造化 (役職 / 困りごと / 父親の反応 等のフィールド分割)</td>
+        </tr>
+        <tr>
+          <td>デモ公開で競合に真似される</td>
+          <td>LEVEL UP STAGE 提出資料には URL 含めるが、 <strong>一般公開タイミングは masatoman 判断</strong></td>
+        </tr>
+        <tr>
+          <td>法務リスク (補助金情報誤記)</td>
+          <td>「2026-05-28 時点の情報」 と明記、 <strong>disclaimer 表示</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- NEXT ACTIONS -->
+<section class="container">
+  <h2 class="section-title" style="margin-top: 40px;">🚀 次のアクション (masatoman 用)</h2>
+  <p class="section-lead">仕様確定後、 すぐに動き出す 5 ステップ。</p>
+
+  <div class="action-steps">
+    <div class="action-step">
+      <div class="step-num">1</div>
+      <div class="step-date">今すぐ</div>
+      <h4>仕様書を読み、 違和感あれば修正依頼</h4>
+    </div>
+    <div class="action-step">
+      <div class="step-num">2</div>
+      <div class="step-date">5/28 (木) 残り時間</div>
+      <h4>ブランチ切り + ANTHROPIC_API_KEY 発行</h4>
+    </div>
+    <div class="action-step">
+      <div class="step-num">3</div>
+      <div class="step-date">5/29 (金)</div>
+      <h4>UI 静的版実装 着手</h4>
+    </div>
+    <div class="action-step">
+      <div class="step-num">4</div>
+      <div class="step-date">6/3 (水) 17:00</div>
+      <h4>Vercel デプロイ + 5 分実演リハーサル</h4>
+    </div>
+    <div class="action-step">
+      <div class="step-num">5</div>
+      <div class="step-date">6/4-15</div>
+      <h4>N=1 アトツギ接触 + デモを見せる + フィードバック反映</h4>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    作成: 2026-05-28 / 作成者: Claude (claude-opus-4-7)<br>
+    関連 docs: <code>external-review-round2-result-2026-05-28.md</code> (Round 2 統合判定) / <code>status-summary-2026-05-28.html</code> (現在地サマリ) / <code>a2-decision-comparison-2026-05-28.html</code> (Option A/B/C 判断)<br>
+    関連 memory: <code>komuten-bpaas-ai-agent-strategy-2026-05-18.md</code> / <code>atotsugi-decision-maker.md</code> / <code>demo-role-redefinition-2026-05-25.md</code> / <code>subsidy-pitch-deprecated-2026-05-17.md</code>
+  </div>
+</footer>
+
+</body>
+</html>

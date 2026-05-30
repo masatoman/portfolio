@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEVEL UP STAGE 2026 — 現在地サマリと残る判断</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafafa;
+    --card: #ffffff;
+    --text: #1a202c;
+    --text-muted: #4a5568;
+    --text-faint: #718096;
+    --border: #e2e8f0;
+    --accent: #2c5282;
+    --accent-light: #4299e1;
+    --success: #16a34a;
+    --success-bg: #dcfce7;
+    --warning: #d97706;
+    --warning-bg: #fef3c7;
+    --danger: #c53030;
+    --danger-bg: #fee2e2;
+    --info: #0284c7;
+    --info-bg: #e0f2fe;
+    --neutral: #6b7280;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #3182ce 100%);
+    color: #fff;
+    padding: 64px 24px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero .container { position: relative; }
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .hero h1 {
+    font-size: 36px;
+    line-height: 1.3;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .hero-sub {
+    font-size: 17px;
+    opacity: 0.92;
+    max-width: 800px;
+    line-height: 1.65;
+  }
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px 24px;
+    margin-top: 32px;
+    font-size: 13px;
+    opacity: 0.85;
+  }
+  .hero-meta span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hero-meta code { background: rgba(255,255,255,0.15); padding: 2px 8px; border-radius: 4px; font-family: 'Inter', monospace; }
+
+  /* TL;DR */
+  .tldr {
+    background: #fff;
+    margin-top: 32px;
+    border-radius: 16px;
+    padding: 32px 36px;
+    box-shadow: 0 4px 16px rgba(26, 54, 93, 0.08), 0 1px 3px rgba(0,0,0,0.04);
+    border: 1px solid var(--border);
+    border-left: 6px solid var(--success);
+  }
+  .tldr-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--success);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .tldr h2 {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--text);
+    margin: 0 0 14px;
+  }
+  .tldr p { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+  .tldr strong { color: var(--text); background: var(--warning-bg); padding: 1px 6px; border-radius: 3px; }
+
+  /* SECTIONS */
+  section { padding: 56px 0 16px; }
+  h2.section-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  h2.section-title .num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: #e6f0fb;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.1em;
+  }
+  .section-lead {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 28px;
+    max-width: 880px;
+  }
+
+  /* CHECKLIST (確定事項) */
+  .check-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 16px;
+  }
+  .check-item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px 22px 18px 56px;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--success);
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .check-item::before {
+    content: '✓';
+    position: absolute;
+    left: 18px; top: 18px;
+    width: 26px; height: 26px;
+    background: var(--success);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .check-item h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: var(--text); }
+  .check-item p { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+  /* DECISION CARDS (残る判断) */
+  .decision-card {
+    background: #fff;
+    border-radius: 12px;
+    margin: 20px 0;
+    overflow: hidden;
+    border: 2px solid var(--border);
+    border-left: 6px solid var(--warning);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  }
+  .decision-header {
+    padding: 18px 24px;
+    background: linear-gradient(135deg, #fef9f3 0%, #fef3c7 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .decision-header h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .decision-num {
+    background: var(--warning);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-right: 10px;
+  }
+  .decision-body { padding: 22px 24px; }
+  .decision-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13.5px;
+  }
+  .decision-body th, .decision-body td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+  .decision-body th { background: #f9fafb; font-weight: 600; color: var(--text); font-size: 12px; }
+  .decision-body .rec-box {
+    background: var(--success-bg);
+    border-left: 4px solid var(--success);
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-top: 16px;
+  }
+  .decision-body .rec-box .rec-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--success);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .decision-body .rec-box strong { color: var(--text); }
+
+  /* CRITERIA CARDS (判断基準) */
+  .criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 20px;
+  }
+  .criteria-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px 32px;
+    border: 2px solid var(--accent);
+    box-shadow: 0 6px 20px rgba(44, 82, 130, 0.08);
+  }
+  .criteria-card .crit-label {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .criteria-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 16px; color: var(--text); }
+  .criteria-card .crit-formula {
+    background: #f1f5f9;
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-family: 'Inter', monospace;
+    font-size: 13px;
+    color: var(--text);
+    margin: 12px 0;
+    border-left: 3px solid var(--accent-light);
+    line-height: 1.7;
+  }
+  .criteria-card .crit-conclusion {
+    background: linear-gradient(135deg, #fef9f3 0%, #fef3c7 100%);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-top: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    border-left: 4px solid var(--warning);
+  }
+
+  /* RECOMMENDED ACTION (最小タスク) */
+  .min-action {
+    background: linear-gradient(135deg, #16a34a 0%, #166534 100%);
+    color: #fff;
+    border-radius: 16px;
+    padding: 36px 40px;
+    box-shadow: 0 12px 36px rgba(22, 163, 74, 0.25);
+    margin: 32px 0;
+  }
+  .min-action .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    opacity: 0.85;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .min-action h3 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.4;
+    margin-bottom: 18px;
+  }
+  .min-action h3 .underline { background: linear-gradient(transparent 60%, rgba(255,255,255,0.3) 60%); }
+  .min-action .auto-decided {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    font-size: 14px;
+    line-height: 1.9;
+    opacity: 0.92;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .tl-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    border-top: 4px solid;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+  .tl-card.now { border-top-color: var(--danger); }
+  .tl-card.soon { border-top-color: var(--warning); }
+  .tl-card.mid { border-top-color: var(--info); }
+  .tl-card.final { border-top-color: var(--success); }
+  .tl-card .tl-date {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .tl-card.now .tl-date { color: var(--danger); }
+  .tl-card.soon .tl-date { color: var(--warning); }
+  .tl-card.mid .tl-date { color: var(--info); }
+  .tl-card.final .tl-date { color: var(--success); }
+  .tl-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+  .tl-card ul { padding-left: 18px; font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+  .tl-card ul li { margin-bottom: 4px; }
+
+  /* FOOTER */
+  footer {
+    margin-top: 80px;
+    padding: 40px 0 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-faint);
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  footer code { background: #f1f5f9; padding: 1px 6px; border-radius: 3px; font-family: 'Inter', monospace; font-size: 12px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { padding: 48px 20px 40px; }
+    .hero h1 { font-size: 26px; }
+    .hero-sub { font-size: 15px; }
+    .container { padding: 0 16px; }
+    h2.section-title { font-size: 20px; flex-wrap: wrap; }
+    .min-action { padding: 24px 26px; }
+    .min-action h3 { font-size: 20px; }
+    .decision-header { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">LEVEL UP STAGE 2026 / Round 2 統合判定後</div>
+    <h1>現在地サマリと残る判断</h1>
+    <p class="hero-sub">
+      Round 2 で必達修正 8 点が確定。 残る判断は 5 つ、 判断基準は 2 つだけ。
+      今週 (5/28-6/3) の最小タスクが決まれば、 残り 4 判断は自動的に決まる。
+    </p>
+    <div class="hero-meta">
+      <span>📅 2026-05-28 (今日)</span>
+      <span>⏰ 提出期限 6/30 (火) 24:00</span>
+      <span>⏳ 残り 33 日</span>
+      <span>🎯 申込番号 20278</span>
+    </div>
+  </div>
+</div>
+
+<!-- TL;DR -->
+<div class="container">
+  <div class="tldr">
+    <div class="tldr-label">TL;DR — 今週やるべき最小タスク</div>
+    <h2>今週 (5/28-6/3) で <strong>「北原氏に N=1 紹介依頼メール」</strong> + <strong>「ES 本文ドラフト v1 の骨格 (設問 3 セリフ除く 7 設問)」</strong> を並行着手</h2>
+    <p>これだけ決まれば、 残り 4 判断 (6/10 セミナー出席 / 本文並行着手 / 戦略本体不変更 / 補足資料 2 種) は自動的に決まる。 判断軸は <strong>「6/30 に間に合うか」</strong> と <strong>「N=1 接触は実行できるか」</strong> の 2 つのみ。</p>
+  </div>
+</div>
+
+<!-- §1 確定事項 -->
+<section class="container">
+  <h2 class="section-title"><span class="num">§ 1</span>現在地: 確定事項 7 つ</h2>
+  <p class="section-lead">ここまでの議論で「決まったこと」 を 1 つずつ確認。 ここから先の判断は、 これら 7 つを前提にする。</p>
+
+  <div class="check-grid">
+    <div class="check-item">
+      <h4>1. エントリー完了</h4>
+      <p>申込番号 20278、 TAMA ブロック (立川)。 2026-05-28 14:54:42 受付済</p>
+    </div>
+    <div class="check-item">
+      <h4>2. 提出期限</h4>
+      <p>6/30 (火) 24:00 (残り 33 日)。 1 次選考資料提出フォームへクラウドアップロード</p>
+    </div>
+    <div class="check-item">
+      <h4>3. Option A 採用</h4>
+      <p>完全 2 段階 + 全意見統合の方向で進める。 ただし Round 2 で実行責任を絞り込み</p>
+    </div>
+    <div class="check-item">
+      <h4>4. 「広く見せて、 狭く実行する」 フレーム</h4>
+      <p>出口・救済・OB 保全は構想 / 提案に格下げ、 実行責任は入口 N=1 有料に集中</p>
+    </div>
+    <div class="check-item">
+      <h4>5. 必達修正 8 点</h4>
+      <p>出口削除 / 「弱い」 排除 / N=1 必須 / OB 保全後退 / 触媒削除 / 単線化 / 仮説破壊主役化 / タイトル新案</p>
+    </div>
+    <div class="check-item">
+      <h4>6. 11/10 最重要アクション</h4>
+      <p>入口 N=1 有料の質に全振り。 N=3 / AI エージェント / 出口接続 / OB 保全 は全部この下位互換</p>
+    </div>
+    <div class="check-item">
+      <h4>7. 改善後ペルソナ平均点予測</h4>
+      <p>71 点 (GOLD 圏内)。 ただし N=1 接触実行が前提、 不実行なら 60 点 (GOLD 圏外)</p>
+    </div>
+  </div>
+</section>
+
+<!-- §2 残る判断 -->
+<section class="container">
+  <h2 class="section-title"><span class="num">§ 2</span>残る判断 5 つ + 推奨基準</h2>
+  <p class="section-lead">5 つの判断、 各々に推奨案がある。 §3 の判断軸 2 つを通せば、 全部自動的に決まる。</p>
+
+  <!-- 判断 1 -->
+  <div class="decision-card">
+    <div class="decision-header">
+      <h3><span class="decision-num">判断 1</span>6/10 WEB セミナー 出席</h3>
+    </div>
+    <div class="decision-body">
+      <table>
+        <tr><th width="20%">選択</th><th>メリット</th><th>デメリット</th></tr>
+        <tr><td><strong>出席</strong></td><td>アトツギ接触経路 + 多摩信金枠審査員情報判明可能性</td><td>業務後 2 時間消費</td></tr>
+        <tr><td>不出席</td><td>時間節約</td><td>接触経路 1 つ閉じる</td></tr>
+      </table>
+      <div class="rec-box">
+        <div class="rec-label">★ 推奨</div>
+        <strong>出席</strong> — 過去受賞者の体験談がテーマで直接アトツギには繋がらない可能性、 ただし他参加者にアトツギ起業家がいる可能性 + 多摩信金関係者と接点 = 低コスト高リターン期待
+      </div>
+    </div>
+  </div>
+
+  <!-- 判断 2 -->
+  <div class="decision-card">
+    <div class="decision-header">
+      <h3><span class="decision-num">判断 2</span>アトツギ N=1 接触経路の選定</h3>
+    </div>
+    <div class="decision-body">
+      <table>
+        <tr><th>経路</th><th>着手難度</th><th>アポ確率</th><th>期間</th></tr>
+        <tr><td><strong>北原氏紹介依頼</strong> (5/22 面談済の信頼関係あり)</td><td>低 (メール 1 通)</td><td>高 (建設業特化診断士)</td><td>1-2 週間</td></tr>
+        <tr><td>アトツギ甲子園 (中小企業庁)</td><td>中 (登録 + 地域予選)</td><td>中</td><td>1 ヶ月</td></tr>
+        <tr><td>多摩商工会議所 (アトツギ枠)</td><td>中 (電話 + 訪問)</td><td>中</td><td>2-3 週間</td></tr>
+        <tr><td>6/10 セミナー懇親会</td><td>低 (出席のみ)</td><td>低 (アトツギいない可能性)</td><td>即日</td></tr>
+      </table>
+      <div class="rec-box">
+        <div class="rec-label">★ 推奨</div>
+        <strong>北原氏ルート単独</strong> で 6/15 までに 1 件アポ目標。 他経路は不発時のバックアップ。 メール下書きで「アトツギ 1 名紹介依頼」 を即着手
+      </div>
+    </div>
+  </div>
+
+  <!-- 判断 3 -->
+  <div class="decision-card">
+    <div class="decision-header">
+      <h3><span class="decision-num">判断 3</span>ES 本文ドラフト v1 の着手タイミング</h3>
+    </div>
+    <div class="decision-body">
+      <table>
+        <tr><th width="30%">選択</th><th>含意</th></tr>
+        <tr><td>今すぐ着手 (5/28-6/3)</td><td>N=1 セリフ未取得のまま設問 3 を「仮置き」 で書く</td></tr>
+        <tr><td>N=1 接触後着手 (6/15-25)</td><td>セリフを ES に反映、 質高い、 ただしバッファ薄い</td></tr>
+        <tr><td><strong>並行着手</strong> (骨格 → N=1 後にセリフ追加)</td><td>効率最大、 推奨</td></tr>
+      </table>
+      <div class="rec-box">
+        <div class="rec-label">★ 推奨</div>
+        <strong>並行着手</strong> — 設問 1 / 2 / 4 / 5 / 任意背景 / 任意プロセス / 任意自由 は N=1 不要 → 今すぐドラフト可。 設問 3 のセリフ部分だけ N=1 後に埋める
+      </div>
+    </div>
+  </div>
+
+  <!-- 判断 4 -->
+  <div class="decision-card">
+    <div class="decision-header">
+      <h3><span class="decision-num">判断 4</span>戦略本体 memory への修正範囲</h3>
+    </div>
+    <div class="decision-body">
+      <table>
+        <tr><th width="40%">選択</th><th>含意</th></tr>
+        <tr><td>「12 月以降救済フェーズ」 を本体に追記</td><td>A 採用時の旧方針、 Round 2 で削減判定</td></tr>
+        <tr><td>「12 月以降構想」 として軽く言及</td><td>Round 2 と整合</td></tr>
+        <tr><td><strong>戦略本体は触らず、 ES だけ調整</strong></td><td>リスク最小、 推奨</td></tr>
+      </table>
+      <div class="rec-box">
+        <div class="rec-label">★ 推奨</div>
+        <strong>戦略本体は触らず</strong> — Round 2 で出口を「受賞後協議」 に格下げした以上、 戦略本体に救済フェーズを書く必然性は消えた。 ES 任意自由欄で「将来構想」 として軽く触れるだけで OK
+      </div>
+    </div>
+  </div>
+
+  <!-- 判断 5 -->
+  <div class="decision-card">
+    <div class="decision-header">
+      <h3><span class="decision-num">判断 5</span>補足資料 (任意 2 点) の内容</h3>
+    </div>
+    <div class="decision-body">
+      <table>
+        <tr><th>候補</th><th>評価</th><th>刺さるペルソナ</th></tr>
+        <tr><td><strong>アトツギ N=1 ヒアリング書き起こし + 課金意思</strong></td><td>★★★</td><td>池原・佐藤・多摩信金</td></tr>
+        <tr><td>BPaaS 5 サービス + AI エージェント アーキ図</td><td>★★</td><td>(技術系のみ)</td></tr>
+        <tr><td>月別マイルストーン図 (5 関門)</td><td>★★</td><td>整理用 (本文重複)</td></tr>
+        <tr><td><strong>父親説得カフェ構想スライド</strong></td><td>★★</td><td>十河 (強烈)</td></tr>
+      </table>
+      <div class="rec-box">
+        <div class="rec-label">★ 推奨</div>
+        <strong>N=1 ヒアリング書き起こし (1 枚目) + 父親説得カフェ構想スライド (2 枚目)</strong> = 5 ペルソナのうち 4 ペルソナに直撃する組み合わせ
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §3 判断基準 -->
+<section class="container">
+  <h2 class="section-title"><span class="num">§ 3</span>判断軸は 2 つだけ</h2>
+  <p class="section-lead">5 つの判断を貫く軸は実は 2 つだけ。 これを通せば全部自動的に決まる。</p>
+
+  <div class="criteria-grid">
+
+    <div class="criteria-card">
+      <div class="crit-label">基準 A</div>
+      <h3>6/30 提出に間に合うか? (時間制約)</h3>
+      <div class="crit-formula">
+        残り 33 日 × 軸 B 投下 月 30-40h<br>
+        = 約 30h<br><br>
+        N=1 接触 (5h) + ES 本文 (10h)<br>
+        + 補足資料 (5h) + 自己レビュー (5h)<br>
+        + バッファ (5h) = <strong>30h</strong>
+      </div>
+      <div class="crit-conclusion">
+        ⏰ ギリギリ。 <strong>6/3 までに「動き出す」 必要</strong>
+      </div>
+    </div>
+
+    <div class="criteria-card">
+      <div class="crit-label">基準 B</div>
+      <h3>N=1 接触は実行できるか? (説得力の核)</h3>
+      <div class="crit-formula">
+        5/5 ペルソナ事実上必須判定<br><br>
+        N=1 接触あり → 改善後 71 点 (GOLD 圏内)<br>
+        N=1 接触なし → 60 点 (GOLD 圏外)<br><br>
+        差 = <strong>11 点 / GOLD 確度の決定打</strong>
+      </div>
+      <div class="crit-conclusion">
+        🎯 <strong>N=1 接触ルート確定 = ES の説得力確定</strong>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- §4 最小アクション -->
+<section class="container">
+  <h2 class="section-title"><span class="num">§ 4</span>今週の最小アクション</h2>
+  <p class="section-lead">この 2 つを今週 (5/28-6/3) に動かせば、 残り 4 判断は自動的に決まる。</p>
+
+  <div class="min-action">
+    <div class="label">★ THIS WEEK'S MINIMUM TASK</div>
+    <h3>
+      今週 (5/28-6/3) で <span class="underline">「北原氏に N=1 紹介依頼メール」</span><br>
+      + <span class="underline">「ES 本文ドラフト v1 の骨格 (設問 3 セリフ除く 7 設問)」</span> を並行着手
+    </h3>
+    <div class="auto-decided">
+      <strong>これだけ決まれば、 残り 4 判断は自動的に決まる:</strong><br>
+      → 判断 1: 6/10 WEB セミナー 出席 (北原氏ルートが進めばバックアップは軽量化)<br>
+      → 判断 3: 並行着手 (今週から ES 骨格に着手)<br>
+      → 判断 4: 戦略本体不変更 (ES だけ調整)<br>
+      → 判断 5: N=1 ヒアリング書き起こし + 父親説得カフェ構想 (N=1 取得後に確定)
+    </div>
+  </div>
+</section>
+
+<!-- §5 タイムライン -->
+<section class="container">
+  <h2 class="section-title"><span class="num">§ 5</span>6/30 までのタイムライン</h2>
+  <p class="section-lead">5/28 (今日) から 6/30 提出までの 33 日間を 4 フェーズに分けて視覚化。</p>
+
+  <div class="timeline">
+
+    <div class="tl-card now">
+      <div class="tl-date">5/28 (木) — 6/3 (水)</div>
+      <h4>NOW: 今週</h4>
+      <ul>
+        <li>北原氏に N=1 紹介依頼メール送信</li>
+        <li>ES 本文ドラフト v1 骨格 7 設問 着手</li>
+        <li>6/10 WEB セミナー出席登録</li>
+      </ul>
+    </div>
+
+    <div class="tl-card soon">
+      <div class="tl-date">6/4 (木) — 6/14 (土)</div>
+      <h4>SOON: アポ + 骨格完成</h4>
+      <ul>
+        <li>北原氏返信 → アトツギ紹介アポ確定</li>
+        <li>ES 本文ドラフト v1 骨格 完成 (7 設問)</li>
+        <li>6/10 WEB セミナー出席</li>
+      </ul>
+    </div>
+
+    <div class="tl-card mid">
+      <div class="tl-date">6/15 (日) — 6/22 (日)</div>
+      <h4>MID: N=1 ヒアリング + 設問 3 完成</h4>
+      <ul>
+        <li>アトツギ N=1 ヒアリング実施 (30 分)</li>
+        <li>セリフ + 課金意思を設問 3 に反映</li>
+        <li>補足資料 2 点ドラフト</li>
+        <li>自己レビュー 1 回目</li>
+      </ul>
+    </div>
+
+    <div class="tl-card final">
+      <div class="tl-date">6/23 (月) — 6/30 (火)</div>
+      <h4>FINAL: 仕上げ + 提出</h4>
+      <ul>
+        <li>自己レビュー 2-3 回目 + 文言調整</li>
+        <li>docx に転記</li>
+        <li>補足資料 PDF 化</li>
+        <li><strong>6/25-28 提出目標、 6/30 24:00 期限</strong></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    作成: 2026-05-28 / 作成者: Claude (claude-opus-4-7、 ultrathink モード)<br>
+    関連 docs: <code>external-review-round2-result-2026-05-28.md</code> (Round 2 統合判定) / <code>a2-decision-comparison-2026-05-28.html</code> (Option A/B/C 判断資料)<br>
+    関連 memory: <code>memory/levelupstage-2026-entry.md</code> / <code>memory/komuten-bpaas-ai-agent-strategy-2026-05-18.md</code> / <code>memory/atotsugi-decision-maker.md</code>
+  </div>
+</footer>
+
+</body>
+</html>
