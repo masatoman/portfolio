@@ -17,6 +17,17 @@ const createJobSchema = z.object({
   extraNotes: z.string().max(2000).optional(),
   // Deep Research 等で外部 LLM が返した本文をそのまま渡す場合
   rawInputText: z.string().max(200_000).optional(),
+
+  // ── ad-hoc モード (ChatGPT 等の gap 推薦切り口を queries.json 編集なしで投入) ──
+  isAdhoc: z.boolean().optional().default(false),
+  customRole: z.string().max(128).optional(),
+  customKeywords: z.array(z.string().max(80)).max(30).optional().default([]),
+  customWatchedTools: z.array(z.string().max(80)).max(20).optional().default([]),
+  customExamplePhrases: z
+    .array(z.string().max(200))
+    .max(20)
+    .optional()
+    .default([]),
 })
 
 // 登録: ブラウザフォームから呼ばれる
@@ -47,20 +58,56 @@ export async function POST(req: Request) {
     )
   }
 
-  // queries.json に存在する perspective かチェック (タイポ・捏造防止)
-  const allQueries = expandQueries()
-  const exists = allQueries.some(
-    (q) =>
-      q.profileId === parsed.data.profileId && q.role === parsed.data.role,
-  )
-  if (!exists) {
-    return NextResponse.json(
-      {
-        error: "unknown_perspective",
-        message: `${parsed.data.profileId} / ${parsed.data.role} は queries.json に存在しません`,
-      },
-      { status: 400 },
+  // ad-hoc モードでなければ queries.json に存在する perspective かチェック
+  // ad-hoc モードなら profileId は固定 4 種のいずれかであることだけ確認
+  const ALLOWED_PROFILES = ["komuten", "financial-planner", "it-subsidy", "micro-corp"]
+  if (parsed.data.isAdhoc) {
+    if (!ALLOWED_PROFILES.includes(parsed.data.profileId)) {
+      return NextResponse.json(
+        {
+          error: "unknown_profile",
+          message: `ad-hoc モードでも profile は ${ALLOWED_PROFILES.join(" / ")} のいずれかである必要があります`,
+        },
+        { status: 400 },
+      )
+    }
+    if (!parsed.data.customRole || parsed.data.customRole.trim().length === 0) {
+      return NextResponse.json(
+        {
+          error: "missing_custom_role",
+          message: "ad-hoc モードでは customRole が必須です",
+        },
+        { status: 400 },
+      )
+    }
+    if (
+      !parsed.data.customKeywords ||
+      parsed.data.customKeywords.length === 0
+    ) {
+      return NextResponse.json(
+        {
+          error: "missing_custom_keywords",
+          message:
+            "ad-hoc モードでは customKeywords (入り口キーワード) が最低 1 つ必要です",
+        },
+        { status: 400 },
+      )
+    }
+  } else {
+    const allQueries = expandQueries()
+    const exists = allQueries.some(
+      (q) =>
+        q.profileId === parsed.data.profileId && q.role === parsed.data.role,
     )
+    if (!exists) {
+      return NextResponse.json(
+        {
+          error: "unknown_perspective",
+          message: `${parsed.data.profileId} / ${parsed.data.role} は queries.json に存在しません`,
+        },
+        { status: 400 },
+      )
+    }
   }
 
   try {
@@ -69,11 +116,26 @@ export async function POST(req: Request) {
       .from("if_jobs")
       .insert({
         profile_id: parsed.data.profileId,
-        role: parsed.data.role,
+        role: parsed.data.isAdhoc
+          ? (parsed.data.customRole as string)
+          : parsed.data.role,
         sampling_target: parsed.data.samplingTarget,
         extra_notes: parsed.data.extraNotes ?? null,
         raw_input_text: parsed.data.rawInputText ?? null,
         status: "pending",
+        is_adhoc: parsed.data.isAdhoc,
+        custom_role: parsed.data.isAdhoc
+          ? (parsed.data.customRole as string)
+          : null,
+        custom_keywords: parsed.data.isAdhoc
+          ? parsed.data.customKeywords
+          : [],
+        custom_watched_tools: parsed.data.isAdhoc
+          ? parsed.data.customWatchedTools
+          : [],
+        custom_example_phrases: parsed.data.isAdhoc
+          ? parsed.data.customExamplePhrases
+          : [],
       })
       .select()
       .single()

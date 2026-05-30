@@ -12,7 +12,7 @@ export const revalidate = 0
 
 export default async function IssueFinderPage() {
   const [dbIssues, jobs, perspectiveStatus] = await Promise.all([
-    fetchRecentIssues(50),
+    fetchRecentIssues(300),
     fetchRecentJobs(20),
     fetchPerspectiveRunStatus(),
   ])

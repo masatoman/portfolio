@@ -11,6 +11,8 @@ import type {
   PerspectiveRunStatus,
 } from "@/lib/lab-tools/issue-finder/db"
 import { LAB_NEON } from "@/lib/lab-tools/registry"
+import { BulkAdhocPaste } from "@/components/lab-tools/issue-finder/bulk-adhoc-paste"
+import { AdhocFields } from "@/components/lab-tools/issue-finder/_partials/adhoc-fields"
 
 const STATUS_LABEL: Record<CollectionJob["status"], string> = {
   pending: "待機中",
@@ -56,6 +58,14 @@ export function CollectionQueueForm({
   const [samplingTarget, setSamplingTarget] = useState<number>(100)
   const [extraNotes, setExtraNotes] = useState<string>("")
   const [rawInputText, setRawInputText] = useState<string>("")
+
+  // ad-hoc mode: ChatGPT 等の gap 推薦切り口を queries.json 編集なしで投入
+  const [isAdhoc, setIsAdhoc] = useState(false)
+  const [adhocProfileId, setAdhocProfileId] = useState<string>("komuten")
+  const [adhocRole, setAdhocRole] = useState<string>("")
+  const [adhocKeywords, setAdhocKeywords] = useState<string>("")
+  const [adhocWatchedTools, setAdhocWatchedTools] = useState<string>("")
+  const [adhocExamplePhrases, setAdhocExamplePhrases] = useState<string>("")
   const [submitting, setSubmitting] = useState(false)
   const [feedback, setFeedback] = useState<{
     kind: "ok" | "err"
@@ -95,18 +105,35 @@ export function CollectionQueueForm({
     setFeedback(null)
     try {
       const trimmedRaw = rawInputText.trim()
+      // ad-hoc 時はカンマ / 改行区切り → array
+      const splitList = (s: string) =>
+        s
+          .split(/[,、\n]/)
+          .map((x) => x.trim())
+          .filter((x) => x.length > 0)
+      const body: Record<string, unknown> = {
+        samplingTarget,
+        extraNotes: extraNotes.trim() || undefined,
+        rawInputText: trimmedRaw.length > 0 ? trimmedRaw : undefined,
+      }
+      if (isAdhoc) {
+        body.isAdhoc = true
+        body.profileId = adhocProfileId
+        body.role = adhocRole.trim() // API は role 必須なので custom_role と同じものをセット
+        body.customRole = adhocRole.trim()
+        body.customKeywords = splitList(adhocKeywords)
+        body.customWatchedTools = splitList(adhocWatchedTools)
+        body.customExamplePhrases = splitList(adhocExamplePhrases)
+      } else {
+        body.profileId = selectedQuery.profileId
+        body.role = selectedQuery.role
+      }
       const res = await fetch("/api/lab-tools/issue-finder/jobs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          profileId: selectedQuery.profileId,
-          role: selectedQuery.role,
-          samplingTarget,
-          extraNotes: extraNotes.trim() || undefined,
-          rawInputText: trimmedRaw.length > 0 ? trimmedRaw : undefined,
-        }),
+        body: JSON.stringify(body),
       })
-      const body = (await res.json()) as {
+      const resBody = (await res.json()) as {
         error?: string
         message?: string
         job?: CollectionJob
@@ -114,16 +141,22 @@ export function CollectionQueueForm({
       if (!res.ok) {
         setFeedback({
           kind: "err",
-          msg: body.message ?? body.error ?? `失敗 (${res.status})`,
+          msg: resBody.message ?? resBody.error ?? `失敗 (${res.status})`,
         })
-      } else if (body.job) {
-        const mode = body.job.hasRawInput ? "Deep Research 結果モード" : "web_search モード"
+      } else if (resBody.job) {
+        const mode = resBody.job.hasRawInput ? "Deep Research 結果モード" : "web_search モード"
         setFeedback({
           kind: "ok",
-          msg: `キューに追加しました (job ${body.job.id.slice(0, 8)}… / ${mode}) — Claude Code で /issue-finder process で処理`,
+          msg: `キューに追加しました (job ${resBody.job.id.slice(0, 8)}… / ${mode}) — Claude Code で /issue-finder process で処理`,
         })
         setExtraNotes("")
         setRawInputText("")
+        if (isAdhoc) {
+          setAdhocRole("")
+          setAdhocKeywords("")
+          setAdhocWatchedTools("")
+          setAdhocExamplePhrases("")
+        }
         await refreshJobs()
       }
     } catch (err) {
@@ -132,17 +165,72 @@ export function CollectionQueueForm({
         msg: err instanceof Error ? err.message : "unknown",
       })
     } finally {
-      setSubmitting(false)
+      // 3 秒クールダウン: 連打 / 二重投入を防ぐ (5/29 05:37 で 23 秒間隔の連続投入があった件の対策)
+      window.setTimeout(() => setSubmitting(false), 3000)
     }
   }
 
   return (
     <div className="space-y-5">
+      <BulkAdhocPaste onJobsCreated={refreshJobs} />
+
       <form
         onSubmit={onSubmit}
         className="border bg-black/30 p-4 sm:p-5 space-y-4"
         style={{ borderColor: `${LAB_NEON.cyan}40` }}
       >
+        {/* ad-hoc モード toggle (ChatGPT 等の gap 推薦切り口を queries.json 編集なしで投入) */}
+        <div
+          className="flex items-center justify-between gap-3 border p-2"
+          style={{
+            borderColor: isAdhoc ? LAB_NEON.magenta : "#444",
+            backgroundColor: isAdhoc ? `${LAB_NEON.magenta}10` : "transparent",
+          }}
+        >
+          <div className="flex items-center gap-2 flex-1 min-w-0">
+            <span
+              className="font-mono text-[10px] uppercase tracking-widest"
+              style={{ color: isAdhoc ? LAB_NEON.magenta : "rgba(255,255,255,0.55)" }}
+            >
+              {isAdhoc ? "🔓 ad-hoc モード ON" : "🔒 既存 perspective モード"}
+            </span>
+            <span className="font-mono text-[10px] text-white/40 truncate">
+              {isAdhoc
+                ? "ChatGPT 等の gap 推薦切り口 (queries.json 未登録) を自由記入"
+                : "queries.json 登録済 perspective から選ぶ"}
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setIsAdhoc((v) => !v)}
+            className="border px-2 py-1 font-mono text-[10px] uppercase tracking-widest hover:text-white"
+            style={{
+              borderColor: isAdhoc ? LAB_NEON.magenta : LAB_NEON.cyan,
+              color: isAdhoc ? LAB_NEON.magenta : LAB_NEON.cyan,
+            }}
+            disabled={submitting}
+          >
+            {isAdhoc ? "→ 既存 mode へ" : "→ ad-hoc へ切替"}
+          </button>
+        </div>
+
+        {isAdhoc ? (
+          <AdhocFields
+            profileId={adhocProfileId}
+            setProfileId={setAdhocProfileId}
+            role={adhocRole}
+            setRole={setAdhocRole}
+            keywords={adhocKeywords}
+            setKeywords={setAdhocKeywords}
+            watchedTools={adhocWatchedTools}
+            setWatchedTools={setAdhocWatchedTools}
+            examplePhrases={adhocExamplePhrases}
+            setExamplePhrases={setAdhocExamplePhrases}
+            samplingTarget={samplingTarget}
+            setSamplingTarget={setSamplingTarget}
+            disabled={submitting}
+          />
+        ) : (
         <div className="grid gap-3 md:grid-cols-3">
           <div className="md:col-span-2">
             <div className="mb-1.5 flex items-center justify-between gap-2 flex-wrap">
@@ -221,6 +309,7 @@ export function CollectionQueueForm({
             />
           </div>
         </div>
+        )}
 
         <div>
           <label
@@ -308,9 +397,9 @@ export function CollectionQueueForm({
         )}
       </form>
 
-      <details open className="group">
+      <details className="group">
         <summary className="mb-2 cursor-pointer font-mono text-[10px] uppercase tracking-widest text-white/60 hover:text-white">
-          // recent jobs ({jobs.length})
+          // recent jobs ({jobs.length}) — クリックで展開
         </summary>
         {jobs.length === 0 ? (
           <p className="font-mono text-[11px] text-white/40 border border-white/10 p-3">
@@ -375,3 +464,4 @@ function JobRow({ job }: { job: CollectionJob }) {
     </li>
   )
 }
+

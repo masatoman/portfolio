@@ -5,6 +5,8 @@ import {
   isServiceRoleConfigured,
 } from "@/lib/supabase/server"
 import {
+  classifyIssueDrivenTier,
+  computeIssueDriven,
   computeIssueScore,
   DUPLICATE_TITLE_THRESHOLD,
   titleSimilarity,
@@ -33,6 +35,11 @@ const processJobSchema = z.object({
       llmIssueSchema.extend({
         clusterSize: z.number().int().min(1),
         industryImpact: z.number().int().min(0).max(30).default(10),
+        // 「イシューからはじめよ」 (安宅和人) フレーム — 既存量的指標と並列で受け取る。
+        // SKILL が手採点しなかった旧プロトコルとの後方互換のため optional。
+        essentialChoice: z.number().int().min(0).max(50).optional(),
+        hypothesisDepth: z.number().int().min(0).max(50).optional(),
+        answerable: z.number().int().min(0).max(100).optional(),
         relatedQuotes: z
           .array(
             z.object({
@@ -122,6 +129,20 @@ export async function POST(req: Request) {
       industryImpact: c.industryImpact,
     })
 
+    // 本書フレーム (3 軸そろっている時のみ計算)
+    const hasIssueDriven =
+      typeof c.essentialChoice === "number" &&
+      typeof c.hypothesisDepth === "number" &&
+      typeof c.answerable === "number"
+    const issueDriven = hasIssueDriven
+      ? computeIssueDriven({
+          essentialChoice: c.essentialChoice!,
+          hypothesisDepth: c.hypothesisDepth!,
+          answerable: c.answerable!,
+        })
+      : null
+    const issueDrivenTier = issueDriven ? classifyIssueDrivenTier(issueDriven) : null
+
     const subsidyTags = (c.subsidyTags ?? [])
       .map((t) => subsidyTagSchema.safeParse(t))
       .filter((r) => r.success)
@@ -147,6 +168,11 @@ export async function POST(req: Request) {
       role,
       job_id: jobId ?? null,
       run_date: runDate,
+      essential_choice: c.essentialChoice ?? null,
+      hypothesis_depth: c.hypothesisDepth ?? null,
+      answerable: c.answerable ?? null,
+      issue_driven_value: issueDriven?.value ?? null,
+      issue_driven_tier: issueDrivenTier,
     })
 
     if (error) {

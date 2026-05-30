@@ -1,7 +1,15 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { buildDeepSearchPrompt } from "@/lib/lab-tools/issue-finder/deep-search-prompt"
+import {
+  buildDeepSearchPrompt,
+  type AiVariant,
+  type ContrastAxis,
+  type ForcedMedium,
+  type SatelliteVoice,
+} from "@/lib/lab-tools/issue-finder/deep-search-prompt"
+import { DiversityOptions } from "@/components/lab-tools/issue-finder/_partials/diversity-options"
+import { DiversityHints } from "@/components/lab-tools/issue-finder/_partials/diversity-hints"
 import type { PerspectiveRunStatus } from "@/lib/lab-tools/issue-finder/db"
 import {
   expandQueries,
@@ -58,6 +66,15 @@ export function DeepSearchHelper({ perspectiveStatus }: Props) {
   )
   const [targetCount, setTargetCount] = useState<number>(100)
 
+  // 多様性オプション
+  const [aiVariant, setAiVariant] = useState<AiVariant>("neutral")
+  const [devilsAdvocate, setDevilsAdvocate] = useState(false)
+  const [satelliteVoice, setSatelliteVoice] = useState<SatelliteVoice>(null)
+  const [contrastAxis, setContrastAxis] = useState<ContrastAxis>(null)
+  const [timeShift, setTimeShift] = useState(false)
+  const [forcedMedia, setForcedMedia] = useState<ForcedMedium[]>([])
+  const [randomSeed, setRandomSeed] = useState<string | null>(null)
+
   const selectedQuery: ExpandedQuery = useMemo(() => {
     const found = allQueries.find(
       (q) => `${q.profileId}::${q.role}` === selectedRole,
@@ -66,8 +83,29 @@ export function DeepSearchHelper({ perspectiveStatus }: Props) {
   }, [selectedRole, allQueries, todayInfo])
 
   const prompt = useMemo(
-    () => buildDeepSearchPrompt({ query: selectedQuery, targetCount }),
-    [selectedQuery, targetCount],
+    () =>
+      buildDeepSearchPrompt({
+        query: selectedQuery,
+        targetCount,
+        aiVariant,
+        devilsAdvocate,
+        satelliteVoice,
+        contrastAxis,
+        timeShift,
+        forcedMedia,
+        randomSeed,
+      }),
+    [
+      selectedQuery,
+      targetCount,
+      aiVariant,
+      devilsAdvocate,
+      satelliteVoice,
+      contrastAxis,
+      timeShift,
+      forcedMedia,
+      randomSeed,
+    ],
   )
 
   const [copyStatus, setCopyStatus] = useState<string | null>(null)
@@ -160,6 +198,23 @@ export function DeepSearchHelper({ perspectiveStatus }: Props) {
           </div>
         </div>
 
+        <DiversityOptions
+          aiVariant={aiVariant}
+          setAiVariant={setAiVariant}
+          devilsAdvocate={devilsAdvocate}
+          setDevilsAdvocate={setDevilsAdvocate}
+          satelliteVoice={satelliteVoice}
+          setSatelliteVoice={setSatelliteVoice}
+          contrastAxis={contrastAxis}
+          setContrastAxis={setContrastAxis}
+          timeShift={timeShift}
+          setTimeShift={setTimeShift}
+          forcedMedia={forcedMedia}
+          setForcedMedia={setForcedMedia}
+          randomSeed={randomSeed}
+          setRandomSeed={setRandomSeed}
+        />
+
         <div className="flex flex-wrap gap-2 mb-3">
           <button
             type="button"
@@ -210,6 +265,8 @@ export function DeepSearchHelper({ perspectiveStatus }: Props) {
         </details>
       </div>
 
+      <DiversityHints />
+
       <ol className="space-y-2 font-mono text-[11px] text-white/60 leading-relaxed pl-5 list-decimal">
         <li>
           上のボタンで perspective に応じたプロンプトをコピー
@@ -229,3 +286,4 @@ export function DeepSearchHelper({ perspectiveStatus }: Props) {
     </div>
   )
 }
+

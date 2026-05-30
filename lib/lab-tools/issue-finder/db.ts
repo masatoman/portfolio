@@ -20,6 +20,12 @@ export type CollectionJob = {
   summary: Record<string, unknown> | null
   createdAt: string
   updatedAt: string
+  // ad-hoc mode (ChatGPT 推薦切り口を queries.json 無しで投入)
+  isAdhoc: boolean
+  customRole: string | null
+  customKeywords: string[]
+  customWatchedTools: string[]
+  customExamplePhrases: string[]
 }
 
 export type IssueRow = {
@@ -43,6 +49,17 @@ export type IssueRow = {
   role: string | null
   job_id: string | null
   run_date: string | null
+  // 本書フレーム 3 軸 (旧 row には NULL)
+  essential_choice: number | null
+  hypothesis_depth: number | null
+  answerable: number | null
+  issue_driven_value: number | null
+  issue_driven_tier:
+    | "value-zone"
+    | "promising"
+    | "needs-rework"
+    | "dog-path"
+    | null
   created_at: string
   updated_at: string
 }
@@ -62,6 +79,12 @@ export type JobRow = {
   summary: Record<string, unknown> | null
   created_at: string
   updated_at: string
+  // ad-hoc mode (ChatGPT 推薦切り口を queries.json 無しで投入)
+  is_adhoc: boolean | null
+  custom_role: string | null
+  custom_keywords: string[] | null
+  custom_watched_tools: string[] | null
+  custom_example_phrases: string[] | null
 }
 
 // snake_case → camelCase + Issue 型に正規化
@@ -84,6 +107,11 @@ export function rowToIssue(row: IssueRow): Issue {
     clusterSize: row.cluster_size,
     samplingTotal: row.sampling_total,
     relatedQuotes: row.related_quotes ?? [],
+    essentialChoice: row.essential_choice,
+    hypothesisDepth: row.hypothesis_depth,
+    answerable: row.answerable,
+    issueDrivenValue: row.issue_driven_value,
+    issueDrivenTier: row.issue_driven_tier,
   }
 }
 
@@ -105,17 +133,24 @@ export function rowToJob(row: JobRow): CollectionJob {
     summary: row.summary,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
+    isAdhoc: row.is_adhoc ?? false,
+    customRole: row.custom_role,
+    customKeywords: row.custom_keywords ?? [],
+    customWatchedTools: row.custom_watched_tools ?? [],
+    customExamplePhrases: row.custom_example_phrases ?? [],
   }
 }
 
 // Server Component から呼ぶ。 Supabase 未設定なら空配列を返す (UI は壊れない)
-export async function fetchRecentIssues(limit = 50): Promise<Issue[]> {
+// order: 本書 issue_driven_value を主軸 (NULL は末尾)、 同点で旧 issue_score
+export async function fetchRecentIssues(limit = 300): Promise<Issue[]> {
   if (!isSupabaseConfigured()) return []
   try {
     const supabase = await createServerSupabase()
     const { data, error } = await supabase
       .from("if_issues")
       .select("*")
+      .order("issue_driven_value", { ascending: false, nullsFirst: false })
       .order("issue_score", { ascending: false })
       .limit(limit)
     if (error || !data) return []

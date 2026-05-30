@@ -8,10 +8,19 @@ import {
   computeOpportunityScore,
   computePersonalFit,
   computeSalesChannelDifficulty,
+  ISSUE_DRIVEN_TIER_LABEL,
   TIER_LABEL,
   type IssueTier,
 } from "@/lib/lab-tools/issue-finder/scoring"
 import { LAB_NEON } from "@/lib/lab-tools/registry"
+import {
+  ISSUE_DRIVEN_TIER_COLOR,
+  LEGACY_TIER_COLOR,
+  LEGACY_TIER_ICON,
+  PROFILE_COLOR,
+  PROFILE_ICON,
+  PROFILE_LABEL,
+} from "@/components/lab-tools/issue-finder/_partials/tier-style"
 
 const SUBSIDY_LABEL: Record<SubsidyTag, string> = {
   "it-introduction": "IT導入",
@@ -29,41 +38,9 @@ const SUBSIDY_COLOR: Record<SubsidyTag, string> = {
   none: "#666",
 }
 
-// profile_id (queries.json id) → カードに表示するラベル + 色
-const PROFILE_LABEL: Record<string, string> = {
-  komuten: "工務店",
-  "micro-corp": "マイクロ法人",
-  "it-subsidy": "IT補助金",
-  "financial-planner": "FP",
-}
-
-const PROFILE_COLOR: Record<string, string> = {
-  komuten: LAB_NEON.green,
-  "micro-corp": LAB_NEON.amber,
-  "it-subsidy": LAB_NEON.cyan,
-  "financial-planner": LAB_NEON.magenta,
-}
-
-const PROFILE_ICON: Record<string, string> = {
-  komuten: "🏗️",
-  "micro-corp": "🏢",
-  "it-subsidy": "💴",
-  "financial-planner": "💼",
-}
-
-const TIER_COLOR: Record<IssueTier, string> = {
-  critical: "#ff3838", // 赤 (即動け)
-  high: "#ff8c00", // オレンジ (注目)
-  medium: LAB_NEON.amber, // 黄 (観察)
-  low: "#666", // グレー (弱)
-}
-
-const TIER_ICON: Record<IssueTier, string> = {
-  critical: "🔴",
-  high: "🟠",
-  medium: "🟡",
-  low: "⚪",
-}
+// profile / tier の色・アイコン・ラベルは _partials/tier-style から import (統一)
+const TIER_COLOR = LEGACY_TIER_COLOR
+const TIER_ICON = LEGACY_TIER_ICON
 
 export function IssueCard({ issue }: { issue: Issue }) {
   const isCluster =
@@ -106,26 +83,48 @@ export function IssueCard({ issue }: { issue: Issue }) {
   const opportunityTier = classifyOpportunityTier(opportunityScore)
   const opportunityColor = TIER_COLOR[opportunityTier]
 
-  // 真のイシュー: issueScore × solvabilityScore どちらも 50 以上 = 右上象限
+  // 真のイシュー (旧式): issueScore × solvabilityScore どちらも 50 以上 = 右上象限
+  // 本書フレームの issueDrivenTier がある場合はそちらを優先表示する。
   const isTrueIssue = issue.issueScore >= 50 && issue.solvabilityScore >= 50
+  const issueDrivenTier = issue.issueDrivenTier ?? null
+  const issueDrivenColor = issueDrivenTier
+    ? ISSUE_DRIVEN_TIER_COLOR[issueDrivenTier]
+    : null
 
   return (
     <article
       className="border bg-black/40 p-4 sm:p-5 transition hover:-translate-y-0.5 relative overflow-hidden"
       style={{ borderColor: `${issueColor}50` }}
     >
-      {isTrueIssue && (
+      {issueDrivenTier ? (
         <div
           className="absolute top-0 right-0 border-b border-l bg-black px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest whitespace-nowrap"
           style={{
-            borderColor: LAB_NEON.green,
-            color: LAB_NEON.green,
-            boxShadow: `0 0 8px ${LAB_NEON.green}40`,
+            borderColor: issueDrivenColor!,
+            color: issueDrivenColor!,
+            boxShadow: `0 0 8px ${issueDrivenColor}40`,
           }}
-          title="issueScore ≥ 50 かつ solvabilityScore ≥ 50 (右上象限)"
+          title={`本書バリュー = ${issue.issueDrivenValue ?? "-"} / 100\nessential ${issue.essentialChoice ?? "-"} + hypothesis ${issue.hypothesisDepth ?? "-"} × answerable ${issue.answerable ?? "-"}`}
         >
-          🎯 真のイシュー
+          {ISSUE_DRIVEN_TIER_LABEL[issueDrivenTier]}
+          {typeof issue.issueDrivenValue === "number"
+            ? ` ${issue.issueDrivenValue}`
+            : ""}
         </div>
+      ) : (
+        isTrueIssue && (
+          <div
+            className="absolute top-0 right-0 border-b border-l bg-black px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest whitespace-nowrap"
+            style={{
+              borderColor: LAB_NEON.green,
+              color: LAB_NEON.green,
+              boxShadow: `0 0 8px ${LAB_NEON.green}40`,
+            }}
+            title="旧式: issueScore ≥ 50 かつ solvabilityScore ≥ 50"
+          >
+            🎯 旧 真のイシュー
+          </div>
+        )
       )}
 
       <header className="mb-3 flex items-start justify-between gap-3">

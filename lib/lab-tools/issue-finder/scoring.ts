@@ -1,6 +1,9 @@
 // issue-finder のスコア計算と類似度を集約するモジュール。
 // SKILL / sample-data / API すべてここを参照することで式のブレを防ぐ。
 
+import type { IssueDrivenTier } from "./types"
+export type { IssueDrivenTier } from "./types"
+
 export type IssueScoreInput = {
   clusterSize: number
   samplingTotal: number
@@ -344,19 +347,90 @@ export function classifyOpportunityTier(opportunityScore: number): IssueTier {
 }
 
 // ────────────────────────────────────────
+// 「イシューからはじめよ」 フレーム (安宅和人) に基づくスコア
+//
+// バリュー = イシュー度 × 解の質。 量的シェア (clusterSize/samplingTotal) や
+// emotionScore だけで決めると本書のいう「犬の道」 = 解の質を量で押し上げる無駄筋
+// に陥るため、 質的軸を 3 つ追加する。
+//
+// よいイシューの 3 条件 (第1章 図1):
+//   A) 本質的な選択肢である   = 解くと方向性が大きく変わる    → essentialChoice
+//   B) 深い仮説がある         = 常識を覆す洞察 / 新しい構造   → hypothesisDepth
+//   C) 答えを出せる            = 今の自分の技術で解ける       → answerable
+//
+// 既存 issueScore は「業界での頻度」 を表す量的指標として残し、
+// IssueDriven は「真のイシューか」 を表す質的指標として並列で出す。
+// ────────────────────────────────────────
+
+export type IssueDrivenInput = {
+  /** 本質的な選択肢度 (0-50)。 解くと事業の方向性が変わるか */
+  essentialChoice: number
+  /** 深い仮説度 (0-50)。 常識を覆す洞察・新しい構造があるか */
+  hypothesisDepth: number
+  /** 答えを出せる度 (0-100)。 今の masatoman の手で 6 ヶ月以内に解けるか */
+  answerable: number
+}
+
+export type IssueDrivenOutput = {
+  issueDegree: number // 0-100: A + B
+  solutionQuality: number // 0-100: 現状は answerable をそのまま使用
+  value: number // 0-100: issueDegree × solutionQuality / 100
+  /** 本書「バリュー帯」 = 解くべき & 解ける */
+  isValueZone: boolean
+  /** 本書「犬の道」 = イシュー度低、 どんなに解いても無価値 */
+  isDogPath: boolean
+}
+
+export function computeIssueDriven({
+  essentialChoice,
+  hypothesisDepth,
+  answerable,
+}: IssueDrivenInput): IssueDrivenOutput {
+  const ec = clamp(essentialChoice, 0, 50)
+  const hd = clamp(hypothesisDepth, 0, 50)
+  const an = clamp(answerable, 0, 100)
+  const issueDegree = ec + hd
+  const solutionQuality = an
+  const value = Math.round((issueDegree * solutionQuality) / 100)
+  return {
+    issueDegree,
+    solutionQuality,
+    value,
+    isValueZone: issueDegree >= 60 && solutionQuality >= 60,
+    isDogPath: issueDegree < 40,
+  }
+}
+
+export function classifyIssueDrivenTier(out: IssueDrivenOutput): IssueDrivenTier {
+  if (out.isValueZone) return "value-zone" // 解くべき & 解ける = 本書のバリュー
+  if (out.isDogPath) return "dog-path" // 量で押しても無駄
+  if (out.issueDegree >= 60) return "needs-rework" // 本質だが今は解けない (要再フレーム)
+  return "promising" // 中間 (磨けばバリュー帯候補)
+}
+
+export const ISSUE_DRIVEN_TIER_LABEL: Record<IssueDrivenTier, string> = {
+  "value-zone": "🟢 バリュー帯",
+  promising: "🟡 磨けば候補",
+  "needs-rework": "🔶 本質だが今は無理 (再フレーム要)",
+  "dog-path": "⚪ 犬の道 (量で押すな)",
+}
+
+// ────────────────────────────────────────
 // ソート (UI 用)
 // ────────────────────────────────────────
 
 export type SortKey =
-  | "opportunity" // 動くべき度 ↓ (デフォルト推奨)
-  | "trueIssueFirst" // 🎯 真のイシューを上、 その後 動くべき度
+  | "issueDriven" // 🟢 本書フレーム = (essential + hypothesis) × answerable
+  | "opportunity" // 動くべき度 ↓
+  | "trueIssueFirst" // 🎯 旧「真のイシュー」 (issue × solvability)
   | "issue" // イシュー度 ↓
   | "clusterRatio" // 規模 (clusterSize / samplingTotal) ↓
   | "createdAt" // 新着順 ↓
 
 export const SORT_LABEL: Record<SortKey, string> = {
+  issueDriven: "🟢 本書バリュー (issue-driven) ↓",
   opportunity: "動くべき度 ↓",
-  trueIssueFirst: "🎯 真のイシュー優先",
+  trueIssueFirst: "🎯 旧 真のイシュー優先",
   issue: "イシュー度 ↓",
   clusterRatio: "規模 (比率) ↓",
   createdAt: "新着順 ↓",
@@ -374,6 +448,9 @@ type IssueLike = {
   clusterSize?: number | null
   samplingTotal?: number | null
   createdAt: string
+  /** 本書フレームの算出済みバリュー (DB 列 issue_driven_value)。 未採点なら null */
+  issueDrivenValue?: number | null
+  issueDrivenTier?: IssueDrivenTier | null
 }
 
 function getOpportunity(i: IssueLike): number {
@@ -413,12 +490,30 @@ function isTrueIssue(i: IssueLike): boolean {
   return i.issueScore >= 50 && i.solvabilityScore >= 50
 }
 
+/** 本書フレーム順: tier (value-zone → promising → needs-rework → dog-path) 内で value 降順 */
+const TIER_RANK: Record<IssueDrivenTier, number> = {
+  "value-zone": 3,
+  promising: 2,
+  "needs-rework": 1,
+  "dog-path": 0,
+}
+
 export function sortIssues<T extends IssueLike>(
   issues: T[],
   key: SortKey,
 ): T[] {
   const arr = [...issues]
   switch (key) {
+    case "issueDriven":
+      return arr.sort((a, b) => {
+        const ra = a.issueDrivenTier ? TIER_RANK[a.issueDrivenTier] : -1
+        const rb = b.issueDrivenTier ? TIER_RANK[b.issueDrivenTier] : -1
+        if (ra !== rb) return rb - ra
+        const va = a.issueDrivenValue ?? -1
+        const vb = b.issueDrivenValue ?? -1
+        if (va !== vb) return vb - va
+        return getOpportunity(b) - getOpportunity(a)
+      })
     case "opportunity":
       return arr.sort((a, b) => getOpportunity(b) - getOpportunity(a))
     case "trueIssueFirst":
