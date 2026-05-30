@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canva Pro x Claude Code - masatoman 向け活用ガイド</title>
+<style>
+  :root {
+    --primary: #7c3aed;
+    --primary-light: #a78bfa;
+    --primary-dark: #5b21b6;
+    --accent: #f59e0b;
+    --accent-light: #fbbf24;
+    --bg: #0f0f1a;
+    --bg-card: #1a1a2e;
+    --bg-card-hover: #222240;
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+    --text-bright: #f8fafc;
+    --success: #10b981;
+    --danger: #ef4444;
+    --info: #3b82f6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Helvetica Neue', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  /* ── Slide Container ── */
+  .deck {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 80px;
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+    overflow-y: auto;
+  }
+
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  .slide.prev {
+    transform: translateX(-60px);
+  }
+
+  /* ── Navigation ── */
+  .nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    background: rgba(15,15,26,0.92);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(124,58,237,0.2);
+    z-index: 100;
+  }
+
+  .nav-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .nav-btn:hover { background: var(--primary-dark); }
+  .nav-btn:disabled { opacity: 0.3; cursor: default; }
+
+  .slide-counter {
+    font-size: 14px;
+    color: var(--text-dim);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .progress-track {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(124,58,237,0.15);
+    z-index: 100;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transition: width 0.4s ease;
+  }
+
+  /* ── Typography ── */
+  .slide-title {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--primary-light), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .slide-subtitle {
+    font-size: clamp(16px, 2vw, 22px);
+    color: var(--text-dim);
+    margin-bottom: 40px;
+    text-align: center;
+    max-width: 700px;
+  }
+
+  h3 {
+    font-size: 20px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ── Cards / Grid ── */
+  .card-grid {
+    display: grid;
+    gap: 20px;
+    width: 100%;
+    max-width: 1100px;
+  }
+  .card-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .card-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .card-grid.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid rgba(124,58,237,0.15);
+    border-radius: 14px;
+    padding: 28px;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+  .card:hover {
+    border-color: var(--primary-light);
+    transform: translateY(-2px);
+  }
+
+  .card .icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .card h4 {
+    font-size: 17px;
+    color: var(--text-bright);
+    margin-bottom: 8px;
+  }
+  .card p, .card li {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .card ul { padding-left: 18px; }
+
+  /* ── Tags ── */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 6px;
+    margin-bottom: 4px;
+  }
+  .tag.pro     { background: rgba(124,58,237,0.2); color: var(--primary-light); }
+  .tag.mcp     { background: rgba(59,130,246,0.2); color: var(--info); }
+  .tag.you     { background: rgba(245,158,11,0.2); color: var(--accent); }
+  .tag.hot     { background: rgba(239,68,68,0.2); color: var(--danger); }
+  .tag.ok      { background: rgba(16,185,129,0.2); color: var(--success); }
+
+  /* ── Comparison Table ── */
+  .compare-table {
+    width: 100%;
+    max-width: 900px;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 10px;
+  }
+  .compare-table th, .compare-table td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid rgba(124,58,237,0.1);
+    font-size: 14px;
+  }
+  .compare-table th {
+    background: rgba(124,58,237,0.12);
+    color: var(--primary-light);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .compare-table tr:hover td { background: rgba(124,58,237,0.05); }
+
+  /* ── Flow diagram ── */
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .flow-step {
+    background: var(--bg-card);
+    border: 1px solid rgba(124,58,237,0.25);
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-size: 14px;
+    text-align: center;
+    min-width: 130px;
+  }
+  .flow-step strong { color: var(--accent); display: block; margin-bottom: 4px; }
+  .flow-arrow { color: var(--primary-light); font-size: 22px; }
+
+  /* ── Highlight box ── */
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(245,158,11,0.08));
+    border: 1px solid rgba(124,58,237,0.3);
+    border-radius: 14px;
+    padding: 28px 32px;
+    max-width: 900px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .highlight-box h4 {
+    color: var(--accent);
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .highlight-box p, .highlight-box li {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  .highlight-box ul { padding-left: 20px; }
+
+  /* ── Code block ── */
+  .code-block {
+    background: #0d1117;
+    border: 1px solid rgba(124,58,237,0.2);
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 13px;
+    color: #c9d1d9;
+    overflow-x: auto;
+    max-width: 900px;
+    width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.7;
+    margin: 10px 0;
+  }
+  .code-block .comment { color: #8b949e; }
+  .code-block .keyword { color: #ff7b72; }
+  .code-block .string  { color: #a5d6ff; }
+  .code-block .func    { color: #d2a8ff; }
+
+  /* ── Big number ── */
+  .big-num {
+    font-size: clamp(48px, 8vw, 80px);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--accent), var(--primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .slide { padding: 40px 24px; }
+    .card-grid.cols-2, .card-grid.cols-3, .card-grid.cols-4 {
+      grid-template-columns: 1fr;
+    }
+    .flow { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); }
+    .nav-bar { padding: 12px 20px; }
+  }
+
+  /* ── Kbd ── */
+  kbd {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 13px;
+    font-family: inherit;
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-track"><div class="progress-fill" id="progress"></div></div>
+
+<div class="deck" id="deck">
+
+<!-- ====== SLIDE 0: COVER ====== -->
+<div class="slide active" data-slide="0">
+  <div style="font-size:72px;margin-bottom:20px;">
+    <span style="display:inline-block;animation:pulse 2s infinite;">&#x1F3A8;</span>
+    <span style="margin:0 8px;color:var(--primary-light);font-size:40px;">x</span>
+    <span style="display:inline-block;animation:pulse 2s infinite 0.5s;">&#x1F4BB;</span>
+  </div>
+  <div class="slide-title">Canva Pro x Claude Code</div>
+  <div class="slide-subtitle">masatoman 専用 活用ガイド<br>
+    <span style="font-size:14px;color:var(--text-dim);">軸B 工務店プロジェクト + 6経路並列 + JAPAN BUILD TOKYO に最適化</span>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px;">
+    <span class="tag pro">Canva Pro</span>
+    <span class="tag mcp">MCP連携</span>
+    <span class="tag you">masatoman向け</span>
+    <span class="tag hot">2026-05-28</span>
+  </div>
+  <p style="margin-top:40px;color:var(--text-dim);font-size:14px;">
+    <kbd>&larr;</kbd> <kbd>&rarr;</kbd> or 下のボタンで操作 &middot; 全12スライド
+  </p>
+</div>
+
+<!-- ====== SLIDE 1: WHY CANVA PRO ====== -->
+<div class="slide" data-slide="1">
+  <div class="slide-title">Why Canva Pro?</div>
+  <div class="slide-subtitle">無料版との差は「素材量」と「自動化」</div>
+  <table class="compare-table">
+    <tr>
+      <th>機能</th><th>Free</th><th>Pro (月 ~$15)</th><th>masatoman的価値</th>
+    </tr>
+    <tr>
+      <td>テンプレート</td><td>220万点</td><td style="color:var(--success);font-weight:700;">360万点+</td>
+      <td><span class="tag you">商談資料 / 展示会素材</span></td>
+    </tr>
+    <tr>
+      <td>写真・素材</td><td>123万点</td><td style="color:var(--success);font-weight:700;">9,000万点+ (73倍)</td>
+      <td><span class="tag you">工務店向けビジュアル</span></td>
+    </tr>
+    <tr>
+      <td>Brand Kit</td><td>1個 / 3色</td><td style="color:var(--success);font-weight:700;">5個 / フル</td>
+      <td><span class="tag hot">ブランド統一 必須</span></td>
+    </tr>
+    <tr>
+      <td>背景除去</td><td style="color:var(--danger);">&times;</td><td style="color:var(--success);">&check;</td>
+      <td><span class="tag you">現場写真加工</span></td>
+    </tr>
+    <tr>
+      <td>Magic Resize</td><td style="color:var(--danger);">&times;</td><td style="color:var(--success);">&check;</td>
+      <td><span class="tag hot">1デザイン &rarr; 全媒体展開</span></td>
+    </tr>
+    <tr>
+      <td>AI機能 (Magic Studio)</td><td>回数制限</td><td style="color:var(--success);font-weight:700;">実質無制限</td>
+      <td><span class="tag you">量産体制</span></td>
+    </tr>
+    <tr>
+      <td>ストレージ</td><td>5GB</td><td style="color:var(--success);font-weight:700;">1TB</td>
+      <td>全展示会素材を一元管理</td>
+    </tr>
+    <tr>
+      <td>印刷 (ラクスル連携)</td><td colspan="2" style="text-align:center;">&check; 共通</td>
+      <td><span class="tag ok">名刺・チラシ即発注</span></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== SLIDE 2: MCP OVERVIEW ====== -->
+<div class="slide" data-slide="2">
+  <div class="slide-title">Canva MCP = Claude Code から直接操作</div>
+  <div class="slide-subtitle">Claude Code MAX に Canva MCP サーバーが接続済み。自然言語でデザイン生成・編集・エクスポート</div>
+
+  <div class="card-grid cols-4">
+    <div class="card">
+      <span class="icon">&#x2728;</span>
+      <h4>generate-design</h4>
+      <p>テキスト指示から AI デザイン生成。<strong>26種類</strong>のデザインタイプ対応</p>
+      <span class="tag mcp" style="margin-top:8px;">最重要</span>
+    </div>
+    <div class="card">
+      <span class="icon">&#x1F4E4;</span>
+      <h4>export-design</h4>
+      <p>PDF / PNG / PPTX 等でエクスポート。印刷品質・透過背景指定可</p>
+    </div>
+    <div class="card">
+      <span class="icon">&#x270F;&#xFE0F;</span>
+      <h4>editing-transaction</h4>
+      <p>既存デザインのテキスト・画像を直接編集。差替・書式変更</p>
+    </div>
+    <div class="card">
+      <span class="icon">&#x1F4CF;</span>
+      <h4>resize-design</h4>
+      <p>ポスター &rarr; SNS &rarr; LINE画像にワンコマンドでリサイズ</p>
+      <span class="tag pro">Pro限定</span>
+    </div>
+  </div>
+
+  <div style="margin-top:24px;max-width:1100px;width:100%;">
+    <div class="card-grid cols-4">
+      <div class="card">
+        <span class="icon">&#x1F50D;</span>
+        <h4>search-designs</h4>
+        <p>既存デザインをキーワード検索</p>
+      </div>
+      <div class="card">
+        <span class="icon">&#x1F3F7;&#xFE0F;</span>
+        <h4>list-brand-kits</h4>
+        <p>Brand Kit 一覧取得・デザイン生成時に指定</p>
+      </div>
+      <div class="card">
+        <span class="icon">&#x1F4E5;</span>
+        <h4>import-from-url</h4>
+        <p>PDF/PPTX/HTML を Canva にインポート</p>
+      </div>
+      <div class="card">
+        <span class="icon">&#x1F4AC;</span>
+        <h4>comment-on-design</h4>
+        <p>デザインにコメント追加・返信管理</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SLIDE 3: THE WORKFLOW ====== -->
+<div class="slide" data-slide="3">
+  <div class="slide-title">基本ワークフロー</div>
+  <div class="slide-subtitle">Claude Code に話しかけるだけで Canva デザインが完成する</div>
+
+  <div class="flow">
+    <div class="flow-step">
+      <strong>Step 1</strong>
+      Claude Code に指示<br>
+      <span style="font-size:12px;color:var(--text-dim);">「工務店向け提案書を作って」</span>
+    </div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-step">
+      <strong>Step 2</strong>
+      generate-design<br>
+      <span style="font-size:12px;color:var(--text-dim);">AI が候補を複数生成</span>
+    </div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-step">
+      <strong>Step 3</strong>
+      候補を選択<br>
+      <span style="font-size:12px;color:var(--text-dim);">create-from-candidate</span>
+    </div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-step">
+      <strong>Step 4</strong>
+      微調整 (任意)<br>
+      <span style="font-size:12px;color:var(--text-dim);">editing-transaction</span>
+    </div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-step">
+      <strong>Step 5</strong>
+      エクスポート<br>
+      <span style="font-size:12px;color:var(--text-dim);">PDF / PNG / PPTX</span>
+    </div>
+  </div>
+
+  <div class="code-block"><span class="comment">// Claude Code での実際の会話例</span>
+
+<span class="keyword">masatoman:</span> <span class="string">「JAPAN BUILD TOKYO 向けの A1 ポスターを作って。
+  現場写真管理サービスの訴求。ブランドキット使って。」</span>
+
+<span class="comment">// Claude Code が自動で以下を実行:</span>
+<span class="func">1. list-brand-kits</span>      <span class="comment">→ Brand Kit ID 取得</span>
+<span class="func">2. generate-design</span>     <span class="comment">→ poster タイプ + brand_kit_id で生成</span>
+<span class="func">3. 候補プレビュー表示</span>   <span class="comment">→ 「この3案からどれがいいですか?」</span>
+<span class="func">4. create-from-candidate</span> <span class="comment">→ 選んだ案を正式デザイン化</span>
+<span class="func">5. export-design</span>       <span class="comment">→ PDF (印刷品質) でダウンロードURL取得</span></div>
+
+  <div class="highlight-box">
+    <h4>Point: 「触らなくていい」がゴール</h4>
+    <p>Canva エディタを開くのは微調整だけ。8割の作業は Claude Code 上の会話で完結する。
+    デザインスキルがなくても、Brand Kit さえ設定すれば一貫したクオリティが出る。</p>
+  </div>
+</div>
+
+<!-- ====== SLIDE 4: BRAND KIT FIRST ====== -->
+<div class="slide" data-slide="4">
+  <div class="slide-title">Step 0: Brand Kit を先に作る</div>
+  <div class="slide-subtitle">全デザインの統一感はここで決まる。最初の30分で設定、以降は自動適用</div>
+
+  <div class="card-grid cols-2">
+    <div class="card">
+      <h3>&#x1F3A8; 工務店向けブランド (軸B)</h3>
+      <ul>
+        <li><strong>ロゴ</strong>: ihara-frontend.com のロゴ (将来のドメイン変更後も差替だけ)</li>
+        <li><strong>カラー</strong>: 信頼感 = 紺 (#1e3a5f) + 温かみ = オレンジ (#e67e22) + 白</li>
+        <li><strong>フォント</strong>: Noto Sans JP (見出し Bold / 本文 Regular)</li>
+        <li><strong>用途</strong>: 商談資料 / 展示会 / 名刺 / LINE画像</li>
+      </ul>
+      <span class="tag hot" style="margin-top:12px;">最優先で作成</span>
+    </div>
+    <div class="card">
+      <h3>&#x1F4BC; 案件獲得PF用 (軸A)</h3>
+      <ul>
+        <li><strong>ロゴ</strong>: masatoman.net のロゴ</li>
+        <li><strong>カラー</strong>: 技術者向け = ダークテーマ + アクセント</li>
+        <li><strong>フォント</strong>: Inter + Noto Sans JP</li>
+        <li><strong>用途</strong>: ポートフォリオ資料 / 技術記事 OGP</li>
+      </ul>
+      <span class="tag ok" style="margin-top:12px;">余裕があれば</span>
+    </div>
+  </div>
+
+  <div class="code-block"><span class="comment">// Brand Kit 確認コマンド (Claude Code で実行)</span>
+
+<span class="keyword">masatoman:</span> <span class="string">「Canva の Brand Kit を一覧表示して」</span>
+
+<span class="comment">// Claude Code が実行:</span>
+<span class="func">mcp__canva__list-brand-kits</span>
+<span class="comment">→ 登録済みの Brand Kit ID・名前・サムネイルが返る</span>
+<span class="comment">→ generate-design 時に brand_kit_id を指定するだけで全自動適用</span></div>
+
+  <div class="highlight-box">
+    <h4>Pro なら Brand Kit 5個まで。使い分け例:</h4>
+    <ul>
+      <li><strong>Kit 1</strong>: 工務店向け (商談 / 展示会 / 印刷物) ← 今すぐ作る</li>
+      <li><strong>Kit 2</strong>: masatoman.net (案件獲得PF) ← 5/23-25 着手分と連動</li>
+      <li><strong>Kit 3</strong>: 工務店メディア (koumuten-dx.jp 等) ← ドメイン確定後</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ====== SLIDE 5: TOP 5 USE CASES ====== -->
+<div class="slide" data-slide="5">
+  <div class="slide-title">masatoman 向け TOP 5 活用法</div>
+  <div class="slide-subtitle">軸B 6経路並列 + JAPAN BUILD TOKYO + LINE拡散 に直結するものだけ</div>
+
+  <div class="card-grid cols-3" style="max-width:1100px;">
+    <div class="card" style="border-color:var(--accent);">
+      <span class="icon">&#x1F4C4;</span>
+      <h4>#1 ヒアリング用ペライチ</h4>
+      <span class="tag hot">最優先</span>
+      <p style="margin-top:8px;">6経路 (北原氏 / たましん / 建材屋 / 設計事務所 / 商工会議所 / アトツギ甲子園) ごとにカスタマイズした A4 1枚の自己紹介 + サービス概要</p>
+      <p style="margin-top:6px;"><span class="tag mcp">proposal</span> <span class="tag pro">PDF出力</span></p>
+    </div>
+    <div class="card" style="border-color:var(--accent);">
+      <span class="icon">&#x1F5BC;&#xFE0F;</span>
+      <h4>#2 JAPAN BUILD ポスター</h4>
+      <span class="tag hot">8月応募前</span>
+      <p style="margin-top:8px;">12/2-4 展示会ブース用バナー (A1/B1)。助成金申請書にも「完成イメージ」として添付。ABテスト 3-5案を量産</p>
+      <p style="margin-top:6px;"><span class="tag mcp">poster</span> <span class="tag pro">Magic Resize</span></p>
+    </div>
+    <div class="card" style="border-color:var(--accent);">
+      <span class="icon">&#x1F4F1;</span>
+      <h4>#3 LINE配布画像</h4>
+      <span class="tag hot">今すぐ</span>
+      <p style="margin-top:8px;">友人経由 LINE 拡散用。デモ画面スクショ + 「30分話を聞かせてください」CTA。1040x1040px リッチメッセージ仕様</p>
+      <p style="margin-top:6px;"><span class="tag mcp">instagram_post</span> <span class="tag pro">Resize</span></p>
+    </div>
+    <div class="card">
+      <span class="icon">&#x1F4C7;</span>
+      <h4>#4 名刺</h4>
+      <span class="tag ok">6月中</span>
+      <p style="margin-top:8px;">たましん訪問 / 建材屋巡回 / 展示会用。QRコード (ihara-frontend.com) 付き。ラクスル連携で即発注</p>
+      <p style="margin-top:6px;"><span class="tag mcp">business_card</span> <span class="tag pro">Print</span></p>
+    </div>
+    <div class="card">
+      <span class="icon">&#x1F4CA;</span>
+      <h4>#5 提案書テンプレート</h4>
+      <span class="tag ok">MVP期 (10-12月)</span>
+      <p style="margin-top:8px;">商談用 8-12ページ提案書。デモスクショ + ROI試算 + 導入ステップ。Brand Kit で統一感</p>
+      <p style="margin-top:6px;"><span class="tag mcp">presentation</span> <span class="tag pro">PPTX出力</span></p>
+    </div>
+    <div class="card" style="border:1px dashed rgba(124,58,237,0.3);">
+      <span class="icon">&#x1F4F0;</span>
+      <h4>Bonus: OGP画像テンプレ</h4>
+      <span class="tag ok">メディア立ち上げ時</span>
+      <p style="margin-top:8px;">工務店メディア記事の OGP 画像。テンプレート 1つ作れば記事タイトル差替だけで量産</p>
+      <p style="margin-top:6px;"><span class="tag mcp">facebook_post</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SLIDE 6: USE CASE #1 DETAIL ====== -->
+<div class="slide" data-slide="6">
+  <div class="slide-title">#1 ヒアリング用ペライチ 実践</div>
+  <div class="slide-subtitle">6経路ごとにカスタマイズ。Claude Code で一気に6パターン生成</div>
+
+  <div class="card-grid cols-2" style="max-width:1000px;">
+    <div class="card">
+      <h3>&#x2699;&#xFE0F; generate-design で指示する内容</h3>
+      <div class="code-block" style="font-size:12px;margin:0;">
+<span class="string">"工務店向け現場写真管理サービスの
+A4ペライチ提案書。
+
+- 上部: ロゴ + サービス名
+- 中央: 「現場で撮った写真、
+  整理に何時間かかっていますか?」
+- 下部: QRコード + 連絡先
+- トーン: 信頼感 + 温かみ
+- 対象: たましん価値創造事業部向け"</span></div>
+    </div>
+    <div class="card">
+      <h3>&#x1F3AF; 6経路カスタマイズ例</h3>
+      <table style="width:100%;font-size:13px;">
+        <tr><td style="padding:6px;color:var(--accent);">北原氏</td><td style="padding:6px;">「東京創業ステーション 経由」明記</td></tr>
+        <tr><td style="padding:6px;color:var(--accent);">たましん</td><td style="padding:6px;">「多摩信用金庫 取引先様向け」</td></tr>
+        <tr><td style="padding:6px;color:var(--accent);">建材屋</td><td style="padding:6px;">「建材卸 営業担当様 ご紹介用」</td></tr>
+        <tr><td style="padding:6px;color:var(--accent);">設計事務所</td><td style="padding:6px;">「設計事務所 様 協業のご案内」</td></tr>
+        <tr><td style="padding:6px;color:var(--accent);">商工会議所</td><td style="padding:6px;">「多摩商工会議所 会員様向け」</td></tr>
+        <tr><td style="padding:6px;color:var(--accent);">アトツギ甲子園</td><td style="padding:6px;">「次世代経営者の皆さまへ」</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h4>ポイント: 1つ作って copy-design + editing で量産</h4>
+    <p>ベースデザインを <code>generate-design</code> で 1つ作成 &rarr; <code>copy-design</code> で 5つ複製 &rarr;
+    <code>start-editing-transaction</code> + <code>perform-editing-operations</code> でテキスト差替 &rarr; 6パターン完成。
+    <strong>所要時間: 約15分</strong></p>
+  </div>
+</div>
+
+<!-- ====== SLIDE 7: USE CASE #3 LINE IMAGE ====== -->
+<div class="slide" data-slide="7">
+  <div class="slide-title">#3 LINE 配布画像 実践</div>
+  <div class="slide-subtitle">X 告知 wontfix &rarr; LINE 拡散が一次経路。最適な画像を量産</div>
+
+  <div class="card-grid cols-2" style="max-width:1000px;">
+    <div class="card">
+      <h3>&#x1F4D0; 推奨サイズ</h3>
+      <table style="width:100%;font-size:14px;">
+        <tr>
+          <td style="padding:8px;color:var(--accent);font-weight:700;">LINE リッチメッセージ</td>
+          <td style="padding:8px;">1040 x 1040 px</td>
+        </tr>
+        <tr>
+          <td style="padding:8px;color:var(--accent);font-weight:700;">LINE VOOM</td>
+          <td style="padding:8px;">1080 x 1350 px (= IG)</td>
+        </tr>
+        <tr>
+          <td style="padding:8px;color:var(--accent);font-weight:700;">トーク転送向け</td>
+          <td style="padding:8px;">1080 x 1080 px (正方形)</td>
+        </tr>
+      </table>
+      <p style="margin-top:12px;font-size:13px;">
+        <span class="tag pro">Magic Resize</span> で instagram_post (1080x1350) から 1040x1040 に一発変換
+      </p>
+    </div>
+    <div class="card">
+      <h3>&#x1F4DD; コンテンツ構成</h3>
+      <ul>
+        <li><strong>見出し (痛みの問いかけ)</strong><br>
+          <span style="font-size:13px;color:var(--accent);">「夜9時まで写真整理していませんか?」</span>
+        </li>
+        <li style="margin-top:8px;"><strong>デモ画面スクショ</strong><br>
+          <span style="font-size:13px;">ihara-frontend.com のデモを upload-asset-from-url で取り込み</span>
+        </li>
+        <li style="margin-top:8px;"><strong>CTA</strong><br>
+          <span style="font-size:13px;color:var(--accent);">「30分話を聞かせてください」</span>
+        </li>
+        <li style="margin-top:8px;"><strong>連絡先</strong><br>
+          <span style="font-size:13px;">電話 / LINE / メール セット表記</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flow" style="margin-top:20px;">
+    <div class="flow-step">
+      <strong>generate</strong>
+      instagram_post で<br>ベース画像生成
+    </div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-step">
+      <strong>upload-asset</strong>
+      デモスクショを<br>Canva に取り込み
+    </div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-step">
+      <strong>edit</strong>
+      テキスト + 画像<br>配置調整
+    </div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-step">
+      <strong>resize</strong>
+      1040x1040 に<br>変換
+    </div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-step">
+      <strong>export</strong>
+      PNG で<br>ダウンロード
+    </div>
+  </div>
+</div>
+
+<!-- ====== SLIDE 8: JAPAN BUILD ====== -->
+<div class="slide" data-slide="8">
+  <div class="slide-title">#2 JAPAN BUILD TOKYO 展示会素材</div>
+  <div class="slide-subtitle">12/2-4 出展 &rarr; 助成金第5回 8/1-14 応募。素材セットを一括で準備</div>
+
+  <div class="card-grid cols-3" style="max-width:1100px;">
+    <div class="card">
+      <span class="icon">&#x1F5BC;&#xFE0F;</span>
+      <h4>ブースバナー</h4>
+      <p>A1 / B1 の大判ポスター。<code>poster</code> タイプで生成 &rarr; ラクスル連携で大判印刷</p>
+      <span class="tag hot" style="margin-top:8px;">7月中にドラフト</span>
+    </div>
+    <div class="card">
+      <span class="icon">&#x1F4C3;</span>
+      <h4>配布チラシ (A4両面)</h4>
+      <p><code>flyer</code> タイプ。デモQR + 痛みの問いかけ + 連絡先。100-200部印刷</p>
+      <span class="tag you" style="margin-top:8px;">ペライチ流用可</span>
+    </div>
+    <div class="card">
+      <span class="icon">&#x1F4C7;</span>
+      <h4>名刺 (展示会専用版)</h4>
+      <p>通常名刺 + 裏面に展示会限定QR。<code>business_card</code> で即生成</p>
+    </div>
+    <div class="card">
+      <span class="icon">&#x1F4F1;</span>
+      <h4>SNS告知画像</h4>
+      <p>展示会参加告知。<code>instagram_post</code> &rarr; resize で全SNSサイズ展開</p>
+    </div>
+    <div class="card">
+      <span class="icon">&#x1F3AC;</span>
+      <h4>デモ動画サムネイル</h4>
+      <p>ブースでタブレット再生するデモ動画の表紙。<code>youtube_thumbnail</code> が使える</p>
+    </div>
+    <div class="card" style="border-color:var(--accent);">
+      <span class="icon">&#x1F4B0;</span>
+      <h4>助成金申請用イメージ</h4>
+      <p>「完成イメージ」として申請書に添付。ブースレイアウト図 + ポスターのモックアップ</p>
+      <span class="tag hot" style="margin-top:8px;">8/1 応募に必須</span>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top:16px;">
+    <h4>Brand Kit 統一 = 全素材の一貫性</h4>
+    <p>バナー / チラシ / 名刺 / SNS画像、全て同じ Brand Kit ID を <code>generate-design</code> に渡すだけ。色 / フォント / ロゴが自動で統一される。展示会で「ちゃんとした会社」に見える。</p>
+  </div>
+</div>
+
+<!-- ====== SLIDE 9: IMPORT EXISTING DOCS ====== -->
+<div class="slide" data-slide="9">
+  <div class="slide-title">既存 docs をCanva に取り込む</div>
+  <div class="slide-subtitle">portfolio/docs/ の HTML / PDF を import-design-from-url で再利用</div>
+
+  <div class="card-grid cols-2" style="max-width:1000px;">
+    <div class="card">
+      <h3>&#x1F4C2; 取り込み可能な既存資料</h3>
+      <ul style="line-height:2;">
+        <li><code>v8.0-hearing-resource-2026-05-23.html</code><br><span style="font-size:12px;color:var(--text-dim);">ヒアリング資料 (A4 8p) &rarr; Canva で視覚強化</span></li>
+        <li><code>business-summary-2026-05-22.html</code><br><span style="font-size:12px;color:var(--text-dim);">事業計画サマリ v5.1 &rarr; 提案書テンプレ化</span></li>
+        <li><code>japan-build-tokyo-2026-todo.html</code><br><span style="font-size:12px;color:var(--text-dim);">JAPAN BUILD TODO &rarr; 助成金申請添付資料に</span></li>
+        <li><code>v8.0-product-candidates-evaluation.html</code><br><span style="font-size:12px;color:var(--text-dim);">33p 評価マトリクス &rarr; 内部プレゼン化</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>&#x1F504; 取り込みフロー</h3>
+      <div class="code-block" style="font-size:12px;margin:0;">
+<span class="comment">// HTML/PDF を Canva デザインに変換</span>
+
+<span class="func">mcp__canva__import-design-from-url</span>
+  url: <span class="string">"https://ihara-frontend.com/docs/..."</span>
+
+<span class="comment">// 取り込んだデザインを Brand Kit で統一</span>
+<span class="comment">// → テキスト編集 → PDF/PPTXエクスポート</span>
+
+<span class="comment">// デモ画面のスクショも取り込める</span>
+<span class="func">mcp__canva__upload-asset-from-url</span>
+  url: <span class="string">"https://ihara-frontend.com/local-business/site-photo"</span>
+  <span class="comment">→ デモ画面をチラシ・提案書に配置</span></div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h4>HTML &rarr; Canva &rarr; ラクスル の流れ</h4>
+    <p>Claude Code で HTML 資料を作成 &rarr; <code>import-design-from-url</code> で Canva に取り込み &rarr; Brand Kit 適用 + 視覚調整 &rarr; 印刷品質 PDF エクスポート &rarr; ラクスル発注。<strong>デザイナー不要のワンストップ制作ライン。</strong></p>
+  </div>
+</div>
+
+<!-- ====== SLIDE 10: PRINT ====== -->
+<div class="slide" data-slide="10">
+  <div class="slide-title">印刷: Canva Print + ラクスル連携</div>
+  <div class="slide-subtitle">デザインから印刷・配送まで Canva 内で完結。コンビニ印刷も対応</div>
+
+  <div class="card-grid cols-3" style="max-width:1000px;">
+    <div class="card">
+      <span class="icon">&#x1F5A8;&#xFE0F;</span>
+      <h4>ラクスル連携</h4>
+      <ul>
+        <li>名刺 100枚 ~¥500</li>
+        <li>A4チラシ 200枚 ~¥2,000</li>
+        <li>Canva内から直接発注</li>
+        <li>塗り足し自動補正</li>
+      </ul>
+      <span class="tag you" style="margin-top:8px;">名刺 + チラシ</span>
+    </div>
+    <div class="card">
+      <span class="icon">&#x1F3EA;</span>
+      <h4>セブン-イレブン印刷</h4>
+      <ul>
+        <li>QRコードで即印刷</li>
+        <li>A4カラー ~¥60/枚</li>
+        <li>急な訪問前に 1-2枚</li>
+        <li>24時間対応</li>
+      </ul>
+      <span class="tag you" style="margin-top:8px;">急ぎのペライチ</span>
+    </div>
+    <div class="card">
+      <span class="icon">&#x1F4E6;</span>
+      <h4>大判印刷 (展示会)</h4>
+      <ul>
+        <li>A1/B1 ポスター</li>
+        <li>export &rarr; 印刷業者入稿</li>
+        <li>トリムマーク付きPDF</li>
+        <li>CMYK対応</li>
+      </ul>
+      <span class="tag hot" style="margin-top:8px;">JAPAN BUILD</span>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top:16px;">
+    <h4>masatoman 的ベストプラクティス</h4>
+    <ul>
+      <li><strong>たましん訪問 / 建材屋巡回</strong>: 名刺 + A4ペライチ &rarr; ラクスルで事前発注 (2-3営業日)</li>
+      <li><strong>急な面談</strong>: セブン-イレブンで A4 カラー印刷 (QRコード1つで完了)</li>
+      <li><strong>JAPAN BUILD 展示会</strong>: A1ポスター + A4チラシ200部 &rarr; ラクスル大量発注</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ====== SLIDE 11: TIMELINE ====== -->
+<div class="slide" data-slide="11">
+  <div class="slide-title">推奨タイムライン</div>
+  <div class="slide-subtitle">軸B スケジュールに合わせた Canva 活用ロードマップ</div>
+
+  <div style="max-width:900px;width:100%;">
+    <table class="compare-table">
+      <tr>
+        <th style="width:130px;">時期</th>
+        <th>やること</th>
+        <th style="width:150px;">Canva 活用</th>
+      </tr>
+      <tr>
+        <td style="color:var(--danger);font-weight:700;">今週 (5/28-)</td>
+        <td>
+          <strong>Brand Kit 作成</strong> (30分)<br>
+          LINE配布画像 1枚テスト作成
+        </td>
+        <td><span class="tag mcp">list-brand-kits</span><br><span class="tag mcp">generate-design</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--accent);font-weight:700;">6月前半</td>
+        <td>
+          <strong>名刺デザイン + ラクスル発注</strong><br>
+          6経路ペライチ 6パターン作成<br>
+          たましん訪問用に印刷
+        </td>
+        <td><span class="tag mcp">business_card</span><br><span class="tag mcp">copy + edit</span><br><span class="tag pro">Print</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--accent);font-weight:700;">6月後半</td>
+        <td>
+          <strong>ヒアリング結果に基づいて改版</strong><br>
+          デモスクショ入り提案書ドラフト
+        </td>
+        <td><span class="tag mcp">editing</span><br><span class="tag mcp">upload-asset</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--primary-light);font-weight:700;">7月</td>
+        <td>
+          <strong>JAPAN BUILD ポスター ドラフト</strong><br>
+          助成金申請用イメージ素材<br>
+          工務店メディア OGP テンプレ
+        </td>
+        <td><span class="tag mcp">poster</span><br><span class="tag mcp">resize</span><br><span class="tag mcp">facebook_post</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--primary-light);font-weight:700;">8月</td>
+        <td>
+          <strong>助成金第5回 応募 (8/1-14)</strong><br>
+          展示会素材セット完成・入稿
+        </td>
+        <td><span class="tag pro">PDF export</span><br><span class="tag pro">Print</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--success);font-weight:700;">10-12月</td>
+        <td>
+          <strong>MVP投入期</strong><br>
+          本格提案書テンプレート完成<br>
+          JAPAN BUILD 12/2-4 本番
+        </td>
+        <td><span class="tag mcp">presentation</span><br><span class="tag mcp">proposal</span></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ====== SLIDE 12: SUMMARY ====== -->
+<div class="slide" data-slide="12">
+  <div class="slide-title">まとめ: 今日から始める 3 Steps</div>
+  <div class="slide-subtitle">30分で環境構築、以降は Claude Code に話しかけるだけ</div>
+
+  <div class="card-grid cols-3" style="max-width:1000px;">
+    <div class="card" style="border-color:var(--accent);text-align:center;">
+      <div class="big-num">1</div>
+      <h4>Brand Kit 作成</h4>
+      <p style="margin-top:8px;">Canva Pro にログイン &rarr; ブランドキット設定 &rarr; ロゴ / カラー (紺 + オレンジ) / フォント (Noto Sans JP) 登録</p>
+      <p style="margin-top:12px;"><span class="tag hot">所要: 30分</span></p>
+    </div>
+    <div class="card" style="border-color:var(--accent);text-align:center;">
+      <div class="big-num">2</div>
+      <h4>LINE画像 1枚テスト</h4>
+      <p style="margin-top:8px;">Claude Code で<br>
+      「LINE用の工務店向け画像を作って。Brand Kit使って。」<br>
+      と指示するだけ</p>
+      <p style="margin-top:12px;"><span class="tag mcp">所要: 5分</span></p>
+    </div>
+    <div class="card" style="border-color:var(--accent);text-align:center;">
+      <div class="big-num">3</div>
+      <h4>名刺 + ペライチ</h4>
+      <p style="margin-top:8px;">6経路ペライチを量産 &rarr; 名刺デザイン &rarr; ラクスルで発注。たましん訪問 (6月後半-7月) に間に合わせる</p>
+      <p style="margin-top:12px;"><span class="tag you">所要: 1-2時間</span></p>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top:24px;text-align:center;">
+    <h4 style="font-size:22px;">Canva Pro (~¥2,300/月) + Claude Code MAX (定額) = デザイナー不要の制作ライン</h4>
+    <p style="font-size:16px;margin-top:8px;">
+      「デザインスキルがない」は Canva Pro + MCP で解決。<br>
+      Brand Kit で統一感を担保、Claude Code で量産、ラクスルで印刷。<br>
+      <strong>masatoman が集中すべきは「何を伝えるか」だけ。</strong>
+    </p>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- Navigation -->
+<div class="nav-bar">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>&larr; Prev</button>
+  <span class="slide-counter" id="counter">1 / 13</span>
+  <button class="nav-btn" id="nextBtn" onclick="navigate(1)">Next &rarr;</button>
+</div>
+
+<style>
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+</style>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  function show(idx) {
+    slides.forEach((s, i) => {
+      s.classList.remove('active', 'prev');
+      if (i === idx) s.classList.add('active');
+      else if (i < idx) s.classList.add('prev');
+    });
+    document.getElementById('counter').textContent = `${idx + 1} / ${total}`;
+    document.getElementById('prevBtn').disabled = idx === 0;
+    document.getElementById('nextBtn').disabled = idx === total - 1;
+    document.getElementById('progress').style.width = `${((idx + 1) / total) * 100}%`;
+    current = idx;
+  }
+
+  function navigate(dir) {
+    const next = current + dir;
+    if (next >= 0 && next < total) show(next);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); navigate(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); navigate(-1); }
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) navigate(diff > 0 ? 1 : -1);
+  });
+
+  show(0);
+</script>
+</body>
+</html>
