@@ -70,7 +70,9 @@ export type JobRow = {
   role: string
   sampling_target: number
   extra_notes: string | null
-  raw_input_text: string | null
+  raw_input_text?: string | null
+  // egress 対策: list 取得では本文を運ばず、生成列の有無フラグだけ取る
+  has_raw_input?: boolean | null
   status: JobStatus
   started_at: string | null
   finished_at: string | null
@@ -115,6 +117,11 @@ export function rowToIssue(row: IssueRow): Issue {
   }
 }
 
+// ジョブ一覧の取得列。 raw_input_text (最大 20 万字) は意図的に除外し、
+// 有無は生成列 has_raw_input で軽量に取る (egress 暴走対策)。
+export const JOB_LIST_COLUMNS =
+  "id,profile_id,role,sampling_target,extra_notes,status,started_at,finished_at,issues_created,error_message,summary,created_at,updated_at,is_adhoc,custom_role,custom_keywords,custom_watched_tools,custom_example_phrases,has_raw_input"
+
 export function rowToJob(row: JobRow): CollectionJob {
   return {
     id: row.id,
@@ -122,9 +129,10 @@ export function rowToJob(row: JobRow): CollectionJob {
     role: row.role,
     samplingTarget: row.sampling_target,
     extraNotes: row.extra_notes,
-    rawInputText: row.raw_input_text,
+    rawInputText: row.raw_input_text ?? null,
     hasRawInput:
-      typeof row.raw_input_text === "string" && row.raw_input_text.length > 0,
+      row.has_raw_input ??
+      (typeof row.raw_input_text === "string" && row.raw_input_text.length > 0),
     status: row.status,
     startedAt: row.started_at,
     finishedAt: row.finished_at,
@@ -166,11 +174,11 @@ export async function fetchRecentJobs(limit = 20): Promise<CollectionJob[]> {
     const supabase = await createServerSupabase()
     const { data, error } = await supabase
       .from("if_jobs")
-      .select("*")
+      .select(JOB_LIST_COLUMNS)
       .order("created_at", { ascending: false })
       .limit(limit)
     if (error || !data) return []
-    return data.map((r) => rowToJob(r as JobRow))
+    return data.map((r) => rowToJob(r as unknown as JobRow))
   } catch {
     return []
   }
@@ -195,7 +203,7 @@ export async function fetchPerspectiveRunStatus(): Promise<
     const supabase = await createServerSupabase()
     const { data, error } = await supabase
       .from("if_jobs")
-      .select("profile_id, role, created_at, raw_input_text")
+      .select("profile_id, role, created_at, has_raw_input")
       .eq("status", "completed")
     if (error || !data) return []
 
@@ -204,7 +212,7 @@ export async function fetchPerspectiveRunStatus(): Promise<
       profile_id: string
       role: string
       created_at: string
-      raw_input_text: string | null
+      has_raw_input: boolean | null
     }>) {
       const key = `${row.profile_id}::${row.role}`
       const existing = map.get(key) ?? {
@@ -214,9 +222,7 @@ export async function fetchPerspectiveRunStatus(): Promise<
         wsRunCount: 0,
         lastRunAt: null,
       }
-      const isDr =
-        typeof row.raw_input_text === "string" &&
-        row.raw_input_text.length > 0
+      const isDr = row.has_raw_input === true
       if (isDr) existing.drRunCount += 1
       else existing.wsRunCount += 1
       if (!existing.lastRunAt || row.created_at > existing.lastRunAt) {

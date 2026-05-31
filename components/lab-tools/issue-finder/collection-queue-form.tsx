@@ -82,6 +82,8 @@ export function CollectionQueueForm({
   }, [selectedKey, allQueries, todayInfo])
 
   async function refreshJobs() {
+    // egress 対策: 裏タブ (非表示) のときはポーリングしない
+    if (typeof document !== "undefined" && document.hidden) return
     try {
       const res = await fetch("/api/lab-tools/issue-finder/jobs?limit=20", {
         cache: "no-store",
@@ -94,9 +96,17 @@ export function CollectionQueueForm({
   }
 
   useEffect(() => {
-    // 5 秒ごとに jobs を再取得 (status の変化を反映)
-    const id = setInterval(refreshJobs, 5000)
-    return () => clearInterval(id)
+    // egress 対策: 30 秒ごとに jobs を再取得 (旧 5 秒 → 1/6 に削減)。
+    // タブが前面に戻った瞬間にも 1 回だけ更新する。
+    const id = setInterval(refreshJobs, 30_000)
+    const onVisible = () => {
+      if (!document.hidden) refreshJobs()
+    }
+    document.addEventListener("visibilitychange", onVisible)
+    return () => {
+      clearInterval(id)
+      document.removeEventListener("visibilitychange", onVisible)
+    }
   }, [])
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {

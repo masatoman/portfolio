@@ -5,7 +5,11 @@ import {
   isServiceRoleConfigured,
   isSupabaseConfigured,
 } from "@/lib/supabase/server"
-import { rowToJob, type JobRow } from "@/lib/lab-tools/issue-finder/db"
+import {
+  JOB_LIST_COLUMNS,
+  rowToJob,
+  type JobRow,
+} from "@/lib/lab-tools/issue-finder/db"
 import { expandQueries } from "@/lib/lab-tools/issue-finder/queries"
 
 export const runtime = "nodejs"
@@ -184,7 +188,7 @@ export async function GET(req: Request) {
     const supabase = await createServerSupabase()
     let query = supabase
       .from("if_jobs")
-      .select("*")
+      .select(JOB_LIST_COLUMNS)
       .order("created_at", { ascending: false })
       .limit(limit)
 
@@ -199,7 +203,9 @@ export async function GET(req: Request) {
         { status: 502 },
       )
     }
-    return NextResponse.json({ jobs: data.map((r) => rowToJob(r as JobRow)) })
+    return NextResponse.json({
+      jobs: data.map((r) => rowToJob(r as unknown as JobRow)),
+    })
   } catch (err) {
     return NextResponse.json(
       {
