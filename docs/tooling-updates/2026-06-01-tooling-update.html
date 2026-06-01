@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tooling Update 2026-06-01 — Claude Code / Obsidian / Anthropic</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; line-height: 1.7; color: #2c3e50; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { color: #4f46e5; margin-top: 2rem; }
+    .update-item { background: #f8fafc; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 4px; }
+    .update-item.applicable-b { border-left-color: #10b981; }
+    .update-item.applicable-obsidian { border-left-color: #f59e0b; }
+    .update-item.reference-only { border-left-color: #94a3b8; opacity: 0.85; }
+    .tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.85rem; margin-right: 0.5rem; }
+    .tag-b { background: #d1fae5; color: #065f46; }
+    .tag-obsidian { background: #fef3c7; color: #92400e; }
+    .tag-ref { background: #e5e7eb; color: #475569; }
+    .tag-source { background: #e0e7ff; color: #3730a3; }
+    .action { background: #eef2ff; padding: 0.75rem 1rem; border-radius: 4px; margin-top: 0.5rem; }
+    .meta { font-size: 0.85rem; color: #64748b; }
+    .version { font-size: 0.8rem; font-weight: 600; color: #6366f1; margin-left: 0.5rem; }
+    .none-box { background: #f1f5f9; padding: 0.75rem 1.25rem; border-radius: 4px; color: #64748b; font-style: italic; margin: 1rem 0; }
+    .fetch-fail { background: #fff7ed; border-left: 4px solid #f97316; padding: 0.75rem 1.25rem; border-radius: 4px; margin: 0.5rem 0; font-size: 0.9rem; }
+    .fetch-alt { background: #f0fdf4; border-left: 4px solid #86efac; padding: 0.75rem 1.25rem; border-radius: 4px; margin: 0.5rem 0; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>Tooling Update 2026-06-01</h1>
+  <p class="meta">
+    取得日: 2026-06-01 JST &nbsp;/&nbsp;
+    対象期間: 2026-05-25 〜 2026-06-01 &nbsp;/&nbsp;
+    ソース: Claude Code GitHub releases / Obsidian changelog (WebSearch 代替) / Anthropic news (WebSearch 代替)
+  </p>
+
+  <!-- ===== 軸 B ===== -->
+  <h2>軸 B 工務店プロジェクトに使える更新</h2>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>v2.1.157 — <code>.claude/skills</code> 自動読み込み + <code>claude plugin init</code> + スラッシュコマンド補完</strong>
+    <span class="version">2026-05-29</span>
+    <p>
+      <code>.claude/skills</code> ディレクトリに置いたプラグインが Claude Code 起動時に自動読み込みされるようになった。
+      <code>claude plugin init &lt;name&gt;</code> で skill のスキャフォールディングが可能になり、スラッシュコマンドの自動補完も追加された。
+      ワーカートリー管理も改善されており、並列エージェント作業の安定性が向上している。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      issue-finder v6 のルーティンを <code>.claude/skills/issue-finder/</code> として切り出し、
+      <code>claude plugin init issue-finder</code> でテンプレートを生成して整理する。
+      demo-gallery の投票状況チェックも <code>/demo-gallery-check</code> コマンドとして skill 定義しておくと、
+      毎週月曜の tooling-update-watch 起動時にスラッシュコマンドとして呼び出せる。
+      既存の 7 routines (night-writer, daily-operator 等) との競合が出ないか、
+      <code>/reload-skills</code> で即時テストすること。
+    </div>
+  </div>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <span class="tag tag-source">Anthropic / Claude Code</span>
+    <strong>Claude Opus 4.8 + Dynamic Workflows — 最大 1,000 サブエージェント並列オーケストレーション</strong>
+    <span class="version">2026-05-28</span>
+    <p>
+      Opus 4.8 (v2.1.154, May 28) と同時に Dynamic Workflows が Claude Code に搭載された。
+      Claude が JavaScript オーケストレーションスクリプトを自動生成し、最大 1,000 のサブエージェントを並列起動できる。
+      中断しても再開可能 (resumable runs)。MAX/Team/Enterprise プラン対象の research preview。
+      価格は Opus 4.7 と同じ ($5/$25 per million tokens)。Fast mode は以前より 3 倍安くなった。
+    </p>
+    <div class="action">
+      <strong>推奨アクション (今すぐではなく、9月以降の主軸確定後に検討):</strong>
+      プラン C の 6 経路並列ヒアリング (北原氏 / たましん / 建材屋 / 設計事務所 / 多摩商工会議所 / アトツギ甲子園)
+      の結果データが溜まった時点で、Dynamic Workflows を使った「候補 × シグナル」マトリクスの自動更新パイプラインを検討。
+      現時点では research preview なので本番 workflow には組み込まず、まず demo-gallery の集計スクリプトで動作確認するのが安全。
+      <br>今週すぐに試すなら: <code>claude</code> CLI で
+      <code>"demo-gallery の 8 デモを並列で評価して需要スコアを算出してください"</code>
+      という指示で Dynamic Workflows が起動するか確認する。
+    </div>
+  </div>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>v2.1.152 — <code>/code-review --fix</code> 改善 + <code>disallowed-tools</code> + <code>/reload-skills</code> + GFM タスクリスト</strong>
+    <span class="version">2026-05-27</span>
+    <p>
+      <code>/code-review --fix</code> がレビュー結果を自動適用できるよう改善された。
+      skill / スラッシュコマンドに <code>disallowed-tools</code> を設定できるようになり、
+      特定 skill が触れるツールを制限できる。
+      <code>/reload-skills</code> で skill を再読み込み可能。
+      マークダウン表示が GitHub Flavored Markdown のタスクリスト (<code>- [ ]</code>) に対応。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      <code>local-business/</code> や <code>demo-gallery/</code> の TSX 変更後に
+      <code>/code-review --fix</code> を定常ルーティンとして組み込む。
+      tooling-update-watch の PreToolUse hook に <code>disallowed-tools: ["Edit", "Write"]</code>
+      を設定すれば、情報収集専用 skill が誤ってファイルを書き換えることを防げる。
+    </div>
+  </div>
+
+  <!-- ===== Obsidian ===== -->
+  <h2>Obsidian Vault 育成に使える更新</h2>
+
+  <div class="update-item applicable-obsidian">
+    <span class="tag tag-obsidian">Obsidian 適用</span>
+    <span class="tag tag-source">Obsidian</span>
+    <strong>Obsidian v1.13.0 — Obsidian CLI 導入 + 設定パネル刷新 + 画像ドラッグリサイズ</strong>
+    <span class="version">2026-05-28 (WebSearch 取得)</span>
+    <p>
+      <strong>Obsidian CLI</strong> が導入され、ターミナルから Obsidian を制御・スクリプト化できるようになった。
+      設定パネルが独立ウィンドウで開くよう刷新され、設定名・説明でのキーワード検索とキーボードナビゲーションが追加。
+      Live Preview でのドラッグによる画像リサイズ (コーナーをドラッグ、ダブルクリックでリセット) も追加された。
+      ファイル削除時に添付ファイルも同時削除するか確認するプロンプトが追加された。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      <code>obsidian-cli</code> を使って、tooling-update-watch の Step 5 (commit + push) 完了後に
+      生成した HTML を自動的に
+      <code>~/.claude/projects/-Users-master-home-work-portfolio/reports/</code>
+      へコピーするワンライナーを Stop hook に追加する。
+      現状は「手動でコピー」と注記しているが、CLI 化で毎週の手動作業がゼロになる。
+      まず <code>obsidian-cli --help</code> で利用可能コマンドを確認すること (CLI の API は公式ドキュメント要確認)。
+    </div>
+  </div>
+
+  <div class="update-item applicable-obsidian">
+    <span class="tag tag-obsidian">Obsidian 適用</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>v2.1.153 — MCP サーバー接続性改善 + バックグラウンドセッション安定性向上</strong>
+    <span class="version">2026-05-28</span>
+    <p>
+      MCP サーバーへの接続安定性が改善され、バックグラウンドセッションでのエージェント管理が強化された。
+      具体的な失敗パターンが修正されており、長時間の routine 実行中に MCP ツールが切断されにくくなる。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      pdca-weekly や night-writer など、長時間バックグラウンド実行する routine での
+      MCP ツール呼び出し失敗が減っているはず。
+      Vault の memory ファイルを MCP 経由で操作するツールがあれば、
+      今週の routine 実行ログで失敗率の変化を確認しておく。
+    </div>
+  </div>
+
+  <!-- ===== 参考のみ ===== -->
+  <h2>参考のみ (今は使わない)</h2>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>v2.1.159 — 内部インフラ改善のみ</strong>
+    <span class="version">2026-05-31</span>
+    <p>ユーザー向けの変更なし。内部インフラの改善のみ。スキップ。</p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>v2.1.158 — Bedrock / Vertex / Foundry で Auto mode が Opus 4.7/4.8 に対応</strong>
+    <span class="version">2026-05-30</span>
+    <p>
+      <code>CLAUDE_CODE_ENABLE_AUTO_MODE=1</code> でオプトイン。
+      masatoman は MAX プラン (claude.ai 直接利用) であり、Bedrock / Vertex / Foundry の AWS / GCP 経由プランは使っていないため直接影響なし。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>v2.1.156 — Opus 4.8 シンキングブロック修正</strong>
+    <span class="version">2026-05-29</span>
+    <p>
+      Opus 4.8 使用時にシンキングブロックの修正で API エラーが発生していた問題を解決したバグ修正のみ。
+      自動的に適用される。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <span class="tag tag-source">Claude Code</span>
+    <strong>v2.1.154 — Opus 4.8 正式リリース (Dynamic Workflows は上述)</strong>
+    <span class="version">2026-05-28</span>
+    <p>
+      Opus 4.8 本体リリース + Fast mode 改善 (3 倍安価)。
+      Dynamic Workflows は「軸 B 適用」欄に掲載済みのため、ここでは省略。
+      MAX プランならデフォルトで Opus 4.8 が利用可能なので追加設定は不要。
+    </p>
+  </div>
+
+  <!-- ===== 取得失敗ソース ===== -->
+  <h2>取得失敗ソース</h2>
+  <div class="fetch-fail">
+    <strong>⚠️ docs.claude.com/en/release-notes/claude-code</strong>
+    — 301 → platform.claude.com → 307 → GitHub CHANGELOG.md にリダイレクト。
+    GitHub releases (github.com/anthropics/claude-code/releases) から直接取得に切り替えて補完済み。
+  </div>
+  <div class="fetch-fail">
+    <strong>⚠️ obsidian.md/changelog/</strong>
+    — HTTP 403 Forbidden。WebSearch (obsidian.md / github.com/obsidianmd/obsidian-releases) で代替取得済み。
+    取得内容: v1.13.0 (2026-05-28)。
+  </div>
+  <div class="fetch-fail">
+    <strong>⚠️ anthropic.com/news</strong>
+    — HTTP 403 Forbidden。WebSearch で代替取得済み。
+    取得内容: Claude Opus 4.8 (2026-05-28)、Stainless 買収 (2026-05-18、対象期間外のため除外)。
+  </div>
+  <div class="fetch-alt">
+    ℹ️ anthropic.com の個別記事 (apple-xcode-claude-agent-sdk, claude-opus-4-8) も WebFetch で 403。
+    WebSearch の結果、Apple Xcode 対応は 2026-02-03 発表 (対象期間外) のため今回の集計から除外した。
+  </div>
+
+  <hr>
+  <p class="meta">
+    📥 一覧 + フィルタ機能は <a href="./index.html">index.html</a> から。
+    読み終わったら手動で <code>~/.claude/projects/-Users-master-home-work-portfolio/reports/</code>
+    にコピーすると Obsidian Vault で時系列管理できます。
+    (Obsidian v1.13.0 CLI 導入後は自動化を検討してください)
+  </p>
+</body>
+</html>
