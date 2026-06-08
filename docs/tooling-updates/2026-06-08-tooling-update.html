@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tooling Update 2026-06-08 — Claude Code / Obsidian / Anthropic</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; line-height: 1.7; color: #2c3e50; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { color: #4f46e5; margin-top: 2rem; }
+    .update-item { background: #f8fafc; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 4px; }
+    .update-item.applicable-b { border-left-color: #10b981; }
+    .update-item.applicable-obsidian { border-left-color: #f59e0b; }
+    .update-item.reference-only { border-left-color: #94a3b8; opacity: 0.85; }
+    .tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.85rem; margin-right: 0.5rem; }
+    .tag-b { background: #d1fae5; color: #065f46; }
+    .tag-obsidian { background: #fef3c7; color: #92400e; }
+    .tag-ref { background: #e5e7eb; color: #475569; }
+    .action { background: #eef2ff; padding: 0.75rem 1rem; border-radius: 4px; margin-top: 0.5rem; }
+    .meta { font-size: 0.85rem; color: #64748b; }
+    .version { font-size: 0.8rem; color: #64748b; margin-left: 0.5rem; }
+    .none-note { color: #94a3b8; font-style: italic; padding: 0.5rem 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Tooling Update 2026-06-08</h1>
+  <p class="meta">取得日: 2026-06-08 JST / 対象期間: 2026-06-01 〜 2026-06-08 / ソース: Claude Code GitHub releases / Obsidian releases / Anthropic news</p>
+
+  <h2>軸 B 工務店プロジェクトに使える更新</h2>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <strong>Stop / SubagentStop Hook が additionalContext を返却可能に</strong>
+    <span class="version">v2.1.163 / 2026-06-04</span>
+    <p>
+      Stop / SubagentStop フックが <code>hookSpecificOutput.additionalContext</code> を返せるようになった。
+      Claude はこれを次ターンの追加コンテキストとして受け取り、フックエラーとは扱われない。
+      これにより「ルーティン終了後に次回実行時刻・残タスク数・判定結果」などを Claude に渡せる。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      既存の Stop hook スクリプト (issue-finder daily queue / pdca-weekly / daily-operator) に
+      <code>additionalContext</code> フィールドを追加し、次ルーティン起動時のブリーフィング文を返すよう改修する。
+      具体的には <code>echo '{"hookSpecificOutput":{"additionalContext":"..."}}'</code> 形式で返す。
+      <em>工数目安: 既存 hook 1 本あたり 15 分。</em>
+    </div>
+  </div>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <strong>クロスセッション・メッセージングのセキュリティ強化</strong>
+    <span class="version">v2.1.166 / 2026-06-06</span>
+    <p>
+      SendMessage 経由で他セッションからリレーされたメッセージは、ユーザー権限を失い、
+      受信側によるリレー許可リクエストも拒否されるようになった。
+      オートモードでも同様にブロックされる。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      night-writer / tuesday-watchdog / daily-operator 等の並列ルーティンで、
+      別セッションから <code>SendMessage</code> 経由でツール権限を付与しているケースがないか確認する。
+      既存フック設定に変更は不要だが、「ルーティン間連携」を新規追加する場合は権限降格を前提に設計する。
+    </div>
+  </div>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <strong>バックグラウンドセッション: 更新後の再接続時タスク消失を修正</strong>
+    <span class="version">v2.1.163 / 2026-06-04</span>
+    <p>
+      バックグラウンドセッションが Claude Code 更新後に再接続した際、実行中タスクが失われるバグを修正。
+      更新後にバックグラウンドエージェントが自動で新バージョンに切り替わるようにもなった。
+      night-writer / zero-to-one-diary 等の長時間ルーティンの中断リスクが低下する。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      特段の設定変更は不要。
+      今後バックグラウンドルーティンが途中で止まっていた場合の原因として「バージョン更新時リセット」を除外できるようになった。
+      ログ確認時の切り分けに活用する。
+    </div>
+  </div>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <strong>Hook の if 条件 ($HOME / $VAR を含むコマンド) バグ修正</strong>
+    <span class="version">v2.1.163 / 2026-06-04</span>
+    <p>
+      Hook の <code>if: "Bash(...)"</code> 条件式に <code>$HOME</code> や <code>$VAR</code> を含む場合、
+      常にフックが発火してしまうバグを修正。
+      また <code>$HOME</code> を経由したホームディレクトリパスへの deny ルール適用も修正された。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      既存フック設定 (<code>.claude/settings.json</code>) の <code>if</code> 条件に <code>$HOME</code> / <code>${VAR}</code> を使っている箇所があれば、
+      意図した条件で発火しているか動作確認を行う。
+      修正前に意図せず全発火していた可能性がある。
+    </div>
+  </div>
+
+  <h2>Obsidian Vault 育成に使える更新</h2>
+
+  <div class="update-item applicable-obsidian">
+    <span class="tag tag-obsidian">Obsidian 適用</span>
+    <strong>MCP ツール deny ルールにグロブパターン対応</strong>
+    <span class="version">v2.1.166 / 2026-06-06</span>
+    <p>
+      deny ルールのツール名にグロブパターンが使えるようになった (<code>"*"</code> で全ツール拒否、
+      <code>"mcp__Supabase__*"</code> のような prefix ワイルドカードも使用可能)。
+      allow ルールは非 MCP グロブを拒否し、起動時に未知ツール名を警告表示する。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      Obsidian Vault の memory / reports フォルダ保護で、
+      <code>mcp__Notion__*</code> や <code>mcp__Google_Drive__*</code> 等を一括 deny する設定を
+      <code>.claude/settings.json</code> に追加することで、
+      外部サービスへの意図しないファイル書き出しを防止できる。
+      既存の PreToolUse/Edit-Write フックと役割分担を整理する契機にもなる。
+    </div>
+  </div>
+
+  <p class="none-note">
+    ※ Obsidian 公式リリース (obsidian-releases GitHub): 過去 7 日間のリリースなし。最新は v1.12.7 (2026-03-23)。
+  </p>
+
+  <h2>参考のみ (今は使わない)</h2>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <strong>フォールバックモデル設定 (fallbackModel)</strong>
+    <span class="version">v2.1.166 / 2026-06-06</span>
+    <p>
+      プライマリモデル過負荷・利用不可時に最大 3 つのフォールバックモデルを順序付けで設定可能になった。
+      <code>--fallback-model</code> フラグがインタラクティブセッションにも対応。
+    </p>
+    <p class="meta">MAX プラン定額内・API 直叩きなしで運用中のため今は不要。API 直接利用に移行する場合に再検討。</p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <strong>思考トークン制御の強化 (MAX_THINKING_TOKENS=0 / --thinking disabled)</strong>
+    <span class="version">v2.1.166 / 2026-06-06</span>
+    <p>
+      デフォルト思考モデルを含め、<code>MAX_THINKING_TOKENS=0</code> や <code>--thinking disabled</code> で
+      思考を無効化できるようになった。モデルごとの思考トグルも可能。
+    </p>
+    <p class="meta">MAX プラン定額内運用では思考トークンのコスト最適化が不要。ルーティンのレイテンシ削減が必要になったら再検討。</p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <strong>/plugin list コマンド追加</strong>
+    <span class="version">v2.1.163 / 2026-06-04</span>
+    <p>
+      インストール済みプラグインを一覧表示する <code>/plugin list</code> コマンドが追加された。
+      <code>--enabled</code> / <code>--disabled</code> フィルタに対応。
+    </p>
+    <p class="meta">現状プラグイン追加予定がないため参考のみ。プラグイン管理が複雑になった際に活用。</p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <strong>管理設定で min/max バージョン要件を強制可能に</strong>
+    <span class="version">v2.1.163 / 2026-06-04</span>
+    <p>
+      <code>requiredMinimumVersion</code> / <code>requiredMaximumVersion</code> を設定することで、
+      許可バージョン範囲外の Claude Code 起動を拒否できるようになった。チーム・エンタープライズ向け機能。
+    </p>
+    <p class="meta">ソロ開発のため不要。チーム採用フェーズに入ったら再検討。</p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <strong>v2.1.168 / v2.1.167 / v2.1.165 — バグ修正・信頼性向上</strong>
+    <span class="version">2026-06-06 / 2026-06-05</span>
+    <p>
+      3 リリースともリリースノート本文は「バグ修正と信頼性の向上」のみで詳細不明。
+      GitHub releases ページにも具体的な変更内容が記載されていない軽微なパッチ。
+    </p>
+    <p class="meta">アップデート自体は通常通り適用推奨。個別の動作確認は不要。</p>
+  </div>
+
+  <h2>取得失敗ソース</h2>
+
+  <div class="update-item reference-only">
+    <p>
+      <strong>Anthropic 公式 news (anthropic.com/news)</strong>: HTTP 403 Forbidden。
+      anthropic.com/research も同様に 403。
+      代替ソース (anthropic.com/news/claude-api-updates) も 403。
+      今週の Anthropic 公式発表の取得は断念。次回は WebSearch ベースで再試行を検討。
+    </p>
+    <p>
+      <strong>docs.claude.com/en/release-notes/claude-code</strong>: 301 → platform.claude.com → 307 →
+      GitHub CHANGELOG.md へリダイレクト。CHANGELOG.md は日付情報なしのため、
+      代わりに GitHub releases ページから日付付きデータを取得済み (情報に欠損なし)。
+    </p>
+  </div>
+
+  <hr>
+  <p class="meta">
+    📥 一覧 + フィルタ機能は <a href="./index.html">index.html</a> から。
+    読み終わったら手動で <code>~/.claude/projects/-Users-master-home-work-portfolio/reports/</code> にコピーすると Obsidian Vault で時系列管理できます。
+  </p>
+</body>
+</html>
