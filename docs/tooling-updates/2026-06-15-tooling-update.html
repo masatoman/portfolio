@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tooling Update 2026-06-15 — Claude Code / Obsidian / Anthropic</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; line-height: 1.7; color: #2c3e50; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { color: #4f46e5; margin-top: 2rem; }
+    .update-item { background: #f8fafc; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 4px; }
+    .update-item.applicable-b { border-left-color: #10b981; }
+    .update-item.applicable-obsidian { border-left-color: #f59e0b; }
+    .update-item.reference-only { border-left-color: #94a3b8; opacity: 0.85; }
+    .tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.85rem; margin-right: 0.5rem; }
+    .tag-b { background: #d1fae5; color: #065f46; }
+    .tag-obsidian { background: #fef3c7; color: #92400e; }
+    .tag-ref { background: #e5e7eb; color: #475569; }
+    .action { background: #eef2ff; padding: 0.75rem 1rem; border-radius: 4px; margin-top: 0.5rem; }
+    .meta { font-size: 0.85rem; color: #64748b; }
+    .version { font-size: 0.8rem; color: #64748b; margin-left: 0.5rem; }
+    .none-note { color: #94a3b8; font-style: italic; padding: 0.5rem 1rem; }
+    .fail-note { background: #fef2f2; border-left: 4px solid #fca5a5; padding: 0.75rem 1rem; border-radius: 4px; margin: 0.5rem 0; font-size: 0.9rem; color: #7f1d1d; }
+  </style>
+</head>
+<body>
+  <h1>Tooling Update 2026-06-15</h1>
+  <p class="meta">取得日: 2026-06-15 JST / 対象期間: 2026-06-08 〜 2026-06-15 / ソース: Claude Code GitHub releases (取得成功) / Obsidian GitHub releases (取得成功・新リリースなし) / Anthropic news (403 取得失敗)</p>
+
+  <h2>軸 B 工務店プロジェクトに使える更新</h2>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <strong>サブエージェントが最大5階層でサブエージェントを生成可能に</strong>
+    <span class="version">v2.1.172 / 2026-06-10</span>
+    <p>
+      Agent ツール呼び出しのネストが最大5レベルまで可能になった。
+      これまでサブエージェントはさらに別エージェントを起動できなかったが、今後は「ルーティン → 検索エージェント → 評価エージェント → 生成エージェント」のような多段チェーンを1コマンドで走らせられる。
+      issue-finder v6 のマルチプロファイル処理 (建設業 / 電設 / 設備設計 等) を並列サブエージェントに割り当てるアーキテクチャが現実的になった。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      issue-finder v6 daily queue の設計を見直し、プロファイルごとのサブエージェント並列実行が可能か
+      <code>scripts/</code> 配下のスクリプトで確認する。
+      具体的には「親エージェントが6経路ヒアリング候補を並列評価する」設計への応用を検討。
+      <em>工数目安: 設計レビュー30分。実装は issue-finder v7 に向けたバックログ化を推奨。</em>
+    </div>
+  </div>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <strong>/cd コマンド — プロンプトキャッシュを保持したままディレクトリ移動</strong>
+    <span class="version">v2.1.169 / 2026-06-08</span>
+    <p>
+      新コマンド <code>/cd &lt;path&gt;</code> でプロンプトキャッシュを破棄せずに作業ディレクトリを変更できるようになった。
+      従来の <code>cd</code> はキャッシュをリセットしていたため、daily-operator が portfolio repo から参照ファイルを読み込んだ後に masatoman.net repo へ移動すると再読み込みが発生していた。
+      7 ルーティン中で複数 repo を跨ぐケースで速度が向上する。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      daily-operator / night-writer 等のルーティン冒頭で <code>cd</code> している箇所を探し、
+      <code>/cd</code> に置き換えられるか確認する。
+      特に portfolio memory を読んだ後に masatoman.net へ移動する flow が対象。
+      <em>工数目安: ルーティンスクリプト確認 20 分 + 置き換え 5 分/箇所。</em>
+    </div>
+  </div>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <strong>--safe-mode フラグ — 全カスタマイズを無効化してトラブルシューティング</strong>
+    <span class="version">v2.1.169 / 2026-06-08</span>
+    <p>
+      <code>claude --safe-mode</code> で CLAUDE.md / hooks / MCP / settings / skills を全て無効にした状態で起動できる。
+      既存 hooks が 5 種 (PreToolUse / Edit-Write / Stop / PreCompact / UserPromptSubmit) あり、
+      ルーティンが増えるにつれて「どの hook が干渉しているか」の切り分けが困難になっていた。
+      AXIS-GUARD 誤発火や hook 循環など、原因不明のエラー発生時に最初に試すべきコマンドになる。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      CLAUDE.md のトラブルシューティングセクション (または memory の hook 関連ファイル) に
+      「原因不明のエラー → まず <code>claude --safe-mode</code> で動作確認」を1行追記する。
+      <em>工数目安: 5 分。</em>
+    </div>
+  </div>
+
+  <div class="update-item applicable-b">
+    <span class="tag tag-b">軸 B 適用</span>
+    <strong>language 設定でセッションタイトルを日本語固定</strong>
+    <span class="version">v2.1.176 / 2026-06-12</span>
+    <p>
+      セッションタイトルが会話の言語を自動検出して生成されるようになった。
+      さらに settings.json に <code>"language": "ja"</code> を設定することで日本語を強制固定できる。
+      現状、英語のファイル名が混在している Obsidian Vault の reports/ (616 件) への新規追加分が
+      日本語タイトルに統一される。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      <code>.claude/settings.json</code> に <code>"language": "ja"</code> を追加する (工数5分)。
+      既存616件のファイル名は変わらないが、今後追加される reports が日本語タイトルで整理され、
+      Obsidian の日本語バックリンク検索と相性が良くなる。
+    </div>
+  </div>
+
+  <h2>Obsidian Vault 育成に使える更新</h2>
+
+  <div class="update-item applicable-obsidian">
+    <span class="tag tag-obsidian">Obsidian 適用</span>
+    <strong>language 設定でセッションタイトルを日本語固定 (軸 B と兼用)</strong>
+    <span class="version">Claude Code v2.1.176 / 2026-06-12</span>
+    <p>
+      上記「軸 B 適用」と同一設定。Obsidian Vault 視点では、
+      new session が作成されるたびに日本語タイトルが自動付与されるため、
+      <code>reports/</code> フォルダのファイル一覧が日本語で統一され、
+      <code>[[wiki]]</code> バックリンクでの検索精度が向上する。
+    </p>
+    <div class="action">
+      <strong>推奨アクション:</strong>
+      軸 B の推奨アクションと同一 (<code>.claude/settings.json</code> に <code>"language": "ja"</code>)。
+      設定1つで Vault 整理と軸 B ルーティン両方に適用される。
+    </div>
+  </div>
+
+  <p class="none-note">Obsidian 本体の新リリース: 今週 (2026-06-08〜06-15) は公開リリースなし。最新は v1.12.7 (2026-03-23)。</p>
+
+  <h2>参考のみ (今は使わない)</h2>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <strong>Claude Fable 5 一般公開 (GA) アナウンス</strong>
+    <span class="version">v2.1.170 / 2026-06-09</span>
+    <p>
+      "Mythosクラス" として Claude Fable 5 が一般公開された。
+      MAX プランでは既に使用可能なため、特段の設定変更は不要。
+      このルーティン自体も claude-sonnet-4-6 で稼働しており、
+      Fable 5 への切り替えを検討する場合はモデル ID <code>claude-fable-5</code> を指定する。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <strong>enforceAvailableModels 管理設定</strong>
+    <span class="version">v2.1.175 / 2026-06-12</span>
+    <p>
+      <code>availableModels</code> 許可リストでデフォルトモデルも制限できる組織管理設定。
+      個人 MAX プランでは関係なし。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <strong>wheelScrollAccelerationEnabled / /model ピッカー修正 / バックグラウンドセッション修正</strong>
+    <span class="version">v2.1.174 / 2026-06-12</span>
+    <p>
+      マウスホイール加速の無効化設定 (UI 好み)、/model ピッカーの表示バグ修正、
+      バックグラウンドセッションの複数問題修正。
+      前週 v2.1.163 で対応済みだったバックグラウンドセッション問題の追加修正。
+      既存ルーティンへの影響なし。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <strong>Fable 5 モデル名 [1m] サフィックス正規化 / Windows 警告修正</strong>
+    <span class="version">v2.1.173 / 2026-06-11</span>
+    <p>
+      モデル名の内部表記バグ修正と Windows 向け警告修正。macOS Linux 環境では影響なし。
+    </p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <strong>CHANGELOG.md と feed.xml の更新のみ</strong>
+    <span class="version">v2.1.177 / 2026-06-13</span>
+    <p>実質的な機能変更なし。メタデータ更新のみ。</p>
+  </div>
+
+  <div class="update-item reference-only">
+    <span class="tag tag-ref">参考のみ</span>
+    <strong>disableBundledSkills 設定</strong>
+    <span class="version">v2.1.169 / 2026-06-08</span>
+    <p>
+      バンドルスキルを非表示化する設定。
+      カスタムスキルを整理したい場合に使えるが、現状ではバンドルスキルを活用しているため変更不要。
+    </p>
+  </div>
+
+  <h2>取得失敗ソース</h2>
+
+  <div class="fail-note">
+    <strong>anthropic.com/news, anthropic.com/blog, platform.anthropic.com/changelog</strong> — HTTP 403 Forbidden (全試行失敗)。
+    ただし Claude Fable 5 GA (2026-06-09) は Claude Code v2.1.170 のリリースノート内で言及されており、主要情報は取得済み。
+    次回以降も 403 が続く場合は Anthropic の X / Threads 公式アカウントを代替ソースとして追加を検討。
+  </div>
+
+  <div class="fail-note">
+    <strong>obsidian.md/changelog</strong> — HTTP 403 Forbidden。
+    ただし GitHub releases (obsidianmd/obsidian-releases) では 2026-06-08〜06-15 に新リリースなし (最新: v1.12.7 / 2026-03-23) を確認済み。実質的な情報損失なし。
+  </div>
+
+  <hr>
+  <p class="meta">📥 一覧 + フィルタ機能は <a href="./index.html">index.html</a> から。 読み終わったら手動で <code>~/.claude/projects/-Users-master-home-work-portfolio/reports/</code> にコピーすると Obsidian Vault で時系列管理できます。</p>
+</body>
+</html>
