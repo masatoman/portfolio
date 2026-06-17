@@ -2,9 +2,9 @@
   "version": 4,
   "schedule": {
     "cron": "0 9 * * *",
-    "humanReadable": "毎日 9:00 (JST) ／ perspective を 1 巡 13 日でローテーション",
+    "humanReadable": "毎日 9:00 (JST) ／ active プロファイルの perspective を 1 巡 4 日でローテーション",
     "rotationStrategy": "daily",
-    "rotationStartDate": "2026-05-10",
+    "rotationStartDate": "2026-06-17",
     "samplingTargetPerRun": 150,
     "maxClustersPerRun": 12,
     "minClusterSize": 3,
@@ -14,14 +14,26 @@
     {
       "id": "komuten",
       "name": "工務店・建設業",
-      "active": true,
+      "active": false,
       "depth": "deep",
       "rationale": "メイン顧客層。 補助金支援 × IT 導入の主戦場 (B2B 受注のメインターゲット)。 1 つの業種を多角度で深掘り。",
-      "phases": ["受注前 (営業・見積)", "契約・着工", "施工中", "引き渡し・アフター"],
+      "phases": [
+        "受注前 (営業・見積)",
+        "契約・着工",
+        "施工中",
+        "引き渡し・アフター"
+      ],
       "perspectives": [
         {
           "role": "現場監督",
-          "keywords": ["現場監督", "写真台帳", "日報", "残業", "深夜", "職人調整"],
+          "keywords": [
+            "現場監督",
+            "写真台帳",
+            "日報",
+            "残業",
+            "深夜",
+            "職人調整"
+          ],
           "examplePhrasesToWatch": [
             "夜21時から事務所",
             "妻にいつ帰ってくるの",
@@ -43,17 +55,62 @@
             "Excel"
           ],
           "watchedTools": [
-            { "name": "andpad", "aliases": ["andpad", "アンドパッド", "ANDPAD"] },
-            { "name": "Photoruction", "aliases": ["Photoruction", "フォトラクション"] },
-            { "name": "ミライ工事", "aliases": ["ミライ工事", "miraikoji"] },
-            { "name": "eYACHO", "aliases": ["eYACHO", "イーヤチョー"] },
-            { "name": "蔵衛門", "aliases": ["蔵衛門", "kuraemon"] },
-            { "name": "kintone", "aliases": ["kintone", "キントーン"] }
+            {
+              "name": "andpad",
+              "aliases": [
+                "andpad",
+                "アンドパッド",
+                "ANDPAD"
+              ]
+            },
+            {
+              "name": "Photoruction",
+              "aliases": [
+                "Photoruction",
+                "フォトラクション"
+              ]
+            },
+            {
+              "name": "ミライ工事",
+              "aliases": [
+                "ミライ工事",
+                "miraikoji"
+              ]
+            },
+            {
+              "name": "eYACHO",
+              "aliases": [
+                "eYACHO",
+                "イーヤチョー"
+              ]
+            },
+            {
+              "name": "蔵衛門",
+              "aliases": [
+                "蔵衛門",
+                "kuraemon"
+              ]
+            },
+            {
+              "name": "kintone",
+              "aliases": [
+                "kintone",
+                "キントーン"
+              ]
+            }
           ]
         },
         {
           "role": "大工・職人",
-          "keywords": ["大工", "職人", "親方", "見習い", "工務店 若手", "腰", "道具"],
+          "keywords": [
+            "大工",
+            "職人",
+            "親方",
+            "見習い",
+            "工務店 若手",
+            "腰",
+            "道具"
+          ],
           "examplePhrasesToWatch": [
             "腰がもたない",
             "若手が来ない",
@@ -75,9 +132,27 @@
             "工具"
           ],
           "watchedTools": [
-            { "name": "助太刀", "aliases": ["助太刀", "sukedachi"] },
-            { "name": "クラフトバンク", "aliases": ["クラフトバンク", "CraftBank"] },
-            { "name": "ツクリンク", "aliases": ["ツクリンク", "Tsukulink"] }
+            {
+              "name": "助太刀",
+              "aliases": [
+                "助太刀",
+                "sukedachi"
+              ]
+            },
+            {
+              "name": "クラフトバンク",
+              "aliases": [
+                "クラフトバンク",
+                "CraftBank"
+              ]
+            },
+            {
+              "name": "ツクリンク",
+              "aliases": [
+                "ツクリンク",
+                "Tsukulink"
+              ]
+            }
           ]
         },
         {
@@ -109,11 +184,38 @@
             "二転三転"
           ],
           "watchedTools": [
-            { "name": "Jw_cad", "aliases": ["Jw_cad", "JWCAD", "JW-CAD"] },
-            { "name": "ARCHICAD", "aliases": ["ARCHICAD", "アーキキャド"] },
-            { "name": "Vectorworks", "aliases": ["Vectorworks", "ベクターワークス"] },
-            { "name": "ICHIJYO", "aliases": [] },
-            { "name": "Revit", "aliases": ["Revit"] }
+            {
+              "name": "Jw_cad",
+              "aliases": [
+                "Jw_cad",
+                "JWCAD",
+                "JW-CAD"
+              ]
+            },
+            {
+              "name": "ARCHICAD",
+              "aliases": [
+                "ARCHICAD",
+                "アーキキャド"
+              ]
+            },
+            {
+              "name": "Vectorworks",
+              "aliases": [
+                "Vectorworks",
+                "ベクターワークス"
+              ]
+            },
+            {
+              "name": "ICHIJYO",
+              "aliases": []
+            },
+            {
+              "name": "Revit",
+              "aliases": [
+                "Revit"
+              ]
+            }
           ]
         },
         {
@@ -145,10 +247,32 @@
             "原価"
           ],
           "watchedTools": [
-            { "name": "SUUMO", "aliases": ["SUUMO", "スーモ"] },
-            { "name": "ホームズ", "aliases": ["ホームズ", "LIFULL HOME'S"] },
-            { "name": "イエシル", "aliases": ["イエシル"] },
-            { "name": "PLATEAU", "aliases": ["PLATEAU"] }
+            {
+              "name": "SUUMO",
+              "aliases": [
+                "SUUMO",
+                "スーモ"
+              ]
+            },
+            {
+              "name": "ホームズ",
+              "aliases": [
+                "ホームズ",
+                "LIFULL HOME'S"
+              ]
+            },
+            {
+              "name": "イエシル",
+              "aliases": [
+                "イエシル"
+              ]
+            },
+            {
+              "name": "PLATEAU",
+              "aliases": [
+                "PLATEAU"
+              ]
+            }
           ]
         },
         {
@@ -181,11 +305,41 @@
             "工事原価"
           ],
           "watchedTools": [
-            { "name": "freee", "aliases": ["freee", "フリー"] },
-            { "name": "マネーフォワード", "aliases": ["マネーフォワード", "MoneyForward", "MF クラウド"] },
-            { "name": "弥生会計", "aliases": ["弥生会計", "弥生"] },
-            { "name": "建設ドットウェブ", "aliases": ["建設ドットウェブ", "どっと原価"] },
-            { "name": "勘定奉行", "aliases": ["勘定奉行"] }
+            {
+              "name": "freee",
+              "aliases": [
+                "freee",
+                "フリー"
+              ]
+            },
+            {
+              "name": "マネーフォワード",
+              "aliases": [
+                "マネーフォワード",
+                "MoneyForward",
+                "MF クラウド"
+              ]
+            },
+            {
+              "name": "弥生会計",
+              "aliases": [
+                "弥生会計",
+                "弥生"
+              ]
+            },
+            {
+              "name": "建設ドットウェブ",
+              "aliases": [
+                "建設ドットウェブ",
+                "どっと原価"
+              ]
+            },
+            {
+              "name": "勘定奉行",
+              "aliases": [
+                "勘定奉行"
+              ]
+            }
           ]
         },
         {
@@ -218,9 +372,26 @@
             "採用"
           ],
           "watchedTools": [
-            { "name": "TRANBI", "aliases": ["TRANBI", "トランビ"] },
-            { "name": "BATONZ", "aliases": ["BATONZ", "バトンズ"] },
-            { "name": "事業承継ナビ", "aliases": ["事業承継ナビ"] }
+            {
+              "name": "TRANBI",
+              "aliases": [
+                "TRANBI",
+                "トランビ"
+              ]
+            },
+            {
+              "name": "BATONZ",
+              "aliases": [
+                "BATONZ",
+                "バトンズ"
+              ]
+            },
+            {
+              "name": "事業承継ナビ",
+              "aliases": [
+                "事業承継ナビ"
+              ]
+            }
           ]
         },
         {
@@ -257,7 +428,7 @@
     {
       "id": "micro-corp",
       "name": "個人事業主・マイクロ法人",
-      "active": true,
+      "active": false,
       "depth": "shallow",
       "rationale": "masatoman 自身が 2026/6 にマイクロ法人を設立予定。 自分のリサーチ + ブログネタ + 同業フリーランスへの訴求両方に効く。 ターゲットを段階別 (検討者/運用者/廃業検討者) に分けて捉える。",
       "perspectives": [
@@ -288,9 +459,24 @@
             "資本金"
           ],
           "watchedTools": [
-            { "name": "freee 会社設立", "aliases": ["freee 会社設立"] },
-            { "name": "マネーフォワード会社設立", "aliases": ["マネーフォワード 会社設立"] },
-            { "name": "弥生のかんたん会社設立", "aliases": ["弥生 会社設立"] }
+            {
+              "name": "freee 会社設立",
+              "aliases": [
+                "freee 会社設立"
+              ]
+            },
+            {
+              "name": "マネーフォワード会社設立",
+              "aliases": [
+                "マネーフォワード 会社設立"
+              ]
+            },
+            {
+              "name": "弥生のかんたん会社設立",
+              "aliases": [
+                "弥生 会社設立"
+              ]
+            }
           ]
         },
         {
@@ -321,9 +507,28 @@
             "確定申告"
           ],
           "watchedTools": [
-            { "name": "freee", "aliases": ["freee", "フリー"] },
-            { "name": "マネーフォワード", "aliases": ["マネーフォワード", "MoneyForward", "MF クラウド"] },
-            { "name": "弥生会計", "aliases": ["弥生会計", "弥生"] }
+            {
+              "name": "freee",
+              "aliases": [
+                "freee",
+                "フリー"
+              ]
+            },
+            {
+              "name": "マネーフォワード",
+              "aliases": [
+                "マネーフォワード",
+                "MoneyForward",
+                "MF クラウド"
+              ]
+            },
+            {
+              "name": "弥生会計",
+              "aliases": [
+                "弥生会計",
+                "弥生"
+              ]
+            }
           ]
         },
         {
@@ -357,7 +562,7 @@
     {
       "id": "it-subsidy",
       "name": "IT 導入補助金関連",
-      "active": true,
+      "active": false,
       "depth": "shallow",
       "rationale": "所持スキルと直結。 マイクロ法人方針と矛盾するため当面棚上げだが、 顧客の悲鳴は把握しておきたい。 申請プロセスのフェーズで切る。",
       "perspectives": [
@@ -387,8 +592,20 @@
             "電子申請"
           ],
           "watchedTools": [
-            { "name": "ミラサポplus", "aliases": ["ミラサポplus", "ミラサポ"] },
-            { "name": "j-grants", "aliases": ["j-grants", "Jグランツ"] }
+            {
+              "name": "ミラサポplus",
+              "aliases": [
+                "ミラサポplus",
+                "ミラサポ"
+              ]
+            },
+            {
+              "name": "j-grants",
+              "aliases": [
+                "j-grants",
+                "Jグランツ"
+              ]
+            }
           ]
         },
         {
@@ -449,10 +666,15 @@
     {
       "id": "financial-planner",
       "name": "ファイナンシャルプランナー・保険営業",
-      "active": true,
+      "active": false,
       "depth": "deep",
       "rationale": "新規顧客候補。 独立 FP / 生保レディ / 損保代理店 / 保険ショップを横断する 1 軸として深掘り。 商談・SaaS 提案の起点情報源。",
-      "phases": ["所属時代 (生保・損保・保険ショップ)", "独立検討", "独立後 (集客・運営)", "廃業・撤退検討"],
+      "phases": [
+        "所属時代 (生保・損保・保険ショップ)",
+        "独立検討",
+        "独立後 (集客・運営)",
+        "廃業・撤退検討"
+      ],
       "perspectives": [
         {
           "role": "独立系・個人 FP",
@@ -494,9 +716,288 @@
             "提案書"
           ],
           "watchedTools": [
-            { "name": "マネーフォワードME", "aliases": ["マネーフォワード", "MoneyForward ME"] },
-            { "name": "Salesforce", "aliases": ["セールスフォース"] },
-            { "name": "kintone", "aliases": ["キントーン"] }
+            {
+              "name": "マネーフォワードME",
+              "aliases": [
+                "マネーフォワード",
+                "MoneyForward ME"
+              ]
+            },
+            {
+              "name": "Salesforce",
+              "aliases": [
+                "セールスフォース"
+              ]
+            },
+            {
+              "name": "kintone",
+              "aliases": [
+                "キントーン"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "claude-power-user",
+      "name": "Claude / Claude Code ユーザー (個人開発者・副業者)",
+      "active": true,
+      "depth": "deep",
+      "rationale": "masatoman.net 新コンセプト「AI に業務を任せる設計の実験ログ」の主軸。Claude / Claude Code ユーザーの料金・比較・設計(CLAUDE.md/Skills/subagent)・運用の悩みを拾い、料金/比較記事(集客)と実装ログ記事(設計レイヤー)のネタ源にする。2026-06-17 工務店系プロファイルから転用。",
+      "phases": [
+        "導入・プラン検討",
+        "日常運用",
+        "上級カスタマイズ(CLAUDE.md/Skills/MCP)",
+        "料金最適化・乗り換え検討"
+      ],
+      "perspectives": [
+        {
+          "role": "Claude 料金・プランで悩むユーザー",
+          "keywords": [
+            "Claude Pro 料金",
+            "Claude Max",
+            "Claude Code 料金",
+            "Claude API 料金",
+            "Claude 使用量制限",
+            "5時間制限",
+            "weekly limit",
+            "Claude 無料枠",
+            "Claude トークン"
+          ],
+          "examplePhrasesToWatch": [
+            "Maxでも足りない",
+            "Proの上限すぐ来る",
+            "weekly limitに引っかかった",
+            "APIいくらかかるか不安",
+            "5時間制限がきつい",
+            "従量課金が怖い",
+            "コスパどうなの"
+          ],
+          "keywordsToTrack": [
+            "Pro",
+            "Max",
+            "API",
+            "従量課金",
+            "使用量",
+            "上限",
+            "リセット",
+            "トークン",
+            "コスパ",
+            "解約",
+            "乗り換え"
+          ],
+          "watchedTools": [
+            {
+              "name": "Claude Code",
+              "aliases": [
+                "Claude Code",
+                "claude code",
+                "クロードコード",
+                "cc"
+              ]
+            },
+            {
+              "name": "ChatGPT",
+              "aliases": [
+                "ChatGPT",
+                "チャットGPT",
+                "GPT"
+              ]
+            },
+            {
+              "name": "GitHub Copilot",
+              "aliases": [
+                "GitHub Copilot",
+                "Copilot",
+                "コパイロット"
+              ]
+            },
+            {
+              "name": "Cursor",
+              "aliases": [
+                "Cursor",
+                "カーソル"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "Claude Code と他ツールを比較・乗り換える人",
+          "keywords": [
+            "Claude Code vs Cursor",
+            "Claude vs ChatGPT",
+            "Claude Code vs Copilot",
+            "Cursor から Claude Code",
+            "Claude Code 乗り換え",
+            "Claude Code 比較",
+            "Claude Code 併用"
+          ],
+          "examplePhrasesToWatch": [
+            "CursorからClaude Codeに移行した",
+            "結局どっちがいい",
+            "乗り換えた感想",
+            "Claude Codeの方が良かった",
+            "併用してる",
+            "使い分けてる"
+          ],
+          "keywordsToTrack": [
+            "乗り換え",
+            "比較",
+            "移行",
+            "併用",
+            "使い分け",
+            "精度",
+            "速度",
+            "料金差"
+          ],
+          "watchedTools": [
+            {
+              "name": "Cursor",
+              "aliases": [
+                "Cursor",
+                "カーソル"
+              ]
+            },
+            {
+              "name": "GitHub Copilot",
+              "aliases": [
+                "GitHub Copilot",
+                "Copilot"
+              ]
+            },
+            {
+              "name": "ChatGPT",
+              "aliases": [
+                "ChatGPT",
+                "GPT"
+              ]
+            },
+            {
+              "name": "Gemini CLI",
+              "aliases": [
+                "Gemini CLI",
+                "Gemini",
+                "ジェミニ"
+              ]
+            },
+            {
+              "name": "Windsurf",
+              "aliases": [
+                "Windsurf",
+                "ウィンドサーフ"
+              ]
+            },
+            {
+              "name": "Codex",
+              "aliases": [
+                "Codex",
+                "OpenAI Codex",
+                "コーデックス"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "CLAUDE.md / Skills / subagent を設計する人",
+          "keywords": [
+            "CLAUDE.md",
+            "Claude Skills",
+            "subagent",
+            "Claude Code MCP",
+            "Claude Code hooks",
+            "slash command",
+            "Claude Code 設定",
+            "Claude Code agent",
+            "Claude Code routine"
+          ],
+          "examplePhrasesToWatch": [
+            "CLAUDE.mdどう書く",
+            "Skill作ってみた",
+            "subagentで並列処理",
+            "MCP繋いだ",
+            "hooksで自動化",
+            "自分のCLAUDE.md晒す",
+            "memoryどう使う"
+          ],
+          "keywordsToTrack": [
+            "CLAUDE.md",
+            "Skill",
+            "subagent",
+            "MCP",
+            "hooks",
+            "slash command",
+            "memory",
+            "自動化",
+            "設計",
+            "plan mode"
+          ],
+          "watchedTools": [
+            {
+              "name": "Claude Code",
+              "aliases": [
+                "Claude Code",
+                "クロードコード",
+                "cc"
+              ]
+            },
+            {
+              "name": "MCP",
+              "aliases": [
+                "MCP",
+                "Model Context Protocol"
+              ]
+            },
+            {
+              "name": "Cursor",
+              "aliases": [
+                "Cursor"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "Claude Code の使い方・運用で詰まる人",
+          "keywords": [
+            "Claude Code 使い方",
+            "Claude Code context",
+            "compact",
+            "Claude Code トークン消費",
+            "Claude Code permission",
+            "Claude Code エラー",
+            "Claude Code 重い",
+            "Claude Code 動かない"
+          ],
+          "examplePhrasesToWatch": [
+            "contextすぐ埋まる",
+            "compactで消えた",
+            "permission効かない",
+            "tokenすぐ減る",
+            "急に動かなくなった",
+            "設定どうすればいい",
+            "勝手に止まる"
+          ],
+          "keywordsToTrack": [
+            "context",
+            "compact",
+            "token",
+            "permission",
+            "エラー",
+            "設定",
+            "遅い",
+            "落ちる",
+            "制限",
+            "ハマった"
+          ],
+          "watchedTools": [
+            {
+              "name": "Claude Code",
+              "aliases": [
+                "Claude Code",
+                "クロードコード",
+                "cc"
+              ]
+            }
           ]
         }
       ]
