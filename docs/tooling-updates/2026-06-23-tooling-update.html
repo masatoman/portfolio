@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-06-23 — Claude Code / GitHub Trending</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-obsidian { background: #fef3c7; color: #92400e; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-06-23</h1>
+<p class="meta">
+  取得日: 2026-06-23 JST &nbsp;/&nbsp;
+  対象期間: 2026-06-21 〜 2026-06-23 &nbsp;/&nbsp;
+  ソース: Claude Code (WebSearch / CHANGELOG) / Anthropic news (WebSearch) / GitHub Trending (WebFetch) / WebSearch 補完
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong> 2026-06-22 フィードで報告済みの項目 (v2.1.183〜v2.1.179 の4件 / モデル退役 / Agent SDK billing rollback / Seoul オフィス) は除外。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (2 件)</h2>
+
+<div class="update-item applicable-b">
+  <span class="verdict">🟢</span>
+  <span class="tag tag-b">即使う</span>
+  <span class="tag tag-src">Claude Code</span>
+  <strong>Claude Code <code>/cd</code> コマンド — セッション中にディレクトリを移動、キャッシュ保持</strong>
+  <p>会話の途中で <code>/cd /path/to/dir</code> と入力するだけで作業ディレクトリを切り替えられるようになった。
+  これまではディレクトリを変えると新セッションになりプロンプトキャッシュが壊れていた。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> daily-operator や content-executor が portfolio ↔ モノレポ間を跨ぐ時、
+    今まで「一度終了 → 再起動」が必要だった。<code>/cd</code> 一発でキャッシュを保ちながら移動できるので、
+    routine の先頭に置く <code>cd ~/home_work/...</code> 系コマンドをこれに置き換えると無駄なコンテキスト再構築がなくなる。
+    今日の routine で即試せる。
+  </div>
+  <p><a href="https://code.claude.com/docs/en/whats-new" target="_blank">What's new — Claude Code Docs</a></p>
+</div>
+
+<div class="update-item applicable-b">
+  <span class="verdict">🟢</span>
+  <span class="tag tag-b">即使う</span>
+  <span class="tag tag-src">Claude Code</span>
+  <strong>Claude Code サブエージェントが自身のサブエージェントを生成可能に (最大5階層)</strong>
+  <p>サブエージェントが自分のサブエージェントをさらに派生させられるようになった。
+  バックグラウンドチェーンは5階層まで。これまではフラット1階層のみだった。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> issue-finder の「調査 → 分析 → 出力」を今は1エージェントが直列でやっているが、
+    「調査サブを並列3本走らせる → 親がまとめる」設計に切り替えると処理時間を圧縮できる。
+    <code>Agent({ subagent_type: "Explore", run_in_background: true })</code> を複数並べる構造に今週のうちに書き直す価値あり。
+  </div>
+  <p><a href="https://code.claude.com/docs/en/whats-new" target="_blank">What's new — Claude Code Docs</a></p>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (1 件)</h2>
+
+<div class="update-item applicable-b money">
+  <span class="verdict">💰</span>
+  <span class="tag tag-money">課金価値</span>
+  <span class="tag tag-src">Claude Code</span>
+  <strong>Claude Code Artifacts — セッション成果を生きた共有 HTML ページに変換 (2026-06-18)</strong>
+  <p>Claude Code のセッション成果 (コード・データ・ダッシュボード) を自動で生きた共有 URL に変換する機能。
+  PR ウォークスルー・インシデントページ・チェックリストがリアルタイムで更新されながら共有できる。
+  バージョン履歴 (ベータ) もあり。</p>
+  <div class="warn">
+    <strong>⚠️ 現状は Team / Enterprise プランのみ対象。</strong>
+    Pro / MAX プランへの対応は「近日中」とのことで日程未公表。
+    masatoman 現在の MAX プランでは使えない。
+  </div>
+  <div class="action">
+    <strong>効率厨の一言:</strong> チームができたら即導入価値あり (Team プラン ~$25+/月)。
+    個人開発 routine のアウトプット (weekly-content-planner の記事案・issue-finder のレポート) を
+    外部に URL 共有できるようになるので、工務店向けデモとしても転用できる場面が来る。
+    MAX 対応の発表を watchlist に入れておく。
+  </div>
+  <p>
+    <a href="https://claude.com/blog/artifacts-in-claude-code" target="_blank">Claude Code now supports artifacts — Anthropic</a> /
+    <a href="https://venturebeat.com/data/anthropics-claude-code-artifacts-update-brings-live-shared-dashboards-and-interactive-workspaces-to-enterprises" target="_blank">VentureBeat 解説</a>
+  </p>
+</div>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (5 件)</h2>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">Claude Code</span>
+  <strong>Claude Code <code>--safe-mode</code> + <code>fallbackModel</code> 設定</strong>
+  <p><code>--safe-mode</code> 起動で全カスタマイズを無効化したクリーンな状態でトラブルシュートできるようになった。
+  <code>fallbackModel</code> は最大3モデルを順番に試すフォールバック設定。</p>
+  <div class="note">
+    <strong>効率厨の一言:</strong> 今は routine が安定稼働しているので出番はないが、
+    routine が増えると設定の競合でハマる場面が出てくる。
+    CLAUDE.md に「壊れたら <code>claude --safe-mode</code> で動かして切り分ける」メモを書いておくと後で助かる。
+  </div>
+  <p><a href="https://code.claude.com/docs/en/whats-new" target="_blank">What's new — Claude Code Docs</a></p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">Anthropic / Claude Design</span>
+  <strong>Claude Design 2026年6月更新 — WYSIWYG 編集・デザインシステム・<code>/design-sync</code> コード連携</strong>
+  <p>Claude の UI デザインツール (Claude Design) が大型アップデート。
+  WYSIWYG 編集・デザインシステム管理・Figma ↔ コード双方向同期 (<code>/design-sync</code>) が追加された。
+  Claude Code からデザイン成果を直接コードに落とせるハンドオフ機能も含む。</p>
+  <div class="note">
+    <strong>効率厨の一言:</strong> portfolio の UI 改修や工務店向けデモページの見た目を整える時に使える候補。
+    現状は「動けば OK」優先で UI 作業は少ないが、デモ精度を上げる局面 (展示会 / 商談 12月) が来たら試す。
+    今すぐ設計を変える必要はない。
+  </div>
+  <p>
+    <a href="https://explainx.ai/blog/claude-design-june-2026-update-design-sync-2026" target="_blank">Claude Design June 2026 — explainx.ai</a> /
+    <a href="https://windowsforum.com/threads/claude-design-june-2026-update-design-systems-wysiwyg-editing-claude-code-handoff.427631/" target="_blank">Windows Forum まとめ</a>
+  </p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <strong>heygen-com / hyperframes <span class="stars">★ 395 today</span> — 「HTML を書く→エージェントが動画を生成」</strong>
+  <p>TypeScript 製。HTML テンプレートを渡すとエージェントがそのまま動画をレンダリングする。
+  スライド・デモ動画・SNS 用短尺をコードから生成するユースケースを想定している。</p>
+  <div class="note">
+    <strong>効率厨の一言:</strong> 週1記事のサムネイル動画・デモ gif を自動生成する用途で転用できる可能性あり。
+    ただし「HTML を書く手間 vs 動画生成の価値」の ROI を先に確認してから手を出すこと。
+    今すぐ記事サイクルに組み込む優先度は低い。
+  </div>
+  <p><a href="https://github.com/heygen-com/hyperframes" target="_blank">GitHub: heygen-com/hyperframes</a></p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <strong>DeusData / codebase-memory-mcp <span class="stars">★ 1185 today</span> — 158言語対応の高速コードベースインデックス MCP</strong>
+  <p>C 言語実装の高性能インデックスエンジン。MCP 経由でコードベース全体を構造化して Claude に渡せる。
+  158 言語対応・軽量起動が特徴。</p>
+  <div class="note">
+    <strong>効率厨の一言:</strong> issue-finder v6 (マルチプロファイル) の「コード構造把握」フェーズを補強できる候補。
+    現在の Grep / Glob ベースより正確なシンボル解決が期待できる。
+    設定コスト (MCP サーバー起動・設定) と得られる精度向上を天秤にかけてから導入判断。
+    今週の最優先事項ではないが README を一読する価値あり。
+  </div>
+  <p><a href="https://github.com/DeusData/codebase-memory-mcp" target="_blank">GitHub: DeusData/codebase-memory-mcp</a></p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <strong>bytedance / deer-flow <span class="stars">★ 738 today</span> — 長期エージェントフレームワーク (研究・開発・創作)</strong>
+  <p>Python 製。「研究 → 開発 → コンテンツ作成」を一本のエージェントチェーンで処理する設計。
+  ByteDance 製で実用実績が背景にある。</p>
+  <div class="note">
+    <strong>効率厨の一言:</strong> 週1記事執筆 → SEO チェック → コミットまでを一気通貫で流すフローの参考になる設計思想。
+    ただし Claude Code の routine + Skills で既に同等の流れが組めているので、今すぐ移植する理由はない。
+    half-year 以上先に「routine の再設計」が必要になった時の選択肢として置いておく。
+  </div>
+  <p><a href="https://github.com/bytedance/deer-flow" target="_blank">GitHub: bytedance/deer-flow</a></p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (2 件)</h2>
+
+<div class="update-item trap">
+  <span class="verdict">🚫</span>
+  <span class="tag tag-trap">罠</span>
+  <span class="tag tag-src">Google / Gemini</span>
+  <strong>Gemini CLI 無料枠 (1,000 req/日) → 6/18 以降は個人向け終了・Antigravity CLI 移行中</strong>
+  <p>Gemini CLI が無料で 1,000 req/日 という話が出回っているが、2026-06-18 時点で Google は
+  「Gemini Code Assist for individuals / Google AI Pro / Ultra 向けのサービスを停止し、Antigravity CLI に移行」を表明。
+  すでに移行フェーズに入っており、新規に手を出すタイミングではない。</p>
+  <div class="note">
+    <strong>罠の理由:</strong> MAX プラン定額で Claude Code が全部賄えている現状で、
+    終了フェーズのツールに設定コスト (認証・workflow 分割) を払う意味がない。
+    「無料 1,000 回」という数字に引きずられないこと。ロックイン分散のデメリットが勝る。
+  </div>
+</div>
+
+<div class="update-item trap">
+  <span class="verdict">🚫</span>
+  <span class="tag tag-trap">罠</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <strong>calesthio / OpenMontage <span class="stars">★ 2938 today</span> — 「世界初オープンソース・エージェント映像制作システム」</strong>
+  <p>12 パイプライン・52 ツールを持つ映像制作エージェント。GitHub Trending 1位で注目を集めている。</p>
+  <div class="note">
+    <strong>罠の理由:</strong> スター急上昇に引きずられがちだが、映像制作は現在の軸 (記事 × routine × 工務店 B2B) と完全に無関係。
+    「52 ツール」は複雑さの警告であって魅力ではない。
+    今週のコンテキストで「今日から使えるか」という問いへの答えはノー。
+  </div>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<h2 style="color:#991b1b; margin-top:2.5rem;">🔴 取得失敗ソース</h2>
+
+<div class="fail-list">
+  <strong>Anthropic 公式ニュース (https://www.anthropic.com/news)</strong> — HTTP 403。WebSearch で代替情報を取得済み。
+</div>
+<div class="fail-list">
+  <strong>Claude Code CHANGELOG (GitHub blob → raw URL)</strong> — WebFetch が GitHub blob UI を返しコンテンツ取得不可。WebSearch で代替情報を取得済み。
+</div>
+<div class="fail-list">
+  <strong>Obsidian changelog (https://obsidian.md/changelog/)</strong> — HTTP 403。WebSearch で代替確認: 直近 2-3日に新リリースなし (最新は 2026-06-09 の 1.13.1)。
+</div>
+
+<hr style="margin-top:3rem;">
+<p class="meta">
+  📥 一覧は <a href="./index.html">index.html</a> から。<br>
+  情報ソース:
+  <a href="https://code.claude.com/docs/en/whats-new" target="_blank">Claude Code What's New</a> /
+  <a href="https://github.com/trending" target="_blank">GitHub Trending</a> /
+  <a href="https://claude.com/blog/artifacts-in-claude-code" target="_blank">Claude Code Artifacts</a>
+</p>
+
+</body>
+</html>
