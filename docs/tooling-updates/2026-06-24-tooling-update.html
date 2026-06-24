@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-06-24 — Claude Code v2.1.186/187 / gstack / plugins-official</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-06-24</h1>
+<p class="meta">
+  取得日: 2026-06-24 JST &nbsp;/&nbsp;
+  対象期間: 2026-06-22 〜 2026-06-24 &nbsp;/&nbsp;
+  ソース: Claude Code GitHub releases (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong> 06-22 フィード掲載分 (v2.1.183〜v2.1.179 / Sonnet4/Opus4 退役 / billing rollback) と 06-23 フィード掲載分 (/cd コマンド / サブエージェント5階層 / Artifacts / --safe-mode / Claude Design / heygen hyperframes / codebase-memory-mcp / deer-flow / Gemini CLI 終了 / OpenMontage) を除外済み。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (3 件)</h2>
+
+<div class="update-item applicable-b">
+  <span class="verdict">🟢</span>
+  <span class="tag tag-b">即使う</span>
+  <span class="tag tag-src">Claude Code v2.1.187</span>
+  <strong>Claude Code <code>v2.1.187</code> (2026-06-23) — <code>--resume</code> 修正 / workflow schema fix / remote MCP ハング解消</strong>
+  <p>3つの即効バグ修正が含まれる。
+  <code>--resume</code> が「No conversation found」で失敗するバグが修正され、daily-operator が途中で止まった後の再開が可能になった。
+  <code>workflow agent({schema})</code> の構造化出力が正常動作するようになった（<code>--json-schema</code> も同様）。
+  remote MCP ツールが5分間ハングしていた問題が修正され、即時エラーで返るようになった（<code>CLAUDE_CODE_MCP_TOOL_IDLE_TIMEOUT</code> で上書き可）。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> Supabase MCP / Vercel MCP など使用時に「5分待ってからエラー」で routine が詰まる問題がこれで解消される。
+    workflow スクリプトで <code>agent({schema: SCHEMA})</code> を使っている箇所も今日から正しく動く。
+    <code>sandbox.credentials</code> 設定で routine が誤って credential ファイルを読まないよう制限もかけられるようになった（settings.json で設定）。
+  </div>
+  <p>
+    <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.187" target="_blank">GitHub: claude-code v2.1.187 release notes</a>
+  </p>
+</div>
+
+<div class="update-item applicable-b">
+  <span class="verdict">🟢</span>
+  <span class="tag tag-b">即使う</span>
+  <span class="tag tag-src">Claude Code v2.1.186</span>
+  <strong>Claude Code <code>v2.1.186</code> (2026-06-22) — <code>claude mcp login/logout</code> CLI / <code>!</code> bash auto-response / Skills in /plugin</strong>
+  <p>06-22 フィードに未掲載だった同日リリース。
+  <code>claude mcp login &lt;name&gt;</code> / <code>claude mcp logout &lt;name&gt;</code> コマンドで MCP 認証をターミナルから直接管理できるようになった。
+  セッション中に <code>!</code> プレフィックスで bash コマンドを入力すると Claude が自動応答するようになった（無効化は <code>"respondToBashCommands": false</code>）。
+  <code>/plugin</code> の Installed タブに「Skills」セクションが追加され、インストール済みスキルを一覧確認できるようになった。
+  <code>/workflows</code> にステータスフィルターが追加され、複数 routine 並走時の監視が楽になった。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> <code>!</code> bash auto-response は既存 routine を壊す可能性がある（routine 内で <code>!</code> を使っていた場合、Claude が予期せず割り込む）。
+    今日のうちに <code>grep -r "^\!" ~/.claude/</code> で確認し、問題があれば <code>"respondToBashCommands": false</code> を settings.json に追加する。
+    <code>/plugin</code> の Skills タブは skill インベントリ管理に素直に便利。
+  </div>
+  <p>
+    <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.186" target="_blank">GitHub: claude-code v2.1.186 release notes</a>
+  </p>
+</div>
+
+<div class="update-item applicable-b">
+  <span class="verdict">🟢</span>
+  <span class="tag tag-b">即使う</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <strong>garrytan/gstack <span class="stars">★ 1,011 today (累計 66K+)</span> — YC CEO が公開した 23 ツール Claude Code 設定、CEO/EM/Designer/QA 役割 Slash command セット</strong>
+  <p>Y Combinator CEO の Garry Tan が自分の Claude Code 設定を MIT ライセンスで OSS 公開。
+  23 の opinionated Slash command が含まれており、<code>/plan-ceo-review</code>（製品方針 + 受け入れ基準を問う）/ <code>/plan-design-review</code>（デザインレビュー）/ <code>/plan-em-review</code>（アーキテクチャ・技術負債の観点）/ <code>/security-review</code>（OWASP + STRIDE） などのロールが実装済み。
+  masatoman が既に <code>/code-review</code> <code>/verify</code> <code>/deep-research</code> を使っている設計思想と同じ方向性で、具体的な SKILL.md 実装を参考にできる。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> <code>/plan-ceo-review</code> の SKILL.md を読んで、weekly-content-planner の「記事ネタ評価」フェーズに転用する価値あり。
+    「受け入れ基準を最初に書く → 実装」の順序がルーティン設計のバグを減らす。
+    <code>gstack/docs/skills.md</code> 一読 (~5分) で masatoman のスキルセットに欠けている観点が見つかる可能性が高い。
+  </div>
+  <p>
+    <a href="https://github.com/garrytan/gstack" target="_blank">GitHub: garrytan/gstack</a> /
+    <a href="https://www.sitepoint.com/gstack-garry-tan-claude-code/" target="_blank">SitePoint 解説記事</a>
+  </p>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (該当なし)</h2>
+<p style="color:#64748b; font-size:0.92rem; padding-left:0.5rem;">今日の新着に追加課金が必要な有料ツールの新着はなし。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (3 件)</h2>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">GitHub / Anthropic</span>
+  <strong>anthropics/claude-plugins-official <span class="stars">★ 77 today</span> — Anthropic 公式 Claude Code プラグインディレクトリが正式公開</strong>
+  <p>Anthropic が公式管理する Claude Code プラグインのキュレーションディレクトリ。
+  <code>/plugins</code>（Anthropic 内製）と <code>/external_plugins</code>（サードパーティ）に分かれており、<code>/plugin install {名前}@claude-plugins-official</code> で直接インストールできる。
+  別途 <code>anthropics/knowledge-work-plugins</code>（17.3K 星）も存在し、sales / legal / finance / data / product 向け OSS プラグイン 11 本が公開されている。</p>
+  <div class="note">
+    <strong>効率厨の一言:</strong> 既存のカスタム Skill で賄えている機能が多いが、「公式プラグインで既製品があるなら自作しない」判断ができる。
+    <code>external_plugins</code> ディレクトリを一度スキャンして、weekly-content-planner / issue-finder の代替になりうるものがないか確認する（所要 ~10分）。
+    今すぐ移行ではなく「在庫確認」として。
+  </div>
+  <p>
+    <a href="https://github.com/anthropics/claude-plugins-official" target="_blank">GitHub: anthropics/claude-plugins-official</a> /
+    <a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank">GitHub: anthropics/knowledge-work-plugins</a>
+  </p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <strong>shanraisshan/claude-code-best-practice <span class="stars">★ 344 today</span> — 「vibe coding から agentic engineering へ」の Claude Code 最適化ガイド</strong>
+  <p>Claude Code を使った開発の段階的な最適化ガイド。「vibe coding（なんとなく使う）→ agentic engineering（設計して使う）」という進化のフレームワークを提示している。</p>
+  <div class="note">
+    <strong>効率厨の一言:</strong> masatoman はすでに agentic engineering 側にいるので「新発見」は少ないはず。
+    ただし自分のルーティン設計を人に説明する時の言語化 / 記事ネタとして「効率厨がこのガイドを読んでどう評価したか」という構造で使える。
+    README を 5 分で読むだけで済む。
+  </div>
+  <p><a href="https://github.com/shanraisshan/claude-code-best-practice" target="_blank">GitHub: shanraisshan/claude-code-best-practice</a></p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <strong>revfactory/harness <span class="stars">★ 128 today</span> — ドメイン特化エージェントチームを設計するメタスキル</strong>
+  <p>HTML 実装のメタスキル。「どんなドメインのエージェントチームが必要かを記述すると、そのチームの専門エージェント定義を自動生成する」という設計ツール。
+  入力: ドメイン説明 → 出力: agent capability definitions の一式。</p>
+  <div class="note">
+    <strong>効率厨の一言:</strong> 工務店向けデモの「現場監督エージェント / 経理エージェント」を設計する局面で参照できる可能性がある。
+    現時点では routine 増殖が優先課題ではないので保留。
+    「routine が 10 本を超えてきたら再設計フェーズに使う」でよい。
+  </div>
+  <p><a href="https://github.com/revfactory/harness" target="_blank">GitHub: revfactory/harness</a></p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (2 件)</h2>
+
+<div class="update-item trap">
+  <span class="verdict">🚫</span>
+  <span class="tag tag-trap">罠</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <strong>NousResearch/hermes-agent <span class="stars">★ 936 today / 累計 180K+</span> — 自己成長型エージェント、desktop app v0.15.2 公開</strong>
+  <p>2026 年 2 月公開の自己成長型エージェントフレームワーク。長期記憶・自己改善ループを持ち、Linux / macOS / WSL2 対応。
+  6/2 に desktop app (v0.15.2) が出て再び Trending 入り。</p>
+  <div class="note">
+    <strong>罠の理由:</strong> 「長期記憶で自己改善」という設計思想は魅力的に見えるが、MAX プランで Claude Code routine が既に長期記憶 (CLAUDE.md / memory) + 自動改善 (Skill + Workflow) を実現している。
+    別のセルフホスティングエージェントインフラを追加すると「どちらに新しい情報を入れるか」問題が発生し、メンテナンスコストが 2 倍になる。
+    180K 星は参入障壁の低さと SNS バズであり、実運用適合性の指標ではない。
+  </div>
+</div>
+
+<div class="update-item trap">
+  <span class="verdict">🚫</span>
+  <span class="tag tag-trap">罠</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <strong>palmier-io/palmier-pro <span class="stars">★ 1,630 today</span> — macOS 専用 AI ワークフロー向け動画エディタ</strong>
+  <p>macOS ネイティブアプリ (Swift 実装) の動画エディタ。AI コーディングワークフロー向けに最適化された操作系を持つと説明されている。</p>
+  <div class="note">
+    <strong>罠の理由:</strong> macOS 専用アプリのため Linux / Web 環境では動作しない。
+    動画制作は現在の記事 × routine × 工務店 B2B スタックとまったく無関係。
+    スター急上昇に引きずられないこと。
+  </div>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<h2 style="color:#991b1b; margin-top:2.5rem;">🔴 取得失敗ソース</h2>
+
+<div class="fail-list">
+  <strong>Anthropic 公式ニュース (https://www.anthropic.com/news)</strong> — HTTP 403。WebSearch で代替情報を取得済み。
+</div>
+<div class="fail-list">
+  <strong>Claude Code docs/release-notes (docs.claude.com → platform.claude.com → GitHub blob)</strong> — 二重リダイレクト後に GitHub blob UI となり内容取得不可。GitHub Releases ページへの直接 WebFetch で代替取得済み。
+</div>
+<div class="fail-list">
+  <strong>Obsidian changelog (https://obsidian.md/changelog/)</strong> — HTTP 403。WebSearch で代替確認: 直近 2-3日に新リリースなし (最新 1.13.1 は 2026-06-09)。
+</div>
+<div class="fail-list">
+  <strong>Releasebot (releasebot.io/updates/anthropic/claude-code)</strong> — HTTP 403。GitHub Releases 直接取得で代替済み。
+</div>
+
+<hr style="margin-top:3rem;">
+<p class="meta">
+  📥 一覧は <a href="./index.html">index.html</a> から。<br>
+  情報ソース:
+  <a href="https://github.com/anthropics/claude-code/releases" target="_blank">Claude Code GitHub releases</a> /
+  <a href="https://github.com/trending" target="_blank">GitHub Trending</a> /
+  <a href="https://github.com/garrytan/gstack" target="_blank">garrytan/gstack</a> /
+  <a href="https://github.com/anthropics/claude-plugins-official" target="_blank">claude-plugins-official</a>
+</p>
+
+</body>
+</html>
