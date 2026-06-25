@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-06-25 — Claude Code v2.1.191 /rewind・CPU37%削減 / design.md / hermes-agent</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-06-25</h1>
+<p class="meta">
+  取得日: 2026-06-25 JST &nbsp;/&nbsp;
+  対象期間: 2026-06-23 〜 2026-06-25 &nbsp;/&nbsp;
+  ソース: Claude Code GitHub releases (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong>
+  06-22〜06-24 フィード掲載分 (v2.1.183〜v2.1.187 / Sonnet4/Opus4 退役 / gstack / claude-plugins-official / knowledge-work-plugins / claude-code-best-practice / harness / Artifacts / --safe-mode / Claude Design / heygen hyperframes / codebase-memory-mcp / deer-flow / Gemini CLI / OpenMontage) を除外済み。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (2 件)</h2>
+
+<div class="update-item applicable-b">
+  <span class="verdict">🟢</span>
+  <span class="tag tag-b">即使う</span>
+  <span class="tag tag-src">Claude Code v2.1.191</span>
+  <strong>Claude Code <code>v2.1.191</code> (2026-06-24) — <code>/rewind</code> 新コマンド / ストリーミング CPU 37% 削減 / MCP 信頼性改善</strong>
+  <p>今日のアップデートで最も実用的な変更。<code>/rewind</code> コマンドにより <code>/clear</code> を実行する前の会話に戻れるようになった。
+  誤って <code>/clear</code> したルーティン実行の途中復帰が可能になる。</p>
+  <p>ストリーミング時の CPU 使用量を 100ms テキスト更新の間引きで約 37% 削減。MAX 定額での長セッション実行中にファンが回り続ける問題が改善される見込み。</p>
+  <p>その他: フック の comma-separated マッチャーが無音で発火しないバグ修正 / MCP サーバーのトランジェントエラー時リトライ追加 / MCP OAuth のネットワークエラーリトライ + ヘッドレス環境サポート / sandbox のネットワーク許可ダイアログ記憶機能追加。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> <code>/rewind</code> は routine 実行中に誤操作で文脈を飛ばした場合の保険として即有効。
+    CPU 37%削減はバックグラウンド routine 並走時の熱暴走対策になる。
+    フック comma-separated マッチャーのバグが修正されたことで、settings.json でまとめて設定したフックが今日から正常に発火する。
+  </div>
+  <p>
+    <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.191" target="_blank">GitHub: claude-code v2.1.191 release notes</a>
+  </p>
+</div>
+
+<div class="update-item applicable-b">
+  <span class="verdict">🟢</span>
+  <span class="tag tag-b">即使う</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ +619 today</span>
+  <strong>design.md (google-labs-code) — コーディングエージェント向けデザインシステム永続化フォーマット仕様</strong>
+  <p>Google Labs が公開したフォーマット仕様。コーディングエージェントがデザインシステム（色・タイポ・コンポーネント名・トークン）を会話をまたいで永続的に保持するための形式を定義する。
+  TypeScript 製で Claude Code との組み合わせを想定したドキュメントが付いている。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> portfolio の UI 文言を Claude Code で生成するたびに「このカラーは何色でしたか？」と聞き返される文脈断絶の根治策になりうる。
+    design.md を一度書けば全ルーティンで共通デザイン文脈が使い回せる構造。今日リポジトリを読んで portfolio に適用するか判断する価値あり。
+  </div>
+  <p>
+    <a href="https://github.com/google-labs-code/design.md" target="_blank">GitHub: google-labs-code/design.md</a>
+  </p>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem; padding-left:0.5rem;">該当なし（今日の注目更新は MAX 定額内での改善が主体）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (2 件)</h2>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ +1,178 today</span>
+  <strong>hermes-agent (NousResearch) — "The agent that grows with you"</strong>
+  <p>NousResearch が公開した新エージェントフレームワーク。記憶・タスク・ツール使用が会話とともに成長する設計を謳う。
+  Python 製。詳細ドキュメントは整備途中の段階。</p>
+  <div class="note">
+    <strong>効率厨の一言:</strong> 「育つエージェント」の概念は面白いが、Claude Code MAX 運用との接点が現時点で不明確。
+    スター急増は話題性先行。ドキュメントが整った1〜2週間後に再評価するのが正しいタイミング。
+  </div>
+  <p>
+    <a href="https://github.com/NousResearch/hermes-agent" target="_blank">GitHub: NousResearch/hermes-agent</a>
+  </p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">Claude Code v2.1.190</span>
+  <strong>Claude Code <code>v2.1.190</code> (2026-06-24) — マイナーバグフィックスのみ</strong>
+  <p>v2.1.191 の直前リリース。変更ログに詳細なし（"Bug fixes and reliability improvements"）。
+  v2.1.191 で上書きされる形で自動更新対応済み。</p>
+  <div class="note">
+    <strong>効率厨の一言:</strong> 追加アクション不要。v2.1.191 を使っていれば自動的に通過済み。
+  </div>
+  <p>
+    <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.190" target="_blank">GitHub: claude-code v2.1.190 release notes</a>
+  </p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1 件)</h2>
+
+<div class="update-item trap">
+  <span class="verdict">🚫</span>
+  <span class="tag tag-trap">罠</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ +331 today</span>
+  <strong>orca (stablyai) — 並列エージェントフリート管理 IDE</strong>
+  <p>複数の AI エージェントを並列管理するための IDE。個人の API サブスクリプション（各社 API キー直叩き）を前提とした設計で、エージェントごとに API 課金が発生する。</p>
+  <div class="warn">
+    <strong>効率厨の一言:</strong> MAX 定額 + Claude Code ルーティン運用とは真逆のコスト構造。
+    試した瞬間に各エージェント呼び出しが API 従量課金になるため、現在のスタックには合わない。
+    「並列エージェントっぽい見た目」に引っ張られないこと。
+  </div>
+  <p>
+    <a href="https://github.com/stablyai/orca" target="_blank">GitHub: stablyai/orca</a>
+  </p>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<h2 style="margin-top:2.5rem; font-size:1rem; color:#64748b;">📡 取得失敗ソース</h2>
+<div class="fail-list">
+  <ul style="margin:0; padding-left:1.2rem;">
+    <li><strong>docs.claude.com/en/release-notes/claude-code</strong> — 301 → platform.claude.com → 307 → github.com/CHANGELOG.md (HTML wrapper のみでコンテンツ非表示) → GitHub Releases で代替取得</li>
+    <li><strong>obsidian.md/changelog/</strong> — 403 Forbidden</li>
+    <li><strong>anthropic.com/news</strong> — 403 Forbidden</li>
+  </ul>
+  上記3ソースは WebSearch + GitHub Releases 直接取得で補完。
+</div>
+
+</body>
+</html>
