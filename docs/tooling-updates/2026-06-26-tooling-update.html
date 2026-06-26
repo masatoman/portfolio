@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-06-26 — Claude Code v2.1.193 autoMode.classifyAllShell / MinerU PDF→LLM変換 / apple/container</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-06-26</h1>
+<p class="meta">
+  取得日: 2026-06-26 JST &nbsp;/&nbsp;
+  対象期間: 2026-06-24 〜 2026-06-26 &nbsp;/&nbsp;
+  ソース: Claude Code GitHub releases (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完 / Anthropic news (403 skip) / Obsidian changelog (403 skip)
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong>
+  06-23〜06-25 フィード掲載分 (v2.1.191 /rewind / v2.1.190 / v2.1.187 / v2.1.186 / design.md / hermes-agent / stablyai/orca / gstack / claude-plugins-official / knowledge-work-plugins / claude-code-best-practice / harness / Artifacts / Claude Design/DesignSync / hyperframes / codebase-memory-mcp / deer-flow / OpenMontage) を除外済み。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (2 件)</h2>
+
+<div class="update-item applicable-b">
+  <span class="verdict">🟢</span>
+  <span class="tag tag-b">即使う</span>
+  <span class="tag tag-src">Claude Code v2.1.193</span>
+  <strong>Claude Code <code>v2.1.193</code> (2026-06-25) — <code>autoMode.classifyAllShell</code> 追加 / bash モードでライブパス補完 / OTEL <code>assistant_response</code> イベント / メモリ圧迫時アイドルシェル自動回収</strong>
+  <p>設定に <code>autoMode.classifyAllShell: true</code> を加えると、bash モード (<code>!</code>) で実行する全コマンドが auto-mode 分類器を通るようになった。
+  これまで Bash ツール呼び出しのみが分類対象だったが、シェル直叩きのコマンドも自動許可・拒否が効くようになる。</p>
+  <p>bash モード (<code>!</code>) でコマンド入力中にファイルパスのライブ補完が動くようになった。長いパスをタイプミスしながら入力する時間がなくなる。</p>
+  <p>OTEL に <code>claude_code.assistant_response</code> イベントが追加された（デフォルト redacted、<code>OTEL_LOG_ASSISTANT_RESPONSES</code> で有効化）。
+  ルーティン実行のアシスタント応答ログが取れるようになり、エラー時の原因追跡が容易になる。</p>
+  <p>その他: auto-mode 拒否理由がトランスクリプトと <code>/permissions</code> recent denials に記録される / アイドル状態のバックグラウンドシェルをメモリ圧迫時に自動回収 / <code>/login</code> 後の UI 状態ズレ修正 / フィクショナルなサブエージェントスポーン（phantom spawning）の修正。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> <code>autoMode.classifyAllShell: true</code> は routine 実行の安全管理に直結。
+    <code>settings.json</code> の <code>autoMode</code> ブロックに1行追加するだけで today から有効。
+    OTEL <code>assistant_response</code> ログは routine のデバッグ精度が上がる（失敗した routine の応答内容を後から追える）。
+    bash ライブパス補完は issue-finder や GSC スクリプトのパス指定時に体感改善。
+  </div>
+  <p>
+    <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.193" target="_blank">GitHub: claude-code v2.1.193 release notes</a>
+  </p>
+</div>
+
+<div class="update-item applicable-b">
+  <span class="verdict">🟢</span>
+  <span class="tag tag-b">即使う</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ 69,500+ (today +644)</span>
+  <strong>opendatalab/MinerU — PDF / DOCX / PPTX → Markdown / JSON 変換エンジン（LLM-ready フォーマット出力）</strong>
+  <p>PDF・Word・PowerPoint・画像を Markdown/JSON に変換するドキュメント解析エンジン。
+  数式を LaTeX に変換、109言語の OCR、LangChain/Dify/RAG フレームワークとの直結 SDK (Python/Go/TypeScript) が揃っている。</p>
+  <p>デプロイ方式は cloud / Docker / ローカル の 3 択。本番稼働実績のあるプロジェクトで GitHub Stars 69.5K と信頼性が高い。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> 工務店向け SaaS の MVP で「施工図 PDF をそのまま読み込む」「見積書を構造化データ化する」用途に今から実験可能。
+    Docker 1 コマンドでローカル動作確認できるので、portfolio の <code>/local-business/drawing</code> や <code>/local-business/estimate</code> デモへの組み込みプロトタイプを週末に試せる。
+    RAG 基盤として Supabase Vector と組み合わせれば社内文書検索デモにもなる。
+  </div>
+  <p>
+    <a href="https://github.com/opendatalab/MinerU" target="_blank">GitHub: opendatalab/MinerU</a>
+  </p>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">今日は明確な有料ツール新着なし。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (4 件)</h2>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ +1,351 today</span>
+  <strong>apple/container — Apple Silicon 向け軽量 Linux コンテナツール</strong>
+  <p>Apple 公式の Linux コンテナツール。軽量 VM を使って M系 Mac 上で Linux コンテナを直接動かす。Docker Desktop の代替として位置づけられている。</p>
+  <p>Swift 製、Apple がメンテ。今日だけで 1,351 スター急増。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> Vercel + Supabase クラウドスタックでは現状コンテナ管理は不要。
+    MinerU や別の重量ツールをローカルで動かしたい場面になったら Docker Desktop と比較検討する。
+    M系 Mac でローカル開発基盤を強化するなら今のうちに watch しておく価値あり。
+  </div>
+  <p>
+    <a href="https://github.com/apple/container" target="_blank">GitHub: apple/container</a>
+  </p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ +163 today</span>
+  <strong>alibaba/page-agent — JavaScript in-page GUI agent（ブラウザ UI を自然言語で操作）</strong>
+  <p>ブラウザ内に JS として埋め込み、「このフォームに入力して送信して」のような自然言語指示でブラウザ UI を操作できるエージェント。Alibaba 製。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> Playwright で自動化している GSC スクリプト / routine 系の代替候補として参考に。
+    ただし Alibaba 製のため長期メンテ継続性に不確実性があり、Playwright との差別化が現時点で明確でない。半年後に実用例が出てから再評価する。
+  </div>
+  <p>
+    <a href="https://github.com/alibaba/page-agent" target="_blank">GitHub: alibaba/page-agent</a>
+  </p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ +57 today</span>
+  <strong>every-app/open-seo — OSS SEO プラットフォーム（商用ツールの代替）</strong>
+  <p>市販 SEO ツールの OSS 代替。サイトクロール・キーワード分析・順位追跡を自己ホスト型で管理できる TypeScript 製プロジェクト。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> masatoman.net の SEO 管理を自己ホスト化したい場合の候補。
+    ただし Stars 57 はまだ黎明期で実用性が未知数。GSC API + 既存 routine で現状は対応できているため、6ヶ月後の成熟度を見てから判断でよい。
+  </div>
+  <p>
+    <a href="https://github.com/every-app/open-seo" target="_blank">GitHub: every-app/open-seo</a>
+  </p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ +47 today</span>
+  <strong>aws/agent-toolkit-for-aws — AWS 公式 MCP servers + AI エージェント向け skills セット</strong>
+  <p>AWS が公式でリリースした MCP サーバー群と AI エージェント開発用スキルのセット。S3・Lambda・EC2 等の AWS サービスを AI エージェントから直接操作できる。Python 製。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> 現状は Vercel + Supabase スタックで AWS は非採用。インフラ移行を検討する場面になったら参照する。
+    AWS 公式メンテという信頼性は高いので、将来 S3 を使う SaaS 構成になった際の MCP 連携候補として頭に入れておく。
+  </div>
+  <p>
+    <a href="https://github.com/aws/agent-toolkit-for-aws" target="_blank">GitHub: aws/agent-toolkit-for-aws</a>
+  </p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (3 件)</h2>
+
+<div class="update-item trap">
+  <span class="verdict">🚫</span>
+  <span class="tag tag-trap">罠</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ +1,024 today</span>
+  <strong>JCodesMore/ai-website-cloner-template — AI でサイトをそのままコピーするテンプレート</strong>
+  <p>AI コーディングエージェントを使って既存サイトを自動複製するテンプレート。今日 1,024 スター急増と話題。</p>
+  <div class="warn">
+    <strong>🚫 なぜ罠か:</strong> 著作権リスクが最大の問題。他サイトのデザイン・コンテンツを複製することは著作権侵害に直結する。
+    masatoman のポジションは「ひとりで全部作れる職人」であり、コピー系ツールはそのブランドと真逆。SEO 効果もなく、ペナルティリスクのほうが高い。
+  </div>
+  <p>
+    <a href="https://github.com/JCodesMore/ai-website-cloner-template" target="_blank">GitHub: JCodesMore/ai-website-cloner-template</a>
+  </p>
+</div>
+
+<div class="update-item trap">
+  <span class="verdict">🚫</span>
+  <span class="tag tag-trap">罠</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ +309 today</span>
+  <strong>xbtlin/ai-berkshire — バークシャー流バリュー投資リサーチフレームワーク（Claude Code multi-agent）</strong>
+  <p>Claude Code の multi-agent 機能を使ったバリュー投資リサーチツール。財務分析・業界調査・競合比較を並列エージェントで実行する。</p>
+  <div class="warn">
+    <strong>🚫 なぜ罠か:</strong> masatoman のスタック（工務店 SaaS / 個人開発 / masatoman.net）と完全に無関係。
+    Claude Code multi-agent の実装サンプルとして CHANGELOG.md を斜め読みする程度の価値はあるが、このツール自体を使う場面はない。
+    投資リサーチに時間を割くと軸 B 主軸の集中が散る。
+  </div>
+  <p>
+    <a href="https://github.com/xbtlin/ai-berkshire" target="_blank">GitHub: xbtlin/ai-berkshire</a>
+  </p>
+</div>
+
+<div class="update-item trap">
+  <span class="verdict">🚫</span>
+  <span class="tag tag-trap">罠</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ +571 today</span>
+  <strong>mukul975/Anthropic-Cybersecurity-Skills — 817 件のサイバーセキュリティスキル（主要セキュリティフレームワーク対応）</strong>
+  <p>MITRE ATT&CK / NIST / ISO 27001 等の主要セキュリティフレームワークにマッピングした 817 件の Claude Code スキルセット。Python 製。</p>
+  <div class="warn">
+    <strong>🚫 なぜ罠か:</strong> セキュリティ専業エンジニア向けのコレクションであり、masatoman の SaaS 開発・個人サイト運営ニーズと合わない。
+    Claude Code の skills システム設計の参考にはなるが、817 件を読む時間対効果がない。
+    Claude Code の大量スキル定義パターンを学びたい場合だけ README をざっと読む程度でよい。
+  </div>
+  <p>
+    <a href="https://github.com/mukul975/Anthropic-Cybersecurity-Skills" target="_blank">GitHub: mukul975/Anthropic-Cybersecurity-Skills</a>
+  </p>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<h2 style="margin-top:2.5rem; font-size:1rem;">⚠️ 取得失敗ソース</h2>
+<div class="fail-list">
+  <ul style="margin:0; padding-left:1.2rem;">
+    <li><strong>https://www.anthropic.com/news</strong> — HTTP 403 Forbidden（認証壁）</li>
+    <li><strong>https://obsidian.md/changelog/</strong> — HTTP 403 Forbidden（認証壁）</li>
+    <li><strong>https://docs.claude.com/en/release-notes/claude-code</strong> — 301 → 307 リダイレクト (platform.claude.com → GitHub CHANGELOG.md)。GitHub releases 直接取得で代替済み。</li>
+  </ul>
+</div>
+
+<hr style="margin-top:3rem; border:none; border-top:1px solid #e2e8f0;">
+<p style="font-size:0.8rem; color:#94a3b8;">tooling-update-watch routine 自動生成 / 2026-06-26 JST</p>
+
+</body>
+</html>
