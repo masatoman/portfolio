@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-06-27 — Claude Code v2.1.195 hookマッチャー修正&日本語音声fix / claude-code-system-prompts全文公開 / Agent-Reach罠</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-06-27</h1>
+<p class="meta">
+  取得日: 2026-06-27 JST &nbsp;/&nbsp;
+  対象期間: 2026-06-25 〜 2026-06-27 &nbsp;/&nbsp;
+  ソース: Claude Code GitHub releases (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完 / Anthropic news (403 skip) / Obsidian changelog (403 skip)
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong>
+  06-24〜06-26 フィード掲載分 (v2.1.193 / v2.1.191 〜 v2.1.186 / design.md / OpenMontage / MinerU / apple/container / gstack / hermes-agent / orca / claude-plugins-official / knowledge-work-plugins / aws/agent-toolkit / page-agent / every-app/open-seo / ai-berkshire / harness / claude-code-best-practice / ai-website-cloner-template 等) を除外済み。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (1 件)</h2>
+
+<div class="update-item applicable-b">
+  <span class="verdict">🟢</span>
+  <span class="tag tag-b">即使う</span>
+  <span class="tag tag-src">Claude Code v2.1.195</span>
+  <strong>Claude Code <code>v2.1.195</code> (2026-06-26) — ハイフン付き hook マッチャーのバグ修正 / 日本語音声入力の自動送信 fix / Remote セッション起動改善</strong>
+  <p>ハイフンを含む hook 識別子（例: <code>code-reviewer</code>、<code>mcp__brave-search</code>）が substring-match になっていたバグを修正。
+  <code>code-reviewer</code> として登録した hook が他の名前でも誤ってマッチしていた可能性がある。今後は完全一致（exact-match）になる。
+  </p>
+  <p>日本語・中国語・タイ語など単語間にスペースがない言語で、音声入力の自動送信（auto-submit）が機能しないバグを修正。
+  macOS の音声入力で日本語を使っているなら今すぐ恩恵を受けられる。</p>
+  <p>プロジェクトの <code>.claude/settings.json</code> で有効にした外部プラグインが、毎回ローダーパスを通るたびにインストール同意を求めてくる問題を修正。
+  ルーティン起動のたびに同意ダイアログが出ていたなら今後は出なくなる。</p>
+  <p>その他: <code>CLAUDE_CODE_DISABLE_MOUSE_CLICKS</code> 環境変数追加（フルスクリーンモードでマウスクリックを無効化）/ <code>claude agents</code> のバックグラウンドジョブが新しいバージョンで書き込まれた際に消える問題を修正 / Remote セッション起動時にプロビジョニングチェックリストを表示するよう改善 / Linux での「マイクなし」と「SoX 未インストール」の区別改善。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> hook matcher の完全一致修正は <code>code-reviewer</code> hook や <code>mcp__</code> prefix 付き hook を使っている routine に直接影響する。
+    設定変更は不要（修正は自動適用）—<code>claude update</code> で <code>v2.1.195</code> に上げるだけ。
+    日本語音声入力の fix は、音声 + 日本語で使っている場合に今日から体感できる。
+  </div>
+  <p>
+    <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.195" target="_blank">GitHub: claude-code v2.1.195 release notes</a>
+  </p>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0 件)</h2>
+<p style="color:#64748b;font-size:0.92rem;">該当なし</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (1 件)</h2>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">GitHub / Piebald-AI</span>
+  <strong>claude-code-system-prompts — Claude Code の内部システムプロンプト全文公開（v2.1.195 対応版を随時更新）</strong>
+  <p>Piebald-AI が Claude Code の完全なシステムプロンプトを分解・公開しているリポジトリ。
+  Plan / Explore / Task 各サブエージェントのプロンプト、27 種類の組み込みツール説明、CLAUDE.md インジェクション後のフォーマット、magic docs など全パーツを網羅している。
+  Claude Code バージョンごとに更新されており、v2.1.195 対応版も反映済み。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> routine や Skill の挙動が想定と違う時に「Claude Code が何を読んでいるか」を確認できる。
+    hook 設計や CLAUDE.md の書き方を最適化したいなら一読の価値あり。ただし普段使いのツールではないので今すぐ入れるものではない。
+  </div>
+  <p>
+    <a href="https://github.com/Piebald-AI/claude-code-system-prompts" target="_blank">GitHub: Piebald-AI/claude-code-system-prompts</a>
+  </p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1 件)</h2>
+
+<div class="update-item trap">
+  <span class="verdict">🚫</span>
+  <span class="tag tag-trap">罠</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <strong>Agent-Reach (v1.5.0 / 42k stars) — AI エージェントに Twitter / Reddit / YouTube 等のネット閲覧を付与するツール</strong>
+  <p>AI エージェント（Claude Code / Cursor 等）が Twitter、Reddit、YouTube、GitHub などを読み書きできるようにする CLI ツール。
+  単一コマンドでインストールでき、Web スクレイピング・YouTube トランスクリプト取得・RSS 購読・Exa セマンティック検索などを統合している。MIT ライセンス。</p>
+  <div class="warn">
+    <strong>🚫 罠ポイント:</strong>
+    Twitter / XiaoHongShu への書き込みは Cookie ベース認証を使うため、<strong>主アカウントが BANされるリスクがある</strong>（公式ドキュメントも「専用サブアカを使え」と注記）。
+    masatoman は X 告知 wontfix 方針のため、そもそもこのユースケースがない。
+    読み取り専用の Web スクレイピング用途でも、yt-dlp 等を個別に使う方が依存関係が軽い。
+    42k stars は「トレンドに乗っているが実運用で使われているかは不明」なので鵜呑みにしない。
+  </div>
+  <p>
+    <a href="https://github.com/Panniantong/Agent-Reach" target="_blank">GitHub: Panniantong/Agent-Reach</a>
+  </p>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<h2 style="margin-top:2.5rem;font-size:1rem;color:#64748b;">⚠️ 取得失敗ソース</h2>
+<div class="fail-list">
+  <ul style="margin:0;padding-left:1.2rem;">
+    <li><strong>anthropic.com/news</strong> — HTTP 403 (認証ブロック)</li>
+    <li><strong>obsidian.md/changelog</strong> — HTTP 403 (認証ブロック)</li>
+    <li><strong>docs.claude.com/en/release-notes/claude-code</strong> — 301 → 307 リダイレクト経由で GitHub CHANGELOG.md に到達するが HTML 表示のため内容取得不可 → GitHub releases ページで代替取得済み</li>
+  </ul>
+</div>
+
+</body>
+</html>
