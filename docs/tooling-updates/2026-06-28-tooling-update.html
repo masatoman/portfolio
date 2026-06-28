@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-06-28 — cognee Claude Code 永続メモリ / OpenSpec 仕様書ファースト / ppt-master / opencode 罠</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-06-28</h1>
+<p class="meta">
+  取得日: 2026-06-28 JST &nbsp;/&nbsp;
+  対象期間: 2026-06-26 〜 2026-06-28 &nbsp;/&nbsp;
+  ソース: Claude Code GitHub releases (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完 / Anthropic news (403 skip) / Obsidian changelog (403 skip)
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong>
+  06-25〜06-27 フィード掲載分 (v2.1.195 hook修正&日本語音声fix / v2.1.193 autoMode.classifyAllShell / MinerU / apple/container / gstack / design.md / hermes-agent / orca / claude-plugins-official / knowledge-work-plugins / claude-code-best-practice / harness / Artifacts / DesignSync / hyperframes / codebase-memory-mcp / deer-flow / OpenMontage / ai-berkshire / aws/agent-toolkit / page-agent / every-app/open-seo / ai-website-cloner-template / claude-code-system-prompts / Agent-Reach) を除外済み。Claude Code 最新リリースは v2.1.195 (06-26) が最新（本日新リリースなし）。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">本日 Claude Code 新リリースなし（最新は v2.1.195 = 昨日掲載済み）。即日ゼロセットアップで入れられる新ツールも確認できず。</p>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">該当なし。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (3 件)</h2>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ 23,992 (today +780)</span>
+  <strong>topoteretes/cognee — Claude Code 専用プラグインで会話横断の永続メモリを構築する自己ホスト型 AI メモリ基盤</strong>
+  <p>AI エージェントにセッションをまたいだ長期記憶を付与するオープンソースのメモリプラットフォーム。
+  Claude Code 専用プラグインが提供されており、プロンプト・ツールトレース・応答内容をセッションメモリに記録し、次のプロンプト投入時に関連コンテキストを自動インジェクションする。
+  セッション終了時に永続ストレージ（Postgres/Neo4j/SQLite）へ同期する設計。Apache-2.0 ライセンス。</p>
+  <p>バックエンドは Postgres（デフォルト）、Neo4j、SQLite、Redis など複数から選択できる。
+  Python パッケージ・TypeScript・Rust クライアント・Docker イメージが揃っており、Cognee Cloud（マネージド版）も利用可。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> CLAUDE.md + <code>memory/</code> ディレクトリで手動管理している「セッション間のコンテキスト引き継ぎ」を自動化できる可能性がある。
+    ただし Postgres などの DB インフラが必要で「今日すぐ」ではない。
+    routine が増えて memory ファイル管理が限界に感じてきたタイミングで評価するのが正しい順序。
+    プラグイン経由なのでコードへの干渉が少ない点は評価できる。
+  </div>
+  <p>
+    <a href="https://github.com/topoteretes/cognee" target="_blank">GitHub: topoteretes/cognee</a>
+  </p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ 57,112 (today +177)</span>
+  <strong>Fission-AI/OpenSpec — 仕様書ファースト (Spec-Driven Development) で AI コーディングアシスタントと構造的に協業するフレームワーク</strong>
+  <p>変更ごとに「提案 → 仕様 → 設計 → タスク」の4アーティファクトを専用フォルダに生成し、AI との合意を取ってからコードを書く SDD フレームワーク。
+  Claude Code / Cursor 等 25+ の AI ツールとスラッシュコマンド（<code>/opsx:explore</code>、<code>/opsx:propose</code>、<code>/opsx:apply</code>）で連携し、バージョン管理された変更提案を人間と AI が反復精査できる。
+  MIT ライセンス。静的な CLAUDE.md と違い、変更ごとにインタラクティブな仕様書を作るのが特徴。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> portfolio の新機能追加（demo-gallery 拡張 / issue-finder v7 等）を「<code>/opsx:propose</code> → 仕様確認 → <code>/opsx:apply</code>」の流れで進めると、
+    後から「なぜこの実装にしたか」が追えるようになる。
+    ただし solo 開発でここまでプロセスを重くする必要があるかは疑問。
+    アトツギ向け SaaS の要件定義フェーズ（8月以降）に入ったら再評価する価値あり。
+  </div>
+  <p>
+    <a href="https://github.com/Fission-AI/OpenSpec" target="_blank">GitHub: Fission-AI/OpenSpec</a>
+  </p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="verdict">🟡</span>
+  <span class="tag tag-ref">様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ 33,056 (today +589)</span>
+  <strong>hugohe3/ppt-master — Claude Code から PDF / ドキュメント → ネイティブ編集可能 PowerPoint を生成するツール</strong>
+  <p>AI エージェント（Claude Code / Cursor / VS Code Copilot）が PDF や HTML などのソースファイルを読み込み、ネイティブ編集可能な PowerPoint を出力する MIT ライセンスのオープンソースツール。
+  画像ベースの「フラット書き出し」ではなく DrawingML シェイプ・アニメーション・スピーカーノートが入った「本物の PPTX」を生成するのが特徴。
+  Claude Code から <code>projects/</code> 配下にファイルを置いて自然言語で指示するだけで動作する。追加 API 費用なし（MAX プラン内で完結）。</p>
+  <p>ただし日本語対応の公式言及はなく、日本語スライドの品質は未確認。</p>
+  <div class="action">
+    <strong>効率厨の一言:</strong> <code>docs/v8.0/v8.0-hearing-resource-2026-05-23.html</code> や <code>docs/meeting/kitahara-meeting-2026-05-22.html</code> を
+    工務店向け商談スライドに変換する用途が具体的に浮かぶ。
+    MAX プラン内で追加費用ゼロで試せるのは大きい。
+    まず英語文書でテストして品質確認 → 日本語 OK ならアトツギ向けプレゼン資料作成に即戦力になれる。
+    今週末 30 分でプロトタイプ試行を推奨。
+  </div>
+  <p>
+    <a href="https://github.com/hugohe3/ppt-master" target="_blank">GitHub: hugohe3/ppt-master</a>
+  </p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (2 件)</h2>
+
+<div class="update-item trap">
+  <span class="verdict">🚫</span>
+  <span class="tag tag-trap">罠</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ 179,737 (today +392)</span>
+  <strong>anomalyco/opencode — 75+ プロバイダー対応の「オープンソース Claude Code 代替」。MAX プラン運用者には割高になる API 従量課金罠</strong>
+  <p>Claude Code と同様のターミナル型 AI コーディングエージェントで、OpenAI / Anthropic / Gemini / Bedrock / Ollama など 75+ プロバイダーを一元管理できる MIT ライセンスツール。
+  178K stars / 7.5M 月間開発者という巨大な支持を持ち、マルチプロバイダー対応と provider-agnostic 設計が売り。
+  最新版 v1.17.10（2026-06-25）まで活発に更新中。</p>
+  <div class="warn">
+    <strong>🚫 罠ポイント:</strong> MAX プランは月額定額でトークン使い放題。opencode に乗り換えると同じ Anthropic モデルでも<strong>API 従量課金</strong>になりコストが青天井になる。
+    さらに Claude Code 固有の hooks / routines / Skills / CLAUDE.md / memory/ の再設計コストが不釣り合い。
+    「star 数 = 自分に合う」ではない典型例。star の大半は「プロバイダーロックインを嫌う層」が押したものであり、MAX 定額で Claude Code エコシステムに投資済みの場合は乗り換えメリットなし。
+  </div>
+  <p>
+    <a href="https://github.com/anomalyco/opencode" target="_blank">GitHub: anomalyco/opencode</a>
+  </p>
+</div>
+
+<div class="update-item trap">
+  <span class="verdict">🚫</span>
+  <span class="tag tag-trap">罠</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <span class="stars">⭐ 21,373 (today +255)</span>
+  <strong>Anil-matcha/Open-Generative-AI — コンテンツフィルター除去系の「無制限 AI メディア生成」スタジオ</strong>
+  <p>200+ モデルをコンテンツフィルターなしで使える AI 画像・動画生成スタジオ。
+  「フィルターなし」を売りにしており、意図的に安全ガードレールを外している。</p>
+  <div class="warn">
+    <strong>🚫 罠ポイント:</strong> フィルター除去系ツールはサービス利用規約・著作権・倫理リスクを一身に引き受けることになる。
+    工務店向け商談資料に使う画像は既存フォトストックまたは Claude のコンテンツポリシー内の生成で十分であり、このツールを使う必要はない。
+    「200+ モデルが無料」は API コストをどこで回収しているかが不透明な点も警戒すべき。
+  </div>
+  <p>
+    <a href="https://github.com/Anil-matcha/Open-Generative-AI" target="_blank">GitHub: Anil-matcha/Open-Generative-AI</a>
+  </p>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<h2 style="margin-top:2.5rem;font-size:1rem;color:#64748b;">⚠️ 取得失敗ソース</h2>
+<div class="fail-list">
+  <ul style="margin:0;padding-left:1.2rem;">
+    <li><strong>anthropic.com/news</strong> — HTTP 403 (認証ブロック、継続中)</li>
+    <li><strong>obsidian.md/changelog</strong> — HTTP 403 (認証ブロック、継続中)</li>
+    <li><strong>docs.claude.com/en/release-notes/claude-code</strong> — GitHub releases で代替取得済み（最新: v2.1.195）</li>
+  </ul>
+</div>
+
+</body>
+</html>
