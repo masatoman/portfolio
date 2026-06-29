@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-06-29 — video-use AIエージェント動画編集 / strix OSS脆弱性スキャン / Gemini CLI 個人向け終了</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-06-29</h1>
+<p class="meta">
+  取得日: 2026-06-29 JST &nbsp;/&nbsp;
+  対象期間: 2026-06-27 〜 2026-06-29 &nbsp;/&nbsp;
+  ソース: Claude Code GitHub releases (WebFetch) / Claude Code What's New (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完 / Anthropic news (403 skip) / Obsidian changelog (403 skip)
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong>
+  06-26〜06-28 フィード掲載分 (v2.1.195 hook修正&日本語音声fix / v2.1.193 autoMode.classifyAllShell / v2.1.191 /rewind / MinerU / apple/container / gstack / codebase-memory-mcp / hermes-agent / orca / claude-plugins-official / knowledge-work-plugins / claude-code-best-practice / harness / Artifacts / DesignSync / hyperframes / deer-flow / OpenMontage / ai-berkshire / aws/agent-toolkit / page-agent / every-app/open-seo / ai-website-cloner-template / claude-code-system-prompts / Agent-Reach / cognee / OpenSpec / ppt-master / opencode / Open-Generative-AI) を除外済み。Claude Code 最新リリースは v2.1.195 (06-26) のまま変化なし。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">
+  本日 Claude Code 新リリースなし（最新は v2.1.195 = 06-26 リリース、前日掲載済み）。
+  今日から masatoman のルーティンに追加できる新ツール・設定は確認できず。該当なし。
+</p>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">該当なし。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (3 件)</h2>
+
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending 今日 +196★</span>
+  <strong>browser-use / video-use — AIエージェントが動画を自然言語で編集</strong>
+  <p>
+    動画フォルダを指定して「ラウンチ動画に仕上げて」とプロンプトするだけで、
+    無音カット・字幕生成・カラーグレーディング・BGM フェードをエージェントが自動実行する OSS ツール。
+    Claude Code 上で <code>claude</code> を呼び出す形で動き、処理前に「この戦略で進めますか？」と確認を入れる。
+    ElevenLabs API キーが必要（文字起こし精度を高めるため）で完全無料ではない。
+    transcript にタイムスタンプ付きで食わせるので token 消費は抑え目。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    masatoman.net は軸A降格済み（自動運用のみ、新規動画コンテンツ優先度低）で今すぐは使わない。
+    ただし軸B の工務店ヒアリング記録を短い説明動画に仕上げたい場面や、
+    アトツギ甲子園向けのピッチ動画制作フェーズに入ったとき、最初に試す候補になる。
+    ElevenLabs の有料枠と Claude Code MAX 定額の組み合わせで動く点は相性が良い。
+  </div>
+  <p><a href="https://github.com/browser-use/video-use" target="_blank">→ browser-use/video-use (GitHub)</a></p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending 今日 +122★ / 累計 26K★</span>
+  <strong>usestrix / strix — OSS の AI セキュリティスキャナー（脆弱性を AI が発見+修正）</strong>
+  <p>
+    アプリの脆弱性を OSS の AI エージェントが自動探索し、修正案まで提示するツール。
+    26K stars で中堅の注目度。OWASP 系の定番チェックを AI が代替する位置づけ。
+    セルフホスト可。GitHub Actions に組み込んで CI で回す使い方が主流。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    portfolio (Supabase + Vercel 本番) の Row Level Security 設定ミスや
+    API ルートの認証抜けを CI で自動検知したいフェーズになったら試す価値あり。
+    今は Supabase の service_role キーが leakしていないか・middleware の 404 が正しく刺さっているかを
+    手動で確認できる規模なので、まだ過剰。MRR が立ってきてコードベースが複雑化したタイミングで再評価。
+  </div>
+  <p><a href="https://github.com/usestrix/strix" target="_blank">→ usestrix/strix (GitHub)</a></p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">Help Net Security 06-26 / launch 06-01</span>
+  <strong>depthfirst Dependency Firewall — AI エージェントの npm/pip install をリアルタイムにガード</strong>
+  <p>
+    Claude Code や Codex などの AI エージェントがパッケージをインストールするとき、
+    マルウェア・バックドアが仕込まれた悪意あるパッケージをインストール前にブロックするセキュリティ SaaS。
+    パッケージが PyPI/npm に publish された瞬間から静的解析＋ランタイム解析を走らせ、
+    開発者やエージェントが <code>npm install</code> を打つ前にすでに判定済みにしておく設計。
+    ライセンスポリシー強制・最低パッケージ年齢要件など「ルール設定」も可能。
+    6/26 の Help Net Security「今月の新セキュリティ製品まとめ」に掲載された。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    Claude Code に「新しい npm パッケージ入れて」と頼む場面は masatoman にもある。
+    その時に悪意あるパッケージを踏むリスクはゼロではない（サプライチェーン攻撃は増加傾向）。
+    ただし個人開発規模向けの無料プランがあるか・ローカル設定コストはどの程度か未確認。
+    エンタープライズ向け SaaS 色が強い（Fortune 500 事例が前面）。
+    軸B で工務店向け SaaS を本番運用し始めたタイミングで料金表を確認する。
+  </div>
+  <p>
+    <a href="https://depthfirst.com/post/introducing-dependency-firewall" target="_blank">→ 紹介記事 (depthfirst.com)</a>
+    &nbsp;/&nbsp;
+    <a href="https://www.helpnetsecurity.com/2026/06/26/new-infosec-products-of-the-month-june-2026/" target="_blank">→ Help Net Security 06-26 まとめ</a>
+  </p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1 件)</h2>
+
+<div class="update-item trap">
+  <span class="tag tag-trap">🚫 罠</span>
+  <span class="tag tag-src">Google / June 18 〜 停止</span>
+  <strong>Gemini CLI 個人向け無料枠 終了 — 「無料でコーディング補助」は消えた</strong>
+  <p>
+    2026年6月18日以降、<strong>Gemini Code Assist for Individuals・Google AI Pro・Google AI Ultra</strong> 向けの
+    Gemini CLI がリクエストを受け付けなくなった。
+    影響ユーザーは「Antigravity CLI」への移行が必要（Google 公式案内）。
+    残った無料枠は Gemini Flash ベースで 1,000 req/day だが、
+    1 つのプロンプトが内部で数十の API コールを消費するため
+    「1,000回プロンプトできる」は誤解——実際はすぐ上限に当たる。
+  </p>
+  <div class="warn">
+    <strong>効率厨 verdict:</strong>
+    masatoman は Claude Code MAX 定額なので直接影響なし。
+    ただし「Claude Code は高いから一部タスクを Gemini CLI で節約していた」
+    という開発者仲間・読者がいれば共有価値あり。
+    「Gemini 無料でコーディングできる」という情報を今でも信じている人は移行先を要確認。
+    代替として Gemini CLI 自体は無料枠が残るが、Flash ベースで実用的なコーディング補助には力不足。
+  </div>
+  <p>
+    <a href="https://github.com/google-gemini/gemini-cli" target="_blank">→ google-gemini/gemini-cli (GitHub)</a>
+    &nbsp;/&nbsp;
+    <a href="https://github.com/google-gemini/gemini-cli/discussions/4122" target="_blank">→ コミュニティ Discution #4122 (無料枠の詳細)</a>
+  </p>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<h2 style="font-size:0.95rem; color:#64748b; background:#f8fafc; padding:0.4rem 0.8rem; border-radius:4px; margin-top:2rem;">⚠️ 取得失敗ソース</h2>
+<div class="fail-list">
+  <ul style="margin:0; padding-left:1.2rem; font-size:0.9rem;">
+    <li><strong>anthropic.com/news</strong> — HTTP 403 Forbidden（認証ゲート）</li>
+    <li><strong>obsidian.md/changelog</strong> — HTTP 403 Forbidden</li>
+    <li><strong>docs.claude.com/en/release-notes/claude-code</strong> — 307 → platform.claude.com → 307 → CHANGELOG.md（raw 取得済みで代替カバー）</li>
+  </ul>
+</div>
+
+</body>
+</html>
