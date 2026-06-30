@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-06-30 — Claude Code v2.1.196 /code-review 25%削減 / agency-agents 232プロファイル / FluidVoice ローカル音声入力</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-06-30</h1>
+<p class="meta">
+  取得日: 2026-06-30 JST &nbsp;/&nbsp;
+  対象期間: 2026-06-28 〜 2026-06-30 &nbsp;/&nbsp;
+  ソース: Claude Code GitHub releases (WebFetch) / Claude Code What's New (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完 / Anthropic news (403 skip) / Obsidian changelog (403 skip)
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong>
+  06-27〜06-29 フィード掲載分 (v2.1.195 / v2.1.193 / v2.1.191 / v2.1.186 / /rewind / video-use / browser-use / strix / gemini-cli / Copilot usage-based billing / ai-berkshire / OpenSpec / Agent-Reach / claude-code-system-prompts / cognee / ppt-master / opencode / Open-Generative-AI / dependency-firewall) を除外済み。
+  v2.1.196 は 06-29 23:27 リリース = 昨日フィード生成後に公開 → <strong>今日扱い</strong>。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (1 件)</h2>
+
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">Claude Code Releases</span>
+  <strong>Claude Code v2.1.196 — <code>/code-review</code> トークン ~25% 削減 + streaming watchdog デフォルト ON</strong>
+  <p>
+    2026-06-29 23:27 リリース。主要変更点は 3 つ。
+    ①&nbsp;<strong><code>/code-review</code> が ~25% トークン削減</strong> — cleanup finder 5 本を統合した結果、
+    コードレビュースキル実行コストがそのまま下がる（MAX 定額でも token 消費≒レイテンシ削減として体感できる）。
+    ②&nbsp;<strong>streaming idle watchdog がデフォルト ON</strong> — 5 分間イベントなしで自動 abort/retry するため、
+    この日次フィードルーティン自体を含む長時間バックグラウンドジョブのハング問題が自然に解消される。
+    ③&nbsp;<strong>セキュリティ修正</strong> — <code>claude mcp list/get</code> が未コミットの <code>.claude/settings.json</code> を読んで
+    MCP サーバーを起動しない。信頼されていない workspace は <code>⏸ Pending approval</code> 表示に変わる。
+    その他: 組織デフォルトモデルをコンソールで設定可能に、セッション開始時に可読な名前を自動付与、
+    ファイル添付を Cmd/Ctrl-Click でローカルのファインダーから開けるように。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    <code>/code-review</code> スキルを日常的に呼ぶ masatoman のワークフローでトークン消費が黙って 25% 減る。
+    watchdog ON で「ルーティンがハングして朝気づかなかった」ケースが自動リトライに変わる。
+    何も設定変更せず <code>claude update</code> するだけで両方効く。
+  </div>
+  <div class="action">
+    <strong>アクション:</strong> <code>claude update</code> を実行するだけ。watchdog は設定不要でデフォルト ON。
+  </div>
+  <p><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.196" target="_blank">→ GitHub Release v2.1.196</a></p>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">該当なし。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (3 件)</h2>
+
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending 今日 +1,425★</span>
+  <strong>msitarzewski / agency-agents — Claude Code / Cursor / Copilot 対応の 232 専門エージェントプロファイル集</strong>
+  <p>
+    16 部門 232 種の AI エージェントペルソナ（フロントエンド・セキュリティ・マーケ・セールス等）を収録した OSS。
+    Claude Code・GitHub Copilot・Cursor・Windsurf 他 10+ ツールへ自動インストールスクリプト付きで配布。
+    macOS / Linux / Windows 向けデスクトップアプリもあり、プロファイルをブラウズして即インストールできる。
+    各エージェントには「達成指標・ワークフロー・実コード例」が添付されており、汎用プロンプトより具体的。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    masatoman の Skills / CLAUDE.md でカバー済みの範囲が多いが、工務店 B2B 営業ロールプレイや
+    事業資料レビュー用のペルソナが混在していれば参考素材として流用できる。
+    現状のスタック（Skills + Workflow tool）との重複を確認してから導入判断。
+    今すぐ全量インストールするより「気になったプロファイルだけ CLAUDE.md に転記」が現実的。
+  </div>
+  <p>
+    <span class="stars">★ 本日 +1,425</span>
+    &nbsp;<a href="https://github.com/msitarzewski/agency-agents" target="_blank">→ msitarzewski/agency-agents</a>
+  </p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending 今日 +830★</span>
+  <strong>altic-dev / FluidVoice — macOS 完全ローカル音声入力 OSS（無料・GPLv3）</strong>
+  <p>
+    デバイス上で完結する macOS 向け音声→テキスト変換アプリ。
+    コマンドモード（アプリ起動・ショートカット実行）とライトモード（任意アプリへテキスト挿入）を持ち、
+    グローバルホットキー一発で呼び出せる。
+    音声認識エンジンは Nemotron / Parakeet / Whisper / Apple Speech から選択可能。
+    オプションで「Fluid Intelligence」（ローカル AI による句読点・フォーマット補正）も利用可。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    Claude Code は v2.1.193 から voice dictation 機能を内包しており、差分は「クラウド非接続でのローカル完結」のみ。
+    プライバシー重視 or 音声を一切クラウドに飛ばしたくない場合に価値あり。
+    macOS 限定・Swift 製で Windows / Linux 環境には非対応。
+    現状 Claude Code 音声で不満がなければ優先度は低い。
+  </div>
+  <p>
+    <span class="stars">★ 本日 +830</span>
+    &nbsp;<a href="https://github.com/altic-dev/FluidVoice" target="_blank">→ altic-dev/FluidVoice</a>
+  </p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending 今日 +280★ / 総★17.5k</span>
+  <strong>refactoringhq / tolaria — git ベース・オフライン完結の markdown ナレッジベース デスクトップアプリ</strong>
+  <p>
+    macOS / Windows / Linux 向けデスクトップアプリ。
+    すべてのデータをプレーン markdown ファイルで保存し git でバージョン管理する設計。
+    クラウド依存ゼロ・オフラインファースト・AI エージェント互換（= ファイルを直接読み書きする agent と相性が良い）。
+    YAML frontmatter による「types as lenses」システムでノートをスキーマなしに分類できる。
+    2026-06-26 時点で 1,408 リリースと長期開発中。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    masatoman の memory 管理（<code>~/.claude/projects/.../memory/MEMORY.md</code>）は既に markdown + git 構成なので、
+    tolaria を被せると「ツールが増えるだけ」になるリスクがある。
+    一方で MEMORY.md インデックスを GUI でブラウズしたい場面には刺さる。
+    AI エージェント互換性は魅力だが、まず「現状の memory ファイルを開いて快適かどうか」を試してから判断。
+  </div>
+  <p>
+    <span class="stars">★ 本日 +280 / 総 17.5k</span>
+    &nbsp;<a href="https://github.com/refactoringhq/tolaria" target="_blank">→ refactoringhq/tolaria</a>
+  </p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1 件)</h2>
+
+<div class="update-item trap">
+  <span class="tag tag-trap">🚫 罠</span>
+  <span class="tag tag-src">GitHub Trending 今日 +331★</span>
+  <strong>0xNyk / council-of-high-intelligence — 18 AI ペルソナによる多段審議シェルスクリプト</strong>
+  <p>
+    18 種類の AI ペルソナが順番に議論して結論を出すシェルスクリプト群。
+    「悪魔の代弁者」「マーケター」「哲学者」など役割を分けて多角的に検討させる実験的ツール。
+    Anthropic API / OpenAI API を直叩きする設計で、各審議ラウンドごとに API コールが積み上がる。
+  </p>
+  <div class="warn">
+    <strong>効率厨 verdict:</strong>
+    API 直叩き前提のため masatoman の MAX プラン定額運用と噛み合わない（追加コスト発生）。
+    同等の多エージェント審議は Claude Code の <code>Workflow</code> ツール（judge panel パターン）で
+    MAX 定額の範囲内で実現できる。シェルスクリプトで管理・デバッグするコストも高い。
+    実験目的としても今の環境より重い選択肢。
+  </div>
+  <p>
+    <span class="stars">★ 本日 +331</span>
+    &nbsp;<a href="https://github.com/0xNyk/council-of-high-intelligence" target="_blank">→ 0xNyk/council-of-high-intelligence</a>
+  </p>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<h2 style="margin-top:2.5rem; font-size:1rem; color:#64748b;">取得失敗ソース</h2>
+<div class="fail-list">
+  <ul style="margin:0; padding-left:1.2rem;">
+    <li><strong>Anthropic news (anthropic.com/news)</strong> — HTTP 403 Forbidden（認証壁）→ WebSearch で補完</li>
+    <li><strong>Obsidian changelog (obsidian.md/changelog)</strong> — HTTP 403 Forbidden → skip</li>
+    <li><strong>Claude Code docs redirect chain</strong> — docs.claude.com → platform.claude.com → GitHub CHANGELOG.md（WebFetch では GitHub 認証壁）→ GitHub releases WebFetch で代替取得</li>
+  </ul>
+</div>
+
+</body>
+</html>
