@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-01 — Claude Code v2.1.197 Sonnet 5 デフォルト化・1M context / obra/superpowers スキルフレームワーク / OmniRoute 160+プロバイダ無料ゲートウェイ</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-01</h1>
+<p class="meta">
+  取得日: 2026-07-01 JST &nbsp;/&nbsp;
+  対象期間: 2026-06-29 〜 2026-07-01 &nbsp;/&nbsp;
+  ソース: Claude Code GitHub releases (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完 / Anthropic news (403 skip) / Obsidian changelog (403 skip) / Claude Code release notes (403→GitHub redirect)
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong>
+  06-28〜06-30 フィード掲載分
+  (v2.1.196 /code-review 25%削減&amp;watchdog ON / agency-agents 232プロファイル / FluidVoice ローカル音声入力 / video-use AIエージェント動画編集 / strix OSS脆弱性スキャン / Gemini CLI 個人向け終了 / ai-berkshire / browser-use / /rewind コマンド)
+  を除外済み。
+  v2.1.197 は 06-30 17:56 リリース = 前日フィード生成後に公開 → <strong>今日扱い</strong>。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (1 件)</h2>
+
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">Claude Code Releases</span>
+  <strong>Claude Code v2.1.197 — Claude Sonnet 5 がデフォルトモデルに。ネイティブ 1M コンテキスト + プロモ価格 (〜8/31)</strong>
+  <p>
+    2026-06-30 17:56 リリース。変更点は 1 つだけだが重大度が高い:
+    <strong>Claude Sonnet 5 が Claude Code のデフォルトモデルになった</strong>。
+    ネイティブ 1M トークンコンテキストウィンドウを持ち、
+    プロモーション価格として 8/31 まで $2 (input) / $10 (output) per Mtok で使える。
+    MAX 定額プランでは追加課金なしで Sonnet 5 を利用できる。
+    masatoman の日次ルーティンやスキル呼び出し・workflow エージェントが
+    全員 Sonnet 5 ベースで動くようになるため、
+    <code>/code-review</code>・deep-research・issue-finder の品質が全体的に上がる可能性がある。
+    <code>claude update</code> するだけで即適用される。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    このフィード自体を含む日次バックグラウンドジョブがSonnet 5 で動くようになる。
+    コンテキスト 1M 化で「長いdiff を一気に渡して code-review」シーンで
+    「途中で切れる」問題が構造的に消える。
+    設定変更ゼロ、<code>claude update</code> だけ。
+  </div>
+  <div class="action">
+    <strong>アクション:</strong> <code>claude update</code> を実行。バージョン確認は <code>claude --version</code>。
+    デフォルトに戻したくない場合は <code>/model</code> で手動指定可能。
+  </div>
+  <p><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.197" target="_blank">→ GitHub Release v2.1.197</a></p>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">該当なし（masatoman は MAX 定額運用）。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (2 件)</h2>
+
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending 今日 +890★</span>
+  <strong>obra / superpowers — Claude Code / Cursor / Copilot 対応のアジェント型スキルフレームワーク</strong>
+  <p>
+    「コーディングエージェントが毎タスク前に関連スキルを自動チェックする」設計の OSS。
+    提案ではなく <strong>必須ワークフロー</strong> として強制するのが特徴で、
+    <code>systematic-debugging</code>（4フェーズ根本原因プロセス）など具体的スキルが同梱される。
+    Claude Code・Cursor・GitHub Copilot CLI・他に対応。Shell ベース、構成は CLAUDE.md 経由で注入する形式。
+    masatoman がすでに構築している CLAUDE.md + Skills システムと設計思想が近く、
+    アーキテクチャの差分確認が「自分の設計を棚卸しする材料」になる。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    masatoman はすでに同等の仕組みを portfolio / memory / スキル体系で持っている。
+    今すぐ乗り換えるより「自分の CLAUDE.md に足りてない必須チェック項目があるか」を
+    README と見比べる使い方が現実的。週末 30 分のレビューで十分。
+  </div>
+  <p><a href="https://github.com/obra/superpowers" target="_blank">→ GitHub: obra/superpowers</a></p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending 今日 +387★</span>
+  <strong>diegosouzapw / OmniRoute — 160+ プロバイダ対応の無料 AI ゲートウェイ (RTK+Caveman 圧縮で最大 95% トークン削減)</strong>
+  <p>
+    OpenAI 互換エンドポイントとして Claude Code・Codex・Cursor・Cline・Copilot を
+    160+ プロバイダ (50+ 無料) に繋ぐ自己ホスト型ゲートウェイ。
+    RTK+Caveman スタック圧縮で 15〜95% のトークン削減と謳い、
+    スマートオートフォールバック・MCP/A2A・マルチモーダル API・Desktop/PWA を持つ。
+    Claude Sonnet/Haiku 無制限の無料プロバイダ (Kiro) や
+    GPT-5・DeepSeek 無制限 (Pollinations) などのルーティングができる。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    masatoman は MAX 定額で API を直叩きしない運用なので今は出番なし。
+    ただし「Claude Code から別プロバイダの無制限無料モデルに自動フォールバック」という発想は
+    将来の API 重量ユーズケースで有効になる可能性がある。現時点は即導入不要、bookmarkだけ。
+  </div>
+  <p><a href="https://github.com/diegosouzapw/OmniRoute" target="_blank">→ GitHub: diegosouzapw/OmniRoute</a></p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1 件)</h2>
+
+<div class="update-item trap">
+  <span class="tag tag-trap">🚫 罠</span>
+  <span class="tag tag-src">GitHub Trending 今日 +445★</span>
+  <strong>google / agents-cli — Google Cloud 専用 AI エージェントデプロイ CLI (GCP ロックイン)</strong>
+  <p>
+    Claude Code・Codex・Cursor などのコーディングアシスタントを
+    Google Cloud 上への AI エージェントデプロイエキスパートに変えるという CLI ツール。
+    Google Cloud のサービス群 (Cloud Run / Vertex AI 等) を前提とし、
+    GCP の認証・プロジェクト設定を内部で処理する。
+  </p>
+  <div class="warn">
+    <strong>効率厨 verdict:</strong>
+    masatoman のスタックは Vercel + Supabase。GCP に乗り換えるメリットは現時点でゼロ。
+    「AI エージェントデプロイを簡単に」というコンセプトは面白いが、
+    Vercel 上の Next.js プロジェクトとは互換性なし。今は無視安定。
+  </div>
+  <p><a href="https://github.com/google/agents-cli" target="_blank">→ GitHub: google/agents-cli</a></p>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<hr style="margin-top:3rem; border:none; border-top:1px solid #e2e8f0;">
+<p style="font-size:0.85rem; color:#94a3b8;">
+  <strong>取得失敗ソース:</strong>
+  Anthropic news (HTTP 403) / Obsidian changelog (HTTP 403) / Claude Code release notes docs URL (301→307 リダイレクト、GitHub CHANGELOG から代替取得済み)
+</p>
+
+</body>
+</html>
