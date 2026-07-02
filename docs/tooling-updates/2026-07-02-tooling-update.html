@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-02 — Claude Code v2.1.198 bg agent が自動 PR 開設 / herdr 複数 agent を 1 terminal で監視 / facebook/astryx agent-ready design system</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-02</h1>
+<p class="meta">
+  取得日: 2026-07-02 JST &nbsp;/&nbsp;
+  対象期間: 2026-07-01 〜 2026-07-02 &nbsp;/&nbsp;
+  ソース: Claude Code GitHub releases (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完 / Anthropic news (403 skip) / Obsidian changelog (403 skip) / Claude Code release notes (403→redirect)
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong>
+  06-29〜07-01 フィード掲載分
+  (v2.1.196 /code-review 25%削減 / v2.1.197 Sonnet 5 デフォルト化 / agency-agents / FluidVoice / tolaria / council-of-high-intelligence / video-use / strix / Gemini CLI 個人向け終了 / obra/superpowers / OmniRoute / google/agents-cli)
+  を除外済み。
+  v2.1.198 は 07-01 20:45 リリース = 前日フィード生成後に公開 → <strong>今日扱い</strong>。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (2 件)</h2>
+
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">Claude Code Releases</span>
+  <strong>Claude Code v2.1.198 — bg agent が作業完了後に自動 commit → push → draft PR 開設。Claude in Chrome も GA</strong>
+  <p>
+    2026-07-01 20:45 リリース。目玉は <strong>background agent の自動 commit + push + draft PR 開設</strong>。
+    これまでは bg agent が差分を作っても push と PR 作成は手動だった。
+    今バージョンから「bg で走らせる → 完了通知 → PR が勝手に開いている」フローが完結する。
+    加えて <strong>background agent 通知 API</strong>（<code>agent_needs_input</code> / <code>agent_completed</code>）が追加され、
+    外部ツールからイベントを受け取ることができるようになった。
+  </p>
+  <p>
+    その他の変更:
+    <strong>Claude in Chrome が GA</strong>（正式リリース）。
+    <code>/dataviz</code> スキルがデフォルトで同梱。
+    AWS 経由の Claude Platform (<code>anthropicAws</code>) を gateway upstream に追加。
+    Explore agent が親セッションのモデルを継承するようになった（上限 Opus）。
+    各種 bg agent / workflow のバグ修正多数。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    このフィードエージェント自体を <code>claude --bg</code> で起動すると、
+    フィード HTML の commit + push + draft PR が全自動で完了するようになる。
+    「push して PR 開いたか確認」という手作業ステップを完全に省ける。
+    <code>claude update</code> で即日適用。PR 不要な運用なら影響なし。
+  </div>
+  <div class="action">
+    <strong>アクション:</strong> <code>claude update</code> を実行。<code>claude --version</code> で v2.1.198 を確認。
+    bg agent の自動 PR は <code>--bg</code> フラグで起動した場合に機能する。
+  </div>
+  <p><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.198" target="_blank">→ GitHub Release v2.1.198</a></p>
+</div>
+
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">GitHub Trending 今日 +609★</span>
+  <span class="stars">⭐ 9,577</span>
+  <strong>ogulcancelik / herdr — 複数の AI coding agent を 1 terminal で並走・状態監視する Rust 製マルチプレクサ</strong>
+  <p>
+    Claude Code・Codex・Copilot・Devin など 15+ の agent を <strong>同時に別 pane で走らせながら</strong>、
+    サイドバーに <code>blocked / working / done / idle</code> のステータスを色分け表示する OSS ツール。
+    各 agent に本物の terminal 環境を与えるので TUI の崩れがなく、SSH 経由でどこからでも再接続できる。
+    <strong>単一 Rust バイナリ (~10MB)・クラウドなし・telemetry なし</strong>。AGPL + 商用ライセンス。
+    最新安定版 v0.7.1（2026-06-24）。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    masatoman がこのフィード用 bg agent・portfolio 改修用 agent・GSC 自動化 agent を
+    同時に走らせる場面で「どの agent が詰まってるか」を一目で確認できる。
+    Electron なし・アカウント登録なし・インストールは binary 1 本で摩擦ゼロ。
+    複数 agent を並走させ始めたタイミングで即导入できる。
+  </div>
+  <div class="action">
+    <strong>アクション:</strong> <a href="https://github.com/ogulcancelik/herdr/releases" target="_blank">releases ページ</a>
+    から Linux/macOS バイナリをダウンロード。<code>herdr</code> コマンドで起動。
+  </div>
+  <p><a href="https://github.com/ogulcancelik/herdr" target="_blank">→ GitHub: ogulcancelik/herdr</a></p>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">該当なし（masatoman は MAX 定額運用。今回の新着に有料新ツールなし）。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (2 件)</h2>
+
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending 今日 +708★</span>
+  <span class="stars">⭐ 2,604</span>
+  <strong>facebook / astryx — Meta 製 agent-ready React design system (OSS Beta)。MCP server 付きで AI が component を直接読める</strong>
+  <p>
+    Meta 社内で 8 年・13,000+ アプリを支えてきた design system を OSS 化（MIT ライセンス、Beta）。
+    150+ コンポーネント + TypeScript + StyleX (Meta のコンパイル時 CSS) で構成。
+    特徴は <strong>「agent-ready」</strong> 設計:
+    JSDoc に composition ヒントを埋め込み、CLI と <strong>MCP server</strong> を内蔵することで
+    AI coding agent が component を読みながらテーマ生成やスキャフォールドを行える。
+    OpenAPI が backend 向けに果たしてきた「機械可読仕様」を frontend design system に初めて適用した例。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    portfolio フロントを AI agent にまかせて大幅改修するときの有力候補。
+    今は軸 B ヒアリング期なので UI 大改修は優先度低い。
+    Beta 版で API が安定していないリスクもある。
+    「MCP server で AI が component カタログを読む」設計の先行事例として README を眺めておく価値はある。
+    本格採用は Beta 取れてから判断で十分。
+  </div>
+  <p><a href="https://github.com/facebook/astryx" target="_blank">→ GitHub: facebook/astryx</a></p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending 今日 +694★</span>
+  <span class="stars">⭐ 16,503</span>
+  <strong>HKUDS / Vibe-Trading — 自然言語で株式分析・バックテストを行う multi-agent research platform (Python + React)</strong>
+  <p>
+    「A株・米株・仮想通貨など 18 ソース対応のデータ取得 → 456 本の pre-built alpha でバックテスト →
+    投資委員会・クオンツデスク・リスク委員会の multi-agent チームがレポートを生成」を
+    自然言語でオーケストレーションする OSS。TradingView Pine Script / MetaTrader 5 へのエクスポートも可。
+    Python 3.11+ / MIT ライセンス / 13+ LLM プロバイダ対応。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    masatoman の現業務（工務店 SaaS ヒアリング）に直接は不要。
+    ただし「multi-agent が役割分担してレポートを生成する」アーキテクチャは
+    masatoman.net の記事ネタとして有効。
+    「AI に業務を任せる設計の実験ログ」コンセプトとの親和性は高いが、
+    金融業務そのものへの踏み込みは避ける（KYC/金商法リスク）。
+    参考実装として読む分には価値あり。
+  </div>
+  <p><a href="https://github.com/HKUDS/Vibe-Trading" target="_blank">→ GitHub: HKUDS/Vibe-Trading</a></p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1 件)</h2>
+
+<div class="update-item trap">
+  <span class="tag tag-trap">🚫 罠</span>
+  <span class="tag tag-src">GitHub Trending 今日 +334★</span>
+  <span class="stars">⭐ 18,256</span>
+  <strong>allenai / olmocr — LLM 学習データ用 PDF linearizer。個人開発の日常運用には刺さらない</strong>
+  <p>
+    PDF を LLM の training data 向けにテキスト化するツールキット。
+    Allen AI が LLM 事前学習パイプライン向けに作ったもので、
+    OCR 精度よりも「LLM が読みやすい構造への変換」を重視している。
+    Python / MIT / 18k stars と広く使われているが対象ユーザーは LLM を学習させる研究者・企業。
+  </p>
+  <div class="warn">
+    <strong>効率厨 verdict:</strong>
+    masatoman の MAX 定額プラン + 工務店 SaaS 路線では、
+    LLM をゼロから学習させる場面がない。
+    「PDF を Claude に読ませたい」なら <code>Read</code> ツールや Supabase の vector 検索で十分で、
+    olmocr のような重い前処理パイプラインは過剰。
+    18k stars で話題だが、用途が全く違うので追いかけるコストは無駄。
+  </div>
+  <p><a href="https://github.com/allenai/olmocr" target="_blank">→ GitHub: allenai/olmocr</a></p>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<h2 style="margin-top:2.5rem; font-size:1.05rem; color:#64748b;">取得失敗ソース</h2>
+<div class="fail-list">
+  <ul style="margin:0; padding-left:1.2rem;">
+    <li><strong>Anthropic news (anthropic.com/news)</strong> — HTTP 403 Forbidden。引き続き skip。</li>
+    <li><strong>Obsidian changelog (obsidian.md/changelog)</strong> — HTTP 403 Forbidden。引き続き skip。</li>
+    <li><strong>Claude Code docs release notes</strong> — 301→307 リダイレクト連鎖。GitHub releases から代替取得済み。</li>
+    <li><strong>CHANGELOG.md (GitHub blob)</strong> — HTML レンダリングのみで raw コンテンツ取得不可。GitHub releases API で代替取得済み。</li>
+  </ul>
+</div>
+
+</body>
+</html>
