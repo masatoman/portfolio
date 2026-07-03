@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-03 — Claude Code v2.1.199 スタックスキル/429自動retry/bg daemon修正大量 / caveman 65%削減の実態 / chrome-devtools-mcp Chrome149 stable</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-03</h1>
+<p class="meta">
+  取得日: 2026-07-03 JST &nbsp;/&nbsp;
+  対象期間: 2026-07-02 〜 2026-07-03 &nbsp;/&nbsp;
+  ソース: Claude Code GitHub releases (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完 / Anthropic news (403 skip) / Obsidian changelog (403 skip) / Claude Code release notes (403→GitHub redirect)
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong>
+  07-01〜07-02 フィード掲載分
+  (v2.1.197 Sonnet5デフォルト化 / v2.1.198 bg agent自動PR+Claude in Chrome GA / obra/superpowers / OmniRoute / herdr / facebook/astryx / google/agents-cli / tolaria / council-of-high-intelligence / agency-agents / FluidVoice / strix / video-use / Gemini CLI 個人向け終了)
+  を除外済み。
+  v2.1.199 は 07-02 23:35 リリース = 昨日フィード生成後に公開 → <strong>今日扱い</strong>。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (1 件)</h2>
+
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">Claude Code Releases</span>
+  <strong>Claude Code v2.1.199 — スタックスキル対応 / 429自動retry / SSL即死 / bg daemon Linux crash 修正など大型バグフィックス集</strong>
+  <p>
+    2026-07-02 23:35 リリース。新機能よりも<strong>バックグラウンドジョブの信頼性</strong>を大幅に底上げするバグ修正群が詰まっている。
+    主な変更点を効率厨レンズで整理:
+  </p>
+  <ul>
+    <li>
+      <strong>スタックスキル対応</strong>:
+      <code>/skill-a /skill-b do XYZ</code> 形式で先頭のスキルを最大5件まで同時ロードできるようになった。
+      これまで <code>/deep-research</code> と <code>/code-review</code> を組み合わせるには2ターン必要だったが、
+      1行で済む。日次ルーティンのプロンプト設計が単純化される。
+    </li>
+    <li>
+      <strong>SSL証明書エラーの即死 + fix hint</strong>:
+      TLS-inspecting プロキシや <code>NODE_EXTRA_CA_CERTS</code> 未設定で起きる証明書エラーが、
+      これまでは黙ってリトライを全消費してから失敗していた。
+      今後は即死して「こう直せ」というヒントを出す。
+      このリモート実行環境の日次ルーティン自体が TLS プロキシ経由なので直接効く。
+    </li>
+    <li>
+      <strong>streaming 途中エラー時の部分出力保持</strong>:
+      mid-stream でサーバーエラーや overloaded が返った場合、
+      これまでは部分出力が捨てられていた。
+      今後は「不完全な応答」ノートを添えて部分出力を保持する。
+      長い workflow で途中まで処理した結果が消えない。
+    </li>
+    <li>
+      <strong>subagent のエラーが親に正しく伝播</strong>:
+      usage limit reached などの API エラーを subagent が踏んだとき、
+      成功扱いで親に返っていたバグを修正。
+      workflow 内の subagent が制限を踏んでも親 agent が気づいてリカバリできるようになった。
+    </li>
+    <li>
+      <strong>Linux bg agent daemon が ~50秒ごとに自分+全 running agent をkillするバグを修正</strong>:
+      unclean shutdown で corrupted worker record が残った場合に発生していた致命バグ。
+      今日時点でこのルーティン自体が Linux 上で動いているなら、即更新すべき。
+    </li>
+    <li>
+      <strong>429 (transient rate limit) の自動 backoff retry</strong>:
+      サブスクライバー向けに、容量制限外の一時的 429 を自動 retry するようになった。
+      長いバックグラウンドジョブが一時的サーバー混雑で失敗することが減る。
+    </li>
+    <li>
+      <strong><code>CLAUDE_CODE_RETRY_WATCHDOG</code> の retry 上限を 300 に引き上げ + <code>CLAUDE_CODE_MAX_RETRIES</code> の cap 15 を撤廃</strong>:
+      長期バックグラウンドジョブの耐久性が大幅向上。日次ルーティンや workflow エージェントに直接効く。
+    </li>
+    <li>
+      その他:
+      <code>claude stop</code> の race condition 修正、
+      <code>SessionStart</code> / <code>SubagentStart</code> hook が exit code 2 で stderr を出すようになった、
+      <code>SendMessage</code> の再spawn時ルーティングバグ修正、
+      macOS SSH 経由 bg agent cold-start 修正 (2.1.196 リグレッション)、
+      remote session の flapping 修正、など多数。
+    </li>
+  </ul>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    このフィードエージェント自身が受ける恩恵が最大。Linux bg daemon crash fix + SSL即死 + 429自動retry + watchdog 300回で、
+    「朝起きたら途中で死んでた」ケースの大半が自動回復に変わる。
+    スタックスキルは記事サイクルや deep-research ルーティンで
+    <code>/deep-research /dataviz 最新AI統計をグラフ化</code> のような 1 行プロンプトが書けるようになる。
+    設定変更ゼロ、<code>claude update</code> するだけ。
+  </div>
+  <div class="action">
+    <strong>アクション:</strong> <code>claude update</code> を実行。<code>claude --version</code> で v2.1.199 を確認。
+    スタックスキルはすぐ使える (<code>/skill-a /skill-b &lt;指示&gt;</code> 形式)。
+  </div>
+  <p><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.199" target="_blank">→ GitHub Release v2.1.199</a></p>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">該当なし（masatoman は MAX 定額運用）。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (2 件)</h2>
+
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending 今日 +926★</span>
+  <span class="stars">⭐ 80,847</span>
+  <strong>JuliusBrussee / caveman — 「65%削減」を謳う Claude Code skill。MAX定額では恩恵薄い、実態を整理</strong>
+  <p>
+    Claude Code・Codex・Cursor ほか 30+ agent に対応した skill/plugin。
+    <code>/caveman</code> で発動すると agent の出力が「原始人話し方」になる。
+    articles・filler・pleasantries・hedging を削除しつつ、
+    コードブロック・エラー文字列・シンボルは完全保持する。
+    ベンチマーク公称: <strong>output token 65% 削減</strong>。
+    インストールは curl 1行。
+  </p>
+  <div class="warn">
+    <strong>実態チェック (期待値バイアスに注意):</strong>
+    独立ベンチマークによると、65% 削減は「discursive text のみ」での数字。
+    実際のセッション全体では discursive text は出力の約 25% にすぎず、
+    <strong>セッション全体での節約は 4〜10%</strong> に留まる。
+    masatoman は MAX 定額なので token 節約の金銭的価値はゼロ。
+    恩恵があるとすれば「transcript.jsonl が膨らまない」→ コンテキスト圧縮コスト削減 という間接効果のみ。
+  </div>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    MAX 定額運用では今すぐ入れる理由が薄い。
+    transcript.jsonl が数百 MB 規模になって圧縮が遅くなってきたら試す価値はある。
+    ルーティン内で「agent の出力が長くて次のステップへの引き渡しが重い」と感じたタイミングで導入を検討。
+    viral なので「とりあえず入れた」人が増えているが、今の masatoman の優先度は低い。
+  </div>
+  <p><a href="https://github.com/JuliusBrussee/caveman" target="_blank">→ GitHub: JuliusBrussee/caveman</a></p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending 今日 +104★</span>
+  <span class="stars">⭐ 45,073</span>
+  <strong>ChromeDevTools / chrome-devtools-mcp — Chrome 149 で公式 stable。coding agent がブラウザに目を持つ</strong>
+  <p>
+    Chrome DevTools 公式チームが提供する MCP server。
+    Chrome M149 以降で正式安定版 (stable) になった。
+    Claude Code に MCP として組み込むと、
+    <strong>live Chrome セッションに CDP 経由で attach</strong> し、
+    DOM 検査・コンソール出力読み取り・JavaScript 実行・スクリーンショット撮影・ネットワーク監視・要素インタラクション
+    が可能になる。
+    「コードを直しているのに見た目が分からない」という coding agent の根本問題に対処する。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    portfolio dev server (<code>npm run dev</code>) を立ち上げながら
+    Claude Code に「この component の表示が崩れていないか確認して」と依頼すると、
+    Playwright を別途書かなくても agent がブラウザを直接見て確認できる。
+    issue-finder tool や demo-gallery のフロント確認シーンで使える。
+    ただし Chrome M149 以降への更新確認 + <code>.claude/settings.json</code> への MCP 設定追加が必要。
+    今すぐ使えるが「セットアップ 30分」のコストを取れる日にやる。
+  </div>
+  <div class="action">
+    <strong>試す手順:</strong>
+    ① <code>google-chrome --version</code> で 149 以降を確認
+    ② <code>npx @chrome/devtools-mcp</code> でインストール
+    ③ <code>.claude/settings.json</code> の <code>mcpServers</code> に追加
+    ④ <code>claude mcp list</code> で接続確認
+  </div>
+  <p><a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank">→ GitHub: ChromeDevTools/chrome-devtools-mcp</a></p>
+  <p><a href="https://developer.chrome.com/blog/chrome-devtools-mcp" target="_blank">→ Chrome for Developers 公式ブログ</a></p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1 件)</h2>
+
+<div class="update-item trap">
+  <span class="tag tag-trap">🚫 罠</span>
+  <span class="tag tag-src">GitHub Trending 今日 +939★</span>
+  <span class="stars">⭐ 17,319</span>
+  <strong>HKUDS / Vibe-Trading — 今日 trending 最上位級だが masatoman には完全に無関係な個人トレーディング AI agent</strong>
+  <p>
+    個人トレーダー向けの AI エージェントプラットフォーム。
+    株・暗号通貨の自動売買戦略を agent に実行させるツール。
+    今日 +939★ で trending 上位に入っているが、
+    masatoman の軸 B（工務店 B2B SaaS）とは一切接点がない。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    trending 上位にいる = 技術的に面白そうに見える。
+    しかし「面白そう」と「自分のスタックに入れる理由がある」は別。
+    プラン C（6 経路ヒアリング + 主軸確定 11 月末）を走らせている今、
+    軸 B 以外の rabbit hole への時間投資はコスト。
+    開かない。
+  </div>
+  <p><a href="https://github.com/HKUDS/Vibe-Trading" target="_blank">→ GitHub: HKUDS/Vibe-Trading</a></p>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<hr style="margin-top:3rem; border-color:#e2e8f0;">
+<h3 style="font-size:0.95rem; color:#64748b;">取得失敗ソース</h3>
+<div class="fail-list">
+  <ul style="margin:0; padding-left:1.2rem;">
+    <li><strong>Anthropic news</strong> (anthropic.com/news) — HTTP 403 Forbidden</li>
+    <li><strong>Obsidian changelog</strong> (obsidian.md/changelog/) — HTTP 403 Forbidden</li>
+    <li><strong>Claude Code release notes</strong> (docs.claude.com) — 301→platform.claude.com→307→GitHub CHANGELOG.md (blob viewer の本文取得不可) → GitHub Releases で代替取得</li>
+  </ul>
+</div>
+
+</body>
+</html>
