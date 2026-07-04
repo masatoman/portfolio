@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-04 — Claude Code v2.1.200 デフォルト権限モードManual化+AskUserQuestion自動続行廃止 / graphify コードベース知識グラフ化 / codex-plugin-cc 罠</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-04</h1>
+<p class="meta">
+  取得日: 2026-07-04 JST &nbsp;/&nbsp;
+  対象期間: 2026-07-03 〜 2026-07-04 &nbsp;/&nbsp;
+  ソース: Claude Code GitHub releases (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完 / Anthropic news (403 skip) / Obsidian changelog (403 skip) / CHANGELOG.md raw (GitHub)
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong>
+  07-01〜07-03 フィード掲載分
+  (v2.1.197 Sonnet5デフォルト化 / v2.1.198 bg agent自動PR+Claude in Chrome GA / v2.1.199 スタックスキル/429自動retry/bg daemon修正 / caveman 65%削減 / chrome-devtools-mcp Chrome149 stable / Vibe-Trading / herdr / obra/superpowers / strix / OmniRoute / agency-agents / FluidVoice / tolaria / council-of-high-intelligence / video-use / google/agents-cli)
+  を除外済み。
+  v2.1.200 は 07-03 16:52、v2.1.201 は 07-03 23:50 リリース = 昨日フィード生成後に公開 → <strong>今日扱い</strong>。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (1 件)</h2>
+
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">Claude Code Releases</span>
+  <strong>Claude Code v2.1.200 — デフォルト権限モード「Manual」統一 + AskUserQuestion 自動続行廃止。自動ルーティン直撃</strong>
+  <p>
+    2026-07-03 16:52 リリース。新機能は少ないが、<strong>自動化・ルーティン運用に直接影響する挙動変更</strong>が2件入った。
+  </p>
+  <ul>
+    <li>
+      <strong>AskUserQuestion 自動続行廃止</strong>:
+      これまで <code>AskUserQuestion</code> ダイアログはタイムアウト後に自動で続行していた。
+      v2.1.200 以降はデフォルトで自動続行しない（止まって待つ）。
+      <code>/config</code> → アイドルタイムアウトの明示設定で旧挙動に戻せる。
+      スケジュール起動の日次ルーティンが <code>AskUserQuestion</code> を呼ぶ箇所で止まる可能性がある。
+    </li>
+    <li>
+      <strong>デフォルト権限モードを「Manual」に統一</strong>:
+      CLI・VS Code・JetBrains いずれも <code>"defaultMode": "manual"</code> が標準になった。
+      これまで自動許可されていた操作（ファイル書き込み・Bash 実行など）に確認ダイアログが出るようになる場合がある。
+      自動化環境では <code>--dangerouslySkipPermissions</code> または <code>settings.json</code> の <code>"defaultMode": "bypassPermissions"</code> を明示する必要がある。
+    </li>
+    <li>
+      <strong>bg session スリープ/ウェイク後の停止バグ修正</strong>:
+      スリープ後にバックグラウンドセッションが止まっていた問題を修正。
+      MacBook 利用者は特に恩恵がある。
+    </li>
+    <li>
+      その他:
+      <code>daemon.lock</code> のクラッシュリカバリ改善、
+      <code>disabledMcpServers</code> / <code>enabledMcpServers</code> が非配列値の場合のクラッシュ修正、
+      <code>--plugin-dir</code> フラグの位置依存バグ修正、
+      git worktree からのプロジェクトスコーププラグイン読み込み修正、
+      tmux 3.4+ でのちらつき軽減、
+      スクリーンリーダー対応強化。
+    </li>
+  </ul>
+  <div class="warn">
+    <strong>⚠️ ルーティン運用者への注意:</strong>
+    このフィードエージェント自身もスケジュール起動の自動ルーティン。
+    <code>AskUserQuestion</code> を発動させるコードパスが内部にあると、
+    v2.1.200 以降は止まって応答待ちになる可能性がある。
+    <code>/config</code> でアイドルタイムアウトを確認・設定するか、
+    ルーティンが <code>AskUserQuestion</code> を呼ばないよう設計を見直す。
+  </div>
+  <div class="action">
+    <strong>今日やること:</strong>
+    ① <code>claude update</code> で v2.1.200 に更新。
+    ② <code>/config</code> でアイドルタイムアウト設定を確認・必要なら設定。
+    ③ <code>.claude/settings.json</code> の <code>"defaultMode"</code> を確認（自動化が必要なら <code>"bypassPermissions"</code> を明示）。
+  </div>
+  <p><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.200" target="_blank">→ GitHub Release v2.1.200</a></p>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">該当なし（masatoman は MAX 定額運用）。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (3 件)</h2>
+
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">Claude Code Releases</span>
+  <strong>Claude Code v2.1.201 — Sonnet 5 セッションの途中 system role 処理改善（小変更）</strong>
+  <p>
+    2026-07-03 23:50 リリース。変更は 1 点のみ:
+    Claude Sonnet 5 セッションで、harness reminders 用途の途中 system role 挿入を廃止。
+    会話の途中でシステムロールが混入することで発生していた応答の一貫性問題が解消される。
+    Sonnet 5 をデフォルトで使っているすべてのセッション（このルーティン含む）に恩恵がある。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    <code>claude update</code> で v2.1.200 とまとめて入る。
+    追加作業ゼロで長い workflow の途中で応答が変にブレる症状が出にくくなる。
+    単体で判断する必要はなく、v2.1.200 の更新と同時に完結。
+  </div>
+  <p><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.201" target="_blank">→ GitHub Release v2.1.201</a></p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending 今日 +945★</span>
+  <span class="stars">⭐ 77,103</span>
+  <strong>safishamsi / graphify v0.9.5 — <code>/graphify .</code> 1コマンドでコードベース全体を知識グラフ化。portfolio・masatoman.net のアーキテクチャ把握に使える候補</strong>
+  <p>
+    コード・SQL スキーマ・シェルスクリプト・ドキュメント・画像・動画を入力に、
+    インタラクティブな <strong>知識グラフ</strong>（<code>graph.html</code>）＋概念レポート（<code>GRAPH_REPORT.md</code>）＋クエリ可能 JSON（<code>graph.json</code>）を生成するスキル。
+    Claude Code・Codex・Cursor・Gemini CLI など主要 agent に対応。
+    2026-07-02 に v0.9.5 をリリース、v8 ブランチで活発開発中。
+  </p>
+  <p>
+    <strong>portfolio での使い方イメージ:</strong>
+    <code>/graphify .</code> を portfolio ルートで実行すると、
+    <code>app/</code> 配下のコンポーネント依存関係・ルーティング・Supabase スキーマとの接続を可視化した graph.html が生成される。
+    新しい demo-gallery デモを追加するときや、issue-finder のルーティング変更前の影響確認に使える。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    portfolio（ルート数十ファイル規模）には少しオーバースペックだが、
+    「コードを読まずに全体構造を把握したい」シーンで 1 コマンド完結は魅力。
+    Python 3.10+ と uv/pipx のインストールが前提。
+    v1.0 が出たタイミングか、masatoman.net（軸A）の既存 80 本記事に対して RAG クエリを試すシーンで入れてみる価値がある。
+  </div>
+  <p><a href="https://github.com/safishamsi/graphify" target="_blank">→ GitHub: safishamsi/graphify</a></p>
+</div>
+
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">WebSearch 補完</span>
+  <strong>Profound Aim — 常駐型 BG エージェント for マーケ担当がローンチ（2026-07-02）。軸 B SaaS のプロダクト設計参考</strong>
+  <p>
+    Profound が 2026-07-02 にリリースした「Profound Aim」は、
+    マーケティングチーム向けの<strong>常駐型バックグラウンドエージェント</strong>。
+    「always-on background agent for marketing teams」として位置付け、
+    SEO 監視・コンテンツパフォーマンス追跡・競合モニタリングを自動で継続実行する。
+    購読型 SaaS（価格未公開）。
+  </p>
+  <div class="note">
+    <strong>効率厨 verdict:</strong>
+    直接使うツールではなく、<strong>軸 B SaaS のプロダクト設計参考</strong>として見る。
+    「常駐 BG エージェント × 特定業種」というプロダクトアーキテクチャは、
+    工務店向け現場写真 → 日報自動化 SaaS と同じ構造。
+    6 経路ヒアリングで「どんな場面で使う?」を説明する際の類似事例として使える。
+    プラン C の主軸確定（11 月末）前の情報収集として観察しておく。
+  </div>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1 件)</h2>
+
+<div class="update-item trap">
+  <span class="tag tag-trap">🚫 罠</span>
+  <span class="tag tag-src">GitHub Trending 今日 +634★</span>
+  <span class="stars">⭐ 23,193</span>
+  <strong>openai / codex-plugin-cc — Claude Code 内から OpenAI Codex 呼び出し。ChatGPT サブスクまたは API キー別途必要でコスト二重化</strong>
+  <p>
+    OpenAI 公式が提供する Claude Code 向けプラグイン。
+    <code>/codex:review</code>（標準レビュー）、<code>/codex:adversarial-review</code>（設計判断への異議申し立て）、
+    <code>/codex:rescue</code>（バグ調査の Codex への委譲）、<code>/codex:transfer</code>（会話を Codex に引き継ぎ）
+    など 5 コマンドで Claude Code 内から Codex を操作できる。
+  </p>
+  <p>
+    <strong>問題点</strong>:
+    使用には <strong>ChatGPT サブスクリプションまたは OpenAI API キーが別途必要</strong>。
+    ローカルに Codex CLI をインストールし、OpenAI の認証を通す必要がある。
+    使用量は OpenAI 側の利用制限に計上される（= MAX 定額の外にコストが乗る）。
+  </p>
+  <div class="warn">
+    <strong>効率厨 verdict:</strong>
+    Claude Code MAX 定額で「コードレビューを別モデルにセカンドオピニオン依頼」したいなら、
+    <code>/code-review</code> スキルの subagent に別モデルを指定する方が無追加コスト・無追加設定で同等のことができる。
+    「OpenAI の adversarial review がどうしても必要」という明確な理由がない限り、
+    新たなサブスクまたは API 費用を追加してまで入れるものではない。
+    trending 上位にいるが、masatoman の今のスタックには不要。
+  </div>
+  <p><a href="https://github.com/openai/codex-plugin-cc" target="_blank">→ GitHub: openai/codex-plugin-cc</a></p>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<hr style="margin-top:3rem; border-color:#e2e8f0;">
+<h3 style="font-size:0.95rem; color:#64748b;">取得失敗ソース</h3>
+<div class="fail-list">
+  <ul style="margin:0; padding-left:1.2rem;">
+    <li><strong>Anthropic news</strong> (anthropic.com/news) — HTTP 403 Forbidden</li>
+    <li><strong>Obsidian changelog</strong> (obsidian.md/changelog/) — HTTP 403 Forbidden</li>
+    <li><strong>Claude Code release notes</strong> (docs.claude.com) — 301→platform.claude.com→307→GitHub CHANGELOG.md (blob viewer 取得不可) → raw.githubusercontent.com で代替取得</li>
+  </ul>
+</div>
+
+</body>
+</html>
