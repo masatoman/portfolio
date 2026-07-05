@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-05 — Fable 5 MAX枠7/7終了 / Meetily ローカルAI議事録 / ZCode中国データ法トラップ</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .alert { background: #fef2f2; border-left: 3px solid #ef4444; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-05</h1>
+<p class="meta">
+  取得日: 2026-07-05 JST &nbsp;/&nbsp;
+  対象期間: 2026-07-03 〜 2026-07-05 &nbsp;/&nbsp;
+  ソース: Claude Code GitHub releases (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完 (ZCode / Fable 5) / Anthropic news (403 skip, WebSearch 補完) / Obsidian changelog (403 skip) / Meetily GitHub
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong>
+  07-02〜07-04 フィード掲載分
+  (v2.1.198-201 / caveman / chrome-devtools-mcp / Vibe-Trading / herdr / facebook/astryx / olmocr / openai/codex-plugin-cc / safishamsi/graphify)
+  を除外済み。
+  Claude Code 最新 = v2.1.201 (07-03 23:50)。07-05 時点で v2.1.202 以降の新規リリース未確認 → Claude Code 項目は今日なし。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (2 件)</h2>
+
+<!-- item 1 -->
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">Anthropic ニュース</span>
+  <strong>⏰ Fable 5 MAX プラン「週間利用枠 50%」特典が <u>7/7 (月) で終了</u> — 残り2日</strong>
+  <p>
+    Fable 5 は 2026-07-01 に輸出規制解除で復活。Pro/Max/Team プランでは 7/7 まで週間利用枠の <strong>50% を Fable 5 で使える</strong> 特典期間中。7/7 以降は usage credits 方式に切り替わる。
+  </p>
+  <div class="action">
+    <strong>今日やること：</strong>
+    masatoman は MAX プラン = <strong>今週中（7/6 日曜まで）に Fable 5 を試し倒すのがお得</strong>。
+    Claude Code で <code>/model fable-5</code> または <code>claude-fable-5</code> を指定して、今書きかけのコードや SEO 記事の構成をぶつけてみる。
+    来週月曜以降は usage credits を消費する形に変わるので、使いたいなら今週が実質無料枠。
+  </div>
+  <div class="note">
+    新しい安全分類器も同時追加済み（Amazon が発見したジェイルブレイク手法を 99% 以上ブロック）。通常用途への影響なし。
+  </div>
+  <p><a href="https://www.anthropic.com/news/redeploying-fable-5" target="_blank">→ Anthropic 公式: Redeploying Fable 5</a></p>
+</div>
+
+<!-- item 2 -->
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <strong>Meetily — ローカル完結の AI 議事録アシスタント（無料・MIT、15k stars）</strong>
+  <p>
+    Whisper / Parakeet でリアルタイム文字起こし → Ollama / Claude / Groq でサマリ生成まで、<strong>データが PC の外に一切出ない</strong>自己ホスト型。Rust + Tauri 製、macOS/Windows/Linux 対応。
+  </p>
+  <div class="action">
+    <strong>効率厨の一言：</strong>
+    工務店ヒアリングの録音を Supabase や外部 API に送らずに文字起こし→議事録に変換できる。
+    サマリ AI を Ollama（完全ローカル）にすれば機密情報ゼロ漏れ。
+    <strong>北原氏面談・たましん訪問・建材屋アポ</strong> の記録を今日から回せる。
+    コード: <code>git clone + cargo tauri dev</code> で即起動。無料枠は MIT ライセンス。
+  </div>
+  <div class="note">
+    有料 Meetily PRO（LAUNCH20 コードで 20% オフ）はカスタムテンプレート・話者識別など。今は無料版で十分。
+  </div>
+  <span class="stars">⭐ 15,235</span>
+  <p><a href="https://github.com/Zackriya-Solutions/meetily" target="_blank">→ GitHub: Zackriya-Solutions/meetily</a></p>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">該当なし。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (3 件)</h2>
+
+<!-- item 3 -->
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <strong>alibaba/page-agent — 自然言語でブラウザ GUI を操作する JS ライブラリ（23k stars）</strong>
+  <p>
+    DOM をテキスト解析して自然言語命令を実行する純 JavaScript ライブラリ。スクリーンショット不要、ブラウザ拡張不要。SaaS フォーム自動化・ERP 入力・アクセシビリティ向上に使える。
+  </p>
+  <div class="warn">
+    <strong>注意：</strong> Alibaba 製。デモ CDN を本番で使うとデータが Alibaba サーバーに届く。
+    本番で使うなら <strong>自前 LLM キー（Claude / OpenAI）</strong>を必ず使用。
+    masatoman の今の主軸（工務店 SaaS MVP 前の段階）では優先度低。
+    将来 Web フォーム自動化を実装する局面で再確認。
+  </div>
+  <span class="stars">⭐ 23,088</span>
+  <p><a href="https://github.com/alibaba/page-agent" target="_blank">→ GitHub: alibaba/page-agent</a></p>
+</div>
+
+<!-- item 4 -->
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <strong>agentskills/agentskills — Agent Skills 公式仕様リポジトリ（22k stars）</strong>
+  <p>
+    Claude Code の Skills システムで使われる「Agent Skills」の仕様書・ドキュメント集。masatoman がすでに運用中の <code>.claude/agents/*.md</code> 形式の根拠文書にあたる。
+  </p>
+  <div class="note">
+    今の Skills 設計の「なぜこの書き方か」を確認したいとき、または新 Skill を追加するときの参照先として有用。今すぐ作業が変わるわけではないが、保存しておく価値あり。
+  </div>
+  <span class="stars">⭐ 22,323</span>
+  <p><a href="https://github.com/agentskills/agentskills" target="_blank">→ GitHub: agentskills/agentskills</a></p>
+</div>
+
+<!-- item 5 -->
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending</span>
+  <strong>mattpocock/skills — AI 補助開発スキル集（Shell、156k stars）</strong>
+  <p>
+    Matt Pocock（TypeScript 教育で有名）による AI 補助開発向けエンジニアリングスキルコレクション。Shell ベースで Claude Code 系の Skills に近い思想。
+  </p>
+  <div class="warn">
+    <strong>星数に注意：</strong> 156k は異常値の可能性がある（Matt Pocock の通常リポジトリ水準を大幅超過）。
+    中身の品質確認前に「定番」扱いしない。masatoman の既存 Skills との重複・差分を確認してから採用判断。
+  </div>
+  <span class="stars">⭐ 156,538（要確認）</span>
+  <p><a href="https://github.com/mattpocock/skills" target="_blank">→ GitHub: mattpocock/skills</a></p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1 件)</h2>
+
+<!-- item 6 -->
+<div class="update-item trap">
+  <span class="tag tag-trap">🚫 罠</span>
+  <span class="tag tag-src">VentureBeat / AI Weekly</span>
+  <strong>Z.ai ZCode — 「無料」AI コーディング IDE（中国データ法トラップ）</strong>
+  <p>
+    2026-07-04 ローンチ。中国 Z.ai の GLM-5.2 モデル搭載デスクトップ IDE。macOS/Windows/Linux 対応、無料〜$16.20/月（Lite）〜$144/月（Max）。
+    Cursor / Claude Code / GitHub Copilot に挑戦と銘打っているが——
+  </p>
+  <div class="alert">
+    <strong>🚫 なぜ罠か：</strong>
+    <ul style="margin: 0.4rem 0 0 1.2rem; padding: 0;">
+      <li>全 API コールが<strong>中国データ法（データ安全法・個人情報保護法）の管轄下</strong>に入る（記事タイトルに明記）。</li>
+      <li>コードベース・クライアント情報・環境変数が GLM-5.2 サーバーに送信される。</li>
+      <li>masatoman は MAX プランで Claude Code を定額運用済み = 乗り換えコストゼロのメリットがない。</li>
+      <li>「無料」だが、工務店クライアントのコードや個人情報を中国サーバーに送る理由がない。</li>
+    </ul>
+  </div>
+  <p><a href="https://aiweekly.co/alerts/zai-launches-zcode-322-as-official-glm-52-coding-harness" target="_blank">→ AI Weekly: ZCode 3.2.2 リリース記事</a></p>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<h3 style="font-size:0.95rem; color:#64748b; margin-top: 2.5rem;">取得失敗ソース</h3>
+<div class="fail-list">
+  <ul style="margin: 0; padding-left: 1.2rem;">
+    <li><strong>https://www.anthropic.com/news</strong> — HTTP 403（WebSearch で補完済み）</li>
+    <li><strong>https://obsidian.md/changelog/</strong> — HTTP 403（7/3-5 の新規更新なし可能性あり、skip）</li>
+    <li><strong>VentureBeat ZCode 記事</strong> — HTTP 403（AI Weekly / WebSearch で内容補完済み）</li>
+    <li><strong>releasebot.io</strong> — HTTP 403（GitHub releases 直接取得で補完済み）</li>
+  </ul>
+</div>
+
+</body>
+</html>
