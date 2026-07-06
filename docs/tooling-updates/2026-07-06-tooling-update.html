@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-06 — taste-skill でAI生成UIを脱ボイラープレート / システムプロンプト40+社流出集 / OpenWiki git差分→ドキュメ自動更新</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .alert { background: #fef2f2; border-left: 3px solid #ef4444; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-06</h1>
+<p class="meta">
+  取得日: 2026-07-06 JST &nbsp;/&nbsp;
+  対象期間: 2026-07-04 〜 2026-07-06 &nbsp;/&nbsp;
+  ソース: Claude Code GitHub releases (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完 (taste-skill / OpenWiki / system_prompts_leaks) / Anthropic news (403 skip, WebSearch 補完) / Obsidian changelog (403 skip, WebSearch 補完: 最新 v1.13.1 = 6/9 で今日の対象外)
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong>
+  07-01〜07-05 フィード掲載分
+  (Claude Sonnet 5 / v2.1.197-201 / Fable 5 / Meetily / openai/codex-plugin-cc / alibaba/page-agent / agentskills / safishamsi/graphify / strix / caveman / chrome-devtools-mcp / Vibe-Trading / obra/superpowers / OmniRoute / google/agents-cli 等)
+  を除外済み。
+  Claude Code 最新 = v2.1.201 (07-03 23:50)。07-04〜07-06 で新規リリース未確認 → Claude Code releases 項目は今日なし。
+  Obsidian 最新 = v1.13.1 (06-09) で今日の対象期間外 → skip。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (1 件)</h2>
+
+<!-- item 1 -->
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">GitHub Trending (+863 stars today)</span>
+  <strong>Leonxlnx/taste-skill — AI生成UIを「ボイラープレート沼」から救うスキルフレームワーク（MIT、57k stars）</strong>
+  <p>
+    Claude / Cursor / Codex などのコーディングエージェントに <strong>「デザインの好み」を渡す</strong>ポータブルスキル集。
+    minimal / brutalist / soft など複数スタイルを <code>DESIGN_VARIANCE</code> / <code>MOTION_INTENSITY</code> / <code>VISUAL_DENSITY</code>（1〜10 ダイヤル）で制御。
+    React / Vue / Svelte 問わず動き、GSAP アニメテンプレートも内包。
+    <code>npx skills add</code> 1行で Claude Code に追加できる。
+  </p>
+  <div class="action">
+    <strong>効率厨の一言：</strong>
+    demo-gallery や portfolio ページを Claude Code に生成させると毎回「普通のカード UI」になる問題を直撃する。
+    <code>npx skills add https://github.com/Leonxlnx/taste-skill</code> → <code>/taste-skill</code> スキルを呼び出せば
+    次回の <code>/local-business</code> デモ追加や demo-gallery リニューアル時に「味のある UI」を一発で出せる。
+    MAX プラン定額内で追加コストゼロ。
+  </div>
+  <div class="note">
+    v2 rewrite が実験段階（improved design inference + GSAP templates）。今は v1 スキルを main として使い、v2 は試験的に当ててみるのが安全。
+  </div>
+  <span class="stars">⭐ 57,439 (+863 today)</span>
+  <p><a href="https://github.com/Leonxlnx/taste-skill" target="_blank">→ GitHub: Leonxlnx/taste-skill</a></p>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">該当なし。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (2 件)</h2>
+
+<!-- item 2 -->
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending (+981 stars today)</span>
+  <strong>asgeirtj/system_prompts_leaks — Anthropic / OpenAI / Google など 40+ AI プラットフォームのシステムプロンプト公開集（49k stars）</strong>
+  <p>
+    Fable 5 / Opus 4.8 / Sonnet 5 / Claude Code、GPT-5.5、Gemini 3.5 Flash、Grok、GitHub Copilot など
+    40 社超のシステムプロンプトを網羅的にまとめたリポジトリ。
+    「競合がどんな制約・ロールを AI に渡しているか」を横断比較できる。
+  </p>
+  <div class="warn">
+    <strong>効率厨の一言：</strong>
+    今すぐ使えるツールではなく <strong>「参考文献」</strong>。
+    CLAUDE.md の Output Style / 軸 B 主顧客モードをさらに精緻化したいときに、
+    Claude Code 自身のシステムプロンプト構造を確認して「自分の指示がどう優先順位付けされているか」を推測する材料になる。
+    週に一度見れば十分で、毎日チェックする性質のものではない。
+  </div>
+  <span class="stars">⭐ 49,914 (+981 today)</span>
+  <p><a href="https://github.com/asgeirtj/system_prompts_leaks" target="_blank">→ GitHub: asgeirtj/system_prompts_leaks</a></p>
+</div>
+
+<!-- item 3 -->
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">LangChain 公式リリース</span>
+  <strong>langchain-ai/openwiki — git差分を読んでコードベースの wiki を自動更新する CLI（GitHub Actions 対応）</strong>
+  <p>
+    LangChain が公開した TypeScript 製 CLI。<code>openwiki init</code> で初回 wiki を生成、<code>openwiki update</code> で
+    「前回 run からのコミット差分」を読んで wiki を自動更新。
+    GitHub Actions でスケジュール実行すれば、コードが変わるたびに <code>openwiki/</code> フォルダのドキュメントが追従する。
+    モデルプロバイダは Anthropic / OpenAI / OpenRouter などを選択可。
+  </p>
+  <div class="warn">
+    <strong>効率厨の一言（即使えない理由）：</strong>
+    MAX プラン定額で動かすには <strong>Anthropic API キーが別途必要</strong>（Claude Code を経由しない直叩き）。
+    portfolio の CLAUDE.md は戦略・フォーマット・記憶体系が密結合しており、
+    自動生成ドキュメントがそこに割り込むと混乱する可能性がある。
+    <strong>将来の SaaS MVP など新規コードベース</strong>で試すのが現実的。
+    API 直叩きコスト管理の準備ができた段階で再評価。
+  </div>
+  <p><a href="https://github.com/langchain-ai/openwiki" target="_blank">→ GitHub: langchain-ai/openwiki</a></p>
+  <p><a href="https://www.langchain.com/blog/introducing-openwiki-an-open-source-agent-for-repo-documentation" target="_blank">→ LangChain 公式ブログ: Introducing OpenWiki</a></p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">該当なし。</p>
+
+<!-- ===== 取得失敗ソース ===== -->
+<h3 style="font-size:0.95rem; color:#64748b; margin-top: 2rem;">取得失敗ソース</h3>
+<div class="fail-list">
+  <ul style="margin:0; padding-left:1.2rem;">
+    <li><strong>docs.anthropic.com/en/release-notes/claude-code</strong> — HTTP 403 → WebSearch + GitHub releases で補完済み</li>
+    <li><strong>www.anthropic.com/news</strong> — HTTP 403 → WebSearch で補完済み</li>
+    <li><strong>obsidian.md/changelog/</strong> — HTTP 403 → WebSearch で補完: 最新 v1.13.1 (06-09) = 今日の対象期間外のため skip</li>
+  </ul>
+</div>
+
+</body>
+</html>
