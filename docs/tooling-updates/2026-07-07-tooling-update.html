@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-07 — Claude Code v2.1.202 ワークフローサイズ動的設定+/code-review分岐修正 / addyosmani production-grade agent skills / last30days-skill 業界リサーチ自動化</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .alert { background: #fef2f2; border-left: 3px solid #ef4444; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-07</h1>
+<p class="meta">
+  取得日: 2026-07-07 JST &nbsp;/&nbsp;
+  対象期間: 2026-07-05 〜 2026-07-07 &nbsp;/&nbsp;
+  ソース: Claude Code GitHub releases (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完 (Claude Code Artifacts / AI 自動化 新着) / Anthropic news (403 skip, WebSearch 補完) / Obsidian changelog (403 skip, WebSearch 補完: 最新 v1.13.1 = 06-09 で対象期間外)
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong>
+  07-04〜07-06 フィード掲載分
+  (taste-skill / system_prompts_leaks / langchain-ai/openwiki (07-06) /
+  Fable 5 50%特典終了 / Meetily / alibaba/page-agent / agentskills/agentskills / mattpocock/skills (07-05) /
+  Claude Code v2.1.197-201 / safishamsi/graphify / openai/codex-plugin-cc (07-04) /
+  その他: caveman / chrome-devtools-mcp / Vibe-Trading / obra/superpowers / OmniRoute / google/agents-cli / herdr / strix 等)
+  を除外済み。<br>
+  Claude Code 最新 = <strong>v2.1.202 (07-06 22:51 UTC)</strong> — 昨日 (07-06) フィード生成後にリリース → 今日扱い。<br>
+  Fable 5 MAX 50% 特典は 7/7 (月) 本日終了。本日以降は usage credits 消費方式に移行済み。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (3 件)</h2>
+
+<!-- item 1 -->
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">Claude Code Releases</span>
+  <strong>Claude Code v2.1.202 — ワークフローサイズを <code>/config</code> で動的設定 + <code>/review &lt;pr&gt;</code> は single-pass に戻り <code>/code-review</code> へ誘導（07-06 22:51 UTC）</strong>
+  <p>
+    今日フィード生成後にリリースされた最新版。変更点：
+  </p>
+  <ul>
+    <li>
+      <strong><code>/config</code> でワークフローサイズを動的に設定できるようになった</strong>。
+      これまでワークフローの同時エージェント数はコード固定だったが、セッションごとに <code>/config</code> から調整可能になった。
+      ルーティン側でエージェント数を絞ってコンテキストを節約する・増やして速度優先する、の切り替えが UI から完結する。
+    </li>
+    <li>
+      <strong><code>/review &lt;pr&gt;</code> を single-pass に戻し、マルチエージェントレビューは <code>/code-review</code> スキルへ誘導</strong>。
+      いつの間にか <code>/review</code> がマルチエージェント動作していたバグを修正。
+      マルチエージェントレビューを使いたい場合は明示的に <code>/code-review</code> を呼ぶこと。
+    </li>
+    <li>その他: inline Ctrl+R 履歴検索クラッシュ修正 / <code>/rename</code> がリバートされるバグ修正 / mTLS ハンドシェイク失敗修正 / Remote Control コマンドが interactive session で失敗するバグ修正 / OpenTelemetry 属性に <code>workflow.run_id</code> / <code>workflow.name</code> 追加</li>
+  </ul>
+  <div class="action">
+    <strong>今日やること:</strong>
+    ① <code>claude update</code> で v2.1.202 に更新。
+    ② <code>/config</code> を開いてワークフローサイズ設定を確認（このフィードエージェント自身も Workflow を使うので最適値に調整を）。
+    ③ <code>/review</code> と <code>/code-review</code> の呼び分けを意識する（ルーティン・スクリプトに <code>/review</code> を書いていた箇所は <code>/code-review</code> に変更）。
+  </div>
+  <p><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.202" target="_blank">→ GitHub Release v2.1.202</a></p>
+</div>
+
+<!-- item 2 -->
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">GitHub Trending (+1,112 stars today)</span>
+  <strong>addyosmani/agent-skills — Addy Osmani (Google Chrome DevRel) によるプロダクショングレードの AI コーディングエージェントスキル集（Shell、70k stars）</strong>
+  <p>
+    Google Chrome DevRel の Addy Osmani が公開したAIコーディングエージェント向けの本番投入実績あるスキルコレクション。
+    パフォーマンス最適化・アクセシビリティ・コードレビュー・テスト生成・リファクタリングなど、
+    「プロダクションで動かすことを前提に設計されたスキル」が揃っている。
+    mattpocock/skills（07-05 掲載）と思想は近いが、Addy Osmani は Web パフォーマンス計測・Chrome DevTools との統合で著名なため、
+    フロントエンド寄りのスキルの質が高い。
+  </p>
+  <div class="action">
+    <strong>効率厨の一言：</strong>
+    portfolio の <code>/local-business</code> デモや demo-gallery のフロントエンドコードを Claude Code に書かせるとき、
+    このスキル集から「パフォーマンス最適化」「アクセシビリティチェック」系のスキルを追加しておくと
+    「動くが重い/使いにくい UI」を Claude に自力で直させられる。
+    mattpocock/skills (07-05) と合わせて両方をまず眺め、被らないスキルを追加するのが効率的。
+  </div>
+  <span class="stars">⭐ 70,767 (+1,112 today)</span>
+  <p><a href="https://github.com/addyosmani/agent-skills" target="_blank">→ GitHub: addyosmani/agent-skills</a></p>
+</div>
+
+<!-- item 3 -->
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">GitHub Trending (+458 stars today)</span>
+  <strong>mvanhorn/last30days-skill — Reddit / X / YouTube / HN / Polymarket / Web を横断して過去30日のトレンドを自動サマリするエージェントスキル（Python、49k stars）</strong>
+  <p>
+    特定のトピックについて Reddit・X・YouTube・Hacker News・Polymarket・Web 検索を<strong>横断的にリサーチし</strong>、
+    過去30日間の主要議論・感情トレンド・急上昇キーワードをサマリするスキル。
+    Claude Code で <code>/last30days &lt;topic&gt;</code> の形で呼び出せる。
+  </p>
+  <div class="action">
+    <strong>効率厨の一言：</strong>
+    3 つの使い道がある。
+    ① <strong>ヒアリング前の業界調査</strong>: たましん・建材屋・設計事務所へのアポ前に <code>/last30days 工務店 IT 導入 補助金</code> で直近の業界感情を把握できる。
+    ② <strong>masatoman.net 記事ネタ発掘</strong>: <code>/last30days Claude Code workflow automation</code> で今週書くべきトピックを30秒で特定。
+    ③ <strong>このフィード自体の補完</strong>: WebSearch の代替として将来このルーティン内に組み込めば情報収集の網が広がる。
+    Polymarket の確率データが混ざるのが他のリサーチスキルにない差別化点。
+  </div>
+  <span class="stars">⭐ 49,721 (+458 today)</span>
+  <p><a href="https://github.com/mvanhorn/last30days-skill" target="_blank">→ GitHub: mvanhorn/last30days-skill</a></p>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">該当なし（masatoman は MAX 定額運用）。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (4 件)</h2>
+
+<!-- item 4 -->
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending (+610 stars today)</span>
+  <strong>alirezarezvani/claude-skills — Claude Code スキル＆エージェントプラグインの網羅的コレクション（Python、21k stars）</strong>
+  <p>
+    「複数のコーディングエージェントで使えるプロフェッショナルなスキル集」。
+    addyosmani/agent-skills（🟢 今日 item 2）と同じ "スキル集" カテゴリだが、
+    Claude Code 特化型で幅広い職能 (セキュリティ・データ分析・インフラ等) をカバー。
+  </p>
+  <div class="warn">
+    <strong>効率厨の一言（即使えない理由）：</strong>
+    今日 item 2 の addyosmani/agent-skills と内容が重複する可能性が高い。
+    まず addyosmani を試して「ここが足りない」と感じた専門領域（セキュリティ監査・データ分析系）が必要になった段階で比較・追加。
+    現状の portfolio / masatoman.net の開発でそこまで専門スキルが必要な局面は少ない。
+  </div>
+  <span class="stars">⭐ 21,134 (+610 today)</span>
+  <p><a href="https://github.com/alirezarezvani/claude-skills" target="_blank">→ GitHub: alirezarezvani/claude-skills</a></p>
+</div>
+
+<!-- item 5 -->
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending (+427 stars today)</span>
+  <strong>bradautomates/claude-video — <code>/watch</code> コマンドで Claude に動画を見せる Python スキル（4k stars）</strong>
+  <p>
+    <code>/watch &lt;URL or path&gt;</code> で動画をダウンロード→フレーム抽出→文字起こし→Claude に渡すまでを一括処理するスキル。
+    YouTube URL・ローカルファイル両対応。
+  </p>
+  <div class="warn">
+    <strong>効率厨の一言：</strong>
+    現時点の masatoman の主軸（工務店 SaaS のヒアリング〜MVP 設計フェーズ）では動画分析のユースケースがまだ具体化していない。
+    将来 MVP で「現場動画から日報自動生成」「施工動画から進捗確認」のような機能を検討する局面が来たら、
+    このスキルが <strong>技術的実現可能性の検証</strong>に使える。
+    今はブックマーク留め、4k stars は成長途中。
+  </div>
+  <span class="stars">⭐ 4,204 (+427 today)</span>
+  <p><a href="https://github.com/bradautomates/claude-video" target="_blank">→ GitHub: bradautomates/claude-video</a></p>
+</div>
+
+<!-- item 6 -->
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending (+598 stars today)</span>
+  <strong>steipete/CodexBar — Claude Code / Codex の使用統計を認証なしで macOS メニューバーに表示する Swift アプリ（16k stars）</strong>
+  <p>
+    Claude Code と OpenAI Codex のセッション数・トークン消費・コスト概算をメニューバーに常時表示する macOS 専用アプリ。
+    認証不要（ローカルログ読み取り）、設定ゼロで動く。
+  </p>
+  <div class="warn">
+    <strong>効率厨の一言：</strong>
+    macOS 専用のため、使えるかどうかはローカル環境依存。
+    MAX プラン定額なのでコスト管理より「今日どれだけ使っているか」の体感把握が主な用途になる。
+    ルーティン自動化で Claude Code を大量実行している日に「あの処理が重かった」を可視化できる。
+    macOS ユーザーなら 5 分でセットアップできるので、次のインタラクティブセッション時に試すのが手頃。
+  </div>
+  <span class="stars">⭐ 16,721 (+598 today)</span>
+  <p><a href="https://github.com/steipete/CodexBar" target="_blank">→ GitHub: steipete/CodexBar</a></p>
+</div>
+
+<!-- item 7 -->
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending (+291 stars today)</span>
+  <strong>gastownhall/gastown — ターミナルで動くマルチエージェントワークスペースマネージャー（Go、16k stars）</strong>
+  <p>
+    複数の AI エージェントを単一ワークスペース内で並走させて管理する CLI ツール。
+    Go 製で軽量、ターミナルから複数エージェントへのタスク配布・結果集約ができる。
+  </p>
+  <div class="warn">
+    <strong>効率厨の一言：</strong>
+    Claude Code 自体がすでに Workflow / Background agents でマルチエージェント管理機能を持っており、
+    <strong>今の masatoman のスタックとモロに競合する</strong>。
+    代替ではなく「Claude Code の外でも別エージェント (Cursor / Codex) を並走させたい」局面向け。
+    工務店 SaaS の MVP 開発で複数ツールを並走させる段階になったら再評価。現時点では導入コストに見合うメリットが薄い。
+  </div>
+  <span class="stars">⭐ 16,680 (+291 today)</span>
+  <p><a href="https://github.com/gastownhall/gastown" target="_blank">→ GitHub: gastownhall/gastown</a></p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">該当なし。</p>
+
+<!-- ===== 取得失敗ソース ===== -->
+<h3 style="font-size:0.95rem; color:#64748b; margin-top: 2rem;">取得失敗ソース</h3>
+<div class="fail-list">
+  <ul style="margin:0; padding-left:1.2rem;">
+    <li><strong>docs.claude.com/en/release-notes/claude-code</strong> — 307 redirect → GitHub CHANGELOG → WebFetch で github.com/anthropics/claude-code/releases から直接取得で補完済み</li>
+    <li><strong>www.anthropic.com/news</strong> — HTTP 403 → WebSearch で補完済み（本日の新規 Anthropic ニュース: v2.1.202 以外の大型発表なし）</li>
+    <li><strong>obsidian.md/changelog/</strong> — HTTP 403 → WebSearch 補完: 最新 v1.13.1 (06-09) = 対象期間外のため skip</li>
+  </ul>
+</div>
+
+</body>
+</html>
