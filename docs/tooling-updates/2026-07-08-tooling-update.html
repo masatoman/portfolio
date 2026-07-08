@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-08 — Claude Code v2.1.203 背景エージェント遅延修正+バイナリ-7MB / Claude Sonnet 5 新デフォルト1Mコンテキスト / X公式MCP罠</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .alert { background: #fef2f2; border-left: 3px solid #ef4444; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-08</h1>
+<p class="meta">
+  取得日: 2026-07-08 JST &nbsp;/&nbsp;
+  対象期間: 2026-07-06 〜 2026-07-08 &nbsp;/&nbsp;
+  ソース: Claude Code GitHub CHANGELOG raw (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完 (Claude Sonnet 5 / Claude Science / X MCP Server / AI automation July 2026) / Anthropic news (403 skip, WebSearch 補完) / Obsidian changelog (403 skip, 最新 v1.13.1 = 06-09 で対象期間外)
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong>
+  07-05〜07-07 フィード掲載分
+  (v2.1.202 / addyosmani/agent-skills / mvanhorn/last30days-skill / alirezarezvani/claude-skills / bradautomates/claude-video / steipete/CodexBar (07-07) /
+  taste-skill / system_prompts_leaks / langchain-ai/openwiki (07-06) /
+  Fable 5 MAX 50% 特典終了 / Meetily / ZCode (07-05) / その他)
+  を除外済み。<br>
+  Claude Code 最新 = <strong>v2.1.203</strong> (07-07 以降リリース確認)。
+  Claude Sonnet 5 は 07-07 夜ローンチ → 07-07 フィード（09:00 JST 生成）に未掲載 → 今日扱い。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (2 件)</h2>
+
+<!-- item 1 -->
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">Claude Code Releases</span>
+  <strong>Claude Code v2.1.203 — macOS 背景エージェント 15-20 秒遅延修正 + ログイン有効期限切れ前警告 + バイナリ -7MB</strong>
+  <p>
+    v2.1.202（07-06）の次のリリース。masatoman の運用に直接刺さる変更点:
+  </p>
+  <ul>
+    <li>
+      <strong>macOS で背景エージェントセッション起動時の 15-20 秒遅延を修正</strong>。
+      このフィードエージェントを含む全 routine が朝起動するたびに 15-20 秒かかっていたなら、今日から解消される。
+    </li>
+    <li>
+      <strong>背景セッションがデーモンのセッショントークン失効時に無応答になる問題を修正</strong>。
+      夜間ルーティンや長時間バックグラウンド実行が途中で止まる原因がこれだった可能性がある。
+    </li>
+    <li>
+      <strong>ログイン有効期限切れ前に警告</strong>を表示するようになった。
+      突然ログアウトされてルーティンが失敗するケースへの保険。
+    </li>
+    <li>
+      <strong>マニュアルパーミッションモード時にフッターに一時停止バッジを表示</strong>。
+      意図せずマニュアルモードになっていることに気づきやすくなる。
+    </li>
+    <li><strong>バイナリサイズ・起動メモリをそれぞれ約 7MB 削減</strong>。スタート速度が上がる。</li>
+    <li>その他: MCP <code>roots/list</code> にセッションの追加作業ディレクトリを追加 / git worktree 多数時の Bash 引数リスト問題修正 / Windows 用バックグラウンドタスク出力修正</li>
+  </ul>
+  <div class="action">
+    <strong>今日やること:</strong>
+    <code>claude update</code> で v2.1.203 に更新。
+    背景エージェント遅延と token 失効無応答の両方が直っているので、
+    長時間 routine（このフィード含む）の信頼性が上がる。
+  </div>
+  <p><a href="https://github.com/anthropics/claude-code/releases" target="_blank">→ GitHub Releases: anthropics/claude-code</a></p>
+</div>
+
+<!-- item 2 -->
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">Anthropic 公式 / WebSearch</span>
+  <strong>Claude Sonnet 5 — Claude Code の新デフォルトモデル（2026-07-07 ローンチ、1M コンテキスト、プロモ価格 $2/$10 per Mtok 8/31 まで）</strong>
+  <p>
+    Anthropic が 07-07 にリリース。Claude Code の Free・Pro ユーザーのデフォルトが Sonnet 4.x から Sonnet 5 に切り替わった。
+    主要スペック:
+  </p>
+  <ul>
+    <li><strong>ネイティブ 1M トークンコンテキストウィンドウ</strong>。従来モデルの 5 倍（200K → 1M）。大規模コードベース全体を一度に読み込める。</li>
+    <li><strong>推論・ツール使用・コーディング性能が Opus 4.8 に匹敵</strong>しながら低コスト（$2/$10 per Mtok → 8/31 まで）。</li>
+    <li>Claude Code での自律エージェント動作（agentic 性能）が前世代比で大きく向上と発表。</li>
+  </ul>
+  <div class="action">
+    <strong>MAX プランの masatoman がやること:</strong><br>
+    ① CLAUDE.md・Skills・routine スクリプト内に <strong>ハードコードされたモデル名</strong>（<code>claude-sonnet-4-x</code> 等）があれば確認。
+    デフォルト任せにしている箇所は自動で Sonnet 5 に切り替わるが、明示指定の箇所は手動更新が必要。<br>
+    ② 1M コンテキストは「ルーティンで大量ファイルを一気に渡す」「docs/ 全 42 件を一括レビュー」などの場面で効いてくる。
+    context window 節約のため分割していた処理を再設計できるタイミング。<br>
+    ③ MAX プランでは追加料金なし（プロモ価格は API 従量課金ユーザー向け）。
+  </div>
+  <div class="note">
+    <strong>参考:</strong> Fable 5（前フィード掲載）→ Sonnet 5 の位置づけは「Opus 4.8 に匹敵、コスト抑制」。
+    Fable 5 は主にクリエイティブ特化だが Sonnet 5 はコーディング・エージェント全般で強化。
+    masatoman の日常ユースでは Sonnet 5 がメイン、重い推論は Opus 4.8、という棲み分けになる。
+  </div>
+  <p>
+    <a href="https://www.anthropic.com/news" target="_blank">→ Anthropic News</a> /
+    <a href="https://releasebot.io/updates/anthropic/claude-code" target="_blank">→ Claude Code July 2026 Updates (releasebot.io)</a>
+  </p>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">該当なし（masatoman は MAX 定額運用）。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (2 件)</h2>
+
+<!-- item 3 -->
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending (+664 stars today)</span>
+  <strong>TencentCloud/CubeSandbox — AI エージェント向け即時起動・並列・セキュア・軽量サンドボックス（Rust 製）</strong>
+  <p>
+    AI エージェントが外部コード・スクリプトを実行する際に、ホスト環境を汚染せず並列かつ安全に動かすためのサンドボックスランタイム。
+    Rust 製で起動速度が速く、マルチエージェント同時実行にも対応。
+    コンテナより軽量・起動速 (サブ秒) がウリ。
+  </p>
+  <div class="warn">
+    <strong>効率厨の一言（即使えない理由）:</strong>
+    masatoman の現運用（Claude Code MAX プランのルーティン自動化）では、エージェントが任意コードを実行するサンドボックスをセルフホストする必要がまだ発生していない。
+    将来 MVP に「現場アプリがユーザー定義スクリプトを動かす」機能を追加する局面が来たら再評価する。
+    また <strong>TencentCloud 製 = 中国企業</strong> のため、処理データや通信ログが中国データ法の対象になる可能性あり。
+    日本の工務店顧客データを流さない構成での利用でないと法的グレーゾーン。
+  </div>
+  <span class="stars">⭐ +664 today</span>
+  <p><a href="https://github.com/TencentCloud/CubeSandbox" target="_blank">→ GitHub: TencentCloud/CubeSandbox</a></p>
+</div>
+
+<!-- item 4 -->
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending (+2,514 stars today)</span>
+  <strong>MadsLorentzen/ai-job-search — Claude Code ベースの AI 求人応募フレームワーク（TypeScript、本日急上昇）</strong>
+  <p>
+    Claude Code を中核に置いた求人応募自動化ツール。
+    求人票の解析・カバーレター生成・応募トラッキングを Claude Code のエージェントループで一括処理する。
+    本日 +2,514 stars で GitHub Trending 1 位。
+  </p>
+  <div class="warn">
+    <strong>効率厨の一言（masatoman 自身には不要だが参考になる理由）:</strong>
+    求人応募そのものは masatoman には不要。ただし「<strong>Claude Code でドメイン特化の複合ツールをこれだけ作れる</strong>」という実例として価値がある。
+    工務店向け MVP（日報自動生成・見積もり補助等）の設計でも同様の「書類テンプレ + 自動記入 + トラッキング」パターンが使えるため、
+    実装アーキテクチャの参考コードとして眺める価値はある。
+    ★2,500 超で注目度は本物。
+  </div>
+  <span class="stars">⭐ +2,514 today</span>
+  <p><a href="https://github.com/MadsLorentzen/ai-job-search" target="_blank">→ GitHub: MadsLorentzen/ai-job-search</a></p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1 件)</h2>
+
+<!-- item 5 -->
+<div class="update-item trap">
+  <span class="tag tag-trap">🚫 罠</span>
+  <span class="tag tag-src">TechCrunch / MCP.Directory</span>
+  <strong>X（旧 Twitter）公式 MCP サーバー — api.x.com/mcp で Claude・Cursor 等から X に直接接続可能に（2026-06-30）</strong>
+  <p>
+    X が公式の MCP サーバーを <code>api.x.com/mcp</code> でホスト開始。
+    Claude・Cursor・Grok Build 等の MCP 対応クライアントから、ユーザーの X アカウント権限で投稿管理・ブックマーク・下書き公開が可能になる。
+    Slack・Notion・Stripe・GitHub に続く大手プラットフォームの MCP 化。
+  </p>
+  <div class="alert">
+    <strong>効率厨の一言（罠の理由 2 点）:</strong><br>
+    ① <strong>masatoman は「X 告知はwontfix」方針</strong>（<code>feedback_no_x_announcement_target_outside.md</code>）。
+    LINE 拡散優先で X を主軸集客に使わない方針が確定しているため、このMCP を接続しても使い所がない。<br>
+    ② <strong>Write API 非対応</strong>のため自律投稿は不可能（= 自動ポスト目的での導入はそもそも動かない）。
+    読み取りとブックマーク管理はできるが、接続設定コストに見合うユースケースが現状ない。
+    将来方針転換して X 投稿を自動化したい局面になったら再評価。
+  </div>
+  <p>
+    <a href="https://techcrunch.com/2026/06/30/x-now-offers-an-mcp-server-to-make-its-platform-easier-for-ai-tools-to-use/" target="_blank">→ TechCrunch: X MCP Server 解説</a>
+  </p>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<hr style="margin-top:3rem; border:none; border-top:1px solid #e2e8f0;">
+<h3 style="font-size:0.95rem; color:#64748b;">取得失敗ソース</h3>
+<div class="fail-list">
+  <ul style="margin:0; padding-left:1.2rem;">
+    <li><strong>https://docs.claude.com/en/release-notes/claude-code</strong> — 301 → platform.claude.com → さらに GitHub CHANGELOG にリダイレクト（raw URL で代替取得 ✅）</li>
+    <li><strong>https://www.anthropic.com/news</strong> — 403 Forbidden（WebSearch で補完 ✅）</li>
+    <li><strong>https://obsidian.md/changelog/</strong> — 403 Forbidden（最新 v1.13.1 = 06-09 のため対象期間外、skip）</li>
+    <li><strong>https://github.com/anthropics/claude-code/releases</strong> — GitHub blob 表示で CHANGELOG 本文未取得 → raw URL で代替 ✅</li>
+  </ul>
+</div>
+
+</body>
+</html>
