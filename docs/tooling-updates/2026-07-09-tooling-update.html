@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-09 — Claude Code v2.1.204+205 SessionStart hook修正+rm-rf安全化 / Cowork モバイル・Web展開(MAX対象) / TencentDB-Agent-Memory ローカル長期記憶</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, "Hiragino Sans", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem 4rem; line-height: 1.7; color: #2c3e50; background: #fafaf7; }
+    h1 { border-bottom: 3px solid #4f46e5; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.05rem; }
+    h2.green  { background: #d1fae5; color: #065f46; }
+    h2.blue   { background: #dbeafe; color: #1e40af; }
+    h2.yellow { background: #fef9c3; color: #854d0e; }
+    h2.gray   { background: #f1f5f9; color: #475569; }
+    .update-item { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #cbd5e1; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 6px; }
+    .update-item.applicable-b   { border-left-color: #10b981; }
+    .update-item.applicable-b.money { border-left-color: #3b82f6; }
+    .update-item.reference-only { border-left-color: #f59e0b; opacity: 0.9; }
+    .update-item.trap           { border-left-color: #94a3b8; opacity: 0.8; }
+    .verdict { display: inline-block; font-size: 1rem; margin-right: 0.4rem; }
+    .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; }
+    .tag-b       { background: #d1fae5; color: #065f46; }
+    .tag-money   { background: #dbeafe; color: #1e40af; }
+    .tag-ref     { background: #fef9c3; color: #854d0e; }
+    .tag-trap    { background: #f1f5f9; color: #475569; }
+    .tag-src     { background: #ede9fe; color: #5b21b6; font-weight: 400; font-size: 0.78rem; }
+    .note  { background: #f0f9ff; border-left: 3px solid #38bdf8; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .warn  { background: #fef9c3; border-left: 3px solid #f59e0b; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .alert { background: #fef2f2; border-left: 3px solid #ef4444; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    .action { background: #eef2ff; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; font-size: 0.92rem; }
+    code { font-family: monospace; background: #e5e7eb; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+    a { color: #4f46e5; }
+    .stars { color: #b45309; font-size: 0.85rem; }
+    .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .fail-list { background: #fff; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 0.8rem 1.2rem; border-radius: 6px; margin: 0.6rem 0; font-size: 0.92rem; }
+    .dedup-note { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.75rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #64748b; }
+    @media (max-width: 640px) { h1 { font-size: 1.3rem; } h2 { font-size: 0.98rem; } }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-09</h1>
+<p class="meta">
+  取得日: 2026-07-09 JST &nbsp;/&nbsp;
+  対象期間: 2026-07-07 〜 2026-07-09 &nbsp;/&nbsp;
+  ソース: Claude Code CHANGELOG raw (WebFetch) / GitHub Trending (WebFetch) / WebSearch 補完 (Claude Code update July 2026 / Claude Cowork mobile web / AI automation July 8-9 2026) / Anthropic news (403 skip, WebSearch 補完) / Obsidian changelog (最新 v1.13.1 = 06-09 で対象期間外)
+</p>
+
+<div class="dedup-note">
+  📋 <strong>重複除去済み:</strong>
+  07-06〜07-08 フィード掲載分
+  (v2.1.203 / Claude Sonnet 5 新デフォルト 1M コンテキスト / X 公式 MCP 罠 (07-08) /
+  TencentCloud/CubeSandbox / MadsLorentzen/ai-job-search (07-08) /
+  addyosmani/agent-skills / mvanhorn/last30days-skill / bradautomates/claude-video (07-07) /
+  sistema_prompts_leaks / langchain-ai/openwiki (07-06) / obra/superpowers / その他)
+  を除外済み。<br>
+  Claude Code 最新 = <strong>v2.1.205</strong>（v2.1.203 以降 v2.1.204・v2.1.205 がリリース済み）。
+  Claude Cowork モバイル・Web 展開（07-07 公式発表）は 07-07 フィード（09:00 JST 生成）と 07-08 フィードいずれにも未掲載 → 今日扱い。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (2 件)</h2>
+
+<!-- item 1 -->
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">Claude Code CHANGELOG</span>
+  <strong>Claude Code v2.1.204 + v2.1.205 — SessionStart hook ヘッドレス修正 / rm -rf 安全化 / --max-turns メッセージ損失修正 / auto-update メモリ最適化</strong>
+  <p>
+    v2.1.203（07-08 フィード掲載）以降に 2 本リリース。masatoman の routine 運用に直結する変更:
+  </p>
+  <ul>
+    <li>
+      <strong>[v2.1.204] SessionStart hook のヘッドレスセッションでのイベントストリーミング修正</strong>。
+      このフィードエージェント自体が SessionStart hook を使うヘッドレス実行のため、
+      hook の発火タイミング or 通知が欠落していた可能性がある。今日以降は正常化。
+    </li>
+    <li>
+      <strong>[v2.1.205] auto mode が未解決変数の <code>rm -rf</code> 実行前に確認を求めるように</strong>。
+      <code>rm -rf $UNDEFINED_VAR/</code> 系のコマンドを auto モードが誤って実行してファイルを消すリスクが低減。
+      routine スクリプト内で変数展開が壊れていても即座に破壊されなくなる。
+    </li>
+    <li>
+      <strong>[v2.1.205] <code>--max-turns</code> 上限でターンが終了した際のメッセージ損失を修正</strong>。
+      max-turns で打ち切られたとき最後のメッセージが消えていたバグ。
+      ルーティンが最大ターン数に達した場合の出力が完全に記録されるようになる。
+    </li>
+    <li>
+      <strong>[v2.1.205] <code>SendMessage</code> で再開した後の background agent ステータス表示修正</strong>。
+      エージェントの状態追跡が正確になり、<code>claude agents</code> 画面の表示ずれが解消。
+    </li>
+    <li>
+      <strong>[v2.1.205] auto-update 時にバイナリをストリームでディスク書き込みしてメモリ使用量を最適化</strong>。
+      自動アップデートのメモリスパイクが抑制される。
+    </li>
+    <li>
+      [v2.1.205] その他: <code>--json-schema</code> の無効スキーマ時に非構造化出力が出ていた問題修正 /
+      auto mode がセッションのトランスクリプトファイルを改ざんできないルールを追加 /
+      Windows worktree 削除時に NTFS junction 外のファイルを消すバグを修正
+    </li>
+  </ul>
+  <div class="action">
+    <strong>今日やること:</strong>
+    <code>claude update</code> で v2.1.205 に更新。
+    SessionStart hook 修正（v2.1.204）は今朝の実行からすでに効いている可能性あり（このフィード自体が対象）。
+    rm -rf 安全化と max-turns メッセージ損失修正は routine の信頼性に直結。
+  </div>
+  <p><a href="https://github.com/anthropics/claude-code/releases" target="_blank">→ GitHub Releases: anthropics/claude-code</a></p>
+</div>
+
+<!-- item 2 -->
+<div class="update-item applicable-b">
+  <span class="tag tag-b">🟢 即使う</span>
+  <span class="tag tag-src">Anthropic 公式 / TechCrunch / MacRumors</span>
+  <strong>Claude Cowork — モバイル (iOS・Android) + Web に展開（2026-07-07 発表、MAX プランから順次 beta）</strong>
+  <p>
+    1 月にデスクトップ専用でリリースされた Claude Cowork が、7/7 から Max プランユーザー向けに
+    Web (claude.ai ホーム) と iOS・Android アプリのサイドバーで利用可能になった。
+  </p>
+  <ul>
+    <li>
+      <strong>「PC を閉じてもタスクが続く」</strong>。
+      デスクトップで起動したタスクをスマホで状態確認し、完成した成果物を後から受け取れる。
+      スケジュール設定した Cowork タスクはデバイスがオフラインでも実行される（= 従来の routine に近い動作をスマホから設定できる）。
+    </li>
+    <li>
+      <strong>使われているタスク上位 (1.2M セッション実績)</strong>:
+      業務オペレーション 33.4% / コンテンツ作成 16.4% / ソフトウェア開発 8.7%。
+      コーディング以外の業務系タスクが主力で、掃除 / まとめ / 外部連携系に強い。
+    </li>
+    <li>
+      <strong>Cowork 使用量 2 倍特典を 8/5 まで延長</strong>。
+      beta 期間中は通常比 2 倍のクレジットで使える。
+    </li>
+  </ul>
+  <div class="action">
+    <strong>masatoman がやること:</strong><br>
+    ① iOS / Android の Claude アプリ → サイドバーで Cowork を確認（Max プランなので beta 対象）。<br>
+    ② この日次フィード routine のような「夜中に走らせて朝確認」型タスクを Cowork から設定すると、
+    PC 不要でスマホ通知だけで完結できる可能性がある。現行 routine との住み分けを確認。<br>
+    ③ コンテンツ作成用途（masatoman.net 記事下書き / docs 整理）にも合う。試す価値あり。
+  </div>
+  <div class="note">
+    <strong>参考:</strong> Cowork は Claude Code とは別製品（非エンジニア向け UI）。
+    masatoman の CLAUDE.md ベースの routine は Claude Code で引き続き動く。
+    Cowork はスマホから「自然言語でタスク指定して放置」するユースケース向け。
+    routine が Claude Code、Cowork がスマホ操作の補完、という位置づけ。
+  </div>
+  <p>
+    <a href="https://techcrunch.com/2026/07/07/the-coding-agent-wars-are-spilling-into-the-rest-of-the-office-claude-cowork/" target="_blank">→ TechCrunch: Claude Cowork expands to mobile and web</a> /
+    <a href="https://www.macrumors.com/2026/07/07/claude-cowork-mobile-web/" target="_blank">→ MacRumors</a>
+  </p>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0 件)</h2>
+<p style="color:#64748b; font-size:0.92rem;">該当なし（masatoman は MAX 定額運用）。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (2 件)</h2>
+
+<!-- item 3 -->
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending (+318 stars today)</span>
+  <strong>TencentCloud/TencentDB-Agent-Memory — AI エージェント向けローカル長期記憶（外部 API 不要、TypeScript）</strong>
+  <p>
+    AI エージェントに外部 API への依存なしで長期記憶を持たせるライブラリ。
+    TypeScript 製で、エージェントが会話をまたいで情報を保持し、後のセッションで参照できる。
+    RAG（検索拡張）なしで「ローカルだけで完結する」のがウリ。
+  </p>
+  <div class="warn">
+    <strong>効率厨の一言（今すぐでない理由）:</strong>
+    masatoman の現運用では Claude Code の memory / CLAUDE.md ファイルが長期記憶の役を担っており、
+    「エージェントが自律的に記憶を更新する」設計がまだ必要になっていない。
+    将来 MVP で「工務店担当者ごとの過去対話を記憶する AI アシスタント」を作る際に再評価。
+    TypeScript 製で現スタックと相性は良い点は◎。<br>
+    <strong>TencentCloud 製（中国企業）</strong>のため、工務店顧客データを流す設計にする場合は法的確認が必要。
+  </div>
+  <span class="stars">⭐ 7,615 total / +318 today</span>
+  <p><a href="https://github.com/TencentCloud/TencentDB-Agent-Memory" target="_blank">→ GitHub: TencentCloud/TencentDB-Agent-Memory</a></p>
+</div>
+
+<!-- item 4 -->
+<div class="update-item reference-only">
+  <span class="tag tag-ref">🟡 様子見</span>
+  <span class="tag tag-src">GitHub Trending (+799 stars today)</span>
+  <strong>ruvnet/RuView — WiFi 信号を空間知覚・バイタルサイン監視に変換（Rust 製、映像カメラ不要）</strong>
+  <p>
+    Wi-Fi の電波変化パターンを解析して、部屋の中の動体位置・人数・呼吸数・心拍を映像なしで推定するツール。
+    Rust 製。ルーターが 1 台あれば動く（専用センサー不要）。
+    79K stars でかなりの注目度。
+  </p>
+  <div class="warn">
+    <strong>効率厨の一言（masatoman に今必要でない理由）:</strong>
+    AI コーディング / 個人開発業務の効率化と直結しない。
+    工務店向け MVP（日報・見積 etc.）にも現時点では接点がない。
+    「カメラなしで人を検知する」技術として IoT 系プロダクトを考える局面が来たら参照価値あり。
+    今は★数の多さに引っ張られてインストールしても時間対効果ゼロ。
+  </div>
+  <span class="stars">⭐ 79,122 total / +799 today</span>
+  <p><a href="https://github.com/ruvnet/RuView" target="_blank">→ GitHub: ruvnet/RuView</a></p>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1 件)</h2>
+
+<!-- item 5 -->
+<div class="update-item trap">
+  <span class="tag tag-trap">🚫 罠</span>
+  <span class="tag tag-src">GitHub Trending (+1,717 stars today)</span>
+  <strong>iOfficeAI/OfficeCLI — AI エージェントが Word / Excel / PowerPoint を自動操作する C# ライブラリ（急上昇 +1,717 stars）</strong>
+  <p>
+    AI エージェントから Office ファイルを作成・編集・読み込みできるようにする C# 製ライブラリ。
+    Word 文書の差し込み印刷 / Excel の集計・グラフ / PowerPoint スライド自動生成 をエージェントが呼び出せる。
+    本日 +1,717 stars で急上昇中。
+  </p>
+  <div class="alert">
+    <strong>効率厨の一言（罠の理由 2 点）:</strong><br>
+    ① <strong>言語スタックが合わない</strong>。masatoman の現スタックは TypeScript / Next.js。
+    C# ライブラリを利用するには .NET ランタイムを別途用意する必要があり、
+    今の portfolio / masatoman.net 運用に組み込む手間対効果がゼロに近い。<br>
+    ② <strong>工務店向け MVP で今すぐ Office 対応は不要</strong>。
+    現行 MVP 候補（日報 / 見積 / 工程管理）はウェブ・PDF・画像中心の設計で、
+    Word/Excel ファイル生成は現時点の N=0。
+    「星が急増 = 今すぐ使うべき」ではない典型。興味があれば TypeScript 対応版（ExcelJS / docxtemplater 等）を先に検討すること。
+  </div>
+  <span class="stars">⭐ 11,742 total / +1,717 today</span>
+  <p><a href="https://github.com/iOfficeAI/OfficeCLI" target="_blank">→ GitHub: iOfficeAI/OfficeCLI</a></p>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<h2 style="margin-top:2.5rem; font-size:1rem; color:#64748b;">⚠️ 取得失敗ソース</h2>
+<div class="fail-list">
+  <ul style="margin:0; padding-left:1.2rem;">
+    <li><strong>Anthropic news (anthropic.com/news)</strong> — HTTP 403 Forbidden。WebSearch で補完。</li>
+    <li><strong>Claude Code docs リダイレクト (docs.claude.com → platform.claude.com → GitHub blob)</strong> — blob ページは構造のみ取得。raw.githubusercontent.com に再 fetch して解決。</li>
+    <li><strong>claude.com/blog/cowork-web-mobile</strong> — HTTP 403 Forbidden。TechCrunch / MacRumors で補完。</li>
+    <li><strong>Obsidian changelog</strong> — 最新 v1.13.1 (2026-06-09) で対象期間外につき skip。</li>
+  </ul>
+</div>
+
+</body>
+</html>
