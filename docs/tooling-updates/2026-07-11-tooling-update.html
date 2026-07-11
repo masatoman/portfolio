@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-11</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.8rem;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px dashed #d1d5db;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .failure {
+      font-size: 0.82rem;
+      color: #dc2626;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    code {
+      font-family: monospace;
+      background: #e5e7eb;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-11</h1>
+<div class="meta">
+  取得日: 2026-07-11 (JST 09:00 定期実行) ／ 対象期間: 直近 1-2 日 (2026-07-09〜10) ／
+  ソース: Claude Code CHANGELOG (raw GitHub)・GitHub Trending・WebSearch (Claude Code update / AI automation / 個人開発 AI ツール) ／
+  重複除去: 直近 3 日分 (07-08〜10) 照合済み ／ 新規 3 件
+</div>
+
+<div class="dedup">
+  📋 <strong>重複除去済み (07-08〜10 掲載分):</strong>
+  Claude Code v2.1.203〜v2.1.206 / Claude Sonnet 5 新デフォルト (1M コンテキスト) / X 公式 MCP 罠 /
+  Claude Cowork モバイル・Web 展開 / TencentDB-Agent-Memory /
+  awesome-design-md (VoltAgent) / crawl4ai / ChatGPT Work / GPT-5.6 (Sol/Terra/Luna) /
+  Kimi K2.7 in Copilot B/E / DesktopCommanderMCP を除外済み。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (1件)</h2>
+
+<div class="card green">
+  <h3>mattpocock/skills — TypeScript 名人の .claude ディレクトリを 39 スキルにパック化 (164k stars、+1,712 今日)</h3>
+  <p>TypeScript 界隈の著名エンジニア Matt Pocock が自身の .claude ディレクトリを OSS 公開したスキル集。「実装前に詳細ヒアリング (grilling) を必ず挟む」「ワークフロー enforcement」など Claude Code の代表的な失敗パターンを潰す実戦スキル 39 本を収録。v1.0.35 (07-08) で安定稼働中。Claude Code・Cursor・Codex のいずれでも動作。MCP サーバー経由または skills.md コピーで即導入可能。</p>
+  <div class="verdict green">🟢 即使う — portfolio 改修や docs 生成セッションの冒頭に入れておくと、Claude Code が「実装前に確認事項をまとめて聞く」フローを自動で踏むようになる。<code>npx skills add mattpocock/skills</code> で今日試せる。</div>
+  <span class="link"><a href="https://github.com/mattpocock/skills" target="_blank">→ GitHub: mattpocock/skills</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0件)</h2>
+<p class="none-note">該当なし</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (2件)</h2>
+
+<div class="card yellow">
+  <h3>stitch-skills (Google Labs) — Agent Skills open standard 準拠、Claude Code でも動く設計→コード変換スキル集 (6.7k stars、+117 今日)</h3>
+  <p>Google Labs が公開した Stitch MCP server 向け Agent Skills ライブラリ。Agent Skills open standard 準拠のため Claude Code・Cursor・Gemini CLI いずれでも動作する。主なスキル: DESIGN.md 自動生成・デザイン→React コンポーネント変換。Stitch MCP は無料で全主要 MCP クライアントに対応。最新更新 07-09。</p>
+  <div class="verdict yellow">🟡 様子見 — 前日カバーした awesome-design-md (DESIGN.md を置く側) と組み合わせると「DESIGN.md 生成 → React 実装」がつながる見込み。ただし Figma MCP の方が現時点では成熟しており乗り換える理由は薄い。8 月以降に Figma 連携の補完候補として評価で十分。</div>
+  <span class="link"><a href="https://github.com/google-labs-code/stitch-skills" target="_blank">→ GitHub: google-labs-code/stitch-skills</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>OfficeCLI (iOfficeAI) — AI エージェントが Word / Excel / PowerPoint を CLI で直接制御 (14k stars、+1,224 今日)</h3>
+  <p>AI エージェント向けに設計された Office ファイル制御 OSS。単一バイナリ・Office インストール不要で、Word / Excel / PowerPoint の読み書き・自動化が可能。HTML / PNG レンダリングで AI が「見てから次の指示を出す」フローをサポート。MCP 統合あり。最新リリース v1.0.129 (07-06)。</p>
+  <div class="verdict yellow">🟡 様子見 — 工務店向けヒアリングで Excel 見積書・Word 議事録を AI 半自動生成するフローに将来直結する。現フェーズ (HTML / Web 主体の v8.0 設計) には刺さらないが、書類自動化の需要が出た時点で即採用候補。Bookmark しておく価値あり。</div>
+  <span class="link"><a href="https://github.com/iOfficeAI/OfficeCLI" target="_blank">→ GitHub: iOfficeAI/OfficeCLI</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (0件)</h2>
+<p class="none-note">該当なし</p>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failure">
+  ⚠️ 取得失敗ソース (2件): anthropic.com/news → HTTP 403 ／ obsidian.md/changelog → HTTP 403。
+  WebSearch・GitHub releases・GitHub Trending・raw CHANGELOG で代替補完済み。
+</div>
+
+</body>
+</html>
