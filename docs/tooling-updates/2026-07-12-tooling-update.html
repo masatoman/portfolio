@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-12</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.8rem;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px dashed #d1d5db;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .failure {
+      font-size: 0.82rem;
+      color: #dc2626;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    code {
+      font-family: monospace;
+      background: #e5e7eb;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-12</h1>
+<div class="meta">
+  取得日: 2026-07-12 (JST 09:00) ／ 対象期間: 2026-07-10〜07-12 ／
+  ソース: Claude Code What's New、GitHub Trending、WebSearch (AI coding / automation / 個人開発)
+  ／ 除外: docs.claude.com・obsidian.md・releasebot.io (403/リダイレクト)
+</div>
+
+<div class="dedup">
+  重複除去: 07-10フィード掲載済み → DesktopCommanderMCP・crawl4ai・ChatGPT Work Agent ／
+  07-11フィード掲載済み → stitch-skills・mattpocock/skills・OfficeCLI
+</div>
+
+<!-- 🟢 即使う -->
+<h2 class="green">🟢 即使う (2件)</h2>
+
+<div class="card green">
+  <h3>Claude Code Desktop 内蔵ブラウザ — Week 28 (v2.1.202–206)</h3>
+  <p>Claude Code Desktop にブラウザが内蔵。Claude がドキュメントサイト・デザイン・任意のURLをセッション内で開いて操作できる。dev server プレビューと同じ操作感で外部サイトも扱える。</p>
+  <p>対象バージョン: v2.1.202–206 (2026-07-06〜10)</p>
+  <div class="verdict green">🟢 今日試す：GSCやAhrefsを別タブで開かずClaudeセッション内で確認できる。記事調査→執筆ループで画面切り替えが消える。Desktop版にアップデートして即使える。</div>
+  <span class="link"><a href="https://code.claude.com/docs/en/whats-new" target="_blank">Claude Code What's New → Week 28</a></span>
+</div>
+
+<div class="card green">
+  <h3>Claude Code <code>/doctor</code> セットアップ診断コマンド — Week 28 (v2.1.202–206)</h3>
+  <p>新コマンド <code>/doctor</code>（別名 <code>/checkup</code>）でセットアップ全体を自動診断・修正。MCP接続の断絶・hook設定のズレ・認証トラブルを1コマンドで検出して直す。</p>
+  <p>auto mode がトランスクリプト改ざんをブロック、<code>rm -rf</code> に未解決変数が含まれる場合は確認を入れる安全強化も同梱。</p>
+  <div class="verdict green">🟢 即使う：毎日のroutine実行でMCPが急に動かなくなった時、手動デバッグより先に <code>/doctor</code> を打つだけで解決できる。設定を疑う前にまずこれ。</div>
+  <span class="link"><a href="https://code.claude.com/docs/en/whats-new" target="_blank">Claude Code What's New → Week 28</a></span>
+</div>
+
+<!-- 💰 課金価値 -->
+<h2 class="blue">💰 課金価値</h2>
+<p class="none-note">該当なし（MAX プラン定額運用中。新規課金を要するアップグレードなし）</p>
+
+<!-- 🟡 様子見 -->
+<h2 class="yellow">🟡 様子見 (2件)</h2>
+
+<div class="card yellow">
+  <h3>obra/superpowers — エージェント型スキルフレームワーク (+740★今日、累計252k⭐)</h3>
+  <p>エージェント向けスキル定義・共有のフレームワークと開発方法論。リポジトリ単位でスキルを管理してエージェント間で再利用する設計で、Claude Code の Skills システムと問題意識が重なる。</p>
+  <div class="verdict yellow">🟡 様子見：既存の CLAUDE.md + Skills 構成が安定しているため今すぐ乗り換える理由はない。スキル整理・再設計のタイミングで設計ヒントとして読む価値あり。</div>
+  <span class="link"><a href="https://github.com/obra/superpowers" target="_blank">github.com/obra/superpowers</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>davila7/claude-code-templates — Claude Code設定テンプレート+モニタリングCLI (+232★今日、累計29k⭐)</h3>
+  <p>CLAUDE.md・Skills・hook設定のスターターテンプレートライブラリとモニタリングCLI。Claude Code環境を丸ごとセットアップする想定で設計されている。</p>
+  <div class="verdict yellow">🟡 様子見：既存カスタマイズ済みの CLAUDE.md/Skills に上書き影響が出る可能性。設定の棚卸しをするタイミングで参照するのが安全。今すぐ飛び込まない。</div>
+  <span class="link"><a href="https://github.com/davila7/claude-code-templates" target="_blank">github.com/davila7/claude-code-templates</a></span>
+</div>
+
+<!-- 🚫 罠 -->
+<h2 class="gray">🚫 罠 (1件)</h2>
+
+<div class="card gray">
+  <h3>「AI導入で生産性46%向上」統計を記事に使う</h3>
+  <p>McKinsey 2026年2月調査「ルーティン作業46%削減」がSNSで拡散中。一方で別調査では「84%がAIツールを使っているが実際の生産性向上は10%」という乖離も報告されている。</p>
+  <div class="verdict gray">🚫 罠：masatoman.net の「実験ログ」コンセプトで企業調査数字をマーケ転用すると読者の実感と乖離してSNS映えで終わる。46%ではなく自分の体験時間を計測した記事の方が差別化になる。</div>
+  <span class="link"><a href="https://www.secondtalent.com/resources/ai-developer-productivity-tools-2026/" target="_blank">84% of Developers Use AI Tools. Productivity Gains Are Only 10%.</a></span>
+</div>
+
+<div class="failure">
+  取得失敗ソース: docs.claude.com (301→platform.claude.com→307→GitHub、レンダリングエラー) ／
+  obsidian.md/changelog (403) ／ releasebot.io (403) ／ agentic.ai/news (403) ／
+  hexabase.com (403)
+</div>
+
+</body>
+</html>
