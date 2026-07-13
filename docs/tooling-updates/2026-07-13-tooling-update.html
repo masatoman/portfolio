@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-13</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.8rem;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px dashed #d1d5db;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .failure {
+      font-size: 0.82rem;
+      color: #dc2626;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    code {
+      font-family: monospace;
+      background: #e5e7eb;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-13</h1>
+<div class="meta">
+  取得日: 2026-07-13 (JST 09:00 定期実行) ／ 対象期間: 直近 1-2 日 (2026-07-11〜12) ／
+  ソース: Claude Code GitHub releases (v2.1.207)・GitHub Trending・WebSearch (AI coding / Claude Code / 自動化) ／
+  重複除去: 直近 3 日分 (07-10〜12) 照合済み ／ 新規 5 件
+</div>
+
+<div class="dedup">
+  📋 <strong>重複除去済み (07-10〜12 掲載分):</strong>
+  awesome-design-md / crawl4ai / ChatGPT Work / GPT-5.6 (Sol/Terra/Luna) / Kimi K2.7 in Copilot B/E /
+  DesktopCommanderMCP / Claude Code Desktop 内蔵ブラウザ (Week 28) / <code>/doctor</code> コマンド /
+  obra/superpowers / davila7/claude-code-templates / mattpocock/skills / stitch-skills / OfficeCLI /
+  「生産性46%向上」統計罠 を除外済み。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (2件)</h2>
+
+<div class="card green">
+  <h3>Claude Code v2.1.207 — hook セキュリティ修正 + ターミナル凍結バグ解消 (July 11)</h3>
+  <p>v2.1.207 (2026-07-11 00:52 UTC リリース) の主要変更点:</p>
+  <p>
+    ① <strong>Plugin hooks セキュリティ修正</strong>: shell-form コマンド内の <code>${user_config.*}</code> 変数展開を拒否するよう変更 (shell injection 防止)。<br>
+    ② <strong>ターミナル凍結バグ修正</strong>: 長いリスト・テーブル・コードブロック・段落をストリーミング中に Claude Code がフリーズする現象を解消。<br>
+    ③ <strong>カスタムランチャー保護</strong>: auto-updater が <code>~/.local/bin/claude</code> のカスタム起動スクリプトを上書きしてしまうバグを修正。<br>
+    ④ <strong>Windows 60秒ハングガード</strong>: AWS 認証情報の解決が止まった場合に無限ハングせず 60 秒でタイムアウト。
+  </p>
+  <div class="verdict green">🟢 即確認 — UserPromptSubmit hook など CLAUDE.md のフック設定に <code>${user_config.*}</code> 変数を使っていた場合、アップデート後に動作が変わる。<code>/doctor</code> を打って設定を一発チェックしてから次のルーティン実行を回すのが安全。長コンテンツのフリーズ問題が消えたことで Workflow エージェントの出力が長くなっても詰まらなくなった。</div>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases" target="_blank">→ GitHub: anthropics/claude-code releases (v2.1.207)</a></span>
+</div>
+
+<div class="card green">
+  <h3>Claude Code <code>/cd</code> コマンド — セッション中に作業ディレクトリを変更 (Week 28 未収録)</h3>
+  <p>Week 28 (v2.1.202–206) に追加された <code>/cd &lt;path&gt;</code> コマンド。セッション途中で作業ディレクトリを移動してもプロンプトキャッシュを再構築せず、コンテキストをそのまま引き継ぐ。<br>
+  07-12 フィードの Week 28 報告 (Desktop browser / /doctor) では未収録だったため本日追加。</p>
+  <div class="verdict green">🟢 今日から使える — portfolio ↔ 個人開発モノレポ (~/home_work/個人開発マネタイズプラットフォーム/) を行き来するセッションで、キャッシュを壊さずにディレクトリを切り替えられる。STRATEGY.md と portfolio の CLAUDE.md を同一セッション内で参照しながら作業する時の往復コストが下がる。</div>
+  <span class="link"><a href="https://code.claude.com/docs/en/whats-new" target="_blank">→ Claude Code What's New → Week 28</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0件)</h2>
+<p class="none-note">該当なし（MAX プラン定額運用中。新規課金を要するアップグレードなし）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (2件)</h2>
+
+<div class="card yellow">
+  <h3>Destructive Command Guard (Dicklesworthstone) — エージェントの危険 git/shell コマンドを Rust でブロック (GitHub Trending, 2.8k stars)</h3>
+  <p>AI エージェントが <code>git reset --hard</code>・<code>rm -rf</code>・<code>force push</code> などの破壊的コマンドを実行しようとした際に Rust レベルでインターセプトしてブロックするツール。GitHub Trending で急浮上中。</p>
+  <div class="verdict yellow">🟡 様子見 — Claude Code の auto mode が v2.1.202 以降すでに「未解決変数を含む <code>rm -rf</code> には確認を入れる」「destructive git コマンドをブロック」を内包済み。これを追加すると保護レイヤーが二重になり設定管理が複雑化する。GitHub Actions や Claude Code 外の自動化スクリプトで同等の安全網が必要になった時に再評価。今すぐは不要。</div>
+  <span class="link"><a href="https://github.com/Dicklesworthstone/destructive_command_guard" target="_blank">→ GitHub: Dicklesworthstone/destructive_command_guard</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>Claude Security (Anthropic) — コードベース脆弱性スキャン + パッチ生成 (Enterprise public beta)</h3>
+  <p>Anthropic が Enterprise 向けに公開ベータ中の新ツール。Claude Opus 4.7 モデルを用いてコードベース全体の脆弱性を自動スキャン・モジュール間の相互作用を解析・修正パッチを生成する。セキュリティレビューを AI が丸ごと担う位置づけ。</p>
+  <div class="verdict yellow">🟡 様子見 — MAX プラン (個人) では現時点利用不可 (Enterprise 限定)。ただし「AI がコードを自分でセキュリティ審査する」という方向性は masatoman.net の「AI に業務を任せる設計の実験ログ」ネタとして有力。GA 後に portfolio の <code>/security-review</code> スキルと比較評価が面白い。今は bookmark だけ。</div>
+  <span class="link"><a href="https://www.anthropic.com/news" target="_blank">→ Anthropic News (Claude Security 発表)</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1件)</h2>
+
+<div class="card gray">
+  <h3>Vibe-Trading (HKUDS) — AI 自動トレードエージェント (20k stars、GitHub Trending 急上昇)</h3>
+  <p>「Vibe Coding を株式取引に適用する」コンセプトの Python エージェント。GitHub Trending で 20k+ stars を集めて急浮上中。AI が市場を分析し取引指示を自動実行するデモを売りにしている。</p>
+  <div class="verdict gray">🚫 罠 — 「AI で株が勝てる」は過度な期待パターンの典型。コードは公開されているが実績・リスク管理の透明性はゼロ。masatoman.net で取り上げる場合は「星数 ≠ 実績」「バックテストと本番は別物」の検証コンテンツとしてのみ成立する。資産に直結するツールを stars 数だけで紹介すると読者信頼を失う。</div>
+  <span class="link"><a href="https://github.com/HKUDS/Vibe-Trading" target="_blank">→ GitHub: HKUDS/Vibe-Trading</a></span>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failure">
+  ⚠️ 取得失敗ソース (3件): anthropic.com/news → HTTP 403 ／ obsidian.md/changelog → HTTP 403 ／
+  docs.claude.com/en/release-notes (301 → platform.claude.com → 307 → GitHub、JS レンダリング不可)。
+  GitHub releases raw・GitHub Trending・WebSearch 3本で代替補完済み。
+</div>
+
+</body>
+</html>
