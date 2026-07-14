@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-14</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.8rem;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px dashed #d1d5db;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .failure {
+      font-size: 0.82rem;
+      color: #dc2626;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    code {
+      font-family: monospace;
+      background: #e5e7eb;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-14</h1>
+<div class="meta">
+  取得日: 2026-07-14 (JST 09:00 定期実行) ／ 対象期間: 直近 1-2 日 (2026-07-12〜13) ／
+  ソース: GitHub releases (v2.1.207 = 最新、新リリースなし確認)・GitHub Trending・WebSearch (Claude Code update / AI coding tool / 個人開発 AI 自動化 7月)・WebFetch (hallmark / marketingskills / spec-kit) ／
+  重複除去: 直近 3 日分 (07-11〜13) 照合済み ／ 新規 6 件
+</div>
+
+<div class="dedup">
+  📋 <strong>重複除去済み (07-11〜13 掲載分):</strong>
+  mattpocock/skills / stitch-skills / OfficeCLI (07-11) ／
+  Claude Code Desktop 内蔵ブラウザ / <code>/doctor</code> / obra/superpowers / davila7/claude-code-templates / AI生産性46%統計 (07-12) ／
+  Claude Code v2.1.207 (hook修正+ターミナル凍結解消) / <code>/cd</code> コマンド / Destructive Command Guard / Claude Security Enterprise beta / Vibe-Trading (07-13) ／
+  awesome-design-md / crawl4ai / ChatGPT Work / GPT-5.6 / Kimi K2.7 / DesktopCommanderMCP を除外済み。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (2件)</h2>
+
+<div class="card green">
+  <h3>Claude Code Artifacts — セッションアウトプットを URL 1本の共有ページに変換 (Pro/Max 対応)</h3>
+  <p>
+    Claude Code セッションの成果物をそのまま <strong>プライベートな live ウェブページ (claude.ai URL)</strong> に変換する機能。
+    6/18 ベータ公開、7月に Pro/Max/Team/Enterprise 全プランで利用可能になった。<br>
+    ページは同一 URL で更新され続け (バージョン履歴あり)、デフォルトはプライベート→ワンクリックで組織内共有。
+    セッションの <strong>リポジトリ・MCP ツール群・会話履歴</strong> の 3 ソースを合成してページを生成する。
+  </p>
+  <p>
+    想定ユースケース: PR ウォークスルー / インシデント状況ページ / ルーティン結果ダッシュボード / ヒアリング資料の手渡し用 URL。
+  </p>
+  <div class="verdict green">🟢 今日から使える — 日次ルーティン(このフィード含む)の出力を URL 1 本で渡せる。工務店向け資料を「HTML ファイルを添付」ではなく「claude.ai/code/artifact/xxx を送る」に変えると更新のたびに再送が不要になる。同一セッション内で複数のルーティン出力を 1 Artifact にまとめれば「昨日の続き」説明コストがゼロになる。</div>
+  <span class="link"><a href="https://code.claude.com/docs/en/artifacts" target="_blank">→ Claude Code Docs: Share session output as artifacts</a></span>
+</div>
+
+<div class="card green">
+  <h3>Nutlope/hallmark — Claude Code 向け「AI らしさ」排除デザインスキル (5,108★ +794 今日)</h3>
+  <p>
+    Together AI が公開した Claude Code / Cursor / Codex 向けデザインスキル。
+    出力が <strong>AI 生成っぽい no-personality テンプレ</strong> になっていないかを <strong>57 のスロップテストゲート + 自己批評</strong> で自動チェックして拒否する。
+  </p>
+  <p>
+    4 つの動作モード: <strong>default</strong> (新規 UI 生成)・<strong>audit</strong> (既存コードをスキャンしてスコア)・<strong>redesign</strong> (コピーを維持しながら構造を変える)・<strong>study</strong> (スクリーンショットからデザイン DNA を抽出)。
+    20 テーマ収録。MIT ライセンス。<code>npx skills add nutlope/hallmark</code> で即インストール。
+  </p>
+  <div class="verdict green">🟢 今日試す — portfolio の local-business ページや demo-gallery の UI 生成時に hallmark を挟むと「それ Chat っぽいレイアウト」を自動拒否してくれる。<code>hallmark audit &lt;対象ファイル&gt;</code> で既存ページのスロップスコアを数値化できる。/code-review の前処理として組み込むと「見た目の AI くさみ」が品質基準に加わる。</div>
+  <span class="link"><a href="https://github.com/Nutlope/hallmark" target="_blank">→ GitHub: Nutlope/hallmark</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0件)</h2>
+<p class="none-note">該当なし（MAX プラン定額運用中。新規課金を要するアップグレードなし）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (3件)</h2>
+
+<div class="card yellow">
+  <h3>coreyhaines31/marketingskills — Claude Code 向け 50+ マーケティングスキル集 (38,532★ +299 今日)</h3>
+  <p>
+    Claude Code・AI エージェント向けのマーケティングスキル集。<code>npx skills add coreyhaines31/marketingskills</code> でインストール可能。
+    7 カテゴリ・50+ スキル: <strong>CRO (コンバージョン最適化) / コールドメール / SEO (技術監査・AI 検索最適化・プログラマティック SEO) / 広告 (Google/Meta) / A/B テスト / 価格戦略 / ローンチ戦略</strong>。
+  </p>
+  <div class="verdict yellow">🟡 様子見 — Komuten Owner Mode (CLAUDE.md 組み込み済み) で工務店向けコピーは足りているが、<strong>SEO 技術監査スキル + コールドメールスキル</strong> は 6 経路ヒアリング (5/23-9/30) の「たましん / 設計事務所へのファーストコンタクト文」生成に役立つ可能性がある。ヒアリングフェーズが本格化する 8 月に SEO 技術監査スキルだけ単体評価するのが現実的。今は bookmark のみ。</div>
+  <span class="link"><a href="https://github.com/coreyhaines31/marketingskills" target="_blank">→ GitHub: coreyhaines31/marketingskills</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>github/spec-kit — GitHub 公式の Spec-Driven Development ツールキット (120,567★ +543 今日)</h3>
+  <p>
+    仕様書を「実行可能な設計図」として扱い、AI エージェントに実装を生成させる <strong>Spec-Driven Development (SDD)</strong> の 7 フェーズフレームワーク。
+    constitution → specify → clarify → plan → tasks → analyze → implement の順で進み、Claude / Copilot / Gemini など 30+ エージェントに対応するスラッシュコマンドを提供。
+  </p>
+  <div class="verdict yellow">🟡 様子見 — ソロ開発の portfolio 現フェーズでは CLAUDE.md + Plan エージェント で事足りる。ただし「仕様書 → AI 実装」という設計思想は masatoman.net の「AI に業務を任せる設計の実験ログ」のネタとして有力。12 月 MVP 投入フェーズ前に 1 度触って記事化する価値あり。今すぐの乗り換えは不要。</div>
+  <span class="link"><a href="https://github.com/github/spec-kit" target="_blank">→ GitHub: github/spec-kit</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>Shubhamsaboo/awesome-llm-apps — 100+ 実行可能な AI エージェント / RAG 実装集 (119,562★ +996 今日)</h3>
+  <p>
+    実際に動かせる AI エージェント・RAG アプリのサンプルコード集。各実装に技術スタック・動作確認済みの手順が付属。
+    音声 AI / Multi-Agent / コンピュータ Use / MCP サーバー連携 など最新パターンをカバー。
+  </p>
+  <div class="verdict yellow">🟡 様子見 — 実装ネタ集として masatoman.net 記事の「比較ネタ発掘」に使える。ただし内容量が膨大で「読み込む時間コスト ≫ 記事 1 本の制作時間」になりやすい。記事ネタが枯渇した時に特定カテゴリだけ拾い読みする使い方に限定すると ROI が合う。</div>
+  <span class="link"><a href="https://github.com/Shubhamsaboo/awesome-llm-apps" target="_blank">→ GitHub: Shubhamsaboo/awesome-llm-apps</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1件)</h2>
+
+<div class="card gray">
+  <h3>OpenCut-app/OpenCut — Open-source CapCut 代替 (66,225★ +1,229 今日、GitHub Trending 1位)</h3>
+  <p>
+    CapCut の代替として設計された OSS 動画編集ツール。TypeScript 製、ブラウザ動作。Trending 1 位で今日最大の伸び。
+  </p>
+  <div class="verdict gray">🚫 罠 — Stars 数が今日最大だからといって masatoman の workflow に動画編集は存在しない。「Trending 1 位 = 自分に必要」の誤認が典型パターン。記事ネタとしても「Open-source tools で CapCut を置き換える」は masatoman.net の AI 業務自動化コンセプトとミスマッチ。ここで時間を使わない。</div>
+  <span class="link"><a href="https://github.com/OpenCut-app/OpenCut" target="_blank">→ GitHub: OpenCut-app/OpenCut</a></span>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failure">
+  ⚠️ 取得失敗ソース (4件): anthropic.com/news → HTTP 403 ／ obsidian.md/changelog → HTTP 403 ／
+  docs.claude.com/en/release-notes → 301→platform.claude.com (JS レンダリング不可) ／
+  gradually.ai/changelogs/claude-code → HTTP 403。
+  GitHub releases (v2.1.207 = 最新、12-14日新リリースなし確認済み)・GitHub Trending・WebSearch 3 本・WebFetch (hallmark / marketingskills / spec-kit 個別) で代替補完済み。
+</div>
+
+</body>
+</html>
