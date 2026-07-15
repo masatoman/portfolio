@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-15</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.8rem;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px dashed #d1d5db;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .failure {
+      font-size: 0.82rem;
+      color: #dc2626;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    code {
+      font-family: monospace;
+      background: #e5e7eb;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-15</h1>
+<div class="meta">
+  取得日: 2026-07-15 (JST 09:00 定期実行) ／ 対象期間: 直近 1-2 日 (2026-07-13〜15) ／
+  ソース: GitHub Trending (WebFetch)・WebSearch (Claude Code update / AI coding tool July 2026 / OpenAI July 15 / 個人開発 AI 自動化)・code.claude.com/docs/en/whats-new (Week 28 = 最新、Week 29 未公開確認) ／
+  重複除去: 直近 3 日分 (07-12〜14) 照合済み ／ 新規 5 件
+</div>
+
+<div class="dedup">
+  📋 <strong>重複除去済み (07-12〜14 掲載分):</strong>
+  Claude Code Desktop 内蔵ブラウザ・<code>/doctor</code>・obra/superpowers・davila7/claude-code-templates・AI生産性46%統計 (07-12) ／
+  Claude Code v2.1.207・<code>/cd</code>・Destructive Command Guard・Claude Security Enterprise beta・Vibe-Trading・awesome-design-md・crawl4ai・ChatGPT Work・GPT-5.6・Kimi K2.7・DesktopCommanderMCP (07-13) ／
+  Claude Code Artifacts・hallmark (Nutlope)・marketingskills・spec-kit・awesome-llm-apps・OpenCut (07-14) を除外。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (1件)</h2>
+
+<div class="card green">
+  <h3>Graphify-Labs/graphify — コードベースを知識グラフ化する Claude Code 対応スキル (85k★・GitHub Trending 9位 +1,851 今日)</h3>
+  <p>
+    コード・SQL スキーマ・ドキュメント・画像・動画など、フォルダ内の全ファイルを
+    <strong>クエリ可能な知識グラフ</strong> に変換する Python 製ツール。
+    Y Combinator S26 出資。tree-sitter AST で <strong>36 言語のパースをローカル実行</strong>
+    — LLM に送らず、自分のマシン上のグラフファイルとして保存される。
+  </p>
+  <p>
+    Claude Code・Codex・Cursor・Gemini CLI など主要 AI コーディングアシスタントに対応。
+    <code>/graphify</code>・<code>/graphify query</code>・<code>/graphify path</code>・<code>/graphify explain</code>
+    の 4 コマンドをセッション内で使える。
+    出力: <code>graph.html</code> (インタラクティブ可視化)・<code>graph.json</code> (クエリ用)・<code>GRAPH_REPORT.md</code> (監査レポート)。
+  </p>
+  <div class="verdict green">🟢 今日試す — portfolio の local-business 8 ルートや Skills・Routines が増えてきた今、<code>/graphify</code> でコードマップを生成すれば Claude がファイルをひとつひとつ grep せずに「どこで何が呼ばれているか」をグラフクエリで把握できる。ローカル完結なので CLAUDE.md・STRATEGY.md の機密コンテキストが外部に出ない点も運用に合う。まず <code>npx graphify</code> を portfolio ルートで走らせて <code>graph.html</code> を確認するところから。</div>
+  <span class="link"><a href="https://github.com/Graphify-Labs/graphify" target="_blank">→ GitHub: Graphify-Labs/graphify</a></span>
+  <span class="link"><a href="https://graphify.net/knowledge-graph-for-ai-coding-assistants.html" target="_blank">→ Graphify 公式: Claude Code 連携ガイド</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0件)</h2>
+<p class="none-note">該当なし（MAX プラン定額運用中。新規課金を要するアップグレードなし）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (3件)</h2>
+
+<div class="card yellow">
+  <h3>ChatGPT cross-search — チャット / プロジェクト / 画像 / ドキュメント横断検索 (7/14 リリース)</h3>
+  <p>
+    ChatGPT がチャット履歴・プロジェクト・画像・ドキュメントを
+    <strong>一括横断検索</strong> できるようになった (Web・iOS・Android 対応)。
+    OpenAI の 7/14 リリース。
+  </p>
+  <p>
+    Claude Projects の類似機能 (プロジェクト内ドキュメント参照) と設計思想が重なるが、
+    ChatGPT 側は会話履歴 + マルチモーダルドキュメントまでスコープが広い。
+  </p>
+  <div class="verdict yellow">🟡 様子見 — masatoman の主戦場は Claude Code Max 定額なので今すぐの乗り換え理由はゼロ。ただし「過去のヒアリング資料・meeting docs を横断検索したい」という需要は本物で、Claude Projects の使い方を見直すきっかけになる。ChatGPT で試す前に「同じことが Claude Project の <code>/search</code> または memory インデックスで代替できないか」を確認してから判断する。</div>
+  <span class="link"><a href="https://openai.com/index/search-in-chatgpt/" target="_blank">→ OpenAI: Search in ChatGPT</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>1c7/chinese-independent-developer — 中国インディー開発者プロジェクト一覧 (GitHub Trending 1位 +1,196 今日)</h3>
+  <p>
+    中国の独立開発者が実際にリリースしているプロダクト・マネタイズ方法・MRR を収集した
+    オープンリスト。現在数百件以上のエントリーがある。
+    カテゴリは SaaS / ツール / コンテンツ / 教育など多岐。
+  </p>
+  <p>
+    日本語コメントはないが、プロダクト概要・価格・GitHub/Product Hunt リンクが付いており
+    ざっと流し読みできる。
+  </p>
+  <div class="verdict yellow">🟡 様子見 — 工務店 SaaS の商品候補評価 (v8.0 15 候補 × 16 観点マトリクス) で「他業種の縦深 SaaS がどう収益化しているか」を調べるときにリスト全体をザッピングする使い方が合う。今すぐ深読みする必要はなく、ヒアリングフェーズ (5/23-9/30) で「競合の別業種版」が欲しくなった時に開く。</div>
+  <span class="link"><a href="https://github.com/1c7/chinese-independent-developer" target="_blank">→ GitHub: 1c7/chinese-independent-developer</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>Claude Code 週制限 50%増量プロモ — 7/13 に終了</h3>
+  <p>
+    Anthropic が 5 月に開始した「週制限 50% 増量キャンペーン (Through July 13, 2026)」が
+    昨日終了し、Pro / Team プランのユーザーは<strong>通常の週制限に戻った</strong>。
+    Max 定額プランは影響なし。
+  </p>
+  <div class="verdict yellow">🟡 様子見 — masatoman は Max 定額なので直接影響ゼロ。ただし協力者・紹介先が Pro / Team で試用中の場合は今週から使用量の上限に当たる可能性があるので注意。日次ルーティン (このフィード・GSC 自動化) が Pro 環境で動いている人は制限に引っかかって停止しないか今週確認する。</div>
+  <span class="link"><a href="https://news.ycombinator.com/item?id=48883064" target="_blank">→ Hacker News: Claude Code Increases Weekly Limits by 50% Through July 13</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1件)</h2>
+
+<div class="card gray">
+  <h3>OpenAI Codex Micro — Codex 専用マクロパッド (7/15 発売、$129 想定)</h3>
+  <p>
+    OpenAI が Work Louder と共同開発した初のハードウェア製品。
+    13 個のメカニカルキー + ジョイスティック + ロータリーエンコーダーで
+    Codex コマンドを 1 打で実行できる USB デバイス。
+    プログラマブル 6 レイヤー搭載。Codex ユーザー 500 万人向け。
+  </p>
+  <div class="verdict gray">🚫 罠 — Codex (OpenAI の AI コーディングエージェント) 専用で、Claude Code ユーザーへのメリットはゼロ。「OpenAI が新製品」という話題性で調べ時間を使わない。もし「物理ショートカットキーで Claude Code を速くしたい」ならキーボードの設定変更 + Claude Code キーバインド (CLAUDE.md カスタマイズ) で代替でき、ハードウェア購入は不要。</div>
+  <span class="link"><a href="https://www.technobezz.com/news/openai-unveils-its-first-hardware-device-a-macro-pad-for-codex-coding-assistant" target="_blank">→ Technobezz: OpenAI Codex Micro レビュー</a></span>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failure">
+  ⚠️ 取得失敗ソース (3件): anthropic.com/news → HTTP 403 ／ obsidian.md/changelog → HTTP 403 ／
+  docs.claude.com/en/release-notes → 301→platform.claude.com→307→GitHub (JS レンダリング不可)。
+  code.claude.com/docs/en/whats-new (Week 28 最新・Week 29 未公開)・GitHub releases・GitHub Trending (WebFetch)・WebSearch 4 本で代替補完済み。
+</div>
+
+</body>
+</html>
