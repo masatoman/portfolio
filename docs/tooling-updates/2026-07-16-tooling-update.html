@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-16</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.8rem;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px dashed #d1d5db;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .failure {
+      font-size: 0.82rem;
+      color: #dc2626;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    code {
+      font-family: monospace;
+      background: #e5e7eb;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-16</h1>
+<div class="meta">
+  取得日: 2026-07-16 (JST 09:00 定期実行) ／ 対象期間: 直近 1-2 日 (2026-07-14〜16) ／
+  ソース: code.claude.com/docs/en/whats-new (Week 28・Week 29)・GitHub Trending (WebFetch)・WebSearch 4本 (Claude Code Week 29 / AI tool July 15-16 / mattpocock skills / 個人開発 AI 自動化) ／
+  重複除去: 直近 3 日分 (07-13〜15) 照合済み ／ 新規 5 件
+</div>
+
+<div class="dedup">
+  📋 <strong>重複除去済み (07-13〜15 掲載分):</strong>
+  Claude Code v2.1.207・<code>/cd</code>・Destructive Command Guard・Claude Security Enterprise beta・Vibe-Trading・awesome-design-md・crawl4ai・ChatGPT Work・GPT-5.6・Kimi K2.7・DesktopCommanderMCP (07-13) ／
+  Claude Code Artifacts・hallmark (Nutlope)・marketingskills・spec-kit・awesome-llm-apps・OpenCut (07-14) ／
+  Graphify-Labs/graphify・ChatGPT cross-search・1c7/chinese-independent-developer・Claude Code 週制限 50% 増量終了・OpenAI Codex Micro (07-15) を除外。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (2件)</h2>
+
+<div class="card green">
+  <h3>Claude Code Week 29 (v2.1.207〜) — worktree 隔離バグ修正 + 経過時間カウンター (7/13-16)</h3>
+  <p>
+    今週の Claude Code は実害のある <strong>バグ修正が 2 本</strong>:
+    ① <code>worktree</code> 隔離バグ — worktree 内のサブエージェントがメイン repo に対して git ミューティングコマンドを実行できてしまう問題が修正された。
+    ② <code>ultracode</code> キーワード誤作動 — Webhook ペイロードや PR コメントのリレーなど<strong>非人間入力</strong>でも ultracode が発火してしまうバグを修正。
+  </p>
+  <p>
+    改善点: ツール呼び出しの折りたたみ行に<strong>リアルタイム経過時間カウンター</strong>が追加され、長時間のツール呼び出しが「止まって見える」問題が解消。
+    <code>Write(path)</code>・<code>NotebookEdit(path)</code>・<code>Glob(path)</code> の permission ルールに <code>Edit(path)</code>・<code>Read(path)</code> を使うよう起動時に警告が出るようにもなった。
+  </p>
+  <div class="verdict green">🟢 今すぐ更新 — worktree サブエージェントを並列で走らせている masatoman には worktree 隔離バグは直撃する問題。<code>claude update</code> を今週中に実行。経過時間カウンターで「どのツール呼び出しがボトルネックか」が目視できるようになるのも日常のデバッグ体験が上がる。</div>
+  <span class="link"><a href="https://code.claude.com/docs/en/whats-new" target="_blank">→ Claude Code What's New (Week 28・29)</a></span>
+  <span class="link"><a href="https://code.claude.com/docs/en/changelog" target="_blank">→ Full Changelog v2.1.202〜</a></span>
+</div>
+
+<div class="card green">
+  <h3>mattpocock/skills — 実エンジニアの .claude から届く 40+ スキル集 (172k★, 今日 +2,130)</h3>
+  <p>
+    TypeScript エコシステムの権威 Matt Pocock 氏が自分の <code>.claude</code> ディレクトリを OSS 公開したスキルパック。
+    flagship の <strong>grill-me</strong> (508k installs) は「自分のコードを厳しくグリルする」レビュースキル、
+    <strong>grill-with-docs</strong> (424k) はドキュメントを根拠にしたレビュー、
+    <strong>tdd</strong> (400k) はテスト駆動サイクル補助。全 40+ スキルが揃う。
+  </p>
+  <p>
+    plugin としてインストールすると<strong>自動更新サブスクリプション</strong>になる (fork より楽)。
+    Claude Code・Cursor・Codex 対応。MCP サーバー経由でも配信中。
+  </p>
+  <div class="verdict green">🟢 今日試す — <code>grill-me</code> を portfolio の PR レビューループに組み込むと「Claude が自分のコードを第三者目線でレビューする」フローが一コマンドで動く。まず <code>npx skills add mattpocock/skills</code> を portfolio ルートで実行して動作確認。<code>/grill-me</code> を現在の local-business ルートのコードに当ててみるのが最速の試し方。</div>
+  <span class="link"><a href="https://github.com/mattpocock/skills" target="_blank">→ GitHub: mattpocock/skills</a></span>
+  <span class="link"><a href="https://skillvault.md/mattpocock/skills" target="_blank">→ SkillVault: mattpocock/skills 解説</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値 (0件)</h2>
+<p class="none-note">該当なし（MAX プラン定額運用中。新規課金を要するアップグレードなし）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (2件)</h2>
+
+<div class="card yellow">
+  <h3>ChatGPT カスタムインストラクション 5,000 文字上限に拡大 (7/15)</h3>
+  <p>
+    OpenAI が ChatGPT の custom instructions の文字制限を 1,500 字から <strong>5,000 字</strong> に拡大。
+    Web・iOS・Android 対応。同日に発表されたチャット横断検索 (07-15 掲載済み) と合わせて
+    「ChatGPT のプロ向け機能充実」の流れが続いている。
+  </p>
+  <div class="verdict yellow">🟡 様子見 — masatoman の主戦場は Claude Code MAX 定額なので ChatGPT への切り替え理由はゼロ。ただし「プラットフォームが長文カスタム命令を正式サポートし始めた」という流れは、CLAUDE.md に詳細なコンテキストを書くのが正攻法という確認になる。現在の CLAUDE.md を <code>/doctor</code> でチェックして冗長な部分がないか週 1 で確認する運用に組み込む。</div>
+  <span class="link"><a href="https://openai.com/index/search-in-chatgpt/" target="_blank">→ OpenAI: ChatGPT 7/15 アップデート</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>moeru-ai/airi — 自己ホスト型 AI コンパニオン、リアルタイム音声チャット対応 (42k★, 今日 +110)</h3>
+  <p>
+    VTube アバター + リアルタイム音声チャット + ローカル LLM 対応の自己ホスト型 AI キャラクター。
+    Electron + TypeScript で動作。特定プラットフォームへのロックインなし。
+    LLM プロバイダを差し替え可能な構造になっている。
+  </p>
+  <div class="verdict yellow">🟡 様子見 — 工務店向け SaaS の将来バリエーションとして「現場でスマホに話しかけて報告」UI を検討する際の実装参考になる。ただし今すぐ実装コストをかける段階ではなく、ヒアリング期間 (5/23-9/30) で「音声入力ニーズ」が複数件確認できてから再評価する。アーキテクチャの参考として star だけしておく。</div>
+  <span class="link"><a href="https://github.com/moeru-ai/airi" target="_blank">→ GitHub: moeru-ai/airi</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1件)</h2>
+
+<div class="card gray">
+  <h3>openinterpreter — Rust 書き換え版「低コストモデル向けコーディングエージェント」(65k★, 今日 +299)</h3>
+  <p>
+    Python 版 Open Interpreter をパフォーマンス改善目的で Rust に書き直したバージョン。
+    「低コスト・小型モデルで動く自前コーディングエージェント」を訴求しており、
+    GitHub Trending に入って再注目されている。
+  </p>
+  <div class="verdict gray">🚫 罠 — "Rust で速そう" に引っ張られて調べ時間を使わないこと。設計思想が「安いモデルを自前で動かしたい人向け」であり、MAX 定額で Claude Code を使っている masatoman には完全に逆方向。Claude Code からの乗り換えはダウングレードになる。「オープンソース × Rust = 良さそう」というバイアスに注意。</div>
+  <span class="link"><a href="https://github.com/openinterpreter/openinterpreter" target="_blank">→ GitHub: openinterpreter/openinterpreter</a></span>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failure">
+  ⚠️ 取得失敗ソース (3件): anthropic.com/news → HTTP 403 ／ obsidian.md/changelog → HTTP 403 ／
+  releasebot.io/updates/anthropic/claude-code → HTTP 403。
+  code.claude.com/docs/en/whats-new (Week 28・29)・GitHub Trending (WebFetch)・WebSearch 4本で代替補完済み。
+</div>
+
+</body>
+</html>
