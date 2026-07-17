@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-17</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 2rem;
+      border-top: 1px solid #f3f4f6;
+      padding-top: 0.75rem;
+    }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #ef4444;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-17</h1>
+<div class="meta">
+  取得日: 2026-07-17 (JST 09:00) ／ 対象期間: 2026-07-15〜2026-07-17 ／
+  ソース: GitHub Releases (anthropics/claude-code), GitHub Trending, WebSearch (AI/自動化/個人開発) ／
+  重複除去: 2026-07-14〜16 の feed を参照済み
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う</h2>
+
+<div class="card green">
+  <h3>ibelick/ui-skills — Claude Code 向け UI デザインスキル集</h3>
+  <p>
+    デザインエンジニア向けに curate された Claude Code スキル集。コンポーネント設計・レイアウト・カラー調整など UI 作業のプロンプトをスキルとして切り出しており、<code>.claude/</code> に置くだけで即使える形式。GitHub Trending 本日 +178 stars。
+  </p>
+  <p>
+    portfolio や demo-gallery の UI 改修時に <code>/ui-skills</code> として呼べば、毎回プロンプトを書く手間が省ける。mattpocock/skills（7/16 feed 既出）の UI 特化版として棲み分けが明確。
+  </p>
+  <span class="verdict green">🟢 即使う — .claude/ に入れてデモページ改修で使う。Skills 体系が整っている今が取り込みどき。</span>
+  <span class="link"><a href="https://github.com/ibelick/ui-skills" target="_blank" rel="noopener">https://github.com/ibelick/ui-skills</a></span>
+</div>
+
+<div class="card green">
+  <h3>Claude Code v2.1.211 — <code>--forward-subagent-text</code> フラグ追加 (2026-07-15)</h3>
+  <p>
+    <code>claude -p --output-format stream-json</code> 実行時に、サブエージェントのテキスト・思考 (thinking) も stream に流せる <code>--forward-subagent-text</code> フラグが追加。環境変数 <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> でも制御可能。
+  </p>
+  <p>
+    この routine 自体が stream-json を使う場面（CI / cron 実行）で、サブエージェントが何をしているか外側から見える。ログ基盤に食わせてデバッグコストを削れる。また permission preview のなりすまし攻撃 (look-alike 引用符) のセキュリティ修正も含む。
+  </p>
+  <span class="verdict green">🟢 即使う — cron/CI で stream-json を使っているなら <code>--forward-subagent-text</code> を付けてサブエージェントログを取り始める。</span>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases" target="_blank" rel="noopener">https://github.com/anthropics/claude-code/releases</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値</h2>
+<p class="none-note">該当なし（本日の新着は無料・オープンソース中心）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見</h2>
+
+<div class="card yellow">
+  <h3>Apache Ossie (incubating) — AI/BI/分析プラットフォーム横断の意味メタデータ交換標準</h3>
+  <p>
+    データの「意味」（メトリクス定義・ビジネスコンテキスト）を BI・AI・分析ツール間でベンダー中立に交換するための仕様。Snowflake 提唱の Open Semantic Interchange が Apache Incubator へ入り "Ossie" に改名（2026-06 入所）。本日 GitHub Trending +60 stars。
+  </p>
+  <p>
+    AI エージェントがデータの意味を正しく理解するための基盤層として中長期では重要。個人規模では今すぐ使うものではないが、SaaS 開発で複数 BI ツール連携が出てきたタイミングで参照価値が出る。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — データ連携規模が拡大した段階でチェック。今はスター登録だけでいい。</span>
+  <span class="link"><a href="https://github.com/apache/ossie" target="_blank" rel="noopener">https://github.com/apache/ossie</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>github/copilot-sdk — GitHub Copilot Agent をアプリへ組み込む公式マルチプラットフォーム SDK</h3>
+  <p>
+    GitHub が公開した公式 SDK。自作アプリに GitHub Copilot Agent を統合でき、Java・Python・JS など複数言語対応。本日 Trending +13 stars（公開直後で伸び始め）。
+  </p>
+  <p>
+    MAX プラン Claude Code で完結している今の運用に割り込む優先度はない。Copilot 料金体系（従量課金）と比べると、現状は Claude Code の方がコスパが良い。ただし B2B SaaS で GitHub ユーザー向け機能を作る場合は選択肢に入る。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — GitHub ユーザー向け機能が要件に上がった時に再確認。今は repo をブックマーク止まり。</span>
+  <span class="link"><a href="https://github.com/github/copilot-sdk" target="_blank" rel="noopener">https://github.com/github/copilot-sdk</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠</h2>
+
+<div class="card gray">
+  <h3>lobehub/lobehub — AI エージェント管理 UI「Chief Agent Operator」</h3>
+  <p>
+    複数 AI エージェントを一元管理するオープンソース UI プラットフォーム。エージェントを「採用・管理・指示」する LobeHub コンセプトで、マルチモデル対応を謳う。本日 Trending +71 stars。
+  </p>
+  <p>
+    Claude Code + routine + MCP の今の運用では、エージェント管理のレイヤーはすでに Claude Code が担っている。LobeHub を挟むと「ツールのツール」が増えるだけで、動作の透明性が下がる。MAX プラン定額運用と相性が悪い（別途 API コスト発生の可能性）。
+  </p>
+  <span class="verdict gray">🚫 罠 — 管理レイヤーの二重化。Claude Code で完結している今はノイズ。入れない。</span>
+  <span class="link"><a href="https://github.com/lobehub/lobehub" target="_blank" rel="noopener">https://github.com/lobehub/lobehub</a></span>
+</div>
+
+<div class="dedup">
+  <strong>重複除去ログ</strong>: 以下は過去 3 日 feed に既出のため今日は除外 —
+  Nutlope/hallmark (7/14), OpenCut-app/OpenCut (7/14), Graphify-Labs/graphify (7/15), mattpocock/skills (7/16), openinterpreter/openinterpreter (7/16), Shubhamsaboo/awesome-llm-apps (7/14)。
+  ChatGPT Work・Kimi K2.7 in Copilot・VS Code 1.128 は 2 日超経過のため除外。
+</div>
+
+<div class="fail-note">
+  ⚠️ 取得失敗ソース: obsidian.md/changelog (403 Forbidden), anthropic.com/news (403 Forbidden)
+</div>
+
+</body>
+</html>
