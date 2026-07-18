@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-18</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 2rem;
+      border-top: 1px solid #f3f4f6;
+      padding-top: 0.75rem;
+    }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #ef4444;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      margin-top: 1rem;
+    }
+    code {
+      background: #e5e7eb;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-18</h1>
+<div class="meta">
+  取得日: 2026-07-18 (JST 09:00 定期実行) ／ 対象期間: 2026-07-16〜07-18 ／
+  ソース: WebSearch (Claude Code July 2026 / AI automation tool launch / 個人開発AIツール / token-diet), GitHub Trending (WebFetch) ／
+  重複除去: 直近3日分 (07-15〜17) 照合済み ／ 新規 5件
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う (2件)</h2>
+
+<div class="card green">
+  <h3>Claude Code <code>/fork</code> — 現セッション保持のまま会話を別バックグラウンドセッションへ分岐</h3>
+  <p>
+    <code>/fork</code> コマンドを実行すると、現在の会話の完全なコピーを新しいバックグラウンドセッションに送り込む。元のセッションは止まらず、分岐先は <code>claude agents</code> の独立した行として並走する。
+  </p>
+  <p>
+    この routine のように「本番動作を維持しながら実験的なプロンプト変更を試したい」場面で直接使える。現在の routine を /fork して variant を走らせ、結果を比較してから本番に反映するサイクルが可能になる。バックグラウンドエージェントとの組み合わせで並列テストの工数が大幅に下がる。
+  </p>
+  <span class="verdict green">🟢 即使う — routine の実験的改良を本番に影響なくテストできる。次の routine 改善サイクルで /fork を使った A/B 検証フローを試す。</span>
+  <span class="link"><a href="https://code.claude.com/docs/en/whats-new" target="_blank" rel="noopener">→ Claude Code What's New</a></span>
+</div>
+
+<div class="card green">
+  <h3>Claude Code セッション暴走防止ガード — WebSearch 上限 + Subagent 生成上限を環境変数で設定可能に</h3>
+  <p>
+    <code>CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION</code>（デフォルト 200）と <code>CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION</code>（デフォルト 200）が追加された。設定値を超えるとループが止まる。バックグラウンドエージェントも同様に自動アップグレード（= 起動時の stale バージョン問題が解消）。
+  </p>
+  <p>
+    この tooling-update-watch routine は毎回 WebSearch を 5〜8 回発行する。環境変数を明示設定しておくと、将来的に routine のバグでループした際のコスト爆発を防げる。<code>.env</code> や Claude Code の設定ファイルに <code>CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION=50</code> を入れておけば routine 分には十分な余裕がある。
+  </p>
+  <span class="verdict green">🟢 即使う — routine 運用の安全網として今日中に環境変数をセット。MAX プランでも「同じ URL を 200 回 fetch するバグ」は時間とトークンを消費する。</span>
+  <span class="link"><a href="https://code.claude.com/docs/en/whats-new" target="_blank" rel="noopener">→ Claude Code What's New</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値</h2>
+<p class="none-note">該当なし（本日の新着は無料機能・オープンソース中心。MAX プラン定額運用に追加課金は不要）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 (2件)</h2>
+
+<div class="card yellow">
+  <h3>PostHog/posthog — セルフホスト型 AI 対応プロダクト分析 (36k★, 本日 +438)</h3>
+  <p>
+    「self-driving products を作るプラットフォーム」を標榜する OSS。セッション録画・フィーチャーフラグ・A/B テスト・AI 監視を一体で提供。Supabase との統合もサポート。本日 GitHub Trending で +438 stars と急伸。
+  </p>
+  <p>
+    現状 portfolio では Supabase の analytics で必要な計測は賄えているため、移行コストは見合わない。ただし demo-gallery の「どのデモが何秒見られたか」などの行動データを取りたくなったタイミングで再評価する価値がある。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — demo-gallery での行動計測ニーズが出たら Supabase vs PostHog を比較。今は star だけしておく。</span>
+  <span class="link"><a href="https://github.com/PostHog/posthog" target="_blank" rel="noopener">→ GitHub: PostHog/posthog</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>tirth8205/code-review-graph — MCP 対応コードレビューグラフ (19k★, 本日 +74)</h3>
+  <p>
+    コードベースを依存グラフ形式で可視化し、AI が影響範囲を把握した上でレビューできる MCP サーバー。PR マージ前に「変更がどこまで波及するか」をグラフ構造として AI に渡す仕組み。
+  </p>
+  <p>
+    portfolio の規模（単一 Vercel プロジェクト、ファイル数 50〜100 程度）では手動の <code>/code-review</code> スキルで十分。ただし将来的に工務店向け SaaS のコードが複数サービスに分散したタイミングで影響範囲の可視化が難しくなる局面では有効になる。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — サービス数が 3+ になったら再評価。今は複雑さに対して効果が見えにくい段階。</span>
+  <span class="link"><a href="https://github.com/tirth8205/code-review-graph" target="_blank" rel="noopener">→ GitHub: tirth8205/code-review-graph</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 (1件)</h2>
+
+<div class="card gray">
+  <h3>token-diet 系「AI コーディングコスト削減ツール」— MAX プラン運用者には逆効果な思考法</h3>
+  <p>
+    token-diet（2026-07-03 公開）をはじめ、AI コーディングのトークン消費を削減するための各種ツール・Playbook が急増中。「1 developer-day あたり $15 → $3〜5 に下げる」「プロンプトキャッシュ＋安いモデル切り替え」等を訴求している。Microsoft・Uber での $500〜2,000/engineer/month 超過事例を背景に需要が高まっている。
+  </p>
+  <p>
+    masatoman は MAX プラン定額（利用量に関わらず固定料金）で運用中。この文脈でトークン節約に時間をかけることは、定額の価値を自ら毀損する行為になる。「コスト削減」ではなく「同じ時間でより多くのサイクルを回す」が正しいレバーで、節約ではなく活用量を最大化するのが正しい方向。
+  </p>
+  <span class="verdict gray">🚫 罠 — トークン節約ツールへの投資対効果ゼロ。MAX プランの定額恩恵を最大化する方向でエネルギーを使う。</span>
+  <span class="link"><a href="https://blog.exceeds.ai/ai-coding-token-costs-2026/" target="_blank" rel="noopener">→ 参考: AI Coding Token Costs 2026</a></span>
+</div>
+
+<div class="dedup">
+  <strong>重複除去ログ</strong>: 以下は過去 3 日 feed に既出のため今日は除外 —
+  Claude Code Artifacts (07-14) ／ ibelick/ui-skills (07-17) ／ Claude Code v2.1.211・--forward-subagent-text (07-17) ／
+  github/copilot-sdk (07-17) ／ lobehub/lobehub (07-17) ／
+  mattpocock/skills (07-16) ／ openinterpreter (07-16) ／
+  OpenCut-app/OpenCut (07-14) ／ Nutlope/hallmark (07-14)。
+</div>
+
+<div class="fail-note">
+  ⚠️ 取得失敗ソース: obsidian.md/changelog (403 Forbidden), anthropic.com/news (403 Forbidden), releasebot.io (403 Forbidden), gradually.ai/en/changelogs/claude-code (403 Forbidden)
+</div>
+
+</body>
+</html>
