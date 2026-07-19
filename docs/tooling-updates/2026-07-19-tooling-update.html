@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-19</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 2rem;
+      border-top: 1px solid #f3f4f6;
+      padding-top: 0.75rem;
+    }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #ef4444;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      margin-top: 1rem;
+    }
+    code {
+      background: #e5e7eb;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-19</h1>
+<div class="meta">
+  取得日: 2026-07-19 (JST) ／ 対象期間: 2026-07-17〜07-19 ／
+  ソース: Claude Code GitHub Releases / GitHub Trending / WebSearch（AI tool launches / automation） ／
+  重複除外: 07-16〜07-18フィード掲載済み項目を除外（v2.1.212 /fork・WebSearch上限・posthog・code-review-graph・ui-skills・ossie・copilot-sdk等）
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う（2件）</h2>
+
+<div class="card green">
+  <h3>Claude Code v2.1.214 — <code>EndConversation</code> ツール追加 + 長時間呼び出しハートビート + セキュリティ修正 (2026-07-18)</h3>
+  <p>allow-ruleのpermission-checkバイパス脆弱性を修正。悪意ある入力／ジェイルブレイク試行に対してモデルが自ら会話を打ち切れる<code>EndConversation</code>ツールを追加。長時間ツール呼び出し中の定期ハートビート（進捗通知）も実装。Windowsの社内プロキシ後ろでのストリーミング切断問題・PowerShellのUTF-8文字化けも同時修正。</p>
+  <p>今日の tooling-update routine 自身もバックグラウンドセッションで動いている。セキュリティ修正は即効き、ハートビートはWebSearch長時間実行中の「タイムアウトか？」不安を消す。<code>git pull</code>で今日から恩恵あり。</p>
+  <span class="verdict green">🟢 即使う — アップデートは自動適用済みのはず。動作確認だけ30秒でOK</span>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases" target="_blank" rel="noopener">→ GitHub: anthropics/claude-code Releases</a></span>
+</div>
+
+<div class="card green">
+  <h3>wigolo (KnockOutEZ) — API不要ローカルファーストAIエージェント向けWeb検索・fetch・crawlツール (TypeScript, GitHub +203)</h3>
+  <p>Claude CodeやCursor等のAIコーディングエージェントから使うことを想定した、外部APIキーなしで動くローカルファーストのWeb検索/fetch/crawlツール。ブラウザ相当のリクエストをMCPサーバー経由でエージェントに渡す設計。</p>
+  <p>Claude Code v2.1.212でWebSearch上限が1セッション200回に制限された。毎日この routineがWebSearch 5〜10回消費するため、上限管理が課題になってきた。wigoloをMCPサーバーとしてローカルに立てておけば、上限外のfetch候補になる。まずREADMEとMCPサーバー設定を確認するだけ。</p>
+  <span class="verdict green">🟢 即使う — README確認 → ローカルMCPとして試す価値あり（15分で判断できる）</span>
+  <span class="link"><a href="https://github.com/KnockOutEZ/wigolo" target="_blank" rel="noopener">→ GitHub: KnockOutEZ/wigolo</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値</h2>
+<p class="none-note">該当なし（今日確認できたツールに明確な課金価値ありは見当たらず）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見（3件）</h2>
+
+<div class="card yellow">
+  <h3>Piebald-AI/claude-code-system-prompts — v2.1.214対応 Claude Code内部プロンプト全解析リポジトリ</h3>
+  <p>Claude Codeのシステムプロンプト全文・27ツール説明・サブエージェントプロンプト（Plan/Explore/Task）・ユーティリティプロンプト（CLAUDE.md圧縮・WebFetch・Bash・security-review・agent-creation等）を各バージョンごとに記録・公開しているリポジトリ。v2.1.214（2026-07-17）対応済み。</p>
+  <p>CLAUDE.mdやスキル設計を最適化する際、Claudeが実際にどのプロンプトを受け取っているかを確認できる。今すぐ作業は不要だが、スキル改良スプリントの前に一度見ておくと設計精度が上がる。</p>
+  <span class="verdict yellow">🟡 様子見 — スキル改良時の参照先として bookmarkのみ。即実装不要</span>
+  <span class="link"><a href="https://github.com/Piebald-AI/claude-code-system-prompts" target="_blank" rel="noopener">→ GitHub: Piebald-AI/claude-code-system-prompts</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>ai-engineering-from-scratch (rohitg00) — LLMエンジニアリング基礎をゼロから構築するPythonリソース (GitHub +191)</h3>
+  <p>「Learn it. Build it. Ship it for others.」をコンセプトに、LLMアプリの基礎から実装まで段階的に学べるPythonリポジトリ。RAG・エージェント・ファインチューニング等をスクラッチで構築するハンズオン形式。</p>
+  <p>masatoman のポートフォリオ（Next.js/TS）とスタックが違うが、エージェント設計の基礎理解を深めるには良い素材。今週すぐ使えるものではなく、空き時間の参照書ポジション。</p>
+  <span class="verdict yellow">🟡 様子見 — 隙間時間の学習ネタ。Python環境不要でREADMEを読むだけでも価値あり</span>
+  <span class="link"><a href="https://github.com/rohitg00/ai-engineering-from-scratch" target="_blank" rel="noopener">→ GitHub: rohitg00/ai-engineering-from-scratch</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>airllm (lyogavin) — 単一4GB GPUで70Bモデル推論を実現 (Jupyter Notebook, GitHub +161)</h3>
+  <p>量子化と層ごとのオフロード技術で、VRAM 4GBのGPUでもLlama-70Bクラスのモデルをローカル推論できるライブラリ。速度は遅いが「動かせる」ことに意義がある。</p>
+  <p>現在はMAXプランでClaude使用中なのでローカル推論に移行する理由はない。ただしAPIコスト管理が将来課題になった時の選択肢として記録しておく価値あり。</p>
+  <span class="verdict yellow">🟡 様子見 — MAX定額中は不要。将来のローカル推論候補として記録のみ</span>
+  <span class="link"><a href="https://github.com/lyogavin/airllm" target="_blank" rel="noopener">→ GitHub: lyogavin/airllm</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠（2件）</h2>
+
+<div class="card gray">
+  <h3>ActualizationOS — 自己啓発AIコーチシステム（2026-07-18 ローンチ、Amazon/GitHub/Web版）</h3>
+  <p>ChatGPT・Claude・Geminiに貼り付けるプロンプト、会話型AIコーチWebサイト、GitHub上の「実行エンジン」の三点セットで無料公開された自己啓発システム。書籍（Kindle/ハードカバー）も同日発売。</p>
+  <p>コーディングワークフローと無関係。「ClaudeにこのプロンプトをIN」という設計は、Claude Codeのシステムプロンプトと競合しノイズを増やすだけ。</p>
+  <span class="verdict gray">🚫 罠 — 開発効率に寄与しない。Claude Codeのシステムプロンプト空間を汚染するリスクあり</span>
+  <span class="link"><a href="https://www.manilatimes.net/2026/07/14/tmt-newswire/globenewswire/actualizationos-launches-july-18-with-its-complete-working-system-free-a-conversational-ai-coach-a-deployable-prompt-and-an-open-practitioner-engine/2384316" target="_blank" rel="noopener">→ Manila Times: ActualizationOS 発表記事</a></span>
+</div>
+
+<div class="card gray">
+  <h3>DevOS — AI コーディングツール可視化・ROI測定プラットフォーム（2026年7月初旬ローンチ）</h3>
+  <p>Claude Code・CursorなどのAIコーディングセッションを横断的に可視化し、ROI・使用量・チームの生産性をダッシュボードで管理できる企業向けSaaS。Fortune500の78%がAI開発を採用という市場背景で登場。</p>
+  <p>個人×MAXプラン定額の運用では測定対象がない。チーム管理・上司説得・予算承認が不要な一人開発では過剰装備。エンタープライズ向け価格帯と見込まれ費用対効果も合わない。</p>
+  <span class="verdict gray">🚫 罠 — 個人開発者には過剰。5人以上チームで初めて意味を持つツール</span>
+  <span class="link"><a href="https://larridin.com/developer-productivity-hub/developer-productivity-benchmarks-2026" target="_blank" rel="noopener">→ DevOS 言及: Developer Productivity Benchmarks 2026</a></span>
+</div>
+
+<!-- ===== フッター ===== -->
+<div class="dedup">
+  <strong>重複除外ログ（直近3日）</strong><br>
+  07-16: Claude Code v2.1.207〜211 Week29 / mattpocock/skills / ChatGPT 5000字上限 / moeru-ai/airi / openinterpreter<br>
+  07-17: ui-skills/ibelick / Claude Code v2.1.211 --forward-subagent-text / apache/ossie / github/copilot-sdk / lobehub<br>
+  07-18: Claude Code v2.1.212 /fork・WebSearch上限 / posthog / code-review-graph / token-diet罠<br>
+  <br>
+  <strong>取得失敗ソース</strong><br>
+  anthropic.com/news: HTTP 403 Forbidden（認証壁）／ obsidian.md/changelog: 未取得（WebSearch補完で代替）
+</div>
+
+</body>
+</html>
