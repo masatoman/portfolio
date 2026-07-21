@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-21</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 2rem;
+      border-top: 1px solid #f3f4f6;
+      padding-top: 0.75rem;
+    }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #ef4444;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      margin-top: 1rem;
+    }
+    code {
+      background: #e5e7eb;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-21</h1>
+<div class="meta">
+  取得日: 2026-07-21 (JST 09:00 定期実行) ／ 対象期間: 2026-07-19〜07-21 ／
+  ソース: Claude Code GitHub Releases (WebFetch) / GitHub Trending (WebFetch) / WebSearch (Claude Code update July 2026 / AI automation tool launch July 20 2026 / 個人開発 AI ツール新着 2026年7月) ／
+  重複除外: 07-18〜07-20フィード掲載済み項目を除外（v2.1.214・v2.1.215・bojieli/ai-agent-book・jamiepine/voicebox・kvcache-ai/ktransformers・Grok 4.5 FOMO・code-review-graph・ai-engineering-from-scratch 等）
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う（1件）</h2>
+
+<div class="card green">
+  <h3>Claude Code v2.1.216 — 長時間セッション二乗スローダウン修正・<code>sandbox.filesystem.disabled</code> 追加 (2026-07-20 22:14 UTC)</h3>
+  <p>
+    複数のバグ修正と新設定が同時投入。最重要は「長時間セッションでメッセージ正規化コストがターン数に比例して増大していた二乗オーダーの遅延」が修正されたこと。morning-brief・tooling-update-watch など積み上がり型の routine がジワジワ遅くなっていた根本原因がこれで解消される。
+  </p>
+  <p>
+    加えて <code>sandbox.filesystem.disabled</code> 設定が追加され、ファイルシステム隔離をスキップしながらネットワーク送出制御だけ有効にできるようになった。バックグラウンドエージェントセッションが再開時にデフォルトエージェントに戻ってしまうバグ、ワークツリー分離サブエージェントが共有チェックアウトへ git をリダイレクトしてしまうバグも同時修正。OAuth トークン切れ後に auto mode が HTTP 401 エラーでコマンドを拒否するバグも解消。
+  </p>
+  <span class="verdict green">🟢 即使う — 長時間 routine の体感速度が戻る。自動適用済みのはずだが、次回 morning-brief 実行時にスピードが改善されているか確認だけ（30秒）</span>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases" target="_blank" rel="noopener">→ GitHub: anthropics/claude-code Releases (v2.1.216)</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値</h2>
+<p class="none-note">該当なし（MAX プラン定額で全機能カバー済み。本日の新着に追加課金を正当化できるものなし）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見（3件）</h2>
+
+<div class="card yellow">
+  <h3>diegosouzapw/OmniRoute — 268+ AI プロバイダー・500+ モデル対応の OSS AI ゲートウェイ（GitHub Trending +1,107★ 今日）</h3>
+  <p>
+    単一のエンドポイントで OpenAI・Anthropic・Gemini・OSS モデルなど 268 以上のプロバイダーにルーティングできるフリーの AI ゲートウェイ。商用 AI ゲートウェイ (Portkey 等) の OSS 代替として設計されており、フォールバック・コスト最適化ルーティング・レート制限を自前で管理できる。
+  </p>
+  <p>
+    現在 MAX プラン + Claude Code 固定運用中なのでマルチプロバイダー制御は不要だが、将来 Anthropic の価格体系変更やモデル上限引き下げが起きた際の移行基盤として記録しておく価値がある。今乗り換える理由はない。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — MAX プラン更新判断（9 月末）で価格見直し検討が出たときに合わせて評価。今は star だけ</span>
+  <span class="link"><a href="https://github.com/diegosouzapw/OmniRoute" target="_blank" rel="noopener">→ GitHub: diegosouzapw/OmniRoute</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>topoteretes/cognee — セルフホスト AI メモリプラットフォーム + 知識グラフエンジン（GitHub +234★ 今日、計 28,775★）</h3>
+  <p>
+    エージェントの記憶を構造化するためのセルフホスト基盤。ドキュメント・会話履歴・ツール出力を知識グラフとして格納し、RAG よりも文脈保持の精度を高める設計。Claude Code の <code>~/.claude/memory/</code> と目的が重なるが、グラフ構造での関係性表現が可能な点が違う。
+  </p>
+  <p>
+    現在の MEMORY.md ベースの flat ファイル記憶は 40+ 件になりつつあり、将来的に検索精度や相互参照が課題になったタイミングで代替候補になり得る。セルフホストなので運用コストが発生する点と、Claude Code の記憶エコシステム外であることが導入コストを高くしている。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — memory が 100 件超えて検索が辛くなったら再評価。今は MEMORY.md で十分</span>
+  <span class="link"><a href="https://github.com/topoteretes/cognee" target="_blank" rel="noopener">→ GitHub: topoteretes/cognee</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>every-app/open-seo — Semrush / Ahrefs の OSS 代替（GitHub Trending +939★ 今日）</h3>
+  <p>
+    キーワード調査・競合分析・バックリンク確認・サイト監査を自前で動かせる OSS の SEO スイート。無料で API キーなしに使える機能と、自社 DB に蓄積する機能を組み合わせた設計。masatoman.net の GSC 自動化と組み合わせると、Search Console データ + キーワードギャップ分析を一元管理できる可能性がある。
+  </p>
+  <p>
+    ただし現在の STRATEGY.md §3 では軸 A（masatoman.net）は SNS 自動化 + 既存 80 本 SEO に任せる方針で新規 SEO 投資を停止中。SEO ツールの導入よりも既存ページの改善が先。軸 B が主軸確定（11 月末）後に検討するのが順番として正しい。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — 軸 B 主軸確定（11 月末）後に軸 A SEO 再強化フェーズで評価。今は触らない</span>
+  <span class="link"><a href="https://github.com/every-app/open-seo" target="_blank" rel="noopener">→ GitHub: every-app/open-seo</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠（1件）</h2>
+
+<div class="card gray">
+  <h3>1jehuang/jcode・msitarzewski/agency-agents — AI コードエージェント「乗り換え候補」系（Trending +568★・+862★）</h3>
+  <p>
+    Rust 製の AI コードエージェントハーネス jcode（「最もインテリジェントなエージェントハーネス」を標榜、+568★）と、agency-agents（「完全な AI エージェント代理店をそのまま」+134,688 総★、+862★ 今日）が GitHub Trending に登場。どちらも Claude Code と競合するポジションのプロジェクト。
+  </p>
+  <p>
+    MAX プラン + Claude Code で CLAUDE.md・スキル・routine・memory が積み上がっている現状で乗り換えを検討するには「コンテキスト再構築・スキル移植・挙動把握の学習コスト」が確実に発生する。jcode は README が英語のみで日本語 workflow への適合度が不明。agency-agents は stars 数の割にドキュメントが薄く実用例が確認できない。9 月末の乗り換え判断サイクルまでウォッチリストに入れる程度で十分。
+  </p>
+  <span class="verdict gray">🚫 罠 — Claude Code スタックを深掘りする方が ROI が高い。次の乗り換え判断は 9 月末</span>
+  <span class="link"><a href="https://github.com/1jehuang/jcode" target="_blank" rel="noopener">→ GitHub: 1jehuang/jcode</a></span>
+</div>
+
+<!-- ===== フッター ===== -->
+<div class="dedup">
+  <strong>重複除外ログ（直近3日）</strong><br>
+  07-18: Claude Code v2.1.212 /fork・WebSearch上限環境変数 / posthog / code-review-graph / token-diet / ui-skills / ossie / copilot-sdk<br>
+  07-19: Claude Code v2.1.214 EndConversation + heartbeat + security / wigolo / Piebald-AI/claude-code-system-prompts / ai-engineering-from-scratch / airllm / ActualizationOS / DevOS<br>
+  07-20: Claude Code v2.1.215 /verify・/code-review 自動起動廃止 / bojieli/ai-agent-book / jamiepine/voicebox / kvcache-ai/ktransformers / Grok 4.5 FOMO<br>
+  <br>
+  <strong>取得失敗ソース</strong><br>
+  anthropic.com/news: HTTP 403 Forbidden（認証壁、継続中）／ obsidian.md/changelog: HTTP 403 Forbidden（継続中）／
+  Supabase MCP: このセッションに Supabase MCP サーバー未接続のため content_briefs 投入スキップ（masatoman が次回対話セッションで手動投入可）
+</div>
+
+</body>
+</html>
