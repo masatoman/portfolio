@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-23</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 2rem;
+      border-top: 1px solid #f3f4f6;
+      padding-top: 0.75rem;
+    }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #ef4444;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      margin-top: 1rem;
+    }
+    code {
+      background: #e5e7eb;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-23</h1>
+<div class="meta">
+  取得日: 2026-07-23 (JST 09:00 定期実行) ／ 対象期間: 2026-07-22〜07-23 ／
+  ソース: Claude Code CHANGELOG raw (WebFetch) / GitHub Trending (WebFetch) / WebSearch (Claude Code update July 2026 / AI coding automation tool July 2026 / 個人開発 AIツール 自動化 2026年7月) ／
+  重複除外: 07-20〜07-22フィード掲載済み項目を除外（v2.1.215〜v2.1.217・i-have-adhd・AstrBot・worldmonitor・openship・OmniRoute・cognee・open-seo・jcode・ai-agent-book・voicebox・ktransformers・AI coding FOMO 等）
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う（1件）</h2>
+
+<div class="card green">
+  <h3>Claude Code v2.1.218 — Background /code-review・MCP エラーレポート改善・Windows パス修正</h3>
+  <p>
+    07-22 フィードで扱った v2.1.217 の次バージョン。最重要は <strong>Background <code>/code-review</code> 処理</strong>の追加。
+    これまで <code>/code-review</code> スキルを呼ぶとメインスレッドをブロックして完了待ちが発生していたが、
+    バックグラウンドで並行処理できるようになった。tooling-update-watch などの routine が <code>/code-review</code> を呼ぶ際、
+    待機なしで次ステップへ進めるため実行時間が短縮できる。
+  </p>
+  <p>
+    合わせて <strong>MCP サーバーのエラーレポートが詳細化</strong>され、接続失敗・ツール呼び出し失敗の原因特定が以前より早くなる。
+    Windows ユーザー向けには長期セッションでパスが壊れるバグ修正。
+    スクリーンリーダーモードの強化（テキスト削除時のアクセシビリティ対応）とマルチラインペースト修正も含む。
+  </p>
+  <span class="verdict green">🟢 即使う — routine での /code-review 呼び出しがバックグラウンド化し待機時間ゼロになる。MCP エラー時の原因特定も早くなるため今日アップデートして損なし。</span>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases" target="_blank">→ github.com/anthropics/claude-code/releases</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値（該当なし）</h2>
+<p class="none-note">本日の取得範囲では新規の課金検討案件なし。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見（2件）</h2>
+
+<div class="card yellow">
+  <h3>ComposioHQ/awesome-claude-skills — Claude Skills × 500+ 外部サービス接続スキル集（GitHub Trending #10・68,756★）</h3>
+  <p>
+    Claude Skills の「公式マーケットプレイス」的な位置づけで Composio が管理するキュレーションリスト。
+    Slack・Notion・Google Docs・GitHub など 500+ 外部サービスと接続するスキルが揃っており、
+    Claude.ai / Claude Code / Claude API すべてで利用できる設計。
+    本日 GitHub Trending 10 位に急浮上（68,756★）。
+  </p>
+  <p>
+    Composio のスキルを使うには別途 Composio アカウント登録と API キーが必要。
+    masatoman の現状スタック（Supabase・Vercel・Google Calendar MCP）と重複する部分もあるが、
+    「スキルを新たに探す時の参照先」として把握しておく価値がある。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — 今すぐ導入するより「次に外部サービス連携スキルが必要になった時」に開くリポジトリとして bookmark 推奨。Composio 登録の手間とスタック整合性を先に確認すること。</span>
+  <span class="link"><a href="https://github.com/ComposioHQ/awesome-claude-skills" target="_blank">→ github.com/ComposioHQ/awesome-claude-skills</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>likec4/likec4 — コードベースからアーキテクチャ図を自動生成する OSS（GitHub Trending +1,100★・4,264★）</h3>
+  <p>
+    コードを単一ソースとして、コンポーネント間の依存関係・データフロー・レイヤー構造を可視化する TypeScript 製 OSS。
+    図が「コードベース」なのでコードが変われば図も更新され、陳腐化が防げる設計。
+    VS Code 拡張あり。本日 GitHub Trending に急浮上。
+  </p>
+  <p>
+    portfolio の構造（<code>/</code>・<code>/local-business</code>・<code>/demo-gallery</code>・<code>/lab</code> の関係性や
+    Supabase → Next.js → Vercel の連携フロー）を視覚化したいときに使える候補。
+    今は不要だが、ヒアリング資料や商談ペライチで「構成図」を見せる場面が増えた時に思い出す。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — portfolio の構成が固まったタイミングで試す候補。現時点ではアーキテクチャを動的に図示する必要性が低く、入れてもメンテコストになりやすい。</span>
+  <span class="link"><a href="https://github.com/likec4/likec4" target="_blank">→ github.com/likec4/likec4</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠（1件）</h2>
+
+<div class="card gray">
+  <h3>ruvnet/RuView — WiFi 信号で空間知性・バイタルサイン監視（GitHub Trending #2・83,763★）</h3>
+  <p>
+    カメラなしで WiFi 電波パターンを解析し、室内の人の動き・呼吸数・心拍数を推定する Rust 製 OSS。
+    本日 GitHub Trending 全言語 2 位の大急上昇（83,763★）。センサーレスモニタリングとして技術的に面白い。
+  </p>
+  <p>
+    masatoman の現在の開発スタック（Next.js / Supabase / Claude Code routine）との接点はゼロ。
+    「★ 数が凄いから何か使えるかも」と調べ始めると、Rust セットアップと WiFi ハードウェア要件で数時間を溶かす典型的な FOMO 案件。
+  </p>
+  <span class="verdict gray">🚫 罠 — Trending 1 位級の数値に惑わされない。個人開発ワークフローへの適用経路がなく、「面白いから触る」は時間コストがペイしない。</span>
+  <span class="link"><a href="https://github.com/ruvnet/RuView" target="_blank">→ github.com/ruvnet/RuView</a></span>
+</div>
+
+<div class="dedup">
+  重複除外リスト（直近3日フィード掲載済）: Claude Code v2.1.215〜v2.1.217 / ayghri/i-have-adhd / AstrBotDevs/AstrBot / koala73/worldmonitor / oblien/openship / diegosouzapw/OmniRoute / topoteretes/cognee / every-app/open-seo / 1jehuang/jcode / bojieli/ai-agent-book / jamiepine/voicebox / kvcache-ai/ktransformers / AI coding FOMO (Grok 4.5/Kimi K2.7/Claude Sonnet 5)<br>
+  取得失敗ソース: anthropic.com/news (403) / obsidian.md/changelog (403) / releasebot.io (403) / gradually.ai (403)
+</div>
+
+</body>
+</html>
