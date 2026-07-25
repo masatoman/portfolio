@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-25</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 2rem;
+      border-top: 1px solid #f3f4f6;
+      padding-top: 0.75rem;
+    }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #ef4444;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      margin-top: 1rem;
+    }
+    code {
+      background: #e5e7eb;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-25</h1>
+<div class="meta">
+  取得日: 2026-07-25 (JST 09:00 定期実行) ／ 対象期間: 2026-07-23〜07-25 ／
+  ソース: GitHub releases (Claude Code) / anthropic.com/news (WebSearch fallback) / GitHub Trending (WebFetch) / WebSearch (Claude Code update July 2026 / AI automation tool launch July 2026 / 個人開発 AI ツール 新着 2026年7月) ／
+  重複除外: 07-22〜07-24フィード掲載済み項目を除外（v2.1.215〜v2.1.218・harper・open-code-review・DeepSeek API廃止・Oracle AI Agent Studio・Kronos・text-to-cad・i-have-adhd・AstrBot・worldmonitor・openship・OmniRoute・awesome-claude-skills・likec4・RuView・cognee・ktransformers 等）
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う（2件）</h2>
+
+<div class="card green">
+  <h3>Claude Code v2.1.219 — Claude Opus 5 デフォルト化・サブエージェント深度3・DirectoryAdded hook (2026-07-24)</h3>
+  <p>
+    前日 2026-07-24 17:14 UTC リリース。<strong>Claude Opus 5 (<code>claude-opus-5</code>) が Opus のデフォルトモデルに昇格</strong>。
+    コンテキスト 1M トークン、fast mode 対応 ($10/$50 per Mtok)。MAX プラン定額ユーザーは追加課金なく即日利用開始。
+    Anthropic は同日「Introducing Claude Opus 5」記事も公開 — Fable 5 に次ぐ frontier 水準を半額で、と表現している。
+  </p>
+  <p>
+    ワークフロー設計で使える変更が 3 つ:
+    <strong>(1) サブエージェントのネスト深度がデフォルト 3 に拡大</strong>（旧: 1）。
+    Workflow スクリプト内でサブエージェントが孫エージェントを呼べるようになり、
+    pipeline → 検証サブエージェント → さらに詳細調査、という 3 段構成が設定変更なしで使える。
+    <strong>(2) <code>workflowSizeGuideline</code> 設定キー追加</strong> — プロジェクト設定で
+    Dynamic workflow の推奨サイズ（medium = 15 エージェント以下）を上書きできる。
+    <strong>(3) <code>DirectoryAdded</code> hook 追加</strong> — <code>/add-dir</code> や SDK の
+    <code>register_repo_root</code> で新しい作業ディレクトリが登録された瞬間に hook が発火。
+    複数 repo を動的に追加する routine の後処理（自動 ls / CLAUDE.md 読み込み確認）が書けるようになる。
+  </p>
+  <p>
+    その他: <code>sandbox.network.strictAllowlist</code> でホワイトリスト外ホストへのサンドボックス通信を
+    プロンプトなしで即ブロック可能。<code>/fast</code> は Opus 4.7 が除外され、Opus 5 と Opus 4.8 に絞られた。
+  </p>
+  <span class="verdict green">🟢 即使う — MAX プランで Opus 5 はすでに有効。サブエージェント深度 3 は今日の Workflow スクリプトから即使える。DirectoryAdded hook は multi-repo routine を書く際に参照。</span>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.219" target="_blank">→ github.com/anthropics/claude-code/releases (v2.1.219)</a></span>
+  <span class="link"><a href="https://www.anthropic.com/news/claude-opus-5" target="_blank">→ anthropic.com/news/claude-opus-5</a></span>
+</div>
+
+<div class="card green">
+  <h3>mattpocock/skills — 実務エンジニアの .agents ディレクトリ公開 (GitHub Trending #13・186,676★・+2,251★ 今日)</h3>
+  <p>
+    TypeScript 教育で著名な Matt Pocock が自分の <code>.agents/</code> ディレクトリをそのまま公開したスキル集。
+    リポジトリ説明は「Skills for Real Engineers. Straight from my .agents directory」。
+    186,676★ という破格のスター数は、Claude Code Skills エコシステムが一気に表面化してきた証拠。
+    <code>.agents/</code> ディレクトリは Claude Code の <code>~/.claude/</code> と同一の Skills 機構を使うため、
+    中身のスキルをそのままコピーして利用できる。
+  </p>
+  <p>
+    masatoman はすでに skill-creator スキルで独自スキルを運用中だが、
+    ベテラン開発者が実際の業務で使い込んだスキルのコレクションを参照することで、
+    「こういうスキルの切り方があるのか」という発見が得られる。
+    特に TypeScript / Next.js 系のリファクタリング・コードレビュー・docs 生成のスキルが含まれている可能性が高い。
+  </p>
+  <span class="verdict green">🟢 即使う — repo を clone して中身をスキャン。自分のワークフローに刺さるスキルがあれば <code>~/.claude/</code> にコピーするだけで今日から使える。3スキル以上見つかれば element、なければ設計思想のインプットとして価値あり。</span>
+  <span class="link"><a href="https://github.com/mattpocock/skills" target="_blank">→ github.com/mattpocock/skills</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値（該当なし）</h2>
+<p class="none-note">本日の取得範囲では新規の課金検討案件なし。Opus 5 は MAX プラン定額内で使えるため 💰 ではなく 🟢 に分類。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見（2件）</h2>
+
+<div class="card yellow">
+  <h3>citrolabs/ego-lite — AI エージェント用高速ブラウザ・ログイン状態の共有 (GitHub Trending #8・2,545★・+880★ 今日)</h3>
+  <p>
+    AI エージェントが Web オートメーションを実行するために特化して設計されたブラウザ。
+    特徴は「ログイン済みブラウザ状態を Claude 等のアシスタントと共有」できる点。
+    認証が必要なサイト（管理画面・ダッシュボード・会員専用ページ）を
+    エージェントに毎回ログインさせずに操作させられる設計。JavaScript 製、GitHub で新規公開。
+  </p>
+  <p>
+    masatoman は現在 Playwright (Chromium) でスクリーンショット取得・UI テストを運用中。
+    ego-lite の「ログイン状態共有」機能は、Supabase 管理画面や Vercel ダッシュボードを
+    エージェントに自動操作させる routine を書く際に Playwright より手軽な可能性がある。
+    ただし 2,545★ はまだ小規模で、Playwright エコシステムの成熟度と比べると安定性が未知数。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — ログイン状態共有の仕組みが Playwright よりシンプルなら routine の複雑度が下がる。Star が 1 万超えて事例が出てきてから乗り換えを検討でよい。</span>
+  <span class="link"><a href="https://github.com/citrolabs/ego-lite" target="_blank">→ github.com/citrolabs/ego-lite</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>CoreBunch/Instatic — オープンソースのエージェント型ビジュアル CMS (GitHub Trending #11・4,273★・+201★ 今日)</h3>
+  <p>
+    Webflow / Framer / WordPress のオープンソース代替を標榜するセルフホスト型ビジュアル CMS。
+    「Agentic」と銘打っており、CMS の更新や記事生成を AI エージェントが担う設計。
+    TypeScript 製、セルフホスト可能。
+  </p>
+  <p>
+    masatoman の masatoman.net は Next.js + 静的生成 + Supabase の構成で、
+    Instatic が解決しようとしている「ビジュアル編集」の課題とは方向性が異なる。
+    ただし将来、工務店向けサービスで「ノーコードで記事更新させたい」という要件が出た場合に
+    Webflow 代替として参照できる候補として記憶しておく価値はある。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — 今すぐ入れる理由なし。工務店クライアントへの CMS 提供オプションを考えるフェーズで再浮上させる。</span>
+  <span class="link"><a href="https://github.com/CoreBunch/Instatic" target="_blank">→ github.com/CoreBunch/Instatic</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠（1件）</h2>
+
+<div class="card gray">
+  <h3>block/buzz — Rust製「ハイブマインド通信プラットフォーム」がトレンド1位 (GitHub Trending #1・9,913★・+3,270★ 今日)</h3>
+  <p>
+    今日のトレンド1位。Square / Cash App の親会社 Block（旧 Twitter の Jack Dorsey が CEO）が公開した
+    Rust 製の通信プラットフォーム。「ハイブマインド」という名称がAI × 集合知的なイメージを醸し出し、
+    開発者コミュニティで一気に拡散。+3,270★ は今日だけで急騰している。
+  </p>
+  <p>
+    実態はチーム向けリアルタイムコミュニケーションツール（Slack / Discord 代替に近い立ち位置）。
+    AI エージェントを使った個人開発ワークフロー改善には直接つながらない。
+    「トレンド1位 + ハイブマインド + Rust」という組み合わせで技術的に惹かれやすいが、
+    masatoman のツールチェーン（Claude Code / Next.js / Supabase / Vercel）とは接点がゼロ。
+    トレンド急上昇 = 「今週の話題」であって「今使うべきツール」ではない。
+  </p>
+  <span class="verdict gray">🚫 罠 — Block ブランド × ハイプで Trending 1位になっているが、個人開発者のワークフロー改善には関係なし。調べ始めると「Block のビジョン動画を見る時間」に消える。</span>
+  <span class="link"><a href="https://github.com/block/buzz" target="_blank">→ github.com/block/buzz</a></span>
+</div>
+
+<div class="dedup">
+  重複除外リスト（直近3日フィード掲載済）: Claude Code v2.1.215〜v2.1.218 / Automattic/harper / alibaba/open-code-review / DeepSeek API旧エンドポイント廃止 / Oracle AI Agent Studio / shiyu-coder/Kronos / earthtojake/text-to-cad / ayghri/i-have-adhd / AstrBotDevs/AstrBot / koala73/worldmonitor / oblien/openship / diegosouzapw/OmniRoute / ComposioHQ/awesome-claude-skills / likec4/likec4 / ruvnet/RuView / topoteretes/cognee / kvcache-ai/ktransformers 等<br>
+  取得失敗ソース: anthropic.com/news (403 → WebSearch fallback で内容回収) / obsidian.md/changelog (403 → WebSearch fallback: 07-23〜07-25 の新規変更なし)
+</div>
+
+</body>
+</html>
