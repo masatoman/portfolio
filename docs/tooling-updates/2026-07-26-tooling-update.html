@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-26</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 2rem;
+      border-top: 1px solid #f3f4f6;
+      padding-top: 0.75rem;
+    }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #ef4444;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      margin-top: 1rem;
+    }
+    code {
+      background: #e5e7eb;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-26</h1>
+<div class="meta">
+  取得日: 2026-07-26 (JST 09:00 定期実行) ／ 対象期間: 2026-07-24〜07-26 ／
+  ソース: GitHub Trending (WebFetch) / WebSearch (Claude Code update July 2026 / obra superpowers agentic framework / Claude Code artifact live MCP connector July 2026 / AI coding automation tool launch July 2026 / 個人開発 AI ツール 自動化 新着 2026年7月) ／
+  重複除外: 07-23〜07-25フィード掲載済み項目を除外（Claude Code v2.1.219・Claude Opus 5・mattpocock/skills・block/buzz・citrolabs/ego-lite・CoreBunch/Instatic・Automattic/harper・alibaba/open-code-review・earthtojake/text-to-cad・shiyu-coder/Kronos・DeepSeek API廃止・Oracle AI Agent Studio 等）
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う（2件）</h2>
+
+<div class="card green">
+  <h3>Claude Code Artifact: Live MCP コネクターデータ対応 ── Artifact がビューごとに最新データを取得（Week 29 リリース、本フィード初掲載）</h3>
+  <p>
+    Claude Code Week 29 (2026-07-13〜17) リリースで追加された機能。
+    <strong>公開済み Artifact がビューワーに表示されるたびに MCP コネクターを呼び出し、最新データを取得・表示</strong>できるようになった。
+    従来の Artifact はセッション時点のスナップショットだったが、この機能によりダッシュボード的な「ライブ更新ページ」が作れる。
+    各呼び出しはビューワー自身のコネクター接続を使い、初回アクセス時に承認を求める設計。
+  </p>
+  <p>
+    masatoman のユースケースに直結する使い方が 2 つある。
+    <strong>(1) GSC 自動化 Artifact のライブ化</strong> — 現在の GSC データ取得 routine は HTML ファイルや Markdown にスナップショットを書き出しているが、
+    代わりに MCP コネクター対応 Artifact にすると、開くたびに当日最新の検索クリック数・表示回数が表示される自走ダッシュボードになる。
+    <strong>(2) Supabase content_briefs モニター</strong> — planned/in_progress のブリーフ件数を Supabase MCP 経由で Artifact から直接参照でき、
+    Claude Code セッションを起動しなくても状況確認できる。
+    ただし制約あり: MCP コネクター対応 Artifact はパブリックリンク共有不可（Pro/MAX では作者本人のみ閲覧、Team/Enterprise では組織内共有まで）。
+    個人利用なら制約に引っかかる場面はほぼない。
+  </p>
+  <span class="verdict green">🟢 即使う — GSC routine の出力先を snapshot ファイルから Live MCP Artifact に切り替えるだけで「毎朝開くだけのライブダッシュボード」が完成する。artifact-capabilities skill を読んでから実装すること。</span>
+  <span class="link"><a href="https://code.claude.com/docs/en/whats-new/2026-w29" target="_blank">→ code.claude.com/docs/en/whats-new/2026-w29</a></span>
+  <span class="link"><a href="https://alternativeto.net/news/2026/7/claude-code-artifacts-add-mcp-connector-support-for-dynamic-data/" target="_blank">→ AlternativeTo 解説記事</a></span>
+</div>
+
+<div class="card green">
+  <h3>obra/superpowers — Claude Code・Cursor・Copilot CLI 対応アジェンティックスキルフレームワーク（GitHub Trending #7・261,089★・+479★ 今日）</h3>
+  <p>
+    Jesse Vincent (Prime Radiant) が公開するアジェンティックスキルフレームワーク兼ソフトウェア開発方法論。
+    <strong>Claude Code / Cursor / Codex / GitHub Copilot CLI / Gemini CLI など主要コーディングエージェント全般に対応</strong>しており、
+    特定エージェント専用ではなくエージェント横断で使えるスキル設計が特徴。
+    リポジトリ構成は <code>skills/</code>（スキル定義）・<code>.agents/plugins/</code>（エージェント別設定）・<code>docs/superpowers/</code>（方法論）の 3 層。
+  </p>
+  <p>
+    masatoman はすでに <code>~/.claude/</code> に独自スキルを運用中だが、
+    このフレームワークはスキルの「設計方法論」まで含んでいる点が昨日カバーした mattpocock/skills との違い。
+    mattpocock は「実際に使っているスキルの公開」、superpowers は「スキルをどう設計・組み合わせるかの方法論 + サンプル」という位置づけ。
+    <code>AGENTS.md</code> に方法論が書かれており、<code>skills/using-superpowers/</code> に使い方のチュートリアルがある。
+    Claude Code に直接インポートするなら <code>skills/</code> 配下のファイルを <code>~/.claude/</code> にコピーするだけで動く。
+  </p>
+  <span class="verdict green">🟢 即使う — repo を clone して <code>AGENTS.md</code> と <code>skills/</code> を 10-15 分スキャン。masatoman の skill-creator で作ったスキルと設計思想を比較し、足りていない軸（メモリ管理・ループ制御・マルチエージェント連携）があれば参照してリファクタリングできる。</span>
+  <span class="link"><a href="https://github.com/obra/superpowers" target="_blank">→ github.com/obra/superpowers</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値（該当なし）</h2>
+<p class="none-note">本日の取得範囲では新規の課金検討案件なし。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見（2件）</h2>
+
+<div class="card yellow">
+  <h3>anthropics/claude-cookbooks — Anthropic 公式 Claude 実装レシピ集（GitHub Trending #5・49,877★・+132★ 今日）</h3>
+  <p>
+    Anthropic が公式に管理する Jupyter Notebook 形式のレシピ集。
+    「Claude を使って楽しく・効果的にできること」をコード付きで示すノートブック集で、
+    RAG・ツール使用・マルチエージェント・コンピューターユース・プロンプトキャッシュ等のテーマが揃う。
+  </p>
+  <p>
+    masatoman は MAX プラン定額運用で Anthropic API を直叩きしていないため、
+    API キー・トークン使用量・SDK 実装のレシピはそのまま適用しづらい。
+    ただし<strong>プロンプト設計・レスポンス構造化・マルチエージェント連携のパターン</strong>は
+    Claude Code の Workflow スクリプトや Skills 設計に転用できる。
+    特に <code>tool_use</code> / <code>structured_output</code> 系のノートブックは、
+    Workflow スクリプトの <code>schema</code> オプション設計を改善するヒントになる可能性がある。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — API 実装例が多く即使える項目は少ないが、Workflow の schema 設計や Skills のプロンプト構造を見直すタイミング（月 1 回程度）に参照する用途として bookmark 推奨。</span>
+  <span class="link"><a href="https://github.com/anthropics/claude-cookbooks" target="_blank">→ github.com/anthropics/claude-cookbooks</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>GitHub Copilot ── 初のオープンウェイトコーディングモデル追加（2026年7月）</h3>
+  <p>
+    GitHub が 2026 年 7 月に Copilot に初めてオープンウェイトのコーディングモデルを追加した。
+    具体的なモデル名・ライセンスの詳細は確認中だが、
+    「フロンティアモデルだけでなく OSS モデルを選択肢に含める」方向の動きで、
+    コスト削減・プライバシー要件対応・オフライン動作などのニーズに対応する狙いと見られる。
+  </p>
+  <p>
+    masatoman は Claude Code MAX プランを使っており Copilot への切り替えは検討外だが、
+    <strong>「大手 AI コーディングツールが OSS モデルを採用」という業界トレンドは把握しておく価値がある</strong>。
+    工務店向けサービスで将来「ローカル動作・プライバシー保護の AI 機能」を求める声が出た時に、
+    この選択肢の存在を想起できる。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — 今の Claude Code MAX 運用に影響なし。ただし「大手がOSSモデルに舵を切り始めた」トレンドは2026年後半の意思決定に関係してくる可能性があるため、動向を追う。</span>
+  <span class="link"><a href="https://www.agensi.io/learn/best-ai-coding-tools-july-2026" target="_blank">→ agensi.io — Best AI Coding Tools July 2026</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠（2件）</h2>
+
+<div class="card gray">
+  <h3>affaan-m/ECC — 233,295★ の「エージェントハーネス最適化システム」（GitHub Trending #10・+377★ 今日）</h3>
+  <p>
+    「The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development」と謳うリポジトリ。
+    GitHub Trending に登場し、星数は 233,295 と非常に多い。
+    カバレッジは Skills / メモリ / セキュリティ / リサーチ優先開発と、
+    masatoman の興味領域に刺さりそうな単語が並んでいる。
+  </p>
+  <p>
+    問題点は<strong>スター数の信頼性</strong>。作者 (affaan-m) はほぼ無名で、
+    リポジトリの GitHub 上の実績・コントリビューション数・Issue 活性度が星数に見合っていない可能性がある。
+    2026 年はスター人工的操作・AI 生成 README によるハイプ repo が増えており、
+    「説明文がやたら包括的」「オーナーが無名」「Stars/Fork 比が歪」の 3 条件が重なる時は精査が必要。
+    今日の Trending に浮上しても、コード品質・メンテ状況を確認する前に設計に取り込むと振り回されるリスクがある。
+  </p>
+  <span class="verdict gray">🚫 罠 — 「エージェント最適化」という単語に惹かれて深追いしない。どうしても気になるなら <code>skills/</code> ディレクトリの中身だけ 5 分確認してから判断。そこで薄ければ即閉じる。</span>
+  <span class="link"><a href="https://github.com/affaan-m/ECC" target="_blank">→ github.com/affaan-m/ECC</a></span>
+</div>
+
+<div class="card gray">
+  <h3>permissionlesstech/bitchat — Bluetooth メッシュチャット（GitHub Trending #9・28,687★・+1,720★ 今日）</h3>
+  <p>
+    Bluetooth LE を使ったメッシュネットワーク上で動作する分散チャットアプリ（Swift 製）。
+    「IRC vibes」と表現されているように、インターネット不要で近距離の端末同士がつながる設計。
+    +1,720★ という急上昇でトレンド 9 位に浮上。
+  </p>
+  <p>
+    分散通信の実験として技術的には面白い試みだが、
+    masatoman のツールチェーン（Claude Code / Next.js / Supabase / Vercel）との接点がゼロ。
+    「BLE メッシュ × プライバシー」というコンセプトは工務店向けオフライン現場利用に一見使えそうに見えるが、
+    実際の工務店ユースケースは「現場でスマホが使える（4G/5G あり）」が前提で、BLE メッシュを必要とする場面はほぼない。
+  </p>
+  <span class="verdict gray">🚫 罠 — トレンド急上昇で目に入りやすいが、個人開発 AI ワークフローとの接点ゼロ。「面白い技術だから一応 repo を見ておこう」で 30 分溶けるパターン。</span>
+  <span class="link"><a href="https://github.com/permissionlesstech/bitchat" target="_blank">→ github.com/permissionlesstech/bitchat</a></span>
+</div>
+
+<div class="dedup">
+  重複除外リスト（直近3日フィード掲載済）: Claude Code v2.1.219 / Claude Opus 5 デフォルト化・サブエージェント深度3・DirectoryAdded hook / mattpocock/skills / block/buzz / citrolabs/ego-lite / CoreBunch/Instatic / Automattic/harper / alibaba/open-code-review / earthtojake/text-to-cad / shiyu-coder/Kronos / DeepSeek API旧エンドポイント廃止 / Oracle AI Agent Studio / ComposioHQ/awesome-claude-skills / 以前掲載のその他多数<br>
+  取得失敗ソース: anthropic.com/news (403 → WebSearch fallback で内容回収) / obsidian.md/changelog (403 → WebSearch fallback: 07-24〜07-26 の新規変更なし確認) / github.com/anthropics/claude-code releases ページ (blob→raw リダイレクト未処理 → WebSearch fallback で内容回収)
+</div>
+
+</body>
+</html>
