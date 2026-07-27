@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-27</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 2rem;
+      border-top: 1px solid #f3f4f6;
+      padding-top: 0.75rem;
+    }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #ef4444;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      margin-top: 1rem;
+    }
+    code {
+      background: #e5e7eb;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-27</h1>
+<div class="meta">
+  取得日: 2026-07-27 (JST 09:00 定期実行) ／ 対象期間: 2026-07-25〜07-27 ／
+  ソース: GitHub releases (claude-code v2.1.220) / GitHub Trending (WebFetch) / WebSearch (Claude Code update July 27 2026 / Notion AI 2.5 July 2026 / Reclaim AI v4 July 2026 / Qoder Security launch July 2026 / AI automation tool launch July 2026 developer productivity) ／
+  重複除外: 07-24〜07-26フィード掲載済み項目を除外（Claude Code v2.1.219・Claude Code Artifact Live MCP・obra/superpowers・anthropics/claude-cookbooks・GitHub Copilot open-weight model・affaan-m/ECC・permissionlesstech/bitchat・mattpocock/skills・block/buzz・citrolabs/ego-lite・CoreBunch/Instatic・Automattic/harper・alibaba/open-code-review・earthtojake/text-to-cad・shiyu-coder/Kronos 等）
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う（1件）</h2>
+
+<div class="card green">
+  <h3>Notion AI 2.5 — ワークスペース横断コンテキスト・マルチエージェント共有ワークフロー・Excel/PowerPoint 対応</h3>
+  <p>
+    Notion AI が 7月に大幅アップデート。目玉は3点。
+    <strong>(1) DB横断コンテキスト</strong>: リンクされたデータベース・添付ドキュメント・カレンダーエントリをまたいで AI が回答できるようになった（従来はページ単体のみ）。
+    <strong>(2) マルチエージェント共有ワークフロー</strong>: チーム全員が同一UIで複数エージェントを呼び出し、ワークフローをエンドツーエンドで自動化できる。
+    <strong>(3) Excel/PowerPoint インポート・エクスポート対応 + 会議メモに話者ラベル追加</strong>。
+    AI Meeting Notes は話者ごとに発言を整理して出力するようになり、議事録品質が上がる。
+  </p>
+  <p>
+    masatoman のユースケースに直結するのは <strong>DB横断コンテキスト</strong>。
+    STRATEGY.md や customer-target.md のような複数ファイルに散らばった情報を Notion に集約している場合、
+    AI に「今週の優先アクションをまとめて」と聞くだけで複数DBを横断して回答が返るようになる。
+    工務店プロジェクトでヒアリング記録・タスク・価格レンジを別DBに持っているなら今日から設定をオンにする価値がある。
+  </p>
+  <span class="verdict green">🟢 即使う — Notion を情報ハブとして使っているなら「AIのDB横断コンテキスト」をオンにするだけで、議事録→タスク変換が今日から手を離れる。Notion設定 → AI → ワークスペースコンテキストを有効化。</span>
+  <span class="link"><a href="https://releasebot.io/updates/notion" target="_blank">→ Notion Release Notes（Releasebot）</a></span>
+  <span class="link"><a href="https://ainotely.com/blog/notion-ai-features-2026/" target="_blank">→ Notion AI Features 2026 まとめ（Ainotely）</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値（1件）</h2>
+
+<div class="card blue">
+  <h3>Reclaim AI v4 — エネルギースケジューリング + AI カレンダー自動交渉</h3>
+  <p>
+    カレンダー自動化ツール Reclaim AI が v4 で大型アップデート。
+    新機能「<strong>エネルギースケジューリング</strong>」は、ユーザーの生産性パターン（集中しやすい時間帯・繰り返しタスクの完了率等）を AI が学習し、
+    ディープワーク時間をより積極的にブロックする。
+    また新たな「<strong>AI ネゴシエーション</strong>」機能は、高優先度タスクのために時間が必要なとき、低優先度の会議を自動でリスケし、
+    関係者にカレンダー更新ではなく自然言語で変更を通知する。
+    Slack / Google Calendar / Notion と連携。料金は個人向け Starter $10〜、Teamは $16/月〜。
+  </p>
+  <p>
+    会議・アポ・ルーティン作業でカレンダーが埋まりがちな開発者に刺さる。
+    ヒアリング訪問・たましん接触・展示会準備など並走タスクが多い <strong>9月末まで</strong> の期間は特に効く可能性がある。
+    「朝 9 時〜12 時はコーディング時間として固定したい」をAIが守ってくれる設計。
+  </p>
+  <span class="verdict blue">💰 課金価値 — 月 $10〜。会議が多い月はカレンダー調整の思考コストが意外と大きい。プランC並走期（5-9月）にトライアルして、アポ入れ交渉を AI に任せるかを判断する。</span>
+  <span class="link"><a href="https://updates.reclaim.ai/" target="_blank">→ Reclaim AI Product Updates</a></span>
+  <span class="link"><a href="https://www.aiforwhatever.com/tool-details/reclaim-ai" target="_blank">→ Reclaim AI 詳細（AIforWhatever）</a></span>
+</div>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見（3件）</h2>
+
+<div class="card yellow">
+  <h3>Claude Code v2.1.220 — バグ修正・安定性向上パッチ (2026-07-25)</h3>
+  <p>
+    2026-07-25 01:35 UTC リリース。v2.1.219（Opus 5 デフォルト化・サブエージェント深度3・DirectoryAdded hook）の直後に出た安定化パッチ。
+    リリースノートには「Bug fixes and reliability improvements」のみで具体的な変更内容の記載なし。
+    GitHub で 27 件のリアクション（👍❤️🚀等）がつき、コミュニティの安定性改善への期待は高い。
+  </p>
+  <p>
+    大きな機能追加はないが、大型リリース直後のパッチは実運用上の安定性に直結する。
+    <code>claude update</code> を実行して最新に保つだけでよい。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — 新機能なし。アップデートだけ済ませておく。次の実質的なフィーチャーリリースを待つ。</span>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.220" target="_blank">→ GitHub Releases v2.1.220</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>aisuite (andrewyng) — Python 統一 AI プロバイダーインターフェース（GitHub Trending +187★）</h3>
+  <p>
+    Andrew Ng (deeplearning.ai 創設者) が公開している Python ライブラリ。
+    OpenAI / Anthropic / Gemini / Mistral / Cohere / Ollama 等を同一 API で呼び出せる薄いラッパー。
+    モデル切り替えが <code>client = aisuite.Client()</code> → <code>model="anthropic:claude-opus-5"</code> の一行変更で済む設計。
+    今日の GitHub Trending で +187★。
+  </p>
+  <p>
+    MAX プラン定額運用中は Claude 以外への切り替えコスト削減メリットは薄い。
+    ただし「特定タスクで別モデルを試したい」プロトタイプや、
+    <strong>工務店向けに安価なモデル構成を実験する</strong>将来フェーズには参照しやすいコードベース。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — MAX プラン定額中は Claude 以外に切り替える理由が薄い。スケール期（2027年以降）にコスト最適化が必要になったときに再評価。Star だけしておく。</span>
+  <span class="link"><a href="https://github.com/andrewyng/aisuite" target="_blank">→ github.com/andrewyng/aisuite</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>superfile (yorukot) — モダンターミナルファイルマネージャー（Go製・GitHub Trending +131★）</h3>
+  <p>
+    Go 製の高機能ターミナルファイラー。Vim キーバインド対応・プレビュー付き・マルチペイン表示。
+    <code>brew install superfile</code> または Go でインストール可能。
+    GitHub で本日 +131★ を獲得してトレンド入り。
+  </p>
+  <p>
+    Claude Code の Bash ツールや <code>ls</code> / <code>find</code> 系コマンドで代替できる操作が多いため、
+    AI エージェント主体の開発フローでは出番は限られる。
+    一方、大量ドキュメント（docs/ 配下 40+ 件等）を手動で整理・移動する作業には効く可能性がある。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — Claude Code を常時使う環境では恩恵が限定的。ファイル整理の手作業が多いと感じたタイミングで試す程度でよい。</span>
+  <span class="link"><a href="https://github.com/yorukot/superfile" target="_blank">→ github.com/yorukot/superfile</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠（1件）</h2>
+
+<div class="card gray">
+  <h3>Qoder Security — AI コーディングセッション内 3層セキュリティスキャン（2026-07-23 リリース）</h3>
+  <p>
+    5 M ユーザーを抱えると主張する AI コーディングプラットフォーム Qoder が、
+    コーディング中にリアルタイムでセキュリティスキャンを走らせる「Qoder Security」を 2026-07-23 にリリース。
+    3層（静的解析・LLM判定・修正自動生成）でコミット前に脆弱性を検出・修正し、
+    従来手法比で検出率 +60%・誤検知 -80% を主張。
+  </p>
+  <p>
+    ただし <strong>罠と判断する理由が 3 つある</strong>。
+    ① Claude Code を既に使っているなら Qoder プラットフォームに移行する理由がない（IDE統合・エージェント機能すべて乗り換えが前提）。
+    ② 「5Mユーザー」の主張はニッチなセキュリティコーディングツールとして現実感が薄く、プレスリリース数字を鵜呑みにしないこと。
+    ③ セキュリティスキャン単体が目的なら、GitHub Advanced Security や Semgrep の方が既存 CI/CD に統合しやすい。
+  </p>
+  <span class="verdict gray">🚫 罠 — Claude Code ユーザーには不要。セキュリティスキャンのみ追加したいなら Semgrep（OSS・無料）や GitHub Advanced Security を既存 CI に組み込む方が現実的。</span>
+  <span class="link"><a href="https://finance.yahoo.com/technology/ai/articles/qoder-launches-qoder-security-putting-050000110.html" target="_blank">→ Qoder Security リリース発表（Yahoo Finance）</a></span>
+</div>
+
+<!-- 取得失敗ソース -->
+<div class="fail-note">
+  ⚠️ 取得失敗ソース（2件）: anthropic.com/news（HTTP 403）・obsidian.md/changelog（HTTP 403）。
+  Claude Code 公式 changelog は GitHub releases ページ経由で補完。Obsidian の最新リリース情報は今回フィード対象外。
+</div>
+
+<div class="dedup">
+  重複除外済み（直近3日フィード掲載済み）: Claude Code v2.1.219 / Claude Code Artifact Live MCP (Week29) / obra/superpowers / anthropics/claude-cookbooks / GitHub Copilot open-weight model / affaan-m/ECC / permissionlesstech/bitchat / mattpocock/skills / block/buzz / citrolabs/ego-lite / CoreBunch/Instatic / Automattic/harper / alibaba/open-code-review / earthtojake/text-to-cad / shiyu-coder/Kronos / DeepSeek API廃止 / Oracle AI Agent Studio
+</div>
+
+</body>
+</html>
