@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-29</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 2rem;
+      border-top: 1px solid #f3f4f6;
+      padding-top: 0.75rem;
+    }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #ef4444;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      margin-top: 1rem;
+    }
+    code {
+      background: #e5e7eb;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-29</h1>
+<div class="meta">
+  取得日: 2026-07-29 (JST 09:00 定期実行) ／ 対象期間: 2026-07-27〜07-29 ／
+  ソース: GitHub Trending (WebFetch) / GitHub releases (claude-code) / WebSearch (Claude Code update July 2026 / AI automation developer tool July 2026 / Cursor Windsurf update July 28-29 2026 / MCP spec 2026-07-28) ／
+  重複除外: 07-26〜07-28フィード掲載済み項目を除外（MCP spec 2026-07-28 RC確定 / moeru-ai/airi / bradautomates/claude-video / mvanhorn/last30days-skill / andrewyng/aisuite / yorukot/superfile / affaan-m/ECC / Claude Code v2.1.220 / permissionlesstech/bitchat 等）
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う（0件）</h2>
+<p class="none-note">該当なし — 本日の新着で今日から masatoman の運用に直接追加できるものはなし。昨日の MCP spec 2026-07-28（🟡様子見で掲載）が本日付けで最終版として正式確定しているが、Claude Code / 各 MCP サーバーへの実装反映は数週間後の見通しのため引き続き様子見。</p>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値（0件）</h2>
+<p class="none-note">該当なし（本日の新着に課金必須で時間対効果が明確なものはなし）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見（2件）</h2>
+
+<div class="card yellow">
+  <h3>Windsurf → Devin Desktop 3.2 — subagentがMCPツールを直接呼び出し対応・Devinプラグインシステムがpreviewに</h3>
+  <p>
+    6月2日に Windsurf から Devin Desktop にリブランドした旧 Cascade ベースの IDE が 3.2 系列アップデートを展開中。
+    今回の主な追加は3点。
+    <strong>(1) subagentがMCPツールを直接呼び出せるようになった</strong>（これまでメインエージェント経由だった）、
+    <strong>(2) Devin Local 向けプラグインシステム</strong>が enterprise opt-in のプレビューで開始、
+    <strong>(3) CLI 権限スコープによる terminal allow/deny リストをチームレベルで強制適用</strong>できるように。
+  </p>
+  <p>
+    masatoman は Claude Code メインなので Devin Desktop への乗り換えは不要。
+    ただし「subagentがMCPツールを直接呼び出す」設計は Claude Code のサブエージェント実装（Workflow tool の <code>agent()</code>）と同方向であり、
+    競合他社が同機能を標準搭載し始めたことで <strong>この設計がAIコーディングIDEのデファクトになる</strong>流れを確認できる。
+    plugin system の仕組みを Devin Desktop → Claude Code スキル設計の参考として読む価値あり。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — Claude Code の skills/plugin 設計と比較する参考として。乗り換えは不要。Devin Desktop がMCPを本格統合したことで Claude Code の MCP 活用が相対的に普通になってきたという市況確認。</span>
+  <span class="link"><a href="https://lushbinary.com/blog/ai-coding-agents-comparison-cursor-windsurf-claude-copilot-kiro-2026/" target="_blank">→ AI Coding Agents 2026: 比較記事（Lushbinary）</a></span>
+  <span class="link"><a href="https://www.shareuhack.com/en/posts/cursor-vs-claude-code-vs-windsurf-2026" target="_blank">→ Cursor vs Claude Code vs Devin Desktop 2026 比較（Shareuhack）</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>microsoft/agent-governance-toolkit — AIエージェントのOWASP Agentic Top 10対応ガバナンスフレームワーク（EU AI Act 8月施行でトレンド再浮上）</h3>
+  <p>
+    Microsoft が4月に OSS リリースした AI エージェントのガバナンスフレームワーク。
+    OWASP Agentic AI Top 10（目標乗っ取り / ツール誤用 / ID濫用 / メモリ汚染 / 連鎖障害 / 不正エージェント等）の全10リスクに対応し、
+    policy-as-code でサブミリ秒の確定的判定を行う。
+    EU AI Act の高リスクAI規制が <strong>2026年8月1日</strong> に施行されるタイミングで GitHub Trending 再浮上（本日 +46★）。
+  </p>
+  <p>
+    masatoman の現フェーズ（個人開発・ヒアリングフェーズ）では直接使う場面はない。
+    ただし Claude Code の Workflow tool + auto mode を使い込むと「エージェントがどこまで自律で動いていいか」の設計問題が表面化してくる。
+    OWASP Agentic Top 10 の ASI01〜ASI10 を一読しておくと、
+    今後 portfolio / masatoman.net でエージェント自動化を人に見せる際の「安全設計の言語化」に使える。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — OWASP Agentic Top 10 のドキュメントだけ眺めておく価値あり。フレームワーク本体を入れるのは MRR スケール後の顧客向けエージェント本番運用フェーズ以降。</span>
+  <span class="link"><a href="https://github.com/microsoft/agent-governance-toolkit" target="_blank">→ github.com/microsoft/agent-governance-toolkit</a></span>
+  <span class="link"><a href="https://opensource.microsoft.com/blog/2026/04/02/introducing-the-agent-governance-toolkit-open-source-runtime-security-for-ai-agents/" target="_blank">→ Microsoft OSS Blog — 紹介記事（4月リリース時）</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠（2件）</h2>
+
+<div class="card gray">
+  <h3>Cursor がクレジット課金制に移行 — $20定額→消費ポイント制で Agent mode ヘビーユーザーは実質値上げ</h3>
+  <p>
+    Cursor が $20/月 Pro プランをクレジットプール制に変更。
+    以前は定額で Agent mode も使い放題だったが、新モデルでは <strong>$20 のクレジットプールをプランコスト内で消費</strong>する形になり、
+    Agent mode や複雑な編集をヘビーに使うと追加課金または上限制限が発生する構造になった。
+  </p>
+  <p>
+    masatoman は Claude Code MAX の定額運用（月額固定）なので直接影響はない。
+    ただし Cursor をサブスクしていた場合、同じ使い方を続けると <strong>月額コストが上昇する</strong>。
+    masatoman.net の「AIコーディングツール比較」記事ネタとして Claude Code MAX との対比を書ける。
+    「定額で Opus を Agent mode で使い続けられる Claude Code MAX の方が重ユーザーに有利」という文脈で使える情報。
+  </p>
+  <span class="verdict gray">🚫 罠 — Cursor Pro を継続・新規検討している読者向け警告。$20 定額のつもりで Agent mode をヘビーに使うと割高になる。乗り換え検討の比較記事ネタとして活用可。</span>
+  <span class="link"><a href="https://www.shareuhack.com/en/posts/cursor-vs-claude-code-vs-windsurf-2026" target="_blank">→ Cursor vs Claude Code vs Devin Desktop 2026 比較（Shareuhack）</a></span>
+</div>
+
+<div class="card gray">
+  <h3>opengeos/GeoLibre — クラウドネイティブGISプラットフォームがGitHub Trending入り（+607★/day）</h3>
+  <p>
+    地理情報システム (GIS) のクラウドネイティブ版として急上昇中。
+    Web・モバイル向けに地理空間データを可視化するプラットフォームで、今日 +607★ を獲得してトレンド3位。
+    工務店の「現場写真」や「施工エリア管理」に一見関連しそうに見えるが、
+    GIS は <strong>地図データ・座標系・ラスタ/ベクタ形式</strong> を扱う専門領域であり、
+    portfolio の site-photo デモが想定している「スマホで現場写真を撮って日報生成」とは技術スタックが全く別。
+  </p>
+  <p>
+    Vercel + Next.js + Supabase のスタックに接続コストが高い。
+    GISの前提知識が必要で、工務店向け MVP にこの層を組み込む理由がない。
+    トレンド上位に見えても今の軸 B ヒアリングフェーズでは完全にスコープ外。
+  </p>
+  <span class="verdict gray">🚫 罠 — GitHub Trending で目立つが masatoman のスタックに合わない。工務店写真管理と GIS を混同しないこと。無視して OK。</span>
+  <span class="link"><a href="https://github.com/opengeos/GeoLibre" target="_blank">→ github.com/opengeos/GeoLibre</a></span>
+</div>
+
+<!-- 取得失敗ソース -->
+<div class="fail-note">
+  ⚠️ 取得失敗ソース（4件）: anthropic.com/news（HTTP 403）・obsidian.md/changelog（HTTP 403）・docs.claude.com/release-notes（HTTP 503）・claude.com/blog/bringing-mcp-2026-07-28-to-claude（HTTP 403）。
+  WebSearch / GitHub Trending + GitHub releases ページ経由で補完。Claude Code 最新リリースは v2.1.220（7/25）= 昨日フィード掲載済み。
+</div>
+
+<div class="dedup">
+  重複除外済み（直近3日フィード掲載済み）: MCP spec 2026-07-28 RC→最終版確定 / moeru-ai/airi / bradautomates/claude-video / mvanhorn/last30days-skill / aiagentstore.ai 週次まとめ / agentic.ai ニュース / andrewyng/aisuite / yorukot/superfile / affaan-m/ECC / Claude Code v2.1.220 / Reclaim AI v4 / Notion AI 2.5 / permissionlesstech/bitchat / obra/superpowers / anthropics/claude-cookbooks / code.claude.com/whats-new/2026-w29 等
+</div>
+
+</body>
+</html>
