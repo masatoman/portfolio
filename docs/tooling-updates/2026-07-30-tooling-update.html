@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-30</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .dedup strong { color: #6b7280; }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #b45309;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-30</h1>
+<div class="meta">
+  取得日: 2026-07-30 (JST) ／ 対象期間: 2026-07-28〜07-30 ／
+  ソース: Claude Code whats-new・GitHub Trending・WebSearch 5件 ／
+  重複除去: 直近3日分 (07-27〜07-29) 計11件を除外
+</div>
+
+<!-- ========== 🟢 即使う ========== -->
+<h2 class="green">🟢 即使う (1件)</h2>
+
+<div class="card green">
+  <h3>Claude Code Artifacts が閲覧者の MCP コネクタを直接呼び出せる (Week 29 / v2.1.207〜212)</h3>
+  <p>公開した Artifact ページが、それを開いた閲覧者自身の MCP コネクタ経由でライブデータ取得・アクション実行できるようになった。あわせて Artifact の公開共有リンク生成、Team/Enterprise でのエディタロール付与、Claude Tag セッションからの Artifact 作成にも対応。</p>
+  <p>masatoman が Supabase MCP を接続済みなら、<code>content_briefs</code> 確認ページや GSC サマリを Artifact として公開 → 閲覧時にリアルタイム取得するダッシュボードを今日から試せる。公開共有リンクで商談先へのデモ URL としても使える。</p>
+  <span class="verdict green">🟢 即使う — MAX+Supabase MCP 接続済みなら今日から試せる。Artifact をライブDBダッシュボードに昇格できる。</span>
+  <span class="link"><a href="https://code.claude.com/docs/en/whats-new/2026-w29" target="_blank">→ Claude Code What's New Week 29</a></span>
+</div>
+
+<!-- ========== 💰 課金価値 ========== -->
+<h2 class="blue">💰 課金価値 (1件)</h2>
+
+<div class="card blue">
+  <h3>Claude Sonnet 5 — 入力 $2/1M トークン (8/31 まで intro 価格、通常 $3)</h3>
+  <p>Anthropic が Claude Sonnet 5 のイントロ価格を発表。入力 $2/1M・出力 $10/1M、9/1 以降は $3/$15 に移行。MAX 定額プランユーザーには直接関係ないが、API 直叩きで個人開発を始めようとしているブログ読者には「今が一番安い」タイミング。</p>
+  <p>masatoman.net で「Sonnet 5 を API で試すなら 8 月中が安い」という切り口の記事ネタになる。ブログ読者を API デビューへ誘導する教育コンテンツとの相性が良い。</p>
+  <span class="verdict blue">💰 課金価値 — 自分は MAX 定額で無関係だが、読者向け「API 試し時」記事のネタとして即使える。</span>
+  <span class="link"><a href="https://www.anthropic.com/pricing" target="_blank">→ Anthropic Pricing</a></span>
+</div>
+
+<!-- ========== 🟡 様子見 ========== -->
+<h2 class="yellow">🟡 様子見 (4件)</h2>
+
+<div class="card yellow">
+  <h3>Hugging Face Speech-to-Speech — ローカル完結音声エージェントパイプライン (GitHub Trending +827★/day)</h3>
+  <p>Hugging Face と Cerebras が 7/1 にリリースした OSS 音声パイプライン。Parakeet (音声認識) → Gemma 4 31B (推論) → Qwen3-TTS (音声合成) を自由に差し替えられるモジュール構成で、Cerebras チップ上で 1,851 tok/s を達成。ローカル GPU でも動作する。今週 +827★/day でトレンド再燃中。</p>
+  <p>すぐ本番運用するものではないが、「音声インターフェースの個人開発応用」記事ネタとして AI 自動化ブログの「実験ログ」コンセプトと相性が良い実験対象。</p>
+  <span class="verdict yellow">🟡 様子見 — 今すぐ業務投入は不要。ブログ実験ネタとして 1〜2 週以内に試したい。</span>
+  <span class="link"><a href="https://github.com/huggingface/speech-to-speech" target="_blank">→ huggingface/speech-to-speech</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>Superpowers (obra) — Shell ベースのエージェント・スキルフレームワーク (GitHub Trending +616★/day)</h3>
+  <p>「実践的な開発方法論を重視したエージェント・スキルフレームワーク」として急上昇中の Shell リポジトリ。Claude Code の Skills (.claude/agents/*.md) と似たコンセプトで、スキルのパッケージ化・共有を Shell スクリプト主体で実現するとされる。</p>
+  <p>masatoman の現行スキルシステム (50+ skills) と競合・補完するか調査価値あり。Shell 中心なら CI/CD パイプラインとの統合が軽量にできる可能性。ただし実態は確認要。</p>
+  <span class="verdict yellow">🟡 様子見 — 実装思想の違いを確認してから採否判断。急いで移行する理由はない。</span>
+  <span class="link"><a href="https://github.com/obra/superpowers" target="_blank">→ obra/superpowers (GitHub)</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>AMONDLAB — ソロプレナー向け AI マーケティング自動化エージェント</h3>
+  <p>Mond Inc. がリリース。ブランド URL をスクレイプ → クリエイティブ生成 → スケジューリング → SNS 投稿まで一気通貫で自動化するサービス。スモールビジネスオーナー・ソロプレナー向けを明示しているのが特徴。</p>
+  <p>masatoman.net の SNS 運用方針 (友人経由 LINE 拡散優先、X 告知 wontfix) とは一部ずれるが、将来 SNS 起点のリード獲得を検討する際の比較対象として注目。詳細 URL・料金は未確認のため要調査。</p>
+  <span class="verdict yellow">🟡 様子見 — 現行方針との整合性確認後に検討。料金・実態を先に調べる。</span>
+  <span class="link"><a href="https://amondlab.com" target="_blank">→ AMONDLAB (詳細確認要)</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>VibeVoice (Microsoft) — オープンソース音声 AI スタック (GitHub Trending +336★/day)</h3>
+  <p>Microsoft が OSS 化した「フロンティア音声 AI 技術」のリポジトリ。Python 製、+51K★ の大型プロジェクト。GitHub Trending で +336★/day とじわじわ伸びている。</p>
+  <p>Microsoft が音声 AI を OSS 化するトレンドは AI 自動化ブログの読者にとって注目情報。即業務投入ではなく「業界動向を読む」文脈での紹介ネタ。</p>
+  <span class="verdict yellow">🟡 様子見 — 業界トレンド把握用。ブログ記事で「Microsoft が音声 AI OSS 化」として紹介価値あり。</span>
+  <span class="link"><a href="https://github.com/microsoft/VibeVoice" target="_blank">→ microsoft/VibeVoice (GitHub・要確認)</a></span>
+</div>
+
+<!-- ========== 🚫 罠 ========== -->
+<h2 class="gray">🚫 罠 (2件)</h2>
+
+<div class="card gray">
+  <h3>Weaviate 2.0 — NL クエリ対応ベクター DB メジャーアップデート</h3>
+  <p>ハイブリッド検索 (ベクター + キーワード) 強化、マルチテナント改善、自然言語クエリレイヤー追加が主な変更点。エンタープライズ向けの機能強化が中心。</p>
+  <p>個人ソロ開発者にはオーバーエンジニアリング。Supabase の pgvector で十分な用途に Weaviate を追加するとベンダーロックインが増える。今のスタック (Supabase) を崩す理由はない。</p>
+  <span class="verdict gray">🚫 罠 — Supabase pgvector で足りる。外部ベクター DB を追加するとスタック複雑度が上がるだけ。</span>
+  <span class="link"><a href="https://weaviate.io" target="_blank">→ weaviate.io</a></span>
+</div>
+
+<div class="card gray">
+  <h3>ECC (affaan-m) — "Agent harness optimizer" (GitHub Trending +857★/day)</h3>
+  <p>GitHub Trending で今日最も急上昇中 (+857★/day) のリポジトリ。「Claude とコーディングプラットフォームを対象にしたエージェントハーネス最適化システム」と説明されているが、実際の機能・ユースケース・メンテナンス状況が不明瞭。</p>
+  <p>Trending 急上昇だからといって実態が伴うとは限らない。スター数が人工的に水増しされているケースもある。公式ドキュメント・実例・メンテナ情報を確認してから判断する。</p>
+  <span class="verdict gray">🚫 罠 — 説明が不明瞭で実態不透明。トレンド入りだけで飛びつかない。確認してから再評価。</span>
+  <span class="link"><a href="https://github.com/affaan-m/ECC" target="_blank">→ affaan-m/ECC (要実態確認)</a></span>
+</div>
+
+<!-- ========== 重複除去ログ ========== -->
+<div class="dedup">
+  <strong>重複除去ログ (直近3日分から除外):</strong><br>
+  07-27: Notion AI 2.5 / Reclaim AI v4 / Claude Code v2.1.220 バグ修正 / aisuite (andrewyng) / superfile (yorukot) / Qoder Security<br>
+  07-28: claude-video / last30days-skill / MCP 仕様 2026-07-28 最終版 / airi (moeru-ai)<br>
+  07-29: Windsurf→Devin Desktop 3.2 / microsoft/agent-governance-toolkit / Cursor クレジット課金制移行 / opengeos/GeoLibre
+</div>
+
+<div class="fail-note">
+  取得失敗ソース: docs.claude.com/release-notes (301→platform.claude.com 403) / anthropic.com/news (403) / obsidian.md/changelog (403)。GitHub releases API はスコープ外 (masatoman/portfolio のみ)。代替: Claude Code whats-new・WebSearch・GitHub Trending WebFetch で補完。
+</div>
+
+</body>
+</html>
