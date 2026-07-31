@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-07-31</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .dedup strong { color: #6b7280; }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #b45309;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-07-31</h1>
+<div class="meta">
+  取得日: 2026-07-31 (JST 09:00 定期実行) ／ 対象期間: 2026-07-29〜07-31 ／
+  ソース: GitHub Trending (WebFetch) / WebSearch (Claude Code update July 2026 / chrome-devtools-mcp / AI automation developer tool July 30-31 2026 / different-ai openwork Claude Cowork alternative) ／
+  重複除去: 07-28〜07-30 フィード掲載済み項目を除外（後述）
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う（1件）</h2>
+
+<div class="card green">
+  <h3>ChromeDevTools/chrome-devtools-mcp v1.6.0 — Google 公式 Chrome DevTools MCP サーバー（週次更新中）</h3>
+  <p>
+    Google Chrome DevTools チームが公式メンテする MCP サーバー。
+    Claude Code などのコーディングエージェントが <strong>ライブの Chrome ブラウザを直接操作・検査</strong> できるようになる。
+    具体的には DOM 検査・ネットワーク監視・コンソールログ取得・パフォーマンスプロファイリングをエージェントが自律でこなせる。
+    2025年9月にパブリックプレビュー → 2026年5月19日に v1.0 正式リリース、その後週次ペースで更新を続けており、直近の v1.6.0 は7月中旬公開。
+    GitHub Trending に本日再浮上（+80★/day）。
+  </p>
+  <p>
+    masatoman の現環境との接続コストは低い。
+    Claude Code の <code>.mcp.json</code> に追記するだけで動く。
+    portfolio サイトの Playwright テストや local-business デモ確認で
+    <strong>「ブラウザが実際にどう見えているか」を Claude Code が直接把握しながら修正</strong>できるようになる。
+    今まで「ブラウザで手動確認 → Claude Code に状況を文章で伝える」という往復が不要になる。
+  </p>
+  <span class="verdict green">🟢 即使う — <code>.mcp.json</code> に3行追記するだけで接続完了。portfolio サイトの UI バグ確認・修正サイクルが「ブラウザ開いて → 目で確認 → Claude に説明」から「Claude が直接見て直す」に変わる。</span>
+  <span class="link"><a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank">→ ChromeDevTools/chrome-devtools-mcp (GitHub)</a></span>
+  <span class="link"><a href="https://developer.chrome.com/blog/devtools-for-agents-v1" target="_blank">→ Chrome for Developers ブログ — v1.0 リリースノート</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値（0件）</h2>
+<p class="none-note">該当なし（本日の新着に課金必須で時間対効果が明確なものはなし）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見（3件）</h2>
+
+<div class="card yellow">
+  <h3>different-ai/openwork — Claude Cowork のオープンソース代替（GitHub Trending +915★/day）</h3>
+  <p>
+    different-ai が 2026年6月18日にリリースした Claude Cowork の OSS デスクトップアプリ代替。
+    OpenCode エージェントフレームワーク上に構築され、<strong>50+ LLM プロバイダーに対応、macOS・Windows・Linux で動作</strong>。
+    HIPAA・SOC 2 準拠の企業向けセルフホストオプションもある。
+    リリース後6週経った今日、GitHub Trending で +915★/day と急再浮上している。
+  </p>
+  <p>
+    masatoman は Claude Code MAX 定額（月固定）で Cowork 相当の機能を既に持っているため乗り換えの動機はない。
+    ただし「Cowork 代替ツールが急増している」という市況は、
+    masatoman.net の <strong>「Claude Code MAX vs 競合ツール比較」記事ネタ</strong> として活用できる。
+    「なぜ Cowork 代替が次々生まれるか」の視点から AI ワークスペース市場の変化を書ける。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — 自分が乗り換える理由はない。「Cowork の代替 OSS がここまで増えた」という市況観察を記事ネタにするために README だけ眺めておく価値あり。</span>
+  <span class="link"><a href="https://github.com/different-ai/openwork" target="_blank">→ different-ai/openwork (GitHub)</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>BrowserStack Test Companion — IDE 内エージェンティックテスト自動化（2026-07-29 GA）</h3>
+  <p>
+    BrowserStack が7月29日に正式リリース（GA）したテスト自動化エージェント。
+    IDE 内で動作し、<strong>テストコード作成・実行・デバッグ・メンテナンスをエージェントが自律で担う</strong>。
+    Web アプリ・モバイルアプリ両対応で、BrowserStack のクラウドブラウザ環境と統合される。
+  </p>
+  <p>
+    「テスト自動化をエージェントに任せる」という方向性は正しく、
+    portfolio の CI 強化フェーズで参照価値が出る。
+    ただし masatoman の現フェーズは MVP 未投入のヒアリング段階であり、
+    テスト自動化を外部サービスに課金投資する理由がまだない。
+    Claude Code の Playwright + /code-review スキルで当面は十分。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — 方向性は正しいが今は不要。MRR スケール後に CI/CD を本格整備するタイミングで再評価。</span>
+  <span class="link"><a href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank">→ AI Agent News Week of July 30, 2026</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>Meta Model API 有料版 — Llama 系モデルに有料 API 課金が本格導入（2026年7月）</h3>
+  <p>
+    Meta が 2026年7月に Llama 系モデルの有料 API 提供を本格開始。
+    これまで「オープンウェイト = 自己ホストか無料 API」というイメージだった Meta が
+    <strong>課金モデルのエコシステムに参入</strong> したことで、AI API 市場の有料プレイヤーが増えた。
+    同時期に Claude Sonnet 5・GPT-5.6・Grok 4.5 も出揃い、7月は比較記事の需要が集中している。
+  </p>
+  <p>
+    masatoman は Claude MAX 定額なので直接は無関係。
+    ただし「API 検討者向け比較」という切り口で
+    masatoman.net に <strong>「2026年7月版 AI API コスト比較」記事を書くタイミング</strong>として最適。
+    Sonnet 5 のイントロ価格（8/31 まで $2/1M input）との対比が効く。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — 自分の運用コストは変わらない。「7月に主要 AI API が出揃った」タイミングで比較記事を1本書くと検索流入を拾える。</span>
+  <span class="link"><a href="https://agentic.ai/news" target="_blank">→ Agentic AI News — July 2026 Launches</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠（1件）</h2>
+
+<div class="card gray">
+  <h3>BridgeApp — 「タスク → PR 自動生成」ツール（2026-07-27 ローンチ）</h3>
+  <p>
+    7月27日にローンチ。ソフトウェアタスクを説明するだけで PR を自動生成し、手動ハンドオフを不要にするとうたうツール。
+    「AI が PR を書いてくれる」という訴求は目を引くが、
+    masatoman が既に使っている <strong>Claude Code の通常フローで同等のことができる</strong>（コード変更 → git add → commit → PR 作成まで Claude Code が完結）。
+  </p>
+  <p>
+    別サービスへの依存を増やし、PR 作成フローが Claude Code から外部ツールに分散すると
+    デバッグ時に「どちらが原因か」の切り分けが増える。
+    スタックをシンプルに保つ現方針（Vercel + Supabase + GitHub + Claude Code）に反する。
+    課金が発生する前に立ち止まること。
+  </p>
+  <span class="verdict gray">🚫 罠 — Claude Code で既に完結する。PR 自動生成のために別ツールを追加するとスタック複雑度が上がるだけ。無視して OK。</span>
+  <span class="link"><a href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank">→ AI Agent News Week of July 30, 2026（BridgeApp 言及あり）</a></span>
+</div>
+
+<!-- 取得失敗ソース -->
+<div class="fail-note">
+  ⚠️ 取得失敗ソース（4件）: anthropic.com/news（HTTP 403）・obsidian.md/changelog（HTTP 403）・docs.claude.com/release-notes（301→platform.claude.com→GitHub CHANGELOG.md へリダイレクト、スコープ外で断念）・releasebot.io/updates/anthropic/claude-code（HTTP 403）。
+  Claude Code 最新バージョンは7月中旬時点で週次更新継続中（v2.1.220 以降）。WebSearch / GitHub Trending で補完。
+</div>
+
+<div class="dedup">
+  <strong>重複除去ログ（直近3日分から除外）:</strong><br>
+  07-28: claude-video (bradautomates) / last30days-skill (mvanhorn) / MCP 仕様 2026-07-28 最終版 / airi (moeru-ai)<br>
+  07-29: Windsurf→Devin Desktop 3.2 / microsoft/agent-governance-toolkit / Cursor クレジット課金制移行 / opengeos/GeoLibre<br>
+  07-30: Claude Code Artifacts 閲覧者MCP (Week 29) / Claude Sonnet 5 intro 価格 / Hugging Face Speech-to-Speech / Superpowers (obra) / AMONDLAB / VibeVoice (Microsoft) / Weaviate 2.0 / ECC (affaan-m)<br>
+  ※ huggingface/speech-to-speech と mvanhorn/last30days-skill は本日も GitHub Trending 再浮上中だが掲載済みのため除外
+</div>
+
+</body>
+</html>
