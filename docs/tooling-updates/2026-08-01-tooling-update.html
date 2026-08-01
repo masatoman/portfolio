@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-01</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      margin-top: 2rem;
+      padding: 0.75rem 1rem;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      color: #6b7280;
+    }
+    .dedup summary { cursor: pointer; font-weight: 600; }
+    .dedup ul { margin-top: 0.5rem; padding-left: 1.25rem; }
+    .fail-note {
+      margin-top: 1rem;
+      padding: 0.5rem 0.75rem;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: #92400e;
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-08-01</h1>
+<div class="meta">
+  取得日: 2026-08-01 (JST) ／ 対象期間: 直近2日 (7/30〜8/1) ／
+  ソース: Claude Code GitHub Releases・Anthropic news・GitHub Trending・WebSearch (AI automation 直近) ／
+  重複除去: 直近3日分 (7/29・7/30・7/31) の既掲載アイテムを除外済み
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う — 2件</h2>
+
+<div class="card green">
+  <h3>Claude Code 50% usage boost ── 8/19 まで延長確定</h3>
+  <p>Anthropic が Claude Code Pro / Max 加入者向けの「週次 usage 一時 50% 増量」を 8/19 まで延長。対象プランには自動適用されており、/usage コマンドに反映が遅れる場合あり。</p>
+  <p>この期間にルーティンエージェント (tooling-feed・GSC 自動化・demo-gallery 集計) をまとめて走らせ、通常枠に戻る前に処理量を稼いでおける。</p>
+  <span class="verdict green">🟢 即使う ── Max プランに自動適用済み。スケジュールタスクを重めのスロットに集中配置する狙い目期間。</span>
+  <span class="link"><a href="https://claudelog.com/claude-news/" target="_blank">claudelog.com — Claude Code news 一覧</a></span>
+</div>
+
+<div class="card green">
+  <h3>last30days-skill (mvanhorn) ── 30日分ソーシャルまとめエージェント (GitHub Trending +658★)</h3>
+  <p>Reddit・X・YouTube・HackerNews・Polymarket・Web を対象に、Claude スキルとして過去 30 日を横断要約するリサーチエージェント。Python 製で Claude Code の Skills として組み込める。</p>
+  <p>業界動向調査・競合ツール比較・ネタ発掘を「スキル一発」で完結できる。masatoman.net の比較記事ネタ収集に今日から使える。</p>
+  <span class="verdict green">🟢 即使う ── 競合比較記事のリサーチ工程をこのスキル一本でほぼ代替できる。試す価値 MAX。</span>
+  <span class="link"><a href="https://github.com/mvanhorn/last30days-skill" target="_blank">github.com/mvanhorn/last30days-skill</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値</h2>
+<p class="none-note">該当なし（本日のフィードに有料プラン追加で価値が変わるアイテムなし）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見 — 4件</h2>
+
+<div class="card yellow">
+  <h3>Cursor v3.11 ── Side Chats + Conversation Search + Cloud Agent Hooks</h3>
+  <p>並列エージェント会話 (Side Chats) でメインコンテキストを汚さず別タスクを並走できるようになった。Conversation Search は過去チャットを全文検索。Cloud Agent Hooks はリモートトリガーで Cursor エージェントを起動する仕組み。</p>
+  <p>Claude Code がメインのスタックなら今すぐ乗り換え理由はないが、Side Chats の設計思想は Claude Code の /fork に近く、比較記事ネタとして使える。</p>
+  <span class="verdict yellow">🟡 様子見 ── Claude Code に同等機能があるため今は静観。Cursor vs Claude Code 比較記事で「3.11 時点の差分」として言及すると鮮度が出る。</span>
+  <span class="link"><a href="https://www.shareuhack.com/en/posts/cursor-vs-claude-code-vs-windsurf-2026" target="_blank">Cursor vs Claude Code vs Windsurf 2026 比較</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>Zapier AI Agents ── 7000+ アプリ対応でついに GA</h3>
+  <p>拡張ベータを経て Zapier の AI エージェント層が正式 GA。条件分岐・エラー回復・マルチブランチワークフローに対応し、Zapier の全 7000+ アプリカタログをエージェントが自律実行できる。</p>
+  <p>将来の工務店向け SaaS で「見積もり → 顧客 CRM 登録 → LINE 通知」のような外部連携自動化を組む際の最右翼候補だが、MVP 前に手をつける必要はない。</p>
+  <span class="verdict yellow">🟡 様子見 ── MVP 後に外部システム連携を組む時点で改めて評価。今はブックマークだけでよい。</span>
+  <span class="link"><a href="https://zapier.com/blog/ai-coding-tools/" target="_blank">Zapier — AI エージェント情報</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>tuicr ── Rust 製 TUI コードレビュー (GitHub Trending +335★)</h3>
+  <p>vim キーバインドで動くターミナル専用のコードレビュー UI。diff 閲覧・コメント追加・レビュー送信をすべてターミナル内で完結させる Rust アプリ。</p>
+  <p>Claude Code の diff 閲覧フローで大半はカバーできるため置き換えにはならないが、ターミナル派で GitHub PR レビューを純 TUI で完結させたい場合に試す価値あり。</p>
+  <span class="verdict yellow">🟡 様子見 ── Claude Code + gh CLI の今のフローで十分なら不要。ターミナル美化に興味があれば後日試用を。</span>
+  <span class="link"><a href="https://github.com/agavra/tuicr" target="_blank">github.com/agavra/tuicr</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>GitHub Copilot SDK ── アプリ内 Copilot 組み込み (Java / マルチプラットフォーム)</h3>
+  <p>GitHub Copilot Agent をサードパーティアプリに組み込むためのマルチプラットフォーム SDK。Java 製で iOS・Android・Web・デスクトップへのネイティブ統合を想定。</p>
+  <p>将来 SaaS にコーディング補助を載せたい場合の選択肢になり得るが、Claude API (MCP / SDK) で同等のことが今すぐできるため、ソロ個人開発フェーズでは優先度低。</p>
+  <span class="verdict yellow">🟡 様子見 ── エンタープライズ向け SDK。個人 SaaS に Copilot ブランドが必要になった時点で評価。今は不要。</span>
+  <span class="link"><a href="https://github.com/github/copilot-sdk" target="_blank">github.com/github/copilot-sdk</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠 — 1件</h2>
+
+<div class="card gray">
+  <h3>Anthropic Prompt Tools API ── 8/17 廃止 (Workbench 終了セット)</h3>
+  <p>Anthropic Workbench で提供されていた「プロンプト生成・改善・テンプレート化 API」が 2026-08-17 に廃止される。Workbench 自体も同時終了。</p>
+  <p>Claude Code MAX 中心の運用では直接影響ゼロ。API 直叩きスクリプトや n8n / Zapier から Anthropic Workbench API を叩いている場合は代替ルートへの移行が必要。</p>
+  <span class="verdict gray">🚫 罠 ── 廃止で困る人は即対応を。MAX プラン + Claude Code 中心なら実害なし。知らずに放置すると 8/17 以降にスクリプトが突然死するので念のため確認推奨。</span>
+  <span class="link"><a href="https://platform.claude.com/docs/en/release-notes/overview" target="_blank">Claude Platform release notes</a></span>
+</div>
+
+<!-- ===== 重複除去ログ ===== -->
+<details class="dedup">
+  <summary>重複除去ログ（直近3日分から除外したアイテム）</summary>
+  <ul>
+    <li>Claude Code Artifacts が閲覧者の MCP コネクタを直接呼び出せる (Week 29 / v2.1.207〜212) — 07-30 掲載済</li>
+    <li>Claude Sonnet 5 intro 価格 ($2/$10 per MTok、8/31 まで) — 07-30 掲載済</li>
+    <li>Hugging Face Speech-to-Speech — 07-30 掲載済</li>
+    <li>Superpowers (obra) — 07-30 掲載済</li>
+    <li>AMONDLAB — 07-30 掲載済</li>
+    <li>VibeVoice (Microsoft) — 07-30 掲載済</li>
+    <li>Weaviate 2.0 — 07-30 掲載済</li>
+    <li>ECC (affaan-m) — 07-30 掲載済</li>
+    <li>different-ai/openwork — 07-31 掲載済</li>
+    <li>ChromeDevTools/chrome-devtools-mcp — 07-31 掲載済</li>
+    <li>BrowserStack Test Companion — 07-29 掲載済</li>
+    <li>Meta Model API 有料版 — 07-29 掲載済</li>
+    <li>BridgeApp — 07-31 掲載済</li>
+  </ul>
+</details>
+
+<div class="fail-note">
+  ⚠️ 取得失敗ソース: docs.claude.com/release-notes (301 → platform.claude.com → 307 → CHANGELOG.md にリダイレクト、最終コンテンツ取得不可) ／
+  anthropic.com/news (403 Forbidden) ／ obsidian.md/changelog (403 Forbidden)。
+  GitHub Trending・WebSearch・GitHub Releases 経由で補完済み。
+</div>
+
+</body>
+</html>
