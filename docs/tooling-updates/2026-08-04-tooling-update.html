@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-04</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .dedup strong { color: #6b7280; }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #b45309;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-08-04</h1>
+<div class="meta">
+  取得日: 2026-08-04 (JST 09:00 定期実行) ／ 対象期間: 2026-08-02〜08-04 ／
+  ソース: Claude Code GitHub Releases (WebFetch) / platform.claude.com release notes (WebSearch) / GitHub Trending (WebFetch) / WebSearch (Claude Code update Aug 2026 / AI automation tool launch Aug 2026 / DeepSeek V4 Flash / 個人開発 AI ツール新着 2026年8月) ／
+  重複除去: 08-01・08-02 フィード掲載済み項目を除外（後述）
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う（1件）</h2>
+
+<div class="card green">
+  <h3>Claude Code MAX ブースト 8/19 まで延長 ── 普段より 50% 多く使える期間限定窓</h3>
+  <p>
+    Anthropic が MAX プラン加入者向けに設定していた「週次利用量 50% 増量」の一時ブーストを、
+    <strong>2026年8月19日まで延長</strong>することを公式アナウンス。
+    通常の MAX プラン上限に対してさらに 50% の余裕が生まれており、
+    大型バッチタスクや長文生成を繰り返しても通常より詰まりにくい状態。
+  </p>
+  <p>
+    普段は「重い / 時間がかかる」と後回しにしている大型ルーティン ——
+    たとえば <code>docs/</code> 全件の index rebuild、GSC データ自動取得バッチ、
+    masatoman.net 記事のリライト候補洗い出し ——
+    を今週中（8/19 まで）に集中的に走らせる好機。
+    8/20 以降は通常上限に戻るため、今の窓を使い切るつもりで動くと効率が上がる。
+  </p>
+  <span class="verdict green">🟢 即使う ── 今週の Claude Code ルーティンを「重めのタスク優先」に並べ替える。8/19 を過ぎると元の制限に戻る。</span>
+  <span class="link"><a href="https://www.gradually.ai/en/changelogs/claude-code/" target="_blank">→ Claude Code Changelog（gradually.ai）</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値（0件）</h2>
+<p class="none-note">該当なし（本日の新着に新規有料プランで費用対効果が変わるアイテムなし）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見（3件）</h2>
+
+<div class="card yellow">
+  <h3>Anthropic が Workbench + Experimental Prompt Tools API を 8/17 に廃止</h3>
+  <p>
+    Anthropic Workbench のプロンプト生成・改善・テンプレート化に使っていた実験的 API
+    （Prompt Generation / Improvement / Templatization）が
+    <strong>2026年8月17日でシャットダウン</strong>。
+    Workbench 自体も同日廃止予定。
+  </p>
+  <p>
+    masatoman の現行スタック（MAX プラン定額 + API 直叩きなし）には直接影響なし。
+    ただし将来 API を直叩きしてプロンプト自動生成パイプラインを組む計画がある場合、
+    これらの API に依存したコードは 8/17 以降に動かなくなる。
+    現時点は「知っておく」程度でよいが、
+    Workbench を普段の実験環境として使っているなら代替手順を今週中に確認しておくこと。
+  </p>
+  <span class="verdict yellow">🟡 様子見 ── API 直叩きがない今は影響ゼロ。Workbench を日常的に使っているなら 8/17 前に代替フローを確認する。</span>
+  <span class="link"><a href="https://platform.claude.com/docs/en/release-notes/overview" target="_blank">→ Claude Platform release notes</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>Claude Sonnet 5 プロモ価格 8/31 終了 → 9/1 から $3/$15/M に値上げ</h3>
+  <p>
+    Claude Sonnet 5 のローンチ時特別価格（$2/$10/M トークン）が
+    <strong>2026年8月31日で終了</strong>し、9月1日から標準価格 $3/$15/M に移行。
+    モデル自体は Opus 4.8 に迫る精度で 1M コンテキスト対応。
+  </p>
+  <p>
+    MAX プラン定額利用中は価格変更の直接影響はない。
+    ただし将来 API 移行を検討する際の基準価格として把握しておく価値あり。
+    masatoman.net の記事ネタとしても「Sonnet 5 の実力を 8 月中に試し尽くすべき理由」
+    という切り口で速報性のある記事になる。
+  </p>
+  <span class="verdict yellow">🟡 様子見 ── 今は MAX 定額なので直接コスト影響なし。API 移行計画の参照データとして保存。記事ネタとして今月中が旬。</span>
+  <span class="link"><a href="https://aitoolsrecap.com/Blog/AINewsaugust2026.aspx" target="_blank">→ AI Tools Recap — August 2026 News</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>firecrawl/pdf-inspector ── Rust 製 PDF 高速解析ライブラリ（GitHub Trending +1,699★/日）</h3>
+  <p>
+    PDF の検査・分類・テキスト抽出を高速 Rust で処理するオープンソースライブラリ。
+    本日 GitHub Trending で +1,699 スター（計 8k 超）を記録して急上昇。
+    Firecrawl チームが開発しており、
+    <strong>大量 PDF を構造化データとして扱うユースケース</strong>に特化。
+  </p>
+  <p>
+    現フェーズ（ヒアリング段階、MVP 未着手）には早い。
+    ただし将来の工務店向け SaaS で「見積 PDF を受け取って自動で金額・項目を読み取る」
+    機能を作る場面では第一候補になりうる。
+    Rust + WASM に慣れている masatoman にとっては技術的ミスマッチも小さい。
+  </p>
+  <span class="verdict yellow">🟡 様子見 ── MVP 決定後（11 月末の主軸確定後）に工務店 PDF 処理ユースケースが出てきた段階で再評価。今はスター数だけ記憶しておく。</span>
+  <span class="link"><a href="https://github.com/firecrawl/pdf-inspector" target="_blank">→ firecrawl/pdf-inspector (GitHub)</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠（3件）</h2>
+
+<div class="card gray">
+  <h3>DeepSeek V4-Flash 正式リリース ($0.14/M) ── 「100 倍安い」はスペック上の数字</h3>
+  <p>
+    2026年8月3日に正式公開。284B パラメータの MoE（実稼働 13B）、1M コンテキスト、
+    入力 $0.14/M・出力 $0.28/M と業界最安水準。
+    Claude Fable 5 比で「100 倍以上安くテストを実行できる」と研究機関がレポート。
+  </p>
+  <p>
+    MAX プラン定額運用中は API 乗り換えでコスト削減メリットがゼロ。
+    加えて中国系モデルのデータプライバシー懸念（工務店顧客データを扱う B2B では特にリスク）。
+    「安い」が飛び込んでくるが、現スタックを崩す理由にはならない。
+  </p>
+  <span class="verdict gray">🚫 罠 ── MAX 定額運用者には乗り換えコスト > メリット。B2B 顧客データをモデルに流す場面では中国系は避ける。</span>
+  <span class="link"><a href="https://www.technology.org/2026/08/03/deepseek-v4-flash-cheapest-ai-model-to-run/" target="_blank">→ technology.org — DeepSeek V4-Flash is cheapest AI model</a></span>
+</div>
+
+<div class="card gray">
+  <h3>esengine/DeepSeek-Reasonix ── DeepSeek ネイティブのターミナル AI コーディングエージェント</h3>
+  <p>
+    Go 製のターミナル AI コーディングエージェント。DeepSeek モデルに最適化されており、
+    GitHub Trending で本日 29k+ スター・+883★/日と急上昇中。
+    「Claude Code の DeepSeek 版」という位置づけ。
+  </p>
+  <p>
+    Claude Code MAX を使い込んでいる masatoman には移行メリットがない。
+    Skills / Workflow / routine などの既存設定資産は当然移行できず、
+    乗り換えコストが極めて高い。DeepSeek 依存でモデルロックインも発生する。
+  </p>
+  <span class="verdict gray">🚫 罠 ── Claude Code の Skills / routine 資産を捨てて乗り換える理由がない。Trending の急上昇は "DeepSeek V4-Flash 発表" に乗った話題性によるもの。</span>
+  <span class="link"><a href="https://github.com/esengine/DeepSeek-Reasonix" target="_blank">→ esengine/DeepSeek-Reasonix (GitHub)</a></span>
+</div>
+
+<div class="card gray">
+  <h3>TencentCloud/TencentDB-Agent-Memory ── Tencent 製 AI エージェントメモリハブ</h3>
+  <p>
+    TypeScript 製。複数 AI エージェントが共有できるメモリ集中管理システム。
+    GitHub Trending で 12k スター・+1,090★/日と急上昇。
+    「エージェントが長期記憶を持てる」という訴求。
+  </p>
+  <p>
+    Claude Code の CLAUDE.md + project memory/ で既に同等の機能を実現済み。
+    加えて Tencent 製プロダクトへの工務店顧客データ経由は B2B 信用度リスクがある。
+    Trending の急上昇は DeepSeek V4-Flash / 中国系 AI ブームの余波と見られる。
+  </p>
+  <span class="verdict gray">🚫 罠 ── Claude の既存 memory 体制で代替完結。Tencent 製への依存は B2B 信用度面でリスク。わざわざ導入する理由なし。</span>
+  <span class="link"><a href="https://github.com/TencentCloud/TencentDB-Agent-Memory" target="_blank">→ TencentCloud/TencentDB-Agent-Memory (GitHub)</a></span>
+</div>
+
+<!-- ===== 重複除去ログ ===== -->
+<div class="dedup">
+  <strong>重複除去ログ（08-01・08-02・07-31 フィード掲載済み → 今日は除外）:</strong><br>
+  waittim/MemoryCustodian / usekaneo/kaneo / EU AI Act 8/2 発効 / bytedance/deer-flow /
+  mvanhorn/last30days-skill / agavra/tuicr / github/copilot-sdk /
+  Cursor vs Claude Code vs Windsurf 2026 比較
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="fail-note">
+  <strong>取得失敗ソース:</strong>
+  anthropic.com/news (403 Forbidden) /
+  obsidian.md/changelog (403 Forbidden) /
+  aiagentstore.ai/ai-agent-news/this-week (403 Forbidden) ──
+  WebSearch で補完済み。実質影響なし。
+</div>
+
+</body>
+</html>
