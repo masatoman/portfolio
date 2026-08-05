@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-05</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .dedup strong { color: #6b7280; }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #b45309;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-08-05</h1>
+<div class="meta">
+  取得日: 2026-08-05 (JST 09:00 定期実行) ／ 対象期間: 2026-08-03〜08-05 ／
+  ソース: Claude Code GitHub Releases (WebFetch: github.com/anthropics/claude-code/releases) / WebSearch (Claude Code v2.1.221 v2.1.222 release / AI coding tool August 2026 / Kiro AWS spec-driven) / GitHub Trending (WebFetch) ／
+  重複除去: 08-02・08-04 フィード掲載済み項目を除外（後述）
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う（2件）</h2>
+
+<div class="card green">
+  <h3>Claude Code v2.1.222: PreToolUse フック修正 + HTTPS プロキシハング修正 + worktree 破壊的 git 操作修正</h3>
+  <p>
+    2026年8月4日 22:39 リリース（39件の CLI 変更）。masatoman の現行ルーティンに直撃する修正3本が含まれる。
+  </p>
+  <p>
+    ① <strong>PreToolUse 自動許可フックがバックグラウンドエージェントタスクのツール制限をバイパスする問題を修正</strong>
+    ── settings.json でフックを設定しているルーティンが正しく動くようになった。
+    ② <strong>HTTPS プロキシ経由での起動接続確認がハング・失敗する問題を修正</strong>
+    ── プロキシ必須のリモートコンテナ環境で Claude Code が起動時にフリーズする問題が解消。
+    ③ <strong>worktree 分離セッションで破壊的 git コマンドが実行されるバグを修正</strong>
+    ── worktree isolation を使うワークフロー（agent isolation / parallel コード編集）が安全に。
+    その他: SendMessage が長いサマリーを切り詰める代わりに受け付けるよう変更 /
+    /diff ビューが git blob コンテンツを使用するよう改善。
+  </p>
+  <p>
+    ⚠️ <strong>ultraplan 機能を削除</strong>: /ultraplan を呼び出しているルーティン・スキルがあれば除去 or 書き換えが必要。
+  </p>
+  <span class="verdict green">🟢 即使う ── <code>npm update -g @anthropic-ai/claude-code</code> で即適用。フック設定 + プロキシ環境 + worktree の3点が全部直っているので今日中に更新する。ultraplan 使用箇所は grep で確認。</span>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.222" target="_blank">→ Release v2.1.222 · anthropics/claude-code (GitHub)</a></span>
+</div>
+
+<div class="card green">
+  <h3>Claude Code v2.1.221: Focus View (Ctrl+Alt+F) + zsh Bash 権限チェック脆弱性修正</h3>
+  <p>
+    2026年8月4日 00:14 リリース。08-04 フィードの生成タイミング（09:00 JST）の直前に出たため前回未掲載。
+  </p>
+  <p>
+    <strong>Focus View</strong>: VSCode チャットメニューのトグルでツール活動を「ターンごとの折りたたみサマリー + ライブ実行中インジケータ」に切り替える機能。
+    <code>Ctrl+Alt+F</code> または「Claude Code: Toggle Focus view」コマンドで即起動。
+    日次ルーティンや長い Workflow を走らせながら別の作業をする時にツールログのノイズが激減する。
+  </p>
+  <p>
+    <strong>セキュリティ修正</strong>: zsh の <code>[[ ]]</code> 正規表現条件内に隠れたコマンドを実行できる
+    Bash tool の権限チェックバイパスを修正。影響範囲のコマンドは今後パーミッション確認プロンプトが出る。
+    他: 絵文字自動補完追加 / Vim モードのやり直し改善 / バックグラウンドセッションのコミット保持改善。
+  </p>
+  <span class="verdict green">🟢 即使う ── Focus View は Ctrl+Alt+F 1回で今日から有効。zsh セキュリティ修正は v2.1.222 アップデートで同時に取り込まれる。</span>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.221" target="_blank">→ Release v2.1.221 · anthropics/claude-code (GitHub)</a></span>
+  <span class="link"><a href="https://dev.classmethod.jp/en/articles/20260804-cc-updates-v2-1-221/" target="_blank">→ v2.1.220→v2.1.221 変更点まとめ (DevelopersIO)</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値（0件）</h2>
+<p class="none-note">該当なし（本日の新着に MAX 定額以外で費用対効果が変わる新規有料プランなし）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見（2件）</h2>
+
+<div class="card yellow">
+  <h3>compound-engineering-plugin: Claude Code + Cursor 両対応 TypeScript プラグイン（GitHub Trending +40★/日）</h3>
+  <p>
+    Claude Code・Cursor・互換エディタに対応する TypeScript 製プラグイン。
+    本日 GitHub Trending に登場、スター数はまだ 40 と小規模。
+    「compound engineering（複合エンジニアリング）」というコンセプトで
+    Claude Code を IDE ワークフローに組み込む方向性は masatoman のスタックに合う。
+  </p>
+  <p>
+    ただし README・ドキュメントが薄く実際に何ができるか評価困難な段階。
+    新興プラグインの常として、スター急上昇後に開発が止まるリスクもある。
+    今週中に README を一読して機能確認するだけでよい。
+  </p>
+  <span class="verdict yellow">🟡 様子見 ── スター数が 500 を超えたタイミングで再評価。今は README 確認だけ。</span>
+  <span class="link"><a href="https://github.com/trending" target="_blank">→ GitHub Trending（2026-08-05）</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>Amazon Kiro: spec-driven development agent ── PRD → design.md → tasks.md → 実装を自動生成する AWS 製 IDE</h3>
+  <p>
+    AWS が 2026年5月に国際展開した「仕様書ファースト AI IDE」。
+    EARS 記法で requirements.md / design.md / tasks.md を自動生成してから実装に入る設計思想。
+    Claude Code・GitHub Copilot もほぼ同時期に spec-first 方向に収斂しており、
+    2026 年の AI コーディング業界トレンドそのもの。
+  </p>
+  <p>
+    masatoman はすでに CLAUDE.md + memory/ でこれに近い運用をしているため
+    <strong>Kiro への乗り換えは不要</strong>。
+    ただし「specs.md → tasks.md → コード」という構造化フローを
+    既存の CLAUDE.md / Skill / routine に取り込む設計ヒントとして一読価値がある。
+    8時間セッション窓・Cedar権限ゲートウェイは工務店 SaaS を本格実装する段階（12月以降）に再評価候補。
+  </p>
+  <span class="verdict yellow">🟡 様子見 ── IDE乗り換え不要。「spec-first の書き方」を CLAUDE.md 強化のヒントに使う観点で 11 月の MVP 設計フェーズで読み返す。</span>
+  <span class="link"><a href="https://pingax.com/kiro-aws-launch-announcement/" target="_blank">→ AWS Kiro IDE: Launch Guide 2026（Pingax）</a></span>
+  <span class="link"><a href="https://www.digitalapplied.com/blog/amazon-kiro-aws-agentic-ide-complete-guide" target="_blank">→ Amazon Kiro Complete 2026 Developer Guide（DigitalApplied）</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠（2件）</h2>
+
+<div class="card gray">
+  <h3>reverse-skill: PowerShell 製「Claude Code + Cursor 対応」セキュリティ研究用 AI ルーティングツール（GitHub Trending +2,297★/日）</h3>
+  <p>
+    Claude Code・Cursor 対応を謳う PowerShell 製ルーティングツール。
+    本日 GitHub Trending で +2,297 スターと急上昇しているが、主用途は「セキュリティ研究」。
+    Claude Code 関連という言葉に引き寄せられがちなタイプのバイラル。
+  </p>
+  <p>
+    PowerShell 製なので macOS/Linux ネイティブの masatoman 環境では動作が非自明。
+    セキュリティ研究用途は工務店 B2B SaaS 開発とは全く関係なく、
+    本番環境やルーティンに混ぜるとアタックサーフェスが広がるリスクしかない。
+    スター数は名前の話題性に乗ったもので実用評価とは無関係。
+  </p>
+  <span class="verdict gray">🚫 罠 ── 「Claude Code 対応」という表記に釣られないこと。スター急上昇 ≠ 実用価値。セキュリティ研究ツールを本番ワークフローに混ぜるリスクがある。</span>
+  <span class="link"><a href="https://github.com/trending" target="_blank">→ GitHub Trending（2026-08-05）</a></span>
+</div>
+
+<div class="card gray">
+  <h3>video-use (Python): ブラウザ制御でビデオ編集を自動化するコーディングエージェント（GitHub Trending +320★/日）</h3>
+  <p>
+    ブラウザ経由でビデオ編集ツールを操作するエージェントフレームワーク。Python 製。
+    「ブラウザ操作 × 動画 × AI エージェント」というアーキテクチャ自体は面白いが、
+    ユースケースが YouTube クリエイター・動画マーケター向けに特化している。
+  </p>
+  <p>
+    masatoman の現フェーズ（工務店向け B2B ヒアリング中、MVP 未着手）には接点ゼロ。
+    将来の工務店 SaaS でも動画処理の需要は現時点では見えていない。
+    将来の軸 A（masatoman.net）コンテンツ制作に使える可能性は薄い
+    ── 動画編集を自動化するより文章・GSC 自動化のほうが先。
+  </p>
+  <span class="verdict gray">🚫 罠 ── 今のスタックに入れる場所なし。動画自動化ニーズが生まれてから評価すれば十分。</span>
+  <span class="link"><a href="https://github.com/trending" target="_blank">→ GitHub Trending（2026-08-05）</a></span>
+</div>
+
+<!-- ===== 重複除去ログ ===== -->
+<div class="dedup">
+  <strong>重複除去ログ（08-02・08-04 フィード掲載済み → 本日除外）</strong><br>
+  ・Claude Code MAX ブースト 8/19 まで延長（08-04 掲載）<br>
+  ・Anthropic Workbench + Experimental Prompt Tools API 廃止 8/17（08-04 掲載）<br>
+  ・Claude Sonnet 5 プロモ価格 8/31 終了 → 9/1 値上げ（08-04 掲載）<br>
+  ・firecrawl/pdf-inspector Rust 製 PDF ライブラリ（08-04 掲載）<br>
+  ・DeepSeek V4-Flash $0.14/M 正式リリース（08-04 掲載）<br>
+  ・esengine/DeepSeek-Reasonix（08-04 掲載）<br>
+  ・TencentCloud/TencentDB-Agent-Memory（08-04 掲載）
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="fail-note">
+  <strong>取得失敗ソース（403 / リダイレクト未解決）</strong><br>
+  ・docs.claude.com/en/release-notes/claude-code → 301 → platform.claude.com → 307 → GitHub CHANGELOG（raw取得不可のため WebSearch で代替）<br>
+  ・obsidian.md/changelog → 403（WebSearch 代替、本日 Obsidian 新着なし）<br>
+  ・havoptic.com/tools/claude-code → 403<br>
+  ・releasebot.io/updates/anthropic/claude-code → 403<br>
+  ※ GitHub Releases (github.com/anthropics/claude-code/releases) は WebFetch 成功 → v2.1.221・v2.1.222 両方取得
+</div>
+
+</body>
+</html>
