@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-06</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .dedup strong { color: #6b7280; }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #b45309;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-08-06</h1>
+<div class="meta">
+  取得日: 2026-08-06 (JST 09:00 定期実行) ／ 対象期間: 2026-08-04〜08-06 ／
+  ソース: Claude Code GitHub Releases (WebFetch) / Anthropic News (WebFetch: 403) / Obsidian Changelog (WebFetch: 403) / GitHub Trending (WebFetch) / WebSearch (AI coding tool August 2026 / Claude Sonnet 5 / 個人開発AI新着) ／
+  重複除去: 08-04・08-05 フィード掲載済み項目を除外（後述）
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う（1件）</h2>
+
+<div class="card green">
+  <h3>cloudflare/computer: Cloudflare 公式「AIエージェントにコンピューターを渡す」TypeScript ライブラリ（GitHub Trending 今日最急上昇 +891★）</h3>
+  <p>
+    Cloudflare が公開した TypeScript 製ライブラリ。コンセプトは「Give your agent a computer」——
+    AI エージェントにブラウザ・スクリーン操作などのコンピューター能力を持たせる。
+    本日の GitHub Trending で AI/自動化カテゴリ最急上昇（+891 スター）、総スター数 2,857。
+  </p>
+  <p>
+    masatoman の現行 routine との接点：
+    Claude Code から <code>/mcp</code> 経由でブラウザ自動操作を任せる構成（demo-gallery の表示確認・Supabase ダッシュボード巡回・Vercel デプロイ状態確認など）に組み込める可能性がある。
+    既存の automated routine に「ブラウザで確認が必要な手動ステップ」がある場合、
+    そこをエージェントに丸投げするアーキテクチャの選択肢として今日検討できる。
+  </p>
+  <p>
+    <strong>注意</strong>: Cloudflare 公式なのでロックインリスクは低め。ただし README で具体的な機能範囲を確認してから組み込みを判断すること（computer-use の実装深度はライブラリによって大きく異なる）。
+  </p>
+  <span class="verdict green">🟢 即使う ── README を読んで MCP 接続手順を確認（30 分）。masatoman の routine で「手でブラウザを開いて確認している手順」を洗い出してエージェント委譲の優先度を決める。Cloudflare 公式なので長期メンテが期待できる点もプラス。</span>
+  <span class="link"><a href="https://github.com/cloudflare/computer" target="_blank">→ cloudflare/computer (GitHub)</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値（0件）</h2>
+<p class="none-note">該当なし（本日の新着に MAX 定額以外で費用対効果が変わる新規有料プランなし。Claude Sonnet 5 プロモ価格 8/31 期限は 08-04 フィード掲載済みのため除外）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見（2件）</h2>
+
+<div class="card yellow">
+  <h3>huangruiteng/loopx: 複数 AI コーディングエージェントを束ねる軽量 Python フレームワーク（GitHub Trending +326★）</h3>
+  <p>
+    長時間・複数ステップのタスクをまたがって AI エージェントチームを調整するための軽量 Python フレームワーク。
+    「LoopX」と名付けられ、複数の coding agent を並列または直列に動かすオーケストレーション層を提供する。
+    2,091 スター（+326 今日）で GitHub Trending に登場。
+  </p>
+  <p>
+    masatoman の現状との比較: Claude Code の <code>Workflow</code>（pipeline / parallel / phase）機能がほぼ同じ役割を果たしている。
+    MAX プランで Claude Code を使いこなしている段階では <strong>loopx を導入するコスト > 得られる効果</strong>。
+    自前で multi-agent ワークフローを Python で制御したい・Claude Code に縛られない可搬性が欲しいという需要が生まれた時に再評価する価値がある。
+  </p>
+  <span class="verdict yellow">🟡 様子見 ── 総スター数 2,000 超えてからドキュメント充実度を確認。Claude Code Workflow で詰まった場面が出たら代替として検討。今は star だけつけておく。</span>
+  <span class="link"><a href="https://github.com/huangruiteng/loopx" target="_blank">→ huangruiteng/loopx (GitHub)</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>uber/ADR: AI エージェントのセキュリティ観測・脅威検知 OSS ライブラリ（GitHub Trending +354★）</h3>
+  <p>
+    Uber が OSS 公開した Python 製 AI エージェントセキュリティライブラリ。
+    「Enterprise AI agent security through observability and threat detection」が公式説明。
+    エージェントの行動ログを可観測化し、異常なツール呼び出しや権限昇格の試みを検知する。
+    1,030 スター（+354 今日）。
+  </p>
+  <p>
+    個人開発・一人法人のフェーズでは過剰設計になる。
+    ただし「AI エージェントが何をしているか見える化する」という観点は、
+    工務店 SaaS で複数エージェントが顧客データにアクセスする段階（2027 年以降）に重要になる概念。
+    Uber 公式なので実績・長期サポートは期待できる。
+  </p>
+  <span class="verdict yellow">🟡 様子見 ── 今は bookmark だけ。工務店 SaaS の MVP を本番投入する 12 月フェーズで「エージェントのセキュリティ設計」タスクに紐づけて再評価する。</span>
+  <span class="link"><a href="https://github.com/uber/ADR" target="_blank">→ uber/ADR (GitHub)</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠（0件）</h2>
+<p class="none-note">該当なし（本日の新着に積極的に避けるべきプロジェクトなし）</p>
+
+<!-- ===== 重複除去ログ ===== -->
+<div class="dedup">
+  <strong>重複除去ログ（08-04・08-05 フィード掲載済み → 本日除外）</strong><br>
+  ・Claude Code v2.1.222: worktree 分離強化 + PreToolUse フック修正 + HTTPS プロキシ修正（08-04・08-05 掲載）<br>
+  ・Claude Code v2.1.221: Focus View (Ctrl+Alt+F) + zsh セキュリティ修正（08-04・08-05 掲載）<br>
+  ・Claude Sonnet 5 プロモ価格 $2/$10 per Mtok / 8/31 期限（08-04 掲載）<br>
+  ・Amazon Kiro: spec-driven development agent（08-05 掲載）<br>
+  ・TencentCloud/TencentDB-Agent-Memory（08-05 掲載）<br>
+  ・esengine/DeepSeek-Reasonix（08-05 掲載）<br>
+  ・firecrawl/pdf-inspector（08-04 掲載）<br>
+  ・DeepSeek V4-Flash $0.14/M 正式リリース（08-04 掲載）
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="fail-note">
+  <strong>取得失敗ソース（403 / リダイレクト未解決）</strong><br>
+  ・docs.claude.com/en/release-notes/claude-code → 301 → platform.claude.com → 307 → GitHub CHANGELOG (blob/raw 取得不可) → WebSearch で代替<br>
+  ・anthropic.com/news → 403（WebSearch で代替、直近2日の新規発表なし）<br>
+  ・obsidian.md/changelog → 403（WebSearch 代替、本日 Obsidian 新着なし）<br>
+  ※ GitHub Releases / GitHub Trending / GitHub Repo ページは WebFetch 成功
+</div>
+
+</body>
+</html>
