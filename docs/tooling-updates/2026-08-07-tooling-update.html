@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-07</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .dedup strong { color: #6b7280; }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #b45309;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-08-07</h1>
+<div class="meta">
+  取得日: 2026-08-07 (JST 09:00 定期実行) ／ 対象期間: 2026-08-05〜08-07 ／
+  ソース: Claude Code GitHub Releases (WebFetch) / Anthropic News (WebFetch: 403) / Obsidian Changelog (WebFetch: 403) / GitHub Trending (WebFetch) / WebSearch (AI coding tool August 2026 / Claude Code update / Claude Security Plugin / addyosmani agent-skills) ／
+  重複除去: 08-04・08-05・08-06 フィード掲載済み項目を除外（後述）
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う（2件）</h2>
+
+<div class="card green">
+  <h3>Claude Code v2.1.223: <code>/teleport</code> でクラウド→ローカル継続 + <code>/review</code> エイリアス追加（2026-08-06 00:52 UTC リリース）</h3>
+  <p>
+    昨日リリースされた v2.1.223 の主な変更。
+    <strong><code>/teleport</code> ヒント</strong>: claude.ai/code などのクラウドセッション内で
+    <code>claude --teleport &lt;session-id&gt;</code> を実行するとローカル CLI にそのまま引き継げる。
+    今まで「web で走らせた scheduled routine をローカルで続きを見たい」場面に毎回コンテキストを貼り直していた手間が消える。
+  </p>
+  <p>
+    <strong><code>/review</code></strong> が <code>/code-review</code> のエイリアスになり、タイプ量が半減。
+    <code>/code-review</code> は最後に使った effort レベルを再利用するよう変更されたため、
+    毎回 <code>--effort high</code> を指定しなくてよくなった。
+  </p>
+  <p>
+    セキュリティ修正も重要: Bash コマンドのパーミッション確認をバイパスできる細工（コマンドの一部を隠す）と、
+    不可視 Unicode パディングでのバイパス、ワークフロースクリプトの <code>dynamic import()</code> サンドボックス脱出をいずれも修正済み。
+    <strong>今すぐ <code>npm update -g @anthropic-ai/claude-code</code> 推奨。</strong>
+  </p>
+  <span class="verdict green">🟢 即使う ── <code>npm update -g @anthropic-ai/claude-code</code> を今日実行してバージョン確認。claude.ai scheduled routine を走らせた後、ローカル CLI で続きを見る <code>/teleport</code> ワークフローを試す価値あり。セキュリティ修正含むため更新を後回しにしない。</span>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.223" target="_blank">→ Release v2.1.223 · anthropics/claude-code (GitHub)</a></span>
+</div>
+
+<div class="card green">
+  <h3>addyosmani/agent-skills: Addy Osmani による 24 本の SKILL.md セット、MIT ライセンス（GitHub Trending +593★、累計 82K）</h3>
+  <p>
+    Google Chrome チームの Addy Osmani が公開した AI コーディングエージェント向け production-grade スキル集。
+    Define → Plan → Build → Verify → Review → Ship の 6 フェーズにわたる 24 スキルで、
+    SKILL.md フォーマット準拠・MIT ライセンス・70+ AI エージェント対応と記載されている。
+    8 つのスラッシュコマンドも付属。
+  </p>
+  <p>
+    masatoman のスタックへの組み込み方: <code>git clone</code> して <code>.claude/skills/</code>
+    に必要な SKILL.md を選んでコピーするだけ。
+    今の Skills ライブラリ（<code>skill-creator</code>・<code>code-review</code>・<code>morning</code> 等）と重複するものは除外し、
+    「Verify」「Ship」フェーズ系を優先的に試すと masatoman の portfolio デプロイ前チェックに即ハマる。
+  </p>
+  <span class="verdict green">🟢 即使う ── <code>git clone https://github.com/addyosmani/agent-skills</code> して <code>docs/comparison.md</code> で 24 スキルの一覧を確認（15 分）。Verify / Ship 系を <code>.claude/skills/</code> に入れて既存スキルと被りがないか確認してから有効化。ゼロから書く工数を丸ごと省ける。</span>
+  <span class="link"><a href="https://github.com/addyosmani/agent-skills" target="_blank">→ addyosmani/agent-skills (GitHub)</a></span>
+  <span class="link"><a href="https://github.com/addyosmani/agent-skills/blob/main/docs/comparison.md" target="_blank">→ 他スキルセットとの比較表 (comparison.md)</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値（0件）</h2>
+<p class="none-note">該当なし（本日の新着に MAX 定額・既存 MCP 以外で費用対効果が変わる新規有料プランなし）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見（3件）</h2>
+
+<div class="card yellow">
+  <h3>mattpocock/skills: Total TypeScript 作者の composable 最小スキル集、"grill-me" 発想（GitHub Trending +1,873★、累計 206K）</h3>
+  <p>
+    Total TypeScript の Matt Pocock が公開した skills リポジトリ。
+    思想は Osmani と対照的で「小さく・composable・ユーザー制御優先」。
+    特徴は <strong>grill-me プリミティブ</strong>: AI が作業を始める前に要件を 1 問 1 問確認し、
+    合意が取れるまで次のステップに進まない設計。
+  </p>
+  <p>
+    Osmani が「全 SDLC を守備範囲に持つ」のに対し、Pocock は「自分に合わせてアダプトしやすい最小単位」を指向。
+    masatoman のような solo 開発者が CLAUDE.md に自分語りを書く文化とは相性が良いが、
+    まず Osmani の 24 スキルで土台を作ってから「足りない部分を補う」用途で使う順番が効率的。
+  </p>
+  <span class="verdict yellow">🟡 様子見 ── Osmani skills の入れ替えが一段落してから読む。grill-me の思想は参考になるが今は着手順序の問題で後回しでよい。</span>
+  <span class="link"><a href="https://github.com/mattpocock/skills" target="_blank">→ mattpocock/skills (GitHub)</a></span>
+  <span class="link"><a href="https://dev.to/jamilxt/superpowers-vs-agent-skills-vs-pocock-three-philosophies-of-ai-coding-workflows-e6n" target="_blank">→ Osmani vs Pocock 哲学比較 (DEV.to)</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>Claude Security Plugin (公開 beta, 2026-07-22): ターミナル内で動く multi-agent 脆弱性スキャナー ── 今週急浮上</h3>
+  <p>
+    Anthropic が 7/22 に public beta を公開した Claude Code 向けセキュリティプラグイン。
+    Claude Code セッション内からリポジトリ全体または直近の変更だけをスキャンし、
+    見つかった脆弱性をパッチファイルとして提案する。
+    6 フェーズパイプライン + adversarial verification パネル（複数エージェントが findings を相互否定チェック）が特徴。
+  </p>
+  <p>
+    今週の検索急増から「使った人のレポートが出始めた」段階。
+    masatoman には portfolio 本番デプロイ前の PR 一回スキャン用途が合っている。
+    注意: MAX プランの定額枠内でも走らせると大量トークン消費になるため、毎 PR ではなく「大きい機能リリース前だけ」の用途に絞ること。
+  </p>
+  <span class="verdict yellow">🟡 様子見 ── buildfastwithai の setup ガイドを 10 分読んで「実際何トークン消費するか」を確認してから試す。月 1 〜 2 回の portfolio リリース前スキャンなら MAX プラン枠内で収まる可能性が高い。</span>
+  <span class="link"><a href="https://www.buildfastwithai.com/blogs/claude-security-plugin" target="_blank">→ Claude Security Plugin setup ガイド (BuildFastWithAI)</a></span>
+  <span class="link"><a href="https://cybersecuritynews.com/anthropic-claude-security-plugin/" target="_blank">→ Anthropic が Claude Security Plugin を公開 (CybersecurityNews)</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>tirth8205/code-review-graph: AI コンテキスト削減のローカル依存グラフ（GitHub Trending +237★、累計 29K）</h3>
+  <p>
+    Python 製のローカルファースト・コードインテリジェンスライブラリ。
+    リポジトリをローカルで依存グラフ化し、AI に渡すコンテキスト量を削減することを目的とする。
+    大規模コードベースでの AI コーディングエージェントの精度・コスト改善に有効とされている。
+  </p>
+  <p>
+    masatoman の portfolio リポジトリはまだファイル数が少なく、
+    今すぐ導入してもコンテキスト削減効果が薄い。
+    ファイル数 50 超・コード量 5,000 行超になったタイミングで再評価する。
+  </p>
+  <span class="verdict yellow">🟡 様子見 ── portfolio が大きくなったら再評価。今は早すぎる。ブックマーク済みとしておく。</span>
+  <span class="link"><a href="https://github.com/tirth8205/code-review-graph" target="_blank">→ tirth8205/code-review-graph (GitHub)</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠（1件）</h2>
+
+<div class="card gray">
+  <h3>Copilot code review: agent skills + MCP が GA（2026-07-29）── Claude Code MAX 持ちには重複投資</h3>
+  <p>
+    GitHub Copilot の code review 機能で agent skills と MCP サーバーの利用が GA になった。
+    Copilot が issue を受け取り PR を自動生成し、code review でも MCP 連携ができるようになった形。
+    Copilot Pro+ または Business プランが必要で、月額 $19〜$39 の追加費用がかかる。
+  </p>
+  <p>
+    masatoman の現状: Claude Code MAX（定額）+ GitHub MCP / Supabase MCP / Vercel MCP で同等以上の機能が既にある。
+    Copilot の agent skills は Claude Code の SKILL.md 体系と競合しており、
+    2 システムを並走させると設定の複雑度だけが上がる。
+    Copilot Business に追加課金する理由は今のスタックには見当たらない。
+  </p>
+  <span class="verdict gray">🚫 罠 ── Claude Code MAX でカバー済みの機能のために月 $19〜$39 を追加払いする価値なし。Copilot MCP は Claude Code 環境から使う既存 MCP と設定が別物になる点も混乱を招く。</span>
+  <span class="link"><a href="https://github.blog/changelog/2026-07-29-copilot-code-review-agent-skills-and-mcp-now-generally-available/" target="_blank">→ Copilot code review: agent skills and MCP GA (GitHub Changelog)</a></span>
+</div>
+
+<!-- ===== 重複除去メモ ===== -->
+<div class="dedup">
+  <strong>重複除去ログ（08-04〜08-06 掲載済みのため今日除外）:</strong><br>
+  08-04: Claude Code MAX ブースト延長 / Workbench + Experimental Prompt Tools API 廃止 / Claude Sonnet 5 プロモ価格 8/31 終了 /
+  firecrawl/pdf-inspector / DeepSeek V4-Flash / esengine/DeepSeek-Reasonix / TencentCloud/TencentDB-Agent-Memory<br>
+  08-05: Claude Code v2.1.222 / v2.1.221 (Focus View) / compound-engineering-plugin / Amazon Kiro / reverse-skill / video-use<br>
+  08-06: cloudflare/computer / huangruiteng/loopx / uber/ADR<br>
+  <br>
+  <strong>取得失敗ソース:</strong> Anthropic News (403) / Obsidian Changelog (403)
+</div>
+
+</body>
+</html>
