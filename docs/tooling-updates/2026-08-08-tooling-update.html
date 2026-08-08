@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-08</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .dedup strong { color: #6b7280; }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #b45309;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-08-08</h1>
+<div class="meta">
+  取得日: 2026-08-08 (JST 09:00 定期実行) ／ 対象期間: 2026-08-06〜08-08 ／
+  ソース: Claude Code GitHub Releases (WebFetch ✅) / Anthropic News (WebFetch: EGRESS_BLOCKED) / Obsidian Changelog (WebFetch: EGRESS_BLOCKED) / GitHub Trending (WebFetch ✅) / WebSearch (Claude Code v2.1.224 / PrimeIntellect prime-agent / Memmy agent memory / obra superpowers) ／
+  重複除去: 08-05・08-06・08-07 フィード掲載済み項目を除外（後述）
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う（1件）</h2>
+
+<div class="card green">
+  <h3>Claude Code v2.1.224: クロスセッションメッセージング (<code>SendMessage</code> + <code>ListAgents</code>) + アーカイブプラグイン HTTPS インストール（2026-08-07 04:00 UTC リリース）</h3>
+  <p>
+    <strong>クロスセッションメッセージング</strong>が macOS/Linux で使えるようになった (<code>SendMessage</code> / <code>ListAgents</code>)。
+    複数の Claude Code セッションをまたいで指示を送れるため、「バックグラウンドで走っている scheduled routine に別セッションから話しかける」「複数エージェントを 1 セッションから束ねる」構成が実現できる。
+    今まさにこのルーティンエージェントとやり取りする際にも有効。
+  </p>
+  <p>
+    <strong>アーカイブプラグインソース</strong>: <code>plugin install</code> で HTTPS 上の zip ファイルを直接指定でき、SHA-256 ピニングによる改ざん検知もサポート。
+    プラグインの配布・固定バージョン管理が安定する。
+  </p>
+  <p>
+    その他: サンドボックスの資格情報マスキング強化 (JWT 対応・AWS SigV4 再署名) / 長いプロジェクトパスが共有セッションディレクトリに解決される問題修正 / MCP ツールがターン途中に接続した場合にモデルへ通知されるよう修正。
+  </p>
+  <span class="verdict green">🟢 即使う — SendMessage/ListAgents はこの scheduled routine でマルチエージェント連携に今日から使える。アーカイブインストールも plugin 固定化で実用的</span>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.224" target="_blank">→ GitHub Release: v2.1.224</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値（0件）</h2>
+<p class="none-note">該当なし（MAX プラン定額運用中につき追加課金検討なし）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見（3件）</h2>
+
+<div class="card yellow">
+  <h3>PrimeIntellect-ai/prime-agent: 自己改善型 RLM コーディングエージェント（MIT ライセンス、ARC-AGI-3 で 95.5% ─ 人間専門家の 95.4% を超えた）</h3>
+  <p>
+    Prime Intellect が 2026-08-06 にオープンソース化した自己改善型コーディングエージェント。
+    <strong>Recursive Language Model (RLM)</strong> というアーキテクチャでコンテキストを変数として扱い、サブエージェントへの委任を Python 関数呼び出しとして実装する。
+    プロンプト・スキル・メモリを「エージェント自身が CRUD できる状態」として保持し、<code>/refine</code> で軌跡を自己レビューしてハーネスを改善できる。
+    GitHub Trending 本日 1 位 (6,452★ / +2,293 今日)。
+  </p>
+  <p>
+    <strong>採用しない理由</strong>: API 直叩き必須の設計で MAX プラン定額運用とは相性が悪い。ただしアーキテクチャ発想（コンテキストを変数にする・スキルをエージェントが書き換える）は既存 Skills 設計の参考になる。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — 今すぐ導入は MAX プランと合わない。アーキテクチャの読み物として週末に流し読み推奨</span>
+  <span class="link"><a href="https://github.com/PrimeIntellect-ai/prime-agent" target="_blank">→ GitHub: PrimeIntellect-ai/prime-agent</a></span>
+  <span class="link"><a href="https://www.marktechpost.com/2026/08/06/prime-intellect-releases-prime-agent/" target="_blank">→ MarkTechPost 解説記事</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>MemTensor/memmy-agent: Claude Code + Codex + Cursor 横断のローカルメモリハブ（Product Hunt 掲載中）</h3>
+  <p>
+    Claude Code・Codex・OpenClaw・Cursor・Windsurf など複数エージェントで同一の記憶を共有するローカルメモリハブ。
+    「Cursor で調べたことを Claude Code が知らない」という文脈サイロ問題を解消するコンセプト。
+    関連: zilliztech/memsearch は Markdown + Milvus バックエンドによる永続メモリレイヤー（Claude Code / Codex 対応）。
+  </p>
+  <p>
+    <strong>現状評価</strong>: masatoman は現在 <code>memory/</code> ファイル運用で文脈管理済み。ツールが 1 本に絞られている間は不要。
+    使うツールが 3 本以上に増えたら再評価する。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — ツール数が増えた時の検討候補。今はメモリファイル運用で十分</span>
+  <span class="link"><a href="https://github.com/MemTensor/memmy-agent" target="_blank">→ GitHub: MemTensor/memmy-agent</a></span>
+  <span class="link"><a href="https://github.com/zilliztech/memsearch" target="_blank">→ GitHub: zilliztech/memsearch（Milvus 版）</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>obra/superpowers 再浮上: エージェント開発方法論スキルフレームワーク（268K★、今日 +782、GitHub Trending 5 位）</h3>
+  <p>
+    2025-10 初出のアジャイルスキルフレームワーク。目的の明確化 → 設計 → 計画 → TDD 実装 → レビューという工程を Claude Code に守らせる「方法論の強制ツール」。
+    「LLM はすぐコードを書き始める」という問題を、プロセスを組み込んだスキルセットで抑制する。
+    本日 GitHub Trending に再浮上 (累計 268K★)。
+  </p>
+  <p>
+    <strong>既存 Skills との重複</strong>: masatoman は既に Skills システムで独自の方法論を運用中。丸ごと採用より個別アイデアの流用が現実的。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — 既存 Skills と重複する部分多い。アイデア流用目的で GitHub を流し読みする程度でよい</span>
+  <span class="link"><a href="https://github.com/obra/superpowers" target="_blank">→ GitHub: obra/superpowers</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠（1件）</h2>
+
+<div class="card gray">
+  <h3>denoland/celld: 自己ホスト型分散 Durable Objects（Rust 製、GitHub Trending +516★ 今日）</h3>
+  <p>
+    Cloudflare の Durable Objects と同等の stateful edge 実行環境を自己ホストで動かす Rust 実装。
+    エッジで状態を持ちたいケースには面白い選択肢だが、Rust の運用知識が必要で、インフラ管理コストが高い。
+    masatoman の現スタック (Supabase + Vercel) で十分対応できる範囲。
+  </p>
+  <span class="verdict gray">🚫 罠 — Rust 運用コストが高い。Supabase Realtime + Edge Functions で十分なスタックに不要な複雑さを持ち込む</span>
+  <span class="link"><a href="https://github.com/denoland/celld" target="_blank">→ GitHub: denoland/celld</a></span>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="fail-note">
+  ⚠️ <strong>取得失敗ソース（EGRESS_BLOCKED）:</strong>
+  www.anthropic.com/news、obsidian.md/changelog/、aiagentstore.ai、primeintellect.ai ─ プロキシポリシーによりアクセス不可。WebSearch で代替補完済み。
+</div>
+
+<!-- ===== 重複除去メモ ===== -->
+<div class="dedup">
+  <strong>重複除去:</strong>
+  以下は直近 3 日間フィードに掲載済みのため今日除外:
+  Claude Code v2.1.221〜v2.1.223 (08-05〜08-07) /
+  addyosmani/agent-skills (08-07) /
+  mattpocock/skills (08-07) /
+  cloudflare/computer (08-06) /
+  huangruiteng/loopx (08-06) /
+  uber/ADR (08-06) /
+  Amazon Kiro (08-05) /
+  Claude Security Plugin (08-07) /
+  tirth8205/code-review-graph (08-07) /
+  Copilot code review GA (08-07)
+</div>
+
+</body>
+</html>
