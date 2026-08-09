@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-09</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .dedup strong { color: #6b7280; }
+    .fail-note {
+      font-size: 0.82rem;
+      color: #b45309;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-08-09</h1>
+<div class="meta">
+  取得日: 2026-08-09 (JST 09:00 定期実行) ／ 対象期間: 2026-08-07〜08-09 ／
+  ソース: Claude Code GitHub Releases (WebFetch ✅) / Anthropic News (EGRESS_BLOCKED) / Obsidian Changelog (EGRESS_BLOCKED) / GitHub Trending (WebFetch ✅) / WebSearch (Claude Code v2.1.225-226 / google/skills / TradingAgents) ／
+  重複除去: 08-06・08-07・08-08 フィード掲載済み項目を除外（後述）
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う（1件）</h2>
+
+<div class="card green">
+  <h3>Claude Code v2.1.225 + v2.1.226: headless OAuth 修正 + <code>SendMessage</code> で Remote Control を名前起動（2026-08-08 リリース）</h3>
+  <p>
+    <strong>headless セッション OAuth 修正</strong>: 長寿命の <code>CLAUDE_CODE_OAUTH_TOKEN</code> を短命トークンに差し替えると
+    定期実行タスク（scheduled routine）が 401 で落ちていた問題を修正。
+    このルーティンエージェント自身が headless で動いているため直接恩恵がある。
+  </p>
+  <p>
+    <strong>macOS MCP OAuth キーチェーン修正</strong>: キーチェーン読み取りタイムアウト後に MCP OAuth サーバーが 401 バーストを出していた問題を修正。
+    Supabase MCP など OAuth 認証の MCP ツールを macOS で使っている場合に安定性が上がる。
+  </p>
+  <p>
+    <strong>SendMessage 機能拡張</strong>: <code>ListAgents</code> の名前から Remote Control セッションを新規起動して会話を開始できるようになった。
+    「バックグラウンドで走るルーティンが別セッションのエージェントに話しかける」構成が名前指定だけでできる。
+  </p>
+  <p>
+    その他: ゲートウェイのスペンドリミット警告（上限金額・リセット時刻・オペレーターメッセージを表示）/
+    <code>claude agents</code> が未信頼ディレクトリで確認を求めるようになったワークスペーストラスト /
+    auto モードの安全フィルター誤カウント修正 / VSCode Focus view 折りたたみ問題修正。
+  </p>
+  <span class="verdict green">🟢 即使う — headless scheduled routine の OAuth 安定化が直接効く。SendMessage 名前起動でエージェント間協調設計がシンプルになる</span>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.225" target="_blank">→ GitHub Release: v2.1.225</a></span>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.226" target="_blank">→ GitHub Release: v2.1.226</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値（0件）</h2>
+<p class="none-note">該当なし（MAX プラン定額運用中につき追加課金検討なし）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見（1件）</h2>
+
+<div class="card yellow">
+  <h3>google/skills: Google 公式 Agent Skills 集 100+（Apache 2.0 / Cloud Next 2026 発表、GitHub Trending +481★）</h3>
+  <p>
+    Google が Cloud Next 2026 で公式公開した Agent Skills リポジトリ。
+    BigQuery・Cloud Run・Cloud SQL・Firebase・GKE・AlloyDB・Gemini API・Google Ads など 100+ のスキルを収録し、
+    Claude Code・Codex・Antigravity CLI など複数エージェントに対応する。
+    <code>npx skills add google/skills</code> または <code>claude plugin marketplace add google/skills</code> で導入可能（Apache 2.0）。
+  </p>
+  <p>
+    <strong>今すぐ使わない理由</strong>: masatoman のスタックは Vercel + Supabase が主軸で、Google Cloud の日常利用がない。
+    ただし BigQuery スキル（GSC データ解析等）や Gemini API スキルは将来の選択肢として記録価値あり。
+  </p>
+  <span class="verdict yellow">🟡 様子見 — Vercel + Supabase 中心の現構成には今すぐ差し込み先がない。Google Cloud 利用が増えた時点で再評価</span>
+  <span class="link"><a href="https://github.com/google/skills" target="_blank">→ GitHub: google/skills</a></span>
+  <span class="link"><a href="https://cloud.google.com/blog/topics/developers-practitioners/level-up-your-agents-announcing-googles-official-skills-repository" target="_blank">→ Google Cloud Blog: 発表記事</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠（1件）</h2>
+
+<div class="card gray">
+  <h3>TauricResearch/TradingAgents: Multi-Agents LLM 金融取引フレームワーク（Python / MIT、GitHub Trending +153★）</h3>
+  <p>
+    複数の LLM エージェントが協調して株式・暗号資産などの取引判断を行うフレームワーク。
+    Trending に上がっているが、masatoman の個人開発・工務店自動化とは完全に別ドメイン。
+    金融商品への自動発注は金融規制リスクを伴い、個人で運用するには法的コストが高い。
+  </p>
+  <span class="verdict gray">🚫 罠 — 金融取引特化で用途外。ノイズとして無視推奨</span>
+  <span class="link"><a href="https://github.com/TauricResearch/TradingAgents" target="_blank">→ GitHub: TauricResearch/TradingAgents</a></span>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="fail-note">
+  ⚠️ <strong>取得失敗ソース（EGRESS_BLOCKED）:</strong>
+  www.anthropic.com/news、obsidian.md/changelog/、havoptic.com、releasebot.io ─ プロキシポリシーによりアクセス不可。WebSearch + GitHub Releases WebFetch で代替補完済み。
+</div>
+
+<!-- ===== 重複除去メモ ===== -->
+<div class="dedup">
+  <strong>重複除去:</strong>
+  以下は直近 3 日間フィードに掲載済みのため今日除外:
+  Claude Code v2.1.224 (08-08) /
+  PrimeIntellect-ai/prime-agent (08-08) /
+  MemTensor/memmy-agent (08-08) /
+  obra/superpowers (08-08) /
+  denoland/celld (08-08) /
+  addyosmani/agent-skills (08-07・08-08) /
+  mattpocock/skills (08-07) /
+  cloudflare/computer (08-06) /
+  Claude Security Plugin (08-07) /
+  Copilot code review GA (08-07)
+</div>
+
+</body>
+</html>
