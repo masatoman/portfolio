@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-11</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .dedup summary { cursor: pointer; font-weight: 600; color: #6b7280; }
+    .failed-sources {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      margin-top: 1rem;
+      padding: 0.5rem 0.75rem;
+      background: #fafafa;
+      border-left: 2px solid #e5e7eb;
+    }
+    @media (max-width: 600px) {
+      body { font-size: 14px; padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+    table { width: 100%; border-collapse: collapse; }
+    .table-wrap { overflow-x: auto; }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-08-11</h1>
+<div class="meta">
+  取得日: 2026-08-11 (JST 09:00) ／ 対象期間: 2026-08-09〜08-11 ／
+  ソース: GitHub Releases (Claude Code) ✅ · GitHub Trending ✅ · WebSearch×4 ✅ ·
+  anthropic.com/news ❌ · obsidian.md/changelog ❌ · agentic.ai ❌ (ネットワーク制限) ／
+  重複除去: 2026-08-08〜10フィード掲載済アイテム除外済
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う</h2>
+
+<div class="card green">
+  <h3>Claude Code v2.1.227 (2026-08-10) — Max プラン login token フリーズ修正 + <code>claude-code-action</code> Bash 修正</h3>
+  <p>v2.1.227 が 2026-08-10 にリリース。主要修正は3点: (1) Max プランで Fable 利用クレジット判定に使うフィーチャーフラグが、OAuth トークン期限切れ後に古い値に固まるバグを修正。(2) GitHub-hosted runner 上で <code>allowed_non_write_users</code> 設定時に Bash コマンドが失敗していた問題を修正。(3) スラッシュコマンドメニューのUIと event-loop 効率を改善。</p>
+  <p>masatoman の routine（Claude Code + claude-code-action ベース）に直撃する修正が2件。長時間セッションでフラグがズレていた可能性があり、<code>claude update</code> で即適用する価値あり。</p>
+  <span class="verdict green">🟢 即使う — <code>claude update</code> でアップグレード。routine の安定性が上がる。</span>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.227" target="_blank">→ GitHub Release: v2.1.227</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値</h2>
+<p class="none-note">該当なし — 今日の期間内に時間対効果が明確な新規有料ツールなし。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見</h2>
+
+<div class="card yellow">
+  <h3>Meta Muse Code (beta、2026-08-05/06) — 並列サブエージェント＋クラッシュセーフイベントログ付きターミナルコーディングエージェント</h3>
+  <p>Meta（Superintelligence Labs）が Muse Spark 1.2 モデルを搭載したターミナルコーディングエージェント「Muse Code」を beta リリース（8/5-6）。並列サブエージェント、worktree 分離、全操作を記録・再生可能なイベントログが特徴。macOS/Linux 対応。料金は入力 $1.25/M・出力 $4.25/M のペイアズユーゴー（Anthropic Sonnet 5 より安価）。</p>
+  <p>Claude Code MAX 定額運用中は今すぐ乗り換えるメリットなし。ただしイベントログで「サブエージェントの動きを全部 replay できる」設計思想は、routine デバッグへのヒントになる。品質がSonnet 5 相当になったか Q3 末に評価ポイント。</p>
+  <span class="verdict yellow">🟡 様子見 — MAX 定額ある今は動かない。2026 Q3 末に Muse Spark 1.2 品質再評価。</span>
+  <span class="link"><a href="https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2" target="_blank">→ Meta AI Research: Muse Code 発表</a></span>
+  <span class="link"><a href="https://techcrunch.com/2026/08/05/meta-launches-muse-code-an-ai-agent-for-large-code-bases/" target="_blank">→ TechCrunch: Meta launches Muse Code</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>semantica-agi/semantica — グラフネイティブ AI コンテキスト基盤（GitHub Trending +970★ / 累計 4,073★）</h3>
+  <p>AI エージェントの判断・推論を知識グラフとして保持し、「どの情報がなぜ使われたか」を全件 traceable にする OSS インフラ。forward chaining・Rete・演繹・仮説推論など複数推論エンジンを内包。Palantir のオープンソース代替と紹介されることも。</p>
+  <p>コンテキスト精度を上げつつ AI の判断根拠を監査する用途。今のひとり開発スタックには大げさだが、将来的に複数エージェントが連携するルーティンで「なぜこの記事が生成されたか」を追跡したいなら本命候補になりうる。</p>
+  <span class="verdict yellow">🟡 様子見 — シングル開発者には重い。マルチエージェント化が進んだ段階で再評価。</span>
+  <span class="link"><a href="https://github.com/semantica-agi/semantica" target="_blank">→ GitHub: semantica-agi/semantica</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>EU AI Act — 2026年8月より高リスク分類マルチエージェントオーケストレーションに施行</h3>
+  <p>EU AI Act が 2026年8月から本格施行フェーズへ。高影響セクター（医療・金融・雇用等）での「マルチエージェントオーケストレーション」は高リスク AI に分類され、透明性・ログ保持・人間監督要件が課される。</p>
+  <p>masatoman の現スタック（個人開発、工務店向けSaaS、日本国内）は当面直撃しない。ただし将来クライアント企業が EU 規制対象になる場合や、AI を使った意思決定サポート機能を足す場合は準拠コストが発生しうる。今は「把握しておく」段階。</p>
+  <span class="verdict yellow">🟡 様子見 — 今の構成では対象外。EU 展開・高リスク機能追加時に再確認。</span>
+  <span class="link"><a href="https://kanerika.com/blogs/ai-workflow-automation/" target="_blank">→ AI Workflow Automation: What Actually Works in 2026</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠</h2>
+
+<div class="card gray">
+  <h3>danielmiessler/LifeOS — AI + OKR 自己改善ハーネス（GitHub Trending +315★ / 累計 17,892★）</h3>
+  <p>「Current State → Ideal State」を AI で継続的に最適化する自己改善フレームワーク。目標・習慣・タスクを一元管理し、AI がヒルクライミング的に次アクションを提案し続ける仕組み。TypeScript 製。</p>
+  <p>個人のライフマネジメント全般を再構築する重量級フレームワーク。今の masatoman は軸B ヒアリング Phase（6 経路並列、9/30 主軸確定）の集中期間中であり、このタイミングで管理ツールを再構築すると「ツールを整える時間」で実戦が止まる典型的な罠。スタック乗り換えコストも高い。</p>
+  <span class="verdict gray">🚫 罠 — ヒアリング Phase 集中中に入れると脱線リスク大。スケール期まで封印。</span>
+  <span class="link"><a href="https://github.com/danielmiessler/LifeOS" target="_blank">→ GitHub: danielmiessler/LifeOS</a></span>
+</div>
+
+<!-- ===== 重複除去メモ ===== -->
+<details class="dedup">
+  <summary>重複除去ログ（08-08〜10フィード掲載済で除外したアイテム）</summary>
+  <ul style="margin-top:0.5rem; padding-left:1.2rem; font-size:0.78rem; color:#6b7280;">
+    <li>Claude Code v2.1.225 + v2.1.226（08-09 掲載済）</li>
+    <li>Claude Code v2.1.224 — SendMessage/ListAgents（08-08 掲載済）</li>
+    <li>PrimeIntellect-ai/prime-agent（08-08 掲載済）</li>
+    <li>MemTensor/memmy-agent（08-08 掲載済）</li>
+    <li>obra/superpowers（08-08 掲載済）</li>
+    <li>denoland/celld（08-08 掲載済）</li>
+    <li>google/skills（08-09 掲載済）</li>
+    <li>TauricResearch/TradingAgents（08-09 掲載済）</li>
+    <li>vitali87/code-graph-rag（08-10 掲載済）</li>
+    <li>msitarzewski/agency-agents（08-10 掲載済）</li>
+    <li>Obsidian v1.13.6（08-10 掲載済）</li>
+    <li>Google Gemini 3.5（08-10 掲載済）</li>
+    <li>TrustScale Argus（08-10 掲載済）</li>
+    <li>Backflip AI CAD（08-10 掲載済）</li>
+    <li>addyosmani/agent-skills（08-07 掲載済・直近週内）</li>
+    <li>firecrawl（08-04 で firecrawl/pdf-inspector として掲載済）</li>
+  </ul>
+</details>
+
+<div class="failed-sources">
+  ⚠️ 取得失敗ソース (ネットワーク制限): anthropic.com/news · obsidian.md/changelog · agentic.ai · releasebot.io · havoptic.com
+</div>
+
+</body>
+</html>
