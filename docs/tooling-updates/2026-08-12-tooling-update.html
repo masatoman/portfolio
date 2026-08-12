@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-12</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .dedup summary { cursor: pointer; font-weight: 600; color: #6b7280; }
+    .failed-sources {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      margin-top: 1rem;
+      padding: 0.5rem 0.75rem;
+      background: #fafafa;
+      border-left: 2px solid #e5e7eb;
+    }
+    @media (max-width: 600px) {
+      body { font-size: 14px; padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+    table { width: 100%; border-collapse: collapse; }
+    .table-wrap { overflow-x: auto; }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-08-12</h1>
+<div class="meta">
+  取得日: 2026-08-12 (JST 09:00) ／ 対象期間: 2026-08-10〜08-12 ／
+  ソース: GitHub Releases (Claude Code) ✅ · GitHub Trending ✅ · WebSearch×2 ✅ ·
+  anthropic.com/news ❌ · obsidian.md/changelog ❌ (ネットワーク制限) ／
+  重複除去: 2026-08-09〜11フィード掲載済アイテム除外済
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う</h2>
+
+<div class="card green">
+  <h3>Claude Code v2.1.228 (2026-08-11) — Write ツール強化 + memory フォルダ削除バグ修正（他6件）</h3>
+  <p>v2.1.228 が 2026-08-11 19:50 にリリース。masatoman の routine に直撃する修正が2件ある。(1) <strong>Write ツールで、今セッション中に Read していないファイルでも新モデルが上書きできるように変更</strong>（これまで Read 済みでないと上書き不可だった制約が撤廃）。(2) <strong>セッションクリーンアップがプロジェクトの memory フォルダ内のファイルを誤って削除していたバグを修正</strong>（CLAUDE.md 参照の memory が突然消える現象の原因候補）。</p>
+  <p>その他 6 件: headless セッションの描画停止バグ修正 / Windows Git パス解決 / <code>/tui</code> でモデルが戻るバグ / クロスセッションメッセージ送信者表示改善 / Vertex AI 認証失敗を数秒で検出（従来は数分）/ セルフホステッドランナーの欠陥修正。</p>
+  <span class="verdict green">🟢 即使う — <code>claude update</code> で即反映。memory フォルダ削除バグは長期 routine 運用者に重大で今日修正すべき。</span>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.228" target="_blank">→ GitHub Release: v2.1.228</a></span>
+</div>
+
+<div class="card green">
+  <h3>addyosmani/agent-skills — 本番品質 AI エージェントスキル 24 本（Claude Code / Cursor 等 70+ 対応、86K★ / 578 stars today）</h3>
+  <p>Addy Osmani（Google Chrome チーム）が公開した 24 本のプロダクションレディスキル集。/spec（要件定義）→ /plan（タスク分解）→ /build（実装）→ /test（テスト）→ /review（品質ゲート）→ /ship（デプロイ）の開発ライフサイクルをそのままスラッシュコマンドにマッピング。「シニアエンジニアが実際に使うワークフロー・品質ゲートを Skill として符号化した」という設計思想。Apache 2.0 でそのまま利用可。Claude Code、Cursor、Copilot、Cline 等 70+ ツールに対応。</p>
+  <p>portfolio の .claude/skills/ に /review と /spec をコピーするだけで今日から動く。記事生産 routine の Skill 化テンプレとして「ゼロから書くより確実に速い」構造になっている。</p>
+  <span class="verdict green">🟢 即使う — /review と /spec を .claude/skills/ にコピーして今日の開発から回せる。ゼロから書くより確実に速い。</span>
+  <span class="link"><a href="https://github.com/addyosmani/agent-skills" target="_blank">→ GitHub: addyosmani/agent-skills</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値</h2>
+<p class="none-note">該当なし — 今日の期間内に時間対効果が明確な新規有料ツールなし（MAX 定額運用中のため有料 AI ツール追加コストは発生しない前提）。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見</h2>
+
+<div class="card yellow">
+  <h3>stablyai/orca — 並列エージェントを git worktree で管理するオープンソース ADE（MIT / 42K★ / 875 stars today）</h3>
+  <p>「100x builders のための AI オーケストレーター」を謳う Agent Development Environment（ADE）。1 プロンプトを 5 エージェントに fan-out し、各エージェントが独立した git worktree で動作して結果を比較・マージできる。iOS/Android コンパニオンアプリで外出先からエージェントのモニタリング可能。WebGL ターミナル、diff アノテーション、GitHub/Linear 統合を内包。MIT ライセンスで本体無料、エージェント実行は Claude 等のサブスクリプションを自分で使う構造。</p>
+  <p>現在の solo 開発 + routine 運用には並列 worktree 管理のオーバーヘッドが重い。ただし portfolio 工務店デモを複数並列で開発・比較する場面では今すぐ使える。iOS モニタリングは routine の外出中確認に相性が良い。</p>
+  <span class="verdict yellow">🟡 様子見 — 単一プロジェクト集中期は不要。複数並列デモ開発フェーズで再評価。外出中モニタリング用途なら今すぐ試す価値あり。</span>
+  <span class="link"><a href="https://github.com/stablyai/orca" target="_blank">→ GitHub: stablyai/orca</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>anthropics/skills — Anthropic 公式 Agent Skills リポジトリ（Python / 168K★ / 485 stars today）</h3>
+  <p>Anthropic が公式管理する Agent Skills 集。GitHub Trending で 485 stars/day と急上昇中。addyosmani/agent-skills（今日🟢で紹介）と同日にトレンド入りしており、「Skill エコシステム」が一斉に注目された形。Python 実装が主体で Claude Code との統合前提の構造になっている可能性が高い。</p>
+  <p>addyosmani 版を先に導入した後、このリポジトリとの差分・補完関係を確認する順序が効率的。内容によっては portfolio の .claude/skills/ をそのまま置き換えるレベルの品質かもしれない。</p>
+  <span class="verdict yellow">🟡 様子見 — addyosmani/agent-skills と内容を比較してから採用判断。今週中に README を一読推奨。</span>
+  <span class="link"><a href="https://github.com/anthropics/skills" target="_blank">→ GitHub: anthropics/skills</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>Google Gemini 3.6 Flash — 長期タスクでトークン使用量 65% 削減（2026年8月）</h3>
+  <p>Google が Gemini 3.6 Flash を発表。マルチステップ自動化・長期タスクにおいてトークン消費を最大 65% 削減するとしており、Gemini 3.5（08-10 フィード掲載）のアップグレード版。コーディング・検索・タスク実行への統合が深化している。</p>
+  <p>Claude Code MAX 定額運用中は今すぐ乗り換えるメリットなし。ただし「トークン効率 65% 向上」という数値は Anthropic へのプレッシャーになる可能性があり、Anthropic 側のモデル改善加速に繋がりうる。2026 Q4 に Claude MAX の同種改善があるか確認ポイント。</p>
+  <span class="verdict yellow">🟡 様子見 — MAX 定額ある今は動かない。2026 Q4 に Claude 対比でコスト/品質比を再評価。</span>
+  <span class="link"><a href="https://www.aiapps.com/blog/august-2026-ai-mega-update-major-breakthroughs-launches/" target="_blank">→ AIapps: August 2026 AI Mega-Update</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠</h2>
+
+<div class="card gray">
+  <h3>Microsoft Project Polaris — GitHub Copilot の基盤モデルを自社製に置き換え（2026年8月）</h3>
+  <p>Microsoft が開発した初の自社製コーディングモデル「Project Polaris」が 2026年8月より GitHub Copilot に組み込まれ、GPT-4 Turbo を置き換えた。Microsoft はコスト・速度・カスタマイズ性を理由に挙げている。</p>
+  <p>Claude Code MAX を使っている masatoman には直接関係なし。Copilot を使っていない限り影響ゼロ。「AI 業界の動向を把握する」目的で読む価値はあるが、現スタックを変える理由にはならない。Copilot への乗り換えは MAX 定額のコスパを下回る。</p>
+  <span class="verdict gray">🚫 罠 — Claude Code MAX 使いには関係なし。Copilot 乗り換えを示唆する記事に惑わされない。</span>
+  <span class="link"><a href="https://blog.mean.ceo/ai-product-launches-news-august-2026/" target="_blank">→ AI Product Launches: August 2026</a></span>
+</div>
+
+<div class="card gray">
+  <h3>paperclipai/paperclip — オープンソース職場エージェント管理プラットフォーム（77K★ / 748 stars today）</h3>
+  <p>チーム・職場でのエージェント運用を管理するオープンソースプラットフォーム（77K★）。エージェントのデプロイ・監視・ガバナンスをチームスケールで処理する設計。TypeScript 製。</p>
+  <p>個人開発者・solo 運用向けではなく、「組織でエージェントを管理する」エンタープライズ向けの設計。今の masatoman のスタック（Claude Code + routine）には明らかにオーバーエンジニアリング。セットアップコストだけで半日が消える。チームを持つまで不要。</p>
+  <span class="verdict gray">🚫 罠 — solo 開発者には重量過多。エンタープライズ用途。チームを持つまで封印。</span>
+  <span class="link"><a href="https://github.com/paperclipai/paperclip" target="_blank">→ GitHub: paperclipai/paperclip</a></span>
+</div>
+
+<!-- ===== 重複除去メモ ===== -->
+<details class="dedup">
+  <summary>重複除去ログ（08-09〜11フィード掲載済で除外したアイテム）</summary>
+  <ul style="margin-top:0.5rem; padding-left:1.2rem; font-size:0.78rem; color:#6b7280;">
+    <li>Claude Code v2.1.227（08-11 掲載済）</li>
+    <li>Claude Code v2.1.225 + v2.1.226（08-09 掲載済）</li>
+    <li>Meta Muse Code（08-11 掲載済）</li>
+    <li>semantica-agi/semantica（08-11 掲載済）</li>
+    <li>danielmiessler/LifeOS（08-11 掲載済）</li>
+    <li>EU AI Act 施行（08-11 掲載済）</li>
+    <li>vitali87/code-graph-rag（08-10 掲載済）</li>
+    <li>msitarzewski/agency-agents（08-10 掲載済）</li>
+    <li>Google Gemini 3.5（08-10 掲載済）</li>
+    <li>PrimeIntellect-ai/prime-agent（08-08 掲載済 ※08-11 dedup ログで確認）</li>
+    <li>google/skills（08-09 掲載済 ※今日の anthropics/skills とは別 repo）</li>
+  </ul>
+</details>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failed-sources">
+  <strong>取得失敗ソース:</strong> anthropic.com/news（ネットワーク制限 EGRESS_BLOCKED）、obsidian.md/changelog（同左）。
+  GitHub Releases / GitHub Trending / WebSearch×2 は正常取得済。
+</div>
+
+</body>
+</html>
