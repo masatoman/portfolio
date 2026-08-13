@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-13</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p  { font-size: 0.88rem; margin-bottom: 0.35rem; color: #374151; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .dedup summary { cursor: pointer; font-weight: 600; color: #6b7280; }
+    .failed-sources {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      margin-top: 1rem;
+      padding: 0.5rem 0.75rem;
+      background: #fafafa;
+      border-left: 2px solid #e5e7eb;
+    }
+    @media (max-width: 600px) {
+      body { font-size: 14px; padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+    table { width: 100%; border-collapse: collapse; }
+    .table-wrap { overflow-x: auto; }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-08-13</h1>
+<div class="meta">
+  取得日: 2026-08-13 (JST 09:00) ／ 対象期間: 2026-08-11〜08-13 ／
+  ソース: GitHub Releases (Claude Code) ✅ · GitHub Trending ✅ · WebSearch×4 ✅ ·
+  anthropic.com/news ❌ · obsidian.md/changelog ❌ (ネットワーク制限) ／
+  重複除去: 2026-08-11〜12フィード掲載済アイテム除外済
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2 class="green">🟢 即使う</h2>
+
+<div class="card green">
+  <h3>Claude Code v2.1.229 (2026-08-12) — SSE keepalive 追加 / ストリーミング消失バグ修正 / ListAgents offline・cloud 表示 / VSCode sidebar session groups</h3>
+  <p>v2.1.229 が 2026-08-12 20:56 にリリース。masatoman の routine 運用に直撃する変更が3件ある。</p>
+  <p><strong>(1) SSE keepalive pings 追加</strong> — 長時間 thinking 中にゲートウェイ側が keepalive を送り続けるようになった。routine で extended thinking を使うタスク（記事生成・設計議論など）でストリーム切断が起きなくなる。</p>
+  <p><strong>(2) 長いレスポンスがストリーミング中に消え、2回表示されるバグを修正</strong> — 長文生成中に途中でコンテンツが消失する現象の根本修正。これは目視確認できる障害だった。</p>
+  <p><strong>(3) ListAgents がオフライン RC セッションを <code>offline</code>、クラウドセッションを <code>cloud</code> とラベル表示するようになった</strong> — 複数セッション管理時に現在アクティブな接続先を即座に識別できる。</p>
+  <p>その他: <code>claude remote-control --continue</code> を使った RC セッション再開が公式ドキュメント化（朝のルーティン起動後に端末から続行するパターンで使える）/ plugin marketplace の <code>command</code> ソース追加でローカルコマンドを plugin 化できる / セルフホステッドランナー用サーバー供給 hook 追加 / VSCode サイドバーにセッショングループ + 右クリックメニュー追加 / Windows 拡張パス（<code>\\?\</code>・UNC）の処理修正 / MCP OAuth 厳格認証サーバーへの対応修正。</p>
+  <span class="verdict green">🟢 即使う — <code>claude update</code> で即反映。keepalive でルーティンの長時間タスクが切断しなくなる。ストリーミング消失バグ修正は今すぐ恩恵を受けられる。</span>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.229" target="_blank">→ GitHub Release: v2.1.229</a></span>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2 class="blue">💰 課金価値</h2>
+<p class="none-note">該当なし — 今日の期間内に時間対効果が明確な新規有料ツールなし（MAX 定額運用中のため有料 AI ツール追加コストは発生しない前提）。</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2 class="yellow">🟡 様子見</h2>
+
+<div class="card yellow">
+  <h3>macro-inc/macro v1.0 — Rust+SolidJS 製オープンソース AI 記憶統合ワークスペース（GitHub Trending 227★/day / 累計 1,765★）</h3>
+  <p>メール・チャット・ドキュメント・タスク・カレンダー・CRM・エージェントを1つのワークスペースに統合するオープンソースアプリ。今日の GitHub Trending に急浮上。Rust + SolidJS で構築（パフォーマンス重視）、MIT ライセンスでセルフホスト可能。</p>
+  <p>最大の特徴は <strong>チーム全体の AI 記憶（shared memory）</strong> — メール・メッセージ・タスク・PR・CRM のすべてが1つのメモリプールに蓄積され、MCP 経由で外部エージェントからもアクセスできる。Notion + Linear + Slack を束ねた「エージェント対応オフィス OS」という設計思想。</p>
+  <p>solo 開発者には現状オーバースペック。既存ツール（Notion/Slack/Linear）からの移行コストが高く、自分でインフラを管理する手間が増える。ただし MCP 経由で AI エージェントが「仕事の文脈丸ごと」を参照できる設計は、将来 masatoman のルーティン精度向上に直結する概念。v1.0 がどこまで安定するか 1-2 ヶ月様子を見てから評価。</p>
+  <span class="verdict yellow">🟡 様子見 — solo 運用 + 既存ツール定着フェーズは動く必要なし。「MCP 経由で全コンテキストをエージェントに渡す」設計は 2026 Q4 以降の参考候補。</span>
+  <span class="link"><a href="https://github.com/macro-inc/macro" target="_blank">→ GitHub: macro-inc/macro</a></span>
+  <span class="link"><a href="https://macro.com/" target="_blank">→ macro.com（公式サイト）</a></span>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2 class="gray">🚫 罠</h2>
+<p class="none-note">該当なし — 今日は「今すぐ避けるべき」と明言できる新規ツール・サービスなし。</p>
+
+<!-- ===== 重複除去メモ ===== -->
+<details class="dedup">
+  <summary>重複除去ログ（08-11〜12フィード掲載済で除外したアイテム）</summary>
+  <ul style="margin-top:0.5rem; padding-left:1.2rem; font-size:0.78rem; color:#6b7280;">
+    <li>Claude Code v2.1.228（08-12 掲載済）</li>
+    <li>stablyai/orca（08-12 掲載済）</li>
+    <li>anthropics/skills（08-12 掲載済）</li>
+    <li>addyosmani/agent-skills（08-12 掲載済）</li>
+    <li>paperclipai/paperclip（08-12 掲載済）</li>
+    <li>Google Gemini 3.6 Flash（08-12 掲載済）</li>
+    <li>Microsoft Project Polaris（08-12 掲載済）</li>
+    <li>semantica-agi/semantica（08-11 掲載済）</li>
+    <li>msitarzewski/agency-agents（08-10 掲載済）</li>
+    <li>infiniflow/ragflow（trending 掲載多数の既存大型 repo、新着なし）</li>
+    <li>embabel/embabel-agent（JVM エージェントフレームワーク、★数・勢い不十分）</li>
+  </ul>
+</details>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failed-sources">
+  <strong>取得失敗ソース:</strong> anthropic.com/news（ネットワーク制限 EGRESS_BLOCKED）、obsidian.md/changelog（同左）、releasebot.io（同左）、havoptic.com（同左）。
+  GitHub Releases / GitHub Trending / WebSearch×4 は正常取得済。
+</div>
+
+</body>
+</html>
