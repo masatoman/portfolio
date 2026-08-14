@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-14</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+    p  { font-size: 0.88rem; color: #374151; margin-bottom: 0.35rem; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link {
+      font-size: 0.82rem;
+      margin-top: 0.4rem;
+      display: block;
+    }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .failed {
+      font-size: 0.82rem;
+      color: #9ca3af;
+      margin-top: 1.5rem;
+      padding: 0.6rem 0.75rem;
+      border: 1px dashed #e5e7eb;
+      border-radius: 6px;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-08-14</h1>
+<div class="meta">
+  取得日: 2026-08-14 (JST) ／ 対象期間: 2026-08-13〜14 ／
+  ソース: GitHub Releases (claude-code) · GitHub Trending · WebSearch ／
+  重複除去: 直近3日分 (08-11〜08-13) の掲載済み項目を除外
+</div>
+
+<!-- ================================ 🟢 即使う ================================ -->
+<h2 class="green">🟢 即使う (2件)</h2>
+
+<div class="card green">
+  <h3>Claude Code v2.1.232 (2026-08-13) — サブエージェントforking デフォルトON / @セッションメンション / GitLabサポート / セキュリティ修正</h3>
+  <p>サブエージェント fork がデフォルト有効化。会話履歴とプロンプトキャッシュを引き継いだまま分岐するため、Skills・routine で複数 subagent を並走させる処理がキャッシュヒット率ごと速くなる。</p>
+  <p>また <code>@</code> を使って別の Claude Code セッションに直接メッセージを送れるようになった（ListAgents → SendMessage）。複数セッション並走で morning routine × 別タスクセッションに横断指示が出せる。</p>
+  <p>GitLab トークン (<code>glrt-</code> 等) の redaction 追加・PowerShell パーミッションバイパス修正・Windows symlink bypass 修正 (Git Bash) も含む。</p>
+  <div class="verdict green">🟢 今日から恩恵あり — subagent fork default ON でキャッシュ効率が上がる。<code>claude update</code> するだけ。</div>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.232" target="_blank">→ GitHub Release: v2.1.232</a></span>
+  <span class="link"><a href="https://code.claude.com/docs/en/cross-session-messaging" target="_blank">→ Docs: Cross-Session Messaging</a></span>
+</div>
+
+<div class="card green">
+  <h3>cathrynlavery/diagram-design — Claude Code 向け editorial diagram 29種（HTML+SVG、4,475★/day）</h3>
+  <p>Claude Code・Codex 等 AI エージェントから呼ぶだけでブランド対応の editorial ダイアグラムを生成するスキル集。フローチャート・シーケンス図・タイムライン・ER図・ガントなど29種。全て自己完結 HTML+SVG（JS依存なし）。</p>
+  <p>ブランドカラー/フォントの onboarding は約60秒。draw.io / Mermaid からのインポート変換対応。ARIA ラベル入りでアクセシビリティ済み。STRATEGY 可視化・docs 図解差し込みに今日から使える。</p>
+  <div class="verdict green">🟢 即導入 — docs 系の図解を60秒で差し込める。existing artifact-diagramming skill の補完として組み込み価値大。まず <code>git clone</code> して Claude Code に渡してみる。</div>
+  <span class="link"><a href="https://github.com/cathrynlavery/diagram-design" target="_blank">→ GitHub: cathrynlavery/diagram-design</a></span>
+</div>
+
+<!-- ================================ 💰 課金価値 ================================ -->
+<h2 class="blue">💰 課金価値</h2>
+<p style="font-size:0.88rem; color:#6b7280; padding:0.5rem 0;">該当なし（今回の新着はすべて無料／OSS）</p>
+
+<!-- ================================ 🟡 様子見 ================================ -->
+<h2 class="yellow">🟡 様子見 (3件)</h2>
+
+<div class="card yellow">
+  <h3>Claude Code v2.1.231 (2026-08-13) — MCP OAuth redirect URI ミスマッチ修正（Slack 等対応）</h3>
+  <p>pre-registered OAuth client（Slack MCP など）で認証時に redirect URI mismatch エラーが出ていた問題を修正。</p>
+  <div class="verdict yellow">🟡 Slack MCP 認証で詰まっていたなら今すぐ <code>claude update</code>。症状がなければ v2.1.232 に自動包含済みのため別途対応不要。</div>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.231" target="_blank">→ GitHub Release: v2.1.231</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>altic-dev/FluidVoice — macOS オンデバイス STT + AI 強化ディクテーションアプリ（76★/day）</h3>
+  <p>macOS 専用のディクテーションアプリ。オンデバイス音声認識（STT）+ カスタムトレーニング済み AI モデルで文字起こし精度を向上。音声データを外部サーバーに送らないプライバシー設計。</p>
+  <p>記事ネタを移動中に口頭でメモ → テキスト化して後からまとめるワークフローに合いそうだが、現状 Claude Code ルーティンへの統合イメージが薄い。</p>
+  <div class="verdict yellow">🟡 Mac ユーザーなら試す価値あり。今の自動化ルーティンには直結しないが、ブログ原稿や記事メモの速度を上げる可能性あり。</div>
+  <span class="link"><a href="https://github.com/altic-dev/FluidVoice" target="_blank">→ GitHub: altic-dev/FluidVoice</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>cactus-compute/needle — 14MB 超小型ファウンデーションモデル（スマホ/ウェアラブル向け、769★/day）</h3>
+  <p>45M パラメータ・14MB 単体バイナリで動くエッジ AI モデル。ツール呼び出し・構造化 JSON 抽出・信頼スコア付き応答が特徴。256トークンスライディングウィンドウで RAM 28MB 固定。</p>
+  <p>スマートホームや組み込みデバイスでのローカル AI 推論に特化。今の個人開発スタックには直結しないが、超軽量 AI の技術トレンドとして把握価値あり。</p>
+  <div class="verdict yellow">🟡 今すぐ使いどころなし。エッジ × 構造化抽出の需要が出た時のウォッチリスト入り。</div>
+  <span class="link"><a href="https://github.com/cactus-compute/needle" target="_blank">→ GitHub: cactus-compute/needle</a></span>
+</div>
+
+<!-- ================================ 🚫 罠 ================================ -->
+<h2 class="gray">🚫 罠 (1件)</h2>
+
+<div class="card gray">
+  <h3>unslothai/unsloth — ローカル LLM 学習・実行 UI（328★/day）</h3>
+  <p>Qwen3.8・Kimi K3・DeepSeek-V4・FLUX 等のモデルをローカルで動かしたり fine-tune したりするための GUI ツール。「Claude より安く」という文脈で紹介されることが多い。</p>
+  <p>MAX プラン定額で Claude Code を使い倒している運用では、ローカルモデルに乗り換えてもコスト削減ゼロ・性能ダウン・管理コスト増という三重苦になる。「ローカルなら無料」という煽りは定額ユーザーには罠。</p>
+  <div class="verdict gray">🚫 MAX プラン定額運用中はスルーでよい。「Claude Code が重い」「月額が高い」という状況になってから検討するもの。</div>
+  <span class="link"><a href="https://github.com/unslothai/unsloth" target="_blank">→ GitHub: unslothai/unsloth</a></span>
+</div>
+
+<!-- ================================ 取得失敗ソース ================================ -->
+<div class="failed">
+  <strong>取得失敗ソース:</strong>
+  www.anthropic.com/news（egress blocked）、
+  obsidian.md/changelog（egress blocked）、
+  docs.claude.com → platform.claude.com → CHANGELOG.md（GitHub raw 未取得）
+  ／ GitHub Releases 直接取得 + WebSearch で代替。
+</div>
+
+</body>
+</html>
