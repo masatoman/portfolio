@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-15</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p  { font-size: 0.88rem; color: #374151; margin-bottom: 0.35rem; }
+    .card code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.82rem;
+      background: rgba(0,0,0,0.06);
+      padding: 0.1em 0.3em;
+      border-radius: 3px;
+    }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      color: #9ca3af;
+      border: 1px dashed #e5e7eb;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+    }
+    .dedup summary { cursor: pointer; color: #6b7280; }
+    .failed {
+      font-size: 0.82rem;
+      color: #9ca3af;
+      margin-top: 1rem;
+      padding: 0.6rem 0.75rem;
+      border: 1px dashed #e5e7eb;
+      border-radius: 6px;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-08-15</h1>
+<div class="meta">
+  取得日: 2026-08-15 (JST 09:00) ／ 対象期間: 2026-08-13〜08-15 ／
+  ソース: GitHub Releases (claude-code) ✅ · GitHub Trending ✅ · WebSearch×4 ✅ ·
+  anthropic.com/news ❌ · obsidian.md/changelog ❌ (ネットワーク制限) ／
+  重複除去: 直近3日分 (08-12〜08-14) の掲載済み項目を除外
+</div>
+
+<!-- ================================ 🟢 即使う ================================ -->
+<h2 class="green">🟢 即使う (2件)</h2>
+
+<div class="card green">
+  <h3>⚠️ Claude Code v2.1.233 (2026-08-14) — TaskCreate/TaskList 等が新モデルで deprecated / WebFetch TTL 制御追加 / Skill 引数バグ修正</h3>
+  <p><strong>【要注意】TaskCreate / TaskGet / TaskUpdate / TaskList / TodoWrite が新しいモデルでは deprecated になった。</strong>
+  masatoman の scheduled routine（tooling-update-watch 等）がこれらのタスクツールを呼んでいる場合、今すぐ <code>CLAUDE_CODE_ENABLE_TODO_TOOLS=1</code> を環境変数に設定しないと動作が変わる可能性がある。settings.json または .env で追加して確認を。</p>
+  <p><strong>CLAUDE_CODE_WEBFETCH_CACHE_TTL_MS</strong> 追加。WebFetch のキャッシュ有効期間をミリ秒単位で制御できる。日次 routine で同じ URL を複数タスクが参照するなら <code>CLAUDE_CODE_WEBFETCH_CACHE_TTL_MS=86400000</code>（1日）にするとキャッシュ再利用率が上がり fetch 待ちが減る。</p>
+  <p><strong>Skill の引数置換バグ修正</strong> — <code>{{args}}</code> が再展開をブロックしていた問題が直った。引数を受け取る Skill を使っているなら今日から挙動が正しくなる。</p>
+  <p>その他: GitLab MR URL を <code>--worktree</code> フラグと <code>claude agents</code> ビューでサポート / <code>forward_user_identity</code> apps gateway 設定追加（オプトイン）/ Linux Bash ツールのメモリ cgroup サポート追加（オプトイン）/ MCP v2 サーバーレスの subscription stream バグ修正 / Claude Desktop・VS Code の permission prompt hooks 修正 / クラウドセッションがシャットダウン時に lost 判定されるバグ修正。</p>
+  <div class="verdict green">🟢 今日確認必須 — task ツール deprecated が一番影響大。<code>claude update</code> 後に routine を1回手動実行して TaskCreate 系のエラーが出ないか確認。WebFetch TTL は設定してキャッシュ効率を上げる。</div>
+  <span class="link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.233" target="_blank">→ GitHub Release: v2.1.233</a></span>
+</div>
+
+<div class="card green">
+  <h3>github/spec-kit (128K★ · GitHub Trending 本日入り) — Claude Code 対応 Spec-Driven Development toolkit</h3>
+  <p>GitHub 公式が公開した Spec-Driven Development のオープンソース toolkit。Claude Code、Copilot、Cursor、Gemini CLI 等 30+ のエージェントに対応（v0.11.0 · Jun 2026）。「なんとなくの指示で AI に書かせる（vibe-coding）」から脱却し、/spec（要件定義）→ /plan（タスク分解）→ /build（実装）の構造化フローで AI に「何を作るか」を明確に渡す仕組み。</p>
+  <p>portfolio の新デモ追加や機能追加で「Claude Code に指示を出しても的外れな実装が返ってくる」という場面に刺さる。spec ファイルをリポジトリに置いておくと、Claude Code が次のセッションでも文脈を正確に引き継げる。</p>
+  <p>フリー・OSS（MIT ライセンス）。<code>npm install -g @github/spec-kit</code> でグローバルインストール後、<code>spec init</code> → <code>spec scaffold</code> でリポジトリに雛型を生成できる。</p>
+  <div class="verdict green">🟢 即導入 — portfolio repo で <code>spec init</code> して試す。Claude Code が毎セッション同じ文脈を持てるようになる。まず 30 分でサンプルスペックを1本書いてみる。</div>
+  <span class="link"><a href="https://github.com/github/spec-kit" target="_blank">→ GitHub: github/spec-kit</a></span>
+  <span class="link"><a href="https://github.github.com/spec-kit/" target="_blank">→ 公式ドキュメント</a></span>
+</div>
+
+<!-- ================================ 💰 課金価値 ================================ -->
+<h2 class="blue">💰 課金価値</h2>
+<p class="none-note">該当なし（今回の新着はすべて無料／OSS）</p>
+
+<!-- ================================ 🟡 様子見 ================================ -->
+<h2 class="yellow">🟡 様子見 (2件)</h2>
+
+<div class="card yellow">
+  <h3>holaboss-ai/holaOS (7.3K★ · GitHub Trending 本日入り) — Claude Code 対応オープンソース AI エージェントワークスペース</h3>
+  <p>Claude Code・Codex 等の AI エージェントを 100+ インテグレーション + MCP 経由で横断的に動かせるオープンソース OS。各ワークスペースは「エージェント identity + セッション横断の永続メモリ + インストール済みアプリ + skill ファイル」を持つ自己完結型コンテキスト。Beta 0.1 (May 2026)、macOS Apple Silicon 向け signed build あり。Modified Apache 2.0。</p>
+  <p>現在の masatoman スタック（Claude Code + routine + Skills + MCP 直接接続）は既に機能しているため今すぐ置き換える理由はない。ただし「Electron + TypeScript で動くセルフホスト環境がエージェントの永続メモリを管理する」設計は、将来 routine を複数環境に分散する場合の参考になる。Windows/Linux 対応は開発中。</p>
+  <div class="verdict yellow">🟡 様子見 — 今のスタックで完結している間は不要。複数エージェントを並走させる需要が出た 2027 Q1 以降に再評価。まず README だけ読む。</div>
+  <span class="link"><a href="https://github.com/holaboss-ai/holaOS" target="_blank">→ GitHub: holaboss-ai/holaOS</a></span>
+  <span class="link"><a href="https://www.holaboss.ai/docs/" target="_blank">→ Holaboss Docs</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>Claude Opus 5 per-request effort dial (low/medium/high/xhigh/max) — Workflow agent の effort パラメータと直結</h3>
+  <p>2026-07-24 の Opus 5 リリースで追加された機能だが、8月に入って解説記事が増加中。5段階の effort 設定（low/medium/high/xhigh/max）で推論トークン量を1リクエスト単位でコントロールできる。Workflow の <code>agent()</code> の <code>opts.effort</code> がこれに直結。</p>
+  <p>masatoman の日次 routine（tooling-update-watch・morning brief 等）の scheduled agent に <code>effort: 'low'</code> を明示すると、定型的な情報収集タスクの推論コストが下がり、待ち時間が短縮される可能性がある。MAX 定額なので金銭的メリットはないが、体感速度は変わる。逆に設計・デバッグ・計画立案タスクは <code>effort: 'high'</code> に上げると質が上がる。</p>
+  <p>デフォルトは <code>medium</code>。<code>effort</code> を未設定のままにするとセッション設定を引き継ぐ — 意識して設定していない Workflow は暗黙的に medium で動いていることになる。</p>
+  <div class="verdict yellow">🟡 様子見 — 今週中に tooling-update-watch の scheduled agent に <code>effort: 'low'</code> を試験的に追加して速度比較。品質劣化がなければ採用。</div>
+  <span class="link"><a href="https://codersera.com/blog/claude-opus-5-claude-code-guide-2026/" target="_blank">→ Claude Opus 5 in Claude Code: Setup, Effort Levels &amp; Real Workflows</a></span>
+  <span class="link"><a href="https://ecorpit.com/claude-opus-5-effort-levels-cut-token-spend-2026/" target="_blank">→ Claude Opus 5 effort levels: cut token spend</a></span>
+</div>
+
+<!-- ================================ 🚫 罠 ================================ -->
+<h2 class="gray">🚫 罠</h2>
+<p class="none-note">該当なし（今日の新着に「今すぐ避けるべき」と明言できるものなし）</p>
+
+<!-- ================================ 重複除去ログ ================================ -->
+<details class="dedup">
+  <summary>重複除去ログ（08-12〜08-14フィード掲載済で除外したアイテム）</summary>
+  <ul style="margin-top:0.5rem; padding-left:1.2rem; font-size:0.78rem; color:#6b7280;">
+    <li>cathrynlavery/diagram-design（08-14 掲載済）</li>
+    <li>altic-dev/FluidVoice（08-14 掲載済）</li>
+    <li>cactus-compute/needle（08-14 掲載済）</li>
+    <li>unslothai/unsloth（08-14 掲載済）</li>
+    <li>Claude Code v2.1.232（08-14 掲載済）</li>
+    <li>Claude Code v2.1.231（08-14 掲載済）</li>
+    <li>macro-inc/macro（08-13 掲載済）</li>
+    <li>ToolJet/ToolJet — 新規リリース確認できず（最新 v3.20 は 5月）、trending 入りのみで除外</li>
+    <li>lightningpixel/modly — 3D モデル生成ツール、masatoman のワークフローと無関係のため除外</li>
+    <li>Marlow AI — ローンチ 2026-08-11（対象期間 08-13〜15 外）、除外</li>
+  </ul>
+</details>
+
+<!-- ================================ 取得失敗ソース ================================ -->
+<div class="failed">
+  <strong>取得失敗ソース:</strong>
+  anthropic.com/news（EGRESS_BLOCKED）、
+  obsidian.md/changelog（EGRESS_BLOCKED）、
+  releasebot.io（EGRESS_BLOCKED）、
+  docs.claude.com → platform.claude.com → CHANGELOG.md（GitHub blob は内容取得不可）。
+  GitHub Releases 直接取得 + GitHub Trending + WebSearch×4 で代替。
+</div>
+
+</body>
+</html>
