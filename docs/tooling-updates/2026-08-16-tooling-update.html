@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-16</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p  { font-size: 0.88rem; color: #374151; margin-bottom: 0.35rem; }
+    .card code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.82rem;
+      background: rgba(0,0,0,0.06);
+      padding: 0.1em 0.3em;
+      border-radius: 3px;
+    }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      color: #9ca3af;
+      border: 1px dashed #e5e7eb;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+    }
+    .dedup summary { cursor: pointer; color: #6b7280; }
+    .failed {
+      font-size: 0.82rem;
+      color: #9ca3af;
+      margin-top: 1rem;
+      padding: 0.6rem 0.75rem;
+      border: 1px dashed #e5e7eb;
+      border-radius: 6px;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-08-16</h1>
+<div class="meta">
+  取得日: 2026-08-16 (JST 09:00) ／ 対象期間: 2026-08-14〜08-16 ／
+  ソース: GitHub Releases (claude-code) ✅ · GitHub Trending ✅ · WebSearch×4 ✅ · WebFetch (CLI-Anything/ego-lite) ✅ ·
+  anthropic.com/news ❌ · obsidian.md/changelog ❌ (ネットワーク制限) ／
+  重複除去: 直近3日分 (08-13〜08-15) の掲載済み項目を除外
+</div>
+
+<!-- ================================ 🟢 即使う ================================ -->
+<h2 class="green">🟢 即使う (1件)</h2>
+
+<div class="card green">
+  <h3>citrolabs/ego-lite (10,954★ · +545/day · GitHub Trending 本日入り) — AI エージェント専用ブラウザ</h3>
+  <p>"Browser optimized for AI agent automation, enabling secure agent browser access." AI エージェントがブラウザを操作するために特化した軽量ブラウザ。Playwright / Puppeteer と異なり、エージェントが「安全に」ブラウザを持てる設計になっている。</p>
+  <p>masatoman の Claude Code ルーティンで WebFetch が届かない場面（JavaScript が重い SPA、ログイン後のページ確認、portfolio デモページ <code>/local-business/*</code> の実レンダリング確認）に使える可能性がある。</p>
+  <p>今日のアクション: <code>npm install -g @citrolabs/ego-lite</code> → <code>ego-lite --help</code> で起動確認 → README の examples でエージェントからの呼び出し方を確認する (10分)。Claude Code の Bash ツール経由で呼べるか見るだけでよい。</p>
+  <div class="verdict green">🟢 即試す — 現行 WebFetch で困っている場面がある場合は今日の確認推奨。困っていなければ README 斜め読みだけで OK。</div>
+  <span class="link"><a href="https://github.com/citrolabs/ego-lite" target="_blank">→ GitHub: citrolabs/ego-lite</a></span>
+</div>
+
+<!-- ================================ 💰 課金価値 ================================ -->
+<h2 class="blue">💰 課金価値</h2>
+<p class="none-note">該当なし（今回の新着はすべて無料 / OSS）</p>
+
+<!-- ================================ 🟡 様子見 ================================ -->
+<h2 class="yellow">🟡 様子見 (3件)</h2>
+
+<div class="card yellow">
+  <h3>HKUDS/CLI-Anything (47,344★ · GitHub Trending 本日入り) — 既存アプリを Claude Code 対応 CLI に変換する SDK</h3>
+  <p>香港科技大学発。Blender / GIMP / LibreOffice 等 50+ アプリを「エージェントが直接制御できる CLI」に変換するフレームワーク。Claude Code、Codex、OpenCode 等への対応を明記。<strong>全コマンドに <code>--json</code> フラグが自動付与され構造化出力が出る</strong>のが特徴——LLM が解析しやすい形でツール結果が返ってくる。2,461+ のテストが通っており成熟度は高い（最終更新 2026-05-30）。</p>
+  <p>masatoman の <code>scripts/</code> ツール群（<code>rebuild-docs-index.mjs</code> / <code>rebuild-tooling-index.mjs</code> 等）を「Claude Code がより文脈を持って呼べる構造」にリファクタリングする際の設計参考になる。今すぐ使う必然性はないが、新しい内部ツールを書く時に CLI-Anything のパターンを踏まえると Claude Code との相性が上がる。</p>
+  <div class="verdict yellow">🟡 様子見 — 次に <code>scripts/</code> を新設するタイミングで README の "Structured &amp; Composable" セクションを参照。今すぐ既存スクリプトを書き直す必要はない。</div>
+  <span class="link"><a href="https://github.com/HKUDS/CLI-Anything" target="_blank">→ GitHub: HKUDS/CLI-Anything</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>DeepSeek V4-Pro GA (0813) + 本日 16:00 UTC 価格改定発動 — reasoning-effort 3段階 / OpenAI Responses API 互換</h3>
+  <p>DeepSeek-V4-Pro-0813 が 2026-08-12〜13 に正式 GA。1.6T パラメータ MoE（49B activated/token）。特徴: <strong>reasoning-effort dial (low / high / max)</strong>（Claude Opus 5 と同様）、OpenAI Responses API ワンクリック互換、DSpark 投機的デコード採用。コンテキスト 1M トークン、最大出力 384K トークン。</p>
+  <p><strong>本日 2026-08-16 16:00 UTC から価格改定発動</strong>（ピーク / オフピーク 2段階、オフピークはピークの半額）。Claude MAX 定額ユーザーの masatoman には直接影響ゼロだが、「DeepSeek API vs Claude MAX のコスト比較」記事の一次情報として今日記録しておく価値がある。masatoman.net の「AI に業務を任せる設計の実験ログ」文脈で、なぜ API 直叩きより定額プランを選んだかを語る材料になる。</p>
+  <div class="verdict yellow">🟡 様子見 — API 切替の予定なし。記事ネタとして今日のうちに価格ページをブックマーク（<a href="https://platform.deepseek.com/docs/pricing" target="_blank">DeepSeek Pricing</a>）しておく。</div>
+  <span class="link"><a href="https://www.unite.ai/deepseek-ships-v4-pro-as-its-flagship-model-leaves-preview/" target="_blank">→ Unite.AI: DeepSeek V4-Pro GA 解説</a></span>
+  <span class="link"><a href="https://codersera.com/blog/deepseek-v4-complete-guide-2026/" target="_blank">→ DeepSeek V4 完全ガイド (Codersera)</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>cursor/plugins (2,950★ · +149/day · GitHub Trending) — Cursor IDE 公式 plugin 仕様 (2026-06 リリース・本日 trending 入り)</h3>
+  <p>Cursor が 2026-06 に公開した公式 plugin リポジトリ。MCP サーバー・Skills・Subagent・Rules・Hooks を「plugin」として bundle し、IDE 上でエージェントに追加機能を与える仕組み。初期パートナーは Amplitude / AWS / Figma / Linear / Stripe。構造は <code>.cursor-plugin/plugin.json</code> マニフェストを各ディレクトリに置くだけ。</p>
+  <p>masatoman は Claude Code を主軸にしており Cursor は現在使用していない。ただし <strong>Claude Code の Skills / Hooks / MCP 設定と設計思想が非常に近い</strong>ため、Claude Code 用の skill / hook を書く際の設計参考になる。また Cursor ユーザーへの訴求（masatoman.net 記事向け）で「Cursor vs Claude Code の plugin エコシステム比較」として使える。</p>
+  <div class="verdict yellow">🟡 様子見 — Cursor への切替予定がない限り今すぐ不要。plugin.json の仕様だけ 5 分で確認してメモしておく。</div>
+  <span class="link"><a href="https://github.com/cursor/plugins" target="_blank">→ GitHub: cursor/plugins</a></span>
+  <span class="link"><a href="https://cursor.com/blog/marketplace" target="_blank">→ Cursor Blog: Extend Cursor with plugins</a></span>
+</div>
+
+<!-- ================================ 🚫 罠 ================================ -->
+<h2 class="gray">🚫 罠 (1件)</h2>
+
+<div class="card gray">
+  <h3>MakazhanAlpamys/Soup (1,647★ · +297/day · GitHub Trending) — YAML 設定だけで LLM fine-tuning できるフレームワーク</h3>
+  <p>"Framework enabling LLM fine-tuning from YAML configuration with layer streaming." 設定ファイルを書くだけでファインチューニングを実行できるという触れ込みだが、ここには3つのコストが隠れている: <strong>① GPU クラウド費用</strong>（小規模でも数万〜数十万円）、<strong>② 学習データ整備</strong>（高品質な教師データが必要、ここが実質最大の工数）、<strong>③ 評価・再訓練ループ</strong>（「YAML を書いたら終わり」にはならない）。</p>
+  <p>masatoman の Claude MAX 定額環境では Sonnet / Opus をそのまま使うほうが圧倒的に品質・コスト・時間の全てで優る。「YAML が簡単そう」という入口から fine-tuning 沼に入ると時間が溶ける。</p>
+  <div class="verdict gray">🚫 罠 — スターが伸びているのは「簡単そう」な見た目のため。個人開発者が fine-tuning を選ぶケースはほぼゼロ。Claude MAX 定額 + Skills / Prompting で解決できない問題はほぼない。スルー推奨。</div>
+  <span class="link"><a href="https://github.com/MakazhanAlpamys/Soup" target="_blank">→ GitHub: MakazhanAlpamys/Soup</a></span>
+</div>
+
+<!-- ================================ 重複除去ログ ================================ -->
+<details class="dedup">
+  <summary>重複除去ログ（08-13〜08-15フィード掲載済で除外したアイテム）</summary>
+  <ul style="margin-top:0.5rem; padding-left:1.2rem; font-size:0.78rem; color:#6b7280;">
+    <li>Claude Code v2.1.233（08-15 掲載済）</li>
+    <li>Claude Code v2.1.232（08-14 掲載済）</li>
+    <li>github/spec-kit（08-15 掲載済）</li>
+    <li>holaboss-ai/holaOS（08-15 掲載済）</li>
+    <li>Claude Opus 5 effort dial（08-15 掲載済）</li>
+    <li>cathrynlavery/diagram-design（08-14 掲載済）</li>
+    <li>cactus-compute/needle（08-14 掲載済）</li>
+    <li>unslothai/unsloth（08-13〜14 掲載済）</li>
+    <li>ToolJet/ToolJet（複数日除外済・最新リリース確認できず）</li>
+    <li>cordiverse/cordis — Meta-Framework of Spatiotemporal Composability はコンセプトが抽象的で masatoman のワークフローとの接点が薄いため除外</li>
+  </ul>
+</details>
+
+<!-- ================================ 取得失敗ソース ================================ -->
+<div class="failed">
+  <strong>取得失敗ソース:</strong>
+  anthropic.com/news（EGRESS_BLOCKED）、
+  obsidian.md/changelog（EGRESS_BLOCKED）、
+  docs.claude.com → platform.claude.com → github.com/anthropics/claude-code/blob/main/CHANGELOG.md（GitHub blob 内容取得不可）。
+  GitHub Releases API 経由で v2.1.233 / v2.1.232 を取得済（最新は 08-14 の v2.1.233、本日新リリースなし）。
+  GitHub Trending ✅ · WebSearch×4 ✅ · WebFetch (ego-lite / CLI-Anything) ✅ で代替。
+</div>
+
+</body>
+</html>
