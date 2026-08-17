@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-17</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --yellow: #ca8a04;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde68a;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --gray: #6b7280;
+      --gray-bg: #f9fafb;
+      --gray-border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1f2937;
+      background: #fff;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border-left: 3px solid var(--green); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border-left: 3px solid var(--blue); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border-left: 3px solid var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border-left: 3px solid var(--gray); }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-color: var(--green-border);  background: var(--green-bg); }
+    .card.blue   { border-color: var(--blue-border);   background: var(--blue-bg); }
+    .card.yellow { border-color: var(--yellow-border); background: var(--yellow-bg); }
+    .card.gray   { border-color: var(--gray-border);   background: var(--gray-bg); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p  { font-size: 0.88rem; color: #374151; margin-bottom: 0.35rem; }
+    .card code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.82rem;
+      background: rgba(0,0,0,0.06);
+      padding: 0.1em 0.3em;
+      border-radius: 3px;
+    }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .verdict.green  { background: #dcfce7; color: var(--green); }
+    .verdict.blue   { background: #dbeafe; color: var(--blue); }
+    .verdict.yellow { background: #fef9c3; color: var(--yellow); }
+    .verdict.gray   { background: #f3f4f6; color: var(--gray); }
+    .link { font-size: 0.82rem; display: block; margin-top: 0.4rem; }
+    .link a { color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .none-note { font-size: 0.88rem; color: #9ca3af; padding: 0.5rem 0.75rem; }
+    .dedup {
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      color: #9ca3af;
+      border: 1px dashed #e5e7eb;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+    }
+    .dedup summary { cursor: pointer; color: #6b7280; }
+    .failed {
+      font-size: 0.82rem;
+      color: #9ca3af;
+      margin-top: 1rem;
+      padding: 0.6rem 0.75rem;
+      border: 1px dashed #e5e7eb;
+      border-radius: 6px;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-08-17</h1>
+<div class="meta">
+  取得日: 2026-08-17 (JST 09:00) ／ 対象期間: 2026-08-15〜08-17 ／
+  ソース: GitHub Releases (claude-code) ✅ · GitHub Trending ✅ · WebSearch×4 ✅ · WebFetch (revise.io / kingy.ai) ✅ ·
+  anthropic.com/news ❌ · obsidian.md/changelog ❌ · github.blog ❌ · releasebot.io ❌ · agentic.ai ❌ (ネットワーク制限) ／
+  重複除去: 直近3日分 (08-14〜08-16) の掲載済み項目を除外
+</div>
+
+<!-- ================================ 🟢 即使う ================================ -->
+<h2 class="green">🟢 即使う (1件)</h2>
+
+<div class="card green">
+  <h3>Revise — AI Document Editor with built-in MCP server (2026-08-11 launch)</h3>
+  <p>ブラウザベースのドキュメントエディタ。AI エージェントが文書の <strong>中</strong> に入って tracked changes（変更履歴つき）で編集できる。DOCX インポート・エクスポート対応、ヘッダー/リスト/表/太字・斜体/画像をフォーマット保持で読み込める。無料プランあり。</p>
+  <p><strong>特筆点：ビルトイン MCP サーバー搭載</strong>。つまり Claude Code から <code>mcp add revise</code> で繋ぐと、Claude Code セッション上から revise.io 内の文書に直接 tracked changes で書き込める。masatoman.net のブログ下書き・北原氏向け提案書・ヒアリング設計 docs の初稿を Claude Code から一発投入して、人間は変更承認だけするワークフローが組める。</p>
+  <p>今日のアクション: revise.io に無料登録 → <a href="https://revise.io/professionals" target="_blank">Professionals ページ</a>で MCP エンドポイントを確認 → Claude Code の <code>~/.claude/settings.json</code> に <code>mcpServers.revise</code> を追加して動作確認（30分）。</p>
+  <div class="verdict green">🟢 即試す — MCP サーバー搭載で Claude Code との連携が最短経路。Word 互換で取引先との書類共有も視野に入る。まず無料プランで MCP 疎通確認だけ今日やる。</div>
+  <span class="link"><a href="https://revise.io" target="_blank">→ Revise.io 公式サイト</a></span>
+  <span class="link"><a href="https://www.prweb.com/releases/revise-launches-ai-document-editor-with-reviewable-tracked-changes-302844708.html" target="_blank">→ PRWeb: Revise launch リリース</a></span>
+  <span class="link"><a href="https://startupfortune.com/revise-puts-an-ai-agent-inside-the-document-itself-with-every-change-tracked/" target="_blank">→ StartupFortune: "AI Agent Inside the Document Itself"</a></span>
+</div>
+
+<!-- ================================ 💰 課金価値 ================================ -->
+<h2 class="blue">💰 課金価値</h2>
+<p class="none-note">該当なし（今回の新着はすべて無料 / OSS / 既存サービス更新）</p>
+
+<!-- ================================ 🟡 様子見 ================================ -->
+<h2 class="yellow">🟡 様子見 (3件)</h2>
+
+<div class="card yellow">
+  <h3>GitHub Copilot Workspace — August 10 weekly release: /worktree・/btw・ブラウザ要素フィードバック</h3>
+  <p>8/13 公開の Copilot Workspace 週次更新。主要3機能: <strong>① /worktree コマンド</strong>（独立した git worktree を生成し現在の会話を中断せず別スペースで探索）、<strong>② /btw サイドチャット</strong>（エージェントが動いている最中に割り込み質問を投げられる、コンテキスト共有済み）、<strong>③ ブラウザ要素レベルのフィードバック</strong>（Web ページの特定要素を選択してエージェントに視覚的に指示を渡せる）。その他、ライブ tool-call 所要時間表示（タイムライン上で遅いコマンドを特定）、多言語音声ディクテーション（オンデバイス）も追加。</p>
+  <p>masatoman は Claude Code 主軸で Copilot Workspace には切り替えない。ただし /worktree は Claude Code の <code>isolation: "worktree"</code> Workflow オプション、/btw は <code>SendMessage</code> に対応する機能——両ツールの設計比較が masatoman.net の「AI に業務を任せる設計の実験ログ」記事の切り口になる。</p>
+  <div class="verdict yellow">🟡 様子見 — 切替なし。「Claude Code vs Copilot Workspace で worktree 隔離と割り込みチャットを比較する」記事ネタとして今日メモしておく。</div>
+  <span class="link"><a href="https://github.blog/changelog/2026-08-13-github-copilot-weekly-releases-august-10/" target="_blank">→ GitHub Changelog: Copilot weekly releases Aug 10</a></span>
+  <span class="link"><a href="https://www.sourcetrail.com/software/ide/github-copilot-expands-with-new-features-pricing-and-model-options-in-2026/" target="_blank">→ Sourcetrail: Copilot 2026 新機能まとめ</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>Microsoft Project Polaris — GitHub Copilot 内の GPT-4 Turbo を置き換える自社コーディングモデル (2026-08 ロールアウト中)</h3>
+  <p>Build 2026（6/2 発表）で公開された Microsoft 初の in-house コーディングモデル。2026-08 から GitHub Copilot 内の GPT-4 Turbo を段階的に置き換えている。OpenAI モデルから自社モデルへの移行で、Copilot の料金・性能・ポリシーが Microsoft の単独制御下に入ることになる。</p>
+  <p>masatoman は Copilot を使用していないため直接影響ゼロ。ただし「なぜ Claude Code を選ぶか」の比較軸として記録価値がある——<strong>GitHub が OpenAI から独立した時、Claude Code (Anthropic) との差がどこに残るか</strong>が今後の記事ネタになる。</p>
+  <div class="verdict yellow">🟡 様子見 — Copilot 課金の予定なし。「GitHub 自社モデル化 vs Anthropic Claude コーディングモデル比較」記事の一次情報として今日ブックマーク。</div>
+  <span class="link"><a href="https://www.buildfastwithai.com/blogs/7-ai-tools-changed-developer-workflow-august-2026" target="_blank">→ Build Fast With AI: August 2026 開発者 workflow に影響した7ツール</a></span>
+</div>
+
+<div class="card yellow">
+  <h3>OpenCut-app/OpenCut (83,868★ · +150/day · GitHub Trending) — CapCut のオープンソース代替動画エディタ</h3>
+  <p>"The open-source CapCut alternative" — ブラウザベースの動画編集ツール。OSS なのでプライバシー上のリスクなし。CapCut（TikTok/ByteDance 系）に代わる選択肢として開発者コミュニティで注目が集まっている。</p>
+  <p>masatoman の現状はテキスト中心（masatoman.net ブログ + Claude Code ルーティン）。ただし YouTube Shorts / Reel 形式の短尺解説動画を作りはじめる段階になったら CapCut 代替として有力候補。今はスターだけつけておく（触らない）。</p>
+  <div class="verdict yellow">🟡 様子見 — 動画コンテンツ制作を始めるタイミングになったら確認。今すぐ不要。</div>
+  <span class="link"><a href="https://github.com/OpenCut-app/OpenCut" target="_blank">→ GitHub: OpenCut-app/OpenCut</a></span>
+</div>
+
+<!-- ================================ 🚫 罠 ================================ -->
+<h2 class="gray">🚫 罠 (1件)</h2>
+
+<div class="card gray">
+  <h3>⚠️ Google Imagen 4 API — 本日 2026-08-17 をもって shutdown（3モデル同時終了）</h3>
+  <p>Google が Imagen 4 の安定版エンドポイント 3本（<code>imagen-4.0-generate-001</code>、<code>imagen-4.0-ultra-generate-001</code>、<code>imagen-4.0-fast-generate-001</code>）を本日 2026-08-17 付で廃止。Gemini Developer API・Vertex AI 両方が対象。後継は Gemini 3.x Image モデル（通称「Nano Banana」）だが、<strong>drop-in swap ではない</strong>——<code>generate_images()</code> メソッドが丸ごと廃止されているため、移行には API 呼び出しの書き直しが必要。</p>
+  <p>masatoman は現在 Google 画像生成 API を運用していないため直接被害ゼロ。ただし「<strong>ベンダー主導の突然の API 廃止</strong>」はプラットフォームリスクの典型例——Claude Code (Anthropic) / Supabase / Vercel 依存のスタックでも同様のリスクがある。今後 Google サービスを追加する際は "deprecation timeline" を必ずチェックする習慣を持つ。</p>
+  <div class="verdict gray">🚫 罠（他山の石）— masatoman が Imagen を使っていればデグレ不可避だった事例。新規 API 採用時はベンダーの廃止ポリシーを先に調べる。</div>
+  <span class="link"><a href="https://kingy.ai/ai-launch-tracker/google-will-shut-down-three-imagen-4-api-models-august-17/" target="_blank">→ kingy.ai: Google Imagen 4 shutdown Aug 17 詳細</a></span>
+  <span class="link"><a href="https://byteiota.com/imagen-4-shutdown-august-17-migrate-to-gemini-image-api-now/" target="_blank">→ ByteIota: Imagen 4 shutdown — Gemini Image API 移行ガイド</a></span>
+  <span class="link"><a href="https://firebase.google.com/docs/ai-logic/imagen-models-migration" target="_blank">→ Firebase: Imagen → Gemini Image 移行ドキュメント</a></span>
+</div>
+
+<!-- ================================ 重複除去ログ ================================ -->
+<details class="dedup">
+  <summary>重複除去ログ（08-14〜08-16フィード掲載済で除外したアイテム）</summary>
+  <ul style="margin-top:0.5rem; padding-left:1.2rem; font-size:0.78rem; color:#6b7280;">
+    <li>Claude Code v2.1.233（08-15 掲載済）</li>
+    <li>Claude Code v2.1.232（08-14 掲載済）</li>
+    <li>Claude Code v2.1.231（08-14 掲載済）</li>
+    <li>github/spec-kit（08-15 掲載済）</li>
+    <li>holaboss-ai/holaOS（08-15 掲載済）</li>
+    <li>Claude Opus 5 effort dial（08-15 掲載済）</li>
+    <li>cathrynlavery/diagram-design（08-14 掲載済）</li>
+    <li>cactus-compute/needle（08-14 掲載済）</li>
+    <li>altic-dev/FluidVoice（08-14 掲載済）</li>
+    <li>unslothai/unsloth（08-13〜14 掲載済）</li>
+    <li>citrolabs/ego-lite（08-16 掲載済）</li>
+    <li>HKUDS/CLI-Anything（08-16 掲載済）</li>
+    <li>DeepSeek V4-Pro GA（08-16 掲載済）</li>
+    <li>cursor/plugins（08-16 掲載済）</li>
+    <li>MakazhanAlpamys/Soup（08-16 掲載済）</li>
+    <li>ToolJet/ToolJet（複数日除外済・最新リリース確認できず）</li>
+    <li>cordiverse/cordis（コンセプト抽象的・masatomanワークフローとの接点薄で除外）</li>
+    <li>public-apis/public-apis（常時高評価の evergreen repo・新着ではないため除外）</li>
+    <li>basecamp/omarchy（Linux distro・スコープ外）</li>
+  </ul>
+</details>
+
+<!-- ================================ 取得失敗ソース ================================ -->
+<div class="failed">
+  <strong>取得失敗ソース:</strong>
+  anthropic.com/news（EGRESS_BLOCKED）、
+  obsidian.md/changelog（EGRESS_BLOCKED）、
+  github.blog（EGRESS_BLOCKED）、
+  releasebot.io（EGRESS_BLOCKED）、
+  agentic.ai（EGRESS_BLOCKED）、
+  aiapps.com（EGRESS_BLOCKED）、
+  gradually.ai（EGRESS_BLOCKED）、
+  docs.claude.com → platform.claude.com → github.com/anthropics/claude-code/blob/main/CHANGELOG.md（GitHub blob 内容取得不可）。
+  GitHub Releases API 経由で v2.1.233 が直近最新（2026-08-14）、本日新リリースなし。
+  GitHub Trending ✅ · WebSearch×4 ✅ · WebFetch (revise.io / kingy.ai) ✅ で代替。
+</div>
+
+</body>
+</html>
