@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>効率厨A feed 2026-08-18</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0f1117; color: #e2e8f0; line-height: 1.6; padding: 1rem; }
+  .container { max-width: 860px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .meta { font-size: 0.8rem; color: #94a3b8; margin-bottom: 1.5rem; }
+  .summary-bar { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; font-size: 0.85rem; }
+  .badge { padding: 0.2rem 0.6rem; border-radius: 9999px; font-weight: 600; }
+  .b-green  { background: #14532d; color: #86efac; }
+  .b-blue   { background: #1e3a5f; color: #93c5fd; }
+  .b-yellow { background: #422006; color: #fde68a; }
+  .b-gray   { background: #1e293b; color: #94a3b8; }
+  h2 { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.75rem; padding: 0.35rem 0.75rem; border-radius: 6px; }
+  h2.green  { background: #14532d; color: #86efac; }
+  h2.blue   { background: #1e3a5f; color: #93c5fd; }
+  h2.yellow { background: #422006; color: #fde68a; }
+  h2.gray   { background: #1e293b; color: #94a3b8; }
+  .item { background: #1e293b; border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; }
+  .item-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .item-body { font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem; }
+  .verdict { font-size: 0.82rem; font-style: italic; color: #94a3b8; border-left: 3px solid #475569; padding-left: 0.6rem; margin-bottom: 0.5rem; }
+  .verdict.green  { border-color: #22c55e; color: #86efac; }
+  .verdict.blue   { border-color: #3b82f6; color: #93c5fd; }
+  .verdict.yellow { border-color: #f59e0b; color: #fde68a; }
+  .verdict.gray   { border-color: #475569; color: #94a3b8; }
+  a { color: #60a5fa; text-decoration: none; font-size: 0.82rem; }
+  a:hover { text-decoration: underline; }
+  .fail { background: #1e293b; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.82rem; color: #94a3b8; margin-top: 1rem; }
+  @media (max-width: 600px) { h1 { font-size: 1.2rem; } .summary-bar { gap: 0.5rem; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>⚡ 効率厨A feed 2026-08-18</h1>
+<p class="meta">
+  取得日: 2026-08-18 &nbsp;|&nbsp;
+  対象期間: 2026-08-16〜08-18 &nbsp;|&nbsp;
+  ソース: Claude Code releases / GitHub releases / WebSearch (AI/automation) / GitHub Trending &nbsp;|&nbsp;
+  除外: 直近3日分と重複したもの（Marlow AI = 08-15 掲載済）
+</p>
+
+<div class="summary-bar">
+  <span class="badge b-green">🟢 即使う 1件</span>
+  <span class="badge b-blue">💰 課金価値 0件</span>
+  <span class="badge b-yellow">🟡 様子見 1件</span>
+  <span class="badge b-gray">🚫 罠 2件</span>
+</div>
+
+<!-- 🟢 即使う -->
+<h2 class="green">🟢 即使う (1件)</h2>
+
+<div class="item">
+  <div class="item-title">Claude Code v2.1.234 (2026-08-17 リリース)</div>
+  <div class="item-body">
+    「usage limit リセット時に自動でセッション継続」が追加。/config でオン/オフ可。
+    また、組み込み <code>claude-api</code> skill のコンテキスト消費が 200k → <strong>25k トークンに大幅削減</strong>。
+    さらに <code>CLAUDE_CODE_PROJECT_DIR_NAME</code> 環境変数で複数 repo の transcript ディレクトリ名を整理できる。
+    セキュリティ面では Windows NT-namespace パス（<code>\??\</code>）の拒否が全経路に拡充。
+  </div>
+  <div class="verdict green">
+    claude-api skill が 25k になった効果は今日の routine セッションから即反映。
+    <code>CLAUDE_CODE_PROJECT_DIR_NAME=portfolio</code> を .env に追加するだけで
+    ~/portfolio と ~/個人開発〜 の transcript が混ざらなくなる。5分作業。
+  </div>
+  <a href="https://github.com/anthropics/claude-code/releases" target="_blank" rel="noopener">→ GitHub Releases</a>
+  &nbsp;&nbsp;
+  <a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">→ Changelog</a>
+</div>
+
+<!-- 💰 課金価値 -->
+<h2 class="blue">💰 課金価値 (0件)</h2>
+<div class="item">
+  <div class="item-body" style="color:#64748b;">該当なし</div>
+</div>
+
+<!-- 🟡 様子見 -->
+<h2 class="yellow">🟡 様子見 (1件)</h2>
+
+<div class="item">
+  <div class="item-title">ai-memory (Rust, 2,031★ +207/day · GitHub Trending 08-18)</div>
+  <div class="item-body">
+    Claude Code 等のエージェント系 CLI 向けの長期メモリ・ライブラリ。
+    複数ベンダー間のエージェント引き継ぎ（handoff）時に会話 context を保持する設計。
+    masatoman の routine + portfolio/masatoman.net のマルチ repo 作業環境と相性が良い可能性。
+  </div>
+  <div class="verdict yellow">
+    現状の <code>~/.claude/projects/*/memory/MEMORY.md</code> 運用と競合するか補完するか未確認。
+    まず README を読んで Claude Code の memory 機構との差分を把握してから判断。
+    今月の routine 整理サイクルで README だけ 30 分精読で十分。
+  </div>
+  <a href="https://github.com/trending" target="_blank" rel="noopener">→ GitHub Trending (ai-memory)</a>
+</div>
+
+<!-- 🚫 罠 -->
+<h2 class="gray">🚫 罠 (2件)</h2>
+
+<div class="item">
+  <div class="item-title">MoneyPrinterTurbo (Python, 105,973★ +1,189/day · GitHub Trending 08-18)</div>
+  <div class="item-body">
+    キーワード・トピックから HD ショート動画を全自動生成する Python ツール。
+    AI workflow で動画生成〜音声〜字幕を一括処理。非常に人気。
+  </div>
+  <div class="verdict gray">
+    masatoman の運用スコープ（コード + 記事 + 工務店営業）に動画量産ラインは存在しない。
+    SNS 動画を始める予定ができた時点で評価すれば十分。今は触らない。
+  </div>
+  <a href="https://github.com/Harry-Jing/MoneyPrinterTurbo" target="_blank" rel="noopener">→ GitHub (MoneyPrinterTurbo)</a>
+</div>
+
+<div class="item">
+  <div class="item-title">career-ops (JavaScript, 64,615★ +218/day · GitHub Trending 08-18)</div>
+  <div class="item-body">
+    AI による就職活動自動化ツール。応募追跡・CV カスタマイズ・面接準備を自動化。
+    GitHub Trending 急上昇中。
+  </div>
+  <div class="verdict gray">
+    就活ツールは masatoman（個人開発＋フリーランス受注路線）の用途と完全に外れる。
+    trending = 世間の話題だが、自分の作業に組み込む理由ゼロ。スルーで正解。
+  </div>
+  <a href="https://github.com/trending" target="_blank" rel="noopener">→ GitHub Trending</a>
+</div>
+
+<!-- 取得失敗ソース -->
+<div class="fail">
+  ⚠️ 取得失敗ソース (2件): anthropic.com/news（egress blocked）/ obsidian.md/changelog（egress blocked）<br>
+  ✅ 成功: GitHub releases, platform.claude.com (redirect経由), WebSearch ×3, GitHub Trending
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
