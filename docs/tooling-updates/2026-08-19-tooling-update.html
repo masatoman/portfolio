@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>効率厨A feed 2026-08-19</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0f1117; color: #e2e8f0; line-height: 1.6; padding: 1rem; }
+  .container { max-width: 860px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .meta { font-size: 0.8rem; color: #94a3b8; margin-bottom: 1.5rem; }
+  .summary-bar { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; font-size: 0.85rem; }
+  .badge { padding: 0.2rem 0.6rem; border-radius: 9999px; font-weight: 600; }
+  .b-green  { background: #14532d; color: #86efac; }
+  .b-blue   { background: #1e3a5f; color: #93c5fd; }
+  .b-yellow { background: #422006; color: #fde68a; }
+  .b-gray   { background: #1e293b; color: #94a3b8; }
+  h2 { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.75rem; padding: 0.35rem 0.75rem; border-radius: 6px; }
+  h2.green  { background: #14532d; color: #86efac; }
+  h2.blue   { background: #1e3a5f; color: #93c5fd; }
+  h2.yellow { background: #422006; color: #fde68a; }
+  h2.gray   { background: #1e293b; color: #94a3b8; }
+  .item { background: #1e293b; border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; }
+  .item-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .item-body { font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem; }
+  .item-body p + p { margin-top: 0.4rem; }
+  .verdict { font-size: 0.82rem; font-style: italic; color: #94a3b8; border-left: 3px solid #475569; padding-left: 0.6rem; margin-bottom: 0.5rem; }
+  .verdict.green  { border-color: #22c55e; color: #86efac; }
+  .verdict.blue   { border-color: #3b82f6; color: #93c5fd; }
+  .verdict.yellow { border-color: #f59e0b; color: #fde68a; }
+  .verdict.gray   { border-color: #475569; color: #94a3b8; }
+  a { color: #60a5fa; text-decoration: none; font-size: 0.82rem; }
+  a:hover { text-decoration: underline; }
+  .fail { background: #1e293b; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.82rem; color: #94a3b8; margin-top: 1rem; }
+  .fail ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+  .fail li { margin-bottom: 0.2rem; }
+  code { background: #334155; padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.8rem; font-family: "SF Mono", Consolas, monospace; }
+  @media (max-width: 600px) { h1 { font-size: 1.2rem; } .summary-bar { gap: 0.5rem; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>⚡ 効率厨A feed 2026-08-19</h1>
+<p class="meta">
+  取得日: 2026-08-19 &nbsp;|&nbsp;
+  対象期間: 2026-08-17〜08-19 &nbsp;|&nbsp;
+  ソース: GitHub releases (anthropics/claude-code) / code.claude.com/whats-new / WebSearch / GitHub Trending &nbsp;|&nbsp;
+  除外: 直近3日分と重複したもの（v2.1.233=08-18掲載済 / Revise=08-18掲載済 / ego-lite・CLI-Anything=08-16掲載済）
+</p>
+
+<div class="summary-bar">
+  <span class="badge b-green">🟢 即使う 2件</span>
+  <span class="badge b-blue">💰 課金価値 0件</span>
+  <span class="badge b-yellow">🟡 様子見 1件</span>
+  <span class="badge b-gray">🚫 罠 2件</span>
+</div>
+
+<!-- 🟢 即使う -->
+<h2 class="green">🟢 即使う (2件)</h2>
+
+<div class="item">
+  <div class="item-title">Claude Code v2.1.235 — cloud session メモリ/CPU 改善 + spellcheck 設定</div>
+  <div class="item-body">
+    <p>2026-08-18 20:38 リリース。今日のルーティンセッション（このエージェント自体）が恩恵を受けるアップデート。<strong>background cloud sessions のメモリ・CPU 使用量が改善</strong>されており、routine やワークフローエージェントが安定稼働するようになる。また <code>spellcheck</code> 設定を追加すると prompt 入力欄にタイポが下線表示される（<code>aspell</code>/<code>hunspell</code>/<code>ispell</code> が必要）。</p>
+    <p>その他: 深い入れ子マークダウンの整列バグ修正 / VSCode で複数 Claude タブを開くとフォーカスが飛ぶ現象を修正 / notebook セル削除ダイアログの内容欠落を修正。</p>
+  </div>
+  <div class="verdict green">🟢 即使う — routine が cloud session で動いている masatoman には直接効く。<code>claude upgrade</code> または自動更新で本日反映。spellcheck は <code>~/.claude/settings.json</code> に <code>"spellcheck": true</code> 追加で有効化（aspell が入っていれば 1 分）。</div>
+  <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.235" target="_blank">→ v2.1.235 リリースノート</a>
+</div>
+
+<div class="item">
+  <div class="item-title">Claude Code v2.1.234 — CLAUDE_CODE_PROJECT_DIR_NAME + 上限リセット後の自動継続</div>
+  <div class="item-body">
+    <p>2026-08-17 20:20 リリース（前日 feed 未掲載）。<strong><code>CLAUDE_CODE_PROJECT_DIR_NAME</code> 環境変数</strong>を設定すると、プロジェクトごとのトランスクリプトディレクトリ名をカスタマイズできる。<code>portfolio</code> と <code>個人開発マネタイズプラットフォーム</code> を並行運用する masatoman は、<code>CLAUDE_CODE_PROJECT_DIR_NAME=komuten</code> のように設定するとトランスクリプトが整理される。</p>
+    <p><strong>claude.ai 使用上限リセット後に自動でセッションを継続</strong>する機能も追加。routine エージェントが上限に引っかかっても再起動不要で復帰する。セキュリティ: Windows NT-namespace パスを悪用した NTLM 資格情報リーク防止の強化も含む。</p>
+  </div>
+  <div class="verdict green">🟢 即使う — 上限リセット後の自動継続は routine 運用の中断ゼロに直結。<code>CLAUDE_CODE_PROJECT_DIR_NAME</code> は <code>.env</code> または <code>~/.profile</code> に 1 行追加するだけ。</div>
+  <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.234" target="_blank">→ v2.1.234 リリースノート</a>
+</div>
+
+<!-- 💰 課金価値 -->
+<h2 class="blue">💰 課金価値 (0件)</h2>
+<div class="item">
+  <div class="item-body" style="color:#94a3b8;">該当なし（本日のピックアップに新規有料ツールなし）</div>
+</div>
+
+<!-- 🟡 様子見 -->
+<h2 class="yellow">🟡 様子見 (1件)</h2>
+
+<div class="item">
+  <div class="item-title">ai-memory (akitaonrails/ai-memory) — エージェント CLI 長期メモリ＋ベンダー横断ハンドオフ (Rust / 2,702★ / GitHub Trending 入り)</div>
+  <div class="item-body">
+    <p>Claude Code, Codex, Cursor, Kiro CLI, Grok Build CLI など 10+ の AI コーディング CLI をまたいで、prompt・ツール呼び出し履歴・引き継ぎコンテキストを共通のメモリ層に保存する Rust 製ツール。次のセッションを開くと「前回ここまでやった」という handoff が自動生成される。</p>
+    <p>masatoman の現行スタック（<code>~/.claude/projects/.../memory/MEMORY.md</code> ベース）と目的は同じで、今すぐ移行する動機はない。ただし将来 Claude Code 以外のエージェントを試す場面が来たときに選択肢に入る。</p>
+  </div>
+  <div class="verdict yellow">🟡 様子見 — 現在 Claude Code 単独運用なので MEMORY.md で十分。GitHub スターしておき、Claude Code 以外のエージェントに移行・実験するタイミングで再評価。</div>
+  <a href="https://github.com/akitaonrails/ai-memory" target="_blank">→ akitaonrails/ai-memory</a>
+</div>
+
+<!-- 🚫 罠 -->
+<h2 class="gray">🚫 罠 (2件)</h2>
+
+<div class="item">
+  <div class="item-title">OpenViking (29,354★) — AI エージェント向け自己進化型コンテキスト DB</div>
+  <div class="item-body">
+    <p>メモリ・知識 RAG・スキルを統合した「自己進化型コンテキストデータベース」。エージェント用のバックエンドインフラとして設計されており、既存の Supabase ベース RAG スタックと役割が完全に被る。29,000+ ★ の急上昇はバズの可能性が高く、ドキュメントと成熟度が不明。</p>
+  </div>
+  <div class="verdict gray">🚫 罠 — Supabase + MEMORY.md で動いているスタックを置き換える理由がない。設定・維持コストが高い新規インフラを追加すると掃除が増えるだけ。スター数に釣られない。</div>
+  <a href="https://github.com/trending" target="_blank">→ GitHub Trending（参照元）</a>
+</div>
+
+<div class="item">
+  <div class="item-title">munder-difflin (2,009★) — ローカルマルチエージェント環境ビルダー (TypeScript)</div>
+  <div class="item-body">
+    <p>ローカルマシン上にマルチエージェント実行環境を構築する TypeScript ツール。GitHub Trending 入り。Claude Code on web の remote execution + Workflow ツールで既に並列エージェントが動いており、ローカルに別途マルチエージェント基盤を構築するメリットがない。</p>
+  </div>
+  <div class="verdict gray">🚫 罠 — Claude Code の Workflow / parallel() ですでに複数エージェントを走らせられる。重複投資になる。2K★ は初期バズの可能性が高く、プロダクト方向性も不明。</div>
+  <a href="https://github.com/trending" target="_blank">→ GitHub Trending（参照元）</a>
+</div>
+
+<!-- 取得失敗ソース -->
+<div class="fail">
+  <strong>取得失敗ソース（skip）</strong>
+  <ul>
+    <li>www.anthropic.com/news — EGRESS_BLOCKED（プロキシによりブロック）</li>
+    <li>obsidian.md/changelog — EGRESS_BLOCKED（プロキシによりブロック）</li>
+    <li>docs.claude.com/en/release-notes/claude-code — 301 → github CHANGELOG.md → GitHub エラーページ（github.com/anthropics/claude-code/releases で代替取得済）</li>
+  </ul>
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
