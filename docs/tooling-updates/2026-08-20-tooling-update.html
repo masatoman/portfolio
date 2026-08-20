@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>効率厨A feed 2026-08-20</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0f1117; color: #e2e8f0; line-height: 1.6; padding: 1rem; }
+  .container { max-width: 860px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .meta { font-size: 0.8rem; color: #94a3b8; margin-bottom: 1.5rem; }
+  .summary-bar { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; font-size: 0.85rem; }
+  .badge { padding: 0.2rem 0.6rem; border-radius: 9999px; font-weight: 600; }
+  .b-green  { background: #14532d; color: #86efac; }
+  .b-blue   { background: #1e3a5f; color: #93c5fd; }
+  .b-yellow { background: #422006; color: #fde68a; }
+  .b-gray   { background: #1e293b; color: #94a3b8; }
+  h2 { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.75rem; padding: 0.35rem 0.75rem; border-radius: 6px; }
+  h2.green  { background: #14532d; color: #86efac; }
+  h2.blue   { background: #1e3a5f; color: #93c5fd; }
+  h2.yellow { background: #422006; color: #fde68a; }
+  h2.gray   { background: #1e293b; color: #94a3b8; }
+  .item { background: #1e293b; border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; }
+  .item-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .item-body { font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem; }
+  .item-body p + p { margin-top: 0.4rem; }
+  .verdict { font-size: 0.82rem; font-style: italic; color: #94a3b8; border-left: 3px solid #475569; padding-left: 0.6rem; margin-bottom: 0.5rem; }
+  .verdict.green  { border-color: #22c55e; color: #86efac; }
+  .verdict.blue   { border-color: #3b82f6; color: #93c5fd; }
+  .verdict.yellow { border-color: #f59e0b; color: #fde68a; }
+  .verdict.gray   { border-color: #475569; color: #94a3b8; }
+  a { color: #60a5fa; text-decoration: none; font-size: 0.82rem; }
+  a:hover { text-decoration: underline; }
+  .fail { background: #1e293b; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.82rem; color: #94a3b8; margin-top: 1rem; }
+  .fail ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+  .fail li { margin-bottom: 0.2rem; }
+  code { background: #334155; padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.8rem; font-family: "SF Mono", Consolas, monospace; }
+  @media (max-width: 600px) { h1 { font-size: 1.2rem; } .summary-bar { gap: 0.5rem; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>⚡ 効率厨A feed 2026-08-20</h1>
+<p class="meta">
+  取得日: 2026-08-20 &nbsp;|&nbsp;
+  対象期間: 2026-08-18〜08-20 &nbsp;|&nbsp;
+  ソース: GitHub releases (anthropics/claude-code) / WebSearch (AI coding/automation) / GitHub Trending &nbsp;|&nbsp;
+  除外: 直近3日分と重複したもの（v2.1.235=08-19掲載済 / v2.1.234=08-18/19掲載済 / docs.claude.com・anthropic.com=取得失敗）
+</p>
+
+<div class="summary-bar">
+  <span class="badge b-green">🟢 即使う 1件</span>
+  <span class="badge b-blue">💰 課金価値 0件</span>
+  <span class="badge b-yellow">🟡 様子見 2件</span>
+  <span class="badge b-gray">🚫 罠 2件</span>
+</div>
+
+<!-- 🟢 即使う -->
+<h2 class="green">🟢 即使う (1件)</h2>
+
+<div class="item">
+  <div class="item-title">Claude Code v2.1.236 — ANTHROPIC_DEFAULT_MODEL + notify_when_idle (2026-08-19 20:02)</div>
+  <div class="item-body">
+    <p><strong><code>ANTHROPIC_DEFAULT_MODEL</code> 環境変数</strong>が追加された。<code>.env</code> や <code>~/.profile</code> に <code>ANTHROPIC_DEFAULT_MODEL=claude-sonnet-4-6</code> を 1 行書くだけで、新規セッション起動のたびにモデルを選ぶ操作がゼロになる。routine が毎回 sonnet-4-6 で動く場合、この変数を入れれば設定確認の手間が消える。</p>
+    <p><strong>クロスセッション <code>SendMessage</code> に <code>notify_when_idle</code> オプション</strong>が追加。エージェントが idle になった瞬間に別セッションへ通知を送れる。routine → 別セッション → 成果物確認、のチェーンを組む時に直接使える構造。その他: macOS サンドボックスのワイルドカード read-deny ルール優先度改善 / フルスクリーンレンダラー永続失敗の修正 / <code>/model</code> ピッカー表示高さ最適化。</p>
+  </div>
+  <div class="verdict green">🟢 即使う — <code>~/.profile</code> に 1 行追加するだけ。routine 毎日起動のモデル選択ゼロ化 + 将来の routine 連携設計（tooling-feed → content-executor 通知）に <code>notify_when_idle</code> が直接使える。今すぐ入れる価値あり。</div>
+  <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.236" target="_blank">→ v2.1.236 リリースノート</a>
+</div>
+
+<!-- 💰 課金価値 -->
+<h2 class="blue">💰 課金価値 (0件)</h2>
+<div class="item">
+  <div class="item-body" style="color:#64748b;">該当なし</div>
+</div>
+
+<!-- 🟡 様子見 -->
+<h2 class="yellow">🟡 様子見 (2件)</h2>
+
+<div class="item">
+  <div class="item-title">OpenViking — 自己進化型コンテキストデータベース (GitHub Trending #2 / 本日 +804 ⭐ / 合計 30k)</div>
+  <div class="item-body">
+    <p>AI エージェントが自身の実行ログ・判断履歴を構造化して蓄積・検索できる自己進化型コンテキスト DB（Python）。エージェントが「過去の類似タスクの結果」を参照しながら動く仕組みを提供する。</p>
+    <p>現状 masatoman の routine は CLAUDE.md + memory ファイル群で動いており個人開発規模では十分。ただし portfolio の routine エージェント数が増えてきた場合（tooling-feed / morning-brief / PR-watch 等が並走する時）に、各エージェントが過去判断を共有する仕組みとして参照価値が出る。</p>
+  </div>
+  <div class="verdict yellow">🟡 様子見 — 今すぐ乗り換える必要はないが「routine が 5 本以上並走し始めたら調べる」リストに追加する価値あり。スター急増（本日 +804）は品質より話題性かもしれないので、2 週間後の評価を待つ。</div>
+  <a href="https://github.com/trending" target="_blank">→ GitHub Trending (2026-08-20)</a>
+</div>
+
+<div class="item">
+  <div class="item-title">munder-difflin — ローカル実行マルチエージェント基盤 (GitHub Trending #3 / 本日 +795 ⭐ / 合計 2.7k)</div>
+  <div class="item-body">
+    <p>TypeScript 製のローカル実行可能なマルチエージェント基盤。クラウド依存なしに複数エージェントをオーケストレーションできる点が特徴で、AI ガバナンスや費用管理を重視する開発者から注目されている。</p>
+    <p>masatoman は claude.ai MAX プランの定額運用なのでローカル推論コストの削減メリットは薄い。「Claude Code から独立したエージェント実験」をしたい場合の選択肢として把握しておける程度。</p>
+  </div>
+  <div class="verdict yellow">🟡 様子見 — MAX プラン定額運用との相性が薄く今すぐ試す理由がない。ローカル AI エージェントへの関心が高まった場合の参照リストに。</div>
+  <a href="https://github.com/trending" target="_blank">→ GitHub Trending (2026-08-20)</a>
+</div>
+
+<!-- 🚫 罠 -->
+<h2 class="gray">🚫 罠 (2件)</h2>
+
+<div class="item">
+  <div class="item-title">MoneyPrinterTurbo — AI短動画自動生成 (GitHub Trending #1 / 本日 +2,221 ⭐ / 合計 110k)</div>
+  <div class="item-body">
+    <p>キーワードを入れると AI が BGM・ナレーション付きの縦型短動画を自動生成する Python ツール。TikTok / YouTube Shorts 向け。スター急増でトレンド首位だが、masatoman のスタック（Claude Code + Vercel + Supabase + portfolio）と接点がゼロ。</p>
+  </div>
+  <div class="verdict gray">🚫 罠 — 動画コンテンツ制作ツール。SNS 告知は wontfix の方針なので触る理由がない。スターは話題性のみ。</div>
+  <a href="https://github.com/trending" target="_blank">→ GitHub Trending (2026-08-20)</a>
+</div>
+
+<div class="item">
+  <div class="item-title">Anthropic-Cybersecurity-Skills — AI エージェント向け 817 個のセキュリティスキル (本日 +766 ⭐ / 合計 30k)</div>
+  <div class="item-body">
+    <p>Claude Code エージェントにセキュリティ診断・ペネトレーションテスト系の 817 スキルを付与する Python パッケージ。セキュリティ専門家向けで、一般的な業務自動化や個人開発には過剰。</p>
+  </div>
+  <div class="verdict gray">🚫 罠 — masatoman のユースケース（portfolio / routine / 工務店 B2B）にセキュリティ診断スキルは不要。Skills 機能の事例として構造は参考になるが、パッケージ自体を導入する必要なし。</div>
+  <a href="https://github.com/trending" target="_blank">→ GitHub Trending (2026-08-20)</a>
+</div>
+
+<!-- 取得失敗ソース -->
+<div class="fail">
+  <strong>取得失敗ソース (2件)</strong>
+  <ul>
+    <li><code>docs.claude.com/en/release-notes/claude-code</code> → 301 → platform.claude.com → 307 → CHANGELOG.md（GitHub UI エラーで内容取得不可。GitHub Releases で代替）</li>
+    <li><code>www.anthropic.com/news</code> → egress blocked（プロキシポリシーによる）</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>
