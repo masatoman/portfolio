@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>効率厨A feed 2026-08-21</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0f1117; color: #e2e8f0; line-height: 1.6; padding: 1rem; }
+  .container { max-width: 860px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .meta { font-size: 0.8rem; color: #94a3b8; margin-bottom: 1.5rem; }
+  .summary-bar { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; font-size: 0.85rem; }
+  .badge { padding: 0.2rem 0.6rem; border-radius: 9999px; font-weight: 600; }
+  .b-green  { background: #14532d; color: #86efac; }
+  .b-blue   { background: #1e3a5f; color: #93c5fd; }
+  .b-yellow { background: #422006; color: #fde68a; }
+  .b-gray   { background: #1e293b; color: #94a3b8; }
+  h2 { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.75rem; padding: 0.35rem 0.75rem; border-radius: 6px; }
+  h2.green  { background: #14532d; color: #86efac; }
+  h2.blue   { background: #1e3a5f; color: #93c5fd; }
+  h2.yellow { background: #422006; color: #fde68a; }
+  h2.gray   { background: #1e293b; color: #94a3b8; }
+  .item { background: #1e293b; border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; }
+  .item-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .item-body { font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem; }
+  .item-body p + p { margin-top: 0.4rem; }
+  .verdict { font-size: 0.82rem; font-style: italic; color: #94a3b8; border-left: 3px solid #475569; padding-left: 0.6rem; margin-bottom: 0.5rem; }
+  .verdict.green  { border-color: #22c55e; color: #86efac; }
+  .verdict.blue   { border-color: #3b82f6; color: #93c5fd; }
+  .verdict.yellow { border-color: #f59e0b; color: #fde68a; }
+  .verdict.gray   { border-color: #475569; color: #94a3b8; }
+  .item-link a { font-size: 0.8rem; color: #60a5fa; text-decoration: none; }
+  .item-link a:hover { text-decoration: underline; }
+  .fail-list { background: #1e293b; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.82rem; color: #94a3b8; margin-top: 1.5rem; }
+  .fail-list ul { padding-left: 1.2rem; }
+  .fail-list li { margin-bottom: 0.25rem; }
+  @media (max-width: 600px) { h1 { font-size: 1.2rem; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>効率厨A feed 2026-08-21</h1>
+  <p class="meta">取得日: 2026-08-21 (JST) ／ 対象期間: 2026-08-19〜2026-08-21 ／ ソース: GitHub Releases, GitHub Trending, WebSearch (直近2日新着) ／ 重複除去: 2026-08-19〜2026-08-20 掲載済み項目を除外</p>
+
+  <div class="summary-bar">
+    <span class="badge b-green">🟢 即使う 2件</span>
+    <span class="badge b-blue">💰 課金価値 0件</span>
+    <span class="badge b-yellow">🟡 様子見 2件</span>
+    <span class="badge b-gray">🚫 罠 2件</span>
+  </div>
+
+  <!-- 🟢 即使う -->
+  <h2 class="green">🟢 即使う</h2>
+
+  <div class="item">
+    <div class="item-title">Claude Code v2.1.238 — カスタム出力スタイル drift 修正 + 長セッションメモリリーク解消 (2026-08-20 20:33)</div>
+    <div class="item-body">
+      <p>カスタム出力スタイルがセッション途中でデフォルトに戻る drift バグが修正された。masatoman の Komuten Owner Mode スタイルがリセットされる問題が解決。長い interactive セッションでのメモリ増大バグも修正で、daily routine の長時間実行が安定する。</p>
+      <p>その他: <code>keybindingFlavor</code> 設定追加 (readline 流 Ctrl+W 挙動切替)、plugin marketplace の <code>headersHelper</code> 対応 (短命トークン生成)、proxy authorization コマンド/ファイル指定オプション追加、MCP elicitation ダイアログ + リモートセッション多数のバグ修正。</p>
+    </div>
+    <div class="verdict green">このリモート routine 環境でカスタムスタイルが途中リセットされる挙動は修正済み。更新して長セッション安定性を確認するのが今日の最優先。</div>
+    <div class="item-link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.238" target="_blank">→ v2.1.238 リリースノート</a></div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">Claude Code v2.1.237 — "Concise" 出力スタイル追加 + LLM gateway プロンプトキャッシュ修正 (2026-08-20 00:54)</div>
+    <div class="item-body">
+      <p>"Concise" スタイルは結果を先に出し、前置き・ナレーションをすべてスキップするモード。<code>/config</code> の Output style から今日から切り替え可能。tooling-update routine や GSC 自動化など定型出力タスクでレスポンスが短くなりトークン節約が期待できる。</p>
+      <p>LLM gateway / カスタム base URL 経由セッションでプロンプトキャッシュが正常に動作しない問題も修正。</p>
+    </div>
+    <div class="verdict green">"Concise" スタイルを日次 routine に試して出力トークンを計測するのが具体的な使い方。前置きゼロで完了報告が短くなる場面（feed 生成、SEO チェック等）に刺さる。</div>
+    <div class="item-link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.237" target="_blank">→ v2.1.237 リリースノート</a></div>
+  </div>
+
+  <!-- 💰 課金価値 -->
+  <h2 class="blue">💰 課金価値</h2>
+  <div class="item">
+    <div class="item-body" style="color:#64748b;">該当なし</div>
+  </div>
+
+  <!-- 🟡 様子見 -->
+  <h2 class="yellow">🟡 様子見</h2>
+
+  <div class="item">
+    <div class="item-title">obra/superpowers — エージェントスキルフレームワーク & 開発方法論 (GitHub Trending #4 / +727⭐ / 合計 274,930)</div>
+    <div class="item-body">
+      <p>"An agentic skills framework &amp; software development methodology that works" — .agents ディレクトリベースでスキルを管理する思想が Claude Code の skills 体系と近い。masatoman がすでに .claude/skills で運用している構造との比較が興味深い。</p>
+      <p>ただし Claude Code とは別 CLI 環境前提のため、直接移行するコストは高い。設計方法論の参照用として読む価値がある。</p>
+    </div>
+    <div class="verdict yellow">.claude/skills の設計を見直す際に methodology を参考にする程度。今すぐ乗り換えではなく、quarterly review の参照候補に入れておく。</div>
+    <div class="item-link"><a href="https://github.com/obra/superpowers" target="_blank">→ obra/superpowers</a></div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">mattpocock/skills — .agents ディレクトリ実務スキル集 (GitHub Trending #2 / +2,192⭐ / 合計 226,411)</div>
+    <div class="item-body">
+      <p>"Skills for Real Engineers. Straight from my .agents directory" — TypeScript 専門家 Matt Pocock が実際の .agents ディレクトリから公開したスキルセット。TypeScript 開発に強く、masatoman の Next.js 系タスクで使えるスキルが含まれる可能性がある。</p>
+      <p>スキルの構造・粒度が Claude Code skills の参考事例として読める。実用性は TypeScript 業務の比重次第。</p>
+    </div>
+    <div class="verdict yellow">masatoman の TypeScript 比重が上がる phase (MVP 実装期) で参照する価値あり。今は portfolio / docs 整備が主軸のため、次フェーズの候補リストに入れる程度でよい。</div>
+    <div class="item-link"><a href="https://github.com/mattpocock/skills" target="_blank">→ mattpocock/skills</a></div>
+  </div>
+
+  <!-- 🚫 罠 -->
+  <h2 class="gray">🚫 罠</h2>
+
+  <div class="item">
+    <div class="item-title">cursor/plugins — Cursor プラグイン仕様 + 公式プラグイン (GitHub Trending #5 / +449⭐ / 合計 4,074)</div>
+    <div class="item-body">
+      <p>Cursor のプラグイン仕様と公式プラグインのリポジトリ。Cursor 専用エコシステムで Claude Code とは互換性なし。</p>
+    </div>
+    <div class="verdict gray">Claude Code MAX プラン定額で固定している以上、Cursor 移行は運用スタック全廃になる。技術情報として眺めても現状の費用対効果はゼロ。</div>
+    <div class="item-link"><a href="https://github.com/cursor/plugins" target="_blank">→ cursor/plugins</a></div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">santifer/career-ops — AI 転職活動自動化 (GitHub Trending #6 / +816⭐ / 合計 66,656)</div>
+    <div class="item-body">
+      <p>500以上の求人ポータルをスキャンし、CVを自動でカスタマイズして応募する転職活動特化の AI 自動化ツール。</p>
+    </div>
+    <div class="verdict gray">転職活動専用。masatoman の個人開発・工務店 SaaS 構築が主軸の現フェーズには無関係。</div>
+    <div class="item-link"><a href="https://github.com/santifer/career-ops" target="_blank">→ santifer/career-ops</a></div>
+  </div>
+
+  <!-- 取得失敗ソース -->
+  <div class="fail-list">
+    <strong>取得失敗ソース (4件)</strong>
+    <ul>
+      <li>www.anthropic.com — egress proxy blocked</li>
+      <li>obsidian.md — egress proxy blocked</li>
+      <li>aiagentstore.ai — egress proxy blocked</li>
+      <li>platform.claude.com/docs (CHANGELOG raw) — 307 redirect 先の GitHub raw 取得不可</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
