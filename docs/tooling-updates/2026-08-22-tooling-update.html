@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>効率厨A feed 2026-08-22</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0f1117; color: #e2e8f0; line-height: 1.6; padding: 1rem; }
+  .container { max-width: 860px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .meta { font-size: 0.8rem; color: #94a3b8; margin-bottom: 1.5rem; }
+  .summary-bar { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; font-size: 0.85rem; }
+  .badge { padding: 0.2rem 0.6rem; border-radius: 9999px; font-weight: 600; }
+  .b-green  { background: #14532d; color: #86efac; }
+  .b-blue   { background: #1e3a5f; color: #93c5fd; }
+  .b-yellow { background: #422006; color: #fde68a; }
+  .b-gray   { background: #1e293b; color: #94a3b8; }
+  h2 { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.75rem; padding: 0.35rem 0.75rem; border-radius: 6px; }
+  h2.green  { background: #14532d; color: #86efac; }
+  h2.blue   { background: #1e3a5f; color: #93c5fd; }
+  h2.yellow { background: #422006; color: #fde68a; }
+  h2.gray   { background: #1e293b; color: #94a3b8; }
+  .item { background: #1e293b; border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; }
+  .item-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .item-body { font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem; }
+  .item-body p + p { margin-top: 0.4rem; }
+  .verdict { font-size: 0.82rem; font-style: italic; color: #94a3b8; border-left: 3px solid #475569; padding-left: 0.6rem; margin-bottom: 0.5rem; }
+  .verdict.green  { border-color: #22c55e; color: #86efac; }
+  .verdict.blue   { border-color: #3b82f6; color: #93c5fd; }
+  .verdict.yellow { border-color: #f59e0b; color: #fde68a; }
+  .verdict.gray   { border-color: #475569; color: #94a3b8; }
+  .item-link a { font-size: 0.8rem; color: #60a5fa; text-decoration: none; }
+  .item-link a:hover { text-decoration: underline; }
+  .fail-list { background: #1e293b; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.82rem; color: #94a3b8; margin-top: 1.5rem; }
+  .fail-list ul { padding-left: 1.2rem; }
+  .fail-list li { margin-bottom: 0.25rem; }
+  @media (max-width: 600px) { h1 { font-size: 1.2rem; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>効率厨A feed 2026-08-22</h1>
+  <p class="meta">取得日: 2026-08-22 (JST) ／ 対象期間: 2026-08-20〜2026-08-22 ／ ソース: GitHub Releases, GitHub Trending, WebSearch (直近2日新着) ／ 重複除去: 2026-08-19〜2026-08-21 掲載済み項目を除外</p>
+
+  <div class="summary-bar">
+    <span class="badge b-green">🟢 即使う 1件</span>
+    <span class="badge b-blue">💰 課金価値 0件</span>
+    <span class="badge b-yellow">🟡 様子見 3件</span>
+    <span class="badge b-gray">🚫 罠 1件</span>
+  </div>
+
+  <!-- 🟢 即使う -->
+  <h2 class="green">🟢 即使う</h2>
+
+  <div class="item">
+    <div class="item-title">Claude Code v2.1.239 — <code>/claude-api upgrade</code> コマンド追加 + プラグイン同期表示改善 (2026-08-21 19:54)</div>
+    <div class="item-body">
+      <p><code>claude /claude-api upgrade</code> を実行すると Python プロジェクトの <code>anthropic</code> 0.x → 1.x を自動移行してくれる新コマンド。過去に書いた Python スクリプトやルーティンで旧 SDK を使っているものをワンコマンドで更新できる。</p>
+      <p>Cloud セッション向けの改善: claude.ai から同期されたプラグインが <code>name@synced</code> 形式で表示されるようになり、ローカルインストールと同期済みプラグインを一目で区別できるようになった。このリモートセッション環境でのデバッグが捗る。</p>
+      <p>その他: data-residency ワークスペース向けコスト表示の精度向上（1.1× premium 明示）、Alpine/musl ビルドでのネイティブアドオン動作修正、Bedrock + SSO プロファイル環境での起動ハング修正、50+ バグ修正。</p>
+    </div>
+    <div class="verdict green">Python スクリプトで <code>anthropic</code> 0.x を使っているファイルが1本でもあれば今日実行する価値あり。<code>@synced</code> 表示はリモートセッション運用者にとってプラグイン識別が格段に楽になる即効改善。</div>
+    <div class="item-link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.239" target="_blank">→ v2.1.239 リリースノート</a></div>
+  </div>
+
+  <!-- 💰 課金価値 -->
+  <h2 class="blue">💰 課金価値</h2>
+  <div class="item">
+    <div class="item-body" style="color:#64748b;">該当なし</div>
+  </div>
+
+  <!-- 🟡 様子見 -->
+  <h2 class="yellow">🟡 様子見</h2>
+
+  <div class="item">
+    <div class="item-title">affaan-m/ECC — Claude Code 向けエージェントハーネス最適化パック (241k⭐ / GitHub Trending 急上昇中)</div>
+    <div class="item-body">
+      <p>68 専門エージェント・286 スキル・94 コマンドを Claude Code（および Codex / Cursor 等）に一括投入できるパック。planning / review / security / architecture など役割別エージェントが揃っており、AgentShield セキュリティスキャンも内包している。</p>
+      <p>masatoman の <code>.claude/skills</code> 運用体制との思想的な近さが高い。ただし 286 スキルを丸ごと取り込むと既存スキルと命名衝突・ノイズが発生するリスクあり。全量インポートではなく、skills ディレクトリを GitHub で眺め、参考にしたいスキル構造だけをピックアップする使い方が現実的。</p>
+    </div>
+    <div class="verdict yellow">今週の空き時間に <code>github.com/affaan-m/ECC/tree/main/.agents/skills</code> を眺めて、自分の skills 設計を見直す刺激として使う。MVP 実装フェーズが来たら planning/review エージェント導入を検討。今すぐ全量インストールは🚫。</div>
+    <div class="item-link"><a href="https://github.com/affaan-m/ECC" target="_blank">→ affaan-m/ECC</a></div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">Cronloop AI — スケジュール実行 AI エージェント + 永続メモリ・自己改善機能</div>
+    <div class="item-body">
+      <p>5分〜週1回のインターバルで AI エージェントを定期実行するSaaSプラットフォーム。エージェントはランごとに durable memory を引き継ぎ自己改善するのが特徴。Claude Code または Codex を接続してジョブを Markdown で記述するだけで動かせる。</p>
+      <p>masatoman は Claude Code の CronCreate / ScheduleWakeup で同等のスケジュール実行をすでに運用しており、機能的に重複する部分が大きい。外部 SaaS のためロックインリスクと月額コストが発生する点も注意。</p>
+    </div>
+    <div class="verdict yellow">Claude Code 外でスケジュール実行が必要な場面（GitHub Actions 等と疎結合に動かしたい等）が出てきたら比較する候補。現状のスタックで賄えているうちは様子見。</div>
+    <div class="item-link"><a href="https://cronloop.ai/" target="_blank">→ Cronloop AI</a></div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">apache/maka — ローカルファースト AI エージェントワークスペース (2k⭐ / 直近急上昇)</div>
+    <div class="item-body">
+      <p>"Local-first AI agent workspace" で、エージェントとのやり取りを append-only ログとして記録していく設計のワークスペースツール。データが手元に残るため、AI とのインタラクション履歴を自分でコントロールしたい個人開発者向け。</p>
+      <p>Apache プロジェクトのためエンタープライズ用途を意識した設計が予想される。スター数が少なく成熟度は未知。個人の実験・PoC 用途として短時間で試せる可能性がある。</p>
+    </div>
+    <div class="verdict yellow">「AI とのやり取りを append-only ログで残す」思想はメモリ管理・振り返りに有用。ただし現状の Claude Code + transcript + memory 体制で間に合っているため、今すぐ採用より週末 PoC 候補。</div>
+    <div class="item-link"><a href="https://github.com/apache/maka" target="_blank">→ apache/maka</a></div>
+  </div>
+
+  <!-- 🚫 罠 -->
+  <h2 class="gray">🚫 罠</h2>
+
+  <div class="item">
+    <div class="item-title">ruvnet/ruflo — マルチエージェントスウォーム協調フレームワーク (68k⭐ / TypeScript)</div>
+    <div class="item-body">
+      <p>"Deploy intelligent multi-player swarms, coordinate autonomous workflows" — adaptive memory と RAG integration を組み込んだマルチエージェント並列実行フレームワーク。複数エージェントが協調して自律ワークフローを組む設計。</p>
+      <p>RAG のためにベクターDB のセットアップが必要。ひとりの MAX プランユーザーがシングルエージェントで回している現在の運用とはアーキテクチャが根本的に異なる。</p>
+    </div>
+    <div class="verdict gray">「チームでスウォームを組む」想定の設計でひとり運用には重すぎる。ベクターDB + RAG セットアップコストが高く、現在の Claude Code ワークフローと統合できない。スター数に釣られて手を出すと時間を溶かす。</div>
+    <div class="item-link"><a href="https://github.com/ruvnet/ruflo" target="_blank">→ ruvnet/ruflo</a></div>
+  </div>
+
+  <!-- 取得失敗ソース -->
+  <div class="fail-list">
+    <strong>取得失敗ソース (3件)</strong>
+    <ul>
+      <li>www.anthropic.com — egress proxy blocked</li>
+      <li>obsidian.md — egress proxy blocked</li>
+      <li>platform.claude.com (CHANGELOG raw) — 307 redirect 先への自動追跡なし</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
