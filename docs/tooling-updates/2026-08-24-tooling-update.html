@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-24</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e4ec;
+      --muted: #8b8fa8;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #16a34a;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #ca8a04;
+      --blue: #3b82f6;
+      --blue-bg: #0d1b3e;
+      --blue-border: #2563eb;
+      --gray: #6b7280;
+      --gray-bg: #111318;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: #fff;
+    }
+    .meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+    .meta span { margin-right: 1rem; }
+    h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border: 1px solid var(--gray-border); }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.9rem;
+    }
+    .card-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+    .card-title a { color: #fff; text-decoration: none; }
+    .card-title a:hover { text-decoration: underline; }
+    .card-body {
+      font-size: 0.88rem;
+      color: #c8cbd8;
+      margin-bottom: 0.5rem;
+    }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+      display: inline-block;
+      margin-top: 0.1rem;
+    }
+    .verdict.green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+    .verdict.blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
+    .verdict.yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+    .verdict.gray   { background: var(--gray-bg);   color: var(--gray);   border: 1px solid var(--gray-border); }
+    .source-link {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+    .source-link a { color: #6b8cff; text-decoration: none; }
+    .source-link a:hover { text-decoration: underline; }
+    .none-note { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 0.5rem 0 0.5rem 0.2rem; }
+    .failed-sources {
+      margin-top: 2.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 0.8rem;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.7rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>⚡ 効率厨A feed 2026-08-24</h1>
+<div class="meta">
+  <span>📅 取得日: 2026-08-24</span>
+  <span>🔍 対象期間: 直近1-2日 (08-22〜08-24)</span>
+  <span>📡 ソース: Claude Code releases / GitHub Trending / WebSearch</span>
+</div>
+
+<!-- 🟢 即使う -->
+<h2 class="green">🟢 即使う — 今日から運用に入れられる</h2>
+
+<div class="card">
+  <div class="card-title"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.241" target="_blank">Claude Code v2.1.241 (Aug 23)</a></div>
+  <div class="card-body">バグ修正・安定性改善。v2.1.239/240 に続く連続パッチリリース。自動更新で入っているはずだが、定期 <code>claude --version</code> で追いつけているか確認する価値あり。</div>
+  <span class="verdict green">🟢 即使う — 日常 Claude Code ルーティンで自動適用済のはず。changelog に変化があれば hooks/skills に影響することがあるので月1確認推奨。</span>
+  <div class="source-link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.241" target="_blank">github.com/anthropics/claude-code/releases/tag/v2.1.241</a></div>
+</div>
+
+<div class="card">
+  <div class="card-title"><a href="https://github.com/anthropics/claude-plugins-community" target="_blank">anthropics/claude-plugins-community (+225 stars 本日)</a></div>
+  <div class="card-body">Claude Code & Cowork 向けコミュニティプラグインマーケットプレイス。公式 Anthropic repo として今日急上昇中。Skills/plugin を自分で書く前にここで探すと車輪の再発明を防げる。</div>
+  <span class="verdict green">🟢 即使う — 新 plugin の有無をざっと眺めるだけで、workflow 自動化 or 記事サイクル短縮のヒントが得られる場合がある。</span>
+  <div class="source-link"><a href="https://github.com/anthropics/claude-plugins-community" target="_blank">github.com/anthropics/claude-plugins-community</a></div>
+</div>
+
+<div class="card">
+  <div class="card-title"><a href="https://github.com/VoltAgent/awesome-agent-skills" target="_blank">VoltAgent/awesome-agent-skills (+156 stars 本日)</a></div>
+  <div class="card-body">Claude Code / Codex / Cursor 対応の 1,000+ エージェントスキル curated リスト。カテゴリ別に整理されており、特定タスク (例: GSC自動化 / 記事執筆 / デプロイ) のスキルを検索するのに使える。</div>
+  <span class="verdict green">🟢 即使う — <code>/skill-creator</code> で自作する前にここで検索する習慣を入れると開発工数を削減できる。</span>
+  <div class="source-link"><a href="https://github.com/VoltAgent/awesome-agent-skills" target="_blank">github.com/VoltAgent/awesome-agent-skills</a></div>
+</div>
+
+<div class="card">
+  <div class="card-title"><a href="https://github.com/mattpocock/skills" target="_blank">mattpocock/skills (+2,447 stars 本日 🔥)</a></div>
+  <div class="card-body">Matt Pocock (TypeScript 教育で有名) によるエンジニア向けスキル & エージェント設定集 (233K stars)。今日の trending 最速クラス。実用スキルの構造例として Claude Code の SKILL.md 設計に直接参考になる。</div>
+  <span class="verdict green">🟢 即使う — 新しいスキルを書く際のテンプレ参照先として bookmarks に追加する価値あり。</span>
+  <div class="source-link"><a href="https://github.com/mattpocock/skills" target="_blank">github.com/mattpocock/skills</a></div>
+</div>
+
+<!-- 💰 課金価値 -->
+<h2 class="blue">💰 課金価値 — 有料だが時間対効果で価値あり</h2>
+<p class="none-note">該当なし（本日ピックアップ分に有料ツール新着なし）</p>
+
+<!-- 🟡 様子見 -->
+<h2 class="yellow">🟡 様子見 — 良さそうだが今すぐではない</h2>
+
+<div class="card">
+  <div class="card-title"><a href="https://github.com/NousResearch/hermes-agent" target="_blank">NousResearch/hermes-agent (+454 stars 本日)</a></div>
+  <div class="card-body">"The agent that grows with you" — 拡張可能なAIアシスタントフレームワーク (234K stars)。プラグイン形式でエージェントに機能を追加できる設計。</div>
+  <span class="verdict yellow">🟡 様子見 — Claude Code MAX プラン定額運用と直接競合はしないが、マルチエージェント設計の記事ネタとして「なぜ Claude Code で足りるか」の比較素材として使える。</span>
+  <div class="source-link"><a href="https://github.com/NousResearch/hermes-agent" target="_blank">github.com/NousResearch/hermes-agent</a></div>
+</div>
+
+<div class="card">
+  <div class="card-title"><a href="https://github.com/tinyhumansai/openhuman" target="_blank">tinyhumansai/openhuman (+39 stars 本日)</a></div>
+  <div class="card-body">ローカルファースト記憶 + エージェントオーケストレーション + 調査機能を備えた personal AI system (Rust)。外部 SaaS 依存ゼロを謳う。</div>
+  <span class="verdict yellow">🟡 様子見 — 「AIに業務を任せる設計」コンセプトの記事で「ローカルファースト vs クラウド定額」という対立軸を立てる際の具体例として使える。今すぐ乗り換えるツールではない。</span>
+  <div class="source-link"><a href="https://github.com/tinyhumansai/openhuman" target="_blank">github.com/tinyhumansai/openhuman</a></div>
+</div>
+
+<!-- 🚫 罠 -->
+<h2 class="gray">🚫 罠 — 避けるべき・期待外れ</h2>
+
+<div class="card">
+  <div class="card-title"><a href="https://github.com/Alishahryar1/free-claude-code" target="_blank">Alishahryar1/free-claude-code (+1,081 stars 本日 ⚠️)</a></div>
+  <div class="card-body">「Claude Code などを無料で使える」とする Python ツール。今日 trending 3 位で急上昇中。認証を迂回して API コストを回避する仕組みとみられる。</div>
+  <span class="verdict gray">🚫 罠 — MAX プラン定額で運用中の masatoman には金銭的メリットゼロで、Anthropic TOS 違反・アカウント BAN リスクだけある。star 数で釣られない。</span>
+  <div class="source-link"><a href="https://github.com/Alishahryar1/free-claude-code" target="_blank">github.com/Alishahryar1/free-claude-code</a></div>
+</div>
+
+<div class="failed-sources">
+  <strong>取得失敗ソース (3件 / skip):</strong>
+  www.anthropic.com (egress blocked) ／
+  obsidian.md (egress blocked) ／
+  releasebot.io (egress blocked)
+</div>
+
+</body>
+</html>
