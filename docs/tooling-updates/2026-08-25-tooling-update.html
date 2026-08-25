@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-25</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e4ec;
+      --muted: #8b8fa8;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #16a34a;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #ca8a04;
+      --blue: #3b82f6;
+      --blue-bg: #0d1b3e;
+      --blue-border: #2563eb;
+      --gray: #6b7280;
+      --gray-bg: #111318;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: #fff;
+    }
+    .meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+    .meta span { margin-right: 1rem; }
+    h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+    }
+    h2.green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+    h2.blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
+    h2.yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+    h2.gray   { background: var(--gray-bg);   color: var(--gray);   border: 1px solid var(--gray-border); }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.9rem;
+    }
+    .card-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+    .card-title a { color: #fff; text-decoration: none; }
+    .card-title a:hover { text-decoration: underline; }
+    .card-body {
+      font-size: 0.88rem;
+      color: #c8cbd8;
+      margin-bottom: 0.5rem;
+    }
+    .card-body ul { margin-top: 0.3rem; padding-left: 1.2rem; }
+    .card-body li { margin-bottom: 0.15rem; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+      display: inline-block;
+      margin-top: 0.1rem;
+    }
+    .verdict.green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+    .verdict.blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
+    .verdict.yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+    .verdict.gray   { background: var(--gray-bg);   color: var(--gray);   border: 1px solid var(--gray-border); }
+    .source-link {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+    .source-link a { color: #6b8cff; text-decoration: none; }
+    .source-link a:hover { text-decoration: underline; }
+    .none-note { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 0.5rem 0 0.5rem 0.2rem; }
+    .failed-sources {
+      margin-top: 2.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 0.8rem;
+    }
+    code { background: #252836; padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.85em; color: #a5b4fc; }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.7rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>⚡ 効率厨A feed 2026-08-25</h1>
+<div class="meta">
+  <span>📅 取得日: 2026-08-25</span>
+  <span>🔍 対象期間: 直近1-2日 (08-23〜08-25)</span>
+  <span>📡 ソース: Claude Code releases / GitHub Trending / WebSearch (anthropic.com / obsidian.md / releasebot.io はブロックで取得失敗)</span>
+</div>
+
+<!-- 🟢 即使う -->
+<h2 class="green">🟢 即使う — 今日から運用に入れられる</h2>
+
+<div class="card">
+  <div class="card-title"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.243" target="_blank">Claude Code v2.1.243 (Aug 24, 23:40 UTC) — 実用改善4点セット</a></div>
+  <div class="card-body">
+    昨日深夜リリース。バグ修正系の v2.1.241 から打って変わって機能追加多め。efficiencyに直接刺さる変更が揃った。
+    <ul>
+      <li><strong>/usage にループ内訳追加</strong> — ループごとの実行回数・総トークン・1回あたりトークン・最終実行時刻が見えるようになった</li>
+      <li><strong>modelPicker 設定</strong> — <code>/model</code> ピッカーに表示するモデルを順番・ラベル付きで絞り込める設定が追加</li>
+      <li><strong>promptCacheTtl / subagentPromptCacheTtl 設定</strong> — プロンプトキャッシュ持続時間を明示制御できるように</li>
+      <li><strong>バイナリサイズ大幅縮小</strong> — Linux x64 で 340MB → 75MB (zstd 圧縮)、メモリ使用量も 40-70MB 削減</li>
+      <li>Consoleアカウントでのキーレスサインイン対応</li>
+      <li>Sonnet 5 料金を $2/$10 per Mtok の標準レートに更新</li>
+    </ul>
+  </div>
+  <span class="verdict green">🟢 即使う — <code>/usage</code> のループ内訳で routine の token 消費ホットスポットを特定できる。<code>modelPicker</code> で頻用モデルを 2-3 本に絞ると <code>/model</code> の選択ミスがなくなる。バイナリ縮小は自動適用なので意識不要。</span>
+  <div class="source-link"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.243" target="_blank">github.com/anthropics/claude-code/releases/tag/v2.1.243</a></div>
+</div>
+
+<div class="card">
+  <div class="card-title"><a href="https://www.gradually.ai/en/changelogs/claude-code/" target="_blank">MAX プラン週次上限 50% 増量 → 8/31 (月) まで延長中</a></div>
+  <div class="card-body">
+    Pro / Max / Team / Enterprise (seat-based) の週次 token 上限が 50% 増量で 8 月末まで延長されている。通常の 1.5 倍量が使える期間が今週いっぱい残っている。
+  </div>
+  <span class="verdict green">🟢 即使う (期限あり) — 8/31 が今週月曜。大規模リファクタリング・docs 一括生成・GSC データ自動分析など、普段 token 制限で後回しにしていた重い routine を今週中に走らせる好機。来週からは通常量に戻る。</span>
+  <div class="source-link"><a href="https://www.gradually.ai/en/changelogs/claude-code/" target="_blank">gradually.ai — Claude Code Changelog August 2026</a></div>
+</div>
+
+<!-- 💰 課金価値 -->
+<h2 class="blue">💰 課金価値 — 有料だが時間対効果で価値あり</h2>
+<p class="none-note">該当なし（今日の新着に有料サービス追加なし）</p>
+
+<!-- 🟡 様子見 -->
+<h2 class="yellow">🟡 様子見 — 良さそうだが今すぐではない</h2>
+
+<div class="card">
+  <div class="card-title"><a href="https://github.com/MadsLorentzen/ai-job-search" target="_blank">MadsLorentzen/ai-job-search (+434 stars 本日、計 34k)</a></div>
+  <div class="card-body">
+    Claude Code 上で動く求人評価フレームワーク。求人票を自動スクレイプ → スコアリング → 応募書類を個別カスタマイズ、という multi-step の実装例。「Claude Code で繰り返し業務を自動化する設計パターン」の生きたサンプルコードとして読める。
+  </div>
+  <span class="verdict yellow">🟡 様子見 — 直接使うツールではないが、「AIに業務を任せる設計の実験ログ」記事の具体ネタとして参照価値あり。multi-step agent に Claude Code を使う際のコード構造を読むと hooks/routines 設計のヒントになる。</span>
+  <div class="source-link"><a href="https://github.com/MadsLorentzen/ai-job-search" target="_blank">github.com/MadsLorentzen/ai-job-search</a></div>
+</div>
+
+<!-- 🚫 罠 -->
+<h2 class="gray">🚫 罠 — 避けるべき・期待外れ</h2>
+<p class="none-note">該当なし（free-claude-code は昨日フィードで警告済のためスキップ）</p>
+
+<div class="failed-sources">
+  <strong>取得失敗ソース:</strong>
+  obsidian.md/changelog (egress blocked) /
+  anthropic.com/news (egress blocked) /
+  releasebot.io (egress blocked) —
+  Claude Code releases / GitHub Trending / WebSearch で補完済。
+</div>
+
+</body>
+</html>
