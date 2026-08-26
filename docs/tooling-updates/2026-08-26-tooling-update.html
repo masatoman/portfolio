@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-26</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --muted: #888;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1100;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1d4ed8;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      border: 1px solid;
+    }
+    .card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .card-body { font-size: 0.88rem; color: #ccc; margin-bottom: 0.6rem; }
+    .verdict { font-size: 0.82rem; font-style: italic; margin-bottom: 0.5rem; }
+    .card a { font-size: 0.8rem; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+    .card a:hover { color: var(--text); }
+    .green  { background: var(--green-bg);  border-color: var(--green-border);  }
+    .yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .blue   { background: var(--blue-bg);   border-color: var(--blue-border);   }
+    .gray   { background: var(--gray-bg);   border-color: var(--gray-border);   }
+    .tag-green  { color: var(--green);  font-weight: 700; }
+    .tag-yellow { color: var(--yellow); font-weight: 700; }
+    .tag-blue   { color: var(--blue);   font-weight: 700; }
+    .tag-gray   { color: var(--gray);   font-weight: 700; }
+    .none { color: var(--muted); font-size: 0.85rem; padding: 0.5rem 0; }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); }
+    .fail-list { font-size: 0.82rem; color: var(--muted); margin-top: 1rem; }
+    .fail-list li { margin-left: 1.2rem; }
+    @media (max-width: 600px) {
+      body { font-size: 14px; padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ 効率厨A feed — 2026-08-26</h1>
+  <div class="meta">
+    <span>取得日: 2026-08-26 (JST 09:00)</span>
+    <span>対象期間: 2026-08-24〜26</span>
+    <span>重複除去: 直近3日分(08-23〜25)照合済</span>
+    <span>ソース: GitHub releases / GitHub Trending / WebSearch</span>
+  </div>
+</header>
+
+<!-- 🟢 即使う -->
+<h2><span class="tag-green">🟢 即使う</span> (3件)</h2>
+
+<div class="card green">
+  <div class="card-title">Claude Code v2.1.246 — 60+件修正のメジャーリリース</div>
+  <div class="card-body">
+    2026-08-25 22:31 リリース。transcript内の長いbase64文字列で起きていた重大なスローダウンを修正。
+    /permissionsにAuto modeタブ追加でclassifierルールを直接確認・編集可能に。
+    ディレクトリ削除後のBackground Session起動失敗・MCPツール引数のJSON文字列化バグ・
+    フルスクリーン空白transcriptなど60+件修正。
+  </div>
+  <div class="verdict">🟢効率厨verdict: base64レスポンスが多いルーティン（画像・バイナリ処理系）で体感速度が上がる。/permissionsのAuto mode確認は今日のClaude Code起動後すぐ試せる。</div>
+  <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.246" target="_blank" rel="noopener">GitHub release → v2.1.246</a>
+</div>
+
+<div class="card green">
+  <div class="card-title">andrej-karpathy-skills (multica-ai) — Karpathy流ベストプラクティスSKILL.md</div>
+  <div class="card-body">
+    ★207k / 本日+830。Karpathyが公開したLLMコーディング・ベストプラクティスを
+    一枚のSKILL.md設定ファイルに集約。Claude Codeのエージェント挙動を自動調整し、
+    コンテキスト管理・ツール選択・ループ設計が最適化される。
+  </div>
+  <div class="verdict">🟢効率厨verdict: masatomanが既に組んでいるhooks/routinesと相性が良い。SKILL.mdを`.claude/`に置くだけで即日有効。まず内容を読んで現在の設定と差分確認するのが今日のアクション。</div>
+  <a href="https://github.com/multica-ai/andrej-karpathy-skills" target="_blank" rel="noopener">GitHub → multica-ai/andrej-karpathy-skills</a>
+</div>
+
+<div class="card green">
+  <div class="card-title">claude-plugins-official (Anthropic) — 公式キュレーション済みプラグインディレクトリ</div>
+  <div class="card-body">
+    ★34k / 本日+55。Anthropic公式が品質審査済みのClaude Codeプラグインを
+    まとめたカタログ。community版(claude-plugins-community)とは別に
+    Anthropic自身がメンテする高品質ラインナップ。
+  </div>
+  <div class="verdict">🟢効率厨verdict: ルーティン強化のネタ発掘に使える。community版はすでに08-24フィードで紹介済み——今回の公式版は審査済みなので品質リスクが低い。今日ざっと眺めて使えそうなものをブックマークしておくだけでOK。</div>
+  <a href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noopener">GitHub → anthropics/claude-plugins-official</a>
+</div>
+
+<!-- 💰 課金価値 -->
+<h2><span class="tag-blue">💰 課金価値</span></h2>
+<p class="none">該当なし（本日取得分に有料サービスの新課金判断材料なし）</p>
+
+<!-- 🟡 様子見 -->
+<h2><span class="tag-yellow">🟡 様子見</span> (3件)</h2>
+
+<div class="card yellow">
+  <div class="card-title">Claude Code v2.1.245 — Linux glibc 2.44 クラッシュ修正</div>
+  <div class="card-body">
+    2026-08-25 05:13 リリース。Arch Linux・CachyOS・Fedora Rawhideなど
+    glibc 2.44系のディストリで起動クラッシュが起きていた問題を修正したhotfix。
+    v2.1.246はこの修正を内包済み。
+  </div>
+  <div class="verdict">🟡様子見verdict: Ubuntu/macOS環境には無関係。Arch系ユーザーにはv2.1.246への更新で自動解決。masatomanのメイン環境がUbuntu/macOSなら特に対応不要。</div>
+  <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.245" target="_blank" rel="noopener">GitHub release → v2.1.245</a>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">awesome-llm-apps (Shubhamsaboo) — 100+のオープンソースLLMアプリ集</div>
+  <div class="card-body">
+    ★134k / 本日+161。RAG・エージェント・ツール呼び出しなど100+のLLMアプリ事例集。
+    実装サンプルとして参照価値あり。
+  </div>
+  <div class="verdict">🟡様子見verdict: 事例ブラウジングコストが高い（100+件）。今すぐ差し込む具体的なピンポイントがなく、週次で「何かアイデアが必要なとき」の参照先として押さえておく程度。</div>
+  <a href="https://github.com/Shubhamsaboo/awesome-llm-apps" target="_blank" rel="noopener">GitHub → Shubhamsaboo/awesome-llm-apps</a>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">awesome-gpt-image-2 (freestylefly) — GPT-Image2工業級プロンプトテンプレート530+</div>
+  <div class="card-body">
+    ★17.6k / 本日+1,698 (急上昇)。GPT-Image2向けに530+のリバースエンジニアリング済み
+    プロンプト例と20+の工業用テンプレートを収録。「Prompt as Code」思想。
+  </div>
+  <div class="verdict">🟡様子見verdict: 画像生成を多用するフローがあれば参考になる。masatomanの現在の記事生成・サイト制作フローに今すぐ組み込む動機は薄い——OGP画像自動化など将来の活用を考えるときに掘り返す。</div>
+  <a href="https://github.com/freestylefly/awesome-gpt-image-2" target="_blank" rel="noopener">GitHub → freestylefly/awesome-gpt-image-2</a>
+</div>
+
+<!-- 🚫 罠 -->
+<h2><span class="tag-gray">🚫 罠</span> (2件)</h2>
+
+<div class="card gray">
+  <div class="card-title">BlueFaucet — ソロプレナー向け自律型AI CRM</div>
+  <div class="card-body">
+    2026-08-19 ローンチ。ソロプレナー・マイクロビジネス向けと謳う自律型AI CRM。
+    サービス詳細・価格・実績が不透明。
+  </div>
+  <div class="verdict">🚫罠verdict: 「自律型CRM」は今もっとも乱立している領域。実績なし・ローンチ直後・詳細不明の三拍子。今のmasatomanのスタック（masatoman.net運用＋ルーティン自動化）に代替が必要な穴はなく、試す時間対効果が悪い。</div>
+  <a href="https://www.bluefaucet.ai" target="_blank" rel="noopener">BlueFaucet 公式</a>
+</div>
+
+<div class="card gray">
+  <div class="card-title">Qwen3.8-Max (Alibaba Cloud) — 2.4T パラメータ超大規模モデル</div>
+  <div class="card-body">
+    2026年8月リリース。2.4兆パラメータのマルチモーダル自律コーディングモデル。
+    長期的な自律作業に特化。
+  </div>
+  <div class="verdict">🚫罠verdict: Anthropic MAXプラン定額運用の外。API直叩きでも月次コストが跳ね上がる規模感。Claude Code + Opus 5で既に上回っているユースケースがほとんどで、今の運用に差し込む動機ゼロ。</div>
+  <a href="https://qwenlm.github.io/blog/qwen3-8-max/" target="_blank" rel="noopener">Qwen3.8-Max 公式ブログ</a>
+</div>
+
+<footer>
+  <p>取得失敗ソース: www.anthropic.com (egress blocked) / docs.claude.com→リダイレクト (platform.claude.com→GitHub CHANGELOGリダイレクト) / obsidian.md (未取得・obsidianネタなし)</p>
+  <p style="margin-top:0.5rem;">重複除外: ai-job-search (08-25掲載済), openhuman (08-24掲載済), openai/codex (08-23掲載済), v2.1.243 (08-25掲載済)</p>
+  <p style="margin-top:0.5rem;">生成: 効率厨A feedエージェント (自動実行 JST 09:00)</p>
+</footer>
+
+</body>
+</html>
