@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-27</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --muted: #888;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1100;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1d4ed8;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      border: 1px solid;
+    }
+    .card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .card-body { font-size: 0.88rem; color: #ccc; margin-bottom: 0.6rem; }
+    .verdict { font-size: 0.82rem; font-style: italic; margin-bottom: 0.5rem; }
+    .card-link { font-size: 0.8rem; }
+    .card-link a { color: var(--muted); text-decoration: none; }
+    .card-link a:hover { text-decoration: underline; }
+    .card.green { background: var(--green-bg); border-color: var(--green-border); }
+    .card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card.blue { background: var(--blue-bg); border-color: var(--blue-border); }
+    .card.gray { background: var(--gray-bg); border-color: var(--gray-border); }
+    .tag-green { color: var(--green); }
+    .tag-yellow { color: var(--yellow); }
+    .tag-blue { color: var(--blue); }
+    .tag-gray { color: var(--gray); }
+    .none { color: var(--muted); font-size: 0.88rem; padding: 0.5rem 0; }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--muted); }
+    @media (max-width: 600px) {
+      body { font-size: 14px; padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>効率厨A feed 2026-08-27</h1>
+  <div class="meta">
+    <span>取得日: 2026-08-27 (JST)</span>
+    <span>対象期間: 2026-08-25〜27</span>
+    <span>ソース: GitHub Trending / Claude Code changelog / WebSearch / Anthropic news</span>
+  </div>
+</header>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2><span class="tag-green">🟢</span> 即使う — 今日から運用に入れられる</h2>
+
+<div class="card green">
+  <div class="card-title">ponytail (DietrichGebert/ponytail) — 「必要か？」を先に問う AI エージェント哲学プラグイン</div>
+  <div class="card-body">
+    コードを書く前に 7 段の決断梯を AI に踏ませる仕組み。「1. これは必要か？ 2. コードベースに既にある？ 3. stdlib で足りる？ 4. ネイティブ機能で済む？ 5. 入れ済み依存で解決？ 6. 1 行で書ける？ 7. ようやくここで最小実装」。実測で LOC 54% 減・コスト 20% 減・実行速度 27% 向上。GitHub Trending 本日 1 位 (+1,598 stars)、累計 112k stars。MIT ライセンス。Claude Code 対応 plugin あり。
+  </div>
+  <div class="verdict tag-green">
+    ▶ 今日から <code>/plugin marketplace add DietrichGebert/ponytail</code> で追加可。CLAUDE.md の新機能実装時に過剰設計・ライブラリ乱用を自動でブレーキできる。「これ本当に作る必要ある？」の問いを AI が先に出してくれるのは記事・docs 系でも効く（新規ルート追加前の自問として）。
+  </div>
+  <div class="card-link">
+    🔗 <a href="https://github.com/DietrichGebert/ponytail" target="_blank">github.com/DietrichGebert/ponytail</a>
+  </div>
+</div>
+
+<div class="card green">
+  <div class="card-title">awesome-agent-skills (VoltAgent) — 公式チーム精選 1,000+ Skills カタログ</div>
+  <div class="card-body">
+    Anthropic・Google Labs・Vercel・Stripe・Cloudflare など公式開発チームと community が精選した 1,000+ の Agent Skills を一覧できるリポジトリ。Claude Code・Codex・Gemini CLI・Cursor・Windsurf など 20+ プラットフォームに対応。「AI スラム生成ではなく手選り」を謳う。累計 32k stars、今日 +242。
+  </div>
+  <div class="verdict tag-green">
+    ▶ 毎日 Claude Code で使う Skills を探す時間をゼロにできる発掘場所。<code>/plugin marketplace search</code> 前にここを確認するワークフローが最速。Anthropic 公式スキルも網羅されているため「公式の最新スキルを見落としていた」リスクを減らせる。今すぐ star して週次チェックルーティンに追加推奨。
+  </div>
+  <div class="card-link">
+    🔗 <a href="https://github.com/VoltAgent/awesome-agent-skills" target="_blank">github.com/VoltAgent/awesome-agent-skills</a>
+  </div>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2><span class="tag-blue">💰</span> 課金価値 — 有料だが時間対効果で価値あり</h2>
+
+<div class="none">該当なし（今日は無料 / OSS のみ）</div>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2><span class="tag-yellow">🟡</span> 様子見 — 良さそうだが今すぐではない</h2>
+
+<div class="card yellow">
+  <div class="card-title">claude-obsidian (AgriciDaniel) — Obsidian + Claude Code の自己組織化 second brain</div>
+  <div class="card-body">
+    ソース（URL・PDF・メモ等）をドロップするだけで Claude が読み・リンク付き Markdown ナレッジグラフに自動整理。Karpathy の LLM Wiki パターンがベース。plain Markdown で所有権ゼロ移転なし。累計 13k stars、本日 +810（急伸中）。関連に eugeniughelbur/obsidian-second-brain（v0.14 The Harvest）もあり。こちらは Claude Code セッションをまたぐ persistent memory + 45コマンド搭載。
+  </div>
+  <div class="verdict tag-yellow">
+    ▶ Obsidian を既に使っているなら今すぐ試す価値あり。masatoman の既存 memory/.md ファイル管理と目的が重なるため、「置き換えか、並走か」を整理してから導入を。vault 設計の初期コストが 2〜4 時間かかる見込み。まず README を 10 分読んで判断。
+  </div>
+  <div class="card-link">
+    🔗 <a href="https://github.com/AgriciDaniel/claude-obsidian" target="_blank">github.com/AgriciDaniel/claude-obsidian</a>
+    ／ <a href="https://github.com/eugeniughelbur/obsidian-second-brain" target="_blank">obsidian-second-brain (v0.14)</a>
+  </div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">Cloudflare Kitesurf — AI エージェント向け軽量ブラウザランタイム</div>
+  <div class="card-body">
+    Cloudflare Workers 上で動く AI エージェント専用のブラウザランタイム。Chromium 比で CPU・メモリを 3〜7 倍節約。235,000+ の web platform テストをパス。August 2026 リリース。エージェントが web を自律操作するシーンに特化した基盤インフラ。
+  </div>
+  <div class="verdict tag-yellow">
+    ▶ 今すぐ個人開発に刺さるツールではないが、「Claude Code が自律的に web を操作する」シーン（GSC データ自動取得の拡張など）の将来候補。Workers を既に使っているなら監視に値する。
+  </div>
+  <div class="card-link">
+    🔗 <a href="https://blog.cloudflare.com/" target="_blank">cloudflare.com (Kitesurf – 2026-08 発表)</a>
+  </div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">ai-engineering-from-scratch (Python, 49k stars) — AIエンジニアリング学習コース</div>
+  <div class="card-body">
+    「Learn it. Build it. Ship it for others.」をコンセプトにした実践型コース型リポジトリ。今日だけで +838 stars と急伸。LLM の基礎から実装まで段階的に学べる構成。
+  </div>
+  <div class="verdict tag-yellow">
+    ▶ 今すぐ使えるツールではなく長期学習リソース。現在の Claude Code MAX ワークフローに直接は刺さらない。「理論を固めたい時期」に戻る用にスター保存しておく程度で OK。
+  </div>
+  <div class="card-link">
+    🔗 <a href="https://github.com/topics/ai-engineering" target="_blank">github.com (ai-engineering-from-scratch)</a>
+  </div>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2><span class="tag-gray">🚫</span> 罠 — 避けるべき・期待外れ</h2>
+
+<div class="card gray">
+  <div class="card-title">free-claude-code (50k stars) — 非公式「無料」Claude アクセスツール</div>
+  <div class="card-body">
+    複数の AI コーディングプラットフォームに無料でアクセスできると謳う非公式ツール。今日 +536 stars と人気だが、実態は Anthropic API の非公式リバースプロキシ利用。
+  </div>
+  <div class="verdict tag-gray">
+    ▶ masatoman は Claude MAX plan 定額運用のため金銭的メリットがゼロ。それ以上に、Anthropic ToS 違反によるアカウント停止リスク・非公式エンドポイント経由のデータ漏洩リスク・サービス品質の不安定さの三拍子が揃う。スターしない・インストールしない。
+  </div>
+  <div class="card-link">
+    🔗 （リンク掲載なし — 使用推奨しないため）
+  </div>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<footer>
+  <strong>取得失敗ソース (4件 / skip):</strong>
+  www.anthropic.com（egress blocked）、obsidian.md（egress blocked）、releasebot.io（egress blocked）、havoptic.com（egress blocked）
+  <br>
+  <strong>Claude Code changelog:</strong> v2.1.246（08/26 feed 掲載済）・v2.1.245（08/25 feed 掲載済）は重複除外。v2.1.247 の詳細は未確認（raw changelog の日付情報が取得できず）。
+  <br><br>
+  生成: tooling-update-watch agent / 2026-08-27
+</footer>
+
+</body>
+</html>
