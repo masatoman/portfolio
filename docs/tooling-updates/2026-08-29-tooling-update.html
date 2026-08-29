@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-29</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --muted: #888;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1100;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1d4ed8;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      border: 1px solid;
+    }
+    .card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .card-body { font-size: 0.88rem; color: #ccc; margin-bottom: 0.6rem; }
+    .verdict { font-size: 0.82rem; font-style: italic; margin-bottom: 0.5rem; }
+    .card-link { font-size: 0.8rem; }
+    .card-link a { color: var(--muted); text-decoration: none; }
+    .card-link a:hover { text-decoration: underline; }
+    .card.green { background: var(--green-bg); border-color: var(--green-border); }
+    .card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card.blue { background: var(--blue-bg); border-color: var(--blue-border); }
+    .card.gray { background: var(--gray-bg); border-color: var(--gray-border); }
+    .tag-green { color: var(--green); }
+    .tag-yellow { color: var(--yellow); }
+    .tag-blue { color: var(--blue); }
+    .tag-gray { color: var(--gray); }
+    .none { color: var(--muted); font-size: 0.88rem; padding: 0.5rem 0; }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--muted); }
+    @media (max-width: 600px) {
+      body { font-size: 14px; padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>効率厨A feed 2026-08-29</h1>
+  <div class="meta">
+    <span>取得日: 2026-08-29 (JST)</span>
+    <span>対象期間: 2026-08-27〜29</span>
+    <span>ソース: GitHub Releases / GitHub Trending / WebSearch / Anthropic docs</span>
+  </div>
+</header>
+
+<!-- ======= 🟢 即使う ======= -->
+<h2><span class="tag-green">🟢</span> 即使う</h2>
+
+<div class="card green">
+  <div class="card-title">Claude Code v2.1.251 — PreModelSwitch/PostModelSwitch フック・spend limit バー・セキュリティ修正</div>
+  <div class="card-body">
+    8/28リリースの大型アップデート。<strong>PreModelSwitch / PostModelSwitch</strong> フックが追加され、セッション中のモデル切替をブロック・確認・注釈付けできるようになった。
+    <code>/usage</code> コマンドに spend limit バーが表示され、セッション当たりのコスト上限を視覚確認できる。
+    <code>/cost</code> にはセッション単位のプロンプトキャッシュ指標が追加。
+    セキュリティ面では「パーミッションチェック後にシンボリックリンクをすり替えられる」脆弱性と「プラグインコマンドがディレクトリ外を指せる」問題が修正。
+    並列サブエージェント時の TUI ラグ改善、thinking-only ターン後の「text content blocks must be non-empty」エラー修正も含む。
+    v2.1.250（8/28 00:49）は軽微なバグ修正のみ。
+  </div>
+  <div class="verdict tag-green">
+    → PreModelSwitch フックを <code>.claude/hooks/</code> に置けば、scheduled routine が高コストモデルに無断切替されるのを防げる。シンボリックリンク脆弱性修正はこのような自動実行セッションに直接関係するので、今すぐ <code>claude update</code> して最新版に上げること。
+  </div>
+  <div class="card-link">
+    <a href="https://github.com/anthropics/claude-code/releases" target="_blank">github.com/anthropics/claude-code/releases</a>
+    &nbsp;|&nbsp;
+    <a href="https://code.claude.com/docs/en/hooks" target="_blank">Hooks リファレンス</a>
+  </div>
+</div>
+
+<!-- ======= 💰 課金価値 ======= -->
+<h2><span class="tag-blue">💰</span> 課金価値</h2>
+<p class="none">該当なし（今日のトレンドに有料追加価値ありのものはなし）</p>
+
+<!-- ======= 🟡 様子見 ======= -->
+<h2><span class="tag-yellow">🟡</span> 様子見</h2>
+
+<div class="card yellow">
+  <div class="card-title">GitNexus — クライアントサイドのコードナレッジグラフ + Graph RAG エージェント（+202 stars/day）</div>
+  <div class="card-body">
+    リポジトリをブラウザに読み込むとコードのインタラクティブな知識グラフを生成し、組み込みの Graph RAG エージェントで「この関数はどこで呼ばれているか」「このモジュールの依存関係は？」を自然言語で問い合わせられる。クライアントサイド完結でサーバー不要。
+  </div>
+  <div class="verdict tag-yellow">
+    → portfolio リポジトリが今の規模なら Claude Code の <code>Grep</code> / <code>Glob</code> で十分カバーできる。コードベースが 5 万行を超えてきたらナビゲーション補助として本命候補。今は star だけして様子見。
+  </div>
+  <div class="card-link">
+    <a href="https://github.com/abhigyanpatwari/GitNexus" target="_blank">github.com/abhigyanpatwari/GitNexus</a>
+  </div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">OpenMontage — オープンソースの AI 動画制作エージェントシステム（+1,144 stars/day、700+ スキルファイル）</div>
+  <div class="card-body">
+    12 本の動画制作パイプラインと 700 以上のエージェントスキルファイルを持つオープンソースの動画制作自動化システム。テロップ生成・カット編集・BGM 選定などを複数エージェントで分業する設計。
+  </div>
+  <div class="verdict tag-yellow">
+    → 動画コンテンツのニーズは現時点でないが、700+ スキルファイルの設計パターンはスキル体系を増やす際の参考になる。masatoman.net の SEO 記事に動画サムネイルやリール連携を検討する段階になったら再評価。
+  </div>
+  <div class="card-link">
+    <a href="https://github.com/calesthio/OpenMontage" target="_blank">github.com/calesthio/OpenMontage</a>
+  </div>
+</div>
+
+<!-- ======= 🚫 罠 ======= -->
+<h2><span class="tag-gray">🚫</span> 罠</h2>
+
+<div class="card gray">
+  <div class="card-title">scientific-agent-skills — 科学研究用エージェントスキル 163 件（生物学・化学・創薬特化）</div>
+  <div class="card-body">
+    生物学・化学・医学・創薬領域の研究タスク向けに 163 件以上のバリデーション済みスキルをパッケージ化したもの。文献検索・分子シミュレーション・実験設計のサポートを想定。GitHub Trending +720 stars/day。
+  </div>
+  <div class="verdict tag-gray">
+    → ドメインが「科学研究」に特化しており、個人開発 / 工務店 SaaS プロジェクトとの接点ゼロ。trending は研究者コミュニティが動かしているだけなので見送り。
+  </div>
+  <div class="card-link">
+    <a href="https://github.com/K-Dense-AI/scientific-agent-skills" target="_blank">github.com/K-Dense-AI/scientific-agent-skills</a>
+  </div>
+</div>
+
+<!-- ======= 取得失敗 ======= -->
+<footer>
+  <strong>取得失敗ソース:</strong>
+  anthropic.com/news（egress ブロック）、
+  obsidian.md/changelog（egress ブロック）、
+  releasebot.io（egress ブロック）
+  — GitHub Releases / WebSearch で補完済み。<br>
+  <strong>重複除外:</strong> 2026-08-26〜28 掲載分（v2.1.247/248、archify、claude-mem 他）を除外済み。
+</footer>
+
+</body>
+</html>
