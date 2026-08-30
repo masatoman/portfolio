@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-30</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --muted: #888;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1100;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1d4ed8;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      border: 1px solid;
+    }
+    .card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .card-body { font-size: 0.88rem; color: #ccc; margin-bottom: 0.6rem; }
+    .verdict { font-size: 0.82rem; font-style: italic; margin-bottom: 0.5rem; }
+    .card-link { font-size: 0.8rem; }
+    .card-link a { color: var(--muted); text-decoration: none; }
+    .card-link a:hover { text-decoration: underline; }
+    .card.green { background: var(--green-bg); border-color: var(--green-border); }
+    .card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card.blue { background: var(--blue-bg); border-color: var(--blue-border); }
+    .card.gray { background: var(--gray-bg); border-color: var(--gray-border); }
+    .tag-green { color: var(--green); }
+    .tag-yellow { color: var(--yellow); }
+    .tag-blue { color: var(--blue); }
+    .tag-gray { color: var(--gray); }
+    .none-msg { color: var(--muted); font-size: 0.85rem; font-style: italic; padding: 0.5rem 0; }
+    .fail-section { margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1rem; font-size: 0.8rem; color: var(--muted); }
+    footer { margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1rem; font-size: 0.75rem; color: var(--muted); }
+    @media (max-width: 600px) {
+      body { font-size: 14px; padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+      .card { padding: 0.9rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>効率厨A feed 2026-08-30</h1>
+  <div class="meta">
+    <span>📅 取得日: 2026-08-30 JST</span>
+    <span>🔍 対象期間: 2026-08-28〜2026-08-30</span>
+    <span>📡 ソース: Claude Code releases / GitHub Trending / WebSearch</span>
+    <span>🔁 重複除去: 直近3日 (08-27〜08-29) 確認済</span>
+  </div>
+</header>
+
+<!-- ==================== 🟢 即使う ==================== -->
+<h2><span class="tag-green">🟢</span> 即使う</h2>
+
+<div class="card green">
+  <div class="card-title">Claude Code v2.1.251 — PreModelSwitch / PostModelSwitch フックイベント追加</div>
+  <div class="card-body">
+    Claude Codeがモデルを切り替える直前・直後に任意の処理を差し込める新しいフックイベント (PreModelSwitch / PostModelSwitch) が追加された。
+    たとえばスケジュールルーティンで「Opusに切り替わる前にコスト超過アラートをSlack通知する」「切替後の選択モデルをログに記録する」などが <code>settings.json</code> のhooks設定だけで実現できる。
+    masatomanが毎日動かしている feedエージェントや SNS自動化ルーティンは複数モデルを跨ぐ場面があるため、今日のhooks設定に追加する価値がある。
+  </div>
+  <div class="verdict">🟢 効率厨の一言: feedルーティンのhooks設定に今日追加。モデル切替ログを残すだけで後の振り返りが全然違う。</div>
+  <div class="card-link">🔗 <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.251" target="_blank">github.com/anthropics/claude-code/releases/tag/v2.1.251</a></div>
+</div>
+
+<div class="card green">
+  <div class="card-title">Claude Code v2.1.251 — セキュリティパッチ必須: symlink脆弱性 + plugin path-traversal 修正</div>
+  <div class="card-body">
+    fileツール (Read/Write/Edit) のsymlink経由で承認済みディレクトリ外へアクセスできた脆弱性と、pluginコマンドがpluginディレクトリ外を指せた path-traversal 脆弱性が同時修正された。
+    masatomanのようにカスタムhooksやローカルpluginを運用している環境は特に影響を受ける可能性がある。<strong>v2.1.251へのアップデートは今日中に必須。</strong>
+    加えて <code>/usage</code> に spend limit バーが追加され、<code>/cost</code> でセッションごとのprompt-cache ヒット率とトークン数が確認できるようになった (MAX定額ユーザーでも参考情報として有効)。
+  </div>
+  <div class="verdict">🟢 効率厨の一言: セキュリティパッチは後回し不可。<code>npm update -g @anthropic-ai/claude-code</code> を今すぐ。</div>
+  <div class="card-link">🔗 <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.251" target="_blank">github.com/anthropics/claude-code/releases/tag/v2.1.251</a></div>
+</div>
+
+<!-- ==================== 💰 課金価値 ==================== -->
+<h2><span class="tag-blue">💰</span> 課金価値</h2>
+<p class="none-msg">該当なし（今日は有料で時間対効果が明確なものはなし）</p>
+
+<!-- ==================== 🟡 様子見 ==================== -->
+<h2><span class="tag-yellow">🟡</span> 様子見</h2>
+
+<div class="card yellow">
+  <div class="card-title">open-seo (every-app) — MCP-native OSS SEO分析プラットフォーム (Semrush代替, $10/月 or セルフホスト)</div>
+  <div class="card-body">
+    SemrushやAhrefsの代替を謳うOSSのSEO分析ツール。キーワード調査・ドメイン概要・バックリンク・サイト監査・AIクラスタリング・LLMメンション追跡を搭載し、<strong>MCP-nativeサポートでClaude Codeから直接SEOデータを呼び出せる</strong>のが特徴。
+    セルフホストはDataForSEO APIキー持込で従量課金、ホスト版は月$10。GitHubスター14.6k、MIT。
+    masatoman.netのGSC自動化ルーティン補完に使えるが、現状のルーティンがGSC直接でカバーできている間は急ぎではない。MCP連携部分だけ試して判断するのが効率的。
+  </div>
+  <div class="verdict">🟡 効率厨の一言: MCPでClaude Codeと繋がる部分は面白い。ただし今のGSC自動化で間に合ってる間は後回し。セルフホスト版のセットアップ30分を来月以降に確保して評価。</div>
+  <div class="card-link">🔗 <a href="https://github.com/every-app/open-seo" target="_blank">github.com/every-app/open-seo</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">awesome-claude-skills (ComposioHQ) — Claude Skillsキュレーション集 73k Stars</div>
+  <div class="card-body">
+    Claude Skillsのキュレーション集でGitHubスター73.9k。カスタムAIワークフロー用のskillがカテゴリ整理されており、masatomanの既存skillセット (feed / SEO / routine 等) の棚卸しや未発見skillの発掘に使える。
+    ただし中には複雑すぎるものやAnthropicAPI直叩き前提のものも混在しているため、MAX定額ユーザーには合わないものを選別する一手間が必要。
+  </div>
+  <div class="verdict">🟡 効率厨の一言: 週次レビュー時に一度ざっと見る用。全部試すのは罠、自分のroutineに刺さるもの1つ見つければ十分。</div>
+  <div class="card-link">🔗 <a href="https://github.com/ComposioHQ/awesome-claude-skills" target="_blank">github.com/ComposioHQ/awesome-claude-skills</a></div>
+</div>
+
+<!-- ==================== 🚫 罠 ==================== -->
+<h2><span class="tag-gray">🚫</span> 罠</h2>
+
+<div class="card gray">
+  <div class="card-title">Sequel Agentic Engagement Cloud (Sequel.io) — マーケティング自動化SaaS</div>
+  <div class="card-body">
+    2026年8月26日リリース。既存のマーケティングエンゲージメントツールにAI「Agentic」機能を追加したSaaS。メール・ウェビナー・イベントのエンゲージメント自動化が主な機能。
+    「Agentic」を冠しているが、中身はCRMとの連携型マーケティングオートメーション。masatomanのスタック (Claude Code / Supabase / Vercel / Next.js) とは完全にミスマッチ、価格不明でベンダーロックイン強め。
+  </div>
+  <div class="verdict">🚫 効率厨の一言: 「Agenticクラウド」という言葉に釣られない。エンゲージメントSaaSに乗り換えを検討するフェーズではない。スルー確定。</div>
+  <div class="card-link">🔗 <a href="https://sequel.io" target="_blank">sequel.io</a></div>
+</div>
+
+<!-- 取得失敗ソース -->
+<div class="fail-section">
+  <strong>⚠️ 取得失敗ソース:</strong>
+  www.anthropic.com/news (egress blocked) /
+  obsidian.md/changelog/ (egress blocked) /
+  docs.claude.com/en/release-notes (301→307リダイレクト、CHANGELOG.md本文は未取得)
+</div>
+
+<footer>
+  tooling-update-watch (効率厨A feed) — 自動生成 2026-08-30 JST |
+  重複除去: 2026-08-27〜08-29 HTML参照済 |
+  ソース: github.com/anthropics/claude-code/releases, github.com/trending, WebSearch
+</footer>
+
+</body>
+</html>
