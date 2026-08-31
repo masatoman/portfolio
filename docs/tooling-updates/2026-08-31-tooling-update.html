@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-08-31</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --muted: #888;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1100;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1d4ed8;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      border: 1px solid;
+    }
+    .card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .card-body { font-size: 0.88rem; color: #ccc; margin-bottom: 0.6rem; }
+    .verdict { font-size: 0.82rem; font-style: italic; margin-bottom: 0.5rem; }
+    .card-link { font-size: 0.8rem; }
+    .card-link a { color: var(--muted); text-decoration: none; }
+    .card-link a:hover { text-decoration: underline; }
+    .card.green { background: var(--green-bg); border-color: var(--green-border); }
+    .card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card.blue { background: var(--blue-bg); border-color: var(--blue-border); }
+    .card.gray { background: var(--gray-bg); border-color: var(--gray-border); }
+    .tag-green { color: var(--green); }
+    .tag-yellow { color: var(--yellow); }
+    .tag-blue { color: var(--blue); }
+    .tag-gray { color: var(--gray); }
+    footer { margin-top: 3rem; font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 1rem; }
+    .none-notice { font-size: 0.85rem; color: var(--muted); padding: 0.6rem 1rem; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); }
+    .skip-list { font-size: 0.8rem; color: var(--muted); }
+    .skip-list li { margin-bottom: 0.2rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>効率厨A feed 2026-08-31</h1>
+  <div class="meta">
+    <span>📅 取得日: 2026-08-31 (JST 09:00)</span>
+    <span>🔍 対象期間: 直近1-2日 (2026-08-29〜31)</span>
+    <span>📦 ソース: Claude Code releases / GitHub Trending / WebSearch補完</span>
+  </div>
+</header>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2><span class="tag-green">🟢</span> 即使う — 今日から運用に入れられる</h2>
+
+<div class="card green">
+  <div class="card-title">last30days-skill — Reddit/X/YouTube/HN/Polymarket を一括横断する Claude スキル</div>
+  <div class="card-body">
+    Claude Code のスキルとして動作。「このトピックここ30日でどう評価されてる?」を一言で投げると Reddit・X・YouTube・HackerNews・Polymarket を横断調査して要約を返す。60K+ スターで今も stable に更新中。
+  </div>
+  <div class="verdict tag-green">⇒ 記事ネタ探しや競合ツールの評判チェックを手動検索ゼロで回せる。軸 A の週次リサーチルーティンにそのまま組み込める。</div>
+  <div class="card-link">🔗 <a href="https://github.com/mvanhorn/last30days-skill" target="_blank">github.com/mvanhorn/last30days-skill</a></div>
+</div>
+
+<div class="card green">
+  <div class="card-title">crawl4ai — LLM に食わせやすい形で返す OSS Web クローラー</div>
+  <div class="card-body">
+    URLを渡すと生HTMLでなく clean Markdown で返してくれる。余計な nav・広告・script タグを自動削除するので Claude に渡すトークンが大幅削減。Python 製、80K+ スター。今日の GitHub Trending 入り。
+  </div>
+  <div class="verdict tag-green">⇒ Claude に「このページを分析して」と渡す前処理コードをゼロにできる。競合サイト調査・SEO リサーチの自動化で即使える。</div>
+  <div class="card-link">🔗 <a href="https://github.com/unclecode/crawl4ai" target="_blank">github.com/unclecode/crawl4ai</a></div>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2><span class="tag-blue">💰</span> 課金価値</h2>
+<p class="none-notice">該当なし（今日のピックアップは全部無料 OSS / フリーミアム）</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2><span class="tag-yellow">🟡</span> 様子見 — 良さそうだが今すぐではない</h2>
+
+<div class="card yellow">
+  <div class="card-title">OpenMAIC (THU-MAIC) — 複数 AI エージェントが講師・生徒を演じる学習教室</div>
+  <div class="card-body">
+    TypeScript 製、セルフホスト可能。複数エージェントが討論・質疑・解説を演じてインタラクティブな学習体験を作る。今日 GitHub Trending 1 位 (+1,370 stars)、総 23K+。
+  </div>
+  <div class="verdict tag-yellow">⇒ masatoman の直接ユースケースには薄い。ただしマルチエージェント設計のリファレンス実装として読む価値あり。記事ネタにもなる。急上昇トレンドは追っておく。</div>
+  <div class="card-link">🔗 <a href="https://github.com/THU-MAIC/OpenMAIC" target="_blank">github.com/THU-MAIC/OpenMAIC</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">Sinch Agent Tools — Claude Code / Cursor から Sinch 通信 API をエージェント経由でテスト・デプロイ</div>
+  <div class="card-body">
+    VS Code / JetBrains / Claude Code / Cursor に対応。SMS・音声・メールの Sinch API を AI コーディングアシスタントから直接呼べる。API ドキュメントを MCP で読ませる仕組み付き。8/4 リリース。
+  </div>
+  <div class="verdict tag-yellow">⇒ 今すぐ Sinch API を使う案件がなければ保留。通信機能を SaaS に組み込む時点で再確認。Claude Code との連携設計は参考になる。</div>
+  <div class="card-link">🔗 <a href="https://www.group.sinch.com/media/press-releases-and-news/2026/sinch-launches-agent-tools-for-developers-and-ai-coding-assistants/" target="_blank">group.sinch.com — Agent Tools 発表</a></div>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2><span class="tag-gray">🚫</span> 罠 — 過剰期待・重い・ロックイン・今のスタックに合わない</h2>
+
+<div class="card gray">
+  <div class="card-title">OPENBOT — Grokbot のオープンソース代替（自己ホスト型）</div>
+  <div class="card-body">
+    ソフトウェアエンジニア向けの Grokbot 代替を謳う OSS。自前 GPU または高スペック VPS でのホスティング前提。セットアップが重く、継続的な維持コストが発生する。
+  </div>
+  <div class="verdict tag-gray">⇒ MAX プラン定額で Claude を使っている masatoman には不要。新たな運用コストを払って別 LLM に乗り換える理由がない。スルー推奨。</div>
+  <div class="card-link">🔗 <a href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank">aiagentstore.ai — 週次まとめ（OPENBOT 掲載）</a></div>
+</div>
+
+<footer>
+  <p><strong>取得失敗ソース:</strong></p>
+  <ul class="skip-list">
+    <li>www.anthropic.com — EGRESS_BLOCKED (プロキシ制限)</li>
+    <li>obsidian.md — EGRESS_BLOCKED (プロキシ制限)</li>
+    <li>explainx.ai — EGRESS_BLOCKED (プロキシ制限)</li>
+    <li>docs.claude.com → platform.claude.com → CHANGELOG.md — 多段リダイレクトで実ページ取得不可</li>
+  </ul>
+  <p style="margin-top:0.8rem;">重複除去: 直近3日分 (08-28〜30) の掲載 URL と照合済み。v2.1.251 / v2.1.248 / GitNexus / archify 等は除外。</p>
+  <p style="margin-top:0.4rem;">Generated by tooling-update-watch agent · 2026-08-31 00:00 UTC</p>
+</footer>
+
+</body>
+</html>
