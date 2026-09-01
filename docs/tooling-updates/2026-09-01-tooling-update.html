@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-01</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --muted: #888;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1100;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1d4ed8;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      border: 1px solid;
+    }
+    .card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .card-body { font-size: 0.88rem; color: #ccc; margin-bottom: 0.6rem; }
+    .verdict { font-size: 0.82rem; font-style: italic; margin-bottom: 0.5rem; }
+    .card-link { font-size: 0.8rem; }
+    .card-link a { color: var(--muted); text-decoration: none; }
+    .card-link a:hover { text-decoration: underline; }
+    .card.green { background: var(--green-bg); border-color: var(--green-border); }
+    .card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card.blue { background: var(--blue-bg); border-color: var(--blue-border); }
+    .card.gray { background: var(--gray-bg); border-color: var(--gray-border); }
+    .tag-green { color: var(--green); }
+    .tag-yellow { color: var(--yellow); }
+    .tag-blue { color: var(--blue); }
+    .tag-gray { color: var(--gray); }
+    .none-notice { font-size: 0.85rem; color: var(--muted); padding: 0.6rem 1rem; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); }
+    footer { margin-top: 3rem; font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 1rem; }
+    .skip-list { list-style: disc; padding-left: 1.2rem; margin-top: 0.4rem; }
+    .skip-list li { margin-bottom: 0.2rem; }
+    @media (max-width: 600px) {
+      body { font-size: 14px; padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+      .card { padding: 0.9rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>効率厨A feed 2026-09-01</h1>
+  <div class="meta">
+    <span>📅 取得日: 2026-09-01 (JST 09:00)</span>
+    <span>🔍 対象期間: 直近1-2日 (2026-08-31〜09-01)</span>
+    <span>📦 ソース: Claude Code releases / GitHub Trending / WebSearch</span>
+    <span>🔁 重複除去: 直近3日 (08-29〜08-31) 掲載済 URL と照合</span>
+  </div>
+</header>
+
+<!-- ==================== 🟢 即使う ==================== -->
+<h2><span class="tag-green">🟢</span> 即使う — 今日から運用に入れられる</h2>
+
+<div class="card green">
+  <div class="card-title">Claude Code v2.1.252 — Mac Bash 落ちバグ修正 + "always allow" 保存バグ修正</div>
+  <div class="card-body">
+    8/31 19:46 リリース。主な修正: (1) 一部 Mac で Bash コマンドが "task output swap refused (tasks dir moved or linked)" で落ちていたバグを解消。(2) プロジェクトに <code>.claude/settings.local.json</code> がない場合に「常時許可 (always allow)」が保存されなかったバグを修正。(3) claude.ai 接続が不安定なときに Remote Control セッションが停止するバグ修正。(4) 大きなエラー出力を持つバックグラウンドタスクの通知で API リクエストサイズ制限エラーが発生していた問題を修正。
+  </div>
+  <div class="verdict tag-green">⇒ スケジュールルーティンや hooks 設定で「always allow」を使っている環境ではこのバグを踏んでいた可能性あり。今日 <code>npm update -g @anthropic-ai/claude-code</code> で適用推奨。Mac ユーザーの Bash 落ちも解消されるので実害が大きかった。</div>
+  <div class="card-link">🔗 <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.252" target="_blank">github.com/anthropics/claude-code/releases/tag/v2.1.252</a></div>
+</div>
+
+<!-- ==================== 💰 課金価値 ==================== -->
+<h2><span class="tag-blue">💰</span> 課金価値</h2>
+<p class="none-notice">該当なし（今日のピックアップは全部無料 OSS）</p>
+
+<!-- ==================== 🟡 様子見 ==================== -->
+<h2><span class="tag-yellow">🟡</span> 様子見 — 良さそうだが今すぐではない</h2>
+
+<div class="card yellow">
+  <div class="card-title">every-app/open-seo — Semrush / Ahrefs の OSS 代替 (15K+ ⭐ TypeScript)</div>
+  <div class="card-body">
+    商用 SEO プラットフォームのオープンソース代替。キーワード調査・サイト監視・バックリンク分析などを自前環境で回せる。今日 GitHub Trending 入り (610 stars/day)、総 15K+。
+  </div>
+  <div class="verdict tag-yellow">⇒ masatoman.net の軸 A SEO は現在自動運用フェーズで新規記事ノルマなし。有料 SEO ツールへの課金が発生した時点で乗り換え候補として検討。今すぐは不要だが bookmark しておく価値あり。</div>
+  <div class="card-link">🔗 <a href="https://github.com/every-app/open-seo" target="_blank">github.com/every-app/open-seo</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">K-Dense-AI/scientific-agent-skills — 生物・化学・医学 165+ ツールの Claude スキル集 (40K+ ⭐ Python)</div>
+  <div class="card-body">
+    Claude Code のスキルとして組み込める専門分野ツール集。生物学・化学・医学の 100+ データベースに対応し、165 以上の検証済み能力を持つ。今日 Trending 3 位 (1,980 stars/day)。
+  </div>
+  <div class="verdict tag-yellow">⇒ masatoman の直接ユースケースは薄いが、「AI で専門領域を横断リサーチする」という記事ネタとして面白い。工務店系の技術ドキュメントや建材データ調査への転用可能性も0ではない。将来の記事ネタ候補として bookmark。</div>
+  <div class="card-link">🔗 <a href="https://github.com/K-Dense-AI/scientific-agent-skills" target="_blank">github.com/K-Dense-AI/scientific-agent-skills</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">firecrawl/pdf-inspector — PDF の「スキャン画像 vs テキスト」を高速判定する Rust 製 CLI (17K+ ⭐)</div>
+  <div class="card-body">
+    PDF ファイルがスキャン画像か埋め込みテキストかを即座に判定する軽量 CLI。Rust 製で高速。補助金申請書類や仕様書 PDF を扱う自動化フローで前処理コストを下げられる。
+  </div>
+  <div class="verdict tag-yellow">⇒ 今すぐは不要だが、工務店向けプロジェクトで PDF 書類の自動分類処理を組む局面（補助金フォーム / 現場写真整理の拡張）で有効。ドキュメント自動化パイプラインを作る段階で再確認。</div>
+  <div class="card-link">🔗 <a href="https://github.com/firecrawl/pdf-inspector" target="_blank">github.com/firecrawl/pdf-inspector</a></div>
+</div>
+
+<!-- ==================== 🚫 罠 ==================== -->
+<h2><span class="tag-gray">🚫</span> 罠 — 過剰期待・重い・ロックイン・今のスタックに合わない</h2>
+
+<div class="card gray">
+  <div class="card-title">affaan-m/ECC — "agent harness performance optimization" を謳う 245K ⭐ 謎リポジトリ</div>
+  <div class="card-body">
+    Claude Code / Cursor 向けの「エージェントハーネス最適化システム」と称するリポジトリ。245K+ stars は同カテゴリの著名 OSS 水準を大幅に超えており、star farming（スター水増し）の疑いが濃い。説明文も曖昧で具体的な機能が見えない。
+  </div>
+  <div class="verdict tag-gray">⇒ Claude Code を謳う不審リポジトリへの接触は避けること。怪しいスクリプトや設定を Claude Code 環境に注入させるリスクがある。スルー推奨。</div>
+  <div class="card-link">🔗 <a href="https://github.com/affaan-m/ECC" target="_blank">github.com/affaan-m/ECC</a>（注意: 開く場合は内容精査してから）</div>
+</div>
+
+<div class="card gray">
+  <div class="card-title">p-e-w/heretic — LLM の制限を「完全自動除去」するツール (29K+ ⭐)</div>
+  <div class="card-body">
+    言語モデルのコンテンツフィルタを自動的に回避・除去することを目的とした Python 製ツール。GitHub Trending に浮上中。
+  </div>
+  <div class="verdict tag-gray">⇒ masatoman の正当なユースケース（工務店 SaaS / 記事生成 / ルーティン自動化）には一切不要。Anthropic 利用規約違反リスクがあり、MAX プランの停止トリガーになり得る。近づかない。</div>
+  <div class="card-link">🔗 <a href="https://github.com/p-e-w/heretic" target="_blank">github.com/p-e-w/heretic</a></div>
+</div>
+
+<footer>
+  <p><strong>取得失敗ソース:</strong></p>
+  <ul class="skip-list">
+    <li>www.anthropic.com — EGRESS_BLOCKED (プロキシ制限、昨日同様)</li>
+    <li>obsidian.md/changelog/ — EGRESS_BLOCKED (プロキシ制限)</li>
+    <li>docs.claude.com → platform.claude.com → CHANGELOG.md — 多段リダイレクトで実ページ取得不可（GitHub releases で代替取得）</li>
+  </ul>
+  <p style="margin-top:0.8rem;">重複除去: 直近3日分 (08-29〜08-31) の掲載 URL と照合済み。crawl4ai / last30days-skill / OpenMAIC / archify / Sinch Agent Tools / OPENBOT / v2.1.251 は除外。</p>
+  <p style="margin-top:0.4rem;">Generated by tooling-update-watch agent · 2026-09-01 00:00 UTC</p>
+</footer>
+
+</body>
+</html>
