@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-03</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --muted: #888;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1100;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1d4ed8;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      border: 1px solid;
+    }
+    .card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .card-body { font-size: 0.88rem; color: #ccc; margin-bottom: 0.6rem; }
+    .verdict { font-size: 0.82rem; font-style: italic; margin-bottom: 0.5rem; }
+    .card-link { font-size: 0.8rem; margin-bottom: 0.2rem; }
+    .card-link a { color: var(--muted); text-decoration: none; }
+    .card-link a:hover { text-decoration: underline; }
+    .card.green { background: var(--green-bg); border-color: var(--green-border); }
+    .card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card.blue { background: var(--blue-bg); border-color: var(--blue-border); }
+    .card.gray { background: var(--gray-bg); border-color: var(--gray-border); }
+    .tag-green { color: var(--green); }
+    .tag-yellow { color: var(--yellow); }
+    .tag-blue { color: var(--blue); }
+    .tag-gray { color: var(--gray); }
+    .none-notice { font-size: 0.85rem; color: var(--muted); padding: 0.6rem 1rem; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); }
+    footer { margin-top: 3rem; font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 1rem; }
+    .skip-list { list-style: disc; padding-left: 1.2rem; margin-top: 0.4rem; }
+    .skip-list li { margin-bottom: 0.2rem; }
+    code { background: #1e293b; padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.85em; font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+    @media (max-width: 600px) {
+      body { font-size: 14px; padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+      .card { padding: 0.9rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>効率厨A feed 2026-09-03</h1>
+  <div class="meta">
+    <span>📅 取得日: 2026-09-03 (JST 09:00)</span>
+    <span>🔍 対象期間: 直近1-2日 (2026-09-02〜09-03)</span>
+    <span>📦 ソース: Claude Code CHANGELOG / GitHub Trending / WebSearch (AI/自動化)</span>
+  </div>
+</header>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2><span class="tag-green">🟢</span> 即使う</h2>
+
+<div class="card green">
+  <div class="card-title">Claude Code v2.1.259 — <code>--permission-prompts none</code> でヘッドレス完全無人化、<code>managedMcpServers</code> 追加</div>
+  <div class="card-body">
+    <code>--permission-prompts none</code> フラグが追加され、unattended/headless 環境でパーミッション確認ダイアログを完全に無効化できるようになった。scheduled routines や CI 環境での「途中で止まる」問題を根本解消できる。組織向けに <code>managedMcpServers</code> も追加され、HTTP/SSE MCP サーバーを全ユーザーに一括配布できるようになった。その他の修正: 並行セッションで <code>~/.claude.json</code> の変更が巻き戻されるバグ修正、OAuth トークン更新時のプロンプトキャッシュ無効化を修正、Bash パーミッションチェックをファイル引数やリダイレクトまで拡張、fullscreen モードの長大なレスポンス描画改善。
+  </div>
+  <div class="verdict tag-green">✍️ 効率厨verdict: scheduled session が途中の permission ダイアログで止まる問題の根本解決策が来た。今の tooling-update-watch routine を起動する設定に <code>--permission-prompts none</code> を追加するだけで完全無人実行が担保される。<code>~/.claude.json</code> 巻き戻りバグ修正も concurrent な routine 運用に直接効く。</div>
+  <div class="card-link">🔗 <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank">github.com/anthropics/claude-code — CHANGELOG.md</a></div>
+</div>
+
+<div class="card green">
+  <div class="card-title">ponytail — Claude Code を「怠惰な上級エンジニア思考」にするルールセット (121K ⭐ JS)</div>
+  <div class="card-body">
+    DietrichGebert 作。コーディングエージェントに「書く前に既存コードを再利用せよ」「標準ライブラリ・プラットフォーム機能を優先せよ」「ワンライナーで済むならそうせよ」「それでも足りなければ最小限のコードだけ書け」という哲学を注入するルールファイル。<code>CLAUDE.md</code> または <code>AGENTS.md</code> に 1 ファイル追加するだけで有効になる。平均 54%・最大 94% のコード削減実績があり、コスト約 20% 減も謳う。Cursor・Windsurf・Cline・GitHub Copilot Chat・Kiro など主要エージェント系 IDE に対応。
+  </div>
+  <div class="verdict tag-green">✍️ 効率厨verdict: portfolio の <code>CLAUDE.md</code> に 1 ブロック追加するだけで Claude Code が自動的に「既存を探してから書く」思考になる。local-business デモの追加実装やスクリプト生成で過剰実装を防ぎたい場面で今日から使える。README に書き方の例が丁寧に載っており導入コスト5分未満。</div>
+  <div class="card-link">🔗 <a href="https://github.com/DietrichGebert/ponytail" target="_blank">github.com/DietrichGebert/ponytail</a></div>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2><span class="tag-blue">💰</span> 課金価値</h2>
+<div class="none-notice">該当なし（今日は新規に課金が必要なツールはなし）</div>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2><span class="tag-yellow">🟡</span> 様子見</h2>
+
+<div class="card yellow">
+  <div class="card-title">chrome-devtools-mcp (ChromeDevTools 公式) — Chrome DevTools を MCP でコーディングエージェントに渡す (50K ⭐ TS)</div>
+  <div class="card-body">
+    Chrome DevTools チーム公式の MCP サーバー。エージェントが Chrome を直接操作し、DOM 検査・console ログ確認・ネットワークリクエスト分析・パフォーマンスプロファイリングをリアルタイムに行えるようになる。TypeScript 製で Claude Code との相性も良い。Playwright との違いは「人間が開いているブラウザにそのままアタッチできる」点で、既存セッションの検査が得意。
+  </div>
+  <div class="verdict tag-yellow">✍️ 効率厨verdict: Playwright で自動テストを書いている今の portfolio 開発では即活用場面が薄い。ただし「デプロイ後の本番環境を Claude Code に直接デバッグさせる」ユースケースが生まれたら真価を発揮する。GitHub Trending で今日 +148 stars と伸び続けており、MCP エコシステムの公式整備として注目しておく価値あり。</div>
+  <div class="card-link">🔗 <a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank">github.com/ChromeDevTools/chrome-devtools-mcp</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">VoiceStudio (debpalash) — ElevenLabs の OSS 代替、646 言語対応の自己ホスト型音声クローン (14K ⭐ Python)</div>
+  <div class="card-body">
+    ElevenLabs の有料 API に依存せずにローカルで音声クローン・TTS を実行できる Python 製ツール。646 言語対応と謳い、今日 GitHub Trending で +832 stars と急伸。API コストゼロで動画ナレーションや音声デモを量産できる。GPU があれば高品質、CPU でも動作する。
+  </div>
+  <div class="verdict tag-yellow">✍️ 効率厨verdict: masatoman.net の解説動画や工務店デモ動画にナレーションを付けたい時の self-hosted 候補。今すぐ必要な場面はないが、コンテンツ制作フローに音声が入ってきたら ElevenLabs 課金の前に試す価値あり。クオリティ検証だけ週末 30 分で済む。</div>
+  <div class="card-link">🔗 <a href="https://github.com/debpalash/VoiceStudio" target="_blank">github.com/debpalash/VoiceStudio</a></div>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2><span class="tag-gray">🚫</span> 罠</h2>
+
+<div class="card gray">
+  <div class="card-title">Claude Code 週次 quota: 9/14 から実質 -17% 減（表向きは「+25% 永続化」）</div>
+  <div class="card-body">
+    Anthropic が発表した「Claude Code の週次制限を永続的に 25% 引き上げる」は、2025年8月の元の上限基準での話。現在は夏季一時ブースト +50% が適用中で、9/14 以降はそれが終了し +25% 固定になる。つまり現在の使用量を 100 とすると、新しい上限は約 83 — 実質 17% の削減。Anthropic 自身も「17% reduction」と表現している。
+  </div>
+  <div class="verdict tag-gray">✍️ 効率厨verdict: MAX プランは定額 (quota より「何ターン使えるか」の感覚) なので直撃度は低いが、routine エージェントを多数並走させている日の重いタスクで詰まるケースが増える可能性あり。9/14 前後で routine の完走率を確認しておくと良い。「+25% 増量」という誇大マーケティングに騙されないこと。</div>
+  <div class="card-link">🔗 <a href="https://www.notebookcheck.net/Anthropic-announces-a-25-increase-to-Claude-Code-limits-but-there-s-a-17-catch.1382735.0.html" target="_blank">notebookcheck.net — 「17% の罠」解説</a></div>
+  <div class="card-link">🔗 <a href="https://aicatchup.com/news/claude-code-weekly-limits-permanent-25-percent-september-2026" target="_blank">aicatchup.com — Anthropic 公式発表の詳細</a></div>
+</div>
+
+<footer>
+  <div>📋 取得失敗ソース: anthropic.com（egress blocked）/ obsidian.md（egress blocked）/ releasebot.io（未取得）</div>
+  <div style="margin-top:0.5rem;">🔁 重複除去: v2.1.257 / v2.1.258 / Fable 5.1 / Mythos 5.1 / Hoplite / minimind (9/02掲載済み) / v2.1.252 / open-seo / scientific-agent-skills / pdf-inspector / ECC / heretic (9/01掲載済み) を除外</div>
+  <div style="margin-top:0.5rem;">🤖 このフィードは tooling-update-watch routine が自動生成しています</div>
+</footer>
+
+</body>
+</html>
