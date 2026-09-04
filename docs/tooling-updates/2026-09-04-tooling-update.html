@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-04</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --muted: #888;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1100;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1d4ed8;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      border: 1px solid;
+    }
+    .card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .card-body { font-size: 0.88rem; color: #ccc; margin-bottom: 0.6rem; }
+    .verdict { font-size: 0.82rem; font-style: italic; margin-bottom: 0.5rem; }
+    .card-link { font-size: 0.8rem; margin-bottom: 0.2rem; }
+    .card-link a { color: var(--muted); text-decoration: none; }
+    .card-link a:hover { text-decoration: underline; }
+    .card.green { background: var(--green-bg); border-color: var(--green-border); }
+    .card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card.blue { background: var(--blue-bg); border-color: var(--blue-border); }
+    .card.gray { background: var(--gray-bg); border-color: var(--gray-border); }
+    .tag-green { color: var(--green); }
+    .tag-yellow { color: var(--yellow); }
+    .tag-blue { color: var(--blue); }
+    .tag-gray { color: var(--gray); }
+    .none-notice { font-size: 0.85rem; color: var(--muted); padding: 0.6rem 1rem; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); }
+    footer { margin-top: 3rem; font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 1rem; }
+    .skip-list { list-style: disc; padding-left: 1.2rem; margin-top: 0.4rem; }
+    .skip-list li { margin-bottom: 0.2rem; }
+    code { background: #1e293b; padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.85em; font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+    @media (max-width: 600px) {
+      body { font-size: 14px; padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+      .card { padding: 0.9rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>効率厨A feed 2026-09-04</h1>
+  <div class="meta">
+    <span>📅 取得日: 2026-09-04 (JST 09:00)</span>
+    <span>🔍 対象期間: 直近1-2日 (2026-09-03〜09-04)</span>
+    <span>📦 ソース: Claude Code releases / GitHub Trending / WebSearch (AI/自動化)</span>
+  </div>
+</header>
+
+<!-- ===== 🟢 即使う ===== -->
+<h2><span class="tag-green">🟢</span> 即使う</h2>
+
+<div class="card green">
+  <div class="card-title">Claude Code v2.1.260 — <code>/diff</code> パネル・<code>/cost</code> キャッシュ診断・Workflow subagent 再起動修正</div>
+  <div class="card-body">
+    9/3 23:48 リリース。フルスクリーンモードで <code>/diff</code> コマンドを使うとサイドパネルに未コミット差分をリアルタイム表示できるようになった。<code>/cost</code> コマンドにプロンプトキャッシュのミス診断が追加され「なぜキャッシュが効いていないか」が即座に分かるようになった。Workflow ツールのサブエージェント再起動バグが修正され、途中で止まることがあった問題が解消。zsh の隠し置換（<code>$(...)</code> を含むコマンド）がパーミッションチェックを自動承認してしまうセキュリティ不具合も修正。ヘッドレスセッションで <code>/reload-plugins</code> が使えるようになり、Remote Control MCP 接続バグも修正された。
+  </div>
+  <div class="verdict tag-green">✍️ 効率厨verdict: Workflow subagent の再起動バグ修正は、この tooling-update-watch routine 自体が恩恵を受ける。<code>/cost</code> でキャッシュミスの原因が分かるようになったので、long-context な routine のコスト最適化に今すぐ使える。<code>/diff</code> パネルは portfolio の local-business デモ実装時に「どこまで変えたか」を確認しながら作業する場面で便利。</div>
+  <div class="card-link">🔗 <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.260" target="_blank">github.com/anthropics/claude-code/releases/tag/v2.1.260</a></div>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<h2><span class="tag-blue">💰</span> 課金価値</h2>
+<div class="none-notice">該当なし（今日は新規に課金が必要なツールなし）</div>
+
+<!-- ===== 🟡 様子見 ===== -->
+<h2><span class="tag-yellow">🟡</span> 様子見</h2>
+
+<div class="card yellow">
+  <div class="card-title">mattpocock/skills — TypeScript 教育者 Matt Pocock が .agents ディレクトリをそのまま公開 (247K ⭐ Shell, +1,601 today)</div>
+  <div class="card-body">
+    「Real Engineers のためのスキル集」として、Matt Pocock（Total TypeScript 著者）が実際に使っている AI エージェント向けスキルファイルを公開。Shell 製で Claude Code・Cursor・Windsurf などのエージェントに対応。現場での実践的なスキル構成のリファレンスとして注目度が高く、今日 GitHub Trending で +1,601 stars と急伸。
+  </div>
+  <div class="verdict tag-yellow">✍️ 効率厨verdict: 現在の portfolio の <code>.claude/skills/</code> 構成と比較して参考にできる可能性あり。ただし TypeScript 中心のスキルセットなので、工務店ドメインや routine 設計への転用前に内容確認が必要。「次にスキルを整理するタイミング」で一読するのが効率的。</div>
+  <div class="card-link">🔗 <a href="https://github.com/mattpocock/skills" target="_blank">github.com/mattpocock/skills</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">addyosmani/agent-skills — Google Chrome Dev Addy Osmani 製プロダクション級エージェントスキル集 (92K ⭐ JS, +264 today)</div>
+  <div class="card-body">
+    「Production-grade engineering skills for AI coding agents」として Addy Osmani（Chrome パフォーマンスの権威、Google 開発者アドボケイト）が公開。コーディングエージェントに「パフォーマンス計測から始めろ」「ブラウザのメインスレッドをブロックするな」等の Chrome エンジニアリングの知見を注入するスキルファイル群。今日 GitHub Trending に登場。
+  </div>
+  <div class="verdict tag-yellow">✍️ 効率厨verdict: portfolio の local-business デモで Core Web Vitals を意識する場面が出てきたら、このスキルを Claude Code に渡せば実装時にパフォーマンス視点が自動で入る。今は工務店デモ品質でそこまで必要ないが、公開サイトの LCP 改善作業を Claude Code に任せるときに引っ張り出す価値あり。</div>
+  <div class="card-link">🔗 <a href="https://github.com/addyosmani/agent-skills" target="_blank">github.com/addyosmani/agent-skills</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">NousResearch/hermes-agent — 「使うたびに適応するエージェント」フレームワーク (240K ⭐ Python, +774 today)</div>
+  <div class="card-body">
+    NousResearch（Hermes・Mistral ファインチューンで知られる OSS AI ラボ）が公開したエージェントフレームワーク。「使うたびにユーザーの作業スタイルに学習・適応する」コンセプト。Python 製でモデル非依存、Claude・GPT-4o・ローカルモデルと連携できる。今日 GitHub Trending で +774 stars。
+  </div>
+  <div class="verdict tag-yellow">✍️ 効率厨verdict: 「自己適応」という概念は面白いが、今の Claude Code MAX 定額 + scheduled routine でほぼ用が足りている。別フレームワークへの乗り換えは API コスト（MAX 外になるためトークン課金が発生する）が伴うので、メリットが明確になるまで様子見。NousResearch の技術動向を追う文脈で Star しておく程度。</div>
+  <div class="card-link">🔗 <a href="https://github.com/NousResearch/hermes-agent" target="_blank">github.com/NousResearch/hermes-agent</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">anthropics/skills — Anthropic 公式エージェントスキルリポジトリ (173K ⭐ Python, +281 today)</div>
+  <div class="card-body">
+    Anthropic が公式に公開しているエージェントスキル集。Claude Code のスキルシステム（<code>~/.claude/skills/</code> 等）の基盤となる公式実装・リファレンスが含まれており、新しいスキルが追加されると masatoman が現在使っているスキル体系のアップストリームが変わる可能性がある。今日 +281 stars で Trending に登場。
+  </div>
+  <div class="verdict tag-yellow">✍️ 効率厨verdict: 今使っているスキルの上流なので、週1で新しいスキルが追加されていないか確認しておくとアップデートを取り逃がさない。直接インストールするより「新しい公式スキルが出た」情報を追う目的で Watch しておくのが効率的。</div>
+  <div class="card-link">🔗 <a href="https://github.com/anthropics/skills" target="_blank">github.com/anthropics/skills</a></div>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<h2><span class="tag-gray">🚫</span> 罠</h2>
+
+<div class="card gray">
+  <div class="card-title">Bugbot (Cursor) — AI 自動 PR レビューエージェント、ただし Cursor 専用 + credit 課金</div>
+  <div class="card-body">
+    Cursor が提供する AI エージェントによる自動 PR レビュー機能。GitHub と連携し、PR ごとにロジックバグ・セキュリティ脆弱性・エッジケースを自動スキャンする。Cursor・Windsurf の credit-based pricing 移行にともない、Bugbot の使用はサブスク外の追加 credit を消費する課金モデルとなっている。
+  </div>
+  <div class="verdict tag-gray">✍️ 効率厨verdict: Claude Code を使っている masatoman には関係のない Cursor 専用機能。同様の PR 自動レビューは Claude Code + GitHub Actions の組み合わせ（Claude Approvals + PR 監視 routine）でカバー済みかつ MAX 定額内。Cursor へ乗り換えると credit 課金が発生し、今の定額運用より高コストになるリスクがある。</div>
+  <div class="card-link">🔗 <a href="https://www.builder.io/blog/best-ai-tools-2026" target="_blank">builder.io — 2026年 AIツール比較（Bugbot 含む）</a></div>
+</div>
+
+<footer>
+  <div>📋 取得失敗ソース: anthropic.com（egress blocked）/ obsidian.md（未取得）</div>
+  <div style="margin-top:0.5rem;">🔁 重複除去: v2.1.259 / ponytail / chrome-devtools-mcp / VoiceStudio / Claude Code quota 17%削減 (9/03掲載済み) / v2.1.257-258 / Fable 5.1 / Mythos 5.1 / Hoplite / minimind (9/02掲載済み) / ECC / heretic (9/01掲載済み) を除外</div>
+  <div style="margin-top:0.5rem;">🤖 このフィードは tooling-update-watch routine が自動生成しています</div>
+</footer>
+
+</body>
+</html>
