@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-05</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --muted: #888;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1100;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1d4ed8;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      border: 1px solid;
+    }
+    .card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .card-body { font-size: 0.88rem; color: #ccc; margin-bottom: 0.6rem; }
+    .verdict { font-size: 0.82rem; font-style: italic; margin-bottom: 0.5rem; }
+    .card-link { font-size: 0.8rem; margin-bottom: 0.2rem; }
+    .card-link a { color: var(--muted); text-decoration: none; }
+    .card-link a:hover { text-decoration: underline; }
+    .card.green { background: var(--green-bg); border-color: var(--green-border); }
+    .card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card.blue { background: var(--blue-bg); border-color: var(--blue-border); }
+    .card.gray { background: var(--gray-bg); border-color: var(--gray-border); }
+    .tag-green { color: var(--green); }
+    .tag-yellow { color: var(--yellow); }
+    .tag-blue { color: var(--blue); }
+    .tag-gray { color: var(--gray); }
+    .none-notice { font-size: 0.85rem; color: var(--muted); padding: 0.6rem 1rem; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); }
+    footer { margin-top: 3rem; font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 1rem; }
+    .skip-list { list-style: disc; padding-left: 1.2rem; margin-top: 0.4rem; }
+    .skip-list li { margin-bottom: 0.2rem; }
+    code { background: #1e293b; padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.85em; font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+    @media (max-width: 600px) {
+      body { font-size: 14px; padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+      .card { padding: 0.9rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>効率厨A feed 2026-09-05</h1>
+  <div class="meta">
+    <span>📅 取得日: 2026-09-05 (JST 09:00)</span>
+    <span>🔍 対象期間: 直近1-2日 (2026-09-04〜09-05)</span>
+    <span>📦 ソース: Claude Code releases / GitHub Trending / WebSearch補完 (anthropic.com・obsidian.md ブロック、releasebot.io ブロック)</span>
+    <span>🔁 重複除去: 2026-09-03〜09-04 掲載済みを除外</span>
+  </div>
+</header>
+
+<!-- ======== 🟢 即使う ======== -->
+<h2><span class="tag-green">🟢</span> 即使う</h2>
+
+<div class="card green">
+  <div class="card-title">Claude Code v2.1.261 — <code>/skill-doctor</code> でスキル肥大化を診断・<code>bashOutputMaxChars</code> 128K対応</div>
+  <div class="card-body">
+    2026-09-04 19:58 リリース。主な新機能は3点。<br>
+    ① <code>/skill-doctor</code>: 読み込まれているが使われていないスキルを一覧表示し、どれだけコンテキストを食っているか表示。削除候補を即提案してくれる。<br>
+    ② <code>bashOutputMaxChars</code> / <code>taskOutputMaxChars</code>: コマンド出力のインライン受取上限を最大128K文字まで引き上げ可能（デフォルト値から変更したい場合は <code>settings.json</code> で設定）。<br>
+    ③ <code>/status</code> と <code>claude doctor</code> に Organization policy の読み込み状況を追加表示。<br>
+    その他: 高速タイピング時の文字落ちバグ修正・VSCode でのMCPサーバー管理UI追加・カスタムスタイル作成ウォークスルー追加。
+  </div>
+  <div class="verdict">▶ <strong>効率厨の一言</strong>: スキルを20本以上積んでいるなら今日 <code>/skill-doctor</code> を叩くだけで起動時のキャッシュロスが改善される可能性がある。bashOutputMaxChars は GSC自動化スクリプトのデバッグで「出力が途中で切れる」問題の解消に使える場面あり。</div>
+  <div class="card-link">🔗 <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.261" target="_blank">github.com/anthropics/claude-code/releases/tag/v2.1.261</a></div>
+  <div class="card-link">🔗 <a href="https://qiita.com/moha0918_/items/49e737eeb75cbbe8d1c8" target="_blank">Qiita — v2.1.260〜v2.1.261 解説</a></div>
+</div>
+
+<!-- ======== 💰 課金価値 ======== -->
+<h2><span class="tag-blue">💰</span> 課金価値</h2>
+
+<div class="none-notice">該当なし（本日の新着に有料サービスで即時価値あるものは見当たらず）</div>
+
+<!-- ======== 🟡 様子見 ======== -->
+<h2><span class="tag-yellow">🟡</span> 様子見</h2>
+
+<div class="card yellow">
+  <div class="card-title">Unabyss — Claude / Cursor / ChatGPT 間でコンテキストを共有するMCP公式コネクタ</div>
+  <div class="card-body">
+    Slack・Gmail・Notion・GitHub など25+ソースをMCP経由で読み込み、Claude Code でもCursorでもChatGPTでも同じコンテキストが使えるようにする「個人コンテキスト層」。Claude の公式コネクタディレクトリに掲載済み。複数エージェント間のメモリ共有に対応した <code>store</code> ツールのアップグレードが最近行われた。
+  </div>
+  <div class="verdict">▶ <strong>効率厨の一言</strong>: 複数プロジェクト（軸A/軸B）を跨いでClaude Codeセッション間でコンテキストを引き継ぐ用途には刺さる。ただしMAX定額運用中の今は新規MCP連携を増やすより既存スキルを最適化する優先度が高い。Unabyss が安定してレビューが増えたら改めて判断。</div>
+  <div class="card-link">🔗 <a href="https://unabyss.com/" target="_blank">unabyss.com</a></div>
+  <div class="card-link">🔗 <a href="https://www.producthunt.com/products/unabyss" target="_blank">Product Hunt — Unabyss</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">affaan-m/ECC — Claude Code 等エージェント向けパフォーマンス最適化システム (248K ⭐, +1,135 today)</div>
+  <div class="card-body">
+    GitHub Trending 急上昇（JavaScript）。「ECC = Efficient Claude Context」とみられ、エージェント実行時のパフォーマンスボトルネックを検出・最適化する仕組みを提供するとされる。詳細ドキュメントは未確認。star数の急増はここ数日のトレンド。
+  </div>
+  <div class="verdict">▶ <strong>効率厨の一言</strong>: star急増の割に実態が不明。Claude Code公式ツールではなくサードパーティ。内容を確認してからでないと導入リスクがある。1週間後に再評価予定。</div>
+  <div class="card-link">🔗 <a href="https://github.com/affaan-m/ECC" target="_blank">github.com/affaan-m/ECC</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">anomalyco/opencode — OSSのAIコーディングエージェント (204K ⭐, TypeScript)</div>
+  <div class="card-body">
+    GitHub Trending に継続ランクイン。Claude Code のオープンソース代替を標榜するTypeScriptプロジェクト。ローカル/セルフホスト環境でのAIコーディングアシスタントを目指す。コントリビュータ数・メンテナンス状況は要確認。
+  </div>
+  <div class="verdict">▶ <strong>効率厨の一言</strong>: MAX定額プランで既にClaude Codeを使い倒している状況では乗り換えメリットがない。「OSSなので監査できる」「APIコスト型に切り替えたい時」の選択肢として頭に入れておく程度。</div>
+  <div class="card-link">🔗 <a href="https://github.com/anomalyco/opencode" target="_blank">github.com/anomalyco/opencode</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">Make AI — ノーコード自動化プラットフォームのAI機能が全ユーザーに開放 + Marketplace追加</div>
+  <div class="card-body">
+    Make.com が「Make AI」機能を全プランに展開。シナリオをまたいだAIエージェント実行や、Marketplace でのコネクタ追加が容易になった。Make Grid（複数シナリオを俯瞰管理するUI）も追加。
+  </div>
+  <div class="verdict">▶ <strong>効率厨の一言</strong>: GSC/Analytics連携やnoindex配信自動化をノーコードで組みたい場合の選択肢として浮上。ただし現状はClaude Codeスクリプト＋Supabaseで十分回っているので、Make導入が増えた場合のコスト増に見合うかを比較してから。</div>
+  <div class="card-link">🔗 <a href="https://help.make.com/make-ai-toolkit-simplified-mcp-token-creation-apps-updates" target="_blank">help.make.com — Make AI Toolkit更新詳細</a></div>
+  <div class="card-link">🔗 <a href="https://www.make.com/en/blog/announcing-next-generation-make-ai-agents" target="_blank">make.com — Make AI Agents 発表</a></div>
+</div>
+
+<!-- ======== 🚫 罠 ======== -->
+<h2><span class="tag-gray">🚫</span> 罠</h2>
+
+<div class="none-notice">該当なし（本日の新着に明確な罠判定はなし）</div>
+
+<!-- ======== footer ======== -->
+<footer>
+  <p><strong>取得失敗ソース:</strong></p>
+  <ul class="skip-list">
+    <li>www.anthropic.com — ネットワークポリシーでブロック (EGRESS_BLOCKED)</li>
+    <li>obsidian.md/changelog — ネットワークポリシーでブロック (EGRESS_BLOCKED)</li>
+    <li>releasebot.io — ネットワークポリシーでブロック (EGRESS_BLOCKED)</li>
+    <li>blog.mean.ceo — ネットワークポリシーでブロック (EGRESS_BLOCKED)</li>
+    <li>docs.claude.com — 307 リダイレクト先 (GitHub CHANGELOG.md) はページ読み込みエラー。WebSearch・直接releases URL で補完済み。</li>
+  </ul>
+  <p style="margin-top:0.8rem;">🤖 Generated by tooling-update-watch agent | masatoman.net 効率厨の実験ログ</p>
+</footer>
+
+</body>
+</html>
