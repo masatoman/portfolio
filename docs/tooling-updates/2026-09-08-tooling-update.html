@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-08</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --muted: #888;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1100;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1d4ed8;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .meta { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      border: 1px solid;
+    }
+    .card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .card-body { font-size: 0.88rem; color: #ccc; margin-bottom: 0.6rem; }
+    .verdict { font-size: 0.82rem; font-style: italic; margin-bottom: 0.5rem; }
+    .card-link { font-size: 0.8rem; margin-bottom: 0.2rem; }
+    .card-link a { color: var(--muted); text-decoration: none; }
+    .card-link a:hover { text-decoration: underline; }
+    .card.green { background: var(--green-bg); border-color: var(--green-border); }
+    .card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card.blue { background: var(--blue-bg); border-color: var(--blue-border); }
+    .card.gray { background: var(--gray-bg); border-color: var(--gray-border); }
+    .tag-green { color: var(--green); }
+    .tag-yellow { color: var(--yellow); }
+    .tag-blue { color: var(--blue); }
+    .tag-gray { color: var(--gray); }
+    .none-notice { font-size: 0.85rem; color: var(--muted); padding: 0.6rem 1rem; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); }
+    footer { margin-top: 3rem; font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 1rem; }
+    .skip-list { list-style: disc; padding-left: 1.2rem; margin-top: 0.4rem; }
+    .skip-list li { margin-bottom: 0.2rem; }
+    code { background: #1e293b; padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.85em; font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+    @media (max-width: 600px) {
+      body { font-size: 14px; padding: 1rem 0.75rem; }
+      h1 { font-size: 1.2rem; }
+      .card { padding: 0.9rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>効率厨A feed 2026-09-08</h1>
+  <div class="meta">
+    <span>📅 取得日: 2026-09-08 (JST 09:00)</span>
+    <span>🔍 対象期間: 直近1-2日 (2026-09-06〜09-08)</span>
+    <span>📥 ソース: Claude Code releases / GitHub Trending / WebSearch</span>
+  </div>
+  <p style="margin-top:0.8rem;font-size:0.82rem;color:var(--muted);">
+    🔁 重複除去: v2.1.261 / v2.1.260 / ECC / opencode / Unabyss / Make AI / diagram-design / humanizer / humanlayer/skills / everything-claude-code / magnitude / ponytail / ruflo / BiomX Zorronet (09-05〜09-07 掲載済み) を除外
+  </p>
+</header>
+
+<!-- 🟢 即使う -->
+<h2><span class="tag-green">🟢</span> 即使う</h2>
+
+<div class="card green">
+  <div class="card-title">microsoft/markitdown — Office / PDF / CSV など何でも Markdown に変換する Python CLI (180K ⭐, +886 today)</div>
+  <div class="card-body">
+    Word / Excel / PowerPoint / PDF / HTML / CSV / JSON / XML / 画像 (EXIF + OCR) など
+    20 種以上のフォーマットを Markdown に一括変換するコマンドラインツール。
+    <code>pip install markitdown</code> で即導入、<code>markitdown input.pdf > output.md</code> 1行で完了。
+    LLM に渡すための前処理として Microsoft が社内で使い始め、OSS として公開したもの。
+    今日トレンド急上昇で再注目中 — 成熟した CLI で本番環境でも信頼度高い。
+  </div>
+  <div class="verdict">⚡ 効率厨の一言: 既存の工務店向け PDF カタログや Word 議事録を Claude に読ませる前の前処理に今日から使える。GSC 自動化ルーティンで「クライアントから受け取った PDF → markitdown → Claude で要約」の 3 ステップパイプラインを <code>.claude/hooks/</code> に仕込むだけ。依存ゼロ・標準入力対応で Claude Code のシェル呼び出しとも相性抜群。</div>
+  <div class="card-link">🔗 <a href="https://github.com/microsoft/markitdown" target="_blank">github.com/microsoft/markitdown</a></div>
+</div>
+
+<!-- 💰 課金価値 -->
+<h2><span class="tag-blue">💰</span> 課金価値</h2>
+<p class="none-notice">該当なし（本日は新規注目有料ツールのリリースなし）</p>
+
+<!-- 🟡 様子見 -->
+<h2><span class="tag-yellow">🟡</span> 様子見</h2>
+
+<div class="card yellow">
+  <div class="card-title">Claude Code v2.1.263 — バグ修正・安定性改善のみのマイナーリリース (2026-09-06)</div>
+  <div class="card-body">
+    GitHub releases に掲載された最新版。変更内容は「Bug fixes and reliability improvements」のみで
+    機能追加なし。v2.1.261 (09-04) の大型アップデート (skill-doctor / 128K bashOutput / diff panel 等) に
+    続く安定化フェーズ。MAX 定額環境では自動アップデートで既に適用済みのはず。
+  </div>
+  <div class="verdict">⚡ 効率厨の一言: 特段の対応不要。<code>claude --version</code> で v2.1.263 になっていれば OK。v2.1.261 でまだ <code>/skill-doctor</code> を試していないなら、そちらが先決。</div>
+  <div class="card-link">🔗 <a href="https://github.com/anthropics/claude-code/releases" target="_blank">github.com/anthropics/claude-code/releases</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">heygen-com/hyperframes — 「HTML を書くとビデオになる」エージェント向け動画生成フレームワーク (45K ⭐, +474 today)</div>
+  <div class="card-body">
+    HTML + CSS で書いたスライドやレイアウトをそのまま MP4 動画としてレンダリングする TypeScript フレームワーク。
+    「エージェント向けに設計」と明示されており、Claude Code から <code>hyperframes render</code> を呼ぶだけで
+    デモ動画・ウォークスルー・SNS クリップを自動生成できる構造を持つ。
+    stars の急増から見てコミュニティの期待値は高いが、API / pricing は未確認。
+  </div>
+  <div class="verdict">⚡ 効率厨の一言: demo-gallery や tool デモの「動画版」を Claude Code で自動生成する未来は見える。ただし現時点では HeyGen API への依存度・料金体系が不明瞭。まず README と pricing を確認してから、月1本のデモ動画を自動化するユースケースで試す。今すぐは早い。</div>
+  <div class="card-link">🔗 <a href="https://github.com/heygen-com/hyperframes" target="_blank">github.com/heygen-com/hyperframes</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">mksglu/context-mode — AI コーディングエージェントのコンテキストウィンドウを最適化・サンドボックス化 (20K ⭐, +96 today)</div>
+  <div class="card-body">
+    Claude Code / Cursor / Codex など複数エージェント向けに、コンテキストウィンドウの使用量を監視・最適化し、
+    サンドボックスとメモリ永続化を提供する TypeScript ライブラリ。
+    長大セッションでコンテキストが溢れ始めた時の「何を削るか」を自動制御する設計。
+  </div>
+  <div class="verdict">⚡ 効率厨の一言: <code>/skill-doctor</code> (v2.1.261 追加済み) で skills の context コストを先に把握してから検討する順序が正しい。Claude Code の MAX 定額環境では context 超過よりも速度が課題になりやすく、tool の棲み分けを確認してから導入判断。</div>
+  <div class="card-link">🔗 <a href="https://github.com/mksglu/context-mode" target="_blank">github.com/mksglu/context-mode</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">coreyhaines31/marketingskills — SEO / コピー / グロース向け AI エージェントスキル集 (48K ⭐, +580 today)</div>
+  <div class="card-body">
+    Claude Code 等の AI コーディングエージェントに「SEO 分析」「コピーライティング」「グロースハック」の
+    実務スキルを追加するスキルモジュール群。SKILL.md 形式で提供されており、
+    <code>.claude/skills/</code> に配置するだけで利用可能。
+    masatoman.net 記事生成ルーティンへの組み込みを検討できる構造。
+  </div>
+  <div class="verdict">⚡ 効率厨の一言: 記事生成 routine や GSC 自動化との組み合わせは面白い。ただし「SEO スキルを追加したら記事の質が上がる」という前提を検証してから導入する。まず 1 スキルだけ試して効果測定 → 全体適用の順が正しい。</div>
+  <div class="card-link">🔗 <a href="https://github.com/coreyhaines31/marketingskills" target="_blank">github.com/coreyhaines31/marketingskills</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">bytedance/deer-flow — 長期タスク向け SuperAgent ハーネス「研究・コーディング・コンテンツを一括処理」(81K ⭐, +195 today)</div>
+  <div class="card-body">
+    ByteDance 製の「長期ホライズン型」エージェントフレームワーク。
+    研究調査 → コーディング → コンテンツ生成を一連のエージェントチェーンで自動処理する。
+    Claude / GPT / Gemini など複数モデルへの接続に対応。Python / TypeScript 両対応。
+    ただし設定・カスタマイズには相当な初期コストが必要。
+  </div>
+  <div class="verdict">⚡ 効率厨の一言: 現状の Claude Code + Skill ベースの運用で解決できていないタスクが出てきた時に検討する「保険」として認識しておく程度で十分。今すぐ導入するには規模が大きすぎる。</div>
+  <div class="card-link">🔗 <a href="https://github.com/bytedance/deer-flow" target="_blank">github.com/bytedance/deer-flow</a></div>
+</div>
+
+<!-- 🚫 罠 -->
+<h2><span class="tag-gray">🚫</span> 罠</h2>
+
+<div class="card gray">
+  <div class="card-title">jo-inc/camofox-browser — 「エージェント検出回避」設計のステルスヘッドレスブラウザ (9K ⭐, +135 today)</div>
+  <div class="card-body">
+    Playwright ベースの headless browser だが「自律エージェントによる検出を回避する」ことを
+    主目的として設計。Bot 検出システムを意図的に迂回する用途を明示的に謳っている。
+  </div>
+  <div class="verdict">⚡ 効率厨の一言: 目的が「Bot 検出回避」なので利用規約・倫理面でグレーゾーン。Claude Code 環境には Playwright が既にプリインストールされており技術的な代替理由もない。触らない。</div>
+  <div class="card-link">🔗 <a href="https://github.com/jo-inc/camofox-browser" target="_blank">github.com/jo-inc/camofox-browser</a></div>
+</div>
+
+<div class="card gray">
+  <div class="card-title">The-Swarm-Corporation/AutoHedge — スウォームAI による自律ヘッジファンドプラットフォーム (5K ⭐, +517 today)</div>
+  <div class="card-body">
+    複数の AI エージェントが株式・先物の取引判断を自律的に行う Python フレームワーク。
+    「完全自律運用」を謳っているが、金融リスクの全責任はユーザー側に帰属する。
+  </div>
+  <div class="verdict">⚡ 効率厨の一言: 個人開発者の業務効率化とは無関係な領域。AI で資産運用を自動化することへの規制リスクも高い。スルー確定。</div>
+  <div class="card-link">🔗 <a href="https://github.com/The-Swarm-Corporation/AutoHedge" target="_blank">github.com/The-Swarm-Corporation/AutoHedge</a></div>
+</div>
+
+<footer>
+  <p>取得失敗ソース: docs.anthropic.com (EGRESS_BLOCKED) / www.anthropic.com (EGRESS_BLOCKED) / obsidian.md (EGRESS_BLOCKED) / releasebot.io (EGRESS_BLOCKED)</p>
+  <ul class="skip-list">
+    <li>WebSearch + github.com/anthropics/claude-code/releases で代替取得済み</li>
+    <li>Obsidian changelog: 取得失敗のため本日スキップ</li>
+  </ul>
+  <p style="margin-top:0.8rem;">生成: 効率厨A feed エージェント / 2026-09-08 JST</p>
+</footer>
+
+</body>
+</html>
