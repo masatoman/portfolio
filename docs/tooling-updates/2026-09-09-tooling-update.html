@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-09</title>
+  <style>
+    :root {
+      --bg: #f9f9f9;
+      --card-bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #666;
+      --border: #e0e0e0;
+      --green: #1a7f37;
+      --green-bg: #dcfce7;
+      --yellow: #854d0e;
+      --yellow-bg: #fef9c3;
+      --blue: #1d4ed8;
+      --blue-bg: #dbeafe;
+      --gray: #555;
+      --gray-bg: #f1f5f9;
+      --tag-green-border: #86efac;
+      --tag-yellow-border: #fde68a;
+      --tag-blue-border: #93c5fd;
+      --tag-gray-border: #cbd5e1;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0d1117;
+        --card-bg: #161b22;
+        --text: #e6edf3;
+        --muted: #8b949e;
+        --border: #30363d;
+        --green: #3fb950;
+        --green-bg: #0d2e1a;
+        --yellow: #d29922;
+        --yellow-bg: #2e2000;
+        --blue: #58a6ff;
+        --blue-bg: #0c1f3e;
+        --gray: #8b949e;
+        --gray-bg: #21262d;
+        --tag-green-border: #238636;
+        --tag-yellow-border: #9e6a03;
+        --tag-blue-border: #1f6feb;
+        --tag-gray-border: #30363d;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --border: #30363d;
+      --green: #3fb950;
+      --green-bg: #0d2e1a;
+      --yellow: #d29922;
+      --yellow-bg: #2e2000;
+      --blue: #58a6ff;
+      --blue-bg: #0c1f3e;
+      --gray: #8b949e;
+      --gray-bg: #21262d;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 1.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 0.85rem;
+    }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .verdict {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+    .tag-green .verdict { background: var(--green-bg); color: var(--green); border: 1px solid var(--tag-green-border); }
+    .tag-yellow .verdict { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--tag-yellow-border); }
+    .tag-blue .verdict { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--tag-blue-border); }
+    .tag-gray .verdict { background: var(--gray-bg); color: var(--gray); border: 1px solid var(--tag-gray-border); }
+    .card a {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .card a:hover { text-decoration: underline; }
+    .section-green h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue h2 { color: var(--blue); }
+    .section-gray h2 { color: var(--gray); }
+    .badge {
+      font-size: 0.7rem;
+      background: var(--border);
+      color: var(--muted);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    .failed {
+      font-size: 0.8rem;
+      color: var(--muted);
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+      padding: 0.6rem 1rem;
+      margin-top: 1.5rem;
+    }
+    ul.feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.25rem 0 0.5rem;
+    }
+    ul.feature-list li {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding: 0.15rem 0;
+    }
+    ul.feature-list li::before {
+      content: "→ ";
+      color: var(--green);
+      font-weight: 700;
+    }
+    .tag-gray ul.feature-list li::before { color: var(--gray); }
+    .tag-yellow ul.feature-list li::before { color: var(--yellow); }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-09-09</h1>
+<div class="meta">
+  取得日: 2026-09-09 (JST) ／ 対象期間: 2026-09-07〜09 ／
+  ソース: Claude Code Releases (GitHub) ／ GitHub Trending ／ WebSearch × 3
+  ／ obsidian.md: ブロック ／ anthropic.com: ブロック
+</div>
+
+<!-- ====== 🟢 即使う ====== -->
+<section class="section-green">
+  <h2><span>🟢</span> 即使う</h2>
+
+  <div class="card tag-green">
+    <h3>Claude Code v2.1.265 + v2.1.266 (2026-09-08) — メジャーアップデート</h3>
+    <div class="verdict">🟢 即使う</div>
+    <p>
+      v2.1.265 は大型リリース。v2.1.266 は翌日の緊急パッチ（LLM-gateway 回帰修正）。
+    </p>
+    <ul class="feature-list">
+      <li><strong>--plugin-dir にフォルダ指定が可能に</strong>: マニフェストを持つ子フォルダを自動ロード。複数プラグインを1フォルダにまとめてポイントするだけ。スキル/プラグイン整理の手間が減る。</li>
+      <li><strong>セッション自動アーカイブ</strong>: VSCode サイドバーの "Archive inactive sessions" がデフォルト 14日 で有効化。放置セッションが自動で整理され、サイドバー汚染がなくなる。</li>
+      <li><strong>ツール結果の 1GB 上限 + 通知</strong>: ディスク保存が巨大になった際に truncation 通知。長大な Bash 出力が無言で消えるバグを防ぐ。</li>
+      <li><strong>2キーショートカットのタイムアウトを 3秒 に延長</strong>（旧 1秒）: 誤作動が減る。</li>
+      <li><strong>サブエージェント再開バグ修正</strong>: フォアグラウンド起動のサブエージェントを resume したときにツールリスト・システムプロンプトが変わり prompt-cache が壊れていた問題を修正。routine / schedule 型エージェントを多用する masatoman に直撃する修正。</li>
+      <li><strong>/model opusplan[1m] が通るように</strong>: "Model not found" エラー解消。</li>
+    </ul>
+    <a href="https://github.com/anthropics/claude-code/releases" target="_blank">🔗 github.com/anthropics/claude-code/releases</a>
+  </div>
+
+</section>
+
+<!-- ====== 💰 課金価値 ====== -->
+<section class="section-blue">
+  <h2><span>💰</span> 課金価値</h2>
+  <div class="card tag-blue">
+    <p style="font-style:italic;">該当なし（今日はゼロ件）</p>
+  </div>
+</section>
+
+<!-- ====== 🟡 様子見 ====== -->
+<section class="section-yellow">
+  <h2><span>🟡</span> 様子見</h2>
+
+  <div class="card tag-yellow">
+    <h3>affaan-m / ECC — Claude Code 向けエージェントハーネス強化基盤 <span class="badge">254k ★ / +1,427 today</span></h3>
+    <div class="verdict">🟡 様子見</div>
+    <p>
+      Claude Code・Cursor・Codex など複数ハーネスで動く「68 専門エージェント・286 スキル・94 コマンド」の巨大フレームワーク。Plan Canvas（ブラウザでプラン確認）・AgentShield（プロンプトインジェクション検出）を含む。
+    </p>
+    <ul class="feature-list">
+      <li>masatoman の現行 CLAUDE.md + Skills 体制はすでに機能している。ECC 全量を入れると競合・オーバーヘッドのリスク大。</li>
+      <li>AgentShield とプラグインフォルダ設計のコンセプトだけ読んで、自前スキル整理のヒントに使うのが現実的。</li>
+      <li>1〜2ヶ月後、masatoman のスキル数が20+を超えたタイミングで再評価。</li>
+    </ul>
+    <a href="https://github.com/affaan-m/ECC" target="_blank">🔗 github.com/affaan-m/ECC</a>
+  </div>
+
+  <div class="card tag-yellow">
+    <h3>browser-use / browser-use — AI エージェントがブラウザを操作 <span class="badge">+228 stars today</span></h3>
+    <div class="verdict">🟡 様子見</div>
+    <p>
+      Claude などのエージェントにブラウザ操作（クリック・フォーム入力・スクレイピング）を持たせるライブラリ。Python ベース。
+    </p>
+    <ul class="feature-list">
+      <li>GSC データの自動取得や demo-gallery 投票の手動ブラウザ確認を自動化できる可能性。</li>
+      <li>現行の routine（スケジュール型）はブラウザ操作不要で回っているので今すぐ入れる必要はない。</li>
+      <li>「ブラウザで手作業している繰り返し作業」が出てきたタイミングで即候補に。</li>
+    </ul>
+    <a href="https://github.com/browser-use/browser-use" target="_blank">🔗 github.com/browser-use/browser-use</a>
+  </div>
+
+  <div class="card tag-yellow">
+    <h3>Nvidia、Hugging Face 買収を発表 (2026-09-08)</h3>
+    <div class="verdict">🟡 様子見</div>
+    <p>
+      Nvidia が Hugging Face を買収する最終合意を発表。オープンモデル・データセット・開発者ツール群が Nvidia エコシステムに統合される見込み。
+    </p>
+    <ul class="feature-list">
+      <li>masatoman は Claude MAX プラン定額運用 + Anthropic 一本なので直接影響はゼロ。</li>
+      <li>HuggingFace 上のオープンモデル利用や Transformers ライブラリ依存のツールを使っている場合は動向注視が必要。今はそのスタックがない。</li>
+      <li>業界の巨大変動として masatoman.net 記事ネタには強い（効率厨レンズで「個人開発者への影響は何か」を書ける）。</li>
+    </ul>
+    <a href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank">🔗 aiagentstore.ai (AI Agent News, week of Sep 8)</a>
+  </div>
+
+</section>
+
+<!-- ====== 🚫 罠 ====== -->
+<section class="section-gray">
+  <h2><span>🚫</span> 罠</h2>
+
+  <div class="card tag-gray">
+    <h3>Grok Bot (xAI / SpaceXAI) — iPad / Android 展開 + 価格引き下げ (2026-09-08)</h3>
+    <div class="verdict">🚫 罠</div>
+    <p>
+      SpaceXAI の Grok Bot がモバイル拡大・試用エンタープライズアクセスを開始。常時ツール使用エージェント製品。
+    </p>
+    <ul class="feature-list">
+      <li>masatoman は Claude MAX 定額で回している。Grok Bot を追加すると月額サブスクが増えるだけで、Claude Code との統合はゼロ。</li>
+      <li>「試せる価格になった」は罠フレーズ。試すコストは金額より切替コスト・分散コスト。</li>
+      <li>xAI エコシステムは Claude Code のスキル・MCP・routine 設計と非互換。乗り換えではなく追加は二重管理の地獄。</li>
+    </ul>
+    <a href="https://agentic.ai/news" target="_blank">🔗 agentic.ai/news</a>
+  </div>
+
+</section>
+
+<!-- ====== 取得失敗ソース ====== -->
+<div class="failed">
+  <strong>⚠️ 取得失敗ソース:</strong>
+  obsidian.md/changelog/ (EGRESS_BLOCKED) ／
+  anthropic.com/news (EGRESS_BLOCKED) ／
+  CHANGELOG.md raw (日付抽出できず → GitHub releases API で補完)
+</div>
+
+</body>
+</html>
