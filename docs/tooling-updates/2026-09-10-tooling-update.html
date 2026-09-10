@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-10</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --text: #212529;
+      --text-sub: #6c757d;
+      --border: #dee2e6;
+      --green-bg: #d4edda;
+      --green-border: #28a745;
+      --green-text: #155724;
+      --yellow-bg: #fff3cd;
+      --yellow-border: #ffc107;
+      --yellow-text: #856404;
+      --blue-bg: #cce5ff;
+      --blue-border: #004085;
+      --blue-text: #004085;
+      --grey-bg: #e2e3e5;
+      --grey-border: #6c757d;
+      --grey-text: #383d41;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1a2e;
+        --card: #16213e;
+        --text: #e0e0e0;
+        --text-sub: #9e9e9e;
+        --border: #2d3561;
+        --green-bg: #1a3a1a;
+        --green-border: #28a745;
+        --green-text: #a8d5a2;
+        --yellow-bg: #3a3010;
+        --yellow-border: #ffc107;
+        --yellow-text: #ffe082;
+        --blue-bg: #0d2240;
+        --blue-border: #4a9eff;
+        --blue-text: #90c8ff;
+        --grey-bg: #252830;
+        --grey-border: #6c757d;
+        --grey-text: #b0b3bb;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+    }
+    .wrapper { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 1.4rem; margin-bottom: 6px; }
+    .meta {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta span { margin-right: 12px; }
+    h2 {
+      font-size: 1.05rem;
+      margin: 28px 0 12px;
+      padding-left: 8px;
+      border-left: 4px solid var(--border);
+    }
+    .items { display: flex; flex-direction: column; gap: 14px; }
+    .item {
+      border-radius: 8px;
+      padding: 14px 16px;
+      border-left: 4px solid;
+    }
+    .item.green  { background: var(--green-bg);  border-color: var(--green-border);  color: var(--green-text); }
+    .item.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); color: var(--yellow-text); }
+    .item.blue   { background: var(--blue-bg);   border-color: var(--blue-border);   color: var(--blue-text); }
+    .item.grey   { background: var(--grey-bg);   border-color: var(--grey-border);   color: var(--grey-text); }
+    h3 { font-size: 0.97rem; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.08);
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; line-height: 1.55; margin-bottom: 6px; }
+    .verdict {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.06);
+      display: inline-block;
+    }
+    a { color: inherit; text-decoration: underline; opacity: 0.8; word-break: break-all; }
+    a:hover { opacity: 1; }
+    .source-link { font-size: 0.78rem; margin-top: 8px; display: block; opacity: 0.75; }
+    .section-empty { font-size: 0.85rem; color: var(--text-sub); padding: 6px 0 0 4px; }
+    .failures {
+      margin-top: 32px;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      padding: 10px 14px;
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+    }
+    .failures h4 { margin-bottom: 6px; font-size: 0.83rem; }
+    .failures ul { margin: 0; padding-left: 18px; }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.15rem; }
+      .item { padding: 12px 12px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <h1>⚡ 効率厨A feed — 2026-09-10</h1>
+  <div class="meta">
+    <span>📅 取得日: 2026-09-10 (JST 09:00)</span>
+    <span>🔎 対象期間: 2026-09-08〜09-10</span>
+    <span>📡 ソース: Claude Code releases / GitHub releases / GitHub Trending / WebSearch 補完</span>
+  </div>
+
+  <!-- ===== 🟢 即使う ===== -->
+  <h2>🟢 即使う</h2>
+  <div class="items">
+
+    <div class="item green">
+      <h3>Claude Code v2.1.267 (2026-09-09) — <code>maxEffortLevel</code> + 128K インライン出力 + 11 件キャッシュバグ修正</h3>
+      <p>
+        <strong>maxEffortLevel</strong> 設定を追加。Bedrock / Vertex / Foundry で effort 上限をチーム全体に強制できる。
+        個人 MAX プランでも「重タスクに上限をかける」ルーティン設計が可能になった。
+      </p>
+      <p>
+        <strong>bashOutputMaxChars / taskOutputMaxChars</strong> を最大 128K 文字まで設定可能に。
+        長い Bash 出力がファイルへ逃げず Claude がインライン読取 → feed 生成 routine や GSC 集計スクリプトで
+        「途中で切れる」問題が解消。<code>settings.json</code> に1行追加で反映。
+      </p>
+      <p>
+        <strong>--system-prompt-snapshot off</strong> フラグ追加。会話再開時にキャッシュ版でなく常に最新 system prompt を再読み込み。
+        CLAUDE.md を頻繁に改訂している masatoman の運用では意図しないキャッシュ版の混入を防げる。
+      </p>
+      <p>11 件のプロンプトキャッシュ無効化バグ（MCP 再接続・resume・モデル切替起因）を修正。routine agent の安定性に直結。</p>
+      <div class="verdict">🟢 効率厨の一言: settings.json に <code>"bashOutputMaxChars": 131072</code> 追加 → 今日の routine から恩恵あり。v2.1.265/266 昨日すでにカバー済みなのでこの diff だけ確認でOK。</div>
+      <a class="source-link" href="https://github.com/anthropics/claude-code/releases" target="_blank">→ github.com/anthropics/claude-code/releases</a>
+    </div>
+
+    <div class="item green">
+      <h3>ayghri / i-have-adhd <span class="badge">🔥 +4,650★ today / 34,529 total</span></h3>
+      <p>
+        Claude Code 向けスキル。コーディングエージェントが「答えを要点以外に埋める」ことを防ぐ、ADHD フレンドリーな出力構造を強制する。
+        スキルファイル1枚を <code>.claude/skills/</code> に追加するだけで即反映。
+      </p>
+      <p>
+        masatoman の各 routine agent（feed 生成・SEO check・GSC 等）に適用すれば、
+        不要な前置き・言い訳テキストをスキップし report のシグナル密度が上がる。
+        今日の feed を見ると出力が縦に長くなりがちな点にも刺さる。
+      </p>
+      <div class="verdict">🟢 効率厨の一言: GitHub から SKILL.md を取ってきて <code>.claude/skills/adhd/SKILL.md</code> に置く → 今日試せる。スター数は「有用性の証明」として受け取って OK。</div>
+      <a class="source-link" href="https://github.com/ayghri/i-have-adhd" target="_blank">→ github.com/ayghri/i-have-adhd</a>
+    </div>
+
+  </div>
+
+  <!-- ===== 💰 課金価値 ===== -->
+  <h2>💰 課金価値</h2>
+  <p class="section-empty">該当なし（本日フィード内に有料ツール新着なし）</p>
+
+  <!-- ===== 🟡 様子見 ===== -->
+  <h2>🟡 様子見</h2>
+  <div class="items">
+
+    <div class="item yellow">
+      <h3>cathrynlavery / diagram-design <span class="badge">+2,249★ today / 36,561 total</span></h3>
+      <p>
+        Claude Code / Codex 向け、38 種類の図解テンプレート（HTML + SVG、自己完結）。
+        system design / ER 図 / フロー図などをエージェントが直接生成できるスキルセット。
+      </p>
+      <p>
+        masatoman の工務店向け docs（ hearing 設計図 / フロー説明）や STRATEGY 可視化に使えそう。
+        ただし現在の v8.0 hearing docs や tooling feed は文字主体で事足りており、優先度は中。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: docs に図が欲しい瞬間（次の商談ペライチ更新など）が来たら使う。今日すぐではない。</div>
+      <a class="source-link" href="https://github.com/cathrynlavery/diagram-design" target="_blank">→ github.com/cathrynlavery/diagram-design</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>OpenHands 1.0 GA (All Hands AI) — 自律コーディングエージェント production 正式版</h3>
+      <p>
+        production-ready Docker サンドボックス・セキュリティポリシー・リソース制限・プラグインシステムを内包した 1.0 正式リリース。
+        モデルは自由に切り替え可（Claude / GPT / Gemini 等）。
+      </p>
+      <p>
+        Claude Code MAX を定額で運用している masatoman には現時点で乗り換えメリットが薄い。
+        「自前インフラ上でモデルを選びたい」「Docker 隔離が必須」なケースで検討候補。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: 今は Claude Code MAX で完結。API 単価が問題になった時か、Docker 必須な案件が来たら再評価。</div>
+      <a class="source-link" href="https://github.com/All-Hands-AI/OpenHands" target="_blank">→ github.com/All-Hands-AI/OpenHands</a>
+    </div>
+
+  </div>
+
+  <!-- ===== 🚫 罠 ===== -->
+  <h2>🚫 罠</h2>
+  <div class="items">
+
+    <div class="item grey">
+      <h3>Microsoft GPT-6 Astra — M365 Copilot / Foundry 導入 (2026-09-10)</h3>
+      <p>
+        GPT-6 Astra が Microsoft 365 Copilot と Foundry に導入。M365 サブスクリプション経由のみ利用可能で、
+        単体 API として外部から叩けるわけではない。
+      </p>
+      <p>
+        masatoman は Claude MAX プラン + Claude Code が主スタック。
+        M365 ライセンスを新規に取得する費用対効果は今の開発フローに合わない。
+        「Copilot が使える」という文脈でクライアント（工務店）に刺さる話でもない。
+      </p>
+      <div class="verdict">🚫 効率厨の一言: 今のスタックに乗らない。企業向け M365 導入支援を売りたい人向けの話。追いかけない。</div>
+      <a class="source-link" href="https://qiita.com/ishisaka/items/7cb2763b15ecd73cf363" target="_blank">→ qiita.com (Qiita プログラミング雑記 2026-09-10)</a>
+    </div>
+
+  </div>
+
+  <!-- 取得失敗ソース -->
+  <div class="failures">
+    <h4>⚠️ 取得失敗ソース（プロキシブロック）</h4>
+    <ul>
+      <li>obsidian.md/changelog/ — EGRESS_BLOCKED</li>
+      <li>www.anthropic.com/news — EGRESS_BLOCKED</li>
+      <li>agentic.ai/news — EGRESS_BLOCKED</li>
+      <li>aiagentstore.ai — EGRESS_BLOCKED</li>
+      <li>www.claudeupdates.dev — EGRESS_BLOCKED</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
