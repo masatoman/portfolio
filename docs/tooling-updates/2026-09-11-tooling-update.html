@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-11</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --text: #212529;
+      --text-sub: #6c757d;
+      --border: #dee2e6;
+      --green-bg: #d4edda;
+      --green-border: #28a745;
+      --green-text: #155724;
+      --yellow-bg: #fff3cd;
+      --yellow-border: #ffc107;
+      --yellow-text: #856404;
+      --blue-bg: #cce5ff;
+      --blue-border: #004085;
+      --blue-text: #004085;
+      --grey-bg: #e2e3e5;
+      --grey-border: #6c757d;
+      --grey-text: #383d41;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #1a1a2e;
+        --card: #16213e;
+        --text: #e0e0e0;
+        --text-sub: #9e9e9e;
+        --border: #2d3561;
+        --green-bg: #1a3a1a;
+        --green-border: #28a745;
+        --green-text: #a8d5a2;
+        --yellow-bg: #3a3010;
+        --yellow-border: #ffc107;
+        --yellow-text: #ffe082;
+        --blue-bg: #0d2240;
+        --blue-border: #4a9eff;
+        --blue-text: #90c8ff;
+        --grey-bg: #252830;
+        --grey-border: #6c757d;
+        --grey-text: #b0b3bb;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #1a1a2e;
+      --card: #16213e;
+      --text: #e0e0e0;
+      --text-sub: #9e9e9e;
+      --border: #2d3561;
+      --green-bg: #1a3a1a;
+      --green-border: #28a745;
+      --green-text: #a8d5a2;
+      --yellow-bg: #3a3010;
+      --yellow-border: #ffc107;
+      --yellow-text: #ffe082;
+      --blue-bg: #0d2240;
+      --blue-border: #4a9eff;
+      --blue-text: #90c8ff;
+      --grey-bg: #252830;
+      --grey-border: #6c757d;
+      --grey-text: #b0b3bb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+    }
+    .wrapper { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 1.4rem; margin-bottom: 6px; }
+    .meta {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta span { margin-right: 12px; }
+    h2 {
+      font-size: 1.05rem;
+      margin: 28px 0 12px;
+      padding-left: 8px;
+      border-left: 4px solid var(--border);
+    }
+    .items { display: flex; flex-direction: column; gap: 14px; }
+    .item {
+      border-radius: 8px;
+      padding: 14px 16px;
+      border-left: 4px solid;
+    }
+    .item.green  { background: var(--green-bg);  border-color: var(--green-border);  color: var(--green-text); }
+    .item.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); color: var(--yellow-text); }
+    .item.blue   { background: var(--blue-bg);   border-color: var(--blue-border);   color: var(--blue-text); }
+    .item.grey   { background: var(--grey-bg);   border-color: var(--grey-border);   color: var(--grey-text); }
+    h3 { font-size: 0.97rem; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.08);
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; line-height: 1.55; margin-bottom: 6px; }
+    .verdict {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.06);
+      display: inline-block;
+    }
+    a { color: inherit; text-decoration: underline; opacity: 0.8; word-break: break-all; }
+    a:hover { opacity: 1; }
+    .source-link { font-size: 0.78rem; margin-top: 8px; display: block; opacity: 0.75; }
+    .section-empty { font-size: 0.85rem; color: var(--text-sub); padding: 6px 0 0 4px; }
+    .failures {
+      margin-top: 32px;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      padding: 10px 14px;
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+    }
+    .failures h4 { margin-bottom: 6px; font-size: 0.83rem; }
+    .failures ul { margin: 0; padding-left: 18px; }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.15rem; }
+      .item { padding: 12px 12px; }
+      h3 { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <h1>⚡ 効率厨A feed — 2026-09-11</h1>
+  <div class="meta">
+    <span>📅 取得日: 2026-09-11 (JST 09:00)</span>
+    <span>🔎 対象期間: 2026-09-09〜09-11</span>
+    <span>📡 ソース: Claude Code GitHub releases / GitHub Trending / WebSearch 補完</span>
+  </div>
+
+  <!-- ===== 🟢 即使う ===== -->
+  <h2>🟢 即使う</h2>
+  <div class="items">
+
+    <div class="item green">
+      <h3>Claude Code v2.1.268 (2026-09-10) — WebFetch タイムアウト修正・1M コンテキスト auto-compact 改善・プロンプトキャッシュ修正</h3>
+      <p>
+        <strong>WebFetch が 300 秒でタイムアウト</strong>するようになった（従来は無限ハング）。
+        今日の tooling-feed routine や GSC 集計 routine が外部サイトの応答遅延で詰まるケースを防げる。
+        update するだけで即反映、設定変更不要。
+      </p>
+      <p>
+        <strong>1M コンテキストモデルの auto-compact が改善</strong>。大量ファイルを扱う routine agent が
+        コンテキスト上限に近づいた時の動作が安定する。
+      </p>
+      <p>
+        <strong>プロンプトキャッシュ + extended thinking の mid-session 破損バグを修正</strong>。
+        SDK セッション中にキャッシュと extended thinking が壊れていた問題で、routine agent の
+        長い会話が途中でおかしな挙動をしていた場合はこれが原因の可能性が高い。
+      </p>
+      <p>
+        その他: 三者 Anthropic 互換エンドポイントで HTTP 400 が出ていた regression を修正、
+        シンボリックリンクへのパーミッションルールが正しく適用されるよう修正、
+        <code>--remove-session-state</code> フラグ追加（self-hosted runner 向け）。
+      </p>
+      <div class="verdict">🟢 効率厨の一言: <code>claude --version</code> で確認 → update するだけ。WebFetch ハング修正が今日の routine に直接効く。</div>
+      <a class="source-link" href="https://github.com/anthropics/claude-code/releases" target="_blank">→ github.com/anthropics/claude-code/releases</a>
+    </div>
+
+  </div>
+
+  <!-- ===== 💰 課金価値 ===== -->
+  <h2>💰 課金価値</h2>
+  <p class="section-empty">該当なし（本日フィード内に有料ツール新着なし）</p>
+
+  <!-- ===== 🟡 様子見 ===== -->
+  <h2>🟡 様子見</h2>
+  <div class="items">
+
+    <div class="item yellow">
+      <h3>obra/superpowers <span class="badge">284.7k ★ / +732 today</span> — Claude Code 最多スターのスキルフレームワーク</h3>
+      <p>
+        "An agentic skills framework & software development methodology that works." Claude Code /
+        Cursor / Devin など複数エージェントに対応。TDD・ブレインストーミング・git-worktrees を
+        「スキル」として自動トリガーする設計で、エージェントが勝手に手順を踏んでくれる。
+      </p>
+      <p>
+        masatoman の routine agent（feed 生成・SEO check・GSC 等）は既に skill ベースで動いているが、
+        新しい機能開発をエージェントに任せる際の「設計→計画→実装→レビュー」構造化に参考になる。
+        今日すぐ routine に入れる必要性はないが、次に大きな新機能を実装するタイミングで参照。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: 次の大きな開発タスクが来た時に SKILL.md を覗く。今日の routine には特に追加不要。</div>
+      <a class="source-link" href="https://github.com/obra/superpowers" target="_blank">→ github.com/obra/superpowers</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>Tencent/teamai-cli <span class="badge">+841 today</span> — "Make Every Team AI Native"</h3>
+      <p>
+        チームで Claude Code / Cursor などの AI エージェントにスキル・ルール・ドキュメントを
+        git ベースで一括配布するツール。チーム全員のエージェントに同じ設定を強制できる。
+        Team Context（ナレッジベース自動構築）と Team Improvement（生産性ダッシュボード）も beta 機能として含む。
+      </p>
+      <p>
+        masatoman は個人開発者なので「チーム配布」の即時メリットはない。
+        ただし複数 routine agent 間でスキルを同期する仕組みの参考になる可能性あり。
+        工務店案件でチーム展開が必要になった時に再評価。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: チーム規模になるまで待ち。個人では git + CLAUDE.md で十分代替できる。</div>
+      <a class="source-link" href="https://github.com/Tencent/teamai-cli" target="_blank">→ github.com/Tencent/teamai-cli</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>GitHub Copilot Workspace マルチエージェント同時稼働（2026-09 新機能）</h3>
+      <p>
+        実装・テスト・ドキュメントを担当する複数の専門エージェントが同一コンテキストを共有しながら
+        並列作業できるようになった。GitHub Copilot のサブスクリプションが前提。
+      </p>
+      <p>
+        masatoman は Claude Code MAX プランで完結しており、GitHub Copilot を別途契約する費用対効果が薄い。
+        「Claude Code + 複数 routine agent」で実質的に同等のことができている。
+        Copilot の価格が大幅に下がる か、Claude Code に無い機能が来た場合のみ検討。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: Claude Code MAX で同等以上が実現済み。Copilot に乗り換えるメリットが今は見えない。</div>
+      <a class="source-link" href="https://github.com/features/copilot/workspace" target="_blank">→ github.com/features/copilot/workspace</a>
+    </div>
+
+  </div>
+
+  <!-- ===== 🚫 罠 ===== -->
+  <h2>🚫 罠</h2>
+  <div class="items">
+
+    <div class="item grey">
+      <h3>diegosouzapw/OmniRoute <span class="badge">+626 today</span> — AI ゲートウェイ 350+ プロバイダー / 1200+ モデル</h3>
+      <p>
+        350 以上のプロバイダー・1200 以上のモデルを 1 つのエンドポイントで切り替えられる AI ゲートウェイ。
+        自前でプロキシを立てる想定。
+      </p>
+      <p>
+        masatoman は Claude MAX プラン定額運用で API を直叩きしない方針。
+        ゲートウェイ自体を自前で管理する運用コストが発生する割に、今のスタックに対するメリットがゼロ。
+        スター数は「プロバイダー切り替えが必要なチーム」の需要を反映しているだけ。
+      </p>
+      <div class="verdict">🚫 効率厨の一言: MAX 運用には余分な構成。プロバイダー切替が必要な組織向けで masatoman には関係ない。</div>
+      <a class="source-link" href="https://github.com/diegosouzapw/OmniRoute" target="_blank">→ github.com/diegosouzapw/OmniRoute</a>
+    </div>
+
+    <div class="item grey">
+      <h3>AlexsJones/llmfit <span class="badge">+258 today</span> — "Hundreds of models &amp; providers. One command"</h3>
+      <p>
+        CLI 1 コマンドで数百モデル・プロバイダーを横断発見・比較できるツール。
+        API キー直叩きが前提。
+      </p>
+      <p>
+        masatoman の運用は Claude MAX プラン + Claude Code のみで API コスト管理が不要。
+        モデル切り替えを頻繁にする個人ユーザーには便利かもしれないが、
+        定額プランでモデルを固定している今の状況では設定だけ増えて何も得られない。
+      </p>
+      <div class="verdict">🚫 効率厨の一言: API 単価管理が必要な時にのみ検討する類のツール。今は追いかけない。</div>
+      <a class="source-link" href="https://github.com/AlexsJones/llmfit" target="_blank">→ github.com/AlexsJones/llmfit</a>
+    </div>
+
+  </div>
+
+  <div class="failures">
+    <h4>📡 取得失敗ソース</h4>
+    <ul>
+      <li>www.anthropic.com/news — egress proxy でブロック（毎回）</li>
+      <li>obsidian.md/changelog/ — egress proxy でブロック（毎回）</li>
+      <li>docs.claude.com → platform.claude.com → GitHub CHANGELOG にリダイレクト（GitHub releases で代替済み）</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
