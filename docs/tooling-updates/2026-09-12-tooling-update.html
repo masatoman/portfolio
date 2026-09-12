@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-12</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --text: #212529;
+      --text-sub: #6c757d;
+      --border: #dee2e6;
+      --green-bg: #d4edda;
+      --green-border: #28a745;
+      --green-text: #155724;
+      --yellow-bg: #fff3cd;
+      --yellow-border: #ffc107;
+      --yellow-text: #856404;
+      --blue-bg: #cce5ff;
+      --blue-border: #004085;
+      --blue-text: #004085;
+      --grey-bg: #e2e3e5;
+      --grey-border: #6c757d;
+      --grey-text: #383d41;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #1a1a2e;
+        --card: #16213e;
+        --text: #e0e0e0;
+        --text-sub: #9e9e9e;
+        --border: #2d3561;
+        --green-bg: #1a3a1a;
+        --green-border: #28a745;
+        --green-text: #a8d5a2;
+        --yellow-bg: #3a3010;
+        --yellow-border: #ffc107;
+        --yellow-text: #ffe082;
+        --blue-bg: #0d2240;
+        --blue-border: #4a9eff;
+        --blue-text: #90c8ff;
+        --grey-bg: #252830;
+        --grey-border: #6c757d;
+        --grey-text: #b0b3bb;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #1a1a2e;
+      --card: #16213e;
+      --text: #e0e0e0;
+      --text-sub: #9e9e9e;
+      --border: #2d3561;
+      --green-bg: #1a3a1a;
+      --green-border: #28a745;
+      --green-text: #a8d5a2;
+      --yellow-bg: #3a3010;
+      --yellow-border: #ffc107;
+      --yellow-text: #ffe082;
+      --blue-bg: #0d2240;
+      --blue-border: #4a9eff;
+      --blue-text: #90c8ff;
+      --grey-bg: #252830;
+      --grey-border: #6c757d;
+      --grey-text: #b0b3bb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+    }
+    .wrapper { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 1.4rem; margin-bottom: 6px; }
+    .meta {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta span { margin-right: 12px; }
+    h2 {
+      font-size: 1.05rem;
+      margin: 28px 0 12px;
+      padding-left: 8px;
+      border-left: 4px solid var(--border);
+    }
+    .items { display: flex; flex-direction: column; gap: 14px; }
+    .item {
+      border-radius: 8px;
+      padding: 14px 16px;
+      border-left: 4px solid;
+    }
+    .item.green  { background: var(--green-bg);  border-color: var(--green-border);  color: var(--green-text); }
+    .item.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); color: var(--yellow-text); }
+    .item.blue   { background: var(--blue-bg);   border-color: var(--blue-border);   color: var(--blue-text); }
+    .item.grey   { background: var(--grey-bg);   border-color: var(--grey-border);   color: var(--grey-text); }
+    h3 { font-size: 0.97rem; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.08);
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; line-height: 1.55; margin-bottom: 6px; }
+    .verdict {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.06);
+      display: inline-block;
+    }
+    a { color: inherit; text-decoration: underline; opacity: 0.8; word-break: break-all; }
+    a:hover { opacity: 1; }
+    .source-link { font-size: 0.78rem; margin-top: 8px; display: block; opacity: 0.75; }
+    .section-empty { font-size: 0.85rem; color: var(--text-sub); padding: 6px 0 0 4px; }
+    .failures {
+      margin-top: 32px;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      padding: 10px 14px;
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+    }
+    .failures h4 { margin-bottom: 6px; font-size: 0.83rem; }
+    .failures ul { margin: 0; padding-left: 18px; }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.15rem; }
+      .item { padding: 12px 12px; }
+      h3 { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <h1>⚡ 効率厨A feed — 2026-09-12</h1>
+  <div class="meta">
+    <span>📅 取得日: 2026-09-12 (JST 09:00)</span>
+    <span>🔎 対象期間: 2026-09-10〜09-12</span>
+    <span>📡 ソース: Claude Code GitHub releases / GitHub Trending / WebSearch 補完</span>
+  </div>
+
+  <!-- ===== 🟢 即使う ===== -->
+  <h2>🟢 即使う</h2>
+  <div class="items">
+
+    <div class="item green">
+      <h3>Claude Code v2.1.269 (2026-09-11) — <code>claude plugin eval</code> 追加・<code>/output-style</code> コマンド・プロンプトキャッシュ修正</h3>
+      <p>
+        <strong><code>claude plugin eval</code> が追加</strong>された。スキル（plugin）の eval スイートを
+        Claude Code 上で実行し、JSON + HTML レポートとしてスコアリングできる。
+        CLAUDE.md + Skills ベースで routine を組んでいる場合、スキルの品質を
+        CI 的に定量評価できるようになった。
+      </p>
+      <p>
+        <strong><code>/output-style [name]</code> コマンド追加</strong>。登録済み output-style を
+        端末から一覧表示・切替できる。セッションごとに手動でスタイルを切り替える手間が減る。
+      </p>
+      <p>
+        <strong>プロンプトキャッシュが resumed responses で部分的に破棄されるバグを修正</strong>。
+        スケジュールタスク（tooling-feed / GSC 等）が長い会話の途中でキャッシュを再利用
+        できていなかった場合はこの修正で改善される。
+      </p>
+      <p>
+        その他: WezTerm / rxvt-unicode / kitty-protocol 等での F1〜F4・特殊キー動作を修正。
+        バックグラウンドエージェント稼働中に「waiting for your input」と誤表示される問題を修正。
+        <code>/diff</code> パネルのフルスクリーン応答性を改善。
+      </p>
+      <div class="verdict">🟢 効率厨の一言: <code>claude plugin eval</code> は routine agentのスキル品質チェックに今日から組み込める。update するだけで即反映。</div>
+      <a class="source-link" href="https://github.com/anthropics/claude-code/releases" target="_blank">→ github.com/anthropics/claude-code/releases</a>
+    </div>
+
+  </div>
+
+  <!-- ===== 💰 課金価値 ===== -->
+  <h2>💰 課金価値</h2>
+  <p class="section-empty">該当なし（本日フィード内に有料ツール新着なし）</p>
+
+  <!-- ===== 🟡 様子見 ===== -->
+  <h2>🟡 様子見</h2>
+  <div class="items">
+
+    <div class="item yellow">
+      <h3>github/spec-kit <span class="badge">135.7k ★ / +1,015 today</span> — Spec-Driven Development ツールキット (Claude Code 対応)</h3>
+      <p>
+        GitHub 公式の Spec-Driven Development ツールキット。「先に spec を書く → エージェントが実装」
+        の Constitution → Plan → Tasks → Implement パイプラインを構造化する。
+        Claude Code・Copilot・Cursor など 30+ エージェントに対応（v1.0.1、2026-08-21）。
+        コミュニティ報告では「vibe coding」比でリワーク 60〜80% 減とされる。
+      </p>
+      <p>
+        現状の CLAUDE.md に spec セクションを追加する習慣がある場合、このツールで
+        Constitution ファイルを正式化することで routine agent の指示精度が上がる可能性がある。
+        ただし既存 workflow の再設計が必要で今すぐ導入するコストは高い。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: 新機能や routine を一から設計する場面で試す価値あり。CLAUDE.md の spec 記述に慣れてから追加検討。</div>
+      <a class="source-link" href="https://github.com/github/spec-kit" target="_blank">→ github.com/github/spec-kit</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>nashsu/llm_wiki <span class="badge">18.7k ★ / +647 today</span> — ドキュメントをインターリンク wiki に自動変換</h3>
+      <p>
+        テキストドキュメントを LLM で解析し、ページ間リンク付きの wiki を
+        インクリメンタルに自動生成するツール。RAG 型の一括検索ではなく
+        「整理された wiki 構造」として知識を永続化する設計。
+      </p>
+      <p>
+        memory ファイル (40+ 件) を管理している文脈では、memory → wiki 変換で
+        参照しやすい構造に整理できる可能性がある。ただしまだ 18k stars 段階、
+        プロダクト安定性は未検証。Obsidian の PKM ワークフローの置き換えよりも補完向き。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: memory index が肥大化してきたタイミングで試す候補。今は観測のみ。</div>
+      <a class="source-link" href="https://github.com/nashsu/llm_wiki" target="_blank">→ github.com/nashsu/llm_wiki</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>vastsa/PI-Desktop <span class="badge">2.8k ★ / +552 today</span> — ローカル AI コーディングエージェントデスクトップ</h3>
+      <p>
+        Electron フロントエンド + Rust バックエンドのローカル優先 AI コーディングエージェント。
+        ユーザーインストール可能なプラグインアーキテクチャを持ち、エージェントハーネスを
+        デスクトップ GUI で管理できる。
+      </p>
+      <p>
+        Claude Code (MAX プラン定額) を軸に運用中であれば追加導入の必要性は低い。
+        ローカル LLM (Ollama 等) と組み合わせたオフライン環境や、
+        GUI 操作を重視する別プロジェクト向けの候補として記録しておく価値はある。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: 現行スタック (Claude Code + remote session) で足りているので待機。ローカル LLM 検討時の選択肢に。</div>
+      <a class="source-link" href="https://github.com/vastsa/PI-Desktop" target="_blank">→ github.com/vastsa/PI-Desktop</a>
+    </div>
+
+  </div>
+
+  <!-- ===== 🚫 罠 ===== -->
+  <h2>🚫 罠</h2>
+  <div class="items">
+
+    <div class="item grey">
+      <h3>Claude Smart Reports — Enterprise beta (2026-09-11)</h3>
+      <p>
+        Anthropic が Claude Enterprise 向けに「Smart Reports」をベータ公開。
+        チームの Claude 使用状況・コスト・摩擦点・再利用可能スキルをレポート化する機能。
+        「どのパターンをスキル化すべきか」を自動分析するという。
+      </p>
+      <p>
+        <strong>MAX plan のソロ運用では利用不可</strong>。Enterprise 契約限定で、
+        個人開発者がアクセスできる機能ではない。チームへの拡張を検討する段階になれば
+        再評価する価値はあるが、現時点では無関係。
+      </p>
+      <div class="verdict">🚫 効率厨の一言: Enterprise 専用。MAX プラン定額ソロ運用者はスルー。</div>
+      <a class="source-link" href="https://www.anthropic.com/news" target="_blank">→ anthropic.com/news (要確認)</a>
+    </div>
+
+  </div>
+
+  <!-- 取得失敗ソース -->
+  <div class="failures">
+    <h4>⚠️ 取得失敗ソース</h4>
+    <ul>
+      <li>anthropic.com — egress proxy ブロック（Smart Reports 情報は WebSearch 経由で補完）</li>
+      <li>obsidian.md/changelog/ — egress proxy ブロック（WebSearch では Sep 11-12 の新着なし）</li>
+      <li>aiagentstore.ai — egress proxy ブロック</li>
+      <li>releasebot.io — egress proxy ブロック</li>
+      <li>github.com/anthropics/claude-code/releases (raw CHANGELOG) — blob 表示のみ (raw は別URL必要)</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
