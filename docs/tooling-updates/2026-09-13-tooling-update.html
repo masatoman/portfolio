@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-13</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --text: #212529;
+      --text-sub: #6c757d;
+      --border: #dee2e6;
+      --green-bg: #d4edda;
+      --green-border: #28a745;
+      --green-text: #155724;
+      --yellow-bg: #fff3cd;
+      --yellow-border: #ffc107;
+      --yellow-text: #856404;
+      --blue-bg: #cce5ff;
+      --blue-border: #004085;
+      --blue-text: #004085;
+      --grey-bg: #e2e3e5;
+      --grey-border: #6c757d;
+      --grey-text: #383d41;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #1a1a2e;
+        --card: #16213e;
+        --text: #e0e0e0;
+        --text-sub: #9e9e9e;
+        --border: #2d3561;
+        --green-bg: #1a3a1a;
+        --green-border: #28a745;
+        --green-text: #a8d5a2;
+        --yellow-bg: #3a3010;
+        --yellow-border: #ffc107;
+        --yellow-text: #ffe082;
+        --blue-bg: #0d2240;
+        --blue-border: #4a9eff;
+        --blue-text: #90c8ff;
+        --grey-bg: #252830;
+        --grey-border: #6c757d;
+        --grey-text: #b0b3bb;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #1a1a2e;
+      --card: #16213e;
+      --text: #e0e0e0;
+      --text-sub: #9e9e9e;
+      --border: #2d3561;
+      --green-bg: #1a3a1a;
+      --green-border: #28a745;
+      --green-text: #a8d5a2;
+      --yellow-bg: #3a3010;
+      --yellow-border: #ffc107;
+      --yellow-text: #ffe082;
+      --blue-bg: #0d2240;
+      --blue-border: #4a9eff;
+      --blue-text: #90c8ff;
+      --grey-bg: #252830;
+      --grey-border: #6c757d;
+      --grey-text: #b0b3bb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+    }
+    .wrapper { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 1.4rem; margin-bottom: 6px; }
+    .meta {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta span { margin-right: 12px; }
+    h2 {
+      font-size: 1.05rem;
+      margin: 28px 0 12px;
+      padding-left: 8px;
+      border-left: 4px solid var(--border);
+    }
+    .items { display: flex; flex-direction: column; gap: 14px; }
+    .item {
+      border-radius: 8px;
+      padding: 14px 16px;
+      border-left: 4px solid;
+    }
+    .item.green  { background: var(--green-bg);  border-color: var(--green-border);  color: var(--green-text); }
+    .item.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); color: var(--yellow-text); }
+    .item.blue   { background: var(--blue-bg);   border-color: var(--blue-border);   color: var(--blue-text); }
+    .item.grey   { background: var(--grey-bg);   border-color: var(--grey-border);   color: var(--grey-text); }
+    h3 { font-size: 0.97rem; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.08);
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; line-height: 1.55; margin-bottom: 6px; }
+    .verdict {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.06);
+      display: inline-block;
+    }
+    a { color: inherit; text-decoration: underline; opacity: 0.8; word-break: break-all; }
+    a:hover { opacity: 1; }
+    .source-link { font-size: 0.78rem; margin-top: 8px; display: block; opacity: 0.75; }
+    .section-empty { font-size: 0.85rem; color: var(--text-sub); padding: 6px 0 0 4px; }
+    .failures {
+      margin-top: 32px;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      padding: 10px 14px;
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+    }
+    .failures h4 { margin-bottom: 6px; font-size: 0.83rem; }
+    .failures ul { margin: 0; padding-left: 18px; }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.15rem; }
+      .item { padding: 12px 12px; }
+      h3 { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <h1>⚡ 効率厨A feed — 2026-09-13</h1>
+  <div class="meta">
+    <span>📅 取得日: 2026-09-13 (JST 09:00)</span>
+    <span>🔎 対象期間: 2026-09-11〜09-13</span>
+    <span>📡 ソース: Claude Code GitHub releases / GitHub Trending / WebSearch 補完</span>
+  </div>
+
+  <!-- ===== 🟢 即使う ===== -->
+  <h2>🟢 即使う</h2>
+  <div class="items">
+
+    <div class="item green">
+      <h3>Claude Code v2.1.270 (2026-09-12) — 長時間セッションで読み取り専用 git コマンドが許可を求める regression 修正</h3>
+      <p>
+        <strong>v2.1.269 で混入した regression がホットフィックス</strong>。セッションを長時間動かし続けると
+        <code>git status</code> や <code>git log</code> など読み取り専用の git コマンドまで
+        許可プロンプトを求めるようになっていた問題が修正された。
+      </p>
+      <p>
+        あわせて以下も修正: (1) セッション途中でモデルがサイレントに別モデルへ切り替わる問題、
+        (2) 端末プロトコル処理の複数の互換バグ、(3) サードパーティエンドポイントへの HTTP 400 エラー、
+        (4) WebFetch が無期限にハングする問題。
+      </p>
+      <p>
+        この feed を含むスケジュールルーティンは長時間セッションになりやすいため、
+        <code>git status</code> 確認ステップで毎回許可プロンプトが出ていた場合はこのバージョンで解消される。
+      </p>
+      <div class="verdict">🟢 効率厨の一言: <code>npm update -g @anthropic-ai/claude-code</code> 一発で即反映。routine agent の git 確認ステップを止めていた regression なので今日中に更新推奨。</div>
+      <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.270" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.270</a>
+    </div>
+
+  </div>
+
+  <!-- ===== 💰 課金価値 ===== -->
+  <h2>💰 課金価値</h2>
+  <p class="section-empty">該当なし（本日フィード内に有料ツール新着なし）</p>
+
+  <!-- ===== 🟡 様子見 ===== -->
+  <h2>🟡 様子見</h2>
+  <div class="items">
+
+    <div class="item yellow">
+      <h3>GitHub HydraFusion <span class="badge">Research Preview</span> — Copilot CLI のマルチモデル動的オーケストレーション</h3>
+      <p>
+        GitHub が Copilot CLI に「HydraFusion」を研究プレビューとして導入。
+        タスクの複雑度・コスト・レイテンシに応じて複数の LLM を動的に組み合わせ、
+        ドラフト → 批評 → 修正 → エスカレーションのパイプラインを自動制御する。
+        ベンチマーク上はコーディング精度が高く、推定ワークフローコストも低減とされる。
+      </p>
+      <p>
+        ただし <strong>Research Preview = 本番利用不可</strong>。Copilot CLI の課金が別途必要で、
+        Claude Code MAX プラン定額で完結している現状では移行コストが割に合わない。
+        安定版リリース・料金体系確定後に改めて評価。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: 概念は面白いが Research Preview 段階。Claude Code + worktree + Agent tool で同等のマルチエージェント分割はすでに可能。6ヶ月後に安定版で再比較。</div>
+      <a class="source-link" href="https://github.com/features/copilot/workspace" target="_blank">→ github.com/features/copilot/workspace</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>GitHub Copilot 並列エージェントセッション — 複数タスクを独立 worktree で同時実行</h3>
+      <p>
+        GitHub Copilot アプリが並列エージェントセッションに対応。
+        複数の AI タスクが独立した Git worktree と独自コンテキストを持ち、
+        並行して実行できるようになった。長時間の開発セッションで
+        他タスクをブロックせず作業できる点が売り。
+      </p>
+      <p>
+        Claude Code の <code>isolation: "worktree"</code> + Agent ツールで
+        同等のタスク並列実行はすでに実現している。
+        Copilot 側のキャッチアップであり、現行スタックへの影響は低い。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: Claude Code の worktree isolation で同じことができる。Copilot への移行理由にはならない。</div>
+      <a class="source-link" href="https://github.com/features/copilot" target="_blank">→ github.com/features/copilot</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>DeskcommCRM <span class="badge">1.8k ★ / +504 today</span> — オープンソース AI セールス OS (WhatsApp + AI エージェント)</h3>
+      <p>
+        CRM 機能 + AI エージェント + WhatsApp 連携をセルフホストで提供するオープンソース製品。
+        営業パイプライン管理・商談追跡・自動フォローアップを AI が補助する。
+        TypeScript 製、Docker でデプロイ可能。
+      </p>
+      <p>
+        工務店 B2B 向け SaaS の候補アイデアとして概念的に参考にはなる。
+        ただし現状の軸 B ヒアリング段階では自社で CRM を立てる必要性は薄く、
+        Supabase + Google Sheets で賄える範囲を先に使い切るほうが効率的。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: 工務店向け SaaS の設計参考として repo を眺める価値はあり。今すぐ自分の業務に入れる理由はない。</div>
+      <a class="source-link" href="https://github.com/DeskcommCRM/DeskcommCRM" target="_blank">→ github.com/DeskcommCRM/DeskcommCRM</a>
+    </div>
+
+  </div>
+
+  <!-- ===== 🚫 罠 ===== -->
+  <h2>🚫 罠</h2>
+  <div class="items">
+
+    <div class="item grey">
+      <h3>system_prompts_leaks <span class="badge">65.4k ★ / +217 today</span> — Claude / ChatGPT / Gemini システムプロンプト流出まとめ</h3>
+      <p>
+        各 AI サービスから流出・抽出されたシステムプロンプトを収集・公開している repo。
+        「どんな指示で動いているか」を知るリサーチ素材としては参考になる。
+      </p>
+      <p>
+        <strong>ツールとして使う・プロンプトをそのまま流用するのは規約違反ライン</strong>。
+        また「同じプロンプトをコピーすれば同じ動作になる」という誤解も招く。
+        AI サービス側の判断で予告なくシステムプロンプトが変更されるため、
+        内容の陳腐化も早い。CLAUDE.md / Skills 設計の参考として読む程度が適切。
+      </p>
+      <div class="verdict">🚫 効率厨の一言: プロンプト流出をリサーチ素材に留めるなら有益。「これを使って何かする」発想はプラットフォーム規約グレーゾーン。スターが多いほど引っかかりやすい罠。</div>
+      <a class="source-link" href="https://github.com/jujumilk3/leaked-system-prompts" target="_blank">→ github.com (leaked-system-prompts)</a>
+    </div>
+
+  </div>
+
+  <!-- 取得失敗ソース -->
+  <div class="failures">
+    <h4>⚠️ 取得失敗ソース</h4>
+    <ul>
+      <li>anthropic.com/news — egress proxy ブロック（毎回）</li>
+      <li>obsidian.md/changelog/ — egress proxy ブロック（毎回）</li>
+      <li>aiagentstore.ai — egress proxy ブロック</li>
+      <li>releasebot.io — egress proxy ブロック</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
