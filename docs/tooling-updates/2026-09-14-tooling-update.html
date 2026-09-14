@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-14</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --text: #212529;
+      --text-sub: #6c757d;
+      --border: #dee2e6;
+      --green-bg: #d4edda;
+      --green-border: #28a745;
+      --green-text: #155724;
+      --yellow-bg: #fff3cd;
+      --yellow-border: #ffc107;
+      --yellow-text: #856404;
+      --blue-bg: #cce5ff;
+      --blue-border: #004085;
+      --blue-text: #004085;
+      --grey-bg: #e2e3e5;
+      --grey-border: #6c757d;
+      --grey-text: #383d41;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #1a1a2e;
+        --card: #16213e;
+        --text: #e0e0e0;
+        --text-sub: #9e9e9e;
+        --border: #2d3561;
+        --green-bg: #1a3a1a;
+        --green-border: #28a745;
+        --green-text: #a8d5a2;
+        --yellow-bg: #3a3010;
+        --yellow-border: #ffc107;
+        --yellow-text: #ffe082;
+        --blue-bg: #0d2240;
+        --blue-border: #4a9eff;
+        --blue-text: #90c8ff;
+        --grey-bg: #252830;
+        --grey-border: #6c757d;
+        --grey-text: #b0b3bb;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #1a1a2e;
+      --card: #16213e;
+      --text: #e0e0e0;
+      --text-sub: #9e9e9e;
+      --border: #2d3561;
+      --green-bg: #1a3a1a;
+      --green-border: #28a745;
+      --green-text: #a8d5a2;
+      --yellow-bg: #3a3010;
+      --yellow-border: #ffc107;
+      --yellow-text: #ffe082;
+      --blue-bg: #0d2240;
+      --blue-border: #4a9eff;
+      --blue-text: #90c8ff;
+      --grey-bg: #252830;
+      --grey-border: #6c757d;
+      --grey-text: #b0b3bb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+    }
+    .wrapper { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 1.4rem; margin-bottom: 6px; }
+    .meta {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta span { margin-right: 12px; }
+    h2 {
+      font-size: 1.05rem;
+      margin: 28px 0 12px;
+      padding-left: 8px;
+      border-left: 4px solid var(--border);
+    }
+    .items { display: flex; flex-direction: column; gap: 14px; }
+    .item {
+      border-radius: 8px;
+      padding: 14px 16px;
+      border-left: 4px solid;
+    }
+    .item.green  { background: var(--green-bg);  border-color: var(--green-border);  color: var(--green-text); }
+    .item.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); color: var(--yellow-text); }
+    .item.blue   { background: var(--blue-bg);   border-color: var(--blue-border);   color: var(--blue-text); }
+    .item.grey   { background: var(--grey-bg);   border-color: var(--grey-border);   color: var(--grey-text); }
+    h3 { font-size: 0.97rem; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.08);
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; line-height: 1.55; margin-bottom: 6px; }
+    .verdict {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.06);
+      display: inline-block;
+    }
+    a { color: inherit; text-decoration: underline; opacity: 0.8; word-break: break-all; }
+    a:hover { opacity: 1; }
+    .source-link { font-size: 0.78rem; margin-top: 8px; display: block; opacity: 0.75; }
+    .section-empty { font-size: 0.85rem; color: var(--text-sub); padding: 6px 0 0 4px; }
+    .failures {
+      margin-top: 32px;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      padding: 10px 14px;
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+    }
+    .failures h4 { margin-bottom: 6px; font-size: 0.83rem; }
+    .failures ul { margin: 0; padding-left: 18px; }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.15rem; }
+      .item { padding: 12px 12px; }
+      h3 { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <h1>⚡ 効率厨A feed — 2026-09-14</h1>
+  <div class="meta">
+    <span>📅 取得日: 2026-09-14 (JST 09:00)</span>
+    <span>🔎 対象期間: 2026-09-12〜09-14</span>
+    <span>📡 ソース: GitHub Trending / WebSearch (AI agents news, AI automation tools) / Claude Code releases (重複なし)</span>
+  </div>
+
+  <!-- ===== 🟢 即使う ===== -->
+  <h2>🟢 即使う</h2>
+  <div class="items">
+
+    <div class="item green">
+      <h3>alibaba/open-code-review <span class="badge">+443 today</span> — Alibaba製ハイブリッドコードレビュー（Claude Code Delegation Mode対応）</h3>
+      <p>
+        アリババがオープンソース公開した<strong>ハイブリッドアーキテクチャのコードレビューツール</strong>。
+        「Delegation Mode」を有効にすると <strong>Claude Code 自身がレビューエージェントとして動作</strong>し、
+        外部 API キー不要でそのまま使える。
+      </p>
+      <p>
+        Git diff を読み込み、変更ファイル全体 + 関連ファイルをコンテキストとして取り込んだ上で
+        <strong>行レベルの精度でコメントを生成</strong>。NPE / スレッド安全性 / XSS / SQL インジェクションの
+        ルールセットが組み込み済み。汎用 LLM エージェントと比べてトークン消費が約 1/9 で完了するとされる。
+      </p>
+      <p>
+        GitHub Actions / GitLab CI / Gerrit との CI/CD 統合にも対応。PR push 時に自動レビューを
+        走らせる routine を一本追加するだけで今日から導入できる。
+      </p>
+      <div class="verdict">🟢 効率厨の一言: Delegation Mode = Claude Code が自分でレビューを走らせる。PRをpushした後の「見落とし確認」ステップとして、既存の code-review スキルと組み合わせて即投入できる。トークン 1/9 は routine agentのコスト観点で魅力的。</div>
+      <a class="source-link" href="https://github.com/alibaba/open-code-review" target="_blank">→ github.com/alibaba/open-code-review</a>
+    </div>
+
+    <div class="item green">
+      <h3>agent-skills <span class="badge">+265 today</span> — AI コーディングエージェント向け検証済みスキルレジストリ</h3>
+      <p>
+        「Secure, validated skill registry for professional AI coding agents」を謳う
+        コミュニティ運営のスキルレジストリ。Claude Code・Cursor など複数エージェントに対応した
+        <strong>SKILL.md ファイルのキュレーション済みライブラリ</strong>で、1,200+ スキルを収録。
+      </p>
+      <p>
+        現在 Claude Code のスキルエコシステムは公式マーケットプレイス
+        (<code>/skills</code> / <code>/plugin</code>) + コミュニティライブラリが共存しているが、
+        このレジストリは<strong>「検証済み (validated)」ラベルを付与する品質管理層</strong>が特徴。
+        既存 SKILL.md の品質チェックにも使えるリファレンスになる。
+      </p>
+      <p>
+        masatoman の routine agent 群（tooling-feed / GSC / SEO check 等）は
+        既に SKILL.md 駆動。このレジストリを参照すれば新スキル設計時の
+        「設計ミスの早期発見」と「他スキルとの構造的整合性確認」が効率化できる。
+      </p>
+      <div class="verdict">🟢 効率厨の一言: 既存スキルの self-check と新スキル設計のリファレンスとして今日から使える。Claude Code の /skills で検索する前にここをブラウズする習慣を入れる価値あり。</div>
+      <a class="source-link" href="https://github.com/trending" target="_blank">→ GitHub Trending (agent-skills)</a>
+    </div>
+
+  </div>
+
+  <!-- ===== 💰 課金価値 ===== -->
+  <h2>💰 課金価値</h2>
+  <p class="section-empty">該当なし（本日フィード内に有料ツール新着なし。META Muse は後述 🟡）</p>
+
+  <!-- ===== 🟡 様子見 ===== -->
+  <h2>🟡 様子見</h2>
+  <div class="items">
+
+    <div class="item yellow">
+      <h3>Meta Muse — 個人向け AI エージェント（メール・旅行管理）$20〜$100/月</h3>
+      <p>
+        Meta がリリースした個人向けパーソナル AI エージェント。
+        メール管理・旅行手配・タスク追跡などをこなし、ベーシック（$20/月）と
+        パワーユーザー（$100/月）の 2 段構成。
+      </p>
+      <p>
+        コンセプトは Claude Code の「routine agent にメール・タスクを任せる」設計と重なるが、
+        <strong>masatoman はすでに Claude MAX プラン定額でほぼ同等の自動化を実現している</strong>。
+        追加コスト（$20〜100/月）を払って移行する理由が薄い。
+        Meta のエコシステム（WhatsApp / Instagram）に深く依存するなら再評価余地あり。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: MAX プラン + routine agent で既にカバー済みの領域。追加月額は不要。Meta エコシステム前提の B2C SaaS 設計参考としてウォッチのみ。</div>
+      <a class="source-link" href="https://ai.meta.com/muse/" target="_blank">→ ai.meta.com/muse/</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>colibri <span class="badge">+868 today</span> — 自前ハードでフロンティア MoE モデルを動かす（pure C・ゼロ依存）</h3>
+      <p>
+        「Run frontier MoE models on hardware you already own — pure C, zero deps」を掲げる
+        OSS ランタイム。追加ライブラリ不要の純 C 実装で、手持ちの GPU / CPU で
+        大規模 Mixture-of-Experts モデルを動かせる。
+      </p>
+      <p>
+        ローカル LLM 実行環境を整えたい場面（Ollama の代替候補・オフライン CI 環境など）で
+        選択肢になる。<strong>現状は Claude Code MAX プラン定額で完結</strong>しており、
+        ローカルモデルへの移行動機はない。エコシステム動向として記録。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: 「API コスト ゼロ化」を将来検討するタイミングで再評価。今は観測のみ。</div>
+      <a class="source-link" href="https://github.com/trending" target="_blank">→ GitHub Trending (colibri)</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>OpenMontage <span class="badge">+380 today</span> — オープンソース・エージェント型動画プロダクションシステム</h3>
+      <p>
+        「World's first open-source, agentic video production system」を謳う OSS。
+        700+ エージェントスキルを活用してスクリプト → 編集 → 書き出しを
+        自動化するパイプラインを提供する。
+      </p>
+      <p>
+        工務店向けデモ動画を自動生成するシナリオや、
+        masatoman.net 記事のショート動画化などで使える可能性があるが、
+        現状の優先タスク（軸 B ヒアリング主軸）には直接刺さらない。
+        動画マーケティングに本格着手するタイミングで再評価。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: 将来の動画コンテンツ自動化候補として repo 登録だけしておく。今すぐ workflow に入れる理由はない。</div>
+      <a class="source-link" href="https://github.com/trending" target="_blank">→ GitHub Trending (OpenMontage)</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>OpenAI Managed Agents API — 9/13 正式公開（ChatGPT Work エージェントインフラ）</h3>
+      <p>
+        OpenAI が管理型 Agents API を正式公開。ChatGPT Work エージェントの
+        インフラとして展開され、会話型 UI + 継続的モニタリング + 自動化を
+        ホームハードウェアにも展開可能にする方向性。
+      </p>
+      <p>
+        <strong>masatoman は Claude MAX プラン定額運用</strong>のため Anthropic API 直叩き・移行は対象外。
+        競合エコシステムの動向把握として記録。
+        「エージェント API が管理型サービスとして普及する流れ」は
+        将来の工務店向け SaaS 設計の参考になる。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: Claude Code MAX 定額で完結しているので移行不要。「管理型エージェントが SaaS の標準になる」トレンド把握のみ。</div>
+      <a class="source-link" href="https://platform.openai.com/docs/agents" target="_blank">→ platform.openai.com/docs/agents</a>
+    </div>
+
+  </div>
+
+  <!-- ===== 🚫 罠 ===== -->
+  <h2>🚫 罠</h2>
+  <div class="items">
+
+    <div class="item grey">
+      <h3>Anthropic 週次制限削減（9/14 予定） — MAX プランへの影響は未確認・要注視</h3>
+      <p>
+        AIエージェントニュースサイトに「Anthropic が 9/14 に週次利用制限の引き下げを
+        スケジュール済み」との報告が上がっている。詳細・対象プランは不明確。
+      </p>
+      <p>
+        MAX プランの定額制に変更があれば scheduled routine（tooling-feed / GSC / SEO check 等）
+        の自動実行に影響が出る可能性がある。<strong>今日中に claude.ai の Usage 画面と
+        Anthropic の公式アナウンスを手動確認</strong>することを推奨。
+        現時点で詳細が確認できていないため 🚫 扱い（誤情報リスクあり）。
+      </p>
+      <div class="verdict">🚫 効率厨の一言: 一次情報未確認。claude.ai の Settings → Usage と公式 changelog を今日確認すること。routine がいつも通り動いていれば実害なし。</div>
+      <a class="source-link" href="https://claude.ai/settings" target="_blank">→ claude.ai/settings（Usage 確認）</a>
+    </div>
+
+    <div class="item grey">
+      <h3>pentagi <span class="badge">+590 today</span> — ペネトレーションテスト特化の自律 AI エージェント</h3>
+      <p>
+        ペネトレーションテスト（侵入テスト）タスクを自律 AI エージェントが実行するシステム。
+        セキュリティ専門家向けで、GitHub Trending で急上昇。
+      </p>
+      <p>
+        <strong>masatoman の現在の業務（個人開発・工務店向け SaaS）には直接関係しない</strong>。
+        セキュリティ特化ツールを誤って routine に組み込むと
+        意図しない攻撃的プローブが走るリスクがある。スルー推奨。
+      </p>
+      <div class="verdict">🚫 効率厨の一言: セキュリティ研究者向け。現行スタックに組み込む理由はない。スルー。</div>
+      <a class="source-link" href="https://github.com/trending" target="_blank">→ GitHub Trending (pentagi)</a>
+    </div>
+
+  </div>
+
+  <div class="failures">
+    <h4>⚠️ 取得失敗ソース</h4>
+    <ul>
+      <li>obsidian.md/changelog/ — egress ブロック（毎回）</li>
+      <li>www.anthropic.com/news — egress ブロック（毎回）</li>
+      <li>docs.claude.com/en/release-notes/claude-code — 307 → GitHub CHANGELOG.md へリダイレクト（CHANGELOG.md 本文は取得できず、GitHub releases は取得成功）</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
