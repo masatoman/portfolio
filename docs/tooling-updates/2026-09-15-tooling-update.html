@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-15</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --text: #212529;
+      --text-sub: #6c757d;
+      --border: #dee2e6;
+      --green-bg: #d4edda;
+      --green-border: #28a745;
+      --green-text: #155724;
+      --yellow-bg: #fff3cd;
+      --yellow-border: #ffc107;
+      --yellow-text: #856404;
+      --blue-bg: #cce5ff;
+      --blue-border: #004085;
+      --blue-text: #004085;
+      --grey-bg: #e2e3e5;
+      --grey-border: #6c757d;
+      --grey-text: #383d41;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #1a1a2e;
+        --card: #16213e;
+        --text: #e0e0e0;
+        --text-sub: #9e9e9e;
+        --border: #2d3561;
+        --green-bg: #1a3a1a;
+        --green-border: #28a745;
+        --green-text: #a8d5a2;
+        --yellow-bg: #3a3010;
+        --yellow-border: #ffc107;
+        --yellow-text: #ffe082;
+        --blue-bg: #0d2240;
+        --blue-border: #4a9eff;
+        --blue-text: #90c8ff;
+        --grey-bg: #252830;
+        --grey-border: #6c757d;
+        --grey-text: #b0b3bb;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #1a1a2e;
+      --card: #16213e;
+      --text: #e0e0e0;
+      --text-sub: #9e9e9e;
+      --border: #2d3561;
+      --green-bg: #1a3a1a;
+      --green-border: #28a745;
+      --green-text: #a8d5a2;
+      --yellow-bg: #3a3010;
+      --yellow-border: #ffc107;
+      --yellow-text: #ffe082;
+      --blue-bg: #0d2240;
+      --blue-border: #4a9eff;
+      --blue-text: #90c8ff;
+      --grey-bg: #252830;
+      --grey-border: #6c757d;
+      --grey-text: #b0b3bb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+    }
+    .wrapper { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 1.4rem; margin-bottom: 6px; }
+    .meta {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta span { margin-right: 12px; }
+    h2 {
+      font-size: 1.05rem;
+      margin: 28px 0 12px;
+      padding-left: 8px;
+      border-left: 4px solid var(--border);
+    }
+    .items { display: flex; flex-direction: column; gap: 14px; }
+    .item {
+      border-radius: 8px;
+      padding: 14px 16px;
+      border-left: 4px solid;
+    }
+    .item.green  { background: var(--green-bg);  border-color: var(--green-border);  color: var(--green-text); }
+    .item.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); color: var(--yellow-text); }
+    .item.blue   { background: var(--blue-bg);   border-color: var(--blue-border);   color: var(--blue-text); }
+    .item.grey   { background: var(--grey-bg);   border-color: var(--grey-border);   color: var(--grey-text); }
+    h3 { font-size: 0.97rem; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.08);
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; line-height: 1.55; margin-bottom: 6px; }
+    .verdict {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.06);
+      display: inline-block;
+    }
+    a { color: inherit; text-decoration: underline; opacity: 0.8; word-break: break-all; }
+    a:hover { opacity: 1; }
+    .source-link { font-size: 0.78rem; margin-top: 8px; display: block; opacity: 0.75; }
+    .section-empty { font-size: 0.85rem; color: var(--text-sub); padding: 6px 0 0 4px; }
+    .failures {
+      margin-top: 32px;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      padding: 10px 14px;
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+    }
+    .failures h4 { margin-bottom: 6px; font-size: 0.83rem; }
+    .failures ul { margin: 0; padding-left: 18px; }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.15rem; }
+      .item { padding: 12px 12px; }
+      h3 { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <h1>⚡ 効率厨A feed — 2026-09-15</h1>
+  <div class="meta">
+    <span>📅 取得日: 2026-09-15 (JST 09:00)</span>
+    <span>🔎 対象期間: 2026-09-13〜09-15</span>
+    <span>📡 ソース: Claude Code releases / GitHub Trending / WebSearch (AI agents, AI coding tools Sep 2026)</span>
+    <span>🔁 重複除去: 09-12〜09-14 の3日分で既出のもの除外済</span>
+  </div>
+
+  <!-- ===== 🟢 即使う ===== -->
+  <h2>🟢 即使う</h2>
+  <div class="items">
+
+    <div class="item green">
+      <h3>Claude Code v2.1.271 <span class="badge">2026-09-14</span> — リモートセッション Fast Mode、/config マウス操作、コマンド単位の allowed_domains</h3>
+      <p>
+        Anthropic が 9/14 にリリースした <strong>v2.1.271</strong> は、このルーティンエージェントが直接恩恵を受けるアップデートが3点まとまって入った。
+      </p>
+      <p>
+        <strong>① Fast mode がリモートセッションに対応</strong>: クラウド実行環境 (= このスケジュール起動) でも組織設定で Fast mode を許可できるようになった。今まで Fast mode はローカル CLI だけだったが、リモートの automated routine でも高速出力が選択肢に入る。
+      </p>
+      <p>
+        <strong>② /config パネルがマウス操作に対応</strong>: ホイールスクロール・クリックで値変更・ポインタ強調が効くようになった。設定変更の手間が減る。
+      </p>
+      <p>
+        <strong>③ コマンド単位の allowed_domains</strong>: Bash / PowerShell / Monitor ツールの auto+sandbox モードで、コマンド実行ごとにアクセス先ホストをレビューできる。routine agent が想定外の外部ホストに飛ぶのを防ぐ細粒度制御。
+      </p>
+      <p>
+        その他: <code>omitClaudeMd</code> frontmatter（サブエージェントに CLAUDE.md を読ませない）、Markdown ファイルが Artifact としてスタイル付きページに変換されるようになった点も記事ネタとして使える。
+      </p>
+      <div class="verdict">🟢 効率厨の一言: リモートセッション Fast mode は今日の routine 実行から設定確認の価値あり。③ の per-command allowed_domains は routine agent のセキュリティ強化に直結する — 設定に組み込むかどうか /config で確認すべき。</div>
+      <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.271" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.271</a>
+    </div>
+
+  </div>
+
+  <!-- ===== 💰 課金価値 ===== -->
+  <h2>💰 課金価値</h2>
+  <p class="section-empty">該当なし（本日は有料限定で判断が変わるものなし）</p>
+
+  <!-- ===== 🟡 様子見 ===== -->
+  <h2>🟡 様子見</h2>
+  <div class="items">
+
+    <div class="item yellow">
+      <h3>OpenHands 1.0 <span class="badge">OSS</span> — 自律コーディングエージェント、v1.0 正式リリース</h3>
+      <p>
+        オープンソースの自律コーディングエージェント <strong>OpenHands</strong> が 1.0 に到達。
+        本番対応 Docker サンドボックス・組み込みセキュリティポリシー・リソース制限・プラグインシステムを整備し、
+        ベンチマーク公開でスコアも透明化した。
+      </p>
+      <p>
+        Claude Code + Workflow ツールで既にカバーできる範囲が大半だが、
+        <strong>OSS で無料・ローカル LLM にも対応</strong>という点で棲み分けが可能。
+        masatoman.net の「自律エージェント比較」記事のネタとして一次情報取得の価値あり。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: 今のMAX定額 + CC 運用に割り込ませる理由は薄い。記事ネタ（OSS自律エージェントの1.0とは何が変わったか）として使う場合は一次情報を先に取りにいく。</div>
+      <a class="source-link" href="https://github.com/All-Hands-AI/OpenHands" target="_blank">→ github.com/All-Hands-AI/OpenHands</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>VoiceStudio <span class="badge">+2,776 stars today</span> — ローカル完結の ElevenLabs 代替（音声クローン・動画吹き替え）</h3>
+      <p>
+        <strong>debpalash/VoiceStudio</strong> が GitHub Trending 2位（+2,776 stars）。
+        音声クローン・音声デザイン・動画吹き替え・書き起こし・オーディオブック作成を
+        <strong>完全ローカル・API 費用ゼロ</strong>で実現する ElevenLabs 代替。Python 製、MIT ライセンス。
+      </p>
+      <p>
+        masatoman の現在のワークフローに音声生成は含まれていないが、
+        <strong>「ElevenLabs より安い」という文脈の記事</strong>（masatoman.net の AI ツール比較系）で
+        一次情報として引用できる。外部サービス依存なしで試せるため試用コストは低い。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: 今日すぐ使う場面はないが、ローカル音声系の記事を書く時に「これで試した」と言えると説得力が出る。スターの伸びが速いので記事ネタの鮮度は今週中。</div>
+      <a class="source-link" href="https://github.com/debpalash/VoiceStudio" target="_blank">→ github.com/debpalash/VoiceStudio</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>GitHub Copilot Workspace マルチエージェント — 実装・テスト・ドキュメント生成を専門エージェントが分担</h3>
+      <p>
+        GitHub Copilot Workspace が<strong>複数の専門エージェントを同時並走</strong>させる機能を追加。
+        実装・テスト・ドキュメント生成の各エージェントが共有コンテキスト空間を通じて連携する。
+      </p>
+      <p>
+        Claude Code の Workflow ツールで同等の並列エージェント実行は既に可能。
+        Copilot を追加契約（$19/月〜）してまで乗り換える理由は今のところ薄いが、
+        <strong>GitHub Actions との密結合</strong>を既に使っているなら検討の余地あり。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: CC Workflow で代替できる。ただし「GitHub 側からマルチエージェントが標準化する流れ」の記事視点としては使えるトレンド情報。</div>
+      <a class="source-link" href="https://github.com/features/copilot" target="_blank">→ github.com/features/copilot</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>OpenCode <span class="badge">120,000+ stars</span> — OSS コーディング CLI が Go / Zen 有料プランに展開</h3>
+      <p>
+        OSS のターミナル AI コーディング CLI <strong>OpenCode</strong> が 2026 年に 12 万 star を超え、
+        コア無料を維持しつつ Go プラン（高速モデル切替）・Zen プラン（使用量課金）への展開を進めている。
+      </p>
+      <p>
+        Claude Code と用途が被るが、<strong>「Claude Code vs OpenCode 実用比較」</strong>という記事切り口は
+        masatoman.net で検索需要が見込める。切り替えるより比較対象として認識しておく方が有益。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: 今すぐ乗り換える理由なし。ただし「CC 以外の選択肢」として読者が検索する時に比較記事で拾えるネタ — 記事ストックに追加しておく。</div>
+      <a class="source-link" href="https://github.com/sst/opencode" target="_blank">→ github.com/sst/opencode</a>
+    </div>
+
+  </div>
+
+  <!-- ===== 🚫 罠 ===== -->
+  <h2>🚫 罠</h2>
+  <div class="items">
+
+    <div class="item grey">
+      <h3>Amazon Kiro <span class="badge">新IDE</span> — AWS Bedrock 駆動のスペック駆動 AI IDE</h3>
+      <p>
+        Amazon が <strong>Kiro</strong> をリリース。仕様書 (spec) を先に書いてから実装させる「spec-driven」アプローチの AI IDE で、バックエンドは AWS Bedrock。
+      </p>
+      <p>
+        Claude Code + Anthropic エコシステムで完結している現状の運用に、
+        AWS Bedrock 依存の別 IDE を追加すると
+        <strong>認証二重管理・コスト増・スタック分散</strong>のリスクが生まれる。
+        「spec-driven」概念自体は CLAUDE.md + memory 設計に参考にできる部分はあるが、
+        ツールとして採用する積極的理由がない。
+      </p>
+      <div class="verdict">🚫 効率厨の一言: AWS に移行予定がなければ触らなくてよい。「spec-driven IDE」の考え方を CLAUDE.md 設計に活かすなら、Kiro のドキュメントを読む程度でツール自体の導入は不要。</div>
+      <a class="source-link" href="https://kiro.dev" target="_blank">→ kiro.dev</a>
+    </div>
+
+  </div>
+
+  <!-- ===== 取得失敗ソース ===== -->
+  <div class="failures">
+    <h4>⚠️ 取得失敗ソース（2件）</h4>
+    <ul>
+      <li><strong>anthropic.com/news</strong> — エグレスプロキシによりブロック（このリモート実行環境の制限）</li>
+      <li><strong>obsidian.md/changelog/</strong> — 同上、エグレスプロキシによりブロック</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
