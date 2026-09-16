@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-16</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --text: #212529;
+      --text-sub: #6c757d;
+      --border: #dee2e6;
+      --green-bg: #d4edda;
+      --green-border: #28a745;
+      --green-text: #155724;
+      --yellow-bg: #fff3cd;
+      --yellow-border: #ffc107;
+      --yellow-text: #856404;
+      --blue-bg: #cce5ff;
+      --blue-border: #004085;
+      --blue-text: #004085;
+      --grey-bg: #e2e3e5;
+      --grey-border: #6c757d;
+      --grey-text: #383d41;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #1a1a2e;
+        --card: #16213e;
+        --text: #e0e0e0;
+        --text-sub: #9e9e9e;
+        --border: #2d3561;
+        --green-bg: #1a3a1a;
+        --green-border: #28a745;
+        --green-text: #a8d5a2;
+        --yellow-bg: #3a3010;
+        --yellow-border: #ffc107;
+        --yellow-text: #ffe082;
+        --blue-bg: #0d2240;
+        --blue-border: #4a9eff;
+        --blue-text: #90c8ff;
+        --grey-bg: #252830;
+        --grey-border: #6c757d;
+        --grey-text: #b0b3bb;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #1a1a2e;
+      --card: #16213e;
+      --text: #e0e0e0;
+      --text-sub: #9e9e9e;
+      --border: #2d3561;
+      --green-bg: #1a3a1a;
+      --green-border: #28a745;
+      --green-text: #a8d5a2;
+      --yellow-bg: #3a3010;
+      --yellow-border: #ffc107;
+      --yellow-text: #ffe082;
+      --blue-bg: #0d2240;
+      --blue-border: #4a9eff;
+      --blue-text: #90c8ff;
+      --grey-bg: #252830;
+      --grey-border: #6c757d;
+      --grey-text: #b0b3bb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+    }
+    .wrapper { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 1.4rem; margin-bottom: 6px; }
+    .meta {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta span { margin-right: 12px; }
+    h2 {
+      font-size: 1.05rem;
+      margin: 28px 0 12px;
+      padding-left: 8px;
+      border-left: 4px solid var(--border);
+    }
+    .items { display: flex; flex-direction: column; gap: 14px; }
+    .item {
+      border-radius: 8px;
+      padding: 14px 16px;
+      border-left: 4px solid;
+    }
+    .item.green  { background: var(--green-bg);  border-color: var(--green-border);  color: var(--green-text); }
+    .item.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); color: var(--yellow-text); }
+    .item.blue   { background: var(--blue-bg);   border-color: var(--blue-border);   color: var(--blue-text); }
+    .item.grey   { background: var(--grey-bg);   border-color: var(--grey-border);   color: var(--grey-text); }
+    h3 { font-size: 0.97rem; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.08);
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; line-height: 1.55; margin-bottom: 6px; }
+    .verdict {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.06);
+      display: inline-block;
+    }
+    a { color: inherit; text-decoration: underline; opacity: 0.8; word-break: break-all; }
+    a:hover { opacity: 1; }
+    .source-link { font-size: 0.78rem; margin-top: 8px; display: block; opacity: 0.75; }
+    .section-empty { font-size: 0.85rem; color: var(--text-sub); padding: 6px 0 0 4px; }
+    .failures {
+      margin-top: 32px;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      padding: 10px 14px;
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+    }
+    .failures h4 { margin-bottom: 6px; font-size: 0.83rem; }
+    .failures ul { margin: 0; padding-left: 18px; }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.15rem; }
+      .item { padding: 12px 12px; }
+      h3 { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <h1>⚡ 効率厨A feed — 2026-09-16</h1>
+  <div class="meta">
+    <span>📅 取得日: 2026-09-16 (JST 09:00)</span>
+    <span>🔎 対象期間: 2026-09-14〜09-16</span>
+    <span>📡 ソース: GitHub Releases (Claude Code) / GitHub Trending / WebSearch (AI agents, AI automation Sep 2026)</span>
+    <span>🔁 重複除去: 09-13〜09-15 の3日分で既出のもの除外済</span>
+  </div>
+
+  <!-- ===== 🟢 即使う ===== -->
+  <h2>🟢 即使う</h2>
+  <div class="items">
+
+    <div class="item green">
+      <h3>Claude Code v2.1.273 <span class="badge">2026-09-15 20:23</span> — スケジュールタスクのセッション誤爆 bug 修正 + MCP 自動再接続</h3>
+      <p>
+        9/15 夜にリリースされた <strong>v2.1.273</strong> に、このフィード自体が直接恩恵を受ける修正が2件入った。
+      </p>
+      <p>
+        <strong>① スケジュールタスクのセッション誤爆を修正</strong>:
+        <code>.claude/scheduled_tasks.json</code> をコピーした場合に、スケジュールされたタスクが
+        誤ったセッションで実行されるバグが解消された。
+        tooling-feed / GSC / SEO-check など複数の scheduled routine を並走させている場合に
+        別タスクのセッションで実行されていたケースがあれば、このバージョンで正常化される。
+      </p>
+      <p>
+        <strong>② MCP サーバーの切断検知 + 自動再接続</strong>:
+        MCP サーバーが落ちた際に通知が届き、自動で再接続を試みるようになった。
+        routine agent の途中で Supabase MCP や GitHub MCP が切断しても手動介入なしで復帰できる。
+      </p>
+      <p>
+        その他: Bash の複雑なコマンドに対する permission チェックの誤判定修正、
+        SDK でバックグラウンド移行後にサブエージェントのメッセージが落ちる問題修正、
+        <code>--remote-control</code> で起動したセッションのフォーク対応、など。
+      </p>
+      <div class="verdict">🟢 効率厨の一言: <code>npm update -g @anthropic-ai/claude-code</code> 一発で即反映。①のスケジュールタスク誤爆修正は複数 routine を持つ今の構成で直接効く — 今日中に更新必須。MCP 自動再接続は routine 途中の障害耐性が上がるので同じく即適用推奨。</div>
+      <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.273" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.273</a>
+    </div>
+
+  </div>
+
+  <!-- ===== 💰 課金価値 ===== -->
+  <h2>💰 課金価値</h2>
+  <p class="section-empty">該当なし（本日フィード内に有料限定で判断が変わるものなし）</p>
+
+  <!-- ===== 🟡 様子見 ===== -->
+  <h2>🟡 様子見</h2>
+  <div class="items">
+
+    <div class="item yellow">
+      <h3>alphaXiv/OpenResearch <span class="badge">+531 today</span> — コーディングエージェントを「研究エージェント」に変換するローカルワークスペース</h3>
+      <p>
+        <strong>「Turn your coding agents into research agents」</strong>を掲げるローカルファーストのワークスペース。
+        Claude Code・Codex・OpenCode・Cursor に対応し、
+        並列エージェントセッションと独立した git worktree を組み合わせて
+        <strong>アイデア提案 → コード変更 → 実験実行 → 証拠検証 → 次手決定</strong>
+        のループを自律的に回す。実験結果・diff・ログを git ネイティブな実験ツリーとして保存するため
+        再現性が確保される。macOS / Linux 版あり。
+      </p>
+      <p>
+        masatoman の現在の優先タスク（軸 B ヒアリング）への直接貢献は薄いが、
+        masatoman.net の「自律エージェントで調査・検証を自動化する」系記事の
+        <strong>一次情報素材として今週中に使える鮮度</strong>がある。
+        スターが急増しているのでネタの旬は短い。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: 今日の業務には刺さらないが、masatoman.net 記事ネタとして「CC + worktree で同等ができるか比較した」実験記事は今週中が旬。記事ストックに追加推奨。</div>
+      <a class="source-link" href="https://github.com/alphaXiv/OpenResearch" target="_blank">→ github.com/alphaXiv/OpenResearch</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>pacifio/atlas <span class="badge">4.6k ★ / +91 today</span> — エージェントの「ソース管理」デスクトップアプリ（複数エージェント並列 + セッション履歴DB）</h3>
+      <p>
+        複数のコーディングエージェント（Claude Code / Codex など）を<strong>並列実行しながら、各セッションのプロンプト・ツール呼び出し・変更ファイルを SQLite DB に記録</strong>するデスクトップアプリ。
+        「あのエージェントがこのファイルをいつ・どんな指示で変更したか」を後から検索できる。
+        ローカルファースト・コード非アップロード。Claude Code 対応。
+      </p>
+      <p>
+        routine agent を複数並走させる masatoman の構成で「誰が何を変えたか」の追跡に使える。
+        ただし Claude Code の SubTask isolation + worktree でカバーできている部分と重複が多く、
+        今すぐ必須の補完にはなりにくい。
+        <strong>チーム / 複数エージェントのガバナンスが課題になる規模になったタイミング</strong>で再評価が適切。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: 「エージェントが触ったファイルの監査ログ」として将来価値はある。今の一人運用 + CC worktree で足りている段階では優先度低。6ヶ月後に再評価。</div>
+      <a class="source-link" href="https://github.com/pacifio/atlas" target="_blank">→ github.com/pacifio/atlas</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>LibreChat <span class="badge">+254 today</span> — MCP / Skills / Anthropic 統合済みのオープンソース ChatGPT クローン（セルフホスト）</h3>
+      <p>
+        Claude / OpenAI / DeepSeek / AWS など多数のモデルを統合する
+        オープンソースのチャット UI。<strong>MCP サーバー・スキル統合・エージェント機能</strong>が
+        組み込み済みで、Docker でセルフホストできる。
+      </p>
+      <p>
+        今の MAX プラン + Claude Code 定額運用に乗り換え理由はないが、
+        <strong>masatoman.net の「Claude Code 以外で Claude を使う方法」記事</strong>の
+        比較対象として需要がある。読者層（30代個人開発者）が「UI だけ欲しい・API コスト抑えたい」
+        ケースで検索する典型的なキーワードと重なる。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: 自分のワークフローに入れる理由はない。ただし「Claude を格安で使う代替 UI」記事を書く時に「LibreChat でできること vs Claude Code でできること」の対比は検索需要の高い軸 — 記事ネタとして記録。</div>
+      <a class="source-link" href="https://github.com/danny-avila/LibreChat" target="_blank">→ github.com/danny-avila/LibreChat</a>
+    </div>
+
+    <div class="item yellow">
+      <h3>McKinsey 2026 AI 調査 — 組織の1/3が「AI で内製してSaaS購入を回避」と回答</h3>
+      <p>
+        McKinsey の直近調査で、<strong>調査対象企業の約1/3が「AI コーディングエージェントを使った内製で、少なくとも1製品の SaaS 購入を取りやめた」</strong>と回答したことが報告された。
+        AI による内製化が企業の技術購買決定に影響を与え始めている。
+      </p>
+      <p>
+        これは masatoman の「個人でフルスタック全部作れる職人」ポジを裏付ける一次データとして
+        価値が高い。工務店向け SaaS を売る文脈では「既製品より安く、自分のニーズに合わせて作れる」
+        という訴求の信憑性を高める外部根拠になる。
+        また masatoman.net の記事で「SaaS 代替の効率厨視点」として引用すれば
+        共感ポイントになる。
+      </p>
+      <div class="verdict">🟡 効率厨の一言: masatoman.net 記事の「なぜ個人が SaaS を作るか」論拠として今週中に引用価値あり。軸 B の商談でも「業界トレンドとして AI 内製が普及している」説得材料として使える。一次情報源（McKinsey レポート URL）を先に確保しておくこと。</div>
+      <a class="source-link" href="https://www.vellum.ai/blog/best-personal-ai-assistants-for-developers" target="_blank">→ vellum.ai (McKinsey 調査報告引用元)</a>
+    </div>
+
+  </div>
+
+  <!-- ===== 🚫 罠 ===== -->
+  <h2>🚫 罠</h2>
+  <div class="items">
+
+    <div class="item grey">
+      <h3>ever-co/ever-gauzy <span class="badge">+634 today</span> — オープンソース ERP / CRM / HRM / ATS / PM 統合プラットフォーム</h3>
+      <p>
+        TypeScript 製のオープンソース業務管理プラットフォーム。
+        ERP・CRM・HRM・ATS（採用管理）・PM（プロジェクト管理）を一枚で提供し、
+        Docker でセルフホスト可能。商業利用可ライセンス。
+        GitHub Trending で +634 stars と急上昇中。
+      </p>
+      <p>
+        全部入りのプラットフォームは、個人開発者が「とりあえず工務店向けに使える部分だけ」
+        取り出すには<strong>設定・カスタマイズコストが膨大</strong>になる。
+        工務店向け SaaS として自社に持つ理由もなく、
+        軸 B の現フェーズ（ヒアリング → MVP 候補絞り込み）には完全に早すぎる。
+        スターが伸びているのは「機能が多い」からで、masatoman の課題に対する適合度とは別問題。
+      </p>
+      <div class="verdict">🚫 効率厨の一言: 機能の多さ＝今の自分に必要 ではない典型。ERP/CRM/HRM をまとめて触りたい事業規模になるのは MRR 判定（2027年6月）後の話。スターに釣られて時間を使うと軸 B ヒアリングが後ろ倒しになる。</div>
+      <a class="source-link" href="https://github.com/ever-co/ever-gauzy" target="_blank">→ github.com/ever-co/ever-gauzy</a>
+    </div>
+
+  </div>
+
+  <!-- 取得失敗ソース -->
+  <div class="failures">
+    <h4>⚠️ 取得失敗ソース（2件）</h4>
+    <ul>
+      <li><strong>docs.anthropic.com/en/release-notes/claude-code</strong> — エグレスプロキシによりブロック（リモート実行環境の制限、毎回）</li>
+      <li><strong>obsidian.md/changelog/</strong> — 同上、エグレスプロキシによりブロック（毎回）</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
