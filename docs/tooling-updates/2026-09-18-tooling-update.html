@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-18</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --text: #212529;
+      --text-sub: #6c757d;
+      --border: #dee2e6;
+      --green-bg: #d4edda;
+      --green-border: #28a745;
+      --green-text: #155724;
+      --yellow-bg: #fff3cd;
+      --yellow-border: #ffc107;
+      --yellow-text: #856404;
+      --blue-bg: #cce5ff;
+      --blue-border: #004085;
+      --blue-text: #004085;
+      --grey-bg: #e2e3e5;
+      --grey-border: #6c757d;
+      --grey-text: #383d41;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #1a1a2e;
+        --card: #16213e;
+        --text: #e0e0e0;
+        --text-sub: #adb5bd;
+        --border: #2d3561;
+        --green-bg: #0d3321;
+        --green-border: #28a745;
+        --green-text: #75d89e;
+        --yellow-bg: #3d2c00;
+        --yellow-border: #ffc107;
+        --yellow-text: #ffd966;
+        --blue-bg: #0d2244;
+        --blue-border: #4d9de0;
+        --blue-text: #82bfff;
+        --grey-bg: #2a2b2e;
+        --grey-border: #6c757d;
+        --grey-text: #adb5bd;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #1a1a2e;
+      --card: #16213e;
+      --text: #e0e0e0;
+      --text-sub: #adb5bd;
+      --border: #2d3561;
+      --green-bg: #0d3321;
+      --green-border: #28a745;
+      --green-text: #75d89e;
+      --yellow-bg: #3d2c00;
+      --yellow-border: #ffc107;
+      --yellow-text: #ffd966;
+      --blue-bg: #0d2244;
+      --blue-border: #4d9de0;
+      --blue-text: #82bfff;
+      --grey-bg: #2a2b2e;
+      --grey-border: #6c757d;
+      --grey-text: #adb5bd;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .meta {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 4px;
+    }
+    .green-title  { background: var(--green-bg);  color: var(--green-text);  border-left: 4px solid var(--green-border); }
+    .blue-title   { background: var(--blue-bg);   color: var(--blue-text);   border-left: 4px solid var(--blue-border); }
+    .yellow-title { background: var(--yellow-bg); color: var(--yellow-text); border-left: 4px solid var(--yellow-border); }
+    .grey-title   { background: var(--grey-bg);   color: var(--grey-text);   border-left: 4px solid var(--grey-border); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-left: 4px solid var(--green-border); }
+    .card.blue   { border-left: 4px solid var(--blue-border); }
+    .card.yellow { border-left: 4px solid var(--yellow-border); }
+    .card.grey   { border-left: 4px solid var(--grey-border); }
+    h3 { font-size: 1rem; margin-bottom: 0.4rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+    .badge {
+      font-size: 0.7rem;
+      background: var(--border);
+      color: var(--text-sub);
+      border-radius: 3px;
+      padding: 0.1rem 0.4rem;
+      font-weight: normal;
+    }
+    p { font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text); }
+    .verdict {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+    }
+    .card.green  .verdict { background: var(--green-bg);  color: var(--green-text); }
+    .card.blue   .verdict { background: var(--blue-bg);   color: var(--blue-text); }
+    .card.yellow .verdict { background: var(--yellow-bg); color: var(--yellow-text); }
+    .card.grey   .verdict { background: var(--grey-bg);   color: var(--grey-text); }
+    .source-link {
+      display: inline-block;
+      font-size: 0.78rem;
+      margin-top: 0.5rem;
+      color: var(--blue-text);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .failed-sources {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-top: 1.5rem;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .failed-sources ul { padding-left: 1.2rem; }
+    code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85em; background: var(--border); padding: 0.1em 0.3em; border-radius: 3px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>効率厨A feed 2026-09-18</h1>
+  <div class="meta">
+    取得日: 2026-09-18 (JST) ／ 対象期間: 2026-09-16〜18 ／
+    ソース: GitHub Releases (claude-code), docs.claude.com, GitHub Trending, Web Search ／
+    重複除外: 2026-09-15〜17 掲載済み項目を除外
+  </div>
+
+  <!-- 🟢 即使う -->
+  <div class="section-title green-title">🟢 即使う</div>
+
+  <div class="card green">
+    <h3>Claude Code v2.1.275 <span class="badge">2026-09-17 22:33 UTC</span></h3>
+    <p>
+      claude.ai アカウントで設定したスキル・プラグインがターミナルセッションに自動同期されるようになった。
+      これまで Web UI とターミナルで別々に管理していたスキルを一元管理できる。
+      さらに <code>Ctrl+Enter</code>（send-now キー）で現在のターン処理を割り込んでキュー中のメッセージをすぐ送信できるようになり、長い routine 途中での方向修正が楽になった。
+      メモリファイルの age notes がプロンプトキャッシュミスを起こしていたバグも修正済み。
+    </p>
+    <div class="verdict">🟢 効率厨の一言: skills sync は claude.ai 側のスキル設定がそのままルーティンエージェントに降りてくるので、複数 routine を回している構成で設定管理が一本化される。<code>npm update -g @anthropic-ai/claude-code</code> 即更新推奨。</div>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.275" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.275</a>
+  </div>
+
+  <div class="card green">
+    <h3>Claude Code v2.1.274 <span class="badge">2026-09-17 00:12 UTC</span></h3>
+    <p>
+      クリティカルメモリ使用量に近づくと可視の警告が出るようになった（長時間 routine の安定性向上）。
+      MCP 起動タイミングを調整できる環境変数 <code>CLAUDE_CODE_MCP_STARTUP_WAIT_MS</code> が追加された。
+      破損したトランスクリプトが自己修復されるようになり、セッション崩壊からの回復が自動化。
+      レガシー HTTP+SSE プロトコルの MCP サーバー接続改善、<code>/goal</code> コンパクション後の状態保持修正も含む。
+    </p>
+    <div class="verdict">🟢 効率厨の一言: トランスクリプト自己修復は夜間 routine でセッションが壊れた時の損失を防ぐ直接の改善。CLAUDE_CODE_MCP_STARTUP_WAIT_MS は MCP 起動失敗に悩んでいるなら即試す価値あり。同じく <code>npm update</code> で反映。</div>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.274" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.274</a>
+  </div>
+
+  <div class="card green">
+    <h3>cloudflare/security-audit-skill <span class="badge">GitHub Trending</span></h3>
+    <p>
+      Cloudflare がオープンソースで公開した Claude Code 用スキル。
+      コーディングエージェントが多フェーズのセキュリティ監査を実行し、機械可読な findings を出力する構造になっている。
+      スキルファイルを <code>.claude/skills/</code> に置くだけで既存 Claude Code セッションに組み込める。
+    </p>
+    <div class="verdict">🟢 効率厨の一言: ihara-frontend.com の認証・API ルートに対して「PR マージ前に自動でセキュリティ監査」という使い方が今すぐできる。スキル形式なので追加コストゼロ、試してから外せる。</div>
+    <a class="source-link" href="https://github.com/cloudflare/security-audit-skill" target="_blank">→ github.com/cloudflare/security-audit-skill</a>
+  </div>
+
+  <!-- 💰 課金価値 -->
+  <div class="section-title blue-title">💰 課金価値</div>
+  <p style="font-size:0.85rem; color:var(--text-sub); padding: 0 0 0.5rem;">該当なし（今回のアップデートに新規有料サービスなし）</p>
+
+  <!-- 🟡 様子見 -->
+  <div class="section-title yellow-title">🟡 様子見</div>
+
+  <div class="card yellow">
+    <h3>Tencent/BrowserSkill <span class="badge">GitHub Trending #4</span></h3>
+    <p>
+      CLI と拡張機能を経由して、すでにログイン済みの実ブラウザを AI エージェントに渡せるようにするツール。
+      作業を中断せずエージェントがブラウザを操作できるという設計。
+      TypeScript 製でオープンソース。
+    </p>
+    <div class="verdict">🟡 効率厨の一言: GSC や Supabase 管理画面の自動巡回に使えそうだが、実ログイン済みブラウザをエージェントに渡すリスクと今の Claude Code + Playwright 構成との比較が必要。Claude Code の computer-use 方向が固まってから再評価でよい。</div>
+    <a class="source-link" href="https://github.com/Tencent/BrowserSkill" target="_blank">→ github.com/Tencent/BrowserSkill</a>
+  </div>
+
+  <div class="card yellow">
+    <h3>GitHub Copilot Workspace マルチエージェント対応 <span class="badge">September 2026</span></h3>
+    <p>
+      実装・テスト・ドキュメント生成の各専門エージェントが共有コンテキスト上で同時並列で動く設計が Copilot Workspace に追加された。
+      複数エージェント間のコーディネーション機能が正式サポート。
+    </p>
+    <div class="verdict">🟡 効率厨の一言: Claude Code MAX プランで完結している現構成では移行コストが合わない。ただし「並列エージェント設計」の実装例として workflow スクリプトの参考になる。乗り換えではなくアイデア吸収に留める。</div>
+    <a class="source-link" href="https://githubnext.com/projects/copilot-workspace" target="_blank">→ githubnext.com/projects/copilot-workspace</a>
+  </div>
+
+  <div class="card yellow">
+    <h3>n8n — AI ネイティブワークフロー自動化 <span class="badge">GitHub Trending #10</span></h3>
+    <p>
+      フェアコードライセンスのワークフロー自動化プラットフォーム。
+      ノーコード UI と任意コード実行の組み合わせに AI 機能（LLM 呼び出し、エージェント）が成熟してきた。
+      セルフホスト可能。
+    </p>
+    <div class="verdict">🟡 効率厨の一言: Claude Code + Supabase で routine が動いている今は過剰。ただし「Supabase トリガー → n8n → 外部通知」のような webhook 連携に興味が出た場合の候補として把握しておく価値はある。今は何もしなくてよい。</div>
+    <a class="source-link" href="https://github.com/n8n-io/n8n" target="_blank">→ github.com/n8n-io/n8n</a>
+  </div>
+
+  <!-- 🚫 罠 -->
+  <div class="section-title grey-title">🚫 罠</div>
+
+  <div class="card grey">
+    <h3>OpenAI Agents API + ChatGPT Work agent ロールアウト <span class="badge">September 2026</span></h3>
+    <p>
+      OpenAI が Agents API を公開し、ChatGPT Work agent がより広いユーザーに展開。
+      エージェント自動化をプラットフォームとして提供する方向性を強化。
+    </p>
+    <div class="verdict">🚫 効率厨の一言: MAX プラン定額で Claude Code を回している構成に OpenAI API を追加するのは純粋に課金増。移行コスト（routine スクリプト書き直し・MCP 再設定）も発生する。Claude Code の機能が追いつかない場面が出るまで無視でよい。</div>
+    <a class="source-link" href="https://openai.com/index/introducing-openai-agents-api/" target="_blank">→ openai.com/index/introducing-openai-agents-api/</a>
+  </div>
+
+  <!-- 取得失敗ソース -->
+  <div class="failed-sources">
+    <strong>取得失敗ソース（エグレスプロキシによるブロック）:</strong>
+    <ul>
+      <li>anthropic.com/news — エグレスプロキシによりブロック（リモート実行環境の制限、毎回）</li>
+      <li>obsidian.md/changelog/ — 同上</li>
+    </ul>
+    <p style="margin-top:0.4rem;">※ docs.claude.com は GitHub Releases にリダイレクトされ取得成功。</p>
+  </div>
+</div>
+</body>
+</html>
