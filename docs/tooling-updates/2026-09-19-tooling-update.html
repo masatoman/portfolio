@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-19</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --text: #212529;
+      --text-sub: #6c757d;
+      --border: #dee2e6;
+      --green-bg: #d4edda;
+      --green-border: #28a745;
+      --green-text: #155724;
+      --yellow-bg: #fff3cd;
+      --yellow-border: #ffc107;
+      --yellow-text: #856404;
+      --blue-bg: #cce5ff;
+      --blue-border: #004085;
+      --blue-text: #004085;
+      --grey-bg: #e2e3e5;
+      --grey-border: #6c757d;
+      --grey-text: #383d41;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #1a1a2e;
+        --card: #16213e;
+        --text: #e0e0e0;
+        --text-sub: #adb5bd;
+        --border: #2d3561;
+        --green-bg: #0d3321;
+        --green-border: #28a745;
+        --green-text: #75d89e;
+        --yellow-bg: #3d2c00;
+        --yellow-border: #ffc107;
+        --yellow-text: #ffd966;
+        --blue-bg: #0d2244;
+        --blue-border: #4d9de0;
+        --blue-text: #82bfff;
+        --grey-bg: #2a2b2e;
+        --grey-border: #6c757d;
+        --grey-text: #adb5bd;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #1a1a2e;
+      --card: #16213e;
+      --text: #e0e0e0;
+      --text-sub: #adb5bd;
+      --border: #2d3561;
+      --green-bg: #0d3321;
+      --green-border: #28a745;
+      --green-text: #75d89e;
+      --yellow-bg: #3d2c00;
+      --yellow-border: #ffc107;
+      --yellow-text: #ffd966;
+      --blue-bg: #0d2244;
+      --blue-border: #4d9de0;
+      --blue-text: #82bfff;
+      --grey-bg: #2a2b2e;
+      --grey-border: #6c757d;
+      --grey-text: #adb5bd;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .meta {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 4px;
+    }
+    .green-title  { background: var(--green-bg);  color: var(--green-text);  border-left: 4px solid var(--green-border); }
+    .blue-title   { background: var(--blue-bg);   color: var(--blue-text);   border-left: 4px solid var(--blue-border); }
+    .yellow-title { background: var(--yellow-bg); color: var(--yellow-text); border-left: 4px solid var(--yellow-border); }
+    .grey-title   { background: var(--grey-bg);   color: var(--grey-text);   border-left: 4px solid var(--grey-border); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-left: 4px solid var(--green-border); }
+    .card.blue   { border-left: 4px solid var(--blue-border); }
+    .card.yellow { border-left: 4px solid var(--yellow-border); }
+    .card.grey   { border-left: 4px solid var(--grey-border); }
+    h3 { font-size: 1rem; margin-bottom: 0.4rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+    .badge {
+      font-size: 0.7rem;
+      background: var(--border);
+      color: var(--text-sub);
+      border-radius: 3px;
+      padding: 0.1rem 0.4rem;
+      font-weight: normal;
+    }
+    p { font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text); }
+    .verdict {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+    }
+    .card.green  .verdict { background: var(--green-bg);  color: var(--green-text); }
+    .card.blue   .verdict { background: var(--blue-bg);   color: var(--blue-text); }
+    .card.yellow .verdict { background: var(--yellow-bg); color: var(--yellow-text); }
+    .card.grey   .verdict { background: var(--grey-bg);   color: var(--grey-text); }
+    .source-link {
+      display: inline-block;
+      font-size: 0.78rem;
+      margin-top: 0.5rem;
+      color: var(--blue-text);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .failed-sources {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-top: 1.5rem;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .failed-sources ul { padding-left: 1.2rem; }
+    code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85em; background: var(--border); padding: 0.1em 0.3em; border-radius: 3px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>効率厨A feed 2026-09-19</h1>
+  <div class="meta">
+    取得日: 2026-09-19 (JST) ／ 対象期間: 2026-09-17〜19 ／
+    ソース: GitHub Releases (claude-code), GitHub Trending, Web Search (AI agent news, 個人開発 AI) ／
+    重複除外: 2026-09-16〜18 掲載済み項目を除外
+  </div>
+
+  <!-- 🟢 即使う -->
+  <div class="section-title green-title">🟢 即使う</div>
+
+  <div class="card green">
+    <h3>Claude Code v2.1.277 — AGENTS.md サポート + TaskOutput 廃止 <span class="badge">2026-09-18 18:06 UTC</span></h3>
+    <p>
+      CLAUDE.md が存在しないリポジトリで <code>AGENTS.md</code> を自動読込するようになった。
+      複数のコーディングエージェントが共存するモノレポで、1ファイルで横断的な指示を書けるようになる。
+      CLAUDE.md が存在するリポジトリは従来通り CLAUDE.md が優先（変更なし）。
+      また <code>TaskOutput</code> ツールが廃止されたため、このツールを使っている routine や skill がある場合はリファクタが必要。
+      その他: バックグラウンドタスク完了通知の表示、空テキストブロックによるセッション固まりバグの修正、<code>claude -p</code> の内部エラー後ハング修正など多数。
+    </p>
+    <div class="verdict">🟢 効率厨の一言: AGENTS.md は portfolio 以外のサブ repo に CLAUDE.md を置いていない場合に即効く。TaskOutput 使用箇所は <code>grep -r "TaskOutput" ~/.claude/</code> で確認して置き換え。<code>npm update -g @anthropic-ai/claude-code</code> で即更新。</div>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.277" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.277</a>
+  </div>
+
+  <!-- 💰 課金価値 -->
+  <div class="section-title blue-title">💰 課金価値</div>
+  <p style="font-size:0.85rem; color:var(--text-sub); padding:0.4rem 0;">該当なし（今回は全項目フリー）</p>
+
+  <!-- 🟡 様子見 -->
+  <div class="section-title yellow-title">🟡 様子見</div>
+
+  <div class="card yellow">
+    <h3>Claude Code v2.1.276 — プロキシ/ゲートウェイ向け緊急パッチ <span class="badge">2026-09-18 02:12 UTC</span></h3>
+    <p>
+      v2.1.275 で発生したリグレッション修正。<code>ANTHROPIC_BASE_URL</code> をプロキシや社内ゲートウェイに向けている環境で
+      全リクエストが <code>400 … Input tag 'advisor_20260301'</code> エラーになる問題を解消した。
+      v2.1.277 にアップデートすれば本パッチも含まれる。
+    </p>
+    <div class="verdict">🟡 効率厨の一言: ANTHROPIC_BASE_URL を標準で使っていれば無関係。v2.1.277 への直接更新で OK。プロキシ経由運用者は v2.1.275 のままなら即更新。</div>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.276" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.276</a>
+  </div>
+
+  <div class="card yellow">
+    <h3>OpenHands 1.0 GA — 自律型コーディングエージェント OSS 正式版 <span class="badge">2026-09 GA</span></h3>
+    <p>
+      autonomous coding agent の OSS プロジェクト OpenHands が v1.0 正式リリース。
+      本番対応 Docker サンドボックス・セキュリティポリシー・リソース制限・プラグイン機構を搭載し、
+      SWE-bench Verified で約 68% 達成。自前 GPU 環境なら 1 タスク解決あたり $0.20〜$1.05 程度で動かせる。
+    </p>
+    <div class="verdict">🟡 効率厨の一言: MAX プラン定額で Claude Code を使っている今は乗り換え理由が薄い。ただしサンドボックス設計・プラグイン機構はエージェント routine の設計参考になる。興味があれば self-hosted で実験する価値あり。</div>
+    <a class="source-link" href="https://dev.to/jamilxt/openhands-just-hit-10-heres-how-to-run-it-on-your-own-machine-without-handing-over-the-keys-5666" target="_blank">→ dev.to: OpenHands 1.0 セルフホストガイド</a>
+  </div>
+
+  <div class="card yellow">
+    <h3>alibaba/open-code-review — LLM+決定論ハイブリッドコードレビュー <span class="badge">GitHub Trending</span></h3>
+    <p>
+      Alibaba がリリースした OSS コードレビューシステム。
+      LLM エージェントと決定論的パイプラインを組み合わせ、Go 製でセキュリティ脆弱性を含む多言語ルールセットを持つ。
+      CI/CD に組み込んで自動レビューを走らせる構成。
+    </p>
+    <div class="verdict">🟡 効率厨の一言: Claude Code の /code-review skill で現状十分。ただし「決定論ルール ＋ LLM 判断を分ける設計」は skill アーキテクチャの参考になる。即適用は不要。</div>
+    <a class="source-link" href="https://github.com/alibaba/open-code-review" target="_blank">→ github.com/alibaba/open-code-review</a>
+  </div>
+
+  <div class="card yellow">
+    <h3>addyosmani/agent-skills — AI コーディングエージェント向けスキル集 (JS) <span class="badge">GitHub Trending</span></h3>
+    <p>
+      Google Chrome チームの Addy Osmani が公開した、AIコーディングエージェント向け本番グレードのスキル集。
+      信頼性・パフォーマンス重視のエンジニアリング機能を JavaScript で実装したもの。
+      Claude Code skills と発想が近い。
+    </p>
+    <div class="verdict">🟡 効率厨の一言: portfolio の <code>.claude/skills/</code> と構造比較すると skill 設計の知見が得られる。直接インポートするより「設計思想を盗む」用途で読む価値あり。</div>
+    <a class="source-link" href="https://github.com/addyosmani/agent-skills" target="_blank">→ github.com/addyosmani/agent-skills</a>
+  </div>
+
+  <!-- 🚫 罠 -->
+  <div class="section-title grey-title">🚫 罠</div>
+  <p style="font-size:0.85rem; color:var(--text-sub); padding:0.4rem 0;">該当なし</p>
+
+  <!-- 取得失敗ソース -->
+  <div class="failed-sources">
+    <strong>取得失敗ソース:</strong>
+    <ul>
+      <li>www.anthropic.com/news — egress proxy ブロック</li>
+      <li>obsidian.md/changelog/ — egress proxy ブロック</li>
+      <li>aiagentstore.ai — egress proxy ブロック</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
