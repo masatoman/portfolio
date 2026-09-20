@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-20</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --text: #212529;
+      --text-sub: #6c757d;
+      --border: #dee2e6;
+      --green-bg: #d4edda;
+      --green-border: #28a745;
+      --green-text: #155724;
+      --yellow-bg: #fff3cd;
+      --yellow-border: #ffc107;
+      --yellow-text: #856404;
+      --blue-bg: #cce5ff;
+      --blue-border: #004085;
+      --blue-text: #004085;
+      --grey-bg: #e2e3e5;
+      --grey-border: #6c757d;
+      --grey-text: #383d41;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #1a1a2e;
+        --card: #16213e;
+        --text: #e0e0e0;
+        --text-sub: #adb5bd;
+        --border: #2d3561;
+        --green-bg: #0d3321;
+        --green-border: #28a745;
+        --green-text: #75d89e;
+        --yellow-bg: #3d2c00;
+        --yellow-border: #ffc107;
+        --yellow-text: #ffd966;
+        --blue-bg: #0d2244;
+        --blue-border: #4d9de0;
+        --blue-text: #82bfff;
+        --grey-bg: #2a2b2e;
+        --grey-border: #6c757d;
+        --grey-text: #adb5bd;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #1a1a2e;
+      --card: #16213e;
+      --text: #e0e0e0;
+      --text-sub: #adb5bd;
+      --border: #2d3561;
+      --green-bg: #0d3321;
+      --green-border: #28a745;
+      --green-text: #75d89e;
+      --yellow-bg: #3d2c00;
+      --yellow-border: #ffc107;
+      --yellow-text: #ffd966;
+      --blue-bg: #0d2244;
+      --blue-border: #4d9de0;
+      --blue-text: #82bfff;
+      --grey-bg: #2a2b2e;
+      --grey-border: #6c757d;
+      --grey-text: #adb5bd;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .meta {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 4px;
+    }
+    .green-title  { background: var(--green-bg);  color: var(--green-text);  border-left: 4px solid var(--green-border); }
+    .blue-title   { background: var(--blue-bg);   color: var(--blue-text);   border-left: 4px solid var(--blue-border); }
+    .yellow-title { background: var(--yellow-bg); color: var(--yellow-text); border-left: 4px solid var(--yellow-border); }
+    .grey-title   { background: var(--grey-bg);   color: var(--grey-text);   border-left: 4px solid var(--grey-border); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-left: 4px solid var(--green-border); }
+    .card.blue   { border-left: 4px solid var(--blue-border); }
+    .card.yellow { border-left: 4px solid var(--yellow-border); }
+    .card.grey   { border-left: 4px solid var(--grey-border); }
+    h3 { font-size: 1rem; margin-bottom: 0.4rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+    .badge {
+      font-size: 0.7rem;
+      background: var(--border);
+      color: var(--text-sub);
+      border-radius: 3px;
+      padding: 0.1rem 0.4rem;
+      font-weight: normal;
+    }
+    p { font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text); }
+    .verdict {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+    }
+    .card.green  .verdict { background: var(--green-bg);  color: var(--green-text); }
+    .card.blue   .verdict { background: var(--blue-bg);   color: var(--blue-text); }
+    .card.yellow .verdict { background: var(--yellow-bg); color: var(--yellow-text); }
+    .card.grey   .verdict { background: var(--grey-bg);   color: var(--grey-text); }
+    .source-link {
+      display: inline-block;
+      font-size: 0.78rem;
+      margin-top: 0.5rem;
+      color: var(--blue-text);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .failed-sources {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-top: 1.5rem;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .failed-sources ul { padding-left: 1.2rem; }
+    code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85em; background: var(--border); padding: 0.1em 0.3em; border-radius: 3px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>効率厨A feed 2026-09-20</h1>
+  <div class="meta">
+    取得日: 2026-09-20 (JST) ／ 対象期間: 2026-09-18〜20 ／
+    ソース: GitHub Releases (claude-code), Claude Code Docs (whats-new), GitHub Trending, Web Search (AI coding / automation 新着) ／
+    重複除外: 2026-09-17〜19 掲載済み項目を除外
+  </div>
+
+  <!-- 🟢 即使う -->
+  <div class="section-title green-title">🟢 即使う</div>
+
+  <div class="card green">
+    <h3>Claude Code v2.1.278 — auto mode サーバーサイドクラシファイア化 <span class="badge">2026-09-19 03:10 UTC</span></h3>
+    <p>
+      Claude API・Enterprise ユーザーに対して auto mode がデフォルトでサーバーサイドクラシファイアを使うようになった。
+      これまでの「クラシファイアオーバーヘッド課金」が解消される変更で、Bedrock / Vertex / Foundry / ゲートウェイ経由の場合はオプトアウト変数
+      <code>CLAUDE_CODE_AUTO_MODE_SERVER=0</code> で旧挙動に戻せる。
+      <code>/status</code> に "Auto mode server" 行が追加されたので自環境の確認が即できる。
+      この scheduled routine 自体も cloud/Enterprise 環境で動いており、今バージョンで挙動が変わる可能性がある。
+    </p>
+    <div class="verdict">🟢 効率厨の一言: <code>npm update -g @anthropic-ai/claude-code</code> で即更新。<code>/status</code> で "Auto mode server" 行を確認し、scheduler/routine の auto mode 挙動が変わっていないかチェック。Bedrock/Vertex 経由の routine があれば <code>CLAUDE_CODE_AUTO_MODE_SERVER=0</code> の要否も確認。</div>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.278" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.278</a>
+  </div>
+
+  <!-- 💰 課金価値 -->
+  <div class="section-title blue-title">💰 課金価値</div>
+  <p style="font-size:0.85rem; color:var(--text-sub); padding:0.4rem 0;">該当なし（今回は全項目フリー）</p>
+
+  <!-- 🟡 様子見 -->
+  <div class="section-title yellow-title">🟡 様子見</div>
+
+  <div class="card yellow">
+    <h3>trycua/cua — セルフホスト型 computer-use 自動化フレームワーク <span class="badge">GitHub Trending #2 / 859 stars today</span></h3>
+    <p>
+      computer-use automation を OSS ドライバー + クロスプラットフォームフリート管理で動かすフレームワーク。
+      仮想マシン上で GUI 操作を自律実行し、複数マシンを一元管理できる設計になっている。
+      Claude Code の computer use（Week 14 以降）と同じ領域だが、クラウドに依存しないセルフホスト点が異なる。
+    </p>
+    <div class="verdict">🟡 効率厨の一言: Claude Code Desktop + computer use で現状カバー済みなので即乗り換え不要。ただし将来「Claude Code 外でブラウザ操作を自動化したい」場面では候補になる。OSS なので API 課金ゼロで動かせる点は記憶しておく。</div>
+    <a class="source-link" href="https://github.com/trycua/cua" target="_blank">→ github.com/trycua/cua</a>
+  </div>
+
+  <div class="card yellow">
+    <h3>cactus-compute/needle 3 — 9MB オンデバイス tool-calling モデル <span class="badge">2026-09-19 launch / GitHub Trending #9</span></h3>
+    <p>
+      YC S25 スタートアップ Cactus Compute が needle 3 をリリース。
+      わずか 9MB の量子化モデルで、スマートフォン・ウェアラブル・マイコンなどリソース制約デバイス上でツール呼び出しと構造化データ抽出を実行できる。
+      「リビングルームの照明を 30% にして」→ 対応関数＋パラメータを推定、という用途に特化した設計。
+      Laddered Simple Attention Network アーキテクチャで深さ 2〜20 層が全てデプロイ可能モデルになっている。
+    </p>
+    <div class="verdict">🟡 効率厨の一言: masatoman の現スタック（Claude Code MAX 定額）には直接関係しない。ただし「ルーティン化されたツール呼び出しを端末ローカルで処理する」という設計思想は Skill/routine のオフロード先として将来参考になる。IoT や端末側の自動化を考える時期に再確認。</div>
+    <a class="source-link" href="https://github.com/cactus-compute/needle" target="_blank">→ github.com/cactus-compute/needle</a>
+  </div>
+
+  <div class="card yellow">
+    <h3>coder/coder — 開発者とエージェント向けセキュア開発環境 OSS <span class="badge">GitHub Trending #6 / 402 stars today</span></h3>
+    <p>
+      "Secure environments for developers and their agents" を謳う Go 製 OSS。
+      クラウドまたはオンプレにセルフホストの開発環境（ワークスペース）を立て、開発者とAIエージェントが同じ環境で動く設計。
+      エージェント実行時のリソース制限・ネットワークポリシー・監査ログが組み込まれている。
+    </p>
+    <div class="verdict">🟡 効率厨の一言: Claude Code の self-hosted runner（Week 32 GA）と組み合わせると routine の実行環境をガバナンス込みで整備できる。今すぐではないが、複数エージェント routine が増えてきた時の「環境ガバナンス」候補として記録しておく価値あり。</div>
+    <a class="source-link" href="https://github.com/coder/coder" target="_blank">→ github.com/coder/coder</a>
+  </div>
+
+  <!-- 🚫 罠 -->
+  <div class="section-title grey-title">🚫 罠</div>
+
+  <div class="card grey">
+    <h3>yynxxxxx/Codex-X — AI コードアシスタント横断管理 CLI <span class="badge">GitHub Trending #10 / Rust</span></h3>
+    <p>
+      複数の AI コードアシスタントプロバイダーを切り替えて管理するための Rust 製 CLI ツール。
+      Claude / OpenAI / Copilot などを横断して設定・切替・設定管理をひとつの UI で行う。
+    </p>
+    <div class="verdict">🚫 効率厨の一言: MAX プラン定額で Claude Code に一本化している今は「プロバイダー切替」ニーズ自体が存在しない。Rust 製なので自前ビルドが必要な点も手間。「全部入り管理 UI」系ツールは今のシンプルな構成を複雑化するリスクがあるので触らない。</div>
+    <a class="source-link" href="https://github.com/yynxxxxx/Codex-X" target="_blank">→ github.com/yynxxxxx/Codex-X</a>
+  </div>
+
+  <!-- 取得失敗ソース -->
+  <div class="failed-sources">
+    <strong>取得失敗ソース:</strong>
+    <ul>
+      <li>www.anthropic.com/news — egress proxy ブロック</li>
+      <li>obsidian.md/changelog/ — egress proxy ブロック</li>
+      <li>docs.claude.com/en/release-notes/claude-code — 301→307 リダイレクト経由で CHANGELOG.md 直読みに切替し取得済み</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
