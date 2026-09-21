@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-21</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --text: #212529;
+      --text-sub: #6c757d;
+      --border: #dee2e6;
+      --green-bg: #d4edda;
+      --green-border: #28a745;
+      --green-text: #155724;
+      --yellow-bg: #fff3cd;
+      --yellow-border: #ffc107;
+      --yellow-text: #856404;
+      --blue-bg: #cce5ff;
+      --blue-border: #004085;
+      --blue-text: #004085;
+      --grey-bg: #e2e3e5;
+      --grey-border: #6c757d;
+      --grey-text: #383d41;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #1a1a2e;
+        --card: #16213e;
+        --text: #e0e0e0;
+        --text-sub: #adb5bd;
+        --border: #2d3561;
+        --green-bg: #0d3321;
+        --green-border: #28a745;
+        --green-text: #75d89e;
+        --yellow-bg: #3d2c00;
+        --yellow-border: #ffc107;
+        --yellow-text: #ffd966;
+        --blue-bg: #0d2244;
+        --blue-border: #4d9de0;
+        --blue-text: #82bfff;
+        --grey-bg: #2a2b2e;
+        --grey-border: #6c757d;
+        --grey-text: #adb5bd;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #1a1a2e;
+      --card: #16213e;
+      --text: #e0e0e0;
+      --text-sub: #adb5bd;
+      --border: #2d3561;
+      --green-bg: #0d3321;
+      --green-border: #28a745;
+      --green-text: #75d89e;
+      --yellow-bg: #3d2c00;
+      --yellow-border: #ffc107;
+      --yellow-text: #ffd966;
+      --blue-bg: #0d2244;
+      --blue-border: #4d9de0;
+      --blue-text: #82bfff;
+      --grey-bg: #2a2b2e;
+      --grey-border: #6c757d;
+      --grey-text: #adb5bd;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .meta {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 4px;
+    }
+    .green-title  { background: var(--green-bg);  color: var(--green-text);  border-left: 4px solid var(--green-border); }
+    .blue-title   { background: var(--blue-bg);   color: var(--blue-text);   border-left: 4px solid var(--blue-border); }
+    .yellow-title { background: var(--yellow-bg); color: var(--yellow-text); border-left: 4px solid var(--yellow-border); }
+    .grey-title   { background: var(--grey-bg);   color: var(--grey-text);   border-left: 4px solid var(--grey-border); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card.green  { border-left: 4px solid var(--green-border); }
+    .card.blue   { border-left: 4px solid var(--blue-border); }
+    .card.yellow { border-left: 4px solid var(--yellow-border); }
+    .card.grey   { border-left: 4px solid var(--grey-border); }
+    h3 { font-size: 1rem; margin-bottom: 0.4rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+    .badge {
+      font-size: 0.7rem;
+      background: var(--border);
+      color: var(--text-sub);
+      border-radius: 3px;
+      padding: 0.1rem 0.4rem;
+      font-weight: normal;
+    }
+    p { font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text); }
+    .verdict {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+    }
+    .card.green  .verdict { background: var(--green-bg);  color: var(--green-text); }
+    .card.blue   .verdict { background: var(--blue-bg);   color: var(--blue-text); }
+    .card.yellow .verdict { background: var(--yellow-bg); color: var(--yellow-text); }
+    .card.grey   .verdict { background: var(--grey-bg);   color: var(--grey-text); }
+    .source-link {
+      display: inline-block;
+      font-size: 0.78rem;
+      margin-top: 0.5rem;
+      color: var(--blue-text);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .failed-sources {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-top: 1.5rem;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .failed-sources ul { padding-left: 1.2rem; }
+    code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85em; background: var(--border); padding: 0.1em 0.3em; border-radius: 3px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>効率厨A feed 2026-09-21</h1>
+  <div class="meta">
+    取得日: 2026-09-21 (JST) ／ 対象期間: 2026-09-19〜21 ／
+    ソース: GitHub Releases (claude-code), Claude Code Docs (whats-new), GitHub Trending, WebSearch (AI coding / automation 新着 / 個人開発 AI ツール 9月) ／
+    重複除外: 2026-09-17〜20 掲載済み項目を除外 ／
+    取得失敗: anthropic.com/news (EGRESS_BLOCKED), obsidian.md/changelog (EGRESS_BLOCKED)
+  </div>
+
+  <!-- 🟢 即使う -->
+  <div class="section-title green-title">🟢 即使う</div>
+
+  <div class="card green">
+    <h3>Claude Code Project Coordination (beta) — 並列スレッド管理 + プロジェクトライブラリ <span class="badge">Sep 2026 新機能</span></h3>
+    <p>
+      1つのプロジェクトが複数の並列スレッド・shared memory・プロジェクトライブラリを束ねて長期タスクを横断管理できる beta 機能が追加された。
+      これまで routine をまたいで手動で引き継いでいた context をプロジェクトライブラリ経由で一元管理できる設計。
+      「長期タスクのハンドオフが減り、進捗ステアリングが増える」という方針での実装。
+    </p>
+    <div class="verdict">🟢 効率厨の一言: tooling-update-watch / content-executor / GSC routine など複数 routine が走る現状で、shared memory をプロジェクトライブラリに集約できれば MEMORY.md の手動更新頻度が下がる。beta なので試験的に1プロジェクト分から導入する価値がある。</div>
+    <a class="source-link" href="https://code.claude.com/docs/en/whats-new" target="_blank">→ code.claude.com/docs/en/whats-new</a>
+  </div>
+
+  <div class="card green">
+    <h3><code>claude plugin eval</code> — plugin の品質を test suite で自動採点 <span class="badge">Sep 2026 新機能</span></h3>
+    <p>
+      <code>claude plugin eval</code> コマンドが追加され、plugin をテストケースのスイートに対して実行し、スコアリングと「plugin なしベースライン」との比較ができるようになった。
+      また <code>claude plugin install</code> が既インストール plugin に対して「marketplace にアップデートがある」旨を通知し <code>claude plugin update</code> コマンド名も案内するようになった。
+    </p>
+    <div class="verdict">🟢 効率厨の一言: tooling-update-watch など既存 routine の plugin がある場合、eval suite を作れば「routine が期待通り動いているか」を自動採点できる。skill/plugin のメンテをシステム化したい場面で今日から使える。</div>
+    <a class="source-link" href="https://code.claude.com/docs/en/whats-new" target="_blank">→ code.claude.com/docs/en/whats-new</a>
+  </div>
+
+  <div class="card green">
+    <h3>cloudflare/security-audit-skill — コーディングエージェント向けマルチフェーズセキュリティ監査 <span class="badge">GitHub Trending #3 / 17,984 stars</span></h3>
+    <p>
+      Cloudflare が公開したコーディングエージェント向けのセキュリティ監査 skill。
+      複数フェーズで構成される設計で、認証・API 露出・インジェクション・依存関係脆弱性など複合的な観点からコードを検査する。
+      Claude Code の skill 機構と組み合わせて使う想定のフォーマットで書かれている。
+    </p>
+    <div class="verdict">🟢 効率厨の一言: portfolio の Supabase RLS / Next.js API Route / middleware に対してこの skill を当てれば、今すぐセキュリティ監査レポートが出せる。既存の /security-review skill の精度補強にも使えるか検討する価値がある。</div>
+    <a class="source-link" href="https://github.com/cloudflare/security-audit-skill" target="_blank">→ github.com/cloudflare/security-audit-skill</a>
+  </div>
+
+  <!-- 💰 課金価値 -->
+  <div class="section-title blue-title">💰 課金価値</div>
+  <p style="font-size:0.85rem; color:var(--text-sub); padding:0.4rem 0;">該当なし（今回の項目は全てフリー or MAX プラン包含）</p>
+
+  <!-- 🟡 様子見 -->
+  <div class="section-title yellow-title">🟡 様子見</div>
+
+  <div class="card yellow">
+    <h3>DeepSeek V4.1 Flash — 552B MoE / 1M context / MIT ライセンス <span class="badge">2026-09-10 リリース</span></h3>
+    <p>
+      DeepSeek V4.1 Flash が 552B パラメータの MoE アーキテクチャ、1M トークンコンテキスト、MIT ライセンスでリリース。
+      weights が公開されているのでセルフホストも可能で、1M context は長文コードベースの一括解析に強みがある。
+      ただし API 経由での利用は別途コスト計算が必要。
+    </p>
+    <div class="verdict">🟡 効率厨の一言: MAX プラン定額で Claude をフル活用している現状では移行コストに見合わない。「1M context が必要な単発タスク」が出た時に API 直叩き比較対象として記憶しておく程度。MIT weights の OSS 活用は将来ローカル実行が必要になった時に再評価。</div>
+    <a class="source-link" href="https://github.com/deepseek-ai/DeepSeek-V4" target="_blank">→ github.com/deepseek-ai/DeepSeek-V4</a>
+  </div>
+
+  <div class="card yellow">
+    <h3>affaan-m/ECC — Claude Code等向けエージェントハーネス最適化 <span class="badge">GitHub Trending #1 / 263K stars</span></h3>
+    <p>
+      Claude Code 等のエージェントハーネスに対してパフォーマンス最適化を行うシステムとして Trending 1位に急上昇。
+      star 数 263K は通常のリポジトリとしては異常に高く、内容と実績の精査が先。
+      「エージェントの実行効率を上げる」というコンセプト自体は routine 運用に関係するが、実装の信頼性が未確認。
+    </p>
+    <div class="verdict">🟡 効率厨の一言: star 数の異常な高さはスター購入等の可能性があり鵜呑みにしない。リポジトリの実装・コミット履歴・issueを自分で確認してから判断。良さそうなら routine の速度改善に使えるかもしれないが今日は即導入不可。</div>
+    <a class="source-link" href="https://github.com/affaan-m/ECC" target="_blank">→ github.com/affaan-m/ECC</a>
+  </div>
+
+  <div class="card yellow">
+    <h3>BuilderIO/agent-native — エージェントネイティブアプリ構築フレームワーク <span class="badge">GitHub Trending #2 / 5,188 stars</span></h3>
+    <p>
+      BuilderIO が公開したエージェントネイティブアプリ（AI エージェントを前提とした設計のアプリ）構築フレームワーク。
+      UI レンダリングとエージェントの判断ループを統合したアーキテクチャが特徴。
+      現状の portfolio (Next.js + Claude Code MAX) では即座に置き換えるメリットが薄い。
+    </p>
+    <div class="verdict">🟡 効率厨の一言: 今の軸 B 主軸・MAX 定額運用とは別軸のアーキテクチャ話。将来「エージェントが主体で動くプロダクト」を設計する段階になったら参照価値が出る。今は星を付けておく程度。</div>
+    <a class="source-link" href="https://github.com/BuilderIO/agent-native" target="_blank">→ github.com/BuilderIO/agent-native</a>
+  </div>
+
+  <div class="card yellow">
+    <h3>Claude Code gateway hint headers 追加 <span class="badge">Sep 2026 新機能</span></h3>
+    <p>
+      LLM ゲートウェイ向けに <code>x-claude-code-request-class</code> / <code>x-claude-code-agent-type</code> /
+      <code>x-claude-code-prev-tool-durations</code> / <code>x-claude-code-compaction</code> /
+      <code>x-claude-code-context-compacted</code> の5ヘッダーが追加された。
+      ゲートウェイ側でリクエストの分類・ルーティング・ロギングができるようになる。
+    </p>
+    <div class="verdict">🟡 効率厨の一言: MAX プラン直接利用なのでゲートウェイ経由の運用は今のところなし。将来 Bedrock / Vertex 経由や自前プロキシを挟む構成に移った時にこれらヘッダーで挙動を細かく制御できるようになる。今は記録だけ。</div>
+    <a class="source-link" href="https://code.claude.com/docs/en/whats-new" target="_blank">→ code.claude.com/docs/en/whats-new</a>
+  </div>
+
+  <!-- 🚫 罠 -->
+  <div class="section-title grey-title">🚫 罠</div>
+
+  <div class="card grey">
+    <h3>paperless-ngx/paperless-ngx — スキャン・アーカイブ用文書管理システム <span class="badge">GitHub Trending #6 / 45,553 stars</span></h3>
+    <p>
+      コミュニティ開発のセルフホスト型文書管理システム。スキャンした書類の OCR・タグ付け・検索を自前サーバーで運用できる設計。
+      ドキュメント管理としての完成度は高く stars も多いが、AI コーディング自動化とは無関係のカテゴリ。
+    </p>
+    <div class="verdict">🚫 効率厨の一言: portfolio の軸 B / 個人開発スタックには関係しない。セルフホストのサーバー管理コストが増えるだけ。Trending に上がっているのはコミュニティ人気によるもので、masatoman の今の用途とは噛み合わない。</div>
+    <a class="source-link" href="https://github.com/paperless-ngx/paperless-ngx" target="_blank">→ github.com/paperless-ngx/paperless-ngx</a>
+  </div>
+
+  <div class="failed-sources">
+    <strong>取得失敗ソース:</strong>
+    <ul>
+      <li>www.anthropic.com/news — EGRESS_BLOCKED（プロキシポリシーによりアクセス不可）</li>
+      <li>obsidian.md/changelog — EGRESS_BLOCKED（プロキシポリシーによりアクセス不可）</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
