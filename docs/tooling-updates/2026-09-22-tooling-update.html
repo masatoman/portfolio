@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-22</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 16px; color: var(--muted); font-size: 0.83rem; }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.15rem; }
+      .card { padding: 12px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-09-22</h1>
+<p class="meta">
+  <span>取得日: 2026-09-22 (JST)</span>
+  <span>対象期間: 2026-09-20〜22</span>
+  <span>ソース: Claude Code releases / GitHub Trending / WebSearch (AI agents news)</span>
+</p>
+
+<!-- ================================ 🟢 即使う ================================ -->
+<div class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>Claude Code v2.1.277 — AGENTS.md サポート追加 <span class="badge">2026-09-18</span></h3>
+    <p>リポジトリルートに <code>AGENTS.md</code> を置くと Claude Code エージェントに自動読み込みされる追加コンテキストとして機能するようになった。CLAUDE.md と役割分担が可能。</p>
+    <p class="verdict">【効率厨verdict】portfolio repo では CLAUDE.md が長大化しているが、daily routine エージェント群に特化した設定（ルーティンプロンプト・ツール制限・軸B制約）を AGENTS.md に切り出せる。CLAUDE.md を軽くしてエージェント実行の token コストを削減できる場面で即効あり。今日試す価値あり。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.277" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.277</a>
+  </div>
+</div>
+
+<!-- ================================ 💰 課金価値 ================================ -->
+<div class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし</p>
+</div>
+
+<!-- ================================ 🟡 様子見 ================================ -->
+<div class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>Anthropic 内部 — Claude エージェント 30,000 台同時稼働・R&D の 26% を担う開示 <span class="badge">2026-09-18 開示</span></h3>
+    <p>Anthropic が自社モデル研究開発の 26% を Claude エージェントが担い、常時 30,000 エージェントが並列実行されていると発表した。</p>
+    <p class="verdict">【効率厨verdict】「AI が AI を作る」サイクルが実証された事例として記事ネタになる。masatoman.net の「AIに業務を任せる設計の実験ログ」コンセプトと直接呼応する情報なので、SEO 比較記事の背景エビデンスとして使えるが、今すぐ運用フローを変えるトリガーではない。</p>
+    <a class="source-link" href="https://aiagentsdirectory.com/news/ai-agents-news-brief-september-20-2026" target="_blank">→ aiagentsdirectory.com/news/ai-agents-news-brief-september-20-2026</a>
+  </div>
+
+  <div class="card">
+    <h3>Jev ブラウザエージェント — 7秒 Web 自動化 <span class="badge">2026-09 launch</span></h3>
+    <p>TypeSafe の System One モデルを活用した超高速ブラウザ自動化エージェント。プロトコル呼び出し数を大幅削減し、Web 自動化タスクを 7秒で完了できると実証。</p>
+    <p class="verdict">【効率厨verdict】GSC データ収集や demo-gallery 投票確認など、定期的な Web 取得タスクに適用できる可能性あり。ただし TypeSafe/System One の利用形態・コスト・Claude Code との連携方法が不明。具体的なドキュメントが出揃ってから判断。</p>
+    <a class="source-link" href="https://blog.mean.ceo/ai-automation-trends-september-2026/" target="_blank">→ blog.mean.ceo/ai-automation-trends-september-2026/</a>
+  </div>
+
+  <div class="card">
+    <h3>Google ADK (Agent Development Kit) for Kotlin — Android オンデバイス AI <span class="badge">2026-09</span></h3>
+    <p>Python 版と機能同等の Kotlin 版 Google ADK が公開。Android 向けオンデバイス AI サポートを追加。</p>
+    <p class="verdict">【効率厨verdict】masatoman のスタック（Next.js / Claude Code）には直接関係なし。Android アプリ開発者向け。競合エコシステムの動向把握として記録する程度。</p>
+    <a class="source-link" href="https://aiagentstore.ai/ai-agent-news/2026-september" target="_blank">→ aiagentstore.ai/ai-agent-news/2026-september</a>
+  </div>
+
+  <div class="card">
+    <h3>akitaonrails/ai-memory — Rust 製 AI エージェントメモリ管理 <span class="badge">GitHub Trending #4 / +167 stars today</span></h3>
+    <p>エージェントのメモリ永続化・管理を Rust で実装した OSS。スター数 7,662。Claude Code の <code>.claude/</code> memory とは別物で、プログラマブルなメモリ API を提供。</p>
+    <p class="verdict">【効率厨verdict】Claude Code の memory 運用が既に確立されているので置き換え不要。ただし Rust 製で軽量高速なため、複数エージェント間でメモリを共有したい将来フェーズで参照価値あり。今は trending を確認しておく程度。</p>
+    <a class="source-link" href="https://github.com/akitaonrails/ai-memory" target="_blank">→ github.com/akitaonrails/ai-memory</a>
+  </div>
+</div>
+
+<!-- ================================ 🚫 罠 ================================ -->
+<div class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>Open-Dev-Society/OpenStock — TypeScript OSS <span class="badge">GitHub Trending #3 / +844 stars today</span></h3>
+    <p>本日のトレンド上位だが、内容はストック素材系 OSS で AI / 自動化とは無関係。スター急増は trending アルゴリズムの特性による一時的な注目。</p>
+    <p class="verdict">【効率厨verdict】趣旨が AI/自動化からずれており masatoman の運用に組み込む場面なし。trending に乗っているだけで実用価値のある発見ではない。</p>
+    <a class="source-link" href="https://github.com/Open-Dev-Society/OpenStock" target="_blank">→ github.com/Open-Dev-Society/OpenStock</a>
+  </div>
+
+  <div class="card">
+    <h3>Crosstalk-Solutions/project-nomad — TypeScript <span class="badge">GitHub Trending #6 / +394 stars today</span></h3>
+    <p>37,848 stars とスター数は多いが README・説明が薄く、何をするものかが公開情報からは判断困難。急激なスター増加は bot や coordinated starring の可能性がある。</p>
+    <p class="verdict">【効率厨verdict】情報が揃う前に手を出すと設計判断を誤るリスクあり。詳細情報が充実してから改めて評価する。</p>
+    <a class="source-link" href="https://github.com/Crosstalk-Solutions/project-nomad" target="_blank">→ github.com/Crosstalk-Solutions/project-nomad</a>
+  </div>
+</div>
+
+<!-- ================================ 取得失敗ソース ================================ -->
+<div class="failures">
+  <h2>取得失敗ソース (2件)</h2>
+  <ul>
+    <li>anthropic.com/news — EGRESS_BLOCKED (プロキシによりブロック)</li>
+    <li>obsidian.md/changelog — EGRESS_BLOCKED (プロキシによりブロック)</li>
+  </ul>
+</div>
+
+</body>
+</html>
