@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-23</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 16px; color: var(--muted); font-size: 0.83rem; }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.15rem; }
+      .card { padding: 12px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-09-23</h1>
+<p class="meta">
+  <span>取得日: 2026-09-23 (JST)</span>
+  <span>対象期間: 2026-09-21〜23</span>
+  <span>ソース: GitHub Releases (claude-code) / Anthropic news / GitHub Trending / WebSearch (AI automation / 個人開発 AI ツール 新着)</span>
+</p>
+
+<!-- ================================ 🟢 即使う ================================ -->
+<div class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>Claude Code v2.1.280 — Opus 5.5 デフォルト化 + CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH 追加 <span class="badge">2026-09-22</span></h3>
+    <p>Claude Code が v2.1.280 にアップデート。主な変更は3点：① <code>claude-opus-5-5</code> が新しいデフォルト Opus モデルとして採用（1M コンテキスト、前バージョン比 30% 高速）、② MCP ツールの説明文の最大長を制限できる環境変数 <code>CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH</code> が追加、③ symlinked パス・auto モードリトライ・Write バリデーション等の 100+ バグ修正。</p>
+    <p class="verdict">【効率厨verdict】① MAX プラン定額なので Opus 5.5 の性能向上（agentic coding ベンチで Fable 5.1 超え）は今日から自動で享受できる。② Vercel / Supabase など MCP ツールの description が長大で token を食っている場合、<code>CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH=500</code> 等を .env に追加するだけでコンテキスト圧縮に効く。今すぐ試す価値あり。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.280" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.280</a>
+  </div>
+
+  <div class="card">
+    <h3>Claude Opus 5.5 正式リリース — Fable 5.1 超えのアジェンティックコーディング性能 <span class="badge">2026-09-22 Anthropic</span></h3>
+    <p>Anthropic が Claude Opus 5.5 を正式リリース。性能面：agentic coding・computer use・視覚チャート認識・多分野推論で Fable 5.1 を超過。速度面：Opus 5 比 30% 高速。安全面：prescribed boundaries の突破試行が Opus 5 比 85% 減。MAX プランでは即日適用で追加課金なし。</p>
+    <p class="verdict">【効率厨verdict】tooling-update-watch をはじめとする daily routine エージェントが今日から Opus 5.5 を使う（v2.1.280 で既定）。「30% 高速」はルーティン実行時間の短縮に直結し、9,000 分/月のコンテキスト消費削減につながる。安全性向上（85% 減）は routine が意図しない外部アクションを取るリスク低下を意味する。アクション不要、自動適用済み。</p>
+    <a class="source-link" href="https://www.anthropic.com/claude-opus-5-5" target="_blank">→ anthropic.com/claude-opus-5-5</a>
+  </div>
+</div>
+
+<!-- ================================ 💰 課金価値 ================================ -->
+<div class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（MAX プラン定額のため Opus 5.5 の API 価格差 40% 削減は直接影響なし。将来 API 直叩きが発生した際は $4/$20 per Mtok + $0.20/Mtok キャッシュ読み出しが参照値）</p>
+</div>
+
+<!-- ================================ 🟡 様子見 ================================ -->
+<div class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>google/ax — Google OSS エージェントオーケストレーション runtime <span class="badge">GitHub Trending #1 / +2,305 stars today</span></h3>
+    <p>Google がエージェントオーケストレーション用 runtime 「ax」を OSS 公開。Go 実装で 7,563 stars（今日だけで +2,305）。複数エージェントの協調・ツール呼び出し・フロー制御を単一 runtime で管理する設計。</p>
+    <p class="verdict">【効率厨verdict】現在の Claude Code MAX 単体運用には直接置き換えは不要。ただし将来「複数 AI エージェントが協調して portfolio 運用を担う」フェーズで参照価値が出る。Go 実装なので Next.js スタックへの直接組み込みは難しく、まず README を読んで設計思想を把握する程度で十分。</p>
+    <a class="source-link" href="https://github.com/google/ax" target="_blank">→ github.com/google/ax</a>
+  </div>
+
+  <div class="card">
+    <h3>dream-num/univer — AI エージェント向け Office ハーネス（スプレッドシート/ドキュメント/スライド） <span class="badge">GitHub Trending / +255 stars today / 15,379 stars</span></h3>
+    <p>AI エージェントからスプレッドシート・ドキュメント・スライド・キャンバスを操作するための「Office ハーネス」OSS。エージェントが Excel・Google Sheets 相当の操作をプログラマブルに実行できる設計。</p>
+    <p class="verdict">【効率厨verdict】GSC データや demo-gallery 投票結果をエージェントが自動でスプレッドシート整形する場面で使えるか検討価値あり。ただし現状はシンプルな CSV 出力で十分で、Supabase から直接取得している。複雑な帳票・集計レポート自動生成が必要になったタイミングで再評価。</p>
+    <a class="source-link" href="https://github.com/dream-num/univer" target="_blank">→ github.com/dream-num/univer</a>
+  </div>
+
+  <div class="card">
+    <h3>davila7/claude-code-templates — Claude Code 設定・モニタリング CLI <span class="badge">GitHub Trending / +64 stars today / 31,113 stars</span></h3>
+    <p>Claude Code の設定（CLAUDE.md テンプレート・hooks・skills・permissions）を CLI から管理・配布できるツール。31K stars の実績あり。プロジェクトごとの設定を template として再利用できる。</p>
+    <p class="verdict">【効率厨verdict】portfolio の CLAUDE.md 肥大化・複数 routine の settings 管理には直接刺さる用途。ただし既に CLAUDE.md ＋ memory 体系が確立されている今、移行コストをかける優先度は低い。新規プロジェクト起動時や routine を別 repo に切り出す際に採用を検討する価値がある。</p>
+    <a class="source-link" href="https://github.com/davila7/claude-code-templates" target="_blank">→ github.com/davila7/claude-code-templates</a>
+  </div>
+
+  <div class="card">
+    <h3>superdesigndev/treg — エージェントツール向け OpenRouter 相当ルーター <span class="badge">GitHub Trending / +230 stars today / 2,206 stars</span></h3>
+    <p>エージェントが呼び出すツール（MCP tools 等）を複数バックエンドにルーティングする OpenRouter 的な middleware。Python 実装。ツールの切り替え・フォールバック・ロードバランシングを一元管理。</p>
+    <p class="verdict">【効率厨verdict】現在の Claude Code + Supabase/Vercel/GitHub MCP の構成で特定ツールが落ちた際のフォールバックとして将来的に有用になりうる。しかし今は各 MCP が安定稼働しており routing middleware を挟む複雑さを増すタイミングではない。MCP 障害が頻発するようになったら改めて評価。</p>
+    <a class="source-link" href="https://github.com/superdesigndev/treg" target="_blank">→ github.com/superdesigndev/treg</a>
+  </div>
+</div>
+
+<!-- ================================ 🚫 罠 ================================ -->
+<div class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>anthropics/financial-services — Anthropic 公式 Python 金融サービスデモ <span class="badge">GitHub Trending / +438 stars today / 36,314 stars</span></h3>
+    <p>Anthropic が公式リポジトリで公開している金融サービス向け Python デモ集。トレンド入りしているが内容は金融特化の応用例であり、汎用 AI 開発ツールではない。</p>
+    <p class="verdict">【効率厨verdict】masatoman のスタック（Next.js / Claude Code MAX / 軸 B 工務店）とはターゲット層がまるで違う。trending に乗っているだけで今の運用フローに取り込む場面は皆無。スルー推奨。</p>
+    <a class="source-link" href="https://github.com/anthropics/financial-services" target="_blank">→ github.com/anthropics/financial-services</a>
+  </div>
+
+  <div class="card">
+    <h3>browser-use/video-use — コーディングエージェントで動画編集 <span class="badge">GitHub Trending / +191 stars today / 25,833 stars</span></h3>
+    <p>browser-use チームが公開した動画編集専用のコーディングエージェントフレームワーク。Python ベース。browser-use の動画版という位置づけ。</p>
+    <p class="verdict">【効率厨verdict】動画編集は現時点の作業フローに存在しない。routine の自動化にも portfolio の工務店向けデモにも接点なし。「AI で動画編集できるようになった」という業界動向として認識する程度で十分。手を出さない。</p>
+    <a class="source-link" href="https://github.com/browser-use/video-use" target="_blank">→ github.com/browser-use/video-use</a>
+  </div>
+
+  <div class="card">
+    <h3>OpenAI Agents API 全開発者向け一般公開 <span class="badge">2026-09 GA</span></h3>
+    <p>OpenAI が Agents API を全開発者向けに公開。durable セッション・ツール呼び出し・サブエージェント協調・ホスト / 外部実行環境を選択できる設計。</p>
+    <p class="verdict">【効率厨verdict】Claude Code MAX 定額で完結している現状では OpenAI エコシステムへの移行コストは発生させるべきでない。ツールロックインを深めるだけで今のスタックに対するメリットがゼロ。競合動向の把握として記録するが、採用検討は不要。</p>
+    <a class="source-link" href="https://openai.com/blog/agents-api" target="_blank">→ openai.com/blog/agents-api</a>
+  </div>
+</div>
+
+<!-- ================================ 取得失敗ソース ================================ -->
+<div class="failures">
+  <h2>取得失敗ソース (2件)</h2>
+  <ul>
+    <li>obsidian.md/changelog — EGRESS_BLOCKED (プロキシによりブロック、前日同様)</li>
+    <li>docs.claude.com/release-notes — 301→307 リダイレクト後 github.com/anthropics/claude-code/releases で取得に切替、成功</li>
+  </ul>
+</div>
+
+</body>
+</html>
