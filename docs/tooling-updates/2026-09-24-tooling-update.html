@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-24</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 16px; color: var(--muted); font-size: 0.83rem; }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.15rem; }
+      .card { padding: 12px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-09-24</h1>
+<p class="meta">
+  <span>取得日: 2026-09-24 (JST)</span>
+  <span>対象期間: 2026-09-22〜24</span>
+  <span>ソース: GitHub Releases (claude-code) / Anthropic news / GitHub Trending / WebSearch (AI automation / agentic skills / MCP servers)</span>
+</p>
+
+<!-- ================================ 🟢 即使う ================================ -->
+<div class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>Claude Code v2.1.281 — <code>rm -rf "$(pwd)"</code> 自動実行バグ修正含む重要リリース <span class="badge">2026-09-23</span></h3>
+    <p>Claude Code が v2.1.281 にアップデート（9/23 19:19 リリース）。主な修正は6点：① <strong>auto モードで <code>rm -rf "$(pwd)"</code> が無予告実行されるセキュリティバグを修正</strong>、② APIリトライ中のクラッシュでセッションが終了するバグを修正、③ <code>--max-turns</code> が無視されて無限リトライするバグを修正、④ 再開セッションが過去ターンを改変して再送信するバグを修正、⑤ MCP サーバー切断時にプロンプトキャッシュが消失するバグを修正、⑥ プロキシで短縮されたレスポンスを「完了」と誤認するバグを修正。またBedrock向けに <code>assume_role</code> STS セッション対応、MCP URL-mode elicitation (2026-07-28 protocol) も追加。</p>
+    <p class="verdict">【効率厨verdict】① の auto モードで <code>rm -rf "$(pwd)"</code> が走るバグは、tooling-update-watch を含む全 routine エージェントに影響しうる致命的なセキュリティ修正。MAX プランは自動更新なので既に適用済みのはずだが、念のため <code>claude --version</code> で v2.1.281 以上を確認する。⑤ の MCP 切断時キャッシュ消失修正も、Supabase / Vercel / GitHub MCP を常用している今の構成で長時間セッションが安定する効果がある。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.281" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.281</a>
+  </div>
+</div>
+
+<!-- ================================ 💰 課金価値 ================================ -->
+<div class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（MAX プラン定額のため新規課金判断なし）</p>
+</div>
+
+<!-- ================================ 🟡 様子見 ================================ -->
+<div class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>DeusData/codebase-memory-mcp — コードベース知識グラフ MCP（token 99% 削減） <span class="badge">GitHub Trending / +190 today / 44,556 stars</span></h3>
+    <p>コードベースを tree-sitter で解析して SQLite 知識グラフにインデックスし、Claude Code などの MCP クライアントから sub-ms クエリで参照できる MCP サーバー。158 言語対応、単一静的バイナリ（依存ゼロ）。14 ツール（関数検索・呼び出しトレース・アーキテクチャ解析・デッドコード検出・ADR 管理・クロスサービス HTTP リンク等）を提供。「99% fewer tokens」は大規模コードベース上での実測値。</p>
+    <p class="verdict">【効率厨verdict】Claude Code の MCP として <code>.claude/settings.json</code> に追加するだけで、大規模リファクタ時のコンテキスト消費を劇的に削減できる。portfolio 単体では現状問題ないが、monorepo 側 (個人開発マネタイズプラットフォーム/) と合わせて読み込むようなセッションが発生した際に即効性がある。単一バイナリで依存ゼロなのでインストールリスクが低く、大きなリファクタが来たタイミングで試す価値大。</p>
+    <a class="source-link" href="https://github.com/DeusData/codebase-memory-mcp" target="_blank">→ github.com/DeusData/codebase-memory-mcp</a>
+  </div>
+
+  <div class="card">
+    <h3>obra/superpowers — AI エージェント向け composable skills フレームワーク <span class="badge">GitHub Trending / +474 today / 290,677 stars</span></h3>
+    <p>Jesse Vincent (Prime Radiant) が開発した「AI コーディングエージェントのためのソフトウェア開発メソドロジー」。composable skills の集合体で、計画・コードレビュー・デバッグ・診断を skill として定義し Claude Code 等に食わせる設計。特徴的なのは「diagnosing-superpowers」スキル: エージェントにセッション transcript を読ませて何が失敗したかをライン単位で報告させる診断機能。290K+ stars は本物のシグナル。</p>
+    <p class="verdict">【効率厨verdict】masatoman はすでに CLAUDE.md + memory + Skills 体系で独自の「superpowers 相当」を構築済み。全面移行は不要だが「セッション診断スキル」の実装パターンは参照価値がある。routine エージェントが意図しない挙動をした際に transcript を自動解析させる仕組みとして応用できる。README と SKILL.md を読んで設計思想を把握するだけで十分（30 分以内）。</p>
+    <a class="source-link" href="https://github.com/obra/superpowers" target="_blank">→ github.com/obra/superpowers</a>
+  </div>
+
+  <div class="card">
+    <h3>strands-agents/harness-sdk — マルチモデル対応 本番エージェント SDK <span class="badge">GitHub Trending / +115 today / 7,833 stars</span></h3>
+    <p>複数の AI モデル（Claude・GPT・Gemini 等）を横断して本番エージェントを構築するための Python SDK。モデル切り替え・ツール呼び出し管理・フォールバック設定を一元化する設計。AWS Labs 系の公式 SDK。</p>
+    <p class="verdict">【効率厨verdict】現状 Claude Code MAX 定額で全処理が完結しており、マルチモデル化を検討する理由がない。AWS Bedrock 経由でコスト最適化したい将来フェーズ（MRR 安定後のスケール期）に改めて評価するリスト入り。今は不要。</p>
+    <a class="source-link" href="https://github.com/strands-agents/harness-sdk" target="_blank">→ github.com/strands-agents/harness-sdk</a>
+  </div>
+</div>
+
+<!-- ================================ 🚫 罠 ================================ -->
+<div class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>Open-Dev-Society/OpenStock — AI 分析付きオープンソース株価トラッキング <span class="badge">GitHub Trending / +344 today / 18,809 stars</span></h3>
+    <p>リアルタイム株価監視と AI 分析を組み合わせたオープンソース市場追跡プラットフォーム。TypeScript 実装。trending に乗って +344 stars。</p>
+    <p class="verdict">【効率厨verdict】masatoman の作業フロー（軸 B 工務店 SaaS・portfolio 運用・routine エージェント）と完全に無関係。「AI 分析」の名を借りた金融ダッシュボードで、今のスタックに接点なし。スルー推奨。</p>
+    <a class="source-link" href="https://github.com/Open-Dev-Society/OpenStock" target="_blank">→ github.com/Open-Dev-Society/OpenStock</a>
+  </div>
+
+  <div class="card">
+    <h3>BuilderIO/agent-native — エージェントパワード TypeScript アプリフレームワーク <span class="badge">GitHub Trending / +87 today / 6,530 stars</span></h3>
+    <p>エージェント駆動アプリを構築するための TypeScript フレームワーク。trending 入りしているが +87 stars は低シグナル。</p>
+    <p class="verdict">【効率厨verdict】Next.js + Claude Code の現構成を置き換えるメリットが不明瞭。エコシステムの成熟度・ドキュメント・採用事例がまだ薄く、今乗り換える理由がない。6,500 stars でトレンドに乗れているのは注目の証左だが、+87/日は「話題になっている」ではなく「まだ発見されていない」段階。1年後に改めて評価。</p>
+    <a class="source-link" href="https://github.com/BuilderIO/agent-native" target="_blank">→ github.com/BuilderIO/agent-native</a>
+  </div>
+</div>
+
+<!-- ================================ 取得失敗ソース ================================ -->
+<div class="failures">
+  <h2>取得失敗ソース (2件)</h2>
+  <ul>
+    <li>obsidian.md/changelog — EGRESS_BLOCKED (プロキシによりブロック、前日同様)</li>
+    <li>docs.claude.com/release-notes → platform.claude.com → github.com/anthropics/claude-code/blob/main/CHANGELOG.md にリダイレクト（2段階）、最終的に releases ページで取得成功</li>
+  </ul>
+</div>
+
+</body>
+</html>
