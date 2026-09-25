@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-25</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 16px; color: var(--muted); font-size: 0.83rem; }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.15rem; }
+      .card { padding: 12px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-09-25</h1>
+<p class="meta">
+  <span>取得日: 2026-09-25 (JST)</span>
+  <span>対象期間: 2026-09-23〜25</span>
+  <span>ソース: GitHub Releases (claude-code) / Anthropic news / GitHub Trending / WebSearch (AI automation / Claude Code update / AI agents news)</span>
+</p>
+
+<!-- ================================ 🟢 即使う ================================ -->
+<div class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>Claude Code v2.1.282 — resumed session 改変バグ修正 + <code>maxProseWidth</code> 設定追加 <span class="badge">2026-09-24 18:38 UTC</span></h3>
+    <p>v2.1.281 に続く翌日リリース。主な修正：① <strong>resumed/continued session が以前のメッセージを変形して再送信するバグを修正</strong>（reasoning が再送時に落ちて API がキャッシュ破棄していた問題）、② slash コマンド（<code>/model</code> / <code>/rename</code> / <code>/artifacts</code>）実行時に extended thinking が消えるバグ修正、③ 400 エラー（web search 結果が復号不能な会話でリクエスト失敗）を修正、④ 中間パターンの <code>:*</code> 権限ルールが特定状況でスキップされるバグを修正。新機能として <code>maxProseWidth</code> 設定（wide terminal での prose 折り返し幅を cap、テーブル・コードは full width 維持）と Chrome managed mode での <code>allowClaudeInChromeWithManagedMcp</code> 設定が追加。</p>
+    <p class="verdict">【効率厨verdict】① の resumed session 改変バグは tooling-update-watch など daily routine エージェントが長時間セッションを継続する際に reasoning が消えて精度が落ちる原因だった可能性がある。MAX プランは自動更新なので修正は適用済みのはず。<code>maxProseWidth: 100</code> 等を <code>.claude/settings.json</code> に追加すれば routine レポートの行折り返しが整い可読性が上がる。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.282" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.282</a>
+  </div>
+</div>
+
+<!-- ================================ 💰 課金価値 ================================ -->
+<div class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（MAX プラン定額のため新規課金判断なし）</p>
+</div>
+
+<!-- ================================ 🟡 様子見 ================================ -->
+<div class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>vectorize-io/hindsight — 学習するエージェントメモリ <span class="badge">GitHub Trending #2 / +1,668 stars today</span></h3>
+    <p>「Agent Memory That Learns」がキャッチフレーズの Python 製 OSS。エージェントが過去のインタラクション（成功・失敗パターン）から自動で memory を更新・精錬していく設計。Vectorize.io チームが開発し、今日だけで 1,668 stars 急増。</p>
+    <p class="verdict">【効率厨verdict】Claude Code の memory 運用（MEMORY.md を手動更新）を自動化できるコンセプトで、原理的には routine エージェントの品質が自動改善するサイクルが作れる。ただし Claude Code の <code>.claude/memory/</code> 形式との互換性・Supabase 連携の設計が不明。大きなセッション断が重なった際に実際に試す価値大。まず README と設計ドキュメントを確認する（30 分以内）。</p>
+    <a class="source-link" href="https://github.com/vectorize-io/hindsight" target="_blank">→ github.com/vectorize-io/hindsight</a>
+  </div>
+
+  <div class="card">
+    <h3>HKUDS/CLI-Anything — 既存 CLI を全てエージェント対応にする汎用ブリッジ <span class="badge">GitHub Trending #8 / +413 stars today</span></h3>
+    <p>「Making ALL Software Agent-Native」がコンセプトの Python 製フレームワーク。既存の任意 CLI ツールを AI エージェントから操作可能なインターフェースとして自動ラップする設計（CLI-Hub）。MCP 化されていない CLI を Claude Code から直接呼べるようにする橋渡し役。</p>
+    <p class="verdict">【効率厨verdict】Claude Code が shell コマンドを直接実行できる現構成では優先度は低いが、MCP が提供されていない特定 CLI（例：GSC CLI・独自スクリプト群）をエージェントに安全に渡す場面で将来的に有用。現状は Bash ツール経由で十分なので「MCP 移行の選択肢」として記録。</p>
+    <a class="source-link" href="https://github.com/HKUDS/CLI-Anything" target="_blank">→ github.com/HKUDS/CLI-Anything</a>
+  </div>
+
+  <div class="card">
+    <h3>Amazon Selling Partner プラグイン — Claude 向けベータ公開 <span class="badge">2026-09-24 launch</span></h3>
+    <p>Amazon が Selling Partner プラグインを Amazon Quick に統合し、Anthropic Claude とのベータ接続を US ストア向けに公開。セラーが自然言語で価格調整・在庫補充・パフォーマンス確認をエージェント経由で実行できる設計。</p>
+    <p class="verdict">【効率厨verdict】masatoman の工務店 SaaS 路線とは無関係だが、Anthropic のプラグインエコシステムが EC/小売まで広がってきた動向として把握しておく価値あり。将来「Claude プラグインの B2B 展開」という記事ネタとして masatoman.net に使える文脈情報。今すぐアクション不要。</p>
+    <a class="source-link" href="https://agilebrandguide.com/yesterdays-martech-ai-cx-news-september-24-2026/" target="_blank">→ agilebrandguide.com/yesterdays-martech-ai-cx-news-september-24-2026/</a>
+  </div>
+</div>
+
+<!-- ================================ 🚫 罠 ================================ -->
+<div class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>Google Gemini API antigravity-preview-09-2026 — Gemini 3.8 Flash エージェントハーネス <span class="badge">2026-09-24 launch</span></h3>
+    <p>Google が Gemini API の managed agents に <code>antigravity-preview-09-2026</code> ハーネスを追加。Antigravity コーディングエージェントのツール群と挙動を AI Studio および Interactions API 経由で利用可能に。Gemini 3.8 Flash ベース。</p>
+    <p class="verdict">【効率厨verdict】Claude Code MAX 定額で全処理が完結している今の構成から乗り換えるメリットがない。マルチプロバイダ化の検討は MRR 安定後のスケール期（2027 年以降）。preview 段階の不安定なハーネスに移行コストをかけるのは典型的なツール乗り換え罠。</p>
+    <a class="source-link" href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank">→ aiagentstore.ai/ai-agent-news/this-week</a>
+  </div>
+
+  <div class="card">
+    <h3>OpenAI Sora API 廃止 (Sep 24 終了) <span class="badge">2026-09-24 EOL</span></h3>
+    <p>OpenAI が Sora API を 9 月 24 日をもって廃止し、開発者アクセスを終了した。動画生成 API として提供されていたが、サービス自体の継続は不明。</p>
+    <p class="verdict">【効率厨verdict】masatoman のスタックに Sora は含まれていないため直接影響なし。ただし「特定 AI API への依存が突然切れるリスク」の実例として、masatoman.net の「AIに業務を任せる設計」文脈で「依存先を分散する重要性」を語る記事ネタに使える。今すぐ運用変更は不要。</p>
+    <a class="source-link" href="https://agilebrandguide.com/yesterdays-martech-ai-cx-news-september-24-2026/" target="_blank">→ agilebrandguide.com/yesterdays-martech-ai-cx-news-september-24-2026/</a>
+  </div>
+</div>
+
+<!-- ================================ 取得失敗ソース ================================ -->
+<div class="failures">
+  <h2>取得失敗ソース (2件)</h2>
+  <ul>
+    <li>obsidian.md/changelog — EGRESS_BLOCKED（プロキシによりブロック、前日同様）</li>
+    <li>docs.claude.com/release-notes → platform.claude.com → github.com/anthropics/claude-code/blob/main/CHANGELOG.md へ2段階リダイレクト（releases ページで代替取得成功）</li>
+  </ul>
+</div>
+
+</body>
+</html>
