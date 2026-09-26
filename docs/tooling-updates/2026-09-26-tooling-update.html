@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-26</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 16px; color: var(--muted); font-size: 0.83rem; }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.15rem; }
+      .card { padding: 12px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-09-26</h1>
+<p class="meta">
+  <span>取得日: 2026-09-26 (JST)</span>
+  <span>対象期間: 2026-09-24〜26</span>
+  <span>ソース: GitHub Releases (claude-code) / Anthropic news / GitHub Trending / WebSearch (AI automation / Claude Code update / AI agents news)</span>
+</p>
+
+<!-- ================================ 🟢 即使う ================================ -->
+<div class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>Claude Code v2.1.283 — <code>/doctor prompt-audit</code> で CLAUDE.md を診断 + startup 高速化 <span class="badge">2026-09-25 21:50 UTC</span></h3>
+    <p>新機能が3点。① <strong><code>/doctor prompt-audit</code></strong>：プロジェクト内の CLAUDE.md ファイルと prompting パターンを旧モデル向けの非効率な書き方がないか監査するコマンドを追加。② <strong>モデルバージョン固定設定</strong>：<code>availableModelsMatch: "exact"</code> で特定モデルバージョン以外を blocked、<code>deniedModels</code> リストで個別モデルを除外できる managed setting を追加。③ <strong>startup 高速化</strong>：auto-mode 分類器と Artifact ツールのロードを遅延評価に変更し、初回起動を改善。加えて SDK セッションが turn 早期終了時に deferred tool calls を消失するバグ、vim mode のカーソル位置・キーリピートの多数バグも修正。</p>
+    <p class="verdict">【効率厨verdict】<code>/doctor prompt-audit</code> は「今すぐ叩ける」コマンド。portfolio の <code>CLAUDE.md</code>（STRATEGY.md import + 40+ memory インデックス）と Skills ファイル群は Claude 3.5 Sonnet 時代に書かれた記述が混在している可能性がある。今日 <code>$claude /doctor prompt-audit</code> を実行して不要なプロンプトパターンを刈り込むと routine エージェントの精度・コスト効率が改善する。モデル固定設定は Sonnet 4.6 pinning にも使える。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.283" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.283</a>
+  </div>
+
+  <div class="card">
+    <h3>anthropics/claude-plugins-official — Anthropic 公式プラグインディレクトリ <span class="badge">GitHub Trending #2 / 36,926 stars</span></h3>
+    <p>Anthropic が管理・キュレーションした「品質基準をパスした Claude Code プラグイン」の公式一覧リポジトリ。コミュニティ製プラグインとは別に、Anthropic のレビューを経たものが集約されている。現在 36k stars で急伸中。</p>
+    <p class="verdict">【効率厨verdict】issue-finder・content_briefs routine などの自作ツールと機能重複するプラグインが既にある場合は自作を捨てて公式プラグインに乗り換えた方が保守コストが下がる。まず <code>gh repo clone anthropics/claude-plugins-official</code> して README を眺め、Supabase 連携・GSC 自動化・daily routine 系のプラグインが既存で存在しないか確認する（15分以内）。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-plugins-official" target="_blank">→ github.com/anthropics/claude-plugins-official</a>
+  </div>
+</div>
+
+<!-- ================================ 💰 課金価値 ================================ -->
+<div class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（MAX プラン定額のため新規課金判断なし）</p>
+</div>
+
+<!-- ================================ 🟡 様子見 ================================ -->
+<div class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>mattpocock/skills — "Skills for Real Engineers" (.agents/ 設計の実例集) <span class="badge">GitHub Trending #5 / 269,716 stars</span></h3>
+    <p>Matt Pocock（TypeScript 教育系著名人）が自身の実運用 <code>.agents/</code> ディレクトリと Skills 設計を公開したリポジトリ。「Real Engineers」向けの実務レベルの skill ファイル群・設計思想・命名規則が収録されている。Shell 製、269k stars と急激に伸びている。</p>
+    <p class="verdict">【効率厨verdict】masatoman の <code>.claude/skills/</code> 構成は独自進化してきたが、実務での設計思想との差分を確認する価値がある。特に「skill の粒度」「呼び出しトリガーの書き方」は参考になりうる。週末に30分読むだけでも SKILL.md の書き方改善につながる可能性あり。今すぐの改修より「インプット」として優先。</p>
+    <a class="source-link" href="https://github.com/mattpocock/skills" target="_blank">→ github.com/mattpocock/skills</a>
+  </div>
+
+  <div class="card">
+    <h3>paperclipai/paperclip — "みんなが使う" オープンソースのエージェント管理アプリ <span class="badge">GitHub Trending #1 / 84,894 stars</span></h3>
+    <p>「The open-source app everyone uses to manage agents at work」がキャッチコピーの TypeScript 製 OSS。複数エージェントのタスクスケジューリング・メモリ共有・実行状態の一元管理を担うアプリ。スター数が群を抜いてトレンド 1 位。</p>
+    <p class="verdict">【効率厨verdict】現在は portfolio routine + masatoman.net routine の2本を Claude Code sessions で個別管理しており、過剰な仕組みになる。ただし軸 B が本格スケールして複数エージェントを並走させる日が来たら有力候補。今は README だけ読んで設計思想を把握する（15分）。今すぐ導入は over-engineering。</p>
+    <a class="source-link" href="https://github.com/paperclipai/paperclip" target="_blank">→ github.com/paperclipai/paperclip</a>
+  </div>
+
+  <div class="card">
+    <h3>Strada — レガシー Web ポータルのブラウザ操作を記録→再生する自動化ツール <span class="badge">2026-09-24 発表</span></h3>
+    <p>Strada が発表したブラウザ自動化機能。エンジニアなしで Web ベースのキャリアポータル・レガシーシステム内のワークフローを「記録して再生」できる設計で、実行ログが全件監査対応。</p>
+    <p class="verdict">【効率厨verdict】工務店が使う国交省系 Web ポータル（建設業許可申請・補助金申請画面）の操作自動化に将来的に使える概念。ただし今は軸 B ヒアリングフェーズ（MVP 投入は 12-2 月）であり、実装検討は主軸確定（11 月末）以降。工務店業界のペインが「ポータル操作の繰り返し作業」であれば製品訴求の文脈でネタになる。</p>
+    <a class="source-link" href="https://blog.mean.ceo/ai-product-launches-news-september-2026/" target="_blank">→ blog.mean.ceo/ai-product-launches-news-september-2026/</a>
+  </div>
+
+  <div class="card">
+    <h3>Alibaba Apsara 2026 — Agentic Cloud 全スタック + Qwen 新モデル発表 <span class="badge">2026-09-25 Apsara Conference</span></h3>
+    <p>Alibaba が Apsara Conference で「agentic cloud」の全スタックロードマップを公開。専用クラウドインフラ、新 Qwen 基盤モデル、マルチモーダルモデルを一体で発表。</p>
+    <p class="verdict">【効率厨verdict】Claude MAX 定額で全処理が完結している今の構成を切り替える理由はない。ただし Qwen 新モデルが OSS で公開されれば、将来的に「コスト試算用のローカルモデル」や「特定タスク向けの cheap tier」として選択肢に入る。今はスター数と OSS 公開タイミングだけウォッチ。</p>
+    <a class="source-link" href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank">→ aiagentstore.ai/ai-agent-news/this-week</a>
+  </div>
+</div>
+
+<!-- ================================ 🚫 罠 ================================ -->
+<div class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>NVIDIA/Model-Optimizer — モデル量子化・推論高速化ツールキット <span class="badge">GitHub Trending #9 / 4,460 stars</span></h3>
+    <p>NVIDIA が提供するモデル最適化・量子化・推論高速化の研究向けツールキット。FP8/INT8 量子化、知識蒸留、スパース化など GPU ローカル推論の高速化に特化した Python ライブラリ。</p>
+    <p class="verdict">【効率厨verdict】Claude MAX プラン定額運用 + ローカルモデル非使用の現環境では出番ゼロ。研究者・オンプレ推論インフラを自前で持つエンジニア向けで、masatoman のスタックとは完全に異なるレイヤー。スター急伸を見ても今の自分には無関係。スルーでよい。</p>
+    <a class="source-link" href="https://github.com/NVIDIA/Model-Optimizer" target="_blank">→ github.com/NVIDIA/Model-Optimizer</a>
+  </div>
+
+  <div class="card">
+    <h3>Ando — エージェントに「実在インボックス」を持たせる AI ネイティブチームチャット <span class="badge">2026-09 launch</span></h3>
+    <p>Ando が立ち上げた AI ネイティブチームチャット。各 AI エージェントに固有のアイデンティティとメールボックスを与え、人間と同列のチームメンバーとして管理するコンセプト。</p>
+    <p class="verdict">【効率厨verdict】Claude Code sessions + routine エージェントの現構成で代替できる範囲。新規 SaaS 契約・ロックイン・チームチャット基盤移行コストが発生するため、ソロ開発では割に合わない。「エージェントに人格を与える」という概念は masatoman.net 記事ネタとして面白いが、導入は不要。</p>
+    <a class="source-link" href="https://blog.mean.ceo/ai-product-launches-news-september-2026/" target="_blank">→ blog.mean.ceo/ai-product-launches-news-september-2026/</a>
+  </div>
+</div>
+
+<!-- ================================ 取得失敗ソース ================================ -->
+<div class="failures">
+  <h2>取得失敗ソース (2件)</h2>
+  <ul>
+    <li>obsidian.md/changelog — EGRESS_BLOCKED（プロキシによりブロック、継続中）</li>
+    <li>aiagentstore.ai/ai-agent-news — EGRESS_BLOCKED（プロキシによりブロック）</li>
+  </ul>
+</div>
+
+</body>
+</html>
