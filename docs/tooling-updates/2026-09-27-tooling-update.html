@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-27</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 16px; color: var(--muted); font-size: 0.83rem; }
+    .failures li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-09-27</h1>
+<div class="meta">
+  <span>取得日: 2026-09-27</span>
+  <span>対象期間: 2026-09-26〜27</span>
+  <span>ソース: GitHub Trending / Claude Code CHANGELOG / Anthropic News / AI CLI Digest / WebSearch</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<div class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>dream-num/univer v1.0 — AIエージェント向け統合 Office ランタイム <span class="badge">OSS / TypeScript</span></h3>
+    <p>スプレッドシート・ドキュメント・スライド・キャンバス・リレーショナルテーブル・PDF を 1 つのランタイムで動かす "The Office Harness for AI Agents" が v1.0 正式リリース。GitHub Trending 本日 3 位（849 stars）。<code>univer-cli</code> でエージェントがローカルから CLI 経由で Office ファイルを作成・編集・検査できる。MCP サーバー（<code>workbuddy-univer-office</code>）も提供済み。</p>
+    <p class="verdict">🟢 効率厨判定: masatoman.net「AIに業務を任せる設計の実験ログ」の記事ネタとして即使える。Claude Code + univer-cli でスプレッドシートを自動生成するデモを今日組めば 1 記事になる。MCP サーバー経由で現行スタックに組み込める点がポイント。</p>
+    <a class="source-link" href="https://github.com/dream-num/univer" target="_blank" rel="noopener">https://github.com/dream-num/univer</a><br>
+    <a class="source-link" href="https://github.com/dream-num/univer-cli" target="_blank" rel="noopener">https://github.com/dream-num/univer-cli</a>
+  </div>
+
+  <div class="card">
+    <h3>AI CLI ツールの次の進化: ファイルベースのタスク管理が主流トレンドに <span class="badge">コミュニティ動向</span></h3>
+    <p>GitHub の AI CLI コミュニティダイジェスト（2026-09-27 版）で「永続的・スマートなタスク追跡 → ファイルベースのタスク管理・ワークフロー自動化」と「サブエージェントの自律的なツール呼び出し」が上位需要として明確化。Claude Code・Codex CLI・Gemini CLI すべてで同じ方向性が求められている。</p>
+    <p class="verdict">🟢 効率厨判定: masatoman のルーティン設計（CLAUDE.md + Hooks + scheduled prompts）はすでにこのトレンドの最前線を走っている。「AI CLIツールが目指す設計を先取りして使っている話」として記事タイトルと構成が今日から作れる。一次情報として引用できるダイジェストが出た。</p>
+    <a class="source-link" href="https://github.com/Chestnuts-Sisyphus/gittok/issues/1532" target="_blank" rel="noopener">https://github.com/Chestnuts-Sisyphus/gittok/issues/1532</a>
+  </div>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<div class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（本日の新着に新規有料ツールの登場なし）</p>
+</div>
+
+<!-- ===== 🟡 様子見 ===== -->
+<div class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>OpenAI Codex CLI rust-v0.159.0-alpha.6 <span class="badge">CLI / Rust</span></h3>
+    <p>Windows でのコンソールウィンドウ抑制・パイプ処理安定化、WebSocket の接続タイムアウト延長などのアルファリリースが連続投入。TUI レンダリング改善も継続中。</p>
+    <p class="verdict">🟡 効率厨判定: まだアルファ段階かつ masatoman は Claude Code MAX 定額運用中。今乗り換えるメリットなし。ただし「CLIコーディングエージェント比較 2026」の B 記事ネタとしてストック。</p>
+    <a class="source-link" href="https://github.com/openai/codex" target="_blank" rel="noopener">https://github.com/openai/codex</a>
+  </div>
+
+  <div class="card">
+    <h3>Gemini CLI v0.63.0-nightly.20260926 <span class="badge">CLI / Go</span></h3>
+    <p>チャット圧縮のパフォーマンス最適化、メモリキャッシュ改善、Windows / Wayland 互換性強化のナイトリービルド。機能追加ではなく安定化フェーズ。</p>
+    <p class="verdict">🟡 効率厨判定: 上と同様。メインには使わないが「Gemini CLI vs Claude Code 機能比較」のアップデートネタとして使える。</p>
+    <a class="source-link" href="https://github.com/google-gemini/gemini-cli" target="_blank" rel="noopener">https://github.com/google-gemini/gemini-cli</a>
+  </div>
+
+  <div class="card">
+    <h3>rohitg00/ai-engineering-from-scratch — AI エンジニアリング入門〜実践教材 <span class="badge">教材 / Python</span></h3>
+    <p>"Learn it. Build it. Ship it for others" をスローガンに AI エンジニアリングの基礎から実装まで体系化した教材リポジトリ。本日 GitHub Trending 4 位（827 stars）。</p>
+    <p class="verdict">🟡 効率厨判定: コンテンツ参考になるが今すぐ業務直結しない。masatoman.net の記事設計で「AIエンジニアリングを学ぶ人が検索する語」のネタ探しに流し読みする価値あり。</p>
+    <a class="source-link" href="https://github.com/rohitg00/ai-engineering-from-scratch" target="_blank" rel="noopener">https://github.com/rohitg00/ai-engineering-from-scratch</a>
+  </div>
+
+  <div class="card">
+    <h3>Anthropic: Claude が CRISPR 様の新規酵素システムを独自発見 <span class="badge">研究発表 / Sept 23</span></h3>
+    <p>Anthropic が 9/23 に発表。Claude が独立して CRISPR 様の繰り返し配列を持つ新規酵素システムを発見した研究成果。人間の指示なく仮説→検証ループを自律実行した事例。</p>
+    <p class="verdict">🟡 効率厨判定: masatoman.net の「AIに業務を任せる設計」コンセプトを補強する具体事例として記事内に引用できる。「業務」が「研究」にまで拡張された最新アップデート。今すぐ使う用途ではないが記事内根拠として有効。</p>
+    <a class="source-link" href="https://www.anthropic.com/news" target="_blank" rel="noopener">https://www.anthropic.com/news</a>
+  </div>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<div class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>競合 CLI ツールへの「新着につられた乗り換え」衝動 <span class="badge">判断コスト罠</span></h3>
+    <p>Codex CLI・Gemini CLI が毎日アップデートされる様子を見て「乗り換えようか」と感じるパターン。Claude Code MAX 定額運用中・Hooks/routine 設計済み・スキル/メモリ資産積み上げ中。</p>
+    <p class="verdict">🚫 効率厨判定: 乗り換えコスト（習熟・設定移植・routine 再設計）が新規メリットをこの時点では上回る。「試してみる」は記事にするときだけ。今は深堀りしない。</p>
+  </div>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failures">
+  <h2>取得失敗ソース</h2>
+  <ul>
+    <li>obsidian.md/changelog/ — EGRESS_BLOCKED（プロキシブロック）</li>
+    <li>aiagentstore.ai — EGRESS_BLOCKED</li>
+    <li>blog.mean.ceo — EGRESS_BLOCKED</li>
+    <li>releasebot.io — EGRESS_BLOCKED</li>
+    <li>docs.claude.com（Claude Code release notes）— 301→307 redirect、CHANGELOG.md raw で代替取得</li>
+  </ul>
+</div>
+
+</body>
+</html>
