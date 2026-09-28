@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-28</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 16px; color: var(--muted); font-size: 0.83rem; }
+    .failures li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-09-28</h1>
+<div class="meta">
+  <span>取得日: 2026-09-28</span>
+  <span>対象期間: 2026-09-27〜28</span>
+  <span>ソース: GitHub Trending / Claude Code releases / Anthropic News / WebSearch</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<div class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>mvschwarz/openrig v0.5.14 — Claude Code + Codex を 1 チームで動かすマルチエージェントハーネス <span class="badge">OSS / TypeScript / tmux</span></h3>
+    <p>YAML で "agent team" を定義して <code>rig up</code> 1 コマンドで起動。Claude Code と Codex が tmux 上で分担・連携し、ターミナル UI でトポロジー・状態・稼働時間を一覧管理できる。v0.5.14、952 stars (+114 today)。2026-09-27 に「クロスセッション知見共有チャンネル」(Issue #74) が提案されるなど活発に開発中。</p>
+    <p class="verdict">🟢 効率厨判定: masatoman が複数の Claude Code セッションを手動切り替えしている場面で、YAML 1 ファイルでチーム構成を宣言できる。「routine 監視エージェント + コーディングエージェント」の分業を今日 <code>rig.yaml</code> に書いて試せる。masatoman.net「AIに業務を任せる設計」の記事ネタにもなる一石二鳥。</p>
+    <a class="source-link" href="https://github.com/mvschwarz/openrig" target="_blank" rel="noopener">https://github.com/mvschwarz/openrig</a>
+  </div>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<div class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（本日の新着に新規有料ツールの登場なし）</p>
+</div>
+
+<!-- ===== 🟡 様子見 ===== -->
+<div class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>debpalash/VoiceStudio — ローカル完結の ElevenLabs 代替（646 言語対応） <span class="badge">OSS / Python / AGPL-3.0</span></h3>
+    <p>音声クローン・動画吹き替え・書き起こし・オーディオブック生成が完全ローカル実行。3 秒の音声クリップからゼロショット音声クローン（k2-fsa/OmniVoice エンジン）。AudioSeal 電子透かし標準搭載。本日 +3,086 stars、計 40,077 stars と急上昇中。</p>
+    <p class="verdict">🟡 効率厨判定: masatoman.net でデモ動画や音声コンテンツを作る段階になったら有力候補。今すぐの用途はないが「ローカル音声 AI vs ElevenLabs 実コスト比較」のネタとして積んでおく。AGPL-3.0 のライセンス確認は商用利用前に必須。</p>
+    <a class="source-link" href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">https://github.com/debpalash/VoiceStudio</a>
+  </div>
+
+  <div class="card">
+    <h3>vercel-labs/scriptc — TypeScript をネイティブバイナリに変換するコンパイラ（実験的） <span class="badge">OSS / Rust / Apache 2.0</span></h3>
+    <p>Node/V8 なしで起動 1.78ms（Node 比 35 倍速）、メモリ 1.9MiB のネイティブ実行ファイルを生成。7 月に Vercel Labs が公開し InfoQ でも注目。ただし npm パッケージの大半をコンパイル時に拒否し、既存プロジェクトでは「数百エラー」が出ると開発者が報告。Apache 2.0。+102 today（計 5,391 stars）。</p>
+    <p class="verdict">🟡 効率厨判定: "35 倍速起動" は魅力的だが、npm 依存が多い現行プロジェクトには適用不可。スクラッチで作る CLI ツール 1 本を実験素材にするのは◯。masatoman.net「TS-to-native 試してみた」記事ネタとして 6 ヶ月後に再評価。</p>
+    <a class="source-link" href="https://github.com/vercel-labs/scriptc" target="_blank" rel="noopener">https://github.com/vercel-labs/scriptc</a>
+    <a class="source-link" href="https://www.infoq.com/news/2026/09/vercel-scriptc-node/" target="_blank" rel="noopener">https://www.infoq.com/news/2026/09/vercel-scriptc-node/</a>
+  </div>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<div class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>npm 依存プロジェクトへの scriptc 即導入 <span class="badge">過剰期待トラップ</span></h3>
+    <p>「35 倍速起動」の見出しに引かれてポートフォリオや routine スクリプトに scriptc を入れると、npm パッケージを大量に拒否されビルドが止まる。開発者自身が「既存プロジェクト全てで数百エラー」と報告済み。throughput は Node より 7.5 倍遅い計測値もある。</p>
+    <p class="verdict">🚫 効率厨判定: 実験用スクラッチプロジェクト 1 本だけで試すのは◯。本番や routine への即適用は❌。「速そう」で飛びつくと時間を溶かす典型パターン。現段階は見て知っておく止まり。</p>
+  </div>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failures">
+  <h2>取得失敗ソース</h2>
+  <ul>
+    <li>obsidian.md/changelog — EGRESS_BLOCKED（プロキシブロック、前日と同様）</li>
+    <li>docs.claude.com（Claude Code release notes）— 301→307 redirect、GitHub releases で代替取得</li>
+    <li>aiagentstore.ai — EGRESS_BLOCKED</li>
+  </ul>
+</div>
+
+</body>
+</html>
