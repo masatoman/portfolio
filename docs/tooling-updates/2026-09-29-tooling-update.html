@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-29</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 16px; color: var(--muted); font-size: 0.83rem; }
+    .failures li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-09-29</h1>
+<div class="meta">
+  <span>取得日: 2026-09-29</span>
+  <span>対象期間: 2026-09-28〜29</span>
+  <span>ソース: GitHub Trending / Claude Code releases / Anthropic News / WebSearch</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<div class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>Claude Code v2.1.284 — Sonnet 5.5 がデフォルトモデルに昇格 <span class="badge">Claude Code / v2.1.284 / 2026-09-28</span></h3>
+    <p>2026-09-28 18:02 UTC リリース。Claude Sonnet 5.5（<code>claude-sonnet-5-5</code>、1M コンテキスト）がデフォルト Sonnet モデルに昇格。Sonnet 5.5 は Sonnet 5 比で 30%+ 高速・タスクあたり最大 30% コスト削減・Terminal-Bench 4.0 で 70.6%（Sonnet 5 は 10.3%）と大幅改善。加えて <code>/mcp reconnect all</code> コマンドで接続切れ MCP サーバーを一括リトライ可能に。<code>/usage</code> にドル額表示も追加。</p>
+    <p class="verdict">🟢 効率厨判定: masatoman は MAX プラン定額運用なのでコスト増ゼロ。30% 速度アップ + fewer tool calls はそのまま routine・scheduled task の応答速度改善に直結する。特に毎朝動く長時間 routine が 30% 短縮されれば実感値も出る。<code>/mcp reconnect all</code> は MCP 切断が起きたときに手動コマンド 1 本で済むようになり、今日から使い始められる。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.284" target="_blank" rel="noopener">https://github.com/anthropics/claude-code/releases/tag/v2.1.284</a><br>
+    <a class="source-link" href="https://www.anthropic.com/claude-sonnet-5-5" target="_blank" rel="noopener">https://www.anthropic.com/claude-sonnet-5-5</a>
+  </div>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<div class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（本日の新着に新規有料ツールの登場なし）</p>
+</div>
+
+<!-- ===== 🟡 様子見 ===== -->
+<div class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>vectorize-io/hindsight — 「学習するエージェントメモリ」OSS <span class="badge">OSS / Python / 40,938 stars</span></h3>
+    <p>エージェントが経験から学習し続けるメモリシステム。reflect 操作で既存メモリ間の新しい接続を形成し、意見・観察として永続化する仕組み。LongMemEval で 94.6% を記録。Fortune 500 企業や AI スタートアップで本番利用済み。9/26 に GitHub Trending #1 に到達、本日 +4,561 stars（計 40,938 stars）。</p>
+    <p class="verdict">🟡 効率厨判定: masatoman の現行エージェントメモリ（CLAUDE.md + memory files + 手書き更新）で十分動いている状況では即採用の場面がない。ただし「エージェントメモリの設計論：手書きメモ管理 vs. 自動学習型の違い」というテーマで masatoman.net の B 記事が書ける。スケールアウト時の候補として温存。</p>
+    <a class="source-link" href="https://github.com/vectorize-io/hindsight" target="_blank" rel="noopener">https://github.com/vectorize-io/hindsight</a>
+  </div>
+
+  <div class="card">
+    <h3>paperclipai/paperclip v2026.916.1 — AI エージェントをチームとして管理する OSS <span class="badge">OSS / TypeScript / MIT / 92,748 stars</span></h3>
+    <p>Node.js サーバー + React UI で AI エージェントを org chart・予算・ガバナンス・目標整合の仕組みで管理するオープンソースアプリ。各エージェントに役職・JD・報告ライン・月次トークン予算を割り当て、コストと稼働状況をダッシュボードで一覧管理できる。2026-03-02 ローンチ、86,000 stars を今年最速ペースで達成。本日 +3,197 stars。</p>
+    <p class="verdict">🟡 効率厨判定: masatoman はすでに Claude Code MAX + Hooks + routine で軽量なエージェント編成を動かしており、Paperclip を乗せると設定管理コストが増える。「ゼロ人間会社の設計論」を masatoman.net で記事にするときの参照事例として使う用途が現実的。GitHub の爆発的 star 数（92K）はそれ自体が読者を呼べるファクトとして使える。</p>
+    <a class="source-link" href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">https://github.com/paperclipai/paperclip</a>
+  </div>
+
+  <div class="card">
+    <h3>agentproto/ts v2026-09-28 — TypeScript 製オープンエージェントランタイム <span class="badge">OSS / TypeScript</span></h3>
+    <p>コーディングエージェントをバックグラウンドで実行し、結果をチェックしてから反映する TypeScript ランタイム。MCP・HTTP・CLI・SDK・Mastra・AI SDK を統一インターフェースで扱える。今回のリリースで Join Token 認証（TTL 付き・失効可能）・デバイスセッション管理・リモートモデルアクセス（<code>&lt;endpointId&gt;@&lt;device&gt;</code> 記法）が追加された。</p>
+    <p class="verdict">🟡 効率厨判定: masatoman の現行スタック（Claude Code + MCP + CLAUDE.md Hooks）はすでに同様の役割を担っており、agentproto を重ねて入れるメリットは薄い。「MCP + CLI を統一するランタイムが求められている理由」を masatoman.net の設計記事で説明する際の事例として有効。3 ヶ月後に採用事例が増えたら再評価。</p>
+    <a class="source-link" href="https://github.com/agentproto/ts/releases/tag/release/2026-09-28" target="_blank" rel="noopener">https://github.com/agentproto/ts/releases/tag/release/2026-09-28</a>
+  </div>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<div class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>OpenAI Agents API 全開発者開放（9/25 週） — MAX 定額ユーザーには損 <span class="badge">ロックイン / API 課金リスク</span></h3>
+    <p>OpenAI が Agents API を全開発者に開放。永続セッション・ツール呼び出し・オプショナルサブエージェント・ホスト型または外部実行環境の選択が可能に。一見魅力的だが masatoman の運用前提では罠になる。</p>
+    <p class="verdict">🚫 効率厨判定: masatoman は Claude Code MAX 定額でトークン消費コストをゼロにして運用している。OpenAI Agents API に乗り換えると入出力トークンごとに課金が発生し、現行の「routine を何本動かしてもコスト固定」の優位性が消える。Hooks・Skills・CLAUDE.md などの資産もすべて移植コストが発生する。メインツールとしての採用は検討不要。「比較記事ネタ」として観測のみ。</p>
+    <a class="source-link" href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank" rel="noopener">https://aiagentstore.ai/ai-agent-news/this-week</a>
+  </div>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failures">
+  <h2>取得失敗ソース</h2>
+  <ul>
+    <li>obsidian.md/changelog/ — EGRESS_BLOCKED（プロキシブロック、継続）</li>
+    <li>docs.claude.com（Claude Code release notes）— 301→307 redirect、GitHub releases で代替取得</li>
+  </ul>
+</div>
+
+</body>
+</html>
