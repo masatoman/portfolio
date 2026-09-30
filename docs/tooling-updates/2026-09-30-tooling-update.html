@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-09-30</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 16px; color: var(--muted); font-size: 0.83rem; }
+    .failures li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-09-30</h1>
+<div class="meta">
+  <span>取得日: 2026-09-30</span>
+  <span>対象期間: 2026-09-29〜30</span>
+  <span>ソース: GitHub Releases / GitHub Trending / Anthropic News / WebSearch</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<div class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>Claude Code v2.1.285 — <code>claude --desktop</code> + <code>plugin configure</code> + <code>allowedProviders</code> 追加 <span class="badge">Claude Code / v2.1.285 / 2026-09-29</span></h3>
+    <p>2026-09-29 19:27 UTC リリース（09-29 フィードより後）。主要追加機能5点: (1) <code>claude --desktop</code> で現在ディレクトリ or セッションをデスクトップアプリで即開ける。(2) <code>claude plugin configure &lt;plugin&gt;</code> でプラグインオプションを表示・設定。(3) <code>allowedProviders</code> マネージド設定で使用可能な API プロバイダーを組織単位で制限可能。(4) <code>CLAUDE_CODE_DISABLE_WEB_FETCH</code> 環境変数で WebFetch ツールを完全無効化できる。(5) <code>CLAUDE_CODE_NONSTREAMING_TIMEOUT_RETRIES</code> でノンストリーミング時のリトライ回数を制御。バグ修正多数: クラウドセッション・MCP サーバー・プラグイン管理・アーティファクト処理・ファイル操作・Vim モード編集・Remote Control メッセージ処理が改善。</p>
+    <p class="verdict">🟢 効率厨判定: <code>claude --desktop</code> は「Web セッションで書いたコードを即デスクトップアプリで継続」の使い方ができる。<code>allowedProviders</code> は masatoman がプロジェクト設定で特定プロバイダー以外を accidentally 使わないようにロックできる。<code>CLAUDE_CODE_DISABLE_WEB_FETCH</code> はスパム・ループリスクのある routine でフェッチを封じる用途に直結。今日 <code>claude --version</code> で 2.1.285 以上になっていれば即利用可。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.285" target="_blank" rel="noopener">https://github.com/anthropics/claude-code/releases/tag/v2.1.285</a>
+  </div>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<div class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし</p>
+</div>
+
+<!-- ===== 🟡 様子見 ===== -->
+<div class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>NVIDIA/OpenShell — YAML ポリシー駆動のエージェントサンドボックスランタイム <span class="badge">OSS / Rust / Apache 2.0 / 10,569 stars +990</span></h3>
+    <p>エージェントが「自分の実行環境を書き換えながら動く」ことを前提に設計されたサンドボックス。ファイルシステム・プロセス・ネットワーク・推論へのアクセスを YAML ポリシーで宣言し、ホットリロードで動的変更が可能。クレデンシャルは環境変数としてランタイム注入されサンドボックス内には残らない。現状は alpha / single-player モードで、マルチテナント企業展開は開発中。</p>
+    <p class="verdict">🟡 効率厨判定: masatoman の現行 routine エージェントが外部リソースを誤操作するリスクを YAML 1 ファイルで封じられる設計は魅力的。ただし alpha のため本番 routine に組み込むには早すぎる。「エージェントの安全な実行環境はどう設計するか」という masatoman.net 設計記事のネタに今すぐ使える。stable v1.0 が出たタイミングで再評価。</p>
+    <a class="source-link" href="https://github.com/NVIDIA/OpenShell" target="_blank" rel="noopener">https://github.com/NVIDIA/OpenShell</a>
+  </div>
+
+  <div class="card">
+    <h3>VectifyAI/PageIndex — 推論型 RAG 向けドキュメントインデックスシステム <span class="badge">OSS / Python / 37,332 stars +835</span></h3>
+    <p>PDF・長文ドキュメントを単純ベクトル検索でなく推論（reasoning）ベースで取得する RAG 基盤。セマンティック・キーワード・グラフ・時系列の並列検索戦略を組み合わせて高精度な文書検索を実現。GitHub Trending 本日上位。</p>
+    <p class="verdict">🟡 効率厨判定: masatoman が portfolio の工務店向けデモ（図面 PDF 検索・現場写真分類など）に埋め込む文書検索として将来的に有力候補。現時点では MCP + Claude Code の能力範囲内で代替できており優先度低。「ベクトル検索 vs. 推論型検索 — どちらが工務店ドキュメントに向いているか」という比較記事を書く際のネタとして有効。</p>
+    <a class="source-link" href="https://github.com/VectifyAI/PageIndex" target="_blank" rel="noopener">https://github.com/VectifyAI/PageIndex</a>
+  </div>
+
+  <div class="card">
+    <h3>debpalash/VoiceStudio — OSS ElevenLabs 完全代替・646 言語・ローカル完結 <span class="badge">OSS / Python / 48,055 stars +4,758</span></h3>
+    <p>音声複製・吹き替え・文字起こしをローカル完結で実行できる ElevenLabs の OSS 代替。646 言語対応。API キー不要・データが外部に出ない設計。GitHub Trending 本日 1 位（+4,758 stars）。</p>
+    <p class="verdict">🟡 効率厨判定: 現場監督が録音した音声メモをテキスト化して日報・議事録に変換するユースケースで使える。masatoman portfolio の工務店向けデモ（voice-daily）に組み込む場合、API 課金ゼロで完結できる点は強み。ただし現行デモは Whisper 経由で十分動いており、今すぐ乗り換えるトリガーはない。記事ネタ（「ローカル音声 AI で業務自動化する方法」）として先に使う選択肢もある。</p>
+    <a class="source-link" href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">https://github.com/debpalash/VoiceStudio</a>
+  </div>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<div class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>ZCode (activepieces) — AI 自動化向けコーディングツール $12.6/月 <span class="badge">有料 / 機能重複 / ドメインブロック</span></h3>
+    <p>AI 駆動の自動化ワークフロー内でコードブロックを実行するための専用ツール。"Plannable logic structure" でトークンオーバーヘッドを削減し、自動化タスクのコード実行を高速化するとされる。ZCode Lite は $12.6/月。ドメインブロックにより詳細確認不可（公式サイト access denied）。</p>
+    <p class="verdict">🚫 効率厨判定: masatoman は Claude Code MAX プラン定額で同等のコード自動化を現行実現しており、$12.6/月を追加する動機がない。詳細を確認できなかった点も含め採用不要。activepieces は n8n 系のノーコード自動化プラットフォームであり、Claude Code の Scripts + Hooks + Routines が代替している。</p>
+    <a class="source-link" href="https://www.activepieces.com/blog/zcode-launch-new-ai-coding-tool-for-automations" target="_blank" rel="noopener">https://www.activepieces.com/blog/zcode-launch-new-ai-coding-tool-for-automations</a>
+  </div>
+
+  <div class="card">
+    <h3>GitHub Copilot September 2026 アップデート — Jira 連携・VS Code エージェント自動化 <span class="badge">ロックイン / 乗り換えコスト</span></h3>
+    <p>GitHub Copilot が 2026 年 9 月に Jira 連携（Copilot App）・適応型 CLI オーケストレーション（Copilot CLI）・VS Code 内のエージェント自動化・JetBrains 向けエンタープライズ制御を追加。一見充実した更新に見えるが masatoman の運用前提では罠。</p>
+    <p class="verdict">🚫 効率厨判定: masatoman は Claude Code MAX 定額で CLAUDE.md / Skills / Hooks / Routines という資産スタックを構築済み。GitHub Copilot に乗り換えるとこれらすべての移植コストが発生し、「定額でエージェントを何本走らせてもコスト固定」の優位性も失われる。Jira 連携は魅力的だが、現行スタックで Supabase MCP + カスタム連携で代替できる範囲。比較記事ネタとして観測のみ。</p>
+    <a class="source-link" href="https://forskcodingschool.com/blog/github-copilot-agent-updates-september-2026/" target="_blank" rel="noopener">https://forskcodingschool.com/blog/github-copilot-agent-updates-september-2026/</a>
+  </div>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failures">
+  <h2>取得失敗ソース</h2>
+  <ul>
+    <li>obsidian.md/changelog/ — EGRESS_BLOCKED（プロキシブロック、継続）</li>
+    <li>docs.claude.com（Claude Code release notes）— 301→307 redirect、GitHub releases で代替取得</li>
+    <li>activepieces.com — EGRESS_BLOCKED（ZCode 詳細未確認）</li>
+    <li>aiagentstore.ai — EGRESS_BLOCKED（継続）</li>
+  </ul>
+</div>
+
+</body>
+</html>
