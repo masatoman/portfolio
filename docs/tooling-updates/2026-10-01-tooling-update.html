@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-01</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 16px; color: var(--muted); font-size: 0.83rem; }
+    .failures li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-01</h1>
+<div class="meta">
+  <span>取得日: 2026-10-01</span>
+  <span>対象期間: 2026-09-30〜10-01</span>
+  <span>ソース: Claude Code GitHub Releases / Anthropic News / GitHub Trending / WebSearch (OpenAI DevDay 2026)</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<div class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>Claude Code v2.1.286 — <code>/hooks</code> UI 刷新 + <code>--resume</code> 並列ツール後の消失バグ修正 + VS Code bookmarks <span class="badge">Claude Code / v2.1.286 / 2026-09-30</span></h3>
+    <p>2026-09-30 19:10 UTC リリース。主要変更5点: (1) <strong><code>/hooks</code> インターフェース改善</strong> — 設定済みフックが1つのグループ化リストで一覧表示されるようになり、どのフックが有効か一目で把握できる。(2) <strong><code>--resume/--continue</code> のバグ修正</strong> — 並列ツールコール後にターンが消失する問題を修正。RoutineやMulti-agentセッション再開時の安定性が向上。(3) <strong>パーミッションプロンプトカウンター追加</strong> — 複数リクエストが積み上がった場合に「2 of 5」形式で表示され、承認待ちの件数が視認できる。(4) <strong>[VS Code] bookmarks 機能追加</strong> — レスポンスをサイドパネルに保存・参照できる新機能。長い回答を後で見返せる。(5) <strong>クラウドセッション修正</strong> — 大きな履歴を持つセッションが永遠に起動しない問題を修正。バグ修正: vim モード・フルスクリーン描画・プラグイン管理も改善。</p>
+    <p class="verdict">🟢 効率厨判定: masatoman の <code>CLAUDE.md</code> / Skills / Hooks / Routines スタックに直撃。<code>/hooks</code> UI が見やすくなるのは毎日の設定確認コストが下がる。<code>--resume/--continue</code> の修正は tooling-update-watch など routine 系エージェントで「並列ツール後に再開したら前のターンが消えた」問題を解消。今日 <code>claude --version</code> で v2.1.286 以上を確認してそのまま使える。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.286" target="_blank" rel="noopener">https://github.com/anthropics/claude-code/releases/tag/v2.1.286</a>
+  </div>
+
+  <div class="card">
+    <h3>mksglu/context-mode — MCP Server でコンテキストウィンドウを 98% 削減 <span class="badge">OSS / TypeScript / MCP / 24.4k stars / GitHub Trending 2026-10-01</span></h3>
+    <p>Claude Code 対応 MCP サーバー。ツールコールの生出力をサンドボックスに隔離し、AI モデルには要約・スニペットのみを渡すことでコンテキスト汚染を防ぐ。SQLite + FTS5 でセッション履歴をインデックス化し、必要な情報だけを引き出す設計。JS / TS / Python / Shell / Ruby / Go / Rust など 11 言語のサンドボックス実行に対応。<code>claude_desktop_config.json</code> に MCP サーバーを追加するだけでドロップイン導入できる。本日 GitHub Trending 入り（+90 stars today）。</p>
+    <p class="verdict">🟢 効率厨判定: masatoman の tooling-update-watch や GSC 自動化 routine では WebFetch 結果など大量テキストがコンテキストを圧迫しやすい。context-mode を MCP で組み込むと「記事全文をダンプせず要約だけ渡す」挙動に自動的に切り替わり、長時間 routine のコンテキスト枯渇リスクを削減できる。今日 MCP 設定に追加して効果を試せる。</p>
+    <a class="source-link" href="https://github.com/mksglu/context-mode" target="_blank" rel="noopener">https://github.com/mksglu/context-mode</a>
+  </div>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<div class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（今日の新着に追加課金価値ありと判断できるものなし）</p>
+</div>
+
+<!-- ===== 🟡 様子見 ===== -->
+<div class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>OpenAI DevDay 2026 — Dots（永続エージェント）+ GPT-6.1 Sol + OSS Codex ハーネス <span class="badge">OpenAI / 2026-09-29発表</span></h3>
+    <p><strong>Dots</strong>: GPT-6 Astra ベースの永続エージェント。専用クラウド VM + ブラウザを持ち、4,000+ アプリとプラグイン連携。ChatGPT / Slack / Teams / 音声を横断した共有メモリを持ち、並列クラウドスレッドを生成したり Codex に作業を渡したりできる。<strong>GPT-6.1 Sol</strong>: コーディング・computer use・プロ業務向けの近 Astra 性能モデル。<strong>OSS Codex ハーネス</strong>: Dots の下層にあるツール使用＆リカバリーラッパーをオープンソース化。Claude Code / OpenCode / Codex 対応との情報あり。</p>
+    <p class="verdict">🟡 効率厨判定: masatoman は Claude Code MAX 定額でほぼ同等の「クラウドエージェント + 並列実行 + 永続化」を実現済み。Dots は別途 OpenAI 課金が必要で二重コストになる。ただし「Dots vs Claude Code Background Agents」は読者が最も知りたい比較テーマであり、SEO 比較記事（masatoman.net 軸 A）の最有力ネタ。今すぐ使うより「比較記事の題材として仕込む」判断。OSS Codex ハーネスは Claude Code との組み合わせが公式対応と述べているため、将来的に hybrid 構成の可能性を見ておく。</p>
+    <a class="source-link" href="https://x.com/NeoAIForecast/article/2105245964114219466" target="_blank" rel="noopener">https://x.com/NeoAIForecast/article/2105245964114219466</a>
+  </div>
+
+  <div class="card">
+    <h3>NVIDIA/OpenShell — AIエージェント向け policy-based サンドボックスランタイム (Apache 2.0) <span class="badge">OSS / Rust / Apache 2.0 / GitHub Trending 2026-10-01 / +1281 stars today</span></h3>
+    <p>NVIDIA が GTC 2026 (3月) に発表した OSS エージェントランタイム。エージェントが呼んでよい API・読んでよいファイル・許可するネットワーク先をポリシーで宣言し、それ以外はカーネルレベル（Landlock LSM + seccomp）でブロックする。Claude Code / OpenCode / Codex / OpenClaw 対応を明示。Adobe / Salesforce / SAP / Siemens などがエンタープライズ採用中。本日 GitHub Trending に急浮上（+1,281 stars）。</p>
+    <p class="verdict">🟡 効率厨判定: masatoman の routine エージェント（tooling-update-watch 等）が意図しない外部 API や機密ファイルにアクセスしないよう「エージェントの行動範囲をコード化して宣言する」インフラとして将来的に有力。ただし個人 Claude Code 環境への組み込みは設定コスト高で今すぐ必須ではない。大規模化（複数エージェント同時並走）になった段階で再評価する。</p>
+    <a class="source-link" href="https://perspectives.nvidia.com/nvidia-openshell/runtime-running-open-source-coding-agents-isolated/" target="_blank" rel="noopener">https://perspectives.nvidia.com/nvidia-openshell/runtime-running-open-source-coding-agents-isolated/</a>
+  </div>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<div class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>OpenAI Dots 即導入 — API 課金 + プラットフォームロックイン <span class="badge">ロックイン / OpenAI 課金 / スタック破壊</span></h3>
+    <p>Dots は機能面では魅力的だが、masatoman の現行スタック（Claude Code MAX 定額 + CLAUDE.md + Skills + Hooks + Routines + Supabase MCP）は Dots の「永続エージェント + アプリ連携」をほぼカバーしている。Dots 導入は OpenAI 別途課金が発生し、MAXプランとの二重払いになる。4,000+ アプリ連携は現在の工務店 portfolio プロジェクトには過剰で、構築済みの CLAUDE.md 資産・スキル・ルーティン資産が移植不能になるリスクがある。OSS Codex ハーネスも「Claude Code に追加する」文脈ではなく「OpenAI エコシステムに入る」構成のため、今の段階で触れる必要はない。</p>
+    <p class="verdict">🚫 効率厨判定: 「永続化できる」「アプリ 4,000 本つながる」という訴求に乗って移行するのはコスト計算ミス。Claude Code MAX 定額 + 既存スタックの資産価値を損なう典型的ロックイン罠。Dots の動向は比較記事の材料として観測するだけにとどめる。</p>
+    <a class="source-link" href="https://x.com/NeoAIForecast/article/2105245964114219466" target="_blank" rel="noopener">https://x.com/NeoAIForecast/article/2105245964114219466</a>
+  </div>
+</div>
+
+<div class="failures">
+  <h2>取得失敗ソース</h2>
+  <ul>
+    <li>obsidian.md/changelog/ — egress ブロック（毎回）</li>
+    <li>www.analyticsinsight.net — egress ブロック（OpenAI DevDay 詳細 WebSearch で補完）</li>
+    <li>docs.claude.com/en/release-notes/claude-code — 301→307 redirect、GitHub releases で代替取得</li>
+  </ul>
+</div>
+
+</body>
+</html>
