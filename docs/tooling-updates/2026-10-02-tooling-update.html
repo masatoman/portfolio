@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-02</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 16px; color: var(--muted); font-size: 0.83rem; }
+    .failures li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-02</h1>
+<div class="meta">
+  <span>取得日: 2026-10-02</span>
+  <span>対象期間: 2026-10-01〜10-02</span>
+  <span>ソース: Claude Code GitHub Releases / Anthropic News / GitHub Trending / WebSearch</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<div class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>Claude Code v2.1.287 — rm コマンドの安全策消失バグ修正 + "You Should Know" mod + CLAUDE.md 二重添付修正 <span class="badge">Claude Code / v2.1.287 / 2026-10-01</span></h3>
+    <p>2026-10-01 18:00 UTC リリース。注目変更5点: (1) <strong>危険な <code>rm</code> コマンドの安全策消失バグを修正</strong> — 特定パスで <code>rm</code> がセーフガードを無視して実行されていた問題が解消。routineエージェントが自動で <code>rm</code> を呼ぶスタックでは必須アップデート。(2) <strong>Claude Mods システム</strong> — プラグインがより深い挙動を変更できるようになった基盤変更。(3) <strong>"You Should Know" built-in mod</strong> — <code>/plugin enable cc-plugin-you-should-know@builtin</code> で有効化。サイドエージェントが「あなたやClaudeが見落としそうなこと」を自動フラグ。(4) <strong>フォルダ CLAUDE.md 二重添付の修正</strong> — セッション再開後に CLAUDE.md が2回読み込まれていたバグ解消。CLAUDE.md を多用する環境で特にトークン節約に効く。(5) <strong>Remote Control 再接続スタック修正</strong> — 30秒でタイムアウトするようになりセッションが無限待機しなくなった。</p>
+    <p class="verdict">🟢 効率厨判定: <code>rm</code> セーフガード修正は即アップデートが必要な安全系バグ修正。CLAUDE.md 二重添付修正はtooling-update-watchなど長時間 routine でのトークン無駄遣いを削減する。"You Should Know" mod は routine の見落としを自動検出する補佐役として masatoman の既存スタックに追加できる。今日 <code>claude --version</code> で v2.1.287 以上を確認してそのまま使える。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.287" target="_blank" rel="noopener">https://github.com/anthropics/claude-code/releases/tag/v2.1.287</a>
+  </div>
+
+  <div class="card">
+    <h3>mattpocock/skills — エンジニアの .agents ディレクトリから直接 Skills を管理するフレームワーク <span class="badge">OSS / Shell / 273.9k stars / GitHub Trending 2026-10-02 +883</span></h3>
+    <p>Matt Pocock が公開した「エージェント向け Skills ライブラリ管理」の OSS フレームワーク。<code>.agents/</code> ディレクトリ配下に Skill を宣言し、エージェントが参照できる構造化されたコンテキストを提供する。masatoman の <code>.claude/skills/</code> スタックと概念的に同じ設計思想で、パターンや命名規則を比較することで自分の Skills 設計の改善ヒントが得られる。Shell スクリプトのみで実装されており、依存関係なしで参照・適用できる。</p>
+    <p class="verdict">🟢 効率厨判定: masatoman はすでに <code>.claude/skills/</code> で多数の Skill を運用しており、このリポジトリは「成熟した Skills 設計パターン」の実例集として直接参照できる。新しい Skill を書く前にここの構造を見て命名・分割粒度の参考にすると設計ミスが減る。コードを書くより読むだけでいい即効ツール。</p>
+    <a class="source-link" href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">https://github.com/mattpocock/skills</a>
+  </div>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<div class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（今日の新着に追加課金価値ありと判断できるものなし）</p>
+</div>
+
+<!-- ===== 🟡 様子見 ===== -->
+<div class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>DietrichGebert/ponytail — AIエージェントを「一番ズボラなシニアエンジニア的思考」で動かすフレームワーク <span class="badge">OSS / JavaScript / 150.5k stars / GitHub Trending +1,194 today</span></h3>
+    <p>「最もシンプルな解を先に試せ」「コードを足す前に既存コードを読め」という "laziest senior dev" 原則をエージェントの思考プロセスに強制注入するフレームワーク。大量のツールコールや過剰なリファクタリングを防ぐプロンプト構造とガードを提供。Claude Code / OpenCode との統合ドキュメントが示されているが、Claude Code 固有の対応状況は未確認。</p>
+    <p class="verdict">🟡 効率厨判定: masatoman の routine エージェントが「不必要に深く掘りすぎて時間を無駄にする」問題が実際に起きているなら有力。ただし Claude Code の CLAUDE.md + Skills で同等の制約はある程度実現できており、追加のフレームワーク導入コストと天秤にかけると今すぐ必須ではない。1ヶ月後の routine 見直しタイミングで再評価。</p>
+    <a class="source-link" href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener">https://github.com/DietrichGebert/ponytail</a>
+  </div>
+
+  <div class="card">
+    <h3>mvschwarz/openrig — 共有コンテキスト + 役割付きの永続エージェントネットワーク構築ツール <span class="badge">OSS / TypeScript / 3.7k stars / GitHub Trending +642 today</span></h3>
+    <p>複数のエージェントが「共有コンテキスト」と「固定された役割」を持ちながら協調動作する永続的なエージェントネットワークを TypeScript で構築するフレームワーク。各エージェントが専門的な役割（レビュワー、コーダー、テスターなど）を担い、作業を分割して並列実行する構成が特徴。Claude Code Background Agents や Workflow との比較が今後の焦点になる。</p>
+    <p class="verdict">🟡 効率厨判定: masatoman の現状は tooling-update-watch 等の単独 routine が主軸で、マルチエージェント並列構成はまだ使いこなしていない段階。将来的に「ヒアリング分析エージェント + 資料生成エージェント + レビューエージェント」のような並走構成を組むタイミングで再評価する。今は観測のみ。</p>
+    <a class="source-link" href="https://github.com/mvschwarz/openrig" target="_blank" rel="noopener">https://github.com/mvschwarz/openrig</a>
+  </div>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<div class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>heygen-com/hyperframes — HTML を書くだけで動画レンダリングするエージェント向けパイプライン <span class="badge">OSS / TypeScript / 55.3k stars / GitHub Trending +627 today</span></h3>
+    <p>HeyGen が公開した「HTML + CSS を書くとエージェントが動画ファイルを出力する」パイプライン。エージェントが UI コンポーネントをコードで書き、それをそのままビデオクリップに変換する設計。HeyGen アカウントと API キーが必要で、動画生成ごとに従量課金が発生する。</p>
+    <p class="verdict">🚫 効率厨判定: masatoman のスタックはテキスト生成・自動化・静的 HTML が主軸で、動画生成の需要がない。HeyGen API 課金が乗り、masatoman.net の「文章・解説型コンテンツ」との相性も薄い。工務店 portfolio 向けに動画が必要になった場合は別途判断すればよく、今のタイミングで触る理由がない典型的なキラキラツール罠。</p>
+    <a class="source-link" href="https://github.com/heygen-com/hyperframes" target="_blank" rel="noopener">https://github.com/heygen-com/hyperframes</a>
+  </div>
+</div>
+
+<div class="failures">
+  <h2>取得失敗ソース</h2>
+  <ul>
+    <li>obsidian.md/changelog/ — egress ブロック（毎回）</li>
+    <li>docs.claude.com/en/release-notes/claude-code — 301→307 redirect、GitHub releases で代替取得</li>
+  </ul>
+</div>
+
+</body>
+</html>
