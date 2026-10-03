@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-03</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 16px; color: var(--muted); font-size: 0.83rem; }
+    .failures li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-03</h1>
+<div class="meta">
+  <span>取得日: 2026-10-03</span>
+  <span>対象期間: 2026-10-02〜10-03</span>
+  <span>ソース: Claude Code CHANGELOG / Anthropic News / GitHub Trending / WebSearch (DevDay recap)</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<div class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>Claude Code v2.1.288 — Mod向け <code>$.ui.selection()</code> 追加 + 複数バグ修正 <span class="badge">Claude Code / v2.1.288 / 2026-10-02〜03</span></h3>
+    <p>昨日カバーした v2.1.287 の直後リリース。主な変更点: (1) <strong><code>$.ui.selection()</code> API 追加</strong> — Mod からユーザーに「選択肢を提示してひとつ選ばせる」インタラクティブな UI を呼び出せるようになった。既存の <code>$.ui.confirm()</code> / <code>$.ui.input()</code> に加わる 3 本目の対話 API。Mod で「今日のフィードはどの件数まで詳細を書くか」を聞くようなステップを組み込める。(2) 複数の安定化バグ修正が含まれているが、v2.1.287 の <code>rm</code> セーフガード修正ほどのクリティカル度合いはない。</p>
+    <p class="verdict">🟢 効率厨判定: <code>$.ui.selection()</code> は tooling-update-watch のような routine Mod が「件数や深度を毎回ユーザーに確認する」ステップを組み込む際に使える。今すぐ使う必要はないが、<code>claude --version</code> で v2.1.288 以上に上げておくのが最低限の対応。新 API を試すなら You Should Know mod や update-watch mod の対話ステップに入れると実益が出る。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener">https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md</a>
+  </div>
+
+  <div class="card">
+    <h3>Agent-Reach — AIエージェントがTwitter/Reddit/YouTube/GitHub等を無料で検索できるCLI <span class="badge">OSS / Python / 88.6k stars / GitHub Trending +696 today</span></h3>
+    <p>「エージェントにインターネットの目を与える」ワンライナーCLI。Twitter・Reddit・YouTube・GitHub・Bilibili・XiaoHongShu を <strong>API キーなし・費用ゼロ</strong> で検索・読み取りできる。masatoman の tooling-update-watch routine は現在 WebSearch / WebFetch に依存しているが、Agent-Reach を組み込むと「GitHub のリポジトリ詳細」「Reddit の開発者コミュニティの反応」を並列で取りに行けるパスが増える。CLI 単体で動くため CLAUDE.md の <code>Bash</code> 許可に追加するだけで使い始められる。</p>
+    <p class="verdict">🟢 効率厨判定: 今の tooling-update-watch で「GitHub Trending を WebFetch で取りに行っているが JS レンダリングで取れないことがある」問題に対して代替手段になり得る。まず <code>pip install agent-reach</code> して <code>agent-reach search github "claude code"</code> が動くか確認するだけで評価できる。WebSearch の補完として今日から試せる。</p>
+    <a class="source-link" href="https://github.com/jamesmoriarty/agent-reach" target="_blank" rel="noopener">https://github.com/jamesmoriarty/agent-reach</a>
+  </div>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<div class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（今日の新着に追加課金価値ありと判断できるものなし）</p>
+</div>
+
+<!-- ===== 🟡 様子見 ===== -->
+<div class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>OpenAI DevDay 2026 recap — GPT-6.1 Sol / Agents API 全開放 / ChatGPT Work <span class="badge">OpenAI / DevDay 2026-09-29 / recap 10-03週</span></h3>
+    <p>9/29 のイベント後、今週各媒体でまとめ記事が出揃った。注目3点: (1) <strong>GPT-6.1 Sol</strong> — Astra 相当の品質を標準価格の 1/5 で提供するとされる新モデル。(2) <strong>Agents API 全開発者解放</strong> — 永続セッション + ツール使用 + サブエージェント + ホスト/外部両対応の実行環境がすべてのデベロッパーに開放。(3) <strong>ChatGPT Work</strong> — 数時間にわたってタスクを保持し、Slack / Teams / Google Drive / SharePoint / Salesforce に接続してコンピュータ操作もする長時間タスクエージェント。</p>
+    <p class="verdict">🟡 効率厨判定: masatoman は Claude MAX 定額運用でありモデル切り替えや API 直叩きの動機がない。ただし競合動向として「ChatGPT Work が Claude の Background Agents と同じポジションに来た」という事実は把握しておく価値あり。masatoman.net で比較記事のネタになる可能性もあるため、週次 B feed の候補として温存する。</p>
+    <a class="source-link" href="https://openai.com/index/devday-2026-recap/" target="_blank" rel="noopener">https://openai.com/index/devday-2026-recap/</a>
+  </div>
+
+  <div class="card">
+    <h3>caveman — コーディングエージェントのトークン使用量を65%削減するGo製CLI <span class="badge">OSS / Go / 109k stars / GitHub Trending +209 today</span></h3>
+    <p>エージェントが生成するコードに「簡略化された言語パターン」を適用することでトークン消費を65%削減すると主張するツール。コーディングエージェントが出力するコメント・変数名・構造を縮約して、ループ内での再送コストを下げる設計。Claude Code の Sonnet 系モデルと組み合わせた場合の効果は未検証。</p>
+    <p class="verdict">🟡 効率厨判定: 65% 削減の数字は魅力的だが「簡略化された言語パターン」の中身が不明。コードの可読性を下げてトークンを稼ぐ方向性だとするとデバッグコストで損をする。masatoman のスタック（記事生成・routine・静的サイト）はコーディング量が主ではないため、直接的なトークン節約より CLAUDE.md の最適化の方が効果が出やすい。実測レポートが出てから再評価。</p>
+    <a class="source-link" href="https://github.com/cavedude/caveman" target="_blank" rel="noopener">https://github.com/cavedude/caveman</a>
+  </div>
+
+  <div class="card">
+    <h3>context-mode — ツール出力を98%削減してエージェントのコンテキストウィンドウを最適化 <span class="badge">OSS / TypeScript / 25k stars / GitHub Trending +282 today</span></h3>
+    <p>エージェントのツール呼び出し結果を自動で圧縮・要約し、コンテキストウィンドウへの占有を98%削減すると主張。長時間 routine でコンテキストが膨れる問題の解決策として設計されているが、圧縮アルゴリズムの詳細は非公開。</p>
+    <p class="verdict">🟡 効率厨判定: tooling-update-watch のような routine ではツール出力が嵩むのは実際の問題。ただし98%削減は「大事なデータも切り落とす」リスクと表裏一体。WebFetch でページ全文を取ってきた結果が圧縮されると今日のフィードのような作業で情報欠落が起きる。まずサンドボックス環境で動作確認してから導入判断する。今は触らない。</p>
+    <a class="source-link" href="https://github.com/contextmode/context-mode" target="_blank" rel="noopener">https://github.com/contextmode/context-mode</a>
+  </div>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<div class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>superpowers — 「エージェント向けスキルフレームワーク＆ソフトウェア開発方法論」 <span class="badge">OSS / Shell / 294k stars / GitHub Trending +556 today</span></h3>
+    <p>294,450 スターと今日556スター増という数字は目を引くが、説明文は「agentic skills framework & software development methodology that works」だけで具体的な機能・API・差別化ポイントが不明。Shell スクリプト中心の「方法論」リポジトリで、masatoman がすでに運用している <code>.claude/skills/</code> + CLAUDE.md + Skill system と概念的にほぼ重複している。</p>
+    <p class="verdict">🚫 効率厨判定: 星の数とキャッチコピーが先行し、中身の具体性がない典型的な「方法論リポジトリ」。masatoman の既存 Skills 設計と競合する別の標準を導入することになり、統一性が崩れる。昨日カバーした mattpocock/skills の方が「実装パターンの参照先」として具体的。スターカウント目的のリポジトリと判断し放置。</p>
+    <a class="source-link" href="https://github.com/superpowers-dev/superpowers" target="_blank" rel="noopener">https://github.com/superpowers-dev/superpowers</a>
+  </div>
+
+  <div class="card">
+    <h3>OpenShell — 自律AIエージェント向けの安全・プライベートなRust製ランタイム環境 <span class="badge">OSS / Rust / 14.4k stars / GitHub Trending +594 today</span></h3>
+    <p>Rust で書かれた「AI エージェントが安全に動作できる分離ランタイム環境」。プロセス分離・ファイルシステム制限・ネットワーク制限を組み合わせた sandboxing を提供するとしている。Claude Code はすでに独自のサンドボックス・パーミッション管理 (settings.json + permissions) を持っており、その上に別のランタイム層を被せる設計になる。</p>
+    <p class="verdict">🚫 効率厨判定: Claude Code が提供するパーミッションシステムと二重管理になり、「どちらのルールが優先されるか」の混乱を生む。Rust ランタイムの導入・設定コストも高く、masatoman の個人開発スタックには明らかにオーバースペック。セキュリティを強化したい場合は Claude Code の settings.json を精緻化する方が確実で低コスト。</p>
+    <a class="source-link" href="https://github.com/opensh-dev/opensh" target="_blank" rel="noopener">https://github.com/opensh-dev/opensh</a>
+  </div>
+</div>
+
+<div class="failures">
+  <h2>取得失敗ソース</h2>
+  <ul>
+    <li>obsidian.md/changelog/ — egress ブロック（毎回）</li>
+    <li>docs.claude.com/en/release-notes/claude-code — 301→307 redirect 連鎖、raw CHANGELOG.md で代替取得</li>
+    <li>aiagentstore.ai — egress ブロック</li>
+  </ul>
+</div>
+
+</body>
+</html>
