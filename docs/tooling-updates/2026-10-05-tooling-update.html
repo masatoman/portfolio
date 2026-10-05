@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-05</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .note { color: var(--muted); font-size: 0.83rem; padding: 8px 12px; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); margin-bottom: 12px; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 16px; color: var(--muted); font-size: 0.83rem; }
+    .failures li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-05</h1>
+<div class="meta">
+  <span>取得日: 2026-10-05</span>
+  <span>対象期間: 2026-10-04〜10-05</span>
+  <span>ソース: Claude Code CHANGELOG / Anthropic News / GitHub Trending / WebSearch</span>
+</div>
+
+<div class="note">
+  ℹ️ Claude Code は v2.1.289 (2026-10-03) のまま。10-04〜05 の期間に新バージョンリリースなし。今日は GitHub Trending の新着とその verdict が中心。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<div class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>addyosmani/agent-skills — Claude Codeのエージェントが「工程を省く」問題を防ぐ3つのhook <span class="badge">OSS / JavaScript / 101k stars / GitHub Trending +336 today</span></h3>
+    <p>Google Chrome エンジニアリングリード Addy Osmani が 2026-02-15 に公開し、今日 +336 stars で再度急伸。内容は「シニアエンジニアが当たり前に踏む工程 (spec → plan → build → verify → review → ship) を AI エージェントに強制するスキルコレクション」。20 スキル・7スラッシュコマンド・3 スペシャリストペルソナ・4 チェックリストで構成される。重要なのは <strong>20 の 22 スキルに「反合理化テーブル」が組み込まれている</strong> 点 — エージェントが「これはスキップしていい」と自己判断して先に進む行動を抑制するルールセットが明示的に書かれている。Claude Code 向けに <strong>3 本の hook</strong> が付属しており、Settings.json に追加するだけで enforce が効く。</p>
+    <p class="verdict">🟢 効率厨判定: masatoman のスタックで「エージェントが verify ステップを省いてコミットする」問題が出たことがあるなら、このスキルパックの <code>verify</code> と <code>spec</code> 2 本だけをまず試すのが費用対効果が高い。全 20 スキルを一気に入れると CLAUDE.md が重くなるので <code>npx skills add addyosmani/agent-skills</code> でインストール後、必要な 2-3 本だけ <code>.claude/skills/</code> に配置する運用が推奨。</p>
+    <a class="source-link" href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener">https://github.com/addyosmani/agent-skills</a>
+  </div>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<div class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（今日の新着に追加課金価値ありと判断できるものなし）</p>
+</div>
+
+<!-- ===== 🟡 様子見 ===== -->
+<div class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>tester-army/e2e — 「次世代 e2e テストフレームワーク」を名乗る TypeScript 製の新興ライブラリ <span class="badge">OSS / TypeScript / 3k stars / GitHub Trending +345 today</span></h3>
+    <p>Web・モバイルアプリ向けの e2e テストフレームワーク。今日 +345 stars と急伸しているが、まだ 3,084 stars と小規模。既存の Playwright / Cypress との差別化点として「AI 補助による自己修復テスト」「自然言語でのテストシナリオ記述」を打ち出しているとされる。masatoman の portfolio (Next.js) は Playwright がすでにプリインストール済みの環境で動いている。</p>
+    <p class="verdict">🟡 効率厨判定: portfolio の <code>/local-business/</code> 8 デモや <code>/demo-gallery</code> 投票フローの自動テストを強化したい局面で再評価する。今は軸 B ヒアリング・資料フェーズ優先なので UI テスト強化は後回し。3k stars のうち今日の急伸がどこから来たか（バズ起点か実利用の増加か）を週後半まで観察してから判断する。</p>
+    <a class="source-link" href="https://github.com/tester-army/e2e" target="_blank" rel="noopener">https://github.com/tester-army/e2e</a>
+  </div>
+
+  <div class="card">
+    <h3>Panniantong/Agent-Reach — API費用ゼロでエージェントがTwitter/Reddit等を読める CLI（jamesmoriarty版と別実装） <span class="badge">OSS / Python / 90k stars / GitHub Trending +980 today</span></h3>
+    <p>10-03 フィードで <code>jamesmoriarty/agent-reach</code> をカバーしたが、今日の Trending には異なる GitHub アカウント <code>Panniantong/Agent-Reach</code> が +980 stars で登場。star 数 (90,858) と急伸幅から見ると実質的に別のアクティブフォークまたは並行実装の可能性がある。機能説明は同じ「Twitter/Reddit/YouTube/GitHub 等を API キーなし無料でエージェントが読める」だが、コアコードと保守ベースが異なる可能性。</p>
+    <p class="verdict">🟡 効率厨判定: jamesmoriarty 版を 10-03 に評価済みなので同じ機能を試す理由は今のところない。ただし「どちらが活発に保守されているか」は今後の選択肢として観察価値あり。masatoman の tooling-update-watch で WebFetch が egress ブロックを喰らうサイトへの代替として使える可能性があるため、週末に <code>pip install agent-reach</code> して比較評価してみる程度の優先度。</p>
+    <a class="source-link" href="https://github.com/Panniantong/Agent-Reach" target="_blank" rel="noopener">https://github.com/Panniantong/Agent-Reach</a>
+  </div>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<div class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>garrytan/gstack — CEO/デザイナー/EMなど23ツールを内包する「全役職対応エージェントスタック」 <span class="badge">OSS / TypeScript / 135k stars / GitHub Trending +125 today</span></h3>
+    <p>23 本のツールを CEO・Designer・Engineering Manager・Release Manager・QA の役職ペルソナに割り振ってひとつのスタックに収めた「全役割対応フレームワーク」。135k stars と大型だが今日の増加は +125 と小幅で、定常的な関心によるトレンド入り。各ペルソナが専用プロンプト + ツールチェーン + 権限設定を持ち、Claude Code の Mod / Skills として組み込む形。</p>
+    <p class="verdict">🚫 効率厨判定: ひとりで全役割を担う個人開発者に「23ペルソナ」は不要な複雑さ。masatoman はすでに CLAUDE.md + 自前スキル + routine 設計でシンプルな役割分担を実現している。gstack を入れると「どのペルソナのルールが今動いているか」の把握コストが増え、デバッグが難しくなる。役職ペルソナより「今日の作業コンテキスト」を CLAUDE.md で切り替える方が個人開発スタックには合う。見なくてよい。</p>
+    <a class="source-link" href="https://github.com/garrytan/gstack" target="_blank" rel="noopener">https://github.com/garrytan/gstack</a>
+  </div>
+</div>
+
+<div class="failures">
+  <h2>取得失敗ソース</h2>
+  <ul>
+    <li>obsidian.md/changelog/ — egress ブロック（毎回）</li>
+    <li>docs.claude.com → platform.claude.com → CHANGELOG.md の redirect 連鎖、raw.githubusercontent.com で代替取得（v2.1.289 が最新、Oct 4-5 新バージョンなし確認済み）</li>
+    <li>releasealert.dev — egress ブロック</li>
+    <li>claudelog.com — egress ブロック</li>
+    <li>agentic.ai — egress ブロック</li>
+    <li>techdevnotes.com — egress ブロック</li>
+    <li>launchaijam.com — egress ブロック</li>
+  </ul>
+</div>
+
+</body>
+</html>
