@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-04</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 16px; color: var(--muted); font-size: 0.83rem; }
+    .failures li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-04</h1>
+<div class="meta">
+  <span>取得日: 2026-10-04</span>
+  <span>対象期間: 2026-10-03〜10-04</span>
+  <span>ソース: Claude Code CHANGELOG / Anthropic News / GitHub Trending / WebSearch</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<div class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>Claude Code v2.1.289 — シェルコマンドpermission修正 + terminal フリーズ修正 + symlink修正 <span class="badge">Claude Code / v2.1.289 / 2026-10-03〜04</span></h3>
+    <p>v2.1.288 の翌日リリース。変更点5点: (1) <strong>managed machine 上でシェルコマンドのpermissionルールが正しく適用されないバグ修正</strong> — CI/managed環境で権限が効いていないケースがあった。(2) <strong>複雑なコードブロック表示時のターミナルフリーズ修正</strong> — 長い出力が固まる問題。(3) <strong>symlink経由のファイルアクセス拒否バグ修正</strong> — symlink先ファイルを正当に読みに行ってもブロックされることがあった。(4) <strong>アップグレード後のプラグインロード失敗修正</strong> — バージョン更新後に既存プラグインが読み込まれない問題。(5) Artifact ページのレンダリング改善。</p>
+    <p class="verdict">🟢 効率厨判定: symlink修正とプラグインロード失敗修正はルーティン運用（毎日 scheduled routine + Skills / Mods）に直結するバグ。今すぐ <code>npm install -g @anthropic-ai/claude-code@latest</code> で更新しておく。アップグレードコスト0でリスク修正が取れる。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener">https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md</a>
+  </div>
+
+  <div class="card">
+    <h3>claude-mem — Claude Codeのセッション間メモリを永続化するTypeScriptツール <span class="badge">OSS / TypeScript / 95.6k stars / GitHub Trending</span></h3>
+    <p>Claude Code のセッションが終了・再起動しても「前のセッションで話したこと・決めたこと」を自動で引き継ぎ続けるメモリ永続化レイヤー。セッション終了時にコンテキストをスナップショット化し、次の起動時に自動ロードする。masatoman が現在 <code>CLAUDE.md</code> + <code>~/.claude/projects/.../memory/MEMORY.md</code> で手動管理している「セッション引き継ぎ」の一部を自動化できる可能性がある。</p>
+    <p class="verdict">🟢 効率厨判定: 毎回セッション冒頭で「前回の続きはこのメモリを読んでください」と指示する手間が省ける。まず <code>npx claude-mem init</code> でセットアップして、一日の routine 終了時にスナップショットが正しく保存されるか確認する。既存の MEMORY.md と競合しないかの検証は必要だが、試すコストは低い。</p>
+    <a class="source-link" href="https://github.com/thedotmack/claude-mem" target="_blank" rel="noopener">https://github.com/thedotmack/claude-mem</a>
+  </div>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<div class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（今日の新着に追加課金価値ありと判断できるものなし）</p>
+</div>
+
+<!-- ===== 🟡 様子見 ===== -->
+<div class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>impeccable (pbakaus) — AIが生成するUIの品質を+59%向上させるデザイン言語フレームワーク <span class="badge">OSS / JavaScript / 75k stars / Claude Code v3.5.0対応</span></h3>
+    <p>「AIが作るUIが全部同じ顔になる問題」を解決するデザイン指示フレームワーク。23の専用コマンドと7本のリファレンスファイル（タイポグラフィ / OKLCH カラー対比 / 空間デザイン / モーション / インタラクション / レスポンシブ / UXライティング）を Claude Code の Skills として追加するだけで、AI が生成するフロントエンドのデザイン品質を定量測定で+59% 向上させるとしている。Claude Code / Cursor / GitHub Copilot 対応、v3.5.0 以上が最新。</p>
+    <p class="verdict">🟡 効率厨判定: portfolio の warm editorial トップや demo-gallery の UI 改善サイクルが来たタイミングで試す価値あり。現時点では軸 B ヒアリング・資料作成フェーズが優先で UI 改善は後回し。v3.5.0 の npm install 方法だけ手元にメモしておき、次の UI 調整スプリントで投入する。</p>
+    <a class="source-link" href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">https://github.com/pbakaus/impeccable</a>
+  </div>
+
+  <div class="card">
+    <h3>ECC / Everything Claude Code (affaan-m) — 48エージェント+184スキルのClaude Code ハーネス <span class="badge">OSS / JavaScript / 227k stars / v2.0.0 / Rust コントロールプレーン</span></h3>
+    <p>Claude Code / Cursor / Codex / OpenCode に対応した「全部入り」エージェントハーネス。48エージェント・184スキル・rules・hooks・セキュリティスキャンをひとつのポータブルなシステムにまとめた v2.0.0。Rust 製コントロールプレーン + デスクトップ GUI ダッシュボードが追加された。Anthropic 主催のハッカソン優勝者が公開した OSS で信頼性は高い。</p>
+    <p class="verdict">🟡 効率厨判定: 全体導入はリスクが高い（既存 CLAUDE.md / Skills 設計との競合、設定過多による混乱）。ただし「184スキルの中から自分に必要な2-3スキルだけつまみ食いする」使い方は現実的。特に memory 管理・セキュリティスキャン周辺のスキルが流用できるかを、週末に軽く覗いてみる価値あり。</p>
+    <a class="source-link" href="https://github.com/affaan-m/ecc" target="_blank" rel="noopener">https://github.com/affaan-m/ecc</a>
+  </div>
+
+  <div class="card">
+    <h3>Anthropic — エンタープライズAI人材育成に1億ドル投資、10,000人のエンジニア育成計画 <span class="badge">Anthropic / ニュース / 2026-10-02</span></h3>
+    <p>Anthropic が企業向け AI 人材不足に対応するため1億ドルを投じ、10,000人のエンジニアを育成するプログラムを発表。企業が AI 技術者を内製化・雇用する動きを支援する内容で、Claude を企業インフラに組み込む際の人材確保を後押しする狙い。</p>
+    <p class="verdict">🟡 効率厨判定: masatoman への直接影響は薄い。ただし「企業が AI エンジニアを本格的に雇い始める局面」を Anthropic が公式に後押ししているという市場シグナルは把握する価値あり。masatoman.net の「AI に業務を任せる設計の実験ログ」コンセプトが刺さる読者層（AI 担当になったエンジニア、アトツギで DX を任された人）の人数が増える方向感。週次 B feed の文脈ネタとして温存。</p>
+    <a class="source-link" href="https://www.anthropic.com/news" target="_blank" rel="noopener">https://www.anthropic.com/news</a>
+  </div>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<div class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>Automaid AI Operations Hub — 企業向け常時稼働型AIオペレーションハブ <span class="badge">SaaS / エンタープライズ / 永続エージェント</span></h3>
+    <p>メール・メッセージング・SaaS ツール・内部システムをまたがるワークフローをカスタムスクリプトなしで自動化できる「常時稼働型エージェントハブ」。サポート・オペレーション・バックオフィス向けの企業製品で、永続エージェントが複数システムをまたいでタスクを引き受け続ける設計。</p>
+    <p class="verdict">🚫 効率厨判定: 企業の IT 部門向け製品で、個人開発者の運用スタックとは設計思想が根本的に違う。masatoman が既に Claude Code Scheduled Routine + Skills + Supabase で組んでいる自動化の構造と機能は重複するが、Automaid への乗り換えはロックイン+コスト増+学習コスト増の三重苦。「永続エージェント = Automaid に頼む」より「既存 Routine の精度を上げる」方が確実に時間対効果が高い。</p>
+    <a class="source-link" href="https://automaid.ai" target="_blank" rel="noopener">https://automaid.ai</a>
+  </div>
+</div>
+
+<div class="failures">
+  <h2>取得失敗ソース</h2>
+  <ul>
+    <li>obsidian.md/changelog/ — egress ブロック（毎回）</li>
+    <li>docs.claude.com → platform.claude.com → CHANGELOG.md の redirect 連鎖、raw.githubusercontent.com で最終取得</li>
+    <li>aiagentstore.ai — egress ブロック</li>
+  </ul>
+</div>
+
+</body>
+</html>
