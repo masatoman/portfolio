@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-07</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .note { color: var(--muted); font-size: 0.83rem; padding: 8px 12px; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); margin-bottom: 12px; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 16px; color: var(--muted); font-size: 0.83rem; }
+    .failures li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-07</h1>
+<div class="meta">
+  <span>取得日: 2026-10-07</span>
+  <span>対象期間: 2026-10-06〜10-07</span>
+  <span>ソース: Claude Code CHANGELOG / Anthropic News / GitHub Trending / WebSearch</span>
+</div>
+
+<div class="note">
+  ℹ️ Claude Code CHANGELOG は v2.1.292 が最新（10-05 確認の v2.1.289 から 3 バージョン進んでいる可能性あり、日付未確認）。Anthropic News: 10-06 に Cyber Verification Program 拡充を発表。今日のメインは GitHub Trending の急上昇 4 本 — とくに Matt Pocock の skills 集（278k stars）と Claude 専用メモリ管理ツール（97k stars）の 🟢 2 件が今日使えるかどうか確認する価値あり。
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<div class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>mattpocock/skills — TypeScript 著名人 Matt Pocock の .agents ディレクトリを丸ごと公開 <span class="badge">OSS / Shell / 278,108 stars / GitHub Trending +889 today</span></h3>
+    <p>TypeScript ツール（ts-reset / type-challenges）で知られる Matt Pocock が自分の <code>.agents</code> ディレクトリをそのまま公開したリポジトリ。278k stars というのは「個人の実働 skills 集がこれだけ参照されている」証拠で、社内ツールや一般公開された設計論より信頼度が高い。内容は「実務で使っているスキルファイルそのもの」であり、プロンプトエンジニアリングの教科書的な抽象論ではない。</p>
+    <p>具体的な活用法: masatoman はすでに <code>.claude/skills/</code> 配下に複数スキルを運用している。今日やること → <code>gh repo view mattpocock/skills</code> または GitHub ブラウザでファイル一覧を開き、<strong>自分の tooling-update-watch や content-executor と役割が重なるスキルがないか</strong>だけを 5-10 分で確認する。「良い書き方」を見てそのまま自前スキルの文体・構成に反映するだけでも十分な効果がある。インストール不要・コストゼロ。</p>
+    <p class="verdict">🟢 効率厨判定: 「278k stars の実働 skills 集をまだ見ていない」なら今日 5 分で眺めるだけで損失ゼロ。自前スキルの改善ヒントを 1 つ以上拾える可能性が高い。</p>
+    <a class="source-link" href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">https://github.com/mattpocock/skills</a>
+  </div>
+
+  <div class="card">
+    <h3>thedotmack/claude-mem — Claude セッション間の記憶を AI 圧縮で永続化する TypeScript ツール <span class="badge">OSS / TypeScript / 97,157 stars / GitHub Trending +534 today</span></h3>
+    <p>Claude Code セッション間で文脈を引き継ぐための「AI 圧縮付き永続コンテキストシステム」。97k stars は「実際に多くの Claude Code ユーザーが採用している」規模感を示す。masatoman は現在 <code>~/.claude/projects/.../memory/MEMORY.md</code> に 40+ 件の記憶インデックスを手動管理しており、セッションをまたいだ文脈の引き継ぎは CLAUDE.md の自動 import で対応している。claude-mem は「セッションが長くなって圧縮が入ったときに何を残すか」を AI が自動で判断する仕組みで、手動 MEMORY.md を補完できる可能性がある。</p>
+    <p>具体的な活用法: README の「既存の MEMORY.md との共存可否」「どこに記憶を保存するか（ファイル / Supabase / ローカル）」だけを確認する。<strong>既存の memory 設計と競合しないなら</strong>、tooling-update-watch や content-executor など長時間ルーティンのコンテキスト保持に試せる。</p>
+    <p class="verdict">🟢 効率厨判定: 現在の MEMORY.md は手動で重く、長セッションで圧縮が入ると引き継ぎが不完全になる問題が出ている。claude-mem が既存設計と競合しないなら今週末に README だけ読んで判断する価値あり。</p>
+    <a class="source-link" href="https://github.com/thedotmack/claude-mem" target="_blank" rel="noopener">https://github.com/thedotmack/claude-mem</a>
+  </div>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<div class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（今日の新着に追加課金価値ありと判断できるものなし）</p>
+</div>
+
+<!-- ===== 🟡 様子見 ===== -->
+<div class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>pbakaus/impeccable — AI ハーネスの出力デザイン品質を上げる「デザイン言語」 <span class="badge">OSS / JavaScript / 77,675 stars / GitHub Trending +616 today</span></h3>
+    <p>「AI ハーネスをデザインで良くするデザイン言語」と銘打つ JavaScript 製ツール。77k stars と規模はあり、+616 stars の伸びも堅調。具体的には「Claude などの AI が生成する UI / レイアウト / 色使いの品質を一定基準に底上げするための設計言語 + ルールセット」と思われる。masatoman が artifact で HTML ページを量産している文脈では、Claude の UI 出力にバラつきが出やすい問題を緩和できる可能性がある。</p>
+    <p class="verdict">🟡 効率厨判定: artifact-design スキルで現状の品質が足りているなら今は不要。軸 B デモギャラリーや local-business デモの UI 品質を上げたいフェーズに入ったら再評価。今週は README だけ斜め読みしてどんな「言語」なのかの概念を掴む程度でよい。</p>
+    <a class="source-link" href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">https://github.com/pbakaus/impeccable</a>
+  </div>
+
+  <div class="card">
+    <h3>Anthropic — Cyber Verification Program 拡充を発表 (2026-10-06) <span class="badge">Anthropic / セキュリティ / 2026-10-06</span></h3>
+    <p>Anthropic が 2026-10-06 に Cyber Verification Program の拡大を発表。このプログラムはセキュリティ研究者や企業が Claude の安全性・セキュリティ特性を検証できる仕組みで、今回の拡充で対象範囲や参加資格が広がった模様（詳細は公式ページで確認要）。masatoman への直接的なアクション項目はないが、「Anthropic のセキュリティ / 信頼性への投資が続いている」ことの確認としてウォッチ価値あり。</p>
+    <p class="verdict">🟡 効率厨判定: 今すぐ使えるツールアップデートではなくエコシステム動向情報。masatoman.net の「AI ツール評価」系記事の文脈で「Claude は安全性投資を続けている」という補強材料にはなる。</p>
+    <a class="source-link" href="https://www.anthropic.com/news" target="_blank" rel="noopener">https://www.anthropic.com/news</a>
+  </div>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<div class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>morluto/rea — 「エージェントでアプリ挙動からバイナリまで何でも逆解析」TypeScript 製ツール <span class="badge">OSS / TypeScript / 9,315 stars / GitHub Trending +2,956 today</span></h3>
+    <p>今日最大の急伸（+2,956 stars）を記録したリポジトリ。「アプリの挙動からネイティブバイナリまで何でも逆解析できる」と謳うエージェント型ツール。この規模の急伸は特定コミュニティ（セキュリティ研究 / CTF / リバースエンジニアリング）内での口コミ拡散によるものが多く、一般 web 開発者への実用度は低い。masatoman のスタックは web 開発・コンテンツ生成・B2B SaaS であり、バイナリ解析は完全に無関係。</p>
+    <p>また +2,956 という急伸パターンは「バズによる一時的スター増」であることが多く、実際の採用率・メンテナンス継続性は数週間後に再評価が必要。</p>
+    <p class="verdict">🚫 効率厨判定: masatoman のユースケースと交差点ゼロ。セキュリティ研究コミュニティのハイプに引っ張られて調べる時間はもったいない。masatoman.net で「セキュリティ系エージェントツール比較」記事を書く予定があるなら B feed の候補にメモするくらいでよい。</p>
+    <a class="source-link" href="https://github.com/morluto/rea" target="_blank" rel="noopener">https://github.com/morluto/rea</a>
+  </div>
+</div>
+
+<div class="failures">
+  <h2>取得失敗・制限ソース</h2>
+  <ul>
+    <li>obsidian.md/changelog/ — egress ブロック（毎回）</li>
+    <li>docs.claude.com → platform.claude.com → CHANGELOG.md の redirect 連鎖。raw.githubusercontent.com では CHANGELOG を取得できたが、最新エントリに日付の明示がなく v2.1.292 が 10-06 以降のリリースかどうか未確定。次回フィードで再確認。</li>
+    <li>github.com/anthropics/claude-code/releases — 今回未試行（CHANGELOG と重複のため）</li>
+  </ul>
+</div>
+
+</body>
+</html>
