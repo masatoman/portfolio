@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-10</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .note { color: var(--muted); font-size: 0.83rem; padding: 8px 12px; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); margin-bottom: 12px; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 18px; font-size: 0.85rem; color: var(--muted); }
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-10</h1>
+<div class="meta">
+  <span>取得日: 2026-10-10 (JST)</span>
+  <span>対象期間: 2026-10-08〜2026-10-10</span>
+  <span>ソース: Claude Code Releases / GitHub Trending / Anthropic news / WebSearch</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<section class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>Claude Code v2.1.296 (Oct 9) — <code>CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL</code> + <code>autoCompactWindow</code> + Read <code>allow_large</code> <span class="badge">Claude Code / v2.1.296 / 2026-10-09</span></h3>
+    <p>ワークフロー全エージェントを単一モデルで走らせる <code>CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL</code> 環境変数が追加。Workflow スクリプト内で各 agent() 呼び出しに個別の model 指定をしなくても、一つの env で全サブエージェントを Opus 5.5 に固定できる。<code>autoCompactWindow</code> はサブエージェントのフロントマターや <code>--agents</code> 定義に追加でき、コンテキスト自動圧縮のウィンドウをサブエージェント単位でコントロール可能に。</p>
+    <p>Read ツールに <code>allow_large: true</code> オプション追加。通常のサイズ制限を超えるテキストファイルを 1 回の呼び出しで読める。MCP ツール説明文の上限が 2,048 → 4,096 文字に拡大（説明が長い MCP サーバーで過去に起きた切り詰めが解消される）。Sonnet 5.5 のキャッシュ読み出しが $0.10/M（旧 $0.20）に値下げ（MAX 定額には直接影響なし、知識として）。</p>
+    <p class="verdict">🟢 効率厨判定: <code>CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL=claude-opus-5-5</code> を .env に 1 行追加するだけで Workflow スクリプト全エージェントを Opus 5.5 に統一できる。今日やること → tooling-update-watch と content-executor の Workflow を使う環境に env 変数を追加する。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases" target="_blank" rel="noopener">https://github.com/anthropics/claude-code/releases</a>
+  </div>
+
+  <div class="card">
+    <h3>Claude Code v2.1.295 (Oct 8) — フック <code>onFailure: "block"</code> + <code>$.ui.notify</code> for Mods <span class="badge">Claude Code / v2.1.295 / 2026-10-08</span></h3>
+    <p>コマンド・HTTP フックに <code>onFailure: "block"</code> が追加。フックの起動失敗・タイムアウト・予期せぬ終了が発生した際にアクション全体をブロックする。従来はフック失敗がサイレントにスルーされる可能性があったが、これで「フックが生きている時だけアクションを通す」安全弁を設計できる。</p>
+    <p>Mods に <code>$.ui.notify</code> が追加され、モッドからデスクトップ通知を発火できるようになった。OSC 7501（Program Status Protocol）サポートも追加、対応ターミナルが Claude の「作業中 / 待機中 / 完了」状態をステータスバーに表示できる。<code>CLAUDE_CODE_RETRY_WATCHDOG_MAX_WAIT_MS</code> で 429/529 エラー時のリトライ最大待機時間をキャップできる。</p>
+    <p class="verdict">🟢 効率厨判定: settings.json の重要フックに <code>onFailure: "block"</code> を付けることで、フック無効時の誤動作を防止できる。特に PreToolUse でコマンド制御しているフックに今日追加する価値あり。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases" target="_blank" rel="noopener">https://github.com/anthropics/claude-code/releases</a>
+  </div>
+
+  <div class="card">
+    <h3>Claude Code v2.1.294 (Oct 8) — prompt/agent フック指示バグ修正 + Stop/SubagentStop 暴発修正 <span class="badge">Claude Code / v2.1.294 / 2026-10-08</span></h3>
+    <p><code>prompt</code> フックおよび <code>agent</code> フックが「指示」として書かれている場合に、ブロックすべきアクションを通してしまうバグが修正された。これはフックをインストラクション形式で書いている場合に想定外の動作を引き起こしていた可能性がある。</p>
+    <p>Stop / SubagentStop の <code>prompt</code> フック判定が改善され、Claude がセッションを早期終了しにくくなった。スケジュールルーティン（tooling-update-watch 等）でサブエージェントが途中で止まる問題が解消される可能性がある。</p>
+    <p class="verdict">🟢 効率厨判定: スケジュールルーティンが途中終了するバグを直接修正している。<code>claude update</code> で最新版に更新するだけで恩恵を受けられる。今日実行する。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases" target="_blank" rel="noopener">https://github.com/anthropics/claude-code/releases</a>
+  </div>
+</section>
+
+<!-- ===== 💰 課金価値 ===== -->
+<section class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし</p>
+</section>
+
+<!-- ===== 🟡 様子見 ===== -->
+<section class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>addyosmani/agent-skills — Google Chrome エンジニア Addy Osmani の production-grade スキル集が Trending 再浮上 <span class="badge">OSS / JavaScript / ★103,977 / GitHub Trending +436</span></h3>
+    <p>Addy Osmani（Google Chrome エンジニア）が公開したAIコーディングエージェント向けのエンジニアリングスキル集。20 種の構造化ワークフローと 7 つのスラッシュコマンドを収録。<code>npx skills add addyosmani/agent-skills</code> で Claude Code・Cursor 等に一括インストール可能。各スキルには検証ゲートとアンチ合理化テーブルが付属している。</p>
+    <p>masatoman は自前 SKILL.md を複数設計済みだが、Osmani のスキルの構造（ステップ / 検証 / 判断表の組み合わせ）は自前スキルの品質改善ヒントとして参考になる。特に「検証ゲート」の設計は今の自前スキルに欠けている部分がある可能性がある。</p>
+    <p class="verdict">🟡 効率厨判定: 今すぐ全スキルを入れる必要はないが、GitHub でディレクトリ構造を 10 分確認する価値はある。自前スキルの構造と比較して改善点を見つけるだけでも元が取れる。</p>
+    <a class="source-link" href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener">https://github.com/addyosmani/agent-skills</a>
+  </div>
+
+  <div class="card">
+    <h3>alibaba/open-code-review — Alibaba 社内 2 年運用の AI コードレビュー CLI が OSS 化・今日 Trending 急上昇 <span class="badge">OSS / Go / ★45,190 / GitHub Trending +326</span></h3>
+    <p>Alibaba が社内 2 年間使ったコードレビューツールを Apache 2.0 で公開。決定論的パイプライン（ファイル選択・バンドル・ルールマッチ・コメント配置）と LLM エージェント（動的判断・コンテキスト取得）のハイブリッド設計。<code>ocr review</code> CLI でローカル実行でき、Claude Code / Cursor 向けプラグインと GitHub Actions インテグレーション付き。Anthropic 社のベンチマーク（一般用途 LLM エージェント）比で 1/9 のトークン消費でより高い精度を主張している。</p>
+    <p>masatoman はソロ開発なのでコードレビューの需要は低いが、「決定論的 + LLM のハイブリッドパイプライン」というアーキテクチャは今後 B2B ツール設計の参考になる。Claude Code プラグイン対応している点は、将来の軸 B プロダクト設計のテンプレートとして読む価値がある。</p>
+    <p class="verdict">🟡 効率厨判定: 今すぐ使う場面はない（ソロ開発）。ただし「LLM + 決定論パイプライン」設計の参考事例として README を 5 分読む価値あり。将来の B2B 製品設計のアーキテクチャ参考に保存。</p>
+    <a class="source-link" href="https://github.com/alibaba/open-code-review" target="_blank" rel="noopener">https://github.com/alibaba/open-code-review</a>
+  </div>
+</section>
+
+<!-- ===== 🚫 罠 ===== -->
+<section class="section-gray">
+  <h2>🚫 罠</h2>
+  <p class="none">該当なし</p>
+</section>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failures">
+  <h2>取得失敗・制限ソース</h2>
+  <ul>
+    <li>obsidian.md/changelog/ — DNS 解決失敗（getaddrinfo ENOTFOUND）、skip</li>
+    <li>docs.claude.com/en/release-notes/claude-code — 301 → platform.claude.com → 307 → GitHub CHANGELOG.md にリダイレクト。代替として github.com/anthropics/claude-code/releases を直接取得（成功）</li>
+  </ul>
+</div>
+
+</body>
+</html>
