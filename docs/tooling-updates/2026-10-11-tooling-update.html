@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-11</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .note { color: var(--muted); font-size: 0.83rem; padding: 8px 12px; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); margin-bottom: 12px; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 18px; font-size: 0.85rem; color: var(--muted); }
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-11</h1>
+<div class="meta">
+  <span>取得日: 2026-10-11 (JST)</span>
+  <span>対象期間: 2026-10-09〜2026-10-11</span>
+  <span>ソース: GitHub Trending / Claude Code Releases / Anthropic news / WebSearch</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<section class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>mksglu/context-mode — Claude Code のコンテキスト枯渇対策 MCP、ツール出力を 98% 削減 <span class="badge">OSS / TypeScript / ★26,307 / GitHub Trending</span></h3>
+    <p>AI コーディングエージェントのコンテキスト消費を抑える MCP サーバー。ツール実行をサンドボックス化し、モデルに返すのは生ログではなく抽出済みサマリだけにする。一例では 315 KB の出力が 5.4 KB に圧縮される（98% 削減）。セッション記憶を SQLite/FTS5 でローカルに保持するため、コンテキスト自動圧縮後も「どのファイルを編集したか」「直前のタスク」を引き継げる。Claude Code・Cursor・Windsurf・Gemini CLI を含む 14+ プラットフォーム対応。</p>
+    <p>masatoman は tooling-update-watch・content-executor など複数の定期ルーティンをロングセッションで走らせている。grep 結果やビルドエラーが大量に出るセッションでコンテキスト圧縮が走り速度が落ちる場面に直接刺さる。MCP + hooks で既存スタックを変えずに組み込める点がハードルを下げている。</p>
+    <p class="verdict">🟢 効率厨判定: <code>npx context-mode install</code> で Claude Code に追加→今日の tooling-update-watch や content-executor セッションで動作確認。特に「大きなファイルを grep した後に Context を消費しすぎる」場面で効果が出やすい。</p>
+    <a class="source-link" href="https://github.com/mksglu/context-mode" target="_blank" rel="noopener">https://github.com/mksglu/context-mode</a>
+  </div>
+
+  <div class="card">
+    <h3>multica-ai/andrej-karpathy-skills — LLM コーディングの落とし穴を網羅した CLAUDE.md 単一ファイル <span class="badge">OSS / ★218,258 / GitHub Trending</span></h3>
+    <p>Andrej Karpathy の LLM コーディング観察から導出した CLAUDE.md ファイル（インストール不要、1 ファイルを置くだけ）。過剰な提案・コンテキスト汚染・早期ループ終了・指示の二重解釈など、LLM コーディングエージェント特有の誤動作パターンを防ぐ指示が集まっている。</p>
+    <p>masatoman の CLAUDE.md はすでに詳細だが、このファイルとの diff を取ることで「書いていないが効く指示」を発見できる。218K stars は実際に CLAUDE.md に取り込んで効果を実感した人が多い証拠。</p>
+    <p class="verdict">🟢 効率厨判定: GitHub でファイルを開いて現在の CLAUDE.md と並べて比較、不足している観点を 1-2 行追記するだけで完結する。今日 10 分で終わるアクション。</p>
+    <a class="source-link" href="https://github.com/multica-ai/andrej-karpathy-skills" target="_blank" rel="noopener">https://github.com/multica-ai/andrej-karpathy-skills</a>
+  </div>
+
+  <div class="card">
+    <h3>mattpocock/skills — TypeScript エキスパート Matt Pocock の実運用スキル集を公開 <span class="badge">OSS / Shell / ★284,463 / GitHub Trending +1,736</span></h3>
+    <p>Matt Pocock（TypeScript Total TypeScript の著者）が自身の <code>.agents</code> ディレクトリを公開したスキル集。284K stars で今日も +1,736 と高い注目を集めている。各スキルは実際の開発ワークフローから生まれた設計で、型推論・リファクタリング・コードレビューなどのエンジニアリングスキルを含む。</p>
+    <p>masatoman は <code>.claude/skills/</code> にカスタムスキルを複数持っているが、Matt のスキルは「検証ゲート」「判断基準の明示」といった設計パターンで自前スキルに足りていない部分を補える可能性がある。npx でワンライン追加できる構造。</p>
+    <p class="verdict">🟢 効率厨判定: <code>npx skills add mattpocock/skills</code> でインストール前に GitHub の README をまず 5 分確認、自前スキルの構造改善ヒントを拾うのが最速の使い方。今日の作業前に README を開く。</p>
+    <a class="source-link" href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">https://github.com/mattpocock/skills</a>
+  </div>
+</section>
+
+<!-- ===== 💰 課金価値 ===== -->
+<section class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし</p>
+</section>
+
+<!-- ===== 🟡 様子見 ===== -->
+<section class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>morluto/rea — エージェントでアプリ・ネイティブバイナリをリバースエンジニア <span class="badge">OSS / TypeScript / ★72,027 / GitHub Trending +25,793</span></h3>
+    <p>AI エージェントを使ってアプリや OS ネイティブバイナリを解析・逆工程するツール。今日だけで 25,793 stars という急上昇は GitHub Trending 史上でもトップクラスの数字。競合ツールの内部実装把握やドキュメントのないレガシー API の解析に使える可能性がある。</p>
+    <p>masatoman の現在のワークフロー（軸 B 工務店向け B2B ツール開発・ルーティン自動化）には直接使える場面が少ない。急上昇の原因がセキュリティ研究コミュニティの一時的な話題なのか実用需要なのかまだ判断がつかない。</p>
+    <p class="verdict">🟡 効率厨判定: 今は星数の急上昇を確認して bookmarked するに留める。3 ヶ月後に機能が安定して実用事例が出てから再チェック推奨。</p>
+    <a class="source-link" href="https://github.com/morluto/rea" target="_blank" rel="noopener">https://github.com/morluto/rea</a>
+  </div>
+
+  <div class="card">
+    <h3>hugohe3/ppt-master — ドキュメント・トピックからアニメーション付き PowerPoint を自動生成 <span class="badge">OSS / Python / ★59,422 / GitHub Trending</span></h3>
+    <p>Markdown やトピック指定から、チャート・アニメーション・ナレーション付きのネイティブ PowerPoint ファイルを生成する Python ツール。59K stars。LibreOffice や Google Slides へのエクスポートも可能。</p>
+    <p>masatoman は商談資料を HTML で作成しているが、建材屋・信金・商工会議所向けの訪問商談では PowerPoint 形式を求められる可能性がある。現時点で即使う場面はないが、プラン C ヒアリング経路（たましん / 建材屋 / 商工会議所）が本格化する際に試す候補に入れておく価値がある。</p>
+    <p class="verdict">🟡 効率厨判定: 今すぐ導入不要。商談先から「PowerPoint でください」と言われた時に思い出すリストに入れておく。</p>
+    <a class="source-link" href="https://github.com/hugohe3/ppt-master" target="_blank" rel="noopener">https://github.com/hugohe3/ppt-master</a>
+  </div>
+</section>
+
+<!-- ===== 🚫 罠 ===== -->
+<section class="section-gray">
+  <h2>🚫 罠</h2>
+  <p class="none">該当なし</p>
+</section>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failures">
+  <h2>取得失敗・制限ソース</h2>
+  <ul>
+    <li>obsidian.md/changelog/ — DNS 解決失敗（getaddrinfo ENOTFOUND）、skip</li>
+    <li>docs.claude.com/en/release-notes/claude-code — 301 → platform.claude.com → 307 → GitHub CHANGELOG.md に連鎖リダイレクト。github.com/anthropics/claude-code/blob/main/CHANGELOG.md も 503 のため、github.com/anthropics/claude-code/releases（成功）で代替</li>
+    <li>Claude Code 最新リリース (v2.1.296〜v2.1.295〜v2.1.294) — 2026-10-10 フィードで既報、本日分から重複除外</li>
+  </ul>
+</div>
+
+</body>
+</html>
