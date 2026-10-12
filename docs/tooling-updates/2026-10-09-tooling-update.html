@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-09</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .note { color: var(--muted); font-size: 0.83rem; padding: 8px 12px; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); margin-bottom: 12px; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 18px; font-size: 0.85rem; color: var(--muted); }
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-09</h1>
+<div class="meta">
+  <span>取得日: 2026-10-09 (JST)</span>
+  <span>対象期間: 2026-10-07〜2026-10-09</span>
+  <span>ソース: Anthropic news / GitHub Trending / WebSearch</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<section class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>anthropics/knowledge-work-plugins — Cowork を職種別に特化する公式 OSS プラグイン集が GitHub Trending 再浮上 <span class="badge">OSS / Python / ★27,524 / GitHub Trending 10-09</span></h3>
+    <p>Anthropic が公式で公開している Claude Cowork 向けプラグイン集。生産性・企業検索・営業・財務・データ・法務・マーケ・カスタマーサポート・プロジェクト管理など 11 種以上のプラグインを Apache 2.0 でオープンソース化。各プラグインは「スキル + コネクタ + スラッシュコマンド + サブエージェント」のセットとして職種単位でパッケージされている。</p>
+    <p>masatoman は現在 Claude Cowork（remote セッション）上でルーティンを運用しており、自前 skills（tooling-update-watch / content-executor 等）と公式プラグインのアーキテクチャを比較する具体的なメリットがある。今日やること → GitHub でプラグイン一覧を開き「project-management」と「data」の構造を 10 分確認する。コピーしてカスタマイズできる設計なので、自前 SKILL.md の改善ヒントをそのまま取れる。</p>
+    <p class="verdict">🟢 効率厨判定: Cowork で動いている今すぐ使える公式の設計パターン集。まずディレクトリ構造だけ眺めて自前スキルと比較する。インストールコストゼロ。</p>
+    <a class="source-link" href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noopener">https://github.com/anthropics/knowledge-work-plugins</a>
+  </div>
+</section>
+
+<!-- ===== 💰 課金価値 ===== -->
+<section class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし</p>
+</section>
+
+<!-- ===== 🟡 様子見 ===== -->
+<section class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>Anthropic 2026 Usage Policy 更新 — 自動化ヘビーユーザーは変更点を一読推奨 <span class="badge">Anthropic / 2026-10-08</span></h3>
+    <p>Anthropic が 2026-10-08 に利用ポリシーを更新した。詳細は公式ページで確認要だが、スケジュールルーティン・コンテンツ自動生成・B2B 向け自動化をヘビーに使っているユーザーは「自分の使い方が対象になっていないか」を 5 分で確認する価値がある。</p>
+    <p>masatoman の運用（日次 tooling-update-watch / content-executor / Supabase 自動投入）は自動化の量が多く、ポリシー変更が影響する可能性がゼロではない。今すぐ変更が必要な内容でなくても把握しておく。</p>
+    <p class="verdict">🟡 効率厨判定: 読まずに放置するリスクより確認コスト（5 分）の方が安い。公式ページを開いて変更サマリーだけ確認する。</p>
+    <a class="source-link" href="https://www.anthropic.com/news" target="_blank" rel="noopener">https://www.anthropic.com/news</a>
+  </div>
+
+  <div class="card">
+    <h3>Anthropic — 「Cyber Mission」発表 (2026-10-08)、AI 活用のサイバー防衛を本格組織化 <span class="badge">Anthropic / 2026-10-08</span></h3>
+    <p>Anthropic が 2026-10-08 に「Anthropic Cyber Mission」を発表。10-06 の Cyber Verification Program 拡充（10-07 フィード掲載）に続くサイバーセキュリティ領域への本格投資で、Claude を防衛・セキュリティ分野に活用する組織的な枠組みを設けた模様。masatoman への直接アクション項目はない。</p>
+    <p>masatoman.net 「AI ツール評価」系記事の文脈で「Anthropic がセキュリティに組織的にコミットしている」という補強材料になる。B2B 顧客（アトツギ）向けに「信頼性の高いプロバイダを選んでいる」訴求の根拠にもなり得る。</p>
+    <p class="verdict">🟡 効率厨判定: エコシステム動向として把握。今週の記事ネタより将来の「なぜ Claude か」説得材料として保存しておく。</p>
+    <a class="source-link" href="https://www.anthropic.com/news" target="_blank" rel="noopener">https://www.anthropic.com/news</a>
+  </div>
+
+  <div class="card">
+    <h3>Terminal-Bench 4.0 最新結果 — Opus 5.5 が Claude Code で 64.8% 首位を確認 (Oct 6) <span class="badge">ベンチマーク / 2026-10-06</span></h3>
+    <p>Terminal-Bench 4.0 の最新スコアで Claude Code + Opus 5.5 が 64.8% でトップ、Sonnet 5.5 が 61.8%。Codex + GPT-6.1 Sol は 58.2% で最安コスト帯の首位。masatoman は MAX 定額プランなのでコストは関係なく、複雑なコーディング・マルチファイル変更には Opus 5.5 の明示指定が最優先を再確認できる。</p>
+    <p>Agent tool 経由でサブエージェントを spawn する際、<code>model: "claude-opus-5-5"</code> を明示するだけで同じタスクの品質が上がる場面がある（デフォルトが Sonnet 系の場合）。</p>
+    <p class="verdict">🟡 効率厨判定: 「Opus 5.5 最強」はすでに知っている情報。複雑なタスクで model 指定を省いているワークフローがあれば今日直すだけ。</p>
+    <a class="source-link" href="https://www.morphllm.com/best-ai-coding-agents-2026" target="_blank" rel="noopener">https://www.morphllm.com/best-ai-coding-agents-2026</a>
+  </div>
+</section>
+
+<!-- ===== 🚫 罠 ===== -->
+<section class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>Anthropic「米国科学発見へのコミットメント」発表 (2026-10-08) — 個人開発者には無関係 <span class="badge">Anthropic / 政府連携 / 2026-10-08</span></h3>
+    <p>Anthropic が「Building on our commitment to American scientific discovery」として米国の科学研究機関との連携強化（「Genesis Mission」関連とみられる）を発表。米政府・研究機関向けの大規模展開に関するアナウンスであり、個人開発者や中小 B2B 向けの機能変更は含まれない。</p>
+    <p>API 料金・MAX プランの条件・Claude Code の動作には影響なし。Anthropic の政治的ポジショニングとして追いたい場合を除き、読む時間は不要。</p>
+    <p class="verdict">🚫 効率厨判定: masatoman のスタックへの影響ゼロ。読む時間を軸 B ヒアリング準備に使う方が価値が高い。</p>
+    <a class="source-link" href="https://www.anthropic.com/news" target="_blank" rel="noopener">https://www.anthropic.com/news</a>
+  </div>
+</section>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failures">
+  <h2>取得失敗ソース</h2>
+  <ul>
+    <li>obsidian.md/changelog/ — DNS 解決失敗 (ENOTFOUND、毎回)</li>
+    <li>docs.claude.com/en/release-notes/claude-code → platform.claude.com → GitHub blob の redirect 連鎖で実コンテンツ取得不可。WebSearch で最新 Claude Code リリース（v2.1.293 / 10-07）は 10-08 フィード掲載済み。本日時点で新たなリリースは未確認。</li>
+    <li>github.com/anthropics/claude-code/releases — CHANGELOG 取得と重複のため skip</li>
+  </ul>
+</div>
+
+</body>
+</html>
