@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-14</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .note { color: var(--muted); font-size: 0.83rem; padding: 8px 12px; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); margin-bottom: 12px; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 18px; font-size: 0.85rem; color: var(--muted); }
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-14</h1>
+<div class="meta">
+  <span>取得日: 2026-10-14 (JST)</span>
+  <span>対象期間: 2026-10-12〜2026-10-14</span>
+  <span>ソース: GitHub Trending / Anthropic news / WebSearch (Claude Code / AI coding / automation)</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<section class="section-green">
+  <h2>🟢 即使う</h2>
+  <p class="none">該当なし — Claude Code は v2.1.296 (Oct 9) が最新のまま変更なし。Oct 12-14 の期間に新規リリースなし。Anthropic news も Oct 8 の 3 件から更新なし（Oct 13 フィードで既報）。</p>
+</section>
+
+<!-- ===== 💰 課金価値 ===== -->
+<section class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし</p>
+</section>
+
+<!-- ===== 🟡 様子見 ===== -->
+<section class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>Google Antigravity 2.0 が安定版リリース — Gemini CLI 後継が非同期バックグラウンドワークフローを標準装備 <span class="badge">Google / stable v2.21.1 / Oct 7, 2026</span></h3>
+    <p>Google が I/O 2026 で発表した Gemini CLI と個人向け Gemini Code Assist の後継ツール「Antigravity」が安定版 v2.21.1 (Antigravity 2.0) に到達。非同期バックグラウンドワークフロー（Claude Code のスケジュールルーティン相当）をネイティブサポートし、500 以上のモデルを横断利用できる設計。Google Workspace との統合も強み。</p>
+    <p>masatoman は Claude Code MAX 定額で運用中のため今すぐ乗り換える理由はない。ただし「Google 製エージェント CLI もバックグラウンド自律実行を標準装備した」事実は競合動向として把握しておく価値がある。軸 B 商談で「他のサービスとどう違うのか」を聞かれた際の回答材料にもなる。</p>
+    <p class="verdict">🟡 効率厨判定: 即導入不要。「Gemini 系の競合が本格化した」という市場認識として記録。無料枠の詳細と Claude Code との機能差が明確になったら改めて比較評価する。</p>
+    <a class="source-link" href="https://en.wikipedia.org/wiki/Google_Antigravity" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Google_Antigravity</a>
+  </div>
+
+  <div class="card">
+    <h3>debpalash/VoiceStudio — 646 言語対応のローカル音声クローン・文字起こし・吹き替えツール <span class="badge">OSS / GitHub Trending +1,748 / ★63,206</span></h3>
+    <p>音声クローニング・デザイン・吹き替え・ディクテーション・文字起こし・翻訳を 646 言語でローカル実行できるオープンソースツール。クラウド送信なしでプライベートに音声処理できる点が特徴。インターネット接続不要で動作し商用利用可能なライセンス。今日 GitHub Trending で +1,748。</p>
+    <p>masatoman の現在のワークフロー（テキスト・写真ベースの工務店向けツール群・ルーティン自動化）には直接使う場面が少ない。将来の軸 B MVP に「現場音声の自動議事録・日報化」機能を検討する際の候補ツール。masatoman.net の音声コンテンツ路線が発生した場合にも参照できる。</p>
+    <p class="verdict">🟡 効率厨判定: 今すぐは不要。「ローカル音声処理がここまで高精度・多言語対応になった」という技術水準の確認として記録。軸 B MVP で音声機能を検討する段階で再評価。</p>
+    <a class="source-link" href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">https://github.com/debpalash/VoiceStudio</a>
+  </div>
+
+  <div class="card">
+    <h3>bilawalsidhu/gods-eye-view — ライブ空間インテリジェンスデータを可視化するブラウザ 3D グローブ <span class="badge">OSS / GitHub Trending +1,961 / ★55,345</span></h3>
+    <p>衛星軌道・気象・海運・航空などのオープンソース空間データをブラウザ上の 3D グローブでリアルタイム表示する WebGL アプリ。自己ホスト可能でカスタムデータソースにも対応。今日 GitHub Trending で +1,961。</p>
+    <p>masatoman の B2B ツール（工務店向け現場管理・日報自動化）では即使える場面はない。ただし「地図＋リアルタイムデータ可視化」のデモ技術として、将来的に工事現場の位置情報・巡回ルートの可視化デモを作る際の参考コードになる可能性がある。</p>
+    <p class="verdict">🟡 効率厨判定: 今は技術トレンドとして bookmark。WebGL + リアルタイム地図の実装サンプルが必要になった時に参照。</p>
+    <a class="source-link" href="https://github.com/bilawalsidhu/gods-eye-view" target="_blank" rel="noopener">https://github.com/bilawalsidhu/gods-eye-view</a>
+  </div>
+</section>
+
+<!-- ===== 🚫 罠 ===== -->
+<section class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>xtool-org/xtool — SwiftPM ベースのクロスプラットフォーム Xcode 代替（iOS 開発専用） <span class="badge">OSS / GitHub Trending +1,198 / ★9,330</span></h3>
+    <p>Linux・Windows・macOS 上で iOS/Swift アプリのビルドとデプロイができる Xcode 代替ツール。SwiftPM プロジェクトを対象に、従来 macOS + Xcode 必須だった iOS 開発環境をクロスプラットフォーム化する。今日 GitHub Trending で +1,198 を記録。</p>
+    <p>masatoman のスタックは Next.js + Supabase + Vercel（TypeScript/React）。iOS・Swift 開発は現在のプロジェクトスコープ外。trending しているのは Swift/iOS 開発者コミュニティの需要によるものであり、masatoman の現在の開発には無関係。</p>
+    <p class="verdict">🚫 効率厨判定: iOS 開発をしていない限り試す意味なし。trending に惑わされない。現スタックで完結。</p>
+    <a class="source-link" href="https://github.com/xtool-org/xtool" target="_blank" rel="noopener">https://github.com/xtool-org/xtool</a>
+  </div>
+</section>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failures">
+  <h2>取得失敗・制限ソース</h2>
+  <ul>
+    <li>obsidian.md/changelog/ — DNS 解決失敗（getaddrinfo ENOTFOUND）、skip</li>
+    <li>docs.claude.com/en/release-notes/claude-code — 301 → platform.claude.com → 307 → GitHub CHANGELOG.md に連鎖リダイレクト。CHANGELOG.md は 8,789 行ファイルで本文なし（ページ chrome のみ）。WebSearch で Claude Code 最新バージョン確認 → v2.1.296 (Oct 9) が最新、Oct 12-14 新規リリースなし</li>
+    <li>releasebot.io — DNS 解決失敗（getaddrinfo ENOTFOUND）、skip</li>
+    <li>Anthropic news — Oct 8 の 3 件（Usage Policy / American Scientific Discovery / Cyber Mission）が最新。Oct 12-14 の新着なし（Oct 12-13 フィードで既報）</li>
+    <li>重複除外: morluto/rea（Oct 11）/ mksglu/context-mode（Oct 11）/ cathrynlavery/diagram-design（Oct 12）/ lyogavin/airllm（Oct 12）/ Bitdefender AI Guardian（Oct 12）/ Kilo Code（Oct 12）は直近 3 日分フィードで既報のため除外</li>
+  </ul>
+</div>
+
+</body>
+</html>
