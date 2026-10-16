@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-16</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .note { color: var(--muted); font-size: 0.83rem; padding: 8px 12px; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); margin-bottom: 12px; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 18px; font-size: 0.85rem; color: var(--muted); }
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-16</h1>
+<div class="meta">
+  <span>取得日: 2026-10-16 (JST)</span>
+  <span>対象期間: 2026-10-14〜2026-10-16</span>
+  <span>ソース: GitHub Trending / Anthropic news / WebSearch (Claude Code / AI coding / automation)</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<section class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>Claude Code v2.1.300 リリース — idle compaction で長セッションのキャッシュ切れ防止<span class="badge">Anthropic / v2.1.300 / Oct 14, 2026</span></h3>
+    <p>Claude Code v2.1.300 が Oct 14 にリリース。昨日（10/15）のフィードは v2.1.296 が最新と誤報したため本日訂正。主な変更: (1) <strong>idle compaction</strong>: 200K+ トークンの会話を 54 分放置すると、1 時間のプロンプトキャッシュが切れる前に自動でコンテキスト圧縮が走る。(2) <strong>/advisor コマンド</strong>: AWS 上の Claude Platform で利用可能に。(3) <strong>OpenTelemetry GenAI 属性</strong>追加: OTEL トレーシングを使っている場合に詳細な生成 AI 属性が記録される。(4) Mods 向け API・フック追加、Claude Tag（Claude in Slack）機能拡張。</p>
+    <p>idle compaction が直接 masatoman の運用に効く。tooling-update-watch のような長いスケジュールルーティンセッションや、issue-finder での長い会話セッションが、54 分アイドル後に自動圧縮されてキャッシュ切れを防ぐ。これまで「長時間の作業後にキャッシュが無駄になる」問題が設計レベルで解消された。</p>
+    <p class="verdict">🟢 効率厨判定: update は自動適用済み（claudeコマンドが最新版を自動取得）。特に作業不要。アイドル 54 分の compaction タイミングを把握した上で、長いルーティンを設計する際の参考にする。OTEL を使うなら GenAI 属性の変化も確認。</p>
+    <a class="source-link" href="https://dev.classmethod.jp/en/articles/20261015-cc-updates-v2-1-300/" target="_blank" rel="noopener">https://dev.classmethod.jp/en/articles/20261015-cc-updates-v2-1-300/</a>
+  </div>
+
+  <div class="card">
+    <h3>anthropics/claude-plugins-official — Anthropic 公式 Claude Code プラグインディレクトリが公開<span class="badge">Anthropic / OSS / GitHub Trending +307 / Python</span></h3>
+    <p>Anthropic が管理する Claude Code プラグインの公式ディレクトリリポジトリ（Python）。サードパーティ製の野良プラグインではなく Anthropic が審査・管理する公式カタログ。今日 GitHub Trending で +307。現在どんなプラグインが登録されているかは repo を直接確認。</p>
+    <p>これまで Claude Code のプラグインは各開発者の repo を個別に探す必要があったが、公式ディレクトリが整備されたことで「何が使えるか」の一次情報源が確定した。masatoman が新しい MCP 連携・スキル・フックを探す際は、まずここを確認する習慣に変えるべき。品質・セキュリティの担保が Anthropic 審査ベースになる点が重要。</p>
+    <p class="verdict">🟢 効率厨判定: 今すぐ repo を開いて一覧を眺める価値がある。既存のプラグインで今の運用に組み込めるものがないか確認。公式管理なので信頼コストが低い。新しいプラグインを探す時の最初の場所はここに固定。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noopener">https://github.com/anthropics/claude-plugins-official</a>
+  </div>
+</section>
+
+<!-- ===== 💰 課金価値 ===== -->
+<section class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし</p>
+</section>
+
+<!-- ===== 🟡 様子見 ===== -->
+<section class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>JuliusBrussee/caveman — コーディングエージェントのトークン使用量を約 65% 削減するスキル＋プロキシ<span class="badge">OSS / GitHub Trending +433 / Go</span></h3>
+    <p>Claude Code などのコーディングエージェントに接続するスキルとプロキシのペア。エージェントへの入出力を「簡潔な原始言語（terse, simplified language）」に変換することでトークン使用量を約 65% 削減する。Go 製。</p>
+    <p>masatoman は MAX 定額なのでトークン料金への直撃はないが、コンテキストウィンドウの消費を抑えられるため「より長い会話セッションが圧縮なしに続けられる」効果がある。ただし「terse な言語への変換」が推論の精度にどう影響するかは未検証。tooling-update-watch のようなルーティンよりも、長い interactive セッションで試す候補。</p>
+    <p class="verdict">🟡 効率厨判定: MAX 定額ユーザーへの直接メリットは context window 節約のみ。精度への影響を確認してから判断。短期間のブランチで試して「明らかに degradation がない」なら組み込みを検討。今すぐより「次に長いセッションを組む時に実験」が適切。</p>
+    <a class="source-link" href="https://github.com/JuliusBrussee/caveman" target="_blank" rel="noopener">https://github.com/JuliusBrussee/caveman</a>
+  </div>
+
+  <div class="card">
+    <h3>affaan-m/ECC — Claude Code / Codex / Cursor 対応のエージェントハーネス性能最適化システム<span class="badge">OSS / GitHub Trending +1,013 / JavaScript</span></h3>
+    <p>エージェントハーネス（Claude Code・Codex・Cursor 等）のスキル・メモリ・セキュリティを横断的に最適化するシステム。今日 GitHub Trending で +1,013 と高い注目度。JavaScript 製。スキル管理・メモリ整合性・ハーネスセキュリティのレイヤーを追加する設計。</p>
+    <p>masatoman はすでに Claude Code の Skills と MEMORY.md を自前で整備・運用中。ECC が提供する最適化レイヤーが自前運用の上に何を追加するかは詳細確認が必要。「既存の運用を置き換えるのか補完するのか」が不明なまま導入すると管理コストが増える。+1,013 の注目度自体は評価に値する。</p>
+    <p class="verdict">🟡 効率厨判定: まず repo の README を読んで「自前の Skills/MEMORY 運用と衝突しないか」を確認。衝突しない補完機能なら次のメンテタイミングで試験導入。今週すぐではなく、来週の定例メンテで評価。</p>
+    <a class="source-link" href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener">https://github.com/affaan-m/ECC</a>
+  </div>
+
+  <div class="card">
+    <h3>xerj-org/xerj — AI エージェントが code / docs / logs を token 節約で検索できる Rust 製エンジン<span class="badge">OSS / GitHub Trending +715 / Rust / Elasticsearch 互換</span></h3>
+    <p>AI エージェントがコードベース・ドキュメント・ログ・PDF を grep より少ないトークンで検索できる Rust 製検索エンジン。Elasticsearch 互換 API を持ち、Claude Code やその他エージェントから直接呼び出せる設計。今日 GitHub Trending で +715。</p>
+    <p>masatoman の現在のプロジェクト規模では Glob/Grep ツールで十分。ただし軸 B MVP が複数リポジトリ・大量ドキュメントを扱う段階になった時や、masatoman.net の記事 80 本を横断検索するエージェントを作る場合には token 節約効果が出てくる。Rust 製なので高速性は期待できる。</p>
+    <p class="verdict">🟡 効率厨判定: 今の規模感では過剰。「大量ファイルを Claude Code にサーチさせるとトークンが爆発する」問題が出た時に bookmark から引き出す。Elasticsearch 互換は既存の Supabase FTS と比較して評価すること。</p>
+    <a class="source-link" href="https://github.com/xerj-org/xerj" target="_blank" rel="noopener">https://github.com/xerj-org/xerj</a>
+  </div>
+</section>
+
+<!-- ===== 🚫 罠 ===== -->
+<section class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>obra/superpowers — エージェントスキルフレームワーク＋ソフトウェア開発メソドロジー<span class="badge">OSS / GitHub Trending +582 / Shell</span></h3>
+    <p>AI エージェント向けのスキルフレームワークとソフトウェア開発メソドロジーを組み合わせたリポジトリ（Shell 製）。今日 GitHub Trending で +582。エージェントの動作を統一的な「スキル」の形式で管理・拡張することを目的とする。</p>
+    <p>masatoman はすでに Claude Code の Skills を自前で設計・運用しており、CLAUDE.md・memory・STRATEGY.md で独自のエージェント運用体系を確立済み。外部のスキルフレームワークを重ねると「どっちの設計に従うか」の衝突が発生し、管理コストが増える。Shell 製という点も既存の JS/TS スタックとの統合面でコストがかかる。</p>
+    <p class="verdict">🚫 効率厨判定: 自前の Claude Code Skills 運用が確立しているのに外部フレームワークを追加する意味がない。trending しているのはエージェント開発を始めたばかりのユーザー向けの需要。自前設計の方が masatoman のユースケースに最適化されている。</p>
+    <a class="source-link" href="https://github.com/obra/superpowers" target="_blank" rel="noopener">https://github.com/obra/superpowers</a>
+  </div>
+
+  <div class="card">
+    <h3>ruvnet/ruflo — Claude Code + Codex 対応のマルチエージェントスウォームオーケストレーションハーネス<span class="badge">OSS / GitHub Trending +147 / TypeScript</span></h3>
+    <p>複数の AI エージェントを連携させるスウォームオーケストレーションハーネス（TypeScript 製）。メモリ・フェデレーション・Claude Code および Codex との統合をサポート。今日 GitHub Trending で +147（数字は小さい）。</p>
+    <p>masatoman は Claude Code の Workflow ツールでマルチエージェントオーケストレーションをすでに運用できる。ruflo を追加しても機能重複が発生し、デバッグの複雑さだけが増す。+147 という stars 数も成熟度への疑問を残す。</p>
+    <p class="verdict">🚫 効率厨判定: Workflow ツールがある環境で外部スウォームハーネスを追加する理由がない。stars +147 は「まだ試用段階の人気」であり本番運用の信頼性は未知数。今のスタックで問題ない。</p>
+    <a class="source-link" href="https://github.com/ruvnet/ruflo" target="_blank" rel="noopener">https://github.com/ruvnet/ruflo</a>
+  </div>
+</section>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="failures">
+  <h2>取得失敗・制限ソース</h2>
+  <ul>
+    <li>obsidian.md/changelog/ — DNS 解決失敗（getaddrinfo ENOTFOUND）、skip（継続中の既知の問題）</li>
+    <li>docs.claude.com/en/release-notes/claude-code — 301 → platform.claude.com → 307 → GitHub CHANGELOG.md に連鎖リダイレクト。WebSearch で v2.1.300 (Oct 14) を確認。昨日フィード（10/15）で v2.1.296 のまま変化なしと誤報したため本日訂正掲載</li>
+    <li>github.com/anthropics/claude-code/releases — GitHub URL は gh CLI 経由推奨のため WebFetch skip。WebSearch で補完済み</li>
+    <li>releasebot.io — DNS 解決失敗、skip</li>
+    <li>Anthropic news 新着: "An update on independent evaluators"（Oct 15、AI 安全政策）— ツール運用に無関係のため除外。"Preparing for US midterms"（Oct 14、選挙政策）— Oct 15 フィードで除外済み。"Singapore office + MOU"（Oct 14）— Oct 15 フィード（🟡）で既報のため除外</li>
+    <li>重複除外: morluto/rea（Oct 11 既報）/ debpalash/VoiceStudio（Oct 14 既報）/ mksglu/context-mode（Oct 11 既報）/ K-Dense-AI/scientific-agent-skills（Oct 15 既報）/ NationalSecurityAgency/ghidra（AI/自動化スコープ外）/ lightseekorg/tokenspeed（+30 stars、情報量不足）</li>
+  </ul>
+</div>
+
+</body>
+</html>
