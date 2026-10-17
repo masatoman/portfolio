@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-17</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .note { color: var(--muted); font-size: 0.83rem; padding: 8px 12px; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); margin-bottom: 12px; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 18px; font-size: 0.85rem; color: var(--muted); }
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-17</h1>
+<div class="meta">
+  <span>取得日: 2026-10-17 (JST)</span>
+  <span>対象期間: 2026-10-15〜2026-10-17</span>
+  <span>ソース: GitHub releases / Anthropic news / GitHub Trending / WebSearch</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<section class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>Claude Code v2.1.302 — fork subagents がデフォルト有効化、AUTO_MODE_MODEL 追加 <span class="badge">2026-10-16</span></h3>
+    <p>フォーク型サブエージェント（<code>subagent_type: "fork"</code>）がデフォルトで有効になった。今日からルーティンや /loop セッションで fork を指定すると自動的に走り、メイン会話のコンテキスト汚染を防げる。</p>
+    <p>新環境変数 <code>CLAUDE_CODE_AUTO_MODE_MODEL</code> で、クライアント側の auto mode 分類器が使うモデルを個別指定できるようになった。重いモデルで分類させたいシーンでピンポイント設定可能。また git 2.56 以降で worktree 作成が壊れていたバグが修正済み——worktree 分離で並列作業する人はアップデート必須。</p>
+    <p>⚠️ <strong>Claude Design 終了告知</strong>: <code>/design-sync</code> / <code>/design-login</code> コマンドで 2026-12-14 に claude.ai/design（スタンドアロン版）が終了する旨が表示されるようになった。使っている場合は移行計画を今から立てること。</p>
+    <p class="verdict">🟢 即使う — MAX プランのルーティン + /loop を使っているなら fork のデフォルト有効がすぐ効く。git 2.56 worktree バグ修正も実運用で地味に重要。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.302" target="_blank" rel="noopener">→ github.com/anthropics/claude-code/releases/tag/v2.1.302</a>
+  </div>
+
+  <div class="card">
+    <h3>Claude Code v2.1.301 — Vim <code>%</code> キー追加、mod に multiline inputs、OpenTelemetry 拡張 <span class="badge">2026-10-15</span></h3>
+    <p>Vim モードに <code>%</code>（対応する括弧へジャンプ、<code>d</code>/<code>c</code>/<code>y</code> と組み合わせ可）が追加。Vim ユーザーはコード内の括弧操作が今日からフル Vim 体験になる。</p>
+    <p>mod の <code>Input</code> に <code>rows</code> フィールドが追加され、複数行テキスト欄が作れるようになった。自作プラグインやフォーム型 mod を書いている場合は使えるアップデート。OpenTelemetry に <code>classifier_verdict</code> / <code>permission_mode</code> / <code>classifier_category</code> が追加され、自動化パイプラインでどの判断がブロックされているかをログで追跡できる。</p>
+    <p class="verdict">🟢 即使う — Vim ユーザーと mod 作成者に直接刺さる。OpenTelemetry 拡張は自動化の詰まりポイント可視化に今すぐ活用可。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.301" target="_blank" rel="noopener">→ github.com/anthropics/claude-code/releases/tag/v2.1.301</a>
+  </div>
+
+  <div class="card">
+    <h3>mksglu/context-mode — AIエージェントのコンテキスト窓を最適化するツール <span class="badge">GitHub Trending ★30.2k +449/day</span></h3>
+    <p>Claude Code などの AIコーディングエージェントが使うコンテキスト窓を自動最適化するツール。ツール出力のサンドボックス化などの手法で、長セッションでも有効コンテキストを節約する。</p>
+    <p>masatoman.net の記事サイクルや複数ファイルを読む長セッションで、コンテキスト切れによる圧縮の頻度を下げられる可能性がある。README を読んで導入コストを確認する価値あり。</p>
+    <p class="verdict">🟢 即使う — 長セッション問題に直接効く系。まず README + Issues で実績を確認してから導入判断。</p>
+    <a class="source-link" href="https://github.com/mksglu/context-mode" target="_blank" rel="noopener">→ github.com/mksglu/context-mode</a>
+  </div>
+
+</section>
+
+<!-- ===== 💰 課金価値 ===== -->
+<section class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（今日は無料・OSS で完結する更新が中心）</p>
+</section>
+
+<!-- ===== 🟡 様子見 ===== -->
+<section class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>cursor/plugins — Cursor 公式プラグイン仕様 + 公式プラグイン集 <span class="badge">GitHub Trending ★11.9k +278/day</span></h3>
+    <p>Cursor が公式プラグイン仕様とサンプルを公開した TypeScript リポジトリ。Claude Code の mods と同様に、エディタ拡張の標準化が進んでいる。</p>
+    <p>Claude Code を主軸にしているなら今すぐ乗り換える必要はないが、Cursor の拡張エコシステムが成熟すると Claude Code mods の設計参考になる。仕様だけ把握しておく程度でよい。</p>
+    <p class="verdict">🟡 様子見 — Claude Code mods を軸にしているなら乗り換え動機なし。Cursor を並用する場合は要チェック。</p>
+    <a class="source-link" href="https://github.com/cursor/plugins" target="_blank" rel="noopener">→ github.com/cursor/plugins</a>
+  </div>
+
+  <div class="card">
+    <h3>MadsLorentzen/ai-job-search — Claude Code 上で動く求人応募 AI エージェント <span class="badge">GitHub Trending ★48.5k +898/day</span></h3>
+    <p>Claude Code をバックエンドに使い、求人票の分析・応募文生成・トラッキングを自動化するフレームワーク。ドメイン特化型 Claude Code エージェントの実装例として完成度が高い。</p>
+    <p>masatoman 自身には転職ニーズはないが、「Claude Code 上にドメイン特化エージェントをどう構築するか」の設計参考として読む価値あり。工務店向けデモのエージェント設計にフィードバックできる。</p>
+    <p class="verdict">🟡 様子見 — 直接使う場面はないが、Claude Code エージェント設計のリファレンスとして README 流し読み推奨。</p>
+    <a class="source-link" href="https://github.com/MadsLorentzen/ai-job-search" target="_blank" rel="noopener">→ github.com/MadsLorentzen/ai-job-search</a>
+  </div>
+
+  <div class="card">
+    <h3>テマヘラ（アトベイス）— ファイルを外部に送らない AI ツール集 88 本・無料 OSS <span class="badge">2026-10-15</span></h3>
+    <p>「AIの先生」がAIで作成したローカル完結型ツール集。ファイルを外部サーバーに送らないプライバシー重視設計で、年内 500 本を目指してオープンソースで無料公開中。</p>
+    <p>工務店向けデモギャラリーで「データが外に出ない」訴求を検討している場合、このアーキテクチャが参考になる可能性。ただし掲載ツールの品質は個々に要確認。</p>
+    <p class="verdict">🟡 様子見 — プライバシー訴求の設計参考として有用。実際に工務店向けツールで使えるか品質確認が必要。</p>
+    <a class="source-link" href="https://prtimes.jp/main/html/rd/p/000000001.000192410.html" target="_blank" rel="noopener">→ prtimes.jp (テマヘラ発表記事)</a>
+  </div>
+
+</section>
+
+<!-- ===== 🚫 罠 ===== -->
+<section class="section-gray">
+  <h2>🚫 罠</h2>
+  <p class="none">該当なし</p>
+</section>
+
+<!-- 取得失敗ソース -->
+<div class="failures">
+  <h2>取得失敗ソース</h2>
+  <ul>
+    <li>docs.anthropic.com (Claude Code release notes) — DNS 解決失敗。GitHub releases で代替取得済み。</li>
+    <li>obsidian.md/changelog — DNS 解決失敗。</li>
+  </ul>
+</div>
+
+</body>
+</html>
