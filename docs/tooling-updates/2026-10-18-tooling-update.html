@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-18</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .note { color: var(--muted); font-size: 0.83rem; padding: 8px 12px; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); margin-bottom: 12px; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 18px; font-size: 0.85rem; color: var(--muted); }
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-18</h1>
+<div class="meta">
+  <span>取得日: 2026-10-18 (JST)</span>
+  <span>対象期間: 2026-10-16〜2026-10-18</span>
+  <span>ソース: GitHub Trending / Anthropic news / Claude Code releases / WebSearch</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<section class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>anthropics/claude-plugins-official — Anthropic公式プラグインディレクトリが急浮上 <span class="badge">GitHub Trending ★41.7k +1,397/day</span></h3>
+    <p>Anthropicが管理する Claude Code プラグインの公式ディレクトリ。内部プラグイン（Anthropic製）と外部プラグイン（審査済みコミュニティ製）を一元管理している。Apache-2.0ライセンス。</p>
+    <p>インストールは <code>/plugin install {plugin-name}@claude-plugins-official</code> 一発。Claude Codeの <code>/plugin &gt; Discover</code> からブラウズも可能で、今日から使えるプラグインの一次情報源になる。Skills や MCP ではなくプラグイン単位でまとめられているので、現行スタックへの追加が試しやすい。</p>
+    <p class="verdict">🟢 即使う — Claude Codeで使えるプラグインを探す公式の場所がついて整った。今のルーティンを補強できるものがないか <code>/plugin &gt; Discover</code> でブラウズする価値あり。</p>
+    <a class="source-link" href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noopener">→ github.com/anthropics/claude-plugins-official</a>
+  </div>
+
+</section>
+
+<!-- ===== 💰 課金価値 ===== -->
+<section class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（今日は無料・OSS の更新が中心）</p>
+</section>
+
+<!-- ===== 🟡 様子見 ===== -->
+<section class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>affaan-m/ECC v2.2.3 — Claude Code を 71エージェント + 311スキルで強化するハーネス <span class="badge">GitHub Trending ★282k +1,145/day</span></h3>
+    <p>Claude Code をプライマリに設計された大型強化パッケージ。AgentShield（エージェント設定のセキュリティスキャナ）、Plan Canvas ブラウザレビュー、統合メモリボールト、Itôコンピュートスキル群などを含む。<code>/plugin install ecc@ecc</code> または <code>npx ecc-universal@2.2.3 setup</code> で導入可能。最終更新 2026-10-01。</p>
+    <p>機能は本格的だが 311スキル・97コマンドシムは既存 Skills/hooks との衝突リスクがある。まず AgentShield 単体を試して現行設定の安全チェックから入るのが現実的。スタック全体を一発導入するのは今は時期尚早。</p>
+    <p class="verdict">🟡 様子見 — Claude Code 主軸ユーザーには設計思想が参考になる。AgentShield だけ試すか、README + Issues で既存 Skills との衝突事例を確認してから判断。</p>
+    <a class="source-link" href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener">→ github.com/affaan-m/ECC</a>
+  </div>
+
+  <div class="card">
+    <h3>debpalash/VoiceStudio — ElevenLabs OSS代替、MCP対応で今日の最多バズ <span class="badge">GitHub Trending ★73.3k +2,125/day 🔥今日最多</span></h3>
+    <p>音声クローン・動画吹き替え・文字起こし・オーディオブック作成を646言語でローカル実行するOSSツール（AGPL-3.0）。MCP対応でAIエージェントから音声生成を呼び出せる。NVIDIA GPU / Apple Silicon / CPU 動作（CPUは低速）。v0.5.3で Tauri → Electron に移行済み。</p>
+    <p>masatoman.net「AIに業務を任せる設計の実験ログ」のネタとして記事化価値あり。ただし AGPL-3.0 は商用利用に制約があるため確認が必要。GPU なし環境では実用速度が出ない点も要確認。</p>
+    <p class="verdict">🟡 様子見 — MCP経由の音声生成は面白いアーキテクチャ。ただしGPU要件とライセンスを確認してから試す。記事ネタとしての評価は高い。</p>
+    <a class="source-link" href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">→ github.com/debpalash/VoiceStudio</a>
+  </div>
+
+  <div class="card">
+    <h3>stablyai/orca — 複数コーディングエージェントを並列 + モバイル監視するOSS <span class="badge">GitHub Trending ★95.4k +830/day</span></h3>
+    <p>Claude Code / Codex / OpenCode を並列 git worktree で走らせ、スプリットターミナル + モバイルアプリで一元監視するオーケストレーター（MIT、無料OSS）。SSH リモート worktree、GitHub/Linear 連携、CLI スクリプト対応。</p>
+    <p>現在の Claude Code 単体運用に対して恩恵が薄いが、将来的に複数エージェントで並列作業する構成を検討する時の第一候補になりそう。モバイル監視 UI はルーティン放置中の確認手段としては面白い。</p>
+    <p class="verdict">🟡 様子見 — 単一 Claude Code 運用には今不要。並列エージェントを試したくなったときに再評価する。</p>
+    <a class="source-link" href="https://github.com/stablyai/orca" target="_blank" rel="noopener">→ github.com/stablyai/orca</a>
+  </div>
+
+  <div class="card">
+    <h3>HKUDS/CLI-Anything — 既存ソフトをCLI化してAIエージェントに渡すフレームワーク <span class="badge">GitHub Trending ★54.1k +574/day</span></h3>
+    <p>既存デスクトップ/サーバーソフトウェアをCLI+JSON出力でラップし、AIエージェントが構造化された形で操作できるようにするツール。Claude Code / Cursor / Codex などに対応し、各ラッパーに SKILL.md が付属する。</p>
+    <p>GIMPや既存業務ツールをエージェントに操作させたい場合に有用だが、masatomanの現在のスタック（Web/Next.js/Supabase 中心）では今すぐ使いどころが思い浮かびにくい。将来の工務店向けデモで何か使えるソフトをエージェント化するシーンで再浮上する可能性。</p>
+    <p class="verdict">🟡 様子見 — アーキテクチャとして把握しておく価値あり。今すぐ使う動機は薄い。</p>
+    <a class="source-link" href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener">→ github.com/HKUDS/CLI-Anything</a>
+  </div>
+
+</section>
+
+<!-- ===== 🚫 罠 ===== -->
+<section class="section-gray">
+  <h2>🚫 罠</h2>
+  <p class="none">該当なし</p>
+</section>
+
+<!-- 取得失敗ソース -->
+<div class="failures">
+  <h2>取得失敗ソース</h2>
+  <ul>
+    <li>docs.claude.com / platform.claude.com (Claude Code release notes) — GitHub CHANGELOG にリダイレクト。releases ページで代替取得済み（最新は v2.1.302 = 10/16、新規リリースなし）。</li>
+    <li>obsidian.md/changelog — DNS 解決失敗（継続中）。</li>
+  </ul>
+</div>
+
+</body>
+</html>
