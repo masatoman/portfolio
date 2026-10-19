@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-19</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .note { color: var(--muted); font-size: 0.83rem; padding: 8px 12px; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); margin-bottom: 12px; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 18px; font-size: 0.85rem; color: var(--muted); }
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-19</h1>
+<div class="meta">
+  <span>取得日: 2026-10-19 (JST)</span>
+  <span>対象期間: 2026-10-17〜2026-10-19</span>
+  <span>ソース: GitHub Trending / Anthropic news / WebSearch</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<section class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>akitaonrails/ai-memory — エージェント間のコンテキストを引き継ぐローカル MCP サーバー <span class="badge">GitHub Trending ★10.5k +512/day · Rust · MIT</span></h3>
+    <p>Rust 製のシングルバイナリ MCP/HTTP サーバー。Claude Code・Codex・Cursor・Gemini CLI など複数のエージェント CLI のライフサイクルフックに割り込み、セッション活動を git バージョン管理された Markdown ウィキとして自動記録する。別のエージェントへ切り替える際に「どこまでやったか」サマリが自動で先頭に挿入される。ストレージは SQLite + FTS5 全文検索（オプションでベクター埋め込み）。</p>
+    <p>tooling-update-watch のようなスケジュールルーティンでは毎回コンテキストをゼロから渡しているが、このツールを挟むと「前回の続き」情報が自動付加される。MAX プランで Claude Code を軸にしている構成に追加コスト不要で統合できる MIT ライセンス。シングルバイナリなので試すコストが低い。</p>
+    <p class="verdict">🟢 即使う — スケジュールルーティンや長期タスクでセッションをまたぐ引き継ぎコストが下がる。まず <code>readme</code> で Claude Code 統合手順を確認してローカル試験導入する価値がある。</p>
+    <a class="source-link" href="https://github.com/akitaonrails/ai-memory" target="_blank" rel="noopener">→ github.com/akitaonrails/ai-memory</a>
+  </div>
+
+</section>
+
+<!-- ===== 💰 課金価値 ===== -->
+<section class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（今日の新着は無料 OSS が中心）</p>
+</section>
+
+<!-- ===== 🟡 様子見 ===== -->
+<section class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>anomalyco/opencode — TypeScript 製フル OSS コーディングエージェント <span class="badge">GitHub Trending ★216.6k +1,414/day · TypeScript · OSS</span></h3>
+    <p>GitHub Trending 全体 3 位。TypeScript 製のオープンソースコーディングエージェントで、21 万超えのスター数は Claude Code・Cursor の外から来る最大規模のコーディング AI エージェント OSS の一つ。ローカルでモデルを差し替えられる設計。</p>
+    <p>Claude Code MAX プランで完結している今、乗り換え動機はない。ただし OSS でモデル差し替え可というアーキテクチャは、将来 API 直叩きや自前エージェント構成を検討する際の設計参考になる。スター数の規模から記事ネタとして扱う価値もある。</p>
+    <p class="verdict">🟡 様子見 — 今すぐ乗り換え不要。「Claude Code の外でどう動くか」の比較軸として把握しておく程度。記事テーマとして面白い。</p>
+    <a class="source-link" href="https://github.com/anomalyco/opencode" target="_blank" rel="noopener">→ github.com/anomalyco/opencode</a>
+  </div>
+
+  <div class="card">
+    <h3>ruvnet/ruflo — マルチエージェントスウォームと自律ワークフロー向けオーケストレーター <span class="badge">GitHub Trending ★76.5k +513/day · TypeScript · OSS</span></h3>
+    <p>メモリ・ベクター RAG・Claude Code/Codex 連携を組み込んだエージェントオーケストレーションハーネス。複数エージェントを並列で走らせ、会話型 AI ワークフローも扱える。昨日取り上げた stablyai/orca（モバイル監視付きフリートマネージャー）と用途が重なるが、こちらは RAG 統合に比重を置いている。</p>
+    <p>単一 Claude Code 運用には今不要。orca と同様に「複数エージェントで並列処理したい時」の候補の一つとして記憶しておく程度。orca が「監視 UI」寄りで ruflo が「RAG ワークフロー」寄りという住み分け。</p>
+    <p class="verdict">🟡 様子見 — orca と比較して RAG 重視ならこちら。現時点では単独 Claude Code で足りている。</p>
+    <a class="source-link" href="https://github.com/ruvnet/ruflo" target="_blank" rel="noopener">→ github.com/ruvnet/ruflo</a>
+  </div>
+
+  <div class="card">
+    <h3>Anthropic Public Benefit Fund — Anthropic が株式 5% を公益基金に拠出 <span class="badge">Anthropic 発表 · 2026-10-18</span></h3>
+    <p>Anthropic が株主承認を条件に持ち株の 5% を「Anthropic Public Benefit Fund」に拠出すると発表。会社価値が 50% 上昇するごとに最大 2% 追加。労働市場への AI 影響や公共利益向けの取り組みに使う見込みで、ロビー活動・政治献金は禁止。既存のコファウンダー 80% 拠出約束・従業員株式寄付と合わせ、全体で持ち株の約 20% が公益に充てられる計算。</p>
+    <p>masatoman の日次運用には直接影響しない。ただし Anthropic の企業構造が公益法人寄りに強化されることは、長期的に同社の方向性・信頼性を判断する材料になる。MAX プラン継続の判断軸として押さえておく情報。</p>
+    <p class="verdict">🟡 様子見 — ツールとして使えるものではないが、MAX プランを長期で使い続けるかどうかの Anthropic 信頼度判断材料として把握。</p>
+    <a class="source-link" href="https://www.anthropic.com/news/public-benefit-fund" target="_blank" rel="noopener">→ anthropic.com/news/public-benefit-fund</a>
+  </div>
+
+</section>
+
+<!-- ===== 🚫 罠 ===== -->
+<section class="section-gray">
+  <h2>🚫 罠</h2>
+  <p class="none">該当なし</p>
+</section>
+
+<!-- 取得失敗ソース -->
+<div class="failures">
+  <h2>取得失敗ソース</h2>
+  <ul>
+    <li>docs.claude.com / platform.claude.com (Claude Code release notes) — GitHub CHANGELOG にリダイレクト継続。昨日 (10/18) 時点で最新 v2.1.302、今日時点で新リリースなし（CHANGELOG 取得待ち）。</li>
+    <li>github.com/anthropics/claude-code/releases — リダイレクト先 CHANGELOG は proxy 経由で取得試みたが不応答。</li>
+    <li>obsidian.md/changelog — DNS 解決失敗（継続中）。</li>
+  </ul>
+</div>
+
+</body>
+</html>
