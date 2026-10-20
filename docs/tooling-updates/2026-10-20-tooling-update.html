@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-20</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1500;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0c1a3a;
+      --blue-border: #1e3a8a;
+      --gray: #6b7280;
+      --gray-bg: #111827;
+      --gray-border: #374151;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 12px; }
+    .section-green  h2 { color: var(--green); }
+    .section-yellow h2 { color: var(--yellow); }
+    .section-blue   h2 { color: var(--blue); }
+    .section-gray   h2 { color: var(--gray); }
+    .card {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+    .section-green  .card { background: var(--green-bg);  border-color: var(--green-border); }
+    .section-yellow .card { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .section-blue   .card { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .section-gray   .card { background: var(--gray-bg);   border-color: var(--gray-border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ffffff18;
+      white-space: nowrap;
+    }
+    p { font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+    .verdict { font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+    .source-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .none { color: var(--muted); font-size: 0.88rem; font-style: italic; padding: 8px 0; }
+    .note { color: var(--muted); font-size: 0.83rem; padding: 8px 12px; background: var(--surface); border-radius: 6px; border: 1px solid var(--border); margin-bottom: 12px; }
+    .failures { margin-top: 32px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .failures h2 { color: var(--muted); margin: 0 0 8px; font-size: 0.85rem; }
+    .failures ul { padding-left: 18px; font-size: 0.85rem; color: var(--muted); }
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-20</h1>
+<div class="meta">
+  <span>取得日: 2026-10-20 (JST)</span>
+  <span>対象期間: 2026-10-18〜2026-10-20</span>
+  <span>ソース: Claude Code changelog / GitHub Trending / Anthropic news / WebSearch</span>
+</div>
+
+<!-- ===== 🟢 即使う ===== -->
+<section class="section-green">
+  <h2>🟢 即使う</h2>
+
+  <div class="card">
+    <h3>Claude Code v2.1.304 — <code>/auto-mode-setup</code> と Code Review 深度設定が追加 <span class="badge">Claude Code · 2026-10-19</span></h3>
+    <p>2 つの機能が今日から使える。① <code>/auto-mode-setup</code>: auto mode がリポジトリ構造・使用言語・よく使うコマンドを学習するガイド付きセットアップ。Bedrock・Vertex・Foundry 環境でも動作するようになった。② Code Review levels: Quick（速い・粗め）/ Standard / Deep を組織単位・リポジトリ単位で設定可能になった。</p>
+    <p><code>/auto-mode-setup</code> はまだ未実行なら今日中に 1 回叩く価値がある。portfolio や masatoman.net の repo に合わせた学習を先に済ませると、以降の auto mode の判定精度が上がる。Code Review levels は heavy な review ルーティンを Deep に固定することで明示的に深度を指定できる。</p>
+    <p class="verdict">🟢 即使う — <code>/auto-mode-setup</code> は 1 回のコマンドで永続効果あり。今すぐ各 repo で実行する。</p>
+    <a class="source-link" href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">→ code.claude.com/docs/en/changelog (v2.1.304)</a>
+  </div>
+
+</section>
+
+<!-- ===== 💰 課金価値 ===== -->
+<section class="section-blue">
+  <h2>💰 課金価値</h2>
+  <p class="none">該当なし（今日の新着は MAX プラン範囲で対応可能なものが中心）</p>
+</section>
+
+<!-- ===== 🟡 様子見 ===== -->
+<section class="section-yellow">
+  <h2>🟡 様子見</h2>
+
+  <div class="card">
+    <h3>MadsLorentzen/ai-job-search — Claude Code で求人評価・CV自動調整・面接準備を自動化 <span class="badge">GitHub Trending ★57.2k +3,856/day · Python · MIT</span></h3>
+    <p>今日の Trending 急上昇 1 位（+3,856 stars）。Claude Code を使って求人票を評価し、CV を自動調整し、面接想定 Q&A を生成するローカル実行フレームワーク。Python 製。ローカルで完結する設計でデータが外部に出ない。</p>
+    <p>masatoman が今すぐ使う場面はない。ただし「Claude Code を特定タスクの自動化パイプラインとして使う」構成パターンの参考になる。スクリプト設計の参考として repo 構造を一読すると、自分の自動化ルーティン設計に転用できるアイデアがある。</p>
+    <p class="verdict">🟡 様子見 — 今日使わない。repo 構造だけ 15 分で確認して、自動化パイプライン設計のパターン集として手元に置く。</p>
+    <a class="source-link" href="https://github.com/MadsLorentzen/ai-job-search" target="_blank" rel="noopener">→ github.com/MadsLorentzen/ai-job-search</a>
+  </div>
+
+  <div class="card">
+    <h3>headroomlabs-ai/headroom — ツール出力・ログ・RAG チャンクを LLM 送信前に圧縮 <span class="badge">GitHub Trending ★76.2k +310/day · Python · OSS</span></h3>
+    <p>ツール呼び出し結果・ログ・ファイル内容などの長い出力を LLM に渡す直前で圧縮するミドルウェア。文脈を保ちながらトークン数を削減することでレイテンシ改善を狙う設計。MCP サーバー・エージェント SDK 両対応。</p>
+    <p>MAX プラン定額なのでトークン削減のコスト効果はゼロ。ただし長いツール出力が遅延の原因になっている場面（Supabase の大きなクエリ結果・長い HTML ファイル読み込み）では速度改善になる可能性がある。今の運用で速度に困っていなければ不要。</p>
+    <p class="verdict">🟡 様子見 — ルーティンが遅いと感じ始めたら試す。今すぐ導入の優先度は低い。</p>
+    <a class="source-link" href="https://github.com/headroomlabs-ai/headroom" target="_blank" rel="noopener">→ github.com/headroomlabs-ai/headroom</a>
+  </div>
+
+  <div class="card">
+    <h3>HKUDS/CLI-Anything — CLI ツールを AI エージェント対応にするフレームワーク <span class="badge">GitHub Trending ★55.2k +606/day · Python · OSS</span></h3>
+    <p>既存の CLI ツール（任意のコマンドラインアプリ）に「エージェントネイティブ」なインターフェースを追加するフレームワーク。AI がコマンドを迷わず叩けるようにするラッパー層を自動生成する仕組み。</p>
+    <p>Claude Code がすでに Bash ツール経由で CLI を直接叩ける構成では、このレイヤーが必要になる場面は限定的。自分でカスタムツールを公開・配布する立場になったときに価値が出る設計。現時点では実験的。</p>
+    <p class="verdict">🟡 様子見 — 今の使い方には不要。自作 CLI ツールを他者向けに公開する段階になったら再評価。</p>
+    <a class="source-link" href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener">→ github.com/HKUDS/CLI-Anything</a>
+  </div>
+
+</section>
+
+<!-- ===== 🚫 罠 ===== -->
+<section class="section-gray">
+  <h2>🚫 罠</h2>
+
+  <div class="card">
+    <h3>Claude Design (claude.ai/design) スタンドアロン版が 2026-12-14 終了 <span class="badge">v2.1.302 · 2026-10-16 告知</span></h3>
+    <p>Anthropic が Claude Code v2.1.302 のリリースノートで、スタンドアロンの Claude Design (claude.ai/design) を 2026 年 12 月 14 日に終了すると告知。代替は Figma MCP・Canva MCP・Netlify MCP 経由での Artifact デザイン連携。</p>
+    <p>12 月 14 日以降もデザイン生成・出力は Figma/Canva MCP 経由で継続できるため実害は限定的。ただし今の自動化ルーティンやスクリプトが claude.ai/design の URL を直接叩いている場合は移行が必要。今すぐは対応不要だが 11 月末には代替経路を確認しておく。</p>
+    <p class="verdict">🚫 罠 — 告知を見落として 12/14 以降に慌てないよう、11 月末に移行先を確認するリマインダーを今日入れる。</p>
+    <a class="source-link" href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">→ code.claude.com/docs/en/changelog (v2.1.302)</a>
+  </div>
+
+</section>
+
+<!-- 取得失敗ソース -->
+<div class="failures">
+  <h2>取得失敗ソース</h2>
+  <ul>
+    <li>github.com/anthropics/claude-code/releases — CHANGELOG に 307 リダイレクト。CHANGELOG は code.claude.com/docs/en/changelog から取得済み（問題なし）。</li>
+    <li>obsidian.md/changelog — DNS 解決失敗（継続中）。</li>
+    <li>anthropic.com/news (Oct 18 "Investing in the public benefit") — 404、記事本文未取得。内容は 10/19 feed で「Anthropic Public Benefit Fund」として掲載済みのため重複除外。</li>
+  </ul>
+</div>
+
+</body>
+</html>
