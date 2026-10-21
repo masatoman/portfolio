@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-21</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --text: #1a1a2e;
+      --card: #ffffff;
+      --border: #e0e0e0;
+      --green: #1a7f3c;
+      --green-bg: #eaf7ee;
+      --green-border: #4caf50;
+      --yellow: #7a5c00;
+      --yellow-bg: #fffbea;
+      --yellow-border: #f5c518;
+      --blue: #0d4b8c;
+      --blue-bg: #eaf2ff;
+      --blue-border: #2196f3;
+      --gray: #444;
+      --gray-bg: #f2f2f2;
+      --gray-border: #bbb;
+      --meta: #666;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 16px;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: clamp(1.2rem, 4vw, 1.6rem); margin-bottom: 8px; }
+    .meta { font-size: 0.82rem; color: var(--meta); margin-bottom: 24px; }
+    .section-header {
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 6px 6px 0 0;
+      margin-top: 28px;
+      margin-bottom: 0;
+    }
+    .green-header { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); border-bottom: none; }
+    .blue-header  { background: var(--blue-bg);  color: var(--blue);  border: 1px solid var(--blue-border);  border-bottom: none; }
+    .yellow-header{ background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); border-bottom: none; }
+    .gray-header  { background: var(--gray-bg);  color: var(--gray);  border: 1px solid var(--gray-border);  border-bottom: none; }
+
+    .card {
+      background: var(--card);
+      border-radius: 0;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-top: none;
+    }
+    .card:last-child { border-radius: 0 0 6px 6px; }
+    .card + .card { border-top: 1px solid var(--border); }
+
+    .card-green  { border-left: 4px solid var(--green-border); }
+    .card-blue   { border-left: 4px solid var(--blue-border); }
+    .card-yellow { border-left: 4px solid var(--yellow-border); }
+    .card-gray   { border-left: 4px solid var(--gray-border); }
+
+    h3 { font-size: 0.95rem; margin-bottom: 4px; }
+    .summary { font-size: 0.88rem; color: #333; margin-bottom: 6px; }
+    .verdict { font-size: 0.85rem; font-style: italic; color: #555; margin-bottom: 6px; }
+    a { color: #0066cc; text-decoration: none; font-size: 0.82rem; word-break: break-all; }
+    a:hover { text-decoration: underline; }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      padding: 1px 7px;
+      border-radius: 10px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .tag-new { background: #fff3cd; color: #856404; border: 1px solid #f5c518; }
+    .tag-oss  { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .tag-stars { background: #e2e3e5; color: #383d41; border: 1px solid #d6d8db; }
+    .none-note { font-size: 0.85rem; color: #888; padding: 12px 16px; border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; background: var(--card); font-style: italic; }
+    .failures { font-size: 0.8rem; color: #888; margin-top: 24px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px; background: var(--card); }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>🔧 効率厨A feed 2026-10-21</h1>
+  <p class="meta">
+    取得日: 2026-10-21 (JST 09:00) ／ 対象期間: 2026-10-20〜21 ／
+    ソース: Claude Code changelog, Anthropic news, GitHub Trending, WebSearch ／
+    除外: 10/19-10/20 フィード掲載済みの更新（opencode / ruflo / ai-memory / headroom / CLI-Anything / Claude Code v2.1.304 / ai-job-search）
+  </p>
+
+  <!-- 🟢 即使う -->
+  <div class="section-header green-header">🟢 即使う — masatoman の運用に今日から入れられる</div>
+
+  <div class="card card-green">
+    <h3>Claude Code v2.1.305 リリース</h3>
+    <span class="tag tag-new">NEW</span>
+    <p class="summary">スケジュールタスク（ルーティン）で WebFetch URL 承認待ちが 5 分ハングする問題が修正。Workflow の resume で完了済みの pipeline/parallel が再実行されるバグも修正。<code>/effort</code>・<code>/autocompact</code> がモデル名の大文字小文字の違いで適用されなかった問題、v2.1.304 で Vertex/Bedrock の ToolSearch が拒否されたリグレッションも解消。<code>/usage</code> は各警告に修正方法が付くよう改善。</p>
+    <p class="verdict">⚡ このルーティン自体（日次フィード）が恩恵を受ける修正。update は自動で入るが、特に Workflow 再開を使う場合は今すぐ <code>claude update</code> 確認推奨。</p>
+    <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank">→ CHANGELOG.md</a>
+  </div>
+
+  <div class="card card-green">
+    <h3>DietrichGebert/ponytail — コード量を平均 54% 削減するプロンプトフレームワーク</h3>
+    <span class="tag tag-oss">MIT</span>
+    <span class="tag tag-stars">★169.6k (+1,208/day)</span>
+    <p class="summary">コーディングエージェントが「書きすぎる」問題を解決するプロンプト差込フレームワーク。7 ステップのチェックを agent に踏ませ、不要なコードを生成させない。Haiku 4.5 実測で平均 54% 少ないコード、~20% コスト減、~27% 高速化。Claude Code / Codex / Cursor / Copilot など 16+ エージェントで動作。</p>
+    <p class="verdict">⚡ <code>npx skills add ponytail</code> 一行でインストール完了。MAX プラン定額運用中の masatoman には「速く・安く・小さく」の 3 拍子揃いで即戦力。portfolio の機能追加作業に投入できる。</p>
+    <a href="https://github.com/DietrichGebert/ponytail" target="_blank">→ github.com/DietrichGebert/ponytail</a>
+  </div>
+
+  <div class="card card-green">
+    <h3>anthropics/knowledge-work-plugins — Cowork 向け公式プラグイン 11 種</h3>
+    <span class="tag tag-oss">Apache 2.0</span>
+    <span class="tag tag-stars">★30.8k (+267/day)</span>
+    <p class="summary">Anthropic 公式の Claude Cowork 向けオープンソースプラグイン集。生産性・データ分析・マーケティング・カスタマーサービスなど 11 ロール分のサブエージェント構成が含まれる。各プラグインはスキル・データ接続・コマンド・サブエージェントをセットで持つ。MAX プラン利用者向けの研究プレビューとして公開中。</p>
+    <p class="verdict">⚡ MAX プラン定額で動いている masatoman が今日から有効化できる。マーケティング・分析系のプラグインがルーティンの補完に使えるか確認する価値あり。</p>
+    <a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank">→ github.com/anthropics/knowledge-work-plugins</a>
+  </div>
+
+  <!-- 💰 課金価値 -->
+  <div class="section-header blue-header">💰 課金価値 — 有料だが時間対効果で価値あり</div>
+  <p class="none-note">該当なし（今日の更新は全て無料 / OSS）</p>
+
+  <!-- 🟡 様子見 -->
+  <div class="section-header yellow-header">🟡 様子見 — 良さそうだが今すぐではない</div>
+
+  <div class="card card-yellow">
+    <h3>cloudflare/security-audit-skill — 6 フェーズのセキュリティ監査スキル</h3>
+    <span class="tag tag-oss">MIT</span>
+    <span class="tag tag-stars">★34.2k (+1,712/day)</span>
+    <p class="summary">コーディングエージェントに偵察 → 探索 → 検証 → 出力 → 独立検証 → レポートの 6 フェーズパイプラインを追加する Cloudflare 製スキル。<code>npx skills add https://github.com/cloudflare/security-audit-skill</code> 一行で導入。attack family ごとにファイルが分かれ（メモリ破壊・プロンプトインジェクション・HTTP フレーミング等）、JSON スキーマ付きの検証可能なレポートが出力される。</p>
+    <p class="verdict">工務店向け SaaS の本格開発フェーズ（2026-12月以降）に入ったら投入したい。今の portfolio 規模では即効性は低いが、セキュリティ監査を習慣化する土台として導入しておく選択肢はある。</p>
+    <a href="https://github.com/cloudflare/security-audit-skill" target="_blank">→ github.com/cloudflare/security-audit-skill</a>
+  </div>
+
+  <div class="card card-yellow">
+    <h3>stablyai/orca — 複数コーディングエージェントを並列実行するデスクトップアプリ</h3>
+    <span class="tag tag-oss">MIT</span>
+    <span class="tag tag-stars">★99.7k (+1,565/day)</span>
+    <p class="summary">Claude Code・Codex・OpenCode などを同一タスクに並列実行し、それぞれ独立した git worktree で動かして最良の結果をマージ選択できる OSS デスクトップアプリ（macOS/Windows/Linux + モバイルコンパニオン）。自分のサブスクリプションを持ち込むだけで無料。リモート VM サポートも計画中。</p>
+    <p class="verdict">現在の solo dev 運用には過剰。「Claude Code 単独で十分か？」の判断が揺らいだタイミングで再評価。スタック拡大時の比較ベンチに面白い。</p>
+    <a href="https://github.com/stablyai/orca" target="_blank">→ github.com/stablyai/orca</a>
+  </div>
+
+  <div class="card card-yellow">
+    <h3>Graphify-Labs/graphify — コードベースを知識グラフ化する YC S26 ツール</h3>
+    <span class="tag tag-oss">MIT</span>
+    <span class="tag tag-stars">★130.2k (+802/day)</span>
+    <p class="summary">tree-sitter でコード・ドキュメント・PDF・動画をローカル完結で知識グラフ化し、コーディングエージェントのファイル検索精度を上げるツール。ベクトルストア・埋め込み不要。Claude Code・Cursor・Codex など 20+ エージェント対応。<code>graphify install</code> でスキル登録。</p>
+    <p class="verdict">portfolio repo が小規模な今は効果薄。コードベースが 10 万行を超えてエージェントが迷い始めたタイミングで投入するのが最適。</p>
+    <a href="https://github.com/Graphify-Labs/graphify" target="_blank">→ github.com/Graphify-Labs/graphify</a>
+  </div>
+
+  <div class="card card-yellow">
+    <h3>msitarzewski/agency-agents — 専門エージェントペルソナコレクション</h3>
+    <span class="tag tag-oss">OSS</span>
+    <span class="tag tag-stars">★162.3k (+562/day)</span>
+    <p class="summary">目的別に定義されたプロセスと手順書を持つ AI エージェントペルソナのコレクション。Shell スクリプトでインストール、特定のロール（コードレビュアー・技術ライター・QA など）として振る舞わせる。</p>
+    <p class="verdict">現在の masatoman のスタックへの組み込みユースケースが明確でない。content-executor や tools の特化ロールとして活用できるか確認してから判断。</p>
+    <a href="https://github.com/msitarzewski/agency-agents" target="_blank">→ github.com/msitarzewski/agency-agents</a>
+  </div>
+
+  <!-- 🚫 罠 -->
+  <div class="section-header gray-header">🚫 罠 — 避けるべきまたは今のスタックに合わない</div>
+
+  <div class="card card-gray">
+    <h3>shiyu-coder/Kronos — 金融時系列データ向け基盤モデル</h3>
+    <span class="tag tag-oss">OSS</span>
+    <span class="tag tag-stars">★42.3k (+733/day)</span>
+    <p class="summary">株価・為替等の金融市場データを予測するために事前学習した時系列基盤モデル。GitHub Trending 上位に入っているが、開発内容は純粋に金融 ML。</p>
+    <p class="verdict">工務店 B2B SaaS・ポートフォリオ・個人開発ルーティンのどれとも無関係。トレンドに乗って入れると無駄な学習コストだけかかる。</p>
+    <a href="https://github.com/shiyu-coder/Kronos" target="_blank">→ github.com/shiyu-coder/Kronos</a>
+  </div>
+
+  <div class="failures">
+    ⚠️ 取得失敗ソース: Obsidian changelog (obsidian.md — DNS 解決エラー, skip)
+  </div>
+</div>
+</body>
+</html>
