@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-23</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --text: #1a1a2e;
+      --card: #ffffff;
+      --border: #e0e0e0;
+      --green: #1a7f3c;
+      --green-bg: #eaf7ee;
+      --green-border: #4caf50;
+      --yellow: #7a5c00;
+      --yellow-bg: #fffbea;
+      --yellow-border: #f5c518;
+      --blue: #0d4b8c;
+      --blue-bg: #eaf2ff;
+      --blue-border: #2196f3;
+      --gray: #444;
+      --gray-bg: #f2f2f2;
+      --gray-border: #bbb;
+      --meta: #666;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 16px;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: clamp(1.2rem, 4vw, 1.6rem); margin-bottom: 8px; }
+    .meta { font-size: 0.82rem; color: var(--meta); margin-bottom: 24px; }
+    .section-header {
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 6px 6px 0 0;
+      margin-top: 28px;
+      margin-bottom: 0;
+    }
+    .green-header { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); border-bottom: none; }
+    .blue-header  { background: var(--blue-bg);  color: var(--blue);  border: 1px solid var(--blue-border);  border-bottom: none; }
+    .yellow-header{ background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); border-bottom: none; }
+    .gray-header  { background: var(--gray-bg);  color: var(--gray);  border: 1px solid var(--gray-border);  border-bottom: none; }
+
+    .card {
+      background: var(--card);
+      border-radius: 0;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-top: none;
+    }
+    .card:last-child { border-radius: 0 0 6px 6px; }
+    .card + .card { border-top: 1px solid var(--border); }
+
+    .card-green  { border-left: 4px solid var(--green-border); }
+    .card-blue   { border-left: 4px solid var(--blue-border); }
+    .card-yellow { border-left: 4px solid var(--yellow-border); }
+    .card-gray   { border-left: 4px solid var(--gray-border); }
+
+    h3 { font-size: 0.95rem; margin-bottom: 4px; }
+    .summary { font-size: 0.88rem; color: #333; margin-bottom: 6px; }
+    .verdict { font-size: 0.85rem; font-style: italic; color: #555; margin-bottom: 6px; }
+    a { color: #0066cc; text-decoration: none; font-size: 0.82rem; word-break: break-all; }
+    a:hover { text-decoration: underline; }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      padding: 1px 7px;
+      border-radius: 10px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .tag-new { background: #fff3cd; color: #856404; border: 1px solid #f5c518; }
+    .tag-oss  { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .tag-stars { background: #e2e3e5; color: #383d41; border: 1px solid #d6d8db; }
+    .none-note { font-size: 0.85rem; color: #888; padding: 12px 16px; border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; background: var(--card); font-style: italic; }
+    .failures { font-size: 0.8rem; color: #888; margin-top: 24px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px; background: var(--card); }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>🔧 効率厨A feed 2026-10-23</h1>
+  <p class="meta">
+    取得日: 2026-10-23 (JST 09:00) ／ 対象期間: 2026-10-21〜23 ／
+    ソース: github.com/anthropics/claude-code/releases, anthropic.com/news, GitHub Trending, WebSearch ／
+    除外: 10/21-22 フィード掲載済みの更新（security-audit-skill / ponytail / graphify / knowledge-work-plugins / orca / agency-agents / Kronos / v2.1.305 / headroom / Claude Design 終了告知 / ai-memory / opencode / ruflo / Anthropic Public Benefit Fund / Christopher Stubbs / ComfyUI / twenty CRM / vllm）
+  </p>
+
+  <!-- 🟢 即使う -->
+  <div class="section-header green-header">🟢 即使う — masatoman の運用に今日から入れられる</div>
+
+  <div class="card card-green">
+    <h3>Claude Code v2.1.309: bypass-permissions モードで rm/rmdir が即ブロックに変更</h3>
+    <span class="tag tag-new">2026-10-22 Latest</span>
+    <p class="summary">VS Code 拡張・Desktop アプリの「bypass-permissions モード」で実行された <code>rm</code>/<code>rmdir</code> が、プロンプトなしで即座に拒否され rewrite ヒントを返すよう変更。また、サンドボックス化された Bash がシェル起動ファイル（.bashrc 等）を読まなくなり、サンドボックス内で <code>--mcp-config</code> を書き換えられなくなった。PDF Read の Linux 版ページ範囲バグ、VS Code の Ctrl+J ハンドリングなども修正。</p>
+    <p class="verdict">bypass モードで Claude に大量ファイル操作を任せる場面で rm 誤爆が防がれる。「やっておいて」と投げた瞬間に意図しないファイル削除が起きなくなる変更 — 今日の運用からそのまま恩恵を受ける。動作が変わったことを把握しておくべき。</p>
+    <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.309" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.309</a>
+  </div>
+
+  <div class="card card-green">
+    <h3>Claude Code v2.1.306: cloud session 内の <code>claude -p</code> で "Not logged in" バグ修正</h3>
+    <span class="tag tag-new">2026-10-21</span>
+    <p class="summary">cloud session 内で <code>claude -p</code>（print/SDK モード）を実行すると「Not logged in」と表示されて失敗するバグが修正。セッションの環境変数が引き継がれていなかったことが原因。あわせて、MCP ツール数が多いセッションで起きていた「プロンプトが長すぎます」誤表示と不要な compaction も修正。</p>
+    <p class="verdict">scheduled routine や hook 経由で <code>claude -p</code> を cloud session 内から呼ぶ場面（このフィード自体がその使い方）で詰まるバグが消えた。スケジュール実行 + Skills + routines の組み合わせで引っかかっていた人はすぐ確認を。</p>
+    <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.306" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.306</a>
+  </div>
+
+  <!-- 💰 課金価値 -->
+  <div class="section-header blue-header">💰 課金価値 — 有料だが時間対効果で価値あり</div>
+  <p class="none-note">該当なし</p>
+
+  <!-- 🟡 様子見 -->
+  <div class="section-header yellow-header">🟡 様子見 — 良さそうだが今すぐではない</div>
+
+  <div class="card card-yellow">
+    <h3>Claude Code v2.1.307: <code>/claude-api api-version</code> コマンド + <code>@claude review stop</code> 追加</h3>
+    <span class="tag tag-new">2026-10-21</span>
+    <p class="summary">新コマンド <code>/claude-api api-version</code> で Claude API コードを 2026-10-21 バージョンへ移行できる。Code Review の <code>@claude review stop</code>（<code>off</code>/<code>pause</code> でも可）で <code>@claude review always</code> サブスクリプションを途中解除可能に。HTTP MCP ツールが接続切断中に二重送信されるバグも修正。</p>
+    <p class="verdict">MAX プランで API 直叩きをしない運用なら api-version コマンドの即効性は薄い。ただし Code Review を PR で使っている場合は stop コマンドが実際に便利。週次で PR を流す運用なら次の PR から試せる。</p>
+    <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.307" target="_blank">→ github.com/anthropics/claude-code/releases/tag/v2.1.307</a>
+  </div>
+
+  <div class="card card-yellow">
+    <h3>Anthropic: Agent Skills を Agentic AI Foundation に寄付 — オープン標準化</h3>
+    <span class="tag tag-new">2026-10-22</span>
+    <p class="summary">Anthropic は、AI エージェントに専門知識・ワークフローを渡すオープン標準「Agent Skills」を独立財団 Agentic AI Foundation に移管すると発表。2025 年 12 月のリリース以来 70 以上のエージェントプラットフォームが統合済み。財団主導で標準が中立的に維持される見通し。</p>
+    <p class="verdict">Anthropic ロックインのリスクが 1 段階下がる話。Claude Code Skills を将来 Cursor / Gemini CLI などに横展開する際の移植コストが下がる可能性がある。今すぐ運用が変わるわけではないが、プラットフォームリスク観点で把握しておく価値あり。</p>
+    <a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation" target="_blank">→ anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation</a>
+  </div>
+
+  <div class="card card-yellow">
+    <h3>luongnv89/claude-howto — Claude Code ビジュアルガイド（GitHub Trending 新登場）</h3>
+    <span class="tag tag-oss">MIT</span>
+    <span class="tag tag-stars">★43,178 (+177/day)</span>
+    <p class="summary">Claude Code をコピペすぐ使えるテンプレートとビジュアル例で解説する OSS ガイド集。Hooks / Skills / MCP / Workflows など主要機能を実例付きで網羅。Python 製で CLI から参照可能。</p>
+    <p class="verdict">自分が書いた CLAUDE.md や Skills の設計を見直す際に参照できる。同じ課題を先に解決した事例が集まっているため、新 Skill 設計のたたき台として使える。読み流すだけで「知らなかった使い方」が 1-2 件見つかるレベルのリポジトリ。</p>
+    <a href="https://github.com/luongnv89/claude-howto" target="_blank">→ github.com/luongnv89/claude-howto</a>
+  </div>
+
+  <!-- 🚫 罠 -->
+  <div class="section-header gray-header">🚫 罠 — 避けるべきまたは今のスタックに合わない</div>
+  <p class="none-note">該当なし（直近 1-2 日の更新に明確に避けるべき新着なし）</p>
+
+  <div class="failures">
+    ⚠️ 取得失敗ソース: obsidian.md (DNS 解決エラー, skip) ／ aiagentstore.ai (DNS 解決エラー, skip) ／ docs.claude.com（301リダイレクト→platform.claude.com→GitHub、raw CHANGELOG で代替取得済み）
+  </div>
+</div>
+</body>
+</html>
