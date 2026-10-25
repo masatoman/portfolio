@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-25</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --text: #1a1a1a;
+      --muted: #666;
+      --border: #ddd;
+      --card-bg: #fff;
+      --green-bg: #f0faf0;
+      --green-border: #34a853;
+      --green-badge: #34a853;
+      --yellow-bg: #fffbeb;
+      --yellow-border: #f59e0b;
+      --yellow-badge: #f59e0b;
+      --blue-bg: #eff6ff;
+      --blue-border: #3b82f6;
+      --blue-badge: #3b82f6;
+      --gray-bg: #f3f4f6;
+      --gray-border: #9ca3af;
+      --gray-badge: #6b7280;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #111;
+        --text: #e8e8e8;
+        --muted: #999;
+        --border: #333;
+        --card-bg: #1c1c1c;
+        --green-bg: #0d2010;
+        --green-border: #34a853;
+        --yellow-bg: #1f1800;
+        --yellow-border: #f59e0b;
+        --blue-bg: #0d1b2e;
+        --blue-border: #3b82f6;
+        --gray-bg: #1a1a1a;
+        --gray-border: #555;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #111;
+      --text: #e8e8e8;
+      --muted: #999;
+      --border: #333;
+      --card-bg: #1c1c1c;
+      --green-bg: #0d2010;
+      --green-border: #34a853;
+      --yellow-bg: #1f1800;
+      --yellow-border: #f59e0b;
+      --blue-bg: #0d1b2e;
+      --blue-border: #3b82f6;
+      --gray-bg: #1a1a1a;
+      --gray-border: #555;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 28px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--border);
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .card.green  { border-left: 4px solid var(--green-border);  background: var(--green-bg); }
+    .card.yellow { border-left: 4px solid var(--yellow-border); background: var(--yellow-bg); }
+    .card.blue   { border-left: 4px solid var(--blue-border);   background: var(--blue-bg); }
+    .card.gray   { border-left: 4px solid var(--gray-border);   background: var(--gray-bg); }
+    .card-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+    .badge-green  { background: var(--green-badge);  color: #fff; }
+    .badge-yellow { background: var(--yellow-badge); color: #000; }
+    .badge-blue   { background: var(--blue-badge);   color: #fff; }
+    .badge-gray   { background: var(--gray-badge);   color: #fff; }
+    .card-body { font-size: 0.9rem; margin-bottom: 10px; }
+    .card-body ul { margin: 6px 0 0 18px; }
+    .card-body li { margin-bottom: 3px; }
+    .verdict {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 10px;
+      border-left: 3px solid var(--border);
+      padding-left: 10px;
+    }
+    .card a {
+      font-size: 0.82rem;
+      color: var(--blue-badge);
+      word-break: break-all;
+    }
+    .none-note { color: var(--muted); font-style: italic; font-size: 0.9rem; margin-left: 4px; }
+    .fail-section { margin-top: 28px; color: var(--muted); font-size: 0.85rem; }
+    .fail-section ul { margin-left: 18px; }
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      h1 { font-size: 1.2rem; }
+      table { overflow-x: auto; display: block; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-25</h1>
+<p class="meta">
+  取得日: 2026-10-25 (JST) ／
+  対象期間: 2026-10-23〜10-25 ／
+  ソース: Claude Code releases, Anthropic news, GitHub Trending, WebSearch ／
+  重複除去: 直近3日分チェック済
+</p>
+
+<!-- ===== 🟢 即使う ===== -->
+<div class="section-header">🟢 即使う</div>
+
+<div class="card green">
+  <div class="card-title">
+    <span class="badge badge-green">🟢 即使う</span>
+    cloudflare/security-audit-skill — Claude Code でポートフォリオを多段セキュリティ監査
+  </div>
+  <div class="card-body">
+    <p>Cloudflare が公開した Agent Skills 準拠のセキュリティ監査スキル。コーディングエージェント向けの多フェーズ監査を実行し、検証済みで機械可読な調査結果を出力する。今日の GitHub Trending 1位（44,518スター / +2,264）。</p>
+    <ul>
+      <li>Agent Skills 標準（Anthropic が Agentic AI Foundation に寄付済）準拠 → Claude Code のスキルシステムと互換性あり</li>
+      <li>多フェーズ設計（発見→検証→レポート）で誤検知を減らした machine-readable な結果が出る</li>
+      <li>portfolio / masatoman.net の定期セキュリティレビューを手動レビューからスキル呼び出しに置き換えられる</li>
+    </ul>
+  </div>
+  <div class="verdict">
+    効率厨の一言: /security-review スキル相当のものを Cloudflare が公式に整備した形。portfolio に CLAUDE.md のスキル設定として追加し、デプロイ前の静的チェックルーティンに組み込める。スター急増は実用性の裏付け。今日試せる。
+  </div>
+  <a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener">
+    → github.com/cloudflare/security-audit-skill
+  </a>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<div class="section-header">💰 課金価値</div>
+<p class="none-note">該当なし</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<div class="section-header">🟡 様子見</div>
+
+<div class="card yellow">
+  <div class="card-title">
+    <span class="badge badge-yellow">🟡 様子見</span>
+    Nutlope/hallmark (GitHub Trending) — AI コーディングエージェントの「デザイン流し」を防ぐスキル
+  </div>
+  <div class="card-body">
+    <p>Claude Code / Cursor / Codex 向けのデザインスキル。エージェントが量産するありきたりな AI デザイン（同じ青グラデ・同じカード配置）を出力しないよう指示する。今日 +455 スター（計 32,127）。</p>
+    <ul>
+      <li>インストールはスキルファイルを置くだけ、既存コードを書き換えない</li>
+      <li>portfolio の UI 改善セッションで自動的に有効になる設計</li>
+    </ul>
+  </div>
+  <div class="verdict">
+    効率厨の一言: portfolio のデザイン作業が増えるフェーズで入れると効果が出る。今すぐ入れても悪くないが、現フェーズはヒアリング・商談素材優先なので 11 月以降の UI ブラッシュアップ時に再判断でよい。
+  </div>
+  <a href="https://github.com/Nutlope/hallmark" target="_blank" rel="noopener">
+    → github.com/Nutlope/hallmark
+  </a>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">
+    <span class="badge badge-yellow">🟡 様子見</span>
+    pbakaus/impeccable (GitHub Trending) — AI コーディングハーネス向けデザイン言語
+  </div>
+  <div class="card-body">
+    <p>AI コーディングツールがデザイン作業を処理する方法を改善することを目指したデザイン言語仕様。今日 +619 スター（計 86,388）。コンポーネント・トークン・アニメーションの記述をエージェント向けに標準化する。</p>
+  </div>
+  <div class="verdict">
+    効率厨の一言: hallmark と目的が似ているが、impeccable はより低レベルのデザイン言語仕様。portfolio の UI コンポーネントを整備するタイミングで hallmark と並べて採択判断する。今は「知ってる」で十分。
+  </div>
+  <a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">
+    → github.com/pbakaus/impeccable
+  </a>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<div class="section-header">🚫 罠</div>
+
+<div class="card gray">
+  <div class="card-title">
+    <span class="badge badge-gray">🚫 罠</span>
+    google-gemini/gemini-cli (GitHub Trending) — ターミナルに Gemini を持ち込む OSS
+  </div>
+  <div class="card-body">
+    <p>Google が公開したターミナル向けオープンソース AI エージェント。108,043 スター（+44）。Claude Code と同じ「ターミナルで使う AI」というポジションを狙っている。</p>
+  </div>
+  <div class="verdict">
+    効率厨の一言: MAX プラン定額で Claude Code を使い倒している今、Gemini CLI を並走させるとワークフローが分断して効率が落ちる。スター数は多いが「乗り換え検討材料」であり今の運用に組み込む理由がない。ロックイン回避が目的なら乗り換えの判断軸を先に整理してから。
+  </div>
+  <a href="https://github.com/google-gemini/gemini-cli" target="_blank" rel="noopener">
+    → github.com/google-gemini/gemini-cli
+  </a>
+</div>
+
+<div class="card gray">
+  <div class="card-title">
+    <span class="badge badge-gray">🚫 罠</span>
+    aws/agent-toolkit-for-aws (GitHub Trending) — AWS 向け MCP サーバー・スキル・プラグイン集
+  </div>
+  <div class="card-body">
+    <p>AWS がサポートする AI エージェント向けの MCP サーバー・スキル・プラグイン集。3,124 スター（+13）。AWS サービス（S3 / Lambda / DynamoDB 等）との連携に特化。</p>
+  </div>
+  <div class="verdict">
+    効率厨の一言: インフラは Vercel + Supabase で完結しており AWS は使っていない。スター伸びも小さく技術トレンドのリサーチ目的でも優先度低。今は完全スキップ。
+  </div>
+  <a href="https://github.com/aws/agent-toolkit-for-aws" target="_blank" rel="noopener">
+    → github.com/aws/agent-toolkit-for-aws
+  </a>
+</div>
+
+<div class="card gray">
+  <div class="card-title">
+    <span class="badge badge-gray">🚫 罠</span>
+    makecindy/cindy (GitHub Trending) — 「すぐ動く」オープンソース AI エージェント
+  </div>
+  <div class="card-body">
+    <p>「すぐ動く」を売りにしたオープンソース AI エージェント。4,086 スター（+477）。具体的なユースケース・統合先が不明瞭。</p>
+  </div>
+  <div class="verdict">
+    効率厨の一言: 「out of the box で動く」だけでは選定理由にならない。Claude Code が既に同じポジションを占めており、乗り換えコスト・ロックイン・公式サポートの面で劣る。急増したスターは話題性であり実績ではない。スキップ。
+  </div>
+  <a href="https://github.com/makecindy/cindy" target="_blank" rel="noopener">
+    → github.com/makecindy/cindy
+  </a>
+</div>
+
+<div class="fail-section">
+  <strong>取得失敗ソース:</strong>
+  <ul>
+    <li>obsidian.md/changelog/ — DNS 解決失敗 (ENOTFOUND)</li>
+    <li>docs.claude.com/en/release-notes/claude-code — 301→307 リダイレクト連鎖、最終 CHANGELOG.md は未取得（WebSearch で補完済）</li>
+  </ul>
+</div>
+
+</body>
+</html>
