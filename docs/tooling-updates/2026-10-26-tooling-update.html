@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-26</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --text: #1a1a1a;
+      --muted: #666;
+      --border: #ddd;
+      --card-bg: #fff;
+      --green-bg: #f0faf0;
+      --green-border: #34a853;
+      --green-badge: #34a853;
+      --yellow-bg: #fffbeb;
+      --yellow-border: #f59e0b;
+      --yellow-badge: #f59e0b;
+      --blue-bg: #eff6ff;
+      --blue-border: #3b82f6;
+      --blue-badge: #3b82f6;
+      --gray-bg: #f3f4f6;
+      --gray-border: #9ca3af;
+      --gray-badge: #6b7280;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #111;
+        --text: #e8e8e8;
+        --muted: #999;
+        --border: #333;
+        --card-bg: #1c1c1c;
+        --green-bg: #0d2010;
+        --green-border: #34a853;
+        --yellow-bg: #1f1800;
+        --yellow-border: #f59e0b;
+        --blue-bg: #0d1b2e;
+        --blue-border: #3b82f6;
+        --gray-bg: #1a1a1a;
+        --gray-border: #555;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #111;
+      --text: #e8e8e8;
+      --muted: #999;
+      --border: #333;
+      --card-bg: #1c1c1c;
+      --green-bg: #0d2010;
+      --green-border: #34a853;
+      --yellow-bg: #1f1800;
+      --yellow-border: #f59e0b;
+      --blue-bg: #0d1b2e;
+      --blue-border: #3b82f6;
+      --gray-bg: #1a1a1a;
+      --gray-border: #555;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; margin-bottom: 4px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 28px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--border);
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .card.green  { border-left: 4px solid var(--green-border);  background: var(--green-bg); }
+    .card.yellow { border-left: 4px solid var(--yellow-border); background: var(--yellow-bg); }
+    .card.blue   { border-left: 4px solid var(--blue-border);   background: var(--blue-bg); }
+    .card.gray   { border-left: 4px solid var(--gray-border);   background: var(--gray-bg); }
+    .card-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+    .badge-green  { background: var(--green-badge);  color: #fff; }
+    .badge-yellow { background: var(--yellow-badge); color: #000; }
+    .badge-blue   { background: var(--blue-badge);   color: #fff; }
+    .badge-gray   { background: var(--gray-badge);   color: #fff; }
+    .card-body { font-size: 0.9rem; margin-bottom: 10px; }
+    .card-body ul { margin: 6px 0 0 18px; }
+    .card-body li { margin-bottom: 3px; }
+    .verdict {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 10px;
+      border-left: 3px solid var(--border);
+      padding-left: 10px;
+    }
+    .card a {
+      font-size: 0.82rem;
+      color: var(--blue-badge);
+      word-break: break-all;
+    }
+    .none-note { color: var(--muted); font-style: italic; font-size: 0.9rem; margin-left: 4px; }
+    .fail-section { margin-top: 28px; color: var(--muted); font-size: 0.85rem; }
+    .fail-section ul { margin-left: 18px; }
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      h1 { font-size: 1.2rem; }
+      table { overflow-x: auto; display: block; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-10-26</h1>
+<p class="meta">
+  取得日: 2026-10-26 (JST) ／
+  対象期間: 2026-10-24〜10-26 ／
+  ソース: Anthropic news, GitHub Trending, Claude Code CHANGELOG, WebSearch ／
+  重複除去: 直近3日分チェック済
+</p>
+
+<!-- ===== 🟢 即使う ===== -->
+<div class="section-header">🟢 即使う</div>
+
+<div class="card green">
+  <div class="card-title">
+    <span class="badge badge-green">🟢 即使う</span>
+    AgriciDaniel/claude-seo — Claude Code 内で動くSEO監査スキル、手動4〜8時間→コマンド1つに
+  </div>
+  <div class="card-body">
+    <p>Claude Code のプラグインとして動作するオープンソースSEOスキル。<code>/seo setup</code> 1コマンドでセットアップし、技術SEO・コンテンツ品質・Schema・AI検索対応（GEO/AEO）・Google Search Console連携まで26のサブスキルと19の専門サブエージェントが並列実行する。スター約20.8k（+197 today）、MIT ライセンス。</p>
+    <ul>
+      <li>技術SEO: クロール可否・インデックス・サイトマップ・Core Web Vitals・リダイレクト</li>
+      <li>コンテンツ品質とE-E-A-T分析、Schema.org検出・検証・生成</li>
+      <li>AI検索（GEO/AEO）対応度チェック、llms.txt / WebMCP 対応確認</li>
+      <li>レポートはMarkdown / PDF / JSONで保存、GSC・PageSpeed・GA4連携あり</li>
+      <li>Claude Code プラグインマーケットプレイスからインストール可</li>
+    </ul>
+  </div>
+  <div class="verdict">
+    効率厨の一言: masatoman.net の記事80本のSEO監査を手動でやると数日かかる作業が、このスキルを入れて <code>/seo audit</code> を叩くだけになる。GSC連携もあるので既存の自動化フローとそのまま繋がる。AI検索対応チェックが入っているのも今のSEO環境に合っている。今日入れる価値あり。
+  </div>
+  <a href="https://github.com/AgriciDaniel/claude-seo" target="_blank" rel="noopener">
+    → github.com/AgriciDaniel/claude-seo
+  </a>
+</div>
+
+<!-- ===== 💰 課金価値 ===== -->
+<div class="section-header">💰 課金価値</div>
+<p class="none-note">該当なし</p>
+
+<!-- ===== 🟡 様子見 ===== -->
+<div class="section-header">🟡 様子見</div>
+
+<div class="card yellow">
+  <div class="card-title">
+    <span class="badge badge-yellow">🟡 様子見</span>
+    debpalash/VoiceStudio — ローカル完結の音声クローン・書き起こし・ダビング（86.8k stars）
+  </div>
+  <div class="card-body">
+    <p>完全ローカル動作のオープンソース音声ツール。声のクローニング、動画ダビング、文字起こし、オーディオブック生成を646言語でカバー。macOS / Windows / Linux対応、Apple Silicon Metal加速あり。AGPL-3.0ライセンス。GitHub Trending +1,592 today。</p>
+    <ul>
+      <li>クリーンな参照音源から声をクローニング、または説明文から声をデザイン</li>
+      <li>動画の尺に合わせたタイミング付き吹き替え生成</li>
+      <li>MCP対応あり → Claude Code や他エージェントから音声生成を呼び出せる可能性</li>
+      <li>ローカルAPI搭載なのでバッチ処理・自動化ルーティンに組み込める</li>
+    </ul>
+  </div>
+  <div class="verdict">
+    効率厨の一言: 工務店向けデモ動画のナレーション自動生成に将来使える。ただし今はヒアリング探索フェーズ優先。AGPL-3.0の商用利用条件（ソース公開義務）をSaaS展開前に確認が必要。Intel Mac環境はリモートバックエンドにフォールバックする点も要注意。11月以降に再評価。
+  </div>
+  <a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">
+    → github.com/debpalash/VoiceStudio
+  </a>
+</div>
+
+<div class="card yellow">
+  <div class="card-title">
+    <span class="badge badge-yellow">🟡 様子見</span>
+    TauricResearch/TradingAgents v0.7.0 — マルチエージェントLLM金融分析フレームワーク
+  </div>
+  <div class="card-body">
+    <p>複数のLLMエージェント（ファンダメンタル分析・感情分析・テクニカル分析など）が並列で動き、トレーダーエージェントが最終決定を出すPythonフレームワーク。v0.7.0が2026年10月リリース。114.6k stars。LangGraph ベース、Claude・Gemini・ローカルモデル対応。研究目的での利用を推奨と明記。</p>
+    <ul>
+      <li>エージェント間ディベート設計（研究者エージェントが複数視点から検証）</li>
+      <li>過去の判断をメモリに蓄積し次回分析にフィードバック</li>
+      <li>Yahoo Finance + SEC EDGAR 連携、バックテスト機能あり</li>
+      <li>マルチエージェント設計のリファレンス実装として読む価値あり</li>
+    </ul>
+  </div>
+  <div class="verdict">
+    効率厨の一言: masatoman の現事業（工務店SaaS）と直接の接点はない。ただしマルチエージェントの「並列分析→統合判断」設計は記事ネタ・自社ツール設計の参考になる。投資判断ツールとして実運用するのはフレームワーク自身が「研究目的」と明記しており避けること。
+  </div>
+  <a href="https://github.com/TauricResearch/TradingAgents" target="_blank" rel="noopener">
+    → github.com/TauricResearch/TradingAgents
+  </a>
+</div>
+
+<!-- ===== 🚫 罠 ===== -->
+<div class="section-header">🚫 罠</div>
+
+<div class="card gray">
+  <div class="card-title">
+    <span class="badge badge-gray">🚫 罠</span>
+    JetBrains/thinkrail — vibe coding向け軽量IDE（51スター、情報不足）
+  </div>
+  <div class="card-body">
+    <p>JetBrainsが公開した「自分の作業スタイルに合わせてカスタマイズされるvibe coding向け軽量IDE」。pi と組み合わせる設計らしいが、GitHub Trending に51スターと情報が極端に少なく、実際の完成度・安定性・機能が不明な段階。</p>
+  </div>
+  <div class="verdict">
+    効率厨の一言: 51スターでJetBrains公式にしては情報が薄すぎる。早期アルファ段階の可能性が高く、Claude Code + Cursor を既に使っている環境では環境移行コストに見合わない。スターが1,000を超えてからレビュー記事が出た時点で再評価で十分。
+  </div>
+  <a href="https://github.com/JetBrains/thinkrail" target="_blank" rel="noopener">
+    → github.com/JetBrains/thinkrail
+  </a>
+</div>
+
+<!-- ===== 取得失敗ソース ===== -->
+<div class="fail-section">
+  <strong>取得失敗ソース:</strong>
+  <ul>
+    <li>obsidian.md/changelog/ — DNS解決失敗（ENOTFOUND）</li>
+    <li>github.com/anthropics/claude-code/releases — リダイレクト先 CHANGELOG.md は最新が v2.1.310（直近3日分に既出）、新バージョンなし</li>
+  </ul>
+</div>
+
+</body>
+</html>
