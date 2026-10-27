@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-27</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e4ec;
+      --muted: #7c8098;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1a07;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0a1628;
+      --blue-border: #1e3a5f;
+      --gray: #6b7280;
+      --gray-bg: #111318;
+      --gray-border: #374151;
+      --red: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 20px 16px 60px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header { margin-bottom: 28px; }
+    h1 {
+      font-size: clamp(1.2rem, 4vw, 1.6rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .meta {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .meta span { display: inline-flex; align-items: center; gap: 4px; }
+    h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 32px 0 12px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+    }
+    h2.green  { background: var(--green-bg);  border-left: 3px solid var(--green);  color: var(--green);  }
+    h2.blue   { background: var(--blue-bg);   border-left: 3px solid var(--blue);   color: var(--blue);   }
+    h2.yellow { background: var(--yellow-bg); border-left: 3px solid var(--yellow); color: var(--yellow); }
+    h2.gray   { background: var(--gray-bg);   border-left: 3px solid var(--gray);   color: var(--gray);   }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .badge {
+      font-size: 18px;
+      flex-shrink: 0;
+      line-height: 1.4;
+    }
+    .title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+    }
+    .title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .title a:hover { border-color: var(--text); }
+    .desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+      padding-left: 28px;
+    }
+    .verdict {
+      font-size: 0.825rem;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: 5px;
+      margin-left: 28px;
+      display: inline-block;
+    }
+    .verdict.green  { background: var(--green-bg);  border: 1px solid var(--green-border);  color: var(--green);  }
+    .verdict.blue   { background: var(--blue-bg);   border: 1px solid var(--blue-border);   color: var(--blue);   }
+    .verdict.yellow { background: var(--yellow-bg); border: 1px solid var(--yellow-border); color: var(--yellow); }
+    .verdict.gray   { background: var(--gray-bg);   border: 1px solid var(--gray-border);   color: var(--gray);   }
+    .na {
+      font-size: 0.875rem;
+      color: var(--muted);
+      padding: 12px 0 4px 4px;
+      font-style: italic;
+    }
+    .failed-sources {
+      margin-top: 32px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      background: #1e2130;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 3px;
+      padding: 1px 6px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    @media (max-width: 600px) {
+      .meta { flex-direction: column; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>効率厨A feed 2026-10-27</h1>
+  <div class="meta">
+    <span>📅 取得日: 2026-10-27 (JST)</span>
+    <span>🔍 対象期間: 2026-10-25〜27</span>
+    <span>📡 ソース: Claude Code changelog / Anthropic news / GitHub Trending / WebSearch</span>
+    <span>🔁 重複除外: 直近3日分(10-24〜26)と照合済</span>
+  </div>
+</header>
+
+<!-- 🟢 即使う -->
+<h2 class="green">🟢 即使う — 今日から運用に入れられる</h2>
+
+<div class="card">
+  <div class="card-header">
+    <span class="badge">🟢</span>
+    <span class="title">
+      <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Claude Code v2.1.311 — MEMORY.md・CLAUDE.md陳腐化バグ修正 他多数</a>
+      <span class="tag">公式</span>
+    </span>
+  </div>
+  <p class="desc">
+    コンパクション直後にCLAUDE.mdやMEMORY.mdが古い内容を返すバグが修正。masatomanのようにmemory運用を主軸にしている場合、「セッション前半に編集したMEMORY.mdがコンパクション後に旧バージョンで読まれる」という再現性の高いバグへの直接対処。加えてWrite/Editが数秒フリーズしていた問題・SubagentStopフックが毎分2回発火していた問題・`ultrathink`が有効でない文脈でも虹色を表示していた問題なども修正。v2.1.311は計40件超のfix。
+  </p>
+  <span class="verdict green">即 `claude update` でアップデート推奨。MEMORY.md多用者は必須。</span>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="badge">🟢</span>
+    <span class="title">
+      <a href="https://github.com/multica-ai/andrej-karpathy-skills" target="_blank" rel="noopener">multica-ai/andrej-karpathy-skills</a>
+      <span class="tag">224K★</span>
+    </span>
+  </div>
+  <p class="desc">
+    Andrej KarpathyがLLMコーディングエージェントの落とし穴として観察した知見を単一CLAUDE.mdに凝縮したコレクション。「エージェントが長い実装で道に迷う原因」「不要なコメントを書かせない方法」「タスク完了後の後処理パターン」など、Claude Codeで実際に起きる行動の歪みを抑える記述が中心。全部入れる必要はなく、自分の運用で「あるある」と感じるルールだけ現在のCLAUDE.mdに追記するのが現実的。
+  </p>
+  <span class="verdict green">CLAUDE.mdに追記できる部品集として一読推奨。全部コピーは逆効果。</span>
+</div>
+
+<!-- 💰 課金価値 -->
+<h2 class="blue">💰 課金価値 — 有料だが時間対効果あり</h2>
+<p class="na">該当なし（本日の新着はすべてOSS）</p>
+
+<!-- 🟡 様子見 -->
+<h2 class="yellow">🟡 様子見 — 良さそうだが今すぐではない</h2>
+
+<div class="card">
+  <div class="card-header">
+    <span class="badge">🟡</span>
+    <span class="title">
+      <a href="https://github.com/NVIDIA/SkillSpector" target="_blank" rel="noopener">NVIDIA/SkillSpector — AIエージェントskill向けセキュリティスキャナー</a>
+      <span class="tag">22K★</span>
+    </span>
+  </div>
+  <p class="desc">
+    Claude Code / Codex / MCP のskillやpluginをインストール前に静的解析するNVIDA製CLIツール。プロンプトインジェクション・環境変数収集・外部URL送信・未ピン依存・サプライチェーンリスクなど17カテゴリ71パターンを検出しリスクスコア0-100を出す。`skillspector scan ./skill/ --no-llm` でファイル内容を外部送信せずローカルスキャン可能。MCP追加で `claude mcp add skillspector -- skillspector mcp` からClaude Code内で直接呼べる。
+  </p>
+  <span class="verdict yellow">新しいskillやpluginを試す前の習慣として仕込む価値あり。uv toolでinstall後に試す。</span>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="badge">🟡</span>
+    <span class="title">
+      <a href="https://github.com/Panniantong/Agent-Reach" target="_blank" rel="noopener">Panniantong/Agent-Reach — AIエージェント向けSNS/GitHubリーダーCLI</a>
+      <span class="tag">103K★</span>
+    </span>
+  </div>
+  <p class="desc">
+    Twitter・Reddit・YouTube・GitHubをAIエージェントが1つのCLIブリッジ経由で読み込めるようにするツール。このtooling-update-watchルーティンの情報収集フェーズで、WebSearch代替またはWebSearchの補完として差し込める可能性がある。ただし認証設定やレートリミット管理が必要で、現在のWebFetch+WebSearchで十分動いているなら差し替えコストの方が高い。
+  </p>
+  <span class="verdict yellow">現状のfeedルーティンで不足を感じてから評価。設定コストと収集精度を見極める。</span>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="badge">🟡</span>
+    <span class="title">
+      <a href="https://www.anthropic.com/news" target="_blank" rel="noopener">Anthropic S-1提出 — IPO申請（2026-10-26）</a>
+      <span class="tag">ニュース</span>
+    </span>
+  </div>
+  <p class="desc">
+    AnthropicがSECにS-1を提出し正式にIPO手続きを開始。評価額$9650億、ARR$470億超との報道。IPO後は財務開示が義務化され、Claude Code売上・リスク因子・ロードマップへの市場圧力が可視化される。短期的に料金・モデル提供に変化はないと思われるが、Max定額運用の価格改定リスクとして中長期でウォッチ。
+  </p>
+  <span class="verdict yellow">即アクション不要。Max定額プランの利用規約変更アナウンスに注意。</span>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="badge">🟡</span>
+    <span class="title">
+      <a href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener">affaan-m/ECC — Claude Code大型agent harness（71エージェント・311スキル）</a>
+      <span class="tag">289K★</span>
+    </span>
+  </div>
+  <p class="desc">
+    Claude Code向けの巨大プリセットコレクション。71専門サブエージェント・311スキル・97スラッシュコマンドをワンストップで入れられる。`/ecc:plan`→TDDワークフロー→`/code-review`の流れが売り。ただし全部入れると毎セッションでルールがコンテキストを圧迫し、既存のCLAUDE.md/memory運用と衝突するリスクが高い。公式ドキュメント自体も「小さいセットから始めろ」と警告している。
+  </p>
+  <span class="verdict yellow">まず`/code-review`や特定スキル1-2個だけ試す。全部入れは罠寄り。</span>
+</div>
+
+<!-- 🚫 罠 -->
+<h2 class="gray">🚫 罠 — 避けるべき・今のスタックに合わない</h2>
+
+<div class="card">
+  <div class="card-header">
+    <span class="badge">🚫</span>
+    <span class="title">
+      <a href="https://github.com/gitroomhq/postiz-app" target="_blank" rel="noopener">gitroomhq/postiz-app — アジェンティックSNS投稿スケジューラー</a>
+      <span class="tag">38K★</span>
+    </span>
+  </div>
+  <p class="desc">
+    AIエージェントがSNS投稿をスケジュール・実行するOSSツール。X(Twitter)・Instagram・LinkedInなど多プラットフォーム対応。自体は完成度が高いが、masatoman戦略では「X告知はwontfix・集客はLINE拡散主軸」が確定済み（`feedback_no_x_announcement_target_outside.md`）。このツールが解決する問題自体が不要。
+  </p>
+  <span class="verdict gray">戦略的に不要。SNS自動化ではなくヒアリング・商談ペライチに注力する方針と矛盾。</span>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="badge">🚫</span>
+    <span class="title">
+      <a href="https://github.com/nightly-labs/openbot" target="_blank" rel="noopener">nightly-labs/openbot — ローカルデスクトップAIチームメイトワークスペース</a>
+      <span class="tag">1.4K★</span>
+    </span>
+  </div>
+  <p class="desc">
+    Claude/Codex/Grokを常駐させるローカルファーストデスクトップアプリ。複数AIエージェントを「チームメイト」として並走させる設計。ただしClaude Codeがすでにテレポート・バックグラウンドセッション・クラウドセッション・チームメイト機能を持っており、別ワークスペースを追加する意味が薄い。Max定額でClaude Codeを使っている環境では機能の重複が大きい。
+  </p>
+  <span class="verdict gray">Claude Codeで既に全部できる。別の実行環境を増やすと認知負荷と認証管理コストが増える。</span>
+</div>
+
+<div class="failed-sources">
+  <strong>取得失敗ソース:</strong>
+  obsidian.md (ENOTFOUND — DNS解決失敗)、
+  docs.claude.com/release-notes (301→307リダイレクト後にraw GitHubへ誘導、rawも302リダイレクトを経由して最終取得成功)
+</div>
+
+</body>
+</html>
