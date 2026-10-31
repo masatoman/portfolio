@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-10-31</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f0f0f;
+      color: #e0e0e0;
+      line-height: 1.65;
+      padding: 1.5rem 1rem;
+    }
+    .container { max-width: 780px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff; }
+    .meta {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #222;
+      padding-bottom: 0.8rem;
+    }
+    .meta span { margin-right: 1.2rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 0.8rem; padding: 0.35rem 0.7rem; border-radius: 4px; }
+    h2.green  { background: #0d2b1a; color: #4cde8a; border-left: 3px solid #4cde8a; }
+    h2.blue   { background: #0c1f38; color: #5db8f7; border-left: 3px solid #5db8f7; }
+    h2.yellow { background: #2a2100; color: #f5c842; border-left: 3px solid #f5c842; }
+    h2.gray   { background: #1e1e1e; color: #9e9e9e; border-left: 3px solid #9e9e9e; }
+    .card {
+      background: #181818;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.9rem;
+    }
+    .card-title { font-weight: 700; font-size: 0.97rem; margin-bottom: 0.3rem; }
+    .card-title a { color: #c9d1d9; text-decoration: none; }
+    .card-title a:hover { text-decoration: underline; color: #fff; }
+    .card-body { font-size: 0.88rem; color: #aaa; margin-bottom: 0.5rem; }
+    .verdict { font-size: 0.82rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 3px; display: inline-block; }
+    .v-green  { background: #0d2b1a; color: #4cde8a; }
+    .v-blue   { background: #0c1f38; color: #5db8f7; }
+    .v-yellow { background: #2a2100; color: #f5c842; }
+    .v-gray   { background: #1e1e1e; color: #9e9e9e; }
+    .source-link { font-size: 0.78rem; color: #555; margin-top: 0.4rem; }
+    .source-link a { color: #5db8f7; text-decoration: none; }
+    .source-link a:hover { text-decoration: underline; }
+    .failed-sources { font-size: 0.8rem; color: #666; margin-top: 2rem; border-top: 1px solid #222; padding-top: 0.8rem; }
+    .dedup-note { font-size: 0.78rem; color: #555; margin-top: 0.5rem; }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>効率厨A feed 2026-10-31</h1>
+  <div class="meta">
+    <span>取得日: 2026-10-31</span>
+    <span>対象期間: 2026-10-29〜31</span>
+    <span>ソース: GitHub Trending / Anthropic News / WebSearch</span>
+  </div>
+
+  <!-- ===== 🟢 即使う ===== -->
+  <h2 class="green">🟢 即使う (2件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">impeccable — AI スロップ検出 + 設計品質フック (GitHub Trending #1, 2,300★/日)</a>
+    </div>
+    <div class="card-body">
+      コーディングエージェント向けの設計ツールキット。62ルールの決定論的スロップ検出器（APIキー不要）、P0〜P3ランク付きアクセシビリティ/パフォーマンス監査、設計前に仕様を PRODUCT.md / DESIGN.md として固めるコマンド群が入っている。Claude Code / Cursor / Codex CLI に対応。エージェントが UI ファイルを編集したタイミングで自動スキャンするフックも設定可能。
+    </div>
+    <span class="verdict v-green">🟢 即使う</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      portfolio ルートで <code>npx impeccable install</code> → Claude Code に <code>/impeccable audit</code> が追加。CSS を書くたびに P0-P3 レポートが出るので AI スロップ UI の見落としが自動で減る。まず <code>/impeccable critique</code> を warm editorial トップに走らせてみる価値あり。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">github.com/pbakaus/impeccable</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">anthropics/skills — Anthropic 公式スキルリポジトリ公開 (185k★)</a>
+    </div>
+    <div class="card-body">
+      docx / pdf / pptx / xlsx 生成スキル、MCP サーバー生成スキル、コミュニケーション/ブランドスキルなど複数カテゴリが揃った公式リポジトリ。<code>/plugin install document-skills@anthropic-agent-skills</code> で即インストール。スキルの仕様 (spec) も同梱されているので自作スキルのリファレンスになる。
+    </div>
+    <span class="verdict v-green">🟢 即使う</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      portfolio の docs フォルダを手動 HTML で管理しているが、<code>/pdf</code> スキルで代替できるか確認する価値あり。まず <code>/plugin install document-skills@anthropic-agent-skills</code> を試す。スキル spec は自作 Skills の品質向上にも直結。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">github.com/anthropics/skills</a></div>
+  </div>
+
+  <!-- ===== 💰 課金価値 ===== -->
+  <h2 class="blue">💰 課金価値</h2>
+  <div class="card">
+    <div class="card-body" style="color:#666;">該当なし（今日は有料ツールの新着なし）</div>
+  </div>
+
+  <!-- ===== 🟡 様子見 ===== -->
+  <h2 class="yellow">🟡 様子見 (4件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">obra/superpowers — 設計先行・TDD 強制のエージェントスキルフレームワーク (1,259★/日)</a>
+    </div>
+    <div class="card-body">
+      Claude Code を含む 15+ エージェント対応。「仕様を承認してから実装」「テスト先行」「サブエージェント分割」を自動化するスキル群。MIT ライセンス。インストール後はスキルが自動起動するので特別なコマンドは不要。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      既存の Skills 構成と機能が重複する部分が多い。solo 開発で全工程を自分でコントロールしている今は過剰かも。ただしサブエージェント分割の自動化は workflow 系の作業が増えた時に再検討候補。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">github.com/obra/superpowers</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">mattpocock/skills — Matt Pocock の個人エージェントスキル公開版 (876★/日)</a>
+    </div>
+    <div class="card-body">
+      20スキル（tdd, code-review, wayfinder, retro, implement-spec 等）。GSD/BMAD のような全社導入フレームワークではなく「小さく・コンポーザブル・モデル非依存」が設計思想。<code>claude plugin install mattpocock-skills@claude-plugins-official</code> でインストール。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      <code>/retro</code>（セッション後に環境改善提案を出す）は今の運用にはない視点で面白い。まず retro だけ試す価値あり。全部入れると既存 Skills との衝突が起きそうなので段階的に。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">github.com/mattpocock/skills</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/lightpanda-io/browser" target="_blank" rel="noopener">lightpanda-io/browser — AI 自動化向けヘッドレスブラウザ（MCP 内蔵、Chrome 比 16x 省メモリ）</a>
+    </div>
+    <div class="card-body">
+      Zig 製。Chrome の代替ではなく AI エージェント専用設計。CDP / WebDriver BiDi 対応なので Playwright がそのままつながる。MCP サーバーを内蔵しているのでエージェントから直接呼べる。セッションを PandaScript に変換すれば LLM なしで再実行可能。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      GSC 自動化・demo-gallery 投票集計でブラウザを使う場面が増えた時に乗り換え候補。今は Playwright で動いているので急ぐ必要なし。RAM コストが問題になったタイミングで再検討。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/lightpanda-io/browser" target="_blank" rel="noopener">github.com/lightpanda-io/browser</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/JetBrains/thinkrail" target="_blank" rel="noopener">JetBrains/thinkrail — vibe coding 向け軽量 IDE (722★/日)</a>
+    </div>
+    <div class="card-body">
+      「pi でバイブコーディング」を謳う JetBrains 製の実験的軽量 IDE。作業スタイルに合わせてレイアウトが変わる適応型 UI。TypeScript 製。詳細は README が少なくまだ情報薄め。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      Claude Code 運用が確立している今は IDE 乗り換えコストが高い。"vibe coding" は設計不在で感覚で進める開発スタイルで、Skills による規律と相性が悪い。情報が出揃うまで観察のみ。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/JetBrains/thinkrail" target="_blank" rel="noopener">github.com/JetBrains/thinkrail</a></div>
+  </div>
+
+  <!-- ===== 🚫 罠 ===== -->
+  <h2 class="gray">🚫 罠 (1件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://www.techbuzz.ai/articles/openai-launches-dots-ai-coding-tools-become-personal-assistant" target="_blank" rel="noopener">OpenAI Dots — コーディングツールを転用した常時稼働 AI パーソナルアシスタント (Oct 27 発表)</a>
+    </div>
+    <div class="card-body">
+      OpenAI がコーディングツールのインフラを転用して「常時稼働のデジタル助手」として再リリース。スマホ常駐型で文脈を持ち続ける設計。料金体系は未確認。
+    </div>
+    <span class="verdict v-gray">🚫 罠</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      MAX プラン定額で Claude を使っている状況では別プロバイダー追加は純粋なコスト増。Claude Code + ルーティン自動化（scheduled tasks）ですでに同等機能はカバー済み。乗り換え理由なし。
+    </span>
+    <div class="source-link">→ <a href="https://www.techbuzz.ai/articles/openai-launches-dots-ai-coding-tools-become-personal-assistant" target="_blank" rel="noopener">techbuzz.ai (未確認情報含む)</a></div>
+  </div>
+
+  <!-- ===== 取得失敗ソース ===== -->
+  <div class="failed-sources">
+    <strong>取得失敗ソース:</strong>
+    obsidian.md（ネットワーク制限で未取得）、
+    Claude Code CHANGELOG（GitHub blob → raw リダイレクトが解決できず、GitHub Releases は直近2日分の新バージョン確認できず）
+    <div class="dedup-note">重複除去: 10-29 / 10-30 掲載済みの DeepTutor / claude-mem / OpenBot / OpenMausBot / claude-code v2.1.312 / elayadesign/ai-design-skills / expo/skills / macro-inc/macro / Donchitos/Claude-Code-Game-Studios を除外</div>
+  </div>
+</div>
+</body>
+</html>
