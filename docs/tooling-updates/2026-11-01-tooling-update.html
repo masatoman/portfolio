@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-01</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f0f0f;
+      color: #e0e0e0;
+      line-height: 1.65;
+      padding: 1.5rem 1rem;
+    }
+    .container { max-width: 780px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff; }
+    .meta {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #222;
+      padding-bottom: 0.8rem;
+    }
+    .meta span { margin-right: 1.2rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 0.8rem; padding: 0.35rem 0.7rem; border-radius: 4px; }
+    h2.green  { background: #0d2b1a; color: #4cde8a; border-left: 3px solid #4cde8a; }
+    h2.blue   { background: #0c1f38; color: #5db8f7; border-left: 3px solid #5db8f7; }
+    h2.yellow { background: #2a2100; color: #f5c842; border-left: 3px solid #f5c842; }
+    h2.gray   { background: #1e1e1e; color: #9e9e9e; border-left: 3px solid #9e9e9e; }
+    .card {
+      background: #181818;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.9rem;
+    }
+    .card-title { font-weight: 700; font-size: 0.97rem; margin-bottom: 0.3rem; }
+    .card-title a { color: #c9d1d9; text-decoration: none; }
+    .card-title a:hover { text-decoration: underline; color: #fff; }
+    .card-body { font-size: 0.88rem; color: #aaa; margin-bottom: 0.5rem; }
+    .verdict { font-size: 0.82rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 3px; display: inline-block; }
+    .v-green  { background: #0d2b1a; color: #4cde8a; }
+    .v-blue   { background: #0c1f38; color: #5db8f7; }
+    .v-yellow { background: #2a2100; color: #f5c842; }
+    .v-gray   { background: #1e1e1e; color: #9e9e9e; }
+    .source-link { font-size: 0.78rem; color: #555; margin-top: 0.4rem; }
+    .source-link a { color: #5db8f7; text-decoration: none; }
+    .source-link a:hover { text-decoration: underline; }
+    .failed-sources { font-size: 0.8rem; color: #666; margin-top: 2rem; border-top: 1px solid #222; padding-top: 0.8rem; }
+    .dedup-note { font-size: 0.78rem; color: #555; margin-top: 0.5rem; }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>効率厨A feed 2026-11-01</h1>
+  <div class="meta">
+    <span>取得日: 2026-11-01</span>
+    <span>対象期間: 2026-10-30〜11-01</span>
+    <span>ソース: Claude Code CHANGELOG / Anthropic News / GitHub Trending / WebSearch</span>
+  </div>
+
+  <!-- ===== 🟢 即使う ===== -->
+  <h2 class="green">🟢 即使う (2件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md" target="_blank" rel="noopener">Claude Code v2.1.316 — CLAUDE_CODE_SUBAGENT_EFFORT でサブエージェントの effort を一括制御</a>
+    </div>
+    <div class="card-body">
+      v2.1.316 (2026-10-31) で追加された環境変数 <code>CLAUDE_CODE_SUBAGENT_EFFORT</code> を設定すると、Workflow で起動する worker agent の effort レベルを一括指定できる。同時追加の <code>CLAUDE_CODE_DISABLE_ULTRATHINK</code> は <code>ultrathink</code> キーワードを無効化し、意図しない xhigh effort への昇格を防ぐ。
+    </div>
+    <span class="verdict v-green">🟢 即使う</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      tooling-update-watch などのルーティン Workflow で subagent が暴走するリスクを <code>CLAUDE_CODE_SUBAGENT_EFFORT=low</code> で抑えられる。settings.json の env に今日追加できる。コスト管理と再現性の両方に直結。
+    </span>
+    <div class="source-link">→ <a href="https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md" target="_blank" rel="noopener">Claude Code CHANGELOG (raw)</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md" target="_blank" rel="noopener">Claude Code v2.1.314 — permissions.blockWritesOutsideWorkingDirectories で作業ディレクトリ外書き込みブロック</a>
+    </div>
+    <div class="card-body">
+      <code>permissions.blockWritesOutsideWorkingDirectories</code> を有効化すると、Write / Edit / NotebookEdit ツールが作業ディレクトリ外への書き込みを全権限モードでも拒否する。エージェントが意図せず <code>~/</code> 以下の設定ファイルを変更するリスクを排除できる。
+    </div>
+    <span class="verdict v-green">🟢 即使う</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      portfolio リポジトリの CLAUDE.md に <code>"permissions": {"blockWritesOutsideWorkingDirectories": true}</code> を追加するだけで有効。ルーティンエージェントが memory ディレクトリやホームを誤って書き換える事故を防ぐ安全網として今日から設定できる。
+    </span>
+    <div class="source-link">→ <a href="https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md" target="_blank" rel="noopener">Claude Code CHANGELOG (raw)</a></div>
+  </div>
+
+  <!-- ===== 💰 課金価値 ===== -->
+  <h2 class="blue">💰 課金価値</h2>
+  <div class="card">
+    <div class="card-body" style="color:#666;">該当なし（今日は有料ツールの新着なし）</div>
+  </div>
+
+  <!-- ===== 🟡 様子見 ===== -->
+  <h2 class="yellow">🟡 様子見 (4件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md" target="_blank" rel="noopener">Claude Code v2.1.314 — VS Code / Claude Desktop Code タブに idle compaction 追加</a>
+    </div>
+    <div class="card-body">
+      長時間アイドル状態の会話を自動圧縮してコンテキストを節約する機能。VS Code 拡張と Claude Desktop の Code タブに追加。デスクトップやエディタで Claude Code を使う場合、長時間作業後のコンテキスト枯渇が減る。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      ルーティン自動化はセッション完結型なのでメリット限定的。VS Code で長時間インタラクティブに作業する時間が増えたら恩恵あり。今は特別な設定変更は不要。
+    </span>
+    <div class="source-link">→ <a href="https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md" target="_blank" rel="noopener">Claude Code CHANGELOG (raw)</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/THU-MAIC/OpenMAIC" target="_blank" rel="noopener">THU-MAIC/OpenMAIC — AI マルチエージェント対話型教室 (42k★, 116★/日)</a>
+    </div>
+    <div class="card-body">
+      複数の AI エージェントが「教室」形式でディスカッションして学習するフレームワーク。清華大発。ロールを割り当てた agents が互いに質問・反論・補足して知識を深化させる。個人開発の学習加速や複雑な問題の多角的分析に使える可能性がある。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      Claude Code の Workflow / Agent が代替できる範囲が多いが、「複数エージェントに議論させて結論を出す」パターンは今の運用にない。アトツギ向けヒアリング設計の壁打ちなど、複雑な意思決定のサポートに転用できるか検討余地あり。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/THU-MAIC/OpenMAIC" target="_blank" rel="noopener">github.com/THU-MAIC/OpenMAIC</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/Orkas-AI/Orkas" target="_blank" rel="noopener">Orkas-AI/Orkas — デスクトップ向けローカルファーストAIチーム（Claude Code連携対応、6k★, 1,044★/日）</a>
+    </div>
+    <div class="card-body">
+      ローカルで動くAIチーム構築ツール。Claude Code をはじめ複数エージェントと連携できるデスクトップアプリ。オフライン優先設計で、プライベートな作業内容を外部に送らずにAIチームを組める。上昇速度が速くコミュニティの注目を集めている。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      MAX プランで Claude Code が動いている状況では機能の重複が大きい。ただし「端末を離れた状態でローカルエージェントを動かしたい」ニーズが出てきた時に再検討する価値あり。今は状況観察のみ。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/Orkas-AI/Orkas" target="_blank" rel="noopener">github.com/Orkas-AI/Orkas</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://www.anthropic.com/news" target="_blank" rel="noopener">Anthropic AI for Science — 研究機関・大学への展開拡大 (2026-10-28発表)</a>
+    </div>
+    <div class="card-body">
+      Anthropic が AI for Science プログラムを財団・研究機関向けに拡大。生命科学・材料科学分野へのClaude活用を強化。直接の個人開発ツールではないが、Claude モデルの科学的推論能力の継続投資を示す指標。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      モデルの数学・論理推論能力が上がれば工務店向けデモ（見積もり計算・図面分析）の品質にも波及する可能性。使えるツールが増えるわけではないが、Claude の投資方向として把握しておく価値はある。
+    </span>
+    <div class="source-link">→ <a href="https://www.anthropic.com/news" target="_blank" rel="noopener">anthropic.com/news</a></div>
+  </div>
+
+  <!-- ===== 🚫 罠 ===== -->
+  <h2 class="gray">🚫 罠 (1件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md" target="_blank" rel="noopener">Opus 4.8 fast mode — 2026-10-30 非推奨、2026-11-30 完全削除（フォールバックなし）</a>
+    </div>
+    <div class="card-body">
+      Claude Code v2.1.316 で Opus 4.8 の fast mode が正式に非推奨化。2026-11-30 以降は fast mode を指定するとエラーを返し、標準の Opus 4.8 にフォールバックしない。速度を維持するには Opus 5.5 への移行が必要。
+    </div>
+    <span class="verdict v-gray">🚫 罠</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      settings.json / CLAUDE.md / Workflow スクリプトで <code>claude-opus-4-8[1m]</code> を指定している箇所が残っていると 11-30 以降にルーティンが全壊する。今すぐ <code>grep -r "opus-4-8\[1m\]" ~/.claude/ ~/portfolio/</code> で確認して <code>claude-opus-5-5[1m]</code> に移行しておくこと。
+    </span>
+    <div class="source-link">→ <a href="https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md" target="_blank" rel="noopener">Claude Code CHANGELOG (raw)</a></div>
+  </div>
+
+  <!-- ===== 取得失敗ソース ===== -->
+  <div class="failed-sources">
+    <strong>取得失敗ソース:</strong>
+    obsidian.md（ネットワーク制限のため未取得 — セッションのネットワーク設定に obsidian.md の許可が必要）、
+    dev.to（ネットワーク制限のため未取得）
+    <div class="dedup-note">重複除去: 10-29〜10-31 掲載済みの impeccable / anthropics/skills / obra/superpowers / mattpocock/skills / lightpanda-io/browser / JetBrains/thinkrail / OpenAI Dots / DeepTutor / claude-mem / OpenMausBot / v2.1.312 / elayadesign/ai-design-skills / expo/skills / Donchitos/Claude-Code-Game-Studios を除外</div>
+  </div>
+</div>
+</body>
+</html>
