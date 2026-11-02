@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-02</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f0f0f;
+      color: #e0e0e0;
+      line-height: 1.65;
+      padding: 1.5rem 1rem;
+    }
+    .container { max-width: 780px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff; }
+    .meta {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #222;
+      padding-bottom: 0.8rem;
+    }
+    .meta span { margin-right: 1.2rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 0.8rem; padding: 0.35rem 0.7rem; border-radius: 4px; }
+    h2.green  { background: #0d2b1a; color: #4cde8a; border-left: 3px solid #4cde8a; }
+    h2.blue   { background: #0c1f38; color: #5db8f7; border-left: 3px solid #5db8f7; }
+    h2.yellow { background: #2a2100; color: #f5c842; border-left: 3px solid #f5c842; }
+    h2.gray   { background: #1e1e1e; color: #9e9e9e; border-left: 3px solid #9e9e9e; }
+    .card {
+      background: #181818;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.9rem;
+    }
+    .card-title { font-weight: 700; font-size: 0.97rem; margin-bottom: 0.3rem; }
+    .card-title a { color: #c9d1d9; text-decoration: none; }
+    .card-title a:hover { text-decoration: underline; color: #fff; }
+    .card-body { font-size: 0.88rem; color: #aaa; margin-bottom: 0.5rem; }
+    .verdict { font-size: 0.82rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 3px; display: inline-block; }
+    .v-green  { background: #0d2b1a; color: #4cde8a; }
+    .v-blue   { background: #0c1f38; color: #5db8f7; }
+    .v-yellow { background: #2a2100; color: #f5c842; }
+    .v-gray   { background: #1e1e1e; color: #9e9e9e; }
+    .source-link { font-size: 0.78rem; color: #555; margin-top: 0.4rem; }
+    .source-link a { color: #5db8f7; text-decoration: none; }
+    .source-link a:hover { text-decoration: underline; }
+    .failed-sources { font-size: 0.8rem; color: #666; margin-top: 2rem; border-top: 1px solid #222; padding-top: 0.8rem; }
+    .dedup-note { font-size: 0.78rem; color: #555; margin-top: 0.5rem; }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>効率厨A feed 2026-11-02</h1>
+  <div class="meta">
+    <span>取得日: 2026-11-02</span>
+    <span>対象期間: 2026-10-31〜11-02</span>
+    <span>ソース: Claude Code CHANGELOG / Anthropic News / GitHub Trending / WebSearch</span>
+    <div class="dedup-note">🔁 重複除去: 直近3日分照合済（v2.1.316・v2.1.314・v2.1.312・v2.1.311・GSA提携・AI for Science拡大・thedotmack/claude-mem・CopilotKit/OpenBot・milind-soni/OpenMausBot・Donchitos/Claude-Code-Game-Studios は過去3日掲載済 → 除外）。Claude Code 11/1-2 の新バージョンは未確認（最新 v2.1.316、2026-10-30）。</div>
+  </div>
+
+  <!-- ===== 🟢 即使う ===== -->
+  <h2 class="green">🟢 即使う — 該当なし</h2>
+  <div class="card">
+    <div class="card-body">Claude Code の最新リリースは v2.1.316（2026-10-30）。11/01〜02 に新バージョンは未確認。即使いの新規アイテムなし。</div>
+  </div>
+
+  <!-- ===== 💰 課金価値 ===== -->
+  <h2 class="blue">💰 課金価値 — 該当なし</h2>
+  <div class="card">
+    <div class="card-body">今日の範囲で課金価値と判定できるリリースなし。</div>
+  </div>
+
+  <!-- ===== 🟡 様子見 ===== -->
+  <h2 class="yellow">🟡 様子見 (3件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/anomalyco/hex" target="_blank" rel="noopener">anomalyco/hex — ローカル動作の音声入力ツール (macOS / Windows / Linux、Rust、1,179★/日)</a>
+    </div>
+    <div class="card-body">
+      キーボードなしで音声でテキストを入力できるオフライン完結のディクテーションツール。Rust 実装でクロスプラットフォーム対応。外部 API に音声を送らずプライバシーを保てる点が特徴。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      CLAUDE.md 指示文や git コミットメッセージを声で書くユースケースには合う。ただし今の CLI 中心ワークフローに無理に入れる必要はなく、ハンズフリーが必要な場面が出てきたら再評価。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/anomalyco/hex" target="_blank" rel="noopener">github.com/anomalyco/hex</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/beenuar/AiSOC" target="_blank" rel="noopener">beenuar/AiSOC — LLM エージェント + MCP サーバー内蔵の AI セキュリティ運用センター (Python、446★/日)</a>
+    </div>
+    <div class="card-body">
+      セキュリティアラートを LLM エージェントが自動トリアージし、調査ステップを実行するオープンソースの SOC ツール。MCP サーバーを内蔵しており、外部ツール連携のアーキテクチャ参考として読める。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      工務店 SaaS に直接使えるものではないが、MCP サーバーを自前プロダクトに組み込む際の設計パターン例として一読の価値あり。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/beenuar/AiSOC" target="_blank" rel="noopener">github.com/beenuar/AiSOC</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/pingdotgg/t3code" target="_blank" rel="noopener">pingdotgg/t3code — Ping.gg 発の TypeScript ツール (3,094★/日、詳細調査中)</a>
+    </div>
+    <div class="card-body">
+      Ping Labs（Theo が主宰する YC W22 発）の公開リポジトリで、1日で 3,094★ を獲得して GitHub Trending 上位に急浮上。公式サイトは t3.codes だが機能の詳細は未確認。TypeScript 開発者向けツールの可能性が高い。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      3,000★/日超は異常な注目度で、TypeScript スタックを使う masatoman には無関係ではない。t3.codes の中身が判明した時点で再評価。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/pingdotgg/t3code" target="_blank" rel="noopener">github.com/pingdotgg/t3code</a> / <a href="https://t3.codes" target="_blank" rel="noopener">t3.codes</a></div>
+  </div>
+
+  <!-- ===== 🚫 罠 ===== -->
+  <h2 class="gray">🚫 罠 (1件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/shiyu-coder/Kronos" target="_blank" rel="noopener">shiyu-coder/Kronos — 金融市場向け基盤モデル (Python、630★/日)</a>
+    </div>
+    <div class="card-body">
+      金融時系列データ（株価・為替など）を学習した特化型基盤モデル。GitHub Trending に入っているが、Python 研究コード主体で実用パッケージではない。
+    </div>
+    <span class="verdict v-gray">🚫 罠</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      masatoman の工務店 SaaS・ポートフォリオ・記事サイトのどのユースケースにも無関係。スターが多いのは金融系研究者の関心によるもので、個人開発者が試すメリットはない。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/shiyu-coder/Kronos" target="_blank" rel="noopener">github.com/shiyu-coder/Kronos</a></div>
+  </div>
+
+  <!-- ===== 取得失敗ソース ===== -->
+  <div class="failed-sources">
+    ⚠️ 取得失敗 / スキップ: Obsidian changelog（未取得）、GitHub releases/anthropics/claude-code（リダイレクト chain で raw 取得に切替）。
+  </div>
+</div>
+</body>
+</html>
