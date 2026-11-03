@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-03</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f0f0f;
+      color: #e0e0e0;
+      line-height: 1.65;
+      padding: 1.5rem 1rem;
+    }
+    .container { max-width: 780px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff; }
+    .meta {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #222;
+      padding-bottom: 0.8rem;
+    }
+    .meta span { margin-right: 1.2rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 0.8rem; padding: 0.35rem 0.7rem; border-radius: 4px; }
+    h2.green  { background: #0d2b1a; color: #4cde8a; border-left: 3px solid #4cde8a; }
+    h2.blue   { background: #0c1f38; color: #5db8f7; border-left: 3px solid #5db8f7; }
+    h2.yellow { background: #2a2100; color: #f5c842; border-left: 3px solid #f5c842; }
+    h2.gray   { background: #1e1e1e; color: #9e9e9e; border-left: 3px solid #9e9e9e; }
+    .card {
+      background: #181818;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.9rem;
+    }
+    .card-title { font-weight: 700; font-size: 0.97rem; margin-bottom: 0.3rem; }
+    .card-title a { color: #c9d1d9; text-decoration: none; }
+    .card-title a:hover { text-decoration: underline; color: #fff; }
+    .card-body { font-size: 0.88rem; color: #aaa; margin-bottom: 0.5rem; }
+    .verdict { font-size: 0.82rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 3px; display: inline-block; }
+    .v-green  { background: #0d2b1a; color: #4cde8a; }
+    .v-blue   { background: #0c1f38; color: #5db8f7; }
+    .v-yellow { background: #2a2100; color: #f5c842; }
+    .v-gray   { background: #1e1e1e; color: #9e9e9e; }
+    .source-link { font-size: 0.78rem; color: #555; margin-top: 0.4rem; }
+    .source-link a { color: #5db8f7; text-decoration: none; }
+    .source-link a:hover { text-decoration: underline; }
+    .failed-sources { font-size: 0.8rem; color: #666; margin-top: 2rem; border-top: 1px solid #222; padding-top: 0.8rem; }
+    .dedup-note { font-size: 0.78rem; color: #555; margin-top: 0.5rem; }
+    code { background: #1e1e1e; color: #c9d1d9; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.85em; }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>効率厨A feed 2026-11-03</h1>
+  <div class="meta">
+    <span>取得日: 2026-11-03</span>
+    <span>対象期間: 2026-11-01〜11-03</span>
+    <span>ソース: Claude Code CHANGELOG / Anthropic News / GitHub Trending / WebSearch</span>
+    <div class="dedup-note">🔁 重複除去: 直近3日分照合済（v2.1.316・v2.1.314・v2.1.312・v2.1.311・GSA提携・AI for Science拡大・thedotmack/claude-mem・CopilotKit/OpenBot・Donchitos/Claude-Code-Game-Studios・mattpocock/skills・pingdotgg/t3code は過去3日掲載済 → 除外）。obsidian.md・dev.to は接続不可（ネットワーク制限）→ skip。</div>
+  </div>
+
+  <!-- ===== 🟢 即使う ===== -->
+  <h2 class="green">🟢 即使う (1件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/max-sixty/worktrunk" target="_blank" rel="noopener">max-sixty/worktrunk — 並列エージェント向け git worktree 管理CLI</a>
+    </div>
+    <div class="card-body">
+      <code>wt switch -c -x claude feat</code> 1コマンドで worktree 作成 + Claude Code 起動まで完結するCLIツール。複数エージェントを並列実行する際、ブランチ名で worktree をアドレッシングできるため <code>git worktree add -b feat ../repo.feat &amp;&amp; cd ../repo.feat</code> の手順が消える。<code>wt list --full</code> で全 worktree の変更差分・CI状態・AIサマリを一覧できる。APFS/btrfs/XFS では <code>node_modules/</code> 等のビルドキャッシュを共有するためコピーコストもなし。
+    </div>
+    <span class="verdict v-green">🟢 即使う</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      portfolio と monorepo を並走させる tooling-update-watch / routine 系の Workflow で、今まで手動管理していた worktree の作成・切替・クリーンアップが自動化できる。<code>cargo install worktrunk</code> or <code>npm install -g @worktrunk/cli</code> で入る。GitHub Trending 急上昇（+77 stars/day）の新鮮さも加点。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/max-sixty/worktrunk" target="_blank" rel="noopener">github.com/max-sixty/worktrunk</a></div>
+  </div>
+
+  <!-- ===== 💰 課金価値 ===== -->
+  <h2 class="blue">💰 課金価値 — 該当なし</h2>
+  <div class="card">
+    <div class="card-body">今日の範囲で課金価値と判定できるリリースなし。</div>
+  </div>
+
+  <!-- ===== 🟡 様子見 ===== -->
+  <h2 class="yellow">🟡 様子見 (3件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/vercel-labs/agent-desktop" target="_blank" rel="noopener">vercel-labs/agent-desktop — AIエージェントがデスクトップGUIを操作するCLI</a>
+    </div>
+    <div class="card-body">
+      アクセシビリティツリー経由でGUIアプリを操作するCLI（Rust製）。スクリーン座標マッチングではなく構造データ経由なのでレイアウト変更に強い。<code>agent-desktop snapshot</code> でUI要素のJSONを取得 → エージェントが ref を指定して click/type/scroll 等56コマンドを実行する設計。デフォルトはポインタ不使用の非干渉モード。GitHub Trending 本日最高位（+2,275 stars/day）。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      masatoman の主作業はターミナル/VSCode/Web で GUI-only 操作の即ニーズは薄い。Playwright が届かないネイティブアプリの自動化や、将来の工務店デモ実演の補助ツールとして再評価の余地あり。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/vercel-labs/agent-desktop" target="_blank" rel="noopener">github.com/vercel-labs/agent-desktop</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://www.atlassian.com/blog/bitbucket/agentic-pipelines-generally-available" target="_blank" rel="noopener">Atlassian Bitbucket Agentic Pipelines — CI/CDパイプライン内エージェント実行がGA（2026-11-02）</a>
+    </div>
+    <div class="card-body">
+      全有料Bitbucket Cloudプランで GA。CI/CD パイプライン内でエージェントが「ドキュメント更新」「テスト失敗の診断」等の定型タスクを自律実行できる。Atlassian クラウドランナーまたは自前の Linux Docker ランナー上で動作。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      masatoman は GitHub 使いなので Bitbucket は直接関係なし。ただし GitHub Actions への同種機能（エージェントをCIに組み込む）の先行実装として、仕様設計の参考になる。
+    </span>
+    <div class="source-link">→ <a href="https://www.atlassian.com/blog/bitbucket/agentic-pipelines-generally-available" target="_blank" rel="noopener">atlassian.com/blog/bitbucket/agentic-pipelines-generally-available</a>（接続制限につき未確認、WebSearch経由で取得）</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/D4Vinci/Scrapling" target="_blank" rel="noopener">D4Vinci/Scrapling — 単発リクエストから大規模クロールまでカバーするスクレイピングFW（Python）</a>
+    </div>
+    <div class="card-body">
+      シングルリクエストからマルチスレッドクロールまで同一APIで扱えるPythonスクレイピングフレームワーク。GitHub Stars 92,818（本日+706）と既に大きなコミュニティ。JS実行・ログイン後の動的ページ・アンチボット対策まで対応範囲が広い。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      今すぐ必要なスクレイピング用途は見えないが、将来の競合調査・工務店市場データ収集・GSC外データ取り込みフェーズで選択肢に入る。Playwright 系に比べ軽量な場面では有力。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/D4Vinci/Scrapling" target="_blank" rel="noopener">github.com/D4Vinci/Scrapling</a></div>
+  </div>
+
+  <!-- ===== 🚫 罠 ===== -->
+  <h2 class="gray">🚫 罠 (2件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/p-e-w/heretic" target="_blank" rel="noopener">p-e-w/heretic — ローカルLLMの検閲・sycophancy を削減する training-free ツール</a>
+    </div>
+    <div class="card-body">
+      モデルの出力を事後的に改変して検閲・過剰同調を減らすPythonツール。training-free（ファインチューニング不要）でローカルモデルに対して適用する設計。GitHub +420 stars/day。
+    </div>
+    <span class="verdict v-gray">🚫 罠</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      MAX プラン定額運用かつ Anthropic API 直叩きなし → ローカルLLM実行コストを正当化できない。ローカルモデル改変ツール全般は今の運用スタックと相性ゼロ。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/p-e-w/heretic" target="_blank" rel="noopener">github.com/p-e-w/heretic</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/FlashML-org/FreeToken" target="_blank" rel="noopener">FlashML-org/FreeToken + JustVugg/colibri — ローカル大規模モデル高速実行ツール2件</a>
+    </div>
+    <div class="card-body">
+      FreeToken: デスクトップ上で大規模モデルをローカル実行する効率化ツール（Python、+653 stars/day）。colibri: MoEモデルをディスクからストリーミング実行するC製エンジン（+675 stars/day）。どちらも低コストのローカルLLM実行を目的とする。
+    </div>
+    <span class="verdict v-gray">🚫 罠</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      MAX プラン定額でクラウド推論が実質ゼロコストな状況では、GPU/CPU 実行コスト・セットアップ工数・モデル更新追従コストをまかなえない。ローカル実行のメリットが生まれるのはオフライン要件が発生した時のみ。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/FlashML-org/FreeToken" target="_blank" rel="noopener">github.com/FlashML-org/FreeToken</a> / <a href="https://github.com/JustVugg/colibri" target="_blank" rel="noopener">github.com/JustVugg/colibri</a></div>
+  </div>
+
+  <div class="failed-sources">
+    ⚠️ 取得失敗ソース（ネットワーク制限）: obsidian.md（ENOTFOUND）/ dev.to（ENOTFOUND）/ www.atlassian.com（ENOTFOUND・WebSearch経由で補完）。これらのドメインはセッションのネットワーク設定で許可が必要。
+  </div>
+</div>
+</body>
+</html>
