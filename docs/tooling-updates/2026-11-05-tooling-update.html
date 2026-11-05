@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-05</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f0f0f;
+      color: #e0e0e0;
+      line-height: 1.65;
+      padding: 1.5rem 1rem;
+    }
+    .container { max-width: 780px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff; }
+    .meta {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #222;
+      padding-bottom: 0.8rem;
+    }
+    .meta span { margin-right: 1.2rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 0.8rem; padding: 0.35rem 0.7rem; border-radius: 4px; }
+    h2.green  { background: #0d2b1a; color: #4cde8a; border-left: 3px solid #4cde8a; }
+    h2.blue   { background: #0c1f38; color: #5db8f7; border-left: 3px solid #5db8f7; }
+    h2.yellow { background: #2a2100; color: #f5c842; border-left: 3px solid #f5c842; }
+    h2.gray   { background: #1e1e1e; color: #9e9e9e; border-left: 3px solid #9e9e9e; }
+    .card {
+      background: #181818;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.9rem;
+    }
+    .card-title { font-weight: 700; font-size: 0.97rem; margin-bottom: 0.3rem; }
+    .card-title a { color: #c9d1d9; text-decoration: none; }
+    .card-title a:hover { text-decoration: underline; color: #fff; }
+    .card-body { font-size: 0.88rem; color: #aaa; margin-bottom: 0.5rem; }
+    .verdict { font-size: 0.82rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 3px; display: inline-block; }
+    .v-green  { background: #0d2b1a; color: #4cde8a; }
+    .v-blue   { background: #0c1f38; color: #5db8f7; }
+    .v-yellow { background: #2a2100; color: #f5c842; }
+    .v-gray   { background: #1e1e1e; color: #9e9e9e; }
+    .source-link { font-size: 0.78rem; color: #555; margin-top: 0.4rem; }
+    .source-link a { color: #5db8f7; text-decoration: none; }
+    .source-link a:hover { text-decoration: underline; }
+    .failed-sources { font-size: 0.8rem; color: #666; margin-top: 2rem; border-top: 1px solid #222; padding-top: 0.8rem; }
+    .dedup-note { font-size: 0.78rem; color: #555; margin-top: 0.5rem; }
+    code { background: #1e1e1e; color: #c9d1d9; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.85em; }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>効率厨A feed 2026-11-05</h1>
+  <div class="meta">
+    <span>取得日: 2026-11-05</span>
+    <span>対象期間: 2026-11-03〜11-05</span>
+    <span>ソース: Claude Code CHANGELOG / Anthropic News / GitHub Trending / WebSearch (beacon.sh / NVIDIA / ProductHunt)</span>
+    <div class="dedup-note">🔁 重複除去: 直近3日分照合済（max-sixty/worktrunk・vercel-labs/agent-desktop・D4Vinci/Scrapling・Atlassian Bitbucket Agentic Pipelines・p-e-w/heretic・FlashML-org/FreeToken+JustVugg/colibri は11-03掲載済 → 除外。mattpocock/skills・thedotmack/claude-mem は11-03以前掲載済 → 除外。Claude Code v2.1.316以前も除外）。obsidian.md はネットワーク制限で取得不可（ENOTFOUND）→ skip。</div>
+  </div>
+
+  <!-- ===== 🟢 即使う ===== -->
+  <h2 class="green">🟢 即使う (1件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Claude Code v2.1.317 / v2.1.318 — hook の <code>onFailure: "block"</code> 追加 + /schedule コネクタ警告 + メール送信前確認 (2026-11-03〜04)</a>
+    </div>
+    <div class="card-body">
+      v2.1.318 で3つの実用変更が入った。① Agent SDK の hook コールバックに <code>onFailure: "block"</code> オプション追加 — ツール呼び出し失敗時にエージェントをその場で停止できる（今まで失敗を無視して暴走するケースへの直接対策）。② <code>/schedule</code> で予期しないコネクタがアタッチされた場合の警告表示 — このルーティン（tooling-update-watch）が Supabase や Gmail MCP を意図せず呼ぶ際に気づける。③ web/shell ツール呼び出しがアカウントメールをネットワーク送信する前に確認プロンプトを表示。また IDE 拡張がClaude Code 起動時に自動インストール/更新されなくなった（v2.1.318）。<strong>Opus 4.8 の Fast モードは 2026-10-30 に廃止予告済・2026-11-30 に削除予定</strong>（移行先: Opus 5.5）。
+    </div>
+    <span class="verdict v-green">🟢 即使う</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      settings.json の PostToolUse / PreToolUse hook に <code>"onFailure": "block"</code> を追加するだけで今日から効く。失敗後に何十ターンも空走りするルーティンのデバッグコストを即削減できる。Opus 4.8 Fast を使っているスクリプトがあれば今月中に Opus 5.5 へ移行が必須。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener">github.com/anthropics/claude-code CHANGELOG</a> / <a href="https://releasebot.io/updates/anthropic/claude-code" target="_blank" rel="noopener">releasebot.io/updates/anthropic/claude-code</a></div>
+  </div>
+
+  <!-- ===== 💰 課金価値 ===== -->
+  <h2 class="blue">💰 課金価値 — 該当なし</h2>
+  <div class="card">
+    <div class="card-body">今日の範囲で課金価値と判定できるリリースなし。</div>
+  </div>
+
+  <!-- ===== 🟡 様子見 ===== -->
+  <h2 class="yellow">🟡 様子見 (4件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://beacon.sh" target="_blank" rel="noopener">beacon.sh v1.3.45 (Asymptote Labs) — Claude Code / Cursor 等20+ツール横断のエージェントメモリレイヤー</a>
+    </div>
+    <div class="card-body">
+      OpenTelemetry形式でエージェントの活動・修正・デバッグパターンを蓄積し、MCP または Agent Skills 経由で他セッションに再注入するOSSツール。自己ホスト無料、Cloud Pro $20/月（$15/月 年払い）。Claude Code → Cursor のセッション引き継ぎや、ルーティン間での学習共有に使える設計。MIT ライセンス。GitHub: <a href="https://github.com/Asymptote-Labs/agent-beacon" style="color:#5db8f7">Asymptote-Labs/agent-beacon</a>。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      thedotmack/claude-mem（過去掲載済）と機能が重なるが、MCP対応・OpenTelemetry標準形式・複数ツール横断が差別化点。今の MEMORY.md 手動管理との比較評価を 1セッション使って試す価値あり。自己ホストなので API 追加コスト不要。
+    </span>
+    <div class="source-link">→ <a href="https://beacon.sh" target="_blank" rel="noopener">beacon.sh</a> / <a href="https://github.com/Asymptote-Labs/agent-beacon" target="_blank" rel="noopener">github.com/Asymptote-Labs/agent-beacon</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/NVIDIA/auto-ontology" target="_blank" rel="noopener">NVIDIA/auto-ontology — エージェントのDB問い合わせ精度を上げるセマンティックグラフ層（GitHub Trending 1位、+2,050 stars/day）</a>
+    </div>
+    <div class="card-body">
+      企業DBの上にセマンティック定義・関係・リネージを置き、エージェントがカラム名から意味を推測する必要をなくすApache-2.0フレームワーク。Databricks・Postgres・Snowflake・DuckDB に対応。MCP サーバー + CLI + REST API でエージェントへ文脈を提供。NVIDIA NIM Nemotron モデルがデフォルトだが OpenAI互換エンドポイントを任意に指定可能。Postgres = Supabase にそのまま繋がる構成。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      現在の KOBO (Supabase) 利用は content_briefs など単純なテーブル管理で、オントロジー層を重ねる用途がない。将来、工務店市場データや競合情報の大規模収集・分析フェーズに入った時点で再評価。趣旨は理解しやすい（エージェントがDBの意味を間違えなくなる）ので概念として押さえておく価値あり。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/NVIDIA/auto-ontology" target="_blank" rel="noopener">github.com/NVIDIA/auto-ontology</a> / <a href="https://alphasignal.ai/news/nvidia-s-auto-ontology-stops-ai-agents-from-querying-the-wrong-data" target="_blank" rel="noopener">alphasignal.ai 解説</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/github/spec-kit" target="_blank" rel="noopener">github/spec-kit — スペック先行型AI開発ツールキット（今日+808 stars、2025年公開・再急上昇）</a>
+    </div>
+    <div class="card-body">
+      仕様書（spec）→ 技術計画（plan）→ 小タスク（tasks）の順にAIエージェントへ渡すワークフロー。<code>/specify</code> / <code>/plan</code> / <code>/tasks</code> のスラッシュコマンドで Claude Code・Copilot・Gemini CLI 等30+エージェントに対応。MIT ライセンス、GitHub公式。spec 完成後にエージェントが小さな実装単位を実行し続ける設計で「バイブコーディング対策」として再注目されている。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      CLAUDE.md + Skills の既存ワークフローに組み込めるが、現在の portfolio 開発密度（1タスク完結型）では導入コストが重い。複数スプリントにまたがる大型機能追加や、工務店向けMVP設計のフェーズで有効。今日はコードを読むだけで十分。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/github/spec-kit" target="_blank" rel="noopener">github.com/github/spec-kit</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/Thysrael/Horizon" target="_blank" rel="noopener">Thysrael/Horizon — LLMで毎日のニュースブリーフィングを自動生成するPython製AIレーダー（+121 stars/day）</a>
+    </div>
+    <div class="card-body">
+      RSS / API ソースからニュースを収集し、LLMで英語・中国語の日次ブリーフィングを自動生成するPython製OSSツール。コンフィグでソースとモデルを差し替え可能。構造的には この tooling-update-watch routine と同じ「収集→要約→配信」パターンを実装している。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      日本語対応には改造が必要で今すぐ使う場面はないが、このルーティン自体のアーキテクチャ参考として OSS コードを一読する価値あり。特に「ソース失敗時のフォールバック処理」と「重複除去ロジック」の実装は流用できる可能性がある。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/Thysrael/Horizon" target="_blank" rel="noopener">github.com/Thysrael/Horizon</a></div>
+  </div>
+
+  <!-- ===== 🚫 罠 ===== -->
+  <h2 class="gray">🚫 罠 (2件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/FareedKhan-dev/kimi-k3-in-c" target="_blank" rel="noopener">FareedKhan-dev/kimi-k3-in-c — 2.78兆パラメータ Kimi K3 をCPU単体 C99で動かすツール（+351 stars/day）</a>
+    </div>
+    <div class="card-body">
+      BLAS・フレームワーク・GPU不要でポータブルなC99実装。技術的には面白いが、2.78兆パラメータモデルをCPU実行する速度・電力・メモリコストは現実的でない（推論速度はGPU比で数十〜数百倍遅い）。
+    </div>
+    <span class="verdict v-gray">🚫 罠</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      MAX プラン定額でクラウド推論が実質ゼロコストな運用では、ローカル大モデル実行のCPU時間・電力・セットアップ工数は一切回収できない。技術デモとして眺める以上の用途なし。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/FareedKhan-dev/kimi-k3-in-c" target="_blank" rel="noopener">github.com/FareedKhan-dev/kimi-k3-in-c</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/scenario-labs/skills" target="_blank" rel="noopener">scenario-labs/skills — Blender / Maya / ZBrush / Unreal / Unity 向けMCPスキル集（+224 stars/day）</a>
+    </div>
+    <div class="card-body">
+      Scenario MCP 経由でAIエージェントが3D・ゲームエンジンツールを操作するためのスキル集。Blender・Maya・ZBrush・Unreal Engine・Unity の専門エージェントチームを含む。
+    </div>
+    <span class="verdict v-gray">🚫 罠</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      3D/ゲーム制作ツール特化。portfolio（Next.js + Supabase）/ masatoman.net（静的記事サイト）の運用スタックと接点ゼロ。Scenario への課金発生も確認不要。
+    </span>
+    <div class="source-link">→ <a href="https://github.com/scenario-labs/skills" target="_blank" rel="noopener">github.com/scenario-labs/skills</a></div>
+  </div>
+
+  <div class="failed-sources">
+    ⚠️ 取得失敗ソース: obsidian.md（ENOTFOUND・ネットワーク制限、セッション設定での許可が必要）。Claude Code 公式 CHANGELOG（生ファイルはバージョン日付なし → WebSearch で補完）。Anthropic News は最新が 2026-10-28 付けで 11/3-5 分の新規記事なし。
+  </div>
+</div>
+</body>
+</html>
