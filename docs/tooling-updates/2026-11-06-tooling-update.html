@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-06</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f0f0f;
+      color: #e0e0e0;
+      line-height: 1.65;
+      padding: 1.5rem 1rem;
+    }
+    .container { max-width: 780px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff; }
+    .meta {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #222;
+      padding-bottom: 0.8rem;
+    }
+    .meta span { margin-right: 1.2rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 0.8rem; padding: 0.35rem 0.7rem; border-radius: 4px; }
+    h2.green  { background: #0d2b1a; color: #4cde8a; border-left: 3px solid #4cde8a; }
+    h2.blue   { background: #0c1f38; color: #5db8f7; border-left: 3px solid #5db8f7; }
+    h2.yellow { background: #2a2100; color: #f5c842; border-left: 3px solid #f5c842; }
+    h2.gray   { background: #1e1e1e; color: #9e9e9e; border-left: 3px solid #9e9e9e; }
+    .card {
+      background: #181818;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.9rem;
+    }
+    .card-title { font-weight: 700; font-size: 0.97rem; margin-bottom: 0.3rem; }
+    .card-title a { color: #c9d1d9; text-decoration: none; }
+    .card-title a:hover { text-decoration: underline; color: #fff; }
+    .card-body { font-size: 0.88rem; color: #aaa; margin-bottom: 0.5rem; }
+    .verdict { font-size: 0.82rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 3px; display: inline-block; }
+    .v-green  { background: #0d2b1a; color: #4cde8a; }
+    .v-blue   { background: #0c1f38; color: #5db8f7; }
+    .v-yellow { background: #2a2100; color: #f5c842; }
+    .v-gray   { background: #1e1e1e; color: #9e9e9e; }
+    .source-link { font-size: 0.78rem; color: #555; margin-top: 0.4rem; }
+    .source-link a { color: #5db8f7; text-decoration: none; }
+    .source-link a:hover { text-decoration: underline; }
+    .failed-sources { font-size: 0.8rem; color: #666; margin-top: 2rem; border-top: 1px solid #222; padding-top: 0.8rem; }
+    .dedup-note { font-size: 0.78rem; color: #555; margin-top: 0.5rem; }
+    .stars { font-size: 0.78rem; color: #666; margin-left: 0.3rem; }
+    code { background: #1e1e1e; color: #c9d1d9; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.85em; }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>効率厨A feed 2026-11-06</h1>
+  <div class="meta">
+    <span>取得日: 2026-11-06</span>
+    <span>対象期間: 2026-11-04〜11-06</span>
+    <span>ソース: GitHub Trending / Claude Code CHANGELOG (releasebot経由) / Anthropic News / WebSearch (ProductHunt / ai-tools tracker)</span>
+    <div class="dedup-note">🔁 重複除去: 直近3日分照合済（Claude Code v2.1.317〜318・beacon.sh・NVIDIA/auto-ontology・scenario-labs/skills・max-sixty/worktrunk・vercel-labs/agent-desktop・mattpocock/skills 等は 11-03〜11-05 掲載済 → 除外）。obsidian.md / releasebot.io はネットワーク制限で取得不可 → skip。</div>
+  </div>
+
+  <!-- ===== 🟢 即使う ===== -->
+  <h2 class="green">🟢 即使う (1件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/garrytan/gstack" target="_blank" rel="noopener">garrytan/gstack — CEO・デザイナー・QA など 23 ロール分の CLAUDE.md / スキルセット一式</a>
+      <span class="stars">★139K (+612 today)</span>
+    </div>
+    <div class="card-body">
+      Claude Code の設定を「役割ごとに切り替えられる CLAUDE.md 集」として整備した repo。CEO・設計者・QA・コードレビュアーなど 23 ロール分の設定を一つ一つ定義してある。今 masatoman が STRATEGY.md / CLAUDE.md / skills を自分で積み上げているやり方と完全に同じ文脈。<strong>自分でゼロから書くより先に参照してパーツだけ引用する使い方が最速。</strong>CLAUDE.md の「行動原則」セクションや /skills の粒度感をここと比較するとすぐに改善点が見つかる。
+    </div>
+    <span class="verdict v-green">🟢 即使う</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      repo を clone して自分の CLAUDE.md と並べ読みするだけで今日から使える。特に QA・レビュアーロールの定義は issue-finder や demo-gallery 判定ルーティンに流用可。
+    </span>
+    <div class="source-link"><a href="https://github.com/garrytan/gstack" target="_blank" rel="noopener">→ github.com/garrytan/gstack</a></div>
+  </div>
+
+  <!-- ===== 💰 課金価値 ===== -->
+  <h2 class="blue">💰 課金価値 (0件)</h2>
+  <div class="card">
+    <div class="card-body" style="color:#666;">該当なし（今日の新着に有料ツールの新規リリースなし）</div>
+  </div>
+
+  <!-- ===== 🟡 様子見 ===== -->
+  <h2 class="yellow">🟡 様子見 (4件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/KKKKhazix/agent-autoloop" target="_blank" rel="noopener">agent-autoloop — CLI エージェントをバックグラウンドで動かし続ける軽量ハブ</a>
+      <span class="stars">New (2026-11-03〜04)</span>
+    </div>
+    <div class="card-body">
+      CLI エージェントがバックグラウンドで自律実行し続け、判断が必要な場面だけ「承認カード」として浮上させる仕組み。今の CronCreate ベースのルーティンで同じことはできているが、<strong>承認カード UI のアイデアは hook の <code>onFailure: "block"</code> と組み合わせる際の参考になる。</strong> 2026-11-03 作成の新鋭 repo でまだ実績ゼロ。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      CronCreate で代替可。スター数が 100 を超えてから再評価。
+    </span>
+    <div class="source-link"><a href="https://github.com/KKKKhazix/agent-autoloop" target="_blank" rel="noopener">→ github.com/KKKKhazix/agent-autoloop</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noopener">vercel-labs/agent-browser — AI エージェント向けブラウザ自動化 CLI</a>
+      <span class="stars">★45.9K (+150 today)</span>
+    </div>
+    <div class="card-body">
+      AI エージェントがブラウザを操作するための CLI ツール。<code>vercel-labs/agent-desktop</code>（11-03掲載）の兄弟 repo でブラウザ特化版。Playwright が既に入っている環境では機能が重複する。<strong>GSC 自動化や工務店向けサイト確認の自動化を組みたくなった時に再検討する価値あり。</strong>
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      Playwright で代替可。agent-desktop との棲み分けが整理されてから評価。
+    </span>
+    <div class="source-link"><a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noopener">→ github.com/vercel-labs/agent-browser</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/google/skills" target="_blank" rel="noopener">google/skills — Google プロダクト向け agent skills 公式集</a>
+      <span class="stars">★22.4K (+211 today)</span>
+    </div>
+    <div class="card-body">
+      Google が公式で出している agent skills 集。Gmail・Calendar・Drive など Google サービスとの連携パターンが定義されている。<strong>Gmail MCP / Google Calendar MCP がすでに接続済みの環境なら、この skills で書き方の参照例を得られる。</strong>ただし MCP と skills の役割重複があるかどうかを先に確認してから採用判断が必要。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      Gmail・Calendar の MCP が動いている間はこちらは参照用にとどめる。MCP がうまくいかない時の代替として記憶しておく。
+    </span>
+    <div class="source-link"><a href="https://github.com/google/skills" target="_blank" rel="noopener">→ github.com/google/skills</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/Usagi-org/ai-goofish-monitor" target="_blank" rel="noopener">ai-goofish-monitor — Playwright + AI でフリマ出品をリアルタイム監視・分析</a>
+      <span class="stars">★17.5K (+240 today)</span>
+    </div>
+    <div class="card-body">
+      閑魚（中国版メルカリ）の出品をスケジュール監視し、AI が価格・状態を分析するシステム。Playwright + AI の組み合わせパターンとして面白い事例。<strong>直接使い道はないが、工務店向けデモに「入荷監視」「競合価格追跡」の仕組みを組む際のアーキテクチャ参考になる。</strong>
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      今の軸 B プロジェクトには直接関係なし。将来的な監視系デモ設計時の参考として。
+    </span>
+    <div class="source-link"><a href="https://github.com/Usagi-org/ai-goofish-monitor" target="_blank" rel="noopener">→ github.com/Usagi-org/ai-goofish-monitor</a></div>
+  </div>
+
+  <!-- ===== 🚫 罠 ===== -->
+  <h2 class="gray">🚫 罠 (1件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/microsoft/VibeVoice" target="_blank" rel="noopener">microsoft/VibeVoice — Microsoft 製オープンソース音声 AI</a>
+      <span class="stars">★55.9K (+223 today)</span>
+    </div>
+    <div class="card-body">
+      Microsoft が出したオープンソースの音声 AI。スター数は多いが、<strong>現在の開発スタック（Claude Code / Next.js / Supabase / 工務店 B2B）には直接の接点がない。</strong>「声でデモを動かせたら面白い」という発想で入れると、スタック管理コストだけが増える。軸 B プロジェクトの主軸確定（11月末）前にフォーカスを散らす罠。
+    </div>
+    <span class="verdict v-gray">🚫 罠</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      今のフェーズ（ヒアリング並走・MRR 判定 2027-06）では触らない。音声が必要になった時に改めて検討。
+    </span>
+    <div class="source-link"><a href="https://github.com/microsoft/VibeVoice" target="_blank" rel="noopener">→ github.com/microsoft/VibeVoice</a></div>
+  </div>
+
+  <!-- 取得失敗ソース -->
+  <div class="failed-sources">
+    <strong>⚠️ 取得失敗ソース:</strong>
+    obsidian.md（ENOTFOUND — セッションのネットワーク制限。解除後 skip解除可）、
+    releasebot.io（ENOTFOUND — 同上）。
+    Claude Code CHANGELOG は raw.githubusercontent.com 経由でのアクセスを試みたが redirect 先が取得不可だったため、releasebot / WebSearch 経由の情報（v2.1.318 最新 = 2026-11-03）を利用。
+  </div>
+</div>
+</body>
+</html>
