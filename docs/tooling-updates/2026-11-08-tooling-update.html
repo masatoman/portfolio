@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-08</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f0f0f;
+      color: #e0e0e0;
+      line-height: 1.65;
+      padding: 1.5rem 1rem;
+    }
+    .container { max-width: 780px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff; }
+    .meta {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #222;
+      padding-bottom: 0.8rem;
+    }
+    .meta span { margin-right: 1.2rem; }
+    h2 { font-size: 1rem; font-weight: 700; margin: 2rem 0 0.8rem; padding: 0.35rem 0.7rem; border-radius: 4px; }
+    h2.green  { background: #0d2b1a; color: #4cde8a; border-left: 3px solid #4cde8a; }
+    h2.blue   { background: #0c1f38; color: #5db8f7; border-left: 3px solid #5db8f7; }
+    h2.yellow { background: #2a2100; color: #f5c842; border-left: 3px solid #f5c842; }
+    h2.gray   { background: #1e1e1e; color: #9e9e9e; border-left: 3px solid #9e9e9e; }
+    .card {
+      background: #181818;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.9rem;
+    }
+    .card-title { font-weight: 700; font-size: 0.97rem; margin-bottom: 0.3rem; }
+    .card-title a { color: #c9d1d9; text-decoration: none; }
+    .card-title a:hover { text-decoration: underline; color: #fff; }
+    .card-body { font-size: 0.88rem; color: #aaa; margin-bottom: 0.5rem; }
+    .verdict { font-size: 0.82rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 3px; display: inline-block; }
+    .v-green  { background: #0d2b1a; color: #4cde8a; }
+    .v-blue   { background: #0c1f38; color: #5db8f7; }
+    .v-yellow { background: #2a2100; color: #f5c842; }
+    .v-gray   { background: #1e1e1e; color: #9e9e9e; }
+    .source-link { font-size: 0.78rem; color: #555; margin-top: 0.4rem; }
+    .source-link a { color: #5db8f7; text-decoration: none; }
+    .source-link a:hover { text-decoration: underline; }
+    .failed-sources { font-size: 0.8rem; color: #666; margin-top: 2rem; border-top: 1px solid #222; padding-top: 0.8rem; }
+    .dedup-note { font-size: 0.78rem; color: #555; margin-top: 0.5rem; }
+    .stars { font-size: 0.78rem; color: #666; margin-left: 0.3rem; }
+    .alert-box { background: #1a0f00; border: 1px solid #c47a00; border-radius: 5px; padding: 0.6rem 0.9rem; margin-bottom: 0.6rem; font-size: 0.85rem; color: #f5c842; }
+    code { background: #1e1e1e; color: #c9d1d9; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.85em; }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>効率厨A feed 2026-11-08</h1>
+  <div class="meta">
+    <span>取得日: 2026-11-08</span>
+    <span>対象期間: 2026-11-06〜11-08</span>
+    <span>ソース: Claude Code Changelog (code.claude.com) / Anthropic News / GitHub Trending / WebSearch</span>
+    <div class="dedup-note">🔁 重複除去: 直近3日分照合済（vercel-labs/agent-browser・google/skills・garrytan/gstack・agent-autoloop・ai-goofish-monitor・microsoft/VibeVoice は11-06掲載済 → 除外。beacon.sh・NVIDIA/auto-ontology は11-05掲載済 → 除外。Claude Code v2.1.317〜318 は11-05掲載済 → 除外）。releasebot.io・obsidian.md はネットワーク制限で取得不可 → skip。</div>
+  </div>
+
+  <!-- ===== 🟢 即使う ===== -->
+  <h2 class="green">🟢 即使う (1件)</h2>
+
+  <div class="card">
+    <div class="alert-box">⚠️ <strong>要対応:</strong> autoMode の動作が変わった。テレメトリ・フィーチャーフラグ無効環境では、サーバー確認できない呼び出しが組み込み分類器へのフォールバックなしで<strong>拒否</strong>される。スケジュールタスクで auto mode を使っているなら <code>CLAUDE_CODE_AUTO_MODE_SERVER=0</code> で旧動作に戻すか、設定を確認する。</div>
+    <div class="card-title">
+      <a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">Claude Code v2.1.319 (2026-11-06) — denyInsteadOfPrompting + autoMode変更 + /usage + 90件バグ修正</a>
+    </div>
+    <div class="card-body">
+      今週最大のリリース。実運用に直結する変更が3つ。<br><br>
+      ① <strong><code>permissions.denyInsteadOfPrompting</code></strong> — settings.json に追加するだけで、権限確認が必要なツール呼び出しを「確認待ち」ではなく「即拒否してターン続行」に変更できる。無人のスケジュールタスクやルーティンでプロンプト待ちのままハングする問題を直接解消できる。<br><br>
+      ② <strong>autoMode変更（要確認）</strong> — テレメトリや <code>CLAUDE_CODE_DISABLE_FEATURE_FLAGS</code> がオフの環境では、サーバー側で確認できない呼び出しが組み込み分類器にフォールバックせず拒否になった。スケジュールタスクや Bedrock/Vertex 以外の環境で auto mode を使っている場合は <code>CLAUDE_CODE_AUTO_MODE_SERVER=0</code> を環境変数に設定して旧動作に戻す。<br><br>
+      ③ <strong><code>/usage</code> に今日・今週・今月の利用額表示</strong> — MAX プランの日次チェックに使える。Claude apps gateway 環境では gateway バージョン 2.1.319 以上が条件。<br><br>
+      その他: MCPタスクのバックグラウンド化（ターミナル）、<code>/claude-api latency-optimize</code> コマンド（API コードの待ち時間検出）、<code>/tasks</code> に終了済みサブエージェント一覧表示、90件のバグ修正（Bash権限迂回・MCP接続・セッション再開など）。
+    </div>
+    <span class="verdict v-green">🟢 即使う</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      今日やること: ① settings.json に <code>"denyInsteadOfPrompting": true</code> を追加してルーティンのハング防止。② このルーティン自体が auto mode を使っているか確認し、必要なら <code>CLAUDE_CODE_AUTO_MODE_SERVER=0</code> を設定。③ <code>/usage</code> で今週の利用額を確認。
+    </span>
+    <div class="source-link">→ <a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">code.claude.com/docs/en/changelog</a> / <a href="https://dev.to/aicoding-guide/this-week-in-claude-code-codex-and-gemini-cli-week-of-november-8-2026-485k" target="_blank" rel="noopener">DEV Community 週次まとめ</a></div>
+  </div>
+
+  <!-- ===== 💰 課金価値 ===== -->
+  <h2 class="blue">💰 課金価値 (0件)</h2>
+  <div class="card">
+    <div class="card-body" style="color:#666;">該当なし（今日の新着に課金を要する新規リリースなし。Claude Cowork は MAX 特典内 → 🟡 様子見に分類）</div>
+  </div>
+
+  <!-- ===== 🟡 様子見 ===== -->
+  <h2 class="yellow">🟡 様子見 (4件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://www.anthropic.com/news" target="_blank" rel="noopener">Claude Cowork — macOS research preview（MAX プラン限定）</a>
+    </div>
+    <div class="card-body">
+      Claude Cowork が macOS で research preview に入ったという複数の情報源がある（2026-11-05 リリースカレンダー更新・DEV Community 週次まとめに記載。Anthropic 公式ニュースページには11/8現在直接の発表記事はなく、二次情報）。MAX プランで macOS を使っているなら今すぐ試せる。コスト追加なし。<strong>使いどころ: 工務店 SaaS のヒアリング設計・商談ペライチ作成など、複数エージェントが並走するタスクを Cowork で回すと手戻りが減る可能性あり。</strong>
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      一次情報（Anthropic 公式）での確認が取れていないため様子見。claude.ai の設定画面を開いて Cowork タブが表示されるか確認するのが最速。表示されたら即試してよい。
+    </span>
+    <div class="source-link">→ <a href="https://www.anthropic.com/news" target="_blank" rel="noopener">anthropic.com/news</a> / <a href="https://dev.to/aicoding-guide/this-week-in-claude-code-codex-and-gemini-cli-week-of-november-8-2026-485k" target="_blank" rel="noopener">DEV Community 週次まとめ</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener">cloudflare/security-audit-skill — coding agent向け多段階セキュリティ監査スキル</a>
+      <span class="stars">★65,692 (+2,085 today)</span>
+    </div>
+    <div class="card-body">
+      Cloudflare が公開した、コーディングエージェント向けのセキュリティ監査スキル。検証済みで機械可読な出力が出る多段階設計。今日の GitHub Trending でも急上昇（+2,085 stars/day）。<strong>使いどころ: 工務店 SaaS の本番デプロイ前チェックに `/code-review` や `/security-review` と組み合わせる際の参考実装として使える。</strong> Claude Code の skill として読み込んで PR チェックに組み込む構成が自然。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      今すぐ入れる理由はない（MVP 未確定）が、スキルの実装パターンとして参照価値は高い。工務店 SaaS の本番前チェックフロー設計時に再評価。
+    </span>
+    <div class="source-link"><a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener">→ github.com/cloudflare/security-audit-skill</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/ranxianglei/billion-context" target="_blank" rel="noopener">ranxianglei/billion-context — 長期セッション向けコンテキスト圧縮プラグイン</a>
+      <span class="stars">★4,598 (+191 today)</span>
+    </div>
+    <div class="card-body">
+      長時間の単一セッション向けのコンテキスト圧縮プラグイン。トークン使用量を削減し、会話履歴を維持しながら長期運用できることをうたっている（TypeScript）。<strong>使いどころ: このルーティン（tooling-update-watch）やその他の日次スケジュールタスクが長大化した時にコンテキスト圧縮で継続性を保つ用途に合う。</strong> ただし Claude Code には auto-compact が既にある（v2.1.314 以降）ため機能重複を先に確認。
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      Claude Code の <code>/compact</code> と機能が重なる。スター数がまだ 5K 未満で実績薄。Claude Code のアイドルコンパクション（v2.1.314〜）で足りているうちは不要。3 ヶ月後に再評価。
+    </span>
+    <div class="source-link"><a href="https://github.com/ranxianglei/billion-context" target="_blank" rel="noopener">→ github.com/ranxianglei/billion-context</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank" rel="noopener">Anthropic Message Threads beta — 長いエージェントセッションの低遅延化（二次情報）</a>
+    </div>
+    <div class="card-body">
+      "Anthropic Message Threads beta" として、長いエージェントセッションの遅延を減らすベータが開始されたとする情報が複数の週次まとめに登場した。ただし <strong>Anthropic 公式ページには11/8現在この発表が確認できない</strong>ため二次情報として扱う。<strong>使いどころ（もし本物なら）: このルーティンや content-executor のような長期セッションの応答速度改善に直結する。</strong>
+    </div>
+    <span class="verdict v-yellow">🟡 様子見</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      一次情報未確認。Anthropic の公式 changelog または platform.anthropic.com でベータへのアクセスが案内されたら改めて評価。現時点では信頼度が低い。
+    </span>
+    <div class="source-link">→ <a href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank" rel="noopener">aiagentstore.ai 週次まとめ</a></div>
+  </div>
+
+  <!-- ===== 🚫 罠 ===== -->
+  <h2 class="gray">🚫 罠 (2件)</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/meta/astryx" target="_blank" rel="noopener">meta/astryx — エージェント対応オープンソースデザインシステム（TypeScript）</a>
+      <span class="stars">★14,493 (+96 today)</span>
+    </div>
+    <div class="card-body">
+      Meta が公開した、フルカスタマイズ可能かつエージェント対応のオープンソースデザインシステム。TypeScript 製でエージェントが UI を操作・生成しやすい設計になっている。<strong>現在の開発スタック（Next.js + Tailwind + 既存コンポーネント群）に組み込むには大規模な置き換えが必要。</strong>工務店向け MVP が確定していない今フェーズで入れると設計コストだけが増える。
+    </div>
+    <span class="verdict v-gray">🚫 罠</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      SaaS MVP の主軸確定（11月末）・スケール開始（来年3月〜）まで触らない。エージェント対応デザインシステムの需要が明確になった時点で再検討。
+    </span>
+    <div class="source-link"><a href="https://github.com/meta/astryx" target="_blank" rel="noopener">→ github.com/meta/astryx</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <a href="https://github.com/milind-soni/OpenMausBot" target="_blank" rel="noopener">milind-soni/OpenMausBot — Grokボット代替OSSボット（仮想マシン付き）</a>
+      <span class="stars">★16,953 (+1,955 today)</span>
+    </div>
+    <div class="card-body">
+      Grok ボットの代替となるオープンソースボット。ボットが利用できる仮想マシンを備える（TypeScript）。スター急上昇（+1,955/day）しているが、現在の Claude MAX プラン定額運用の環境では X/Grok 系ボットに切り替える理由がない。<strong>「ロックイン回避のため OSS を」という発想で入れると管理コストだけが増える。</strong>
+    </div>
+    <span class="verdict v-gray">🚫 罠</span>
+    <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">
+      Claude MAX 定額内で足りている。X/Grok との並走コストを払って得るものが今のスタックにはない。
+    </span>
+    <div class="source-link"><a href="https://github.com/milind-soni/OpenMausBot" target="_blank" rel="noopener">→ github.com/milind-soni/OpenMausBot</a></div>
+  </div>
+
+  <!-- 取得失敗ソース -->
+  <div class="failed-sources">
+    <strong>⚠️ 取得失敗ソース:</strong>
+    obsidian.md（ENOTFOUND — セッションのネットワーク制限）、
+    releasebot.io（ENOTFOUND — 同上）、
+    github.com/anthropics/claude-code releases ページ（GitHub raw アクセス不可 → code.claude.com changelog 経由で代替取得）。
+  </div>
+</div>
+</body>
+</html>
