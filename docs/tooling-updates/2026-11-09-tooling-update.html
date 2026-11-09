@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-09</title>
+  <style>
+    :root {
+      --bg: #f9fafb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --green-bg: #f0fdf4;
+      --green-border: #86efac;
+      --green-label: #15803d;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde047;
+      --yellow-label: #854d0e;
+      --blue-bg: #eff6ff;
+      --blue-border: #93c5fd;
+      --blue-label: #1d4ed8;
+      --gray-bg: #f3f4f6;
+      --gray-border: #d1d5db;
+      --gray-label: #374151;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #111827;
+        --card: #1f2937;
+        --text: #f9fafb;
+        --muted: #9ca3af;
+        --border: #374151;
+        --green-bg: #052e16;
+        --green-border: #166534;
+        --green-label: #4ade80;
+        --yellow-bg: #422006;
+        --yellow-border: #854d0e;
+        --yellow-label: #fde047;
+        --blue-bg: #1e3a5f;
+        --blue-border: #1d4ed8;
+        --blue-label: #93c5fd;
+        --gray-bg: #1f2937;
+        --gray-border: #4b5563;
+        --gray-label: #d1d5db;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #111827;
+      --card: #1f2937;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #374151;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --green-label: #4ade80;
+      --yellow-bg: #422006;
+      --yellow-border: #854d0e;
+      --yellow-label: #fde047;
+      --blue-bg: #1e3a5f;
+      --blue-border: #1d4ed8;
+      --blue-label: #93c5fd;
+      --gray-bg: #1f2937;
+      --gray-border: #4b5563;
+      --gray-label: #d1d5db;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    h1 { font-size: 1.4rem; margin-bottom: 0.25rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .item {
+      border-radius: 8px;
+      border: 1px solid;
+      padding: 0.9rem 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .item.green  { background: var(--green-bg);  border-color: var(--green-border); }
+    .item.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .item.blue   { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .item.gray   { background: var(--gray-bg);   border-color: var(--gray-border); }
+    .item-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .item-title a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+    .item-desc { font-size: 0.88rem; color: var(--text); margin-bottom: 0.4rem; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.4rem;
+    }
+    .verdict.green  { background: var(--green-border);  color: var(--green-label); }
+    .verdict.yellow { background: var(--yellow-border); color: var(--yellow-label); }
+    .verdict.blue   { background: var(--blue-border);   color: var(--blue-label); }
+    .verdict.gray   { background: var(--gray-border);   color: var(--gray-label); }
+    .item-link { font-size: 0.8rem; color: var(--muted); }
+    .item-link a { color: var(--muted); }
+    .failures { font-size: 0.82rem; color: var(--muted); margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .back-link { font-size: 0.82rem; margin-top: 1.5rem; }
+    .back-link a { color: var(--muted); }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>効率厨A feed 2026-11-09</h1>
+  <div class="meta">
+    取得日: 2026-11-09 (JST) ／ 対象期間: 2026-11-07〜09 ／
+    ソース: Claude Code changelog, Anthropic news, GitHub Trending, WebSearch (AI coding / automation) ／
+    重複除去: 直近3日分 (11-05, 11-06, 11-08) を確認済み
+  </div>
+
+  <!-- 🟢 即使う -->
+  <div class="section-title">🟢 即使う</div>
+
+  <div class="item green">
+    <div class="verdict green">🟢 即使う</div>
+    <div class="item-title">
+      <a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">anthropics/skills — 公式 Agent Skills コレクションが GitHub Trending 急上昇 (+792 stars/今日)</a>
+    </div>
+    <div class="item-desc">
+      Anthropic 公式が公開している Python 製 Agent Skills の一覧リポジトリ。189,612 stars・今日だけ +792 と急上昇中。現在使っている <code>session-start-hook</code>・<code>routine</code>・<code>code-review</code> など各スキルの公式リファレンスがここに集約されている。
+      API/SDK 変更への追随が公式保証されているため、カスタムスキル書き換えの前に「公式版で賄えるか」を確認する起点として最適。今日すぐ <code>gh repo clone anthropics/skills</code> してローカルに落とし、今の <code>.claude/skills/</code> と差分を見る価値がある。
+    </div>
+    <div class="item-link">→ <a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">github.com/anthropics/skills</a></div>
+  </div>
+
+  <!-- 💰 課金価値 -->
+  <div class="section-title">💰 課金価値</div>
+  <p style="font-size:0.88rem;color:var(--muted);margin:0 0 1rem;">該当なし（今日のスキャン範囲では有料サービスの新規リリースなし）</p>
+
+  <!-- 🟡 様子見 -->
+  <div class="section-title">🟡 様子見</div>
+
+  <div class="item yellow">
+    <div class="verdict yellow">🟡 様子見</div>
+    <div class="item-title">
+      <a href="https://www.producthunt.com/categories/ai-coding-agents" target="_blank" rel="noopener">AgentTM — AI コーディングセッションのタイムトラベルデバッグ＋チェックポイント (Product Hunt, Nov 3)</a>
+    </div>
+    <div class="item-desc">
+      AI エージェントによるコーディング中に「実行前の状態に戻る」チェックポイント機能を追加するツール。長時間リファクタで失敗した際にロールバックできるのが目玉。ただし現状の Claude Code + git stash で代替できる範囲が大きく、追加レイヤーが重くなるリスクもある。Claude Code との公式インテグレーションが出たら再評価。
+    </div>
+    <div class="item-link">→ <a href="https://www.producthunt.com/categories/ai-coding-agents" target="_blank" rel="noopener">producthunt.com/categories/ai-coding-agents</a></div>
+  </div>
+
+  <div class="item yellow">
+    <div class="verdict yellow">🟡 様子見</div>
+    <div class="item-title">
+      Android Studio が Claude Agent 含む 40+ コーディングエージェントを公式サポート (Nov 3 週)
+    </div>
+    <div class="item-desc">
+      Google が Android Studio に Claude Agent・Codex・Antigravity・Junie など 40 以上のコーディングエージェントを統合。Android アプリ開発の実績があれば今日から使える環境が整った。ポートフォリオの現行スタック (Next.js/Vercel) には直接関係なし。将来 Android 向けデモを作るタイミングで再確認。
+    </div>
+    <div class="item-link">→ <a href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank" rel="noopener">aiagentstore.ai (週次まとめ、一次ソース要確認)</a></div>
+  </div>
+
+  <!-- 🚫 罠 -->
+  <div class="section-title">🚫 罠</div>
+
+  <div class="item gray">
+    <div class="verdict gray">🚫 罠</div>
+    <div class="item-title">
+      "Claude Code for SEO" 自動化ツール (Nov 6, emergent.sh)
+    </div>
+    <div class="item-desc">
+      schema markup・robots.txt・XML sitemap の自動生成を行う「Claude Code の SEO 特化版」という報道が出回っているが、一次ソースは Anthropic 公式でなく単一のマイナーブログ (emergent.sh) のみ。WebSearch で Anthropic 公式アナウンスは確認できず。現在の通常 Claude Code + カスタムスキルで同等以上の作業が可能なため、公式発表前に移行コストをかけるのは無駄。公式リリースを待ってから判断する。
+    </div>
+    <div class="item-link">→ <a href="https://emergent.sh/news/claude-code-seo-new-ai-tool-automates" target="_blank" rel="noopener">emergent.sh (要公式確認)</a></div>
+  </div>
+
+  <div class="item gray">
+    <div class="verdict gray">🚫 罠</div>
+    <div class="item-title">
+      Letterpress-1 (Nov 6, Product Hunt)
+    </div>
+    <div class="item-desc">
+      Product Hunt に Nov 6 付きで登録されているが、説明文が薄く用途・対象ユーザーが不明。検索しても詳細情報が見当たらない。情報が揃うまで判断保留。空白の仕様に乗るリスクの方が大きい。
+    </div>
+  </div>
+
+  <div class="failures">
+    <strong>取得失敗ソース:</strong>
+    obsidian.md（ネットワーク未許可ドメイン / このセッションでは解決不可）、
+    dev.to（同上）。
+    GitHub Releases (anthropics/claude-code) は CHANGELOG.md にリダイレクトされ、
+    code.claude.com/docs/en/changelog にて同等情報を取得済み。
+  </div>
+
+  <div class="back-link">
+    <a href="index.html">← 一覧に戻る</a>
+  </div>
+</div>
+</body>
+</html>
