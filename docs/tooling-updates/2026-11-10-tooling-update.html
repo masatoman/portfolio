@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-10</title>
+  <style>
+    :root {
+      --bg: #f9fafb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --green-bg: #f0fdf4;
+      --green-border: #86efac;
+      --green-label: #15803d;
+      --yellow-bg: #fefce8;
+      --yellow-border: #fde047;
+      --yellow-label: #854d0e;
+      --blue-bg: #eff6ff;
+      --blue-border: #93c5fd;
+      --blue-label: #1d4ed8;
+      --gray-bg: #f3f4f6;
+      --gray-border: #d1d5db;
+      --gray-label: #374151;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #111827;
+        --card: #1f2937;
+        --text: #f9fafb;
+        --muted: #9ca3af;
+        --border: #374151;
+        --green-bg: #052e16;
+        --green-border: #166534;
+        --green-label: #4ade80;
+        --yellow-bg: #422006;
+        --yellow-border: #854d0e;
+        --yellow-label: #fde047;
+        --blue-bg: #1e3a5f;
+        --blue-border: #1d4ed8;
+        --blue-label: #93c5fd;
+        --gray-bg: #1f2937;
+        --gray-border: #4b5563;
+        --gray-label: #d1d5db;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #111827;
+      --card: #1f2937;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #374151;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --green-label: #4ade80;
+      --yellow-bg: #422006;
+      --yellow-border: #854d0e;
+      --yellow-label: #fde047;
+      --blue-bg: #1e3a5f;
+      --blue-border: #1d4ed8;
+      --blue-label: #93c5fd;
+      --gray-bg: #1f2937;
+      --gray-border: #4b5563;
+      --gray-label: #d1d5db;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    h1 { font-size: 1.4rem; margin-bottom: 0.25rem; }
+    .meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .item {
+      border-radius: 8px;
+      border: 1px solid;
+      padding: 0.9rem 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .item.green  { background: var(--green-bg);  border-color: var(--green-border); }
+    .item.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .item.blue   { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .item.gray   { background: var(--gray-bg);   border-color: var(--gray-border); }
+    .item-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .item-title a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+    .item-desc { font-size: 0.88rem; color: var(--text); margin-bottom: 0.4rem; }
+    .verdict {
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.4rem;
+    }
+    .verdict.green  { background: var(--green-border);  color: var(--green-label); }
+    .verdict.yellow { background: var(--yellow-border); color: var(--yellow-label); }
+    .verdict.blue   { background: var(--blue-border);   color: var(--blue-label); }
+    .verdict.gray   { background: var(--gray-border);   color: var(--gray-label); }
+    .item-link { font-size: 0.8rem; color: var(--muted); }
+    .item-link a { color: var(--muted); }
+    .failures { font-size: 0.82rem; color: var(--muted); margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .back-link { font-size: 0.82rem; margin-top: 1.5rem; }
+    .back-link a { color: var(--muted); }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>効率厨A feed 2026-11-10</h1>
+  <div class="meta">
+    取得日: 2026-11-10 (JST) ／ 対象期間: 2026-11-08〜10 ／
+    ソース: Anthropic news, Claude Code changelog (claudekit.io/havoptic.com 経由), GitHub Trending, WebSearch (AI coding / automation / 個人開発) ／
+    重複除去: 直近3日分 (11-06, 11-08, 11-09) を確認済み
+  </div>
+
+  <!-- 🟢 即使う -->
+  <div class="section-title">🟢 即使う</div>
+
+  <div class="item green">
+    <div class="verdict green">🟢 即使う</div>
+    <div class="item-title">
+      <a href="https://www.anthropic.com/news" target="_blank" rel="noopener">Claude Fable 5.2 / Claude Mythos 5.2 リリース (Anthropic, Nov 9) — coding・finance・sciences で「新バー」設定</a>
+    </div>
+    <div class="item-desc">
+      Anthropic が Nov 9 に Fable 5.2 と Mythos 5.2 を発表。公式は「demanding technical work で最高性能」と主張。MAX プラン定額の masatoman にとっては Claude Code が自動的に新モデルを使うため、今日から追加コストゼロで恩恵を受けられる。
+      Portfolio コードレビュー・Supabase SQL 生成・routine スクリプト作成などの品質が上がる見込み。まず今日の Claude Code セッションで体感する。一次ソースは anthropic.com/news で確認済み。
+    </div>
+    <div class="item-link">→ <a href="https://www.anthropic.com/news" target="_blank" rel="noopener">anthropic.com/news</a></div>
+  </div>
+
+  <!-- 💰 課金価値 -->
+  <div class="section-title">💰 課金価値</div>
+  <p style="font-size:0.88rem;color:var(--muted);margin:0 0 1rem;">該当なし（MAX プラン定額運用のため、追加課金で恩恵を得るサービスの新規リリースなし）</p>
+
+  <!-- 🟡 様子見 -->
+  <div class="section-title">🟡 様子見</div>
+
+  <div class="item yellow">
+    <div class="verdict yellow">🟡 様子見</div>
+    <div class="item-title">
+      <a href="https://vercel-labs/agent-browser" target="_blank" rel="noopener">vercel-labs/agent-browser — Vercel Labs 製ブラウザ自動化 CLI (Rust、GitHub Trending +916 stars 今日)</a>
+    </div>
+    <div class="item-desc">
+      AIエージェントがブラウザを操作するための Rust 製 CLI。今日だけ 916 stars 急上昇。Vercel Labs 製のため portfolio/Vercel 連携への親和性は高い。ただし現時点では Playwright で代替できる範囲が大きく、追加レイヤーが Claude Code の tool call フローを複雑にするリスクがある。Vercel が公式ドキュメントで Claude Code との連携例を出したら再評価。
+    </div>
+    <div class="item-link">→ <a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noopener">github.com/vercel-labs/agent-browser</a></div>
+  </div>
+
+  <div class="item yellow">
+    <div class="verdict yellow">🟡 様子見</div>
+    <div class="item-title">
+      <a href="https://www.manilatimes.net/2026/11/05/tmt-newswire/globenewswire/launchdarkly-introduces-release-autopilot-automating-release-safeguards-for-ai-written-code/2462917" target="_blank" rel="noopener">LaunchDarkly Release Autopilot — AI生成コードのリリースフラグを自動で掃除 (Nov 5、GA Nov 16)</a>
+    </div>
+    <div class="item-desc">
+      「AI コードの速度は上がったが、プロダクション push への不安も増した (91%)」という調査結果を背景に LaunchDarkly が発表。機能フラグのロールアウト完了後に自動でフラグを削除し、コードの複雑化を防ぐ。GA は Nov 16 予定、一部機能はベータ。個人開発規模 (portfolio) では feature flag 自体を使わない運用のため現時点では過剰。エンタープライズチーム向け機能が stable になった後、GA 後の採用事例が増えたら再評価。
+    </div>
+    <div class="item-link">→ <a href="https://www.manilatimes.net/2026/11/05/tmt-newswire/globenewswire/launchdarkly-introduces-release-autopilot-automating-release-safeguards-for-ai-written-code/2462917" target="_blank" rel="noopener">manilatimes.net (GlobeNewswire 経由)</a></div>
+  </div>
+
+  <!-- 🚫 罠 -->
+  <div class="section-title">🚫 罠</div>
+
+  <div class="item gray">
+    <div class="verdict gray">🚫 罠</div>
+    <div class="item-title">
+      OpenAI GPT-6 Astra + Codex 拡張 (DEV Community aggregator, Nov 9) — 一次ソース未確認
+    </div>
+    <div class="item-desc">
+      DEV Community の週次ダイジェスト (Nov 9) が「GPT-6 Astra が ChatGPT と Codex を統合し製品コードレビューや marketing 素材生成に使える」と報道。OpenAI 公式サイトおよび Anthropic 公式での確認は取れておらず。同ダイジェストは過去にも未確認情報を混入させた実績があるため信頼度が低い。公式発表が出てから判断する。今すぐ検証コストをかけるのは無駄。
+    </div>
+    <div class="item-link">→ <a href="https://dev.to/gksu_demirci_56f752953e7/weekly-ai-digest-november-9-2026-p6a" target="_blank" rel="noopener">dev.to (要公式確認)</a></div>
+  </div>
+
+  <div class="item gray">
+    <div class="verdict gray">🚫 罠</div>
+    <div class="item-title">
+      <a href="https://github.com/homeassistant-ai/ha-mcp" target="_blank" rel="noopener">homeassistant-ai/ha-mcp — Claude/ChatGPT で Home Assistant を操作する MCP (GitHub Trending, +31 stars)</a>
+    </div>
+    <div class="item-desc">
+      Claude や ChatGPT から Home Assistant のスマートデバイスを制御する MCP サーバー。スマートホームのある家庭には有用だが、portfolio の開発スタック (Next.js/Supabase/Vercel/Claude Code) とは完全に無関係。MCP サーバーを増やすほど claude.ai セッションの tool noise が増えるため、無関係なツールの接続はフォーカスを散らすだけ。
+    </div>
+    <div class="item-link">→ <a href="https://github.com/homeassistant-ai/ha-mcp" target="_blank" rel="noopener">github.com/homeassistant-ai/ha-mcp</a></div>
+  </div>
+
+  <div class="failures">
+    <strong>取得失敗ソース:</strong>
+    obsidian.md（ネットワーク未許可ドメイン / このセッションでは解決不可）、
+    github.com/anthropics/claude-code/releases（CHANGELOG.md にリダイレクト、ファイルサイズ超過で内容取得できず → 第三者 changelog サイト claudekit.io / havoptic.com 経由で補完）、
+    anthropic.com/news/claude-fable-5-2（404、一次情報は anthropic.com/news のリスト表示で確認）。
+  </div>
+
+  <div class="back-link">
+    <a href="index.html">← 一覧に戻る</a>
+  </div>
+</div>
+</body>
+</html>
