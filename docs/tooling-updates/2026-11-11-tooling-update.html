@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-11</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --green-bg: #0d2318;
+      --green-border: #22c55e;
+      --green-text: #4ade80;
+      --yellow-bg: #1f1a0a;
+      --yellow-border: #eab308;
+      --yellow-text: #fde047;
+      --blue-bg: #0a1628;
+      --blue-border: #3b82f6;
+      --blue-text: #60a5fa;
+      --grey-bg: #1a1a1a;
+      --grey-border: #4b5563;
+      --grey-text: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.8rem;
+    }
+    .meta span { margin-right: 1rem; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 2.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--muted);
+    }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.9rem;
+      border-left: 3px solid;
+    }
+    .card.green  { background: var(--green-bg);  border-color: var(--green-border); }
+    .card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card.blue   { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .card.grey   { background: var(--grey-bg);   border-color: var(--grey-border); }
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .badge.green  { background: #052e14; color: var(--green-text);  border: 1px solid #15803d; }
+    .badge.yellow { background: #2d2000; color: var(--yellow-text); border: 1px solid #a16207; }
+    .badge.blue   { background: #0c1a35; color: var(--blue-text);   border: 1px solid #1d4ed8; }
+    .badge.grey   { background: #111;    color: var(--grey-text);   border: 1px solid #374151; }
+    .card-title {
+      font-weight: 600;
+      font-size: 0.97rem;
+    }
+    .card-body {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      margin-top: 0.3rem;
+    }
+    .verdict {
+      margin-top: 0.55rem;
+      font-size: 0.84rem;
+      font-style: italic;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 0.4rem;
+    }
+    .verdict strong { color: #e2e8f0; font-style: normal; }
+    a { color: #60a5fa; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .source-tag {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+    .skip-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.7rem 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 2rem;
+    }
+    .skip-note h4 { font-size: 0.8rem; margin-bottom: 0.3rem; color: #64748b; }
+    .none-note {
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 0.5rem 0;
+    }
+    @media (max-width: 600px) {
+      .card-header { gap: 0.4rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>⚡ 効率厨A feed 2026-11-11</h1>
+<div class="meta">
+  <span>取得日: 2026-11-11 JST</span>
+  <span>対象期間: 過去 ~2日 (Nov 9–11)</span>
+  <span>ソース: Anthropic News / Claude Code Changelog / GitHub Trending / WebSearch 4件 / Obsidian (ネットワーク拒否)</span>
+</div>
+
+<!-- 🟢 即使う -->
+<div class="section-label">🟢 即使う</div>
+
+<div class="card green">
+  <div class="card-header">
+    <span class="badge green">🟢 即使う</span>
+    <span class="card-title">mattpocock/agent-skills — TypeScript著者のAIエージェントスキル集</span>
+  </div>
+  <div class="card-body">
+    Matt Pocock（TypeScriptの教育者・著者）が自分の実運用から抽出した AI エージェント向けスキルパターン集。GitHub Trending で本日 1,225 stars 獲得。設計・実装・レビューの3フェーズ分離や、エラーハンドリング指示の書き方など、Claude Code のスキルファイルを改善する参照として具体的に使える。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> 自分の <code>skills/*.md</code> や CLAUDE.md ルールと比較して抜け穴を見つけるのに今日使える。routineの prompt 品質チェックにそのまま活用可。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">github.com/mattpocock/skills</a> — GitHub Trending 2026-11-11</div>
+</div>
+
+<div class="card green">
+  <div class="card-header">
+    <span class="badge green">🟢 即使う</span>
+    <span class="card-title">addyosmani/agent-skills — Googleエンジニアの本番向けスキルパターン</span>
+  </div>
+  <div class="card-body">
+    Chrome Dev Tools担当のAddy Osmaniが実運用で使うAIエージェント向けスキル。Performance監査・アクセシビリティ確認・コードレビューなど本番品質のルーティンが揃っている。GitHub Trending で本日 465 stars。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> masatoman.net の自動運用 routine や Claude Code のフック設計を見直す際、「本番エンジニアはこう書いている」という比較軸として今日参照できる。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener">github.com/addyosmani/agent-skills</a> — GitHub Trending 2026-11-11</div>
+</div>
+
+<div class="card green">
+  <div class="card-header">
+    <span class="badge green">🟢 即使う</span>
+    <span class="card-title">Claude Fable 5.2 / Mythos 5.2 — Anthropic最新フラッグシップモデル</span>
+  </div>
+  <div class="card-body">
+    Anthropicが11/9に発表。コーディング・金融・科学分野で最高スコア。Claude Code v2.1.321 でFable 5.2 がデフォルト Fable モデルに設定済み。MAX プランでそのまま利用可能。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> 今セッションで <code>/config</code> → model 設定を確認して <code>claude-fable-5-2</code> が反映されているかチェック。MAXプランなら追加課金なし。コーディング精度向上が特に効く。
+  </div>
+  <div class="source-tag">📌 <a href="https://www.anthropic.com/news" target="_blank" rel="noopener">anthropic.com/news</a> — 2026-11-09 | <a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">Claude Code Changelog v2.1.321</a></div>
+</div>
+
+<!-- 💰 課金価値 -->
+<div class="section-label">💰 課金価値</div>
+<p class="none-note">該当なし（新モデルはMAXプランに含まれるため🟢へ分類）</p>
+
+<!-- 🟡 様子見 -->
+<div class="section-label">🟡 様子見</div>
+
+<div class="card yellow">
+  <div class="card-header">
+    <span class="badge yellow">🟡 様子見</span>
+    <span class="card-title">Claude Code v2.1.322 — Vertex AI fast mode 対応</span>
+  </div>
+  <div class="card-body">
+    11/10 リリース。Google Cloud Vertex AI のglobal・us・eu リージョンで fast mode が使えるように。Vertex が fast mode を拒否した場合は自動的に standard 速度にフォールバック。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> MAX定額プランで使っている限り影響なし。将来 Vertex 経由 (エンタープライズ / 自社API) に切り替える場合の参考として記録。
+  </div>
+  <div class="source-tag">📌 <a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">Claude Code Changelog v2.1.322</a> — 2026-11-10</div>
+</div>
+
+<div class="card yellow">
+  <div class="card-header">
+    <span class="badge yellow">🟡 様子見</span>
+    <span class="card-title">Visual Studio 2026 November Update — Debugger Agent 追加</span>
+  </div>
+  <div class="card-body">
+    11/10 リリース。Copilot がカスタムエージェントに作業委譲できるようになり、Debugger Agent がデスクトップアプリ(UI Automation)と Web(Playwright)で動いているアプリに直接インタラクトできる機能が追加。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> Claude Code 主軸ユーザーには今すぐ切り替える理由なし。ただし「実行中アプリをデバッガーがPlaywrightで操作」というアーキテクチャは面白く、類似機能がClaude Code側にも来る可能性あり。
+  </div>
+  <div class="source-tag">📌 <a href="https://learn.microsoft.com/en-us/visualstudio/releases/2026/release-notes-insiders" target="_blank" rel="noopener">Visual Studio 2026 Release Notes Insiders</a> — 2026-11-10</div>
+</div>
+
+<!-- 🚫 罠 -->
+<div class="section-label">🚫 罠</div>
+
+<div class="card grey">
+  <div class="card-header">
+    <span class="badge grey">🚫 罠</span>
+    <span class="card-title">Anthropic IPOロードショー開始</span>
+  </div>
+  <div class="card-body">
+    11/10 発表。Anthropicがクラス A 普通株の新規公開に向けたロードショーを開始。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> 個人開発者の日常作業には無関係。将来的に課金プランの体系変更はありうるが今日動く話ではない。ニュースとして追うのは自由だが行動不要。
+  </div>
+  <div class="source-tag">📌 <a href="https://www.anthropic.com/news" target="_blank" rel="noopener">anthropic.com/news</a> — 2026-11-10</div>
+</div>
+
+<!-- 取得失敗 -->
+<div class="skip-note">
+  <h4>⚠️ 取得失敗ソース</h4>
+  obsidian.md — ネットワークポリシーで接続不可（セッションの allowed domains 外）。dev.to も同様に接続不可。
+</div>
+
+<!-- 重複除外 -->
+<div class="skip-note">
+  <h4>🔁 重複除外（直近3日で既出）</h4>
+  anthropics/skills、meta/astryx、homeassistant-ai/ha-mcp、ranxianglei/billion-context、vercel-labs/agent-browser、LaunchDarkly Release Autopilot
+</div>
+
+</body>
+</html>
