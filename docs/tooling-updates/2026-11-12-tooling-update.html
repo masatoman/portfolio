@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-12</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --green-bg: #0d2318;
+      --green-border: #22c55e;
+      --green-text: #4ade80;
+      --yellow-bg: #1f1a0a;
+      --yellow-border: #eab308;
+      --yellow-text: #fde047;
+      --blue-bg: #0a1628;
+      --blue-border: #3b82f6;
+      --blue-text: #60a5fa;
+      --grey-bg: #1a1a1a;
+      --grey-border: #4b5563;
+      --grey-text: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.8rem;
+    }
+    .meta span { margin-right: 1rem; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 2.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--muted);
+    }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.9rem;
+      border-left: 3px solid;
+    }
+    .card.green  { background: var(--green-bg);  border-color: var(--green-border); }
+    .card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card.blue   { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .card.grey   { background: var(--grey-bg);   border-color: var(--grey-border); }
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .badge.green  { background: #052e14; color: var(--green-text);  border: 1px solid #15803d; }
+    .badge.yellow { background: #2d2000; color: var(--yellow-text); border: 1px solid #a16207; }
+    .badge.blue   { background: #0c1a35; color: var(--blue-text);   border: 1px solid #1d4ed8; }
+    .badge.grey   { background: #111;    color: var(--grey-text);   border: 1px solid #374151; }
+    .card-title {
+      font-weight: 600;
+      font-size: 0.97rem;
+    }
+    .card-body {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      margin-top: 0.3rem;
+    }
+    .verdict {
+      margin-top: 0.55rem;
+      font-size: 0.84rem;
+      font-style: italic;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 0.4rem;
+    }
+    .verdict strong { color: #e2e8f0; font-style: normal; }
+    a { color: #60a5fa; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .source-tag {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+    .skip-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.7rem 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 2rem;
+    }
+    .skip-note h4 { font-size: 0.8rem; margin-bottom: 0.3rem; color: #64748b; }
+    .none-note {
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 0.5rem 0;
+    }
+    @media (max-width: 600px) {
+      .card-header { gap: 0.4rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>⚡ 効率厨A feed 2026-11-12</h1>
+<div class="meta">
+  <span>取得日: 2026-11-12 JST</span>
+  <span>対象期間: 過去 ~2日 (Nov 10–12)</span>
+  <span>ソース: Anthropic News / Claude Code Changelog / GitHub Trending / WebSearch 5件 / Obsidian (ネットワーク拒否)</span>
+</div>
+
+<!-- 🟢 即使う -->
+<div class="section-label">🟢 即使う</div>
+
+<div class="card green">
+  <div class="card-header">
+    <span class="badge green">🟢 即使う</span>
+    <span class="card-title">Claude Code v2.1.319 — <code>denyInsteadOfPrompting</code> + MCPタスクのバックグラウンド実行</span>
+  </div>
+  <div class="card-body">
+    11/6 リリース（v2.1.321 以降で動作確認済）。2つの実用変更が入った。①<code>permissions.denyInsteadOfPrompting: true</code> を settings.json に追加すると、未許可操作をプロンプト待ちで止めず即 deny → routine / CI パイプラインが詰まらなくなる。② MCP タスクがバックグラウンド実行になり、完了後に結果を返す形に変更。<code>CLAUDE_CODE_DISABLE_MCP_TASK_BACKGROUND=1</code> で旧挙動に戻せる。さらに auto mode で拒否されたアクションが exit code 0 ではなく 1 を返すようになった（<code>claude -p</code> パイプラインの error handling に影響）。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> tooling-update-watch routine など <code>-p</code> パイプラインを使っている routine は exit code 1 対応を確認。<code>denyInsteadOfPrompting: true</code> はスケジュールタスクの self-healing に直結するので今日 settings.json に追加できる。
+  </div>
+  <div class="source-tag">📌 <a href="https://dev.classmethod.jp/en/articles/20261108-cc-updates-v2-1-319/" target="_blank" rel="noopener">classmethod.jp (v2.1.318–319 解説)</a> — 2026-11-08 | <a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">Claude Code Changelog</a></div>
+</div>
+
+<div class="card green">
+  <div class="card-header">
+    <span class="badge green">🟢 即使う</span>
+    <span class="card-title">shadcn/improve — 強モデルで audit、安モデルで実行する2段階AIコードレビュー</span>
+  </div>
+  <div class="card-body">
+    GitHub Trending 本日 +361 stars（累計 ~11K）。MIT ライセンス。<code>/improve</code> がコードベースを9カテゴリ（正確性・セキュリティ・パフォーマンス・テスト・技術負債・依存関係・DX・ドキュメント・方向性）で並列 audit し、実装プランを生成。実行はしない。<code>/improve branch</code> で現ブランチだけを対象にした軽量 audit も可。<code>/improve execute &lt;plan&gt;</code> で安モデルへ委譲。<code>npx skills add shadcn/improve</code> でインストール。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> portfolio の demo-gallery や local-business 各ページのリファクタ前に <code>/improve branch</code> を実行すると、自分では気づかないテスト欠損やセキュリティ穴がプランとして出てくる。今日試せる。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/shadcn/improve" target="_blank" rel="noopener">github.com/shadcn/improve</a> — GitHub Trending 2026-11-12</div>
+</div>
+
+<!-- 💰 課金価値 -->
+<div class="section-label">💰 課金価値</div>
+<p class="none-note">該当なし</p>
+
+<!-- 🟡 様子見 -->
+<div class="section-label">🟡 様子見</div>
+
+<div class="card yellow">
+  <div class="card-header">
+    <span class="badge yellow">🟡 様子見</span>
+    <span class="card-title">ZhuLinsen/daily_stock_analysis — LLM駆動の多市場株式分析＋定時通知</span>
+  </div>
+  <div class="card-body">
+    GitHub Trending 本日 +278 stars（累計 ~70K）。LLM で複数市場の株式をニュース付きで分析し、決算ダッシュボードと自動通知を持つ定時実行システム。コード構成が「定時起動 → LLM 分析 → 通知」という masatoman の tooling-update-watch routine と同じアーキテクチャ。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> 株式分析そのものは masatoman の軸外だが、「LLM + スケジュール + 通知」の実装パターン参照として読む価値あり。今すぐ使うツールではないが routine 設計の参考に。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/ZhuLinsen/daily_stock_analysis" target="_blank" rel="noopener">github.com/ZhuLinsen/daily_stock_analysis</a> — GitHub Trending 2026-11-12</div>
+</div>
+
+<!-- 🚫 罠 -->
+<div class="section-label">🚫 罠</div>
+
+<div class="card grey">
+  <div class="card-header">
+    <span class="badge grey">🚫 罠</span>
+    <span class="card-title">openai/codex-security — OpenAI製セキュリティ脆弱性検出CLI</span>
+  </div>
+  <div class="card-body">
+    GitHub Trending 本日 +52 stars（累計 ~12K）。CLI と TypeScript SDK で脆弱性を検出・検証・修正するツール。ただし OpenAI API を直接使う製品で、MAXプランの外での課金が発生する。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> Claude Code の <code>/security-review</code> skill がほぼ同等の機能を追加課金なしで提供できる。コスト二重化になるので今のスタックには不要。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/openai/codex-security" target="_blank" rel="noopener">github.com/openai/codex-security</a> — GitHub Trending 2026-11-12</div>
+</div>
+
+<!-- 取得失敗 -->
+<div class="skip-note">
+  <h4>⚠️ 取得失敗ソース</h4>
+  obsidian.md / labmemo.com / ai-tldr.dev — ネットワークポリシーで接続不可（セッションの allowed domains 外）。github.com/anthropics/claude-code/releases — リポジトリのセッションアクセス対象外。
+</div>
+
+<!-- 重複除外 -->
+<div class="skip-note">
+  <h4>🔁 重複除外（直近3日で既出）</h4>
+  Claude Fable 5.2 / Mythos 5.2、Anthropic IPO ロードショー、Claude Code v2.1.321（Fable 5.2 デフォルト化・セキュリティ修正）、v2.1.322（Vertex AI fast mode）、addyosmani/agent-skills、mattpocock/agent-skills、meta/astryx、vercel-labs/agent-browser、homeassistant-ai/ha-mcp、Visual Studio 2026 November Update
+</div>
+
+<p style="margin-top: 2rem; font-size: 0.75rem; color: #475569; text-align: right;"><a href="index.html">← 一覧に戻る</a></p>
+
+</body>
+</html>
