@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-13</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --green-bg: #0d2318;
+      --green-border: #22c55e;
+      --green-text: #4ade80;
+      --yellow-bg: #1f1a0a;
+      --yellow-border: #eab308;
+      --yellow-text: #fde047;
+      --blue-bg: #0a1628;
+      --blue-border: #3b82f6;
+      --blue-text: #60a5fa;
+      --grey-bg: #1a1a1a;
+      --grey-border: #4b5563;
+      --grey-text: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.8rem;
+    }
+    .meta span { margin-right: 1rem; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 2.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--muted);
+    }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.9rem;
+      border-left: 3px solid;
+    }
+    .card.green  { background: var(--green-bg);  border-color: var(--green-border); }
+    .card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card.blue   { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .card.grey   { background: var(--grey-bg);   border-color: var(--grey-border); }
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .badge.green  { background: #052e14; color: var(--green-text);  border: 1px solid #15803d; }
+    .badge.yellow { background: #2d2000; color: var(--yellow-text); border: 1px solid #a16207; }
+    .badge.blue   { background: #0c1a35; color: var(--blue-text);   border: 1px solid #1d4ed8; }
+    .badge.grey   { background: #111;    color: var(--grey-text);   border: 1px solid #374151; }
+    .card-title {
+      font-weight: 600;
+      font-size: 0.97rem;
+    }
+    .card-body {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      margin-top: 0.3rem;
+    }
+    .verdict {
+      margin-top: 0.55rem;
+      font-size: 0.84rem;
+      font-style: italic;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 0.4rem;
+    }
+    .verdict strong { color: #e2e8f0; font-style: normal; }
+    a { color: #60a5fa; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .source-tag {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+    .skip-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.7rem 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 2rem;
+    }
+    .skip-note h4 { font-size: 0.8rem; margin-bottom: 0.3rem; color: #64748b; }
+    .none-note {
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 0.5rem 0;
+    }
+    @media (max-width: 600px) {
+      .card-header { gap: 0.4rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>⚡ 効率厨A feed 2026-11-13</h1>
+<div class="meta">
+  <span>取得日: 2026-11-13 JST</span>
+  <span>対象期間: 過去 ~2日 (Nov 11–13)</span>
+  <span>ソース: Anthropic News / Claude Code Changelog (GitHub API 拒否→skip) / GitHub Trending / WebSearch 3件 / Obsidian (ネットワーク拒否)</span>
+</div>
+
+<!-- 🟢 即使う -->
+<div class="section-label">🟢 即使う</div>
+
+<div class="card green">
+  <div class="card-header">
+    <span class="badge green">🟢 即使う</span>
+    <span class="card-title">GoogleChrome/modern-web-guidance-src — AIコーディングエージェントを最新Web仕様に追従させるガイダンス集</span>
+  </div>
+  <div class="card-body">
+    GitHub Trending 本日 +739 stars（TypeScript）。Google Chrome チームが公開した「コーディングエージェントが古い知識でコードを書く問題」への対策ライブラリ。エージェントが参照すべき最新 Web API・ベストプラクティスをドキュメント化したもので、Claude Code のスキル/<code>.cursor/rules</code> 相当として取り込める設計になっている。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> portfolio の next.js コードを Claude Code に触らせる際、このガイダンスを skills か CLAUDE.md の参照先に追加すると「古い書き方」を提案されるケースが減る。今日 README を読んで取り込み方を確認できる。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/GoogleChrome/modern-web-guidance-src" target="_blank" rel="noopener">github.com/GoogleChrome/modern-web-guidance-src</a> — GitHub Trending 2026-11-13</div>
+</div>
+
+<div class="card green">
+  <div class="card-header">
+    <span class="badge green">🟢 即使う</span>
+    <span class="card-title">Claude Code「Don't Ask Again」設定で資格情報が GitHub パブリックリポジトリに1,100件以上流出 — 今日確認すべきリスク</span>
+  </div>
+  <div class="card-body">
+    11/8 のセキュリティ研究報告。Claude Code の自動実行モード（auto mode / "Don't Ask Again"）が有効な状態で <code>git push</code> を自動化すると、<code>.env</code> や <code>secrets/</code> 配下のファイルが意図せず staging に乗りそのままパブリック push されたケースが確認されている。自動 push ルーティンを持つ環境が特に影響を受ける。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> tooling-update-watch routine は毎朝 commit + push を自動実行している。今日 <code>git diff HEAD</code> と <code>.gitignore</code> を目視確認し、<code>.env*</code> / <code>*secret*</code> / <code>supabase/.env.local</code> が除外されているか検証すること。<code>denyInsteadOfPrompting</code> 設定も合わせて見直し推奨。
+  </div>
+  <div class="source-tag">📌 <a href="https://dev.to/gksu_demirci_56f752953e7/weekly-ai-digest-november-9-2026-p6a" target="_blank" rel="noopener">Weekly AI Digest Nov 9</a> — 2026-11-09 | WebSearch 裏取り済</div>
+</div>
+
+<!-- 💰 課金価値 -->
+<div class="section-label">💰 課金価値</div>
+<p class="none-note">該当なし</p>
+
+<!-- 🟡 様子見 -->
+<div class="section-label">🟡 様子見</div>
+
+<div class="card yellow">
+  <div class="card-header">
+    <span class="badge yellow">🟡 様子見</span>
+    <span class="card-title">Anthropic Claude Opus 4.8 ＋ Series H $65B 発表（Nov 13 — 情報確認中）</span>
+  </div>
+  <div class="card-body">
+    複数の報道が「Anthropic が本日 Claude Opus 4.8 リリース＋$65B Series H ファンディング（バリュエーション $965B）を発表」と報じている。Anthropic ニュースページにも Nov 13 の Announcement ヘッダーが確認されたが本文は未取得。モデル ID（<code>claude-opus-4-8</code> 等）と MAX plan での利用可否は数時間以内に公式 docs で確定する見込み。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> MAX plan 定額であれば追加費用なしで使える可能性が高い。今日の夕方に Anthropic docs で model ID を確認し、routine の <code>claude-sonnet-4-6</code> を切り替えるか判断する。今すぐ routines を変えるのは情報待ち。
+  </div>
+  <div class="source-tag">📌 <a href="https://finance.yahoo.com/news/anthropic-debuts-flagship-claude-opus-48-ai-model-as-ipo-race-with-openai-heats-up-170000527.html" target="_blank" rel="noopener">Yahoo Finance — Claude Opus 4.8 報道</a> | <a href="https://www.anthropic.com/news" target="_blank" rel="noopener">anthropic.com/news</a></div>
+</div>
+
+<div class="card yellow">
+  <div class="card-header">
+    <span class="badge yellow">🟡 様子見</span>
+    <span class="card-title">CopilotKit/OpenBot — ブラウザ・ファイル・ツール持ちのオープンソース AI コワーカー</span>
+  </div>
+  <div class="card-body">
+    GitHub Trending 本日 +298 stars（TypeScript、累計 ~11.6K）。各 Bot が専用ブラウザ・ファイルシステム・ツールセットを持ち、複数 Bot を並走させてタスクを分担できるアーキテクチャ。Claude Code の Agent ツールや worktree 機能と役割が重なる部分が多い。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> MAX plan + Claude Code の Agent/fork 機能で同等のことはすでにできる。乗り換えコストに見合う差別化ポイント（特定 SaaS との深い統合など）が出てきたタイミングで再評価。今は観察のみ。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/CopilotKit/OpenBot" target="_blank" rel="noopener">github.com/CopilotKit/OpenBot</a> — GitHub Trending 2026-11-13</div>
+</div>
+
+<div class="card yellow">
+  <div class="card-header">
+    <span class="badge yellow">🟡 様子見</span>
+    <span class="card-title">DeepSeek Super-Agent — コーディングタスク向け自律型エージェント</span>
+  </div>
+  <div class="card-body">
+    DeepSeek がコーディングサブタスクの自律実行に特化した Super-Agent をリリース。ターミナル操作・ファイル編集・テスト実行を一気通貫で行うと報じられている。Claude Code と直接競合するポジション。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> MAX plan 定額で Claude Code を使っている間は切り替える経済合理性がない。ただし DeepSeek のコスト優位（自社ホスト可）が CLI として使えるなら、将来の「計算コスト圧縮」文脈で再検討の余地あり。今は情報収集のみ。
+  </div>
+  <div class="source-tag">📌 WebSearch — AI Agents News Brief Nov 12 2026</div>
+</div>
+
+<!-- 🚫 罠 -->
+<div class="section-label">🚫 罠</div>
+
+<div class="card grey">
+  <div class="card-header">
+    <span class="badge grey">🚫 罠</span>
+    <span class="card-title">Alishahryar1/free-claude-code — 「Claude Code を無料で使う」非公式ラッパー</span>
+  </div>
+  <div class="card-body">
+    GitHub Trending 本日 +415 stars（Python、累計 ~69K）。Claude Code や OpenAI Codex などのコーディングエージェントを有料サブスク不要で使えると謳う非公式ツール。認証の迂回・代替エンドポイント経由のアクセスで動作する構造。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> MAX plan 定額で動かしている masatoman には金銭メリットがゼロ。非公式の認証回避系は漏洩リスク・利用規約違反・突然の断切れリスクがあり、routine に組み込んだ瞬間に全自動処理が止まる可能性がある。近づかない。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/Alishahryar1/free-claude-code" target="_blank" rel="noopener">github.com/Alishahryar1/free-claude-code</a> — GitHub Trending 2026-11-13</div>
+</div>
+
+<div class="card grey">
+  <div class="card-header">
+    <span class="badge grey">🚫 罠</span>
+    <span class="card-title">Revolut、商用AIコーディングツールを自社ホスト GLM に差し替えてコスト 1/10 — MAX plan 定額環境には適用外</span>
+  </div>
+  <div class="card-body">
+    Revolut が Claude Code・GitHub Copilot 等の商用ツールをやめ、自社インフラで動かす GLM ベースのツールに切り替えてAIコーディング推論コストを約10分の1に削減したと報じられた（Hacker News 経由）。エンジニア組織数百人規模のコスト圧縮施策。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> MAX plan $200/月 定額で動かすなら「使った分だけ払う」コスト構造ではないので削減計算が成り立たない。自社 GPU インフラや専任 MLOps チームが前提の施策であり、個人開発者がそのまま真似しても管理コストだけ増える。
+  </div>
+  <div class="source-tag">📌 WebSearch — Weekly AI Digest Nov 9 2026 / Hacker News 経由</div>
+</div>
+
+<div class="skip-note">
+  <h4>重複除外（直近3日で既掲載）</h4>
+  Claude Code v2.1.319–322、shadcn/improve、ZhuLinsen/daily_stock_analysis（11-12）、addyosmani/agent-skills、mattpocock/agent-skills、meta/astryx、vercel-labs/agent-browser、homeassistant-ai/ha-mcp（11-10〜11-11）、openai/codex-security、Claude Fable 5.2 / Mythos 5.2、Anthropic IPO ロードショー、Visual Studio 2026 November Update（11-12）
+</div>
+
+<div class="skip-note">
+  <h4>取得失敗ソース</h4>
+  Obsidian changelog（obsidian.md — ネットワーク拒否）、aiagentsdirectory.com（ネットワーク拒否）、Claude Code GitHub Releases API（リポジトリアクセス権限なし）
+</div>
+
+</body>
+</html>
