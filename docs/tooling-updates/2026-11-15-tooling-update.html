@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-15</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --green-bg: #0d2318;
+      --green-border: #22c55e;
+      --green-text: #4ade80;
+      --yellow-bg: #1f1a0a;
+      --yellow-border: #eab308;
+      --yellow-text: #fde047;
+      --blue-bg: #0a1628;
+      --blue-border: #3b82f6;
+      --blue-text: #60a5fa;
+      --grey-bg: #1a1a1a;
+      --grey-border: #4b5563;
+      --grey-text: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.8rem;
+    }
+    .meta span { margin-right: 1rem; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 2.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--muted);
+    }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.9rem;
+      border-left: 3px solid;
+    }
+    .card.green  { background: var(--green-bg);  border-color: var(--green-border); }
+    .card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card.blue   { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .card.grey   { background: var(--grey-bg);   border-color: var(--grey-border); }
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .badge.green  { background: #052e14; color: var(--green-text);  border: 1px solid #15803d; }
+    .badge.yellow { background: #2d2000; color: var(--yellow-text); border: 1px solid #a16207; }
+    .badge.blue   { background: #0c1a35; color: var(--blue-text);   border: 1px solid #1d4ed8; }
+    .badge.grey   { background: #111;    color: var(--grey-text);   border: 1px solid #374151; }
+    .card-title {
+      font-weight: 600;
+      font-size: 0.97rem;
+    }
+    .card-body {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      margin-top: 0.3rem;
+    }
+    .verdict {
+      margin-top: 0.55rem;
+      font-size: 0.84rem;
+      font-style: italic;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 0.4rem;
+    }
+    .verdict strong { color: #e2e8f0; font-style: normal; }
+    a { color: #60a5fa; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .source-tag {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+    .skip-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.7rem 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 2rem;
+    }
+    .skip-note h4 { font-size: 0.8rem; margin-bottom: 0.3rem; color: #64748b; }
+    .none-note {
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 0.5rem 0;
+    }
+    @media (max-width: 600px) {
+      .card-header { gap: 0.4rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>⚡ 効率厨A feed 2026-11-15</h1>
+<div class="meta">
+  <span>取得日: 2026-11-15 JST</span>
+  <span>対象期間: 過去 ~2日 (Nov 13–15)</span>
+  <span>ソース: Claude Code Releases (WebSearch) / Anthropic News / GitHub Trending / WebSearch 2件 / Obsidian (ネットワーク拒否)</span>
+</div>
+
+<!-- 🟢 即使う -->
+<div class="section-label">🟢 即使う</div>
+
+<div class="card green">
+  <div class="card-header">
+    <span class="badge green">🟢 即使う</span>
+    <span class="card-title">⚠️ Claude Opus 4.8 fast mode — 11/30 完全削除 (残り15日)</span>
+  </div>
+  <div class="card-body">
+    Fast mode for Opus 4.8 (<code>claude-opus-4-8[1m]</code>) は 2026-10-30 付けで deprecated、2026-11-30 付けで完全削除される。削除後は <code>[1m]</code> サフィックスを付けたリクエストがエラーになる可能性がある。CLAUDE.md・settings.json・routine の model 指定に <code>claude-opus-4-8[1m]</code> が残っていれば今すぐ更新が必要。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> tooling-update-watch routine は本セッションの設定で動いており、CLAUDE.md の model 行も含めて <code>grep -r "opus-4-8\[1m\]" ~/.claude/ ~/home_work/portfolio/</code> で今日確認する。残っていれば <code>claude-haiku-5-5[1m]</code> か <code>claude-sonnet-4-6</code> に置換する。silent failure になる前に対処。
+  </div>
+  <div class="source-tag">📌 WebSearch (Claude Code changelog tracker) — deprecated 2026-10-30 / 削除予定 2026-11-30</div>
+</div>
+
+<div class="card green">
+  <div class="card-header">
+    <span class="badge green">🟢 即使う</span>
+    <span class="card-title">ChromeDevTools/chrome-devtools-mcp — Claude Code エージェントが Chrome DevTools に直接アクセス (+664 stars 今日)</span>
+  </div>
+  <div class="card-body">
+    Chrome DevTools Protocol 経由でコーディングエージェントがブラウザのコンソールログ・ネットワークタブ・DOM・パフォーマンス計測に直接アクセスできる MCP サーバー。TypeScript 製。Google Chrome 公式チームによるリポジトリ。コーディングエージェントがブラウザデバッグの文脈を直接取得できるようになる。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> <code>run</code> skill で ihara-frontend.com を起動後に「screenshot だけ」だった限界が解消される。UI バグや CSS 崩れを Claude Code に調査させる場面で、DevTools のエラーログやネットワーク情報をそのままエージェントに渡せる。MCP registry (<code>claude mcp add</code>) で今日インストール可能か確認する。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank" rel="noopener">github.com/ChromeDevTools/chrome-devtools-mcp</a> — GitHub Trending 2026-11-15 (+664 今日)</div>
+</div>
+
+<div class="card green">
+  <div class="card-header">
+    <span class="badge green">🟢 即使う</span>
+    <span class="card-title">Claude Code Projects: Proactive Coordinator (Nov 13 更新) — クラウド Projects でコーディネーターが能動的回答モードに</span>
+  </div>
+  <div class="card-body">
+    Claude Code Projects のクラウドセッションにおいて、コーディネーターがプロジェクトチャット内の質問に積極的に回答し、進行中スレッドの状況を自発的に報告するよう更新された。従来は「沈黙」が多かった部分で、オペレーターが状態を聞かなくても進捗を受動的に把握できるようになる。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> tooling-update-watch のような scheduled routine を Claude Code Projects 上で管理している場合、今日以降コーディネーターの挙動が変わる可能性がある。routine 経由の完了通知やエラー報告が変化したら、この更新が原因と把握しておく。Projects を使っているなら今日の挙動を観察して記録。
+  </div>
+  <div class="source-tag">📌 WebSearch (dev.to / releasebot.io) — 2026-11-13 更新報道</div>
+</div>
+
+<!-- 💰 課金価値 -->
+<div class="section-label">💰 課金価値</div>
+<p class="none-note">該当なし</p>
+
+<!-- 🟡 様子見 -->
+<div class="section-label">🟡 様子見</div>
+
+<div class="card yellow">
+  <div class="card-header">
+    <span class="badge yellow">🟡 様子見</span>
+    <span class="card-title">JuliusBrussee/caveman — コーディングエージェントのトークン使用量を ~65% 削減するスキル / プロキシ (+227 stars 今日)</span>
+  </div>
+  <div class="card-body">
+    エージェントの応答を簡潔にすることでトークン消費を大幅に削減すると主張するスキルとプロキシ。Go 製。エージェント側に「短く返せ」と指示するスキルと、応答を間引くプロキシの 2 層構成らしい。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> MAX plan 定額なのでトークン削減の経済メリットは薄い。ただし応答の短縮 → 長いルーティンの wall-clock 短縮という副産物はある。tooling-update-watch が遅くなってきたと感じたタイミングで試す候補。今は観察のみ。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/JuliusBrussee/caveman" target="_blank" rel="noopener">github.com/JuliusBrussee/caveman</a> — GitHub Trending 2026-11-15 (+227 今日)</div>
+</div>
+
+<div class="card yellow">
+  <div class="card-header">
+    <span class="badge yellow">🟡 様子見</span>
+    <span class="card-title">Tencent/LoopForge — Claude Code / Codex / CodeBuddy 並列オーケストレーション（セルフホスト、+33 stars 今日）</span>
+  </div>
+  <div class="card-body">
+    Claude Code・Codex・Tencent CodeBuddy を並列実行してヒューマン承認ゲートを挟むセルフホスト型ワークフローエンジン。Go 製。複数エージェントを横断して管理できる点が特徴。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> Workflow tool や fork agent で同等のことが Claude Code 内で完結する現状では乗り換えコストに見合わない。将来「チームが数人規模になった」「他のエージェントとのコスト比較が必要」になったタイミングで再評価。今はソース観察のみ。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener">github.com/Tencent/LoopForge</a> — GitHub Trending 2026-11-15 (+33 今日)</div>
+</div>
+
+<div class="card yellow">
+  <div class="card-header">
+    <span class="badge yellow">🟡 様子見</span>
+    <span class="card-title">tradermonty/claude-trading-skills — 投資家・トレーダー向け Claude Code スキル集 (+553 stars 今日)</span>
+  </div>
+  <div class="card-body">
+    株式市場分析・チャート生成・スクリーニングに特化した Claude Code スキル集。Python 製。急伸中で今日の Trending 上位。トレーダー向けの用途には無関係だが、スキル設計のサンプルとして構造参照の価値あり。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> コンストラクション SaaS 開発には直接無関係。ただし skill-creator で自前スキルを作る際に「外部 API を呼ぶスキルの設計パターン」として README / コード構造を参考にできる。ブックマークのみ。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/tradermonty/claude-trading-skills" target="_blank" rel="noopener">github.com/tradermonty/claude-trading-skills</a> — GitHub Trending 2026-11-15 (+553 今日)</div>
+</div>
+
+<!-- 🚫 罠 -->
+<div class="section-label">🚫 罠</div>
+
+<div class="card grey">
+  <div class="card-header">
+    <span class="badge grey">🚫 罠</span>
+    <span class="card-title">QwenLM/qwen-code — オープンソース ターミナル型 AI コーディングエージェント (+64 stars 今日)</span>
+  </div>
+  <div class="card-body">
+    Alibaba の Qwen シリーズモデルをバックエンドに使うターミナル型コーディングエージェント。TypeScript 製。Claude Code の OSS 代替として注目され始めている。機能セットは Claude Code と類似しており、Qwen モデルを使いたい場合の選択肢。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> MAX plan 定額で Claude Code をフルに使っている現状では乗り換えコストに見合わない。セットアップ・スキル移行・実運用の維持コストがゼロではない。将来「Claude の品質が落ちた」「コスト構造が変わった」時の比較候補としてブックマークのみ。今は罠。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/QwenLM/qwen-code" target="_blank" rel="noopener">github.com/QwenLM/qwen-code</a> — GitHub Trending 2026-11-15 (+64 今日)</div>
+</div>
+
+<div class="card grey">
+  <div class="card-header">
+    <span class="badge grey">🚫 罠</span>
+    <span class="card-title">Resemble AI Agent Detection — ウェブサイト上の AI エージェントを検出するツール (Nov 13 リリース)</span>
+  </div>
+  <div class="card-body">
+    AI エージェントからのウェブサイトアクセスを検出・識別するツール。エンタープライズのボット対策・分析向け製品。個人開発の観点では接点がほぼない。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> 個人開発者として self-hosted サービスを構築する立場では無関係。将来 ihara-frontend.com に大量のエージェントトラフィックが来るようになったら考える問題だが、今の規模では完全に不要。報道だけ確認して終了。
+  </div>
+  <div class="source-tag">📌 WebSearch (cfotech.news / investing.com) — 2026-11-13 リリース</div>
+</div>
+
+<!-- 重複除外 & 取得失敗 -->
+<div class="skip-note">
+  <h4>重複除外 (直近3日分と一致)</h4>
+  Claude Code v2.1.323 (Code Mode / plugin.json バージョン範囲)、Claude Code v2.1.325 (zstd セキュリティ修正 / Bash permissions ギャップ / session resume)、Google Gemini 4 Hydrogen、alibaba/open-code-review、backnotprop/plannotator、Windsurf → Devin Desktop リブランド、GoogleChrome/modern-web-guidance-src、Anthropic IPO ロードショー、Claude Fable 5.2 / Mythos 5.2。
+</div>
+<div class="skip-note">
+  <h4>取得失敗ソース</h4>
+  Obsidian changelog（obsidian.md — ネットワーク拒否、毎日継続）/ GitHub anthropics/claude-code CHANGELOG.md（ファイル本体が GitHub HTML 経由では取得できず、WebSearch 補完で代替）
+</div>
+
+</body>
+</html>
