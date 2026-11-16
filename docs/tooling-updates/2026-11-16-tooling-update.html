@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-16</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --green-bg: #0d2318;
+      --green-border: #22c55e;
+      --green-text: #4ade80;
+      --yellow-bg: #1f1a0a;
+      --yellow-border: #eab308;
+      --yellow-text: #fde047;
+      --blue-bg: #0a1628;
+      --blue-border: #3b82f6;
+      --blue-text: #60a5fa;
+      --grey-bg: #1a1a1a;
+      --grey-border: #4b5563;
+      --grey-text: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.8rem;
+    }
+    .meta span { margin-right: 1rem; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 2.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--muted);
+    }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.9rem;
+      border-left: 3px solid;
+    }
+    .card.green  { background: var(--green-bg);  border-color: var(--green-border); }
+    .card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card.blue   { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .card.grey   { background: var(--grey-bg);   border-color: var(--grey-border); }
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .badge.green  { background: #052e14; color: var(--green-text);  border: 1px solid #15803d; }
+    .badge.yellow { background: #2d2000; color: var(--yellow-text); border: 1px solid #a16207; }
+    .badge.blue   { background: #0c1a35; color: var(--blue-text);   border: 1px solid #1d4ed8; }
+    .badge.grey   { background: #111;    color: var(--grey-text);   border: 1px solid #374151; }
+    .card-title {
+      font-weight: 600;
+      font-size: 0.97rem;
+    }
+    .card-body {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      margin-top: 0.3rem;
+    }
+    .verdict {
+      margin-top: 0.55rem;
+      font-size: 0.84rem;
+      font-style: italic;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 0.4rem;
+    }
+    .verdict strong { color: #e2e8f0; font-style: normal; }
+    a { color: #60a5fa; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .source-tag {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+    .skip-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.7rem 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 2rem;
+    }
+    .skip-note h4 { font-size: 0.8rem; margin-bottom: 0.3rem; color: #64748b; }
+    .none-note {
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 0.5rem 0;
+    }
+    @media (max-width: 600px) {
+      .card-header { gap: 0.4rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>⚡ 効率厨A feed 2026-11-16</h1>
+<div class="meta">
+  <span>取得日: 2026-11-16 JST</span>
+  <span>対象期間: 過去 ~2日 (Nov 14–16)</span>
+  <span>ソース: Claude Code Releases (GitHub) / Anthropic News / GitHub Trending / WebSearch 2件 / Obsidian (ネットワーク拒否)</span>
+</div>
+
+<!-- 🟢 即使う -->
+<div class="section-label">🟢 即使う</div>
+
+<div class="card green">
+  <div class="card-header">
+    <span class="badge green">🟢 即使う</span>
+    <span class="card-title">ag-ui-protocol/ag-ui — エージェント↔フロントエンド接続の標準プロトコル (+355 stars 今日)</span>
+  </div>
+  <div class="card-body">
+    AIエージェントとフロントエンドアプリを繋ぐオープンプロトコル。TypeScript製。エージェントのストリーム出力・状態更新・ユーザー入力をUI側で受け取る標準仕様を定義する。React/Next.js対応のSDKが同梱されており、工務店向けAIツール（写真→日報・音声メモ→議事録など）のUIレイヤー設計に今すぐ使える仕様書がある。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> 軸B工務店SaaSのMVP設計（12-2月投入目標）は今がアーキテクチャ固め期。「エージェントが処理→結果をUIにリアルタイム表示」の実装でこのプロトコルに沿えば、後から独自実装で書き直す手戻りがなくなる。ihara-frontend.com の <code>/local-business/</code> デモ改修でも今週から参照できる。まずREADMEだけ読む。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/ag-ui-protocol/ag-ui" target="_blank" rel="noopener">github.com/ag-ui-protocol/ag-ui</a> — GitHub Trending 2026-11-16 (+355 今日、TypeScript)</div>
+</div>
+
+<!-- 💰 課金価値 -->
+<div class="section-label">💰 課金価値</div>
+<p class="none-note">該当なし（MAX plan定額環境には有料ツールの追加課金メリットなし）</p>
+
+<!-- 🟡 様子見 -->
+<div class="section-label">🟡 様子見</div>
+
+<div class="card yellow">
+  <div class="card-header">
+    <span class="badge yellow">🟡 様子見</span>
+    <span class="card-title">dream-num/univer — AIエージェント向けOffice SDK（帳票・計算・コラボ付き、+988 stars 今日）</span>
+  </div>
+  <div class="card-body">
+    スプレッドシート・ドキュメント・スライドの編集・計算・リアルタイムコラボ機能をプロダクトに追加するTypeScript製SDK。AIエージェントとの統合APIを明示的に持つ。工務店向け見積書や材料発注リストをブラウザ内で直接編集させる機能が必要になった時の第一候補。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> 今は工務店へのヒアリングフェーズ。「Excelで管理してる」が最頻出ニーズのひとつなら、このSDKで帳票機能ごとブラウザに取り込む提案が刺さる可能性がある。ヒアリング6経路で「帳票ニーズ」が上位に入ったら即採用候補に昇格。今は★ブックマーク。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/dream-num/univer" target="_blank" rel="noopener">github.com/dream-num/univer</a> — GitHub Trending 2026-11-16 (+988 今日、TypeScript)</div>
+</div>
+
+<div class="card yellow">
+  <div class="card-header">
+    <span class="badge yellow">🟡 様子見</span>
+    <span class="card-title">google-labs-code/stitch-skills — Stitch MCP対応スキルライブラリ（Claude Code他と共用、+247 stars 今日）</span>
+  </div>
+  <div class="card-body">
+    Google Labsが公開するStitch MCPサーバー向けAgentスキルライブラリ。TypeScript製。Claude Code含む複数のコーディングエージェントで使える設計になっており、スキル配布の標準形式として機能する。自前スキル（tooling-update-watch等）をMCP経由で他エージェントと共用できる可能性がある。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> skill-creator で自前スキルを作る際の設計参考として価値がある。ただしStitch MCP自体がまだ普及途上で、Claude Code skillsとの統合深度が不明。まず「stitch-skills の形式がClaude Code /skill-doctor で認識されるか」を確認してから採用判断。今月中に試す価値はある。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/google-labs-code/stitch-skills" target="_blank" rel="noopener">github.com/google-labs-code/stitch-skills</a> — GitHub Trending 2026-11-16 (+247 今日、TypeScript)</div>
+</div>
+
+<div class="card yellow">
+  <div class="card-header">
+    <span class="badge yellow">🟡 様子見</span>
+    <span class="card-title">NVIDIA/SkillEvaluator — エージェントスキル品質評価フレームワーク（+122 stars 今日）</span>
+  </div>
+  <div class="card-body">
+    AIエージェントスキルの評価・品質ゲート・ライブエージェント評価を行うPython製フレームワーク。NVIDIA提供。スキルが「本番環境で正しく動作するか」を自動テストする仕組みを持つ。自前スキルが増えてきたフェーズで CI に組み込める。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> 自前スキルが現在5本未満の段階では過剰。tooling-update-watch・issue-finder・run skillあたりが10本超えてきたタイミングで品質ゲート導入を検討。今は「こういうフレームワークが存在する」という認識だけ持っておく。ソロ開発者には今は重い。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/NVIDIA/SkillEvaluator" target="_blank" rel="noopener">github.com/NVIDIA/SkillEvaluator</a> — GitHub Trending 2026-11-16 (+122 今日、Python)</div>
+</div>
+
+<div class="card yellow">
+  <div class="card-header">
+    <span class="badge yellow">🟡 様子見</span>
+    <span class="card-title">Automattic Spacefast (Nov 9) — AIが作ったアプリをワンクリックでパブリッシュするサービス</span>
+  </div>
+  <div class="card-body">
+    WordPressのAutomatticが提供を開始したサービス。AIアシスタントやコーディングエージェントがビルドしたアプリを直接デプロイ・パブリッシュできる。Vercelとのポジション差が今後の焦点。詳細なAPI仕様や料金体系はまだ公式情報が少ない。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> Vercel + Claude Code で既に自動デプロイが回っており、切り替えコストが見えない段階では触らない。「Vercelより安い」「特定ユースケースで明確に速い」という一次情報が出てから再評価。今はソース観察のみ。
+  </div>
+  <div class="source-tag">📌 WebSearch (Automattic Spacefast, Nov 9 情報) — 一次情報源要確認</div>
+</div>
+
+<!-- 🚫 罠 -->
+<div class="section-label">🚫 罠</div>
+
+<div class="card grey">
+  <div class="card-header">
+    <span class="badge grey">🚫 罠</span>
+    <span class="card-title">elementalsouls/Claude-BugHunter — Claude Codeバグハント＋外部レッドチーム用スキルバンドル（+98 stars 今日）</span>
+  </div>
+  <div class="card-body">
+    Claude Code向けスキルバンドル。「外部レッドチーム（external red-team）」を明示的な主軸用途として記載しており、攻撃的なセキュリティテストツールの実行をエージェントに委ねる設計になっている。Python製。個人開発者向けの通常のコードレビュー・バグ修正とは用途が根本的に異なる。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> masatoman の用途（工務店SaaS開発・ポートフォリオ開発）とはミスマッチ。「外部レッドチーム」スキルを誤インストールすると、エージェントが意図せず攻撃的ツールを実行するリスクがある。ドキュメントも薄い。自社コードの内部バグ調査なら /code-review skill で足りる。インストール不可。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/elementalsouls/Claude-BugHunter" target="_blank" rel="noopener">github.com/elementalsouls/Claude-BugHunter</a> — GitHub Trending 2026-11-16 (+98 今日、Python)</div>
+</div>
+
+<!-- 取得失敗ソース -->
+<div class="skip-note">
+  <h4>⚠️ 取得失敗ソース</h4>
+  obsidian.md/changelog/ — ネットワーク拒否（このセッションの許可ドメイン外）。ユーザーがネットワーク設定に追加した場合のみ次回から取得可能。<br>
+  claudekit.io — 同上。
+</div>
+
+</body>
+</html>
