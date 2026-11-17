@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-17</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --green-bg: #0d2318;
+      --green-border: #22c55e;
+      --green-text: #4ade80;
+      --yellow-bg: #1f1a0a;
+      --yellow-border: #eab308;
+      --yellow-text: #fde047;
+      --blue-bg: #0a1628;
+      --blue-border: #3b82f6;
+      --blue-text: #60a5fa;
+      --grey-bg: #1a1a1a;
+      --grey-border: #4b5563;
+      --grey-text: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 1.5rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.8rem;
+    }
+    .meta span { margin-right: 1rem; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 2.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--muted);
+    }
+    .card {
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.9rem;
+      border-left: 3px solid;
+    }
+    .card.green  { background: var(--green-bg);  border-color: var(--green-border); }
+    .card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card.blue   { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .card.grey   { background: var(--grey-bg);   border-color: var(--grey-border); }
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .badge.green  { background: #052e14; color: var(--green-text);  border: 1px solid #15803d; }
+    .badge.yellow { background: #2d2000; color: var(--yellow-text); border: 1px solid #a16207; }
+    .badge.blue   { background: #0c1a35; color: var(--blue-text);   border: 1px solid #1d4ed8; }
+    .badge.grey   { background: #111;    color: var(--grey-text);   border: 1px solid #374151; }
+    .card-title {
+      font-weight: 600;
+      font-size: 0.97rem;
+    }
+    .card-body {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      margin-top: 0.3rem;
+    }
+    .verdict {
+      margin-top: 0.55rem;
+      font-size: 0.84rem;
+      font-style: italic;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 0.4rem;
+    }
+    .verdict strong { color: #e2e8f0; font-style: normal; }
+    a { color: #60a5fa; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .source-tag {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+    .skip-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.7rem 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 2rem;
+    }
+    .skip-note h4 { font-size: 0.8rem; margin-bottom: 0.3rem; color: #64748b; }
+    .none-note {
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 0.5rem 0;
+    }
+    @media (max-width: 600px) {
+      .card-header { gap: 0.4rem; }
+      h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>⚡ 効率厨A feed 2026-11-17</h1>
+<div class="meta">
+  <span>取得日: 2026-11-17 JST</span>
+  <span>対象期間: 過去 ~2日 (Nov 15–17)</span>
+  <span>ソース: Claude Code (releases: v2.1.325 以降なし) / Anthropic News (Nov 10 以降なし) / GitHub Trending / WebSearch 2件 / Obsidian・dev.to・aiagentsdirectory.com (ネットワーク拒否)</span>
+  <span>重複除去: 直近3日 (Nov 14-16) で確認済み14件を除外</span>
+</div>
+
+<!-- 🟢 即使う -->
+<div class="section-label">🟢 即使う</div>
+
+<div class="card green">
+  <div class="card-header">
+    <span class="badge green">🟢 即使う</span>
+    <span class="card-title">mvanhorn/last30days-skill — Claude Codeスキル1本で6ソース横断リサーチ (+135 stars 今日)</span>
+  </div>
+  <div class="card-body">
+    Reddit / X / YouTube / Hacker News / Polymarket / Web の6ソースを横断リサーチして要約するClaude Codeスキル。Python製。任意のキーワードを渡すと過去30日分の言及・議論・動向を一括取得してまとめてくれる。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> 今の tooling-update-watch ルーティンで毎日手作業で複数WebSearchを叩いている部分が、このスキルを入れると1コマンドに圧縮できる可能性がある。masatoman.net の記事ネタ調査・工務店業界トレンド把握（たましん接触・建材屋・設計事務所への準備）でも同じく使える。まずインストールして「工務店 DX」キーワードで試す。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/mvanhorn/last30days-skill" target="_blank" rel="noopener">github.com/mvanhorn/last30days-skill</a> — GitHub Trending 2026-11-17 (+135 今日、Python)</div>
+</div>
+
+<!-- 💰 課金価値 -->
+<div class="section-label">💰 課金価値</div>
+<p class="none-note">該当なし（MAX plan定額環境には有料ツールの追加課金メリットなし）</p>
+
+<!-- 🟡 様子見 -->
+<div class="section-label">🟡 様子見</div>
+
+<div class="card yellow">
+  <div class="card-header">
+    <span class="badge yellow">🟡 様子見</span>
+    <span class="card-title">kajisho5/ffmpeg-skill — Claude Code用FFmpegツール42本 + MCPサーバー (+367 stars 今日)</span>
+  </div>
+  <div class="card-body">
+    FFmpegの主要操作をClaude CodeスキルとMCPサーバーとして提供するPython製ツールキット。動画のトリム・変換・結合・字幕付けなど42ツールをエージェントから呼び出せる。クラウド不要・APIキー不要でローカル完結。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> JAPAN BUILD TOKYO (12/2-4) に向けて工務店向けデモ動画を作る可能性がある。その段階でエージェントから動画編集を直接指示できると工数が減る。今すぐは優先度低いが、11/24-28 の出展準備で動画が必要になったらその時点で即採用できるよう今週中にインストールだけしておく価値はある。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/kajisho5/ffmpeg-skill" target="_blank" rel="noopener">github.com/kajisho5/ffmpeg-skill</a> — GitHub Trending 2026-11-17 (+367 今日、Python)</div>
+</div>
+
+<div class="card yellow">
+  <div class="card-header">
+    <span class="badge yellow">🟡 様子見</span>
+    <span class="card-title">google-research/paper-orchestra — 論文自動執筆マルチエージェントフレームワーク (+313 stars 今日)</span>
+  </div>
+  <div class="card-body">
+    AIリサーチ論文の自動執筆を目的としたマルチエージェントオーケストレーションフレームワーク。Python製。複数エージェントが役割分担して調査・執筆・校正を並列実行する設計を持つ。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> masatoman.net の記事自動生成に転用できそうに見えるが「AIが書いた論文」向け品質保証パイプラインがそのまま記事品質につながるわけではない。ただし「複数エージェントを役割分担して並列実行」というオーケストレーション設計はルーティン改善の参考になる。コードを読む対象として📖ブックマーク。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/google-research/paper-orchestra" target="_blank" rel="noopener">github.com/google-research/paper-orchestra</a> — GitHub Trending 2026-11-17 (+313 今日、Python)</div>
+</div>
+
+<!-- 🚫 罠 -->
+<div class="section-label">🚫 罠</div>
+
+<div class="card grey">
+  <div class="card-header">
+    <span class="badge grey">🚫 罠</span>
+    <span class="card-title">getarcaneapp/arcane — DockerコンテナGUI管理ツール (+46 stars 今日)</span>
+  </div>
+  <div class="card-body">
+    Dockerコンテナの起動・停止・ログ閲覧・設定管理を簡単なUIで行うGo製ツール。自己ホスト型のDockerを運用している開発者向け。
+  </div>
+  <div class="verdict">
+    <strong>効率厨の一言:</strong> masatoman のスタック (Vercel + Supabase) にはセルフホストDockerコンテナの運用面がゼロ。DockerGUIをセットアップしても使う場面が発生しない。今後も軸BのSaaS（工務店向け）はVercelデプロイ前提なので、このツールが役立つ状況自体がほぼ来ない。インストール不要。
+  </div>
+  <div class="source-tag">📌 <a href="https://github.com/getarcaneapp/arcane" target="_blank" rel="noopener">github.com/getarcaneapp/arcane</a> — GitHub Trending 2026-11-17 (+46 今日、Go)</div>
+</div>
+
+<!-- 取得失敗ソース -->
+<div class="skip-note">
+  <h4>⚠️ 取得失敗ソース</h4>
+  obsidian.md/changelog/ — ネットワーク拒否（このセッションの許可ドメイン外）<br>
+  dev.to — ネットワーク拒否（Claude Code weekly summary Nov 15 週が確認できず）<br>
+  aiagentsdirectory.com — ネットワーク拒否<br>
+  <br>
+  Claude Code release notes: v2.1.325 (Nov 13) が最新。Nov 15-17 に新リリースなし。<br>
+  Anthropic News: Nov 10 (IPO roadshow) が最新。Nov 15-17 に新記事なし（Nov 17 "Announcements" ラベル下に記事なし）。
+</div>
+
+</body>
+</html>
