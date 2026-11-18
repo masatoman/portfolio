@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-18</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d2e;
+      --border: #2d3148;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1a07;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0a1628;
+      --blue-border: #1e3a5f;
+      --gray: #94a3b8;
+      --gray-bg: #1e2030;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 24px 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 28px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .badge-green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+    .badge-yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+    .badge-blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
+    .badge-gray   { background: var(--gray-bg);   color: var(--gray);   border: 1px solid var(--gray-border); }
+
+    .card {
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      border-left: 3px solid;
+    }
+    .card-green  { background: var(--green-bg);  border-color: var(--green); }
+    .card-yellow { background: var(--yellow-bg); border-color: var(--yellow); }
+    .card-blue   { background: var(--blue-bg);   border-color: var(--blue); }
+    .card-gray   { background: var(--gray-bg);   border-color: var(--gray); }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover { text-decoration: underline; }
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .card-verdict {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--text);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+    .card-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--blue);
+    }
+    .stars {
+      font-size: 0.75rem;
+      color: var(--yellow);
+      font-weight: 600;
+      margin-left: 6px;
+    }
+    .none-note {
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding: 10px 0;
+    }
+    .failed-sources {
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    @media (max-width: 600px) {
+      body { padding: 16px 12px; }
+      .card { padding: 12px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-11-18</h1>
+<div class="meta">
+  取得日: 2026-11-18 (JST 09:00) ／ 対象期間: 2026-11-16〜11-18 ／
+  ソース: Claude Code GitHub Releases・Anthropic News・GitHub Trending・WebSearch (AI coding / automation)
+  ／ 重複除外: 直近3日分 (11/15〜11/17) の掲載済み項目を除外
+</div>
+
+<!-- 🟢 即使う -->
+<div class="section-title">
+  🟢 <span>即使う</span>
+  <span class="badge badge-green">2件</span>
+</div>
+
+<div class="card card-green">
+  <div class="card-title">
+    <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.327" target="_blank">
+      Claude Code v2.1.327 — MCP設定が stdin 入力対応・Grep paging 修正
+    </a>
+  </div>
+  <div class="card-desc">
+    Nov 17 リリース。<code>claude mcp add-json myserver -</code> でJSONをstdinから渡せるようになり、トークンや接続文字列をシェル引数に露出せず安全にスクリプト化できる。
+    /install-github-app 実行前の確認ダイアログも追加。MCP project スコープで他キーを消すバグ修正、Grep の head_limit＋offset 重複/スキップ修正も含む。
+  </div>
+  <div class="card-verdict">
+    → <code>echo '{"type":"http","url":"..."}' | claude mcp add-json myname -</code> の形でMCP設定を安全に自動化できる。今日のルーティン改善に即使える。
+  </div>
+  <a class="card-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.327" target="_blank">github.com/anthropics/claude-code/releases ↗</a>
+</div>
+
+<div class="card card-green">
+  <div class="card-title">
+    <a href="https://github.com/alibaba/open-code-review" target="_blank">
+      alibaba/open-code-review — 決定論パイプライン＋LLMエージェントのコードレビュー
+    </a>
+    <span class="stars">★ +763 today</span>
+  </div>
+  <div class="card-desc">
+    AliabaのOSS。静的ルール（NPE・SQLインジェクション・型不整合など）の決定論パイプラインでまず弾き、残りをLLMエージェントが判断する二段構え。GitHub Actions CI/CDに組み込める設計。
+  </div>
+  <div class="card-verdict">
+    → portfolio repo のPR毎に回してセキュリティチェックを自動化できる。LLMだけに頼らない設計なので誤検知が少ない。今週試す価値あり。
+  </div>
+  <a class="card-link" href="https://github.com/alibaba/open-code-review" target="_blank">github.com/alibaba/open-code-review ↗</a>
+</div>
+
+<!-- 💰 課金価値 -->
+<div class="section-title">
+  💰 <span>課金価値</span>
+  <span class="badge badge-blue">0件</span>
+</div>
+<p class="none-note">該当なし（本日の新着に有料ツールの新規リリースなし）</p>
+
+<!-- 🟡 様子見 -->
+<div class="section-title">
+  🟡 <span>様子見</span>
+  <span class="badge badge-yellow">3件</span>
+</div>
+
+<div class="card card-yellow">
+  <div class="card-title">
+    <a href="https://github.com/obra/superpowers" target="_blank">
+      obra/superpowers — エージェント向けスキルフレームワーク＋開発方法論
+    </a>
+    <span class="stars">★ +1,917 today (計319k)</span>
+  </div>
+  <div class="card-desc">
+    エージェントにスキルを与えるためのフレームワークと、エージェント設計の方法論をまとめたリポジトリ。Claude Code のスキル設計に近い発想を体系化している。
+  </div>
+  <div class="card-verdict">
+    → スキル設計・エージェント設計の参考書として一読する価値あり。ただし自分のスキル運用に今すぐ組み込むか要判断。
+  </div>
+  <a class="card-link" href="https://github.com/obra/superpowers" target="_blank">github.com/obra/superpowers ↗</a>
+</div>
+
+<div class="card card-yellow">
+  <div class="card-title">
+    <a href="https://github.com/affaan-m/ECC" target="_blank">
+      affaan-m/ECC — Claude Code / Codex / Cursor 用エージェントハーネス最適化
+    </a>
+    <span class="stars">★ +883 today (計305k)</span>
+  </div>
+  <div class="card-desc">
+    複数AIコーディングエージェントのスキル・メモリ・セキュリティ設定を一元最適化するシステム。Claude Code・Codex・Cursor を並走させる場面向け。
+  </div>
+  <div class="card-verdict">
+    → Claude Code MAX プラン単体で安定している今は過剰。複数エージェント並走を本格検討するタイミングで再評価。
+  </div>
+  <a class="card-link" href="https://github.com/affaan-m/ECC" target="_blank">github.com/affaan-m/ECC ↗</a>
+</div>
+
+<div class="card card-yellow">
+  <div class="card-title">
+    <a href="https://github.com/backnotprop/plannotator" target="_blank">
+      backnotprop/plannotator — エージェント計画・注釈・レビューワークスペース
+    </a>
+    <span class="stars">★ +691 today (計13k)</span>
+  </div>
+  <div class="card-desc">
+    エージェントの作業を計画・注釈・レビューし、フィードバックをエージェントに戻すワークスペース。タスク管理とエージェントの差し戻しフローを統合。
+  </div>
+  <div class="card-verdict">
+    → Claude Code のTodo/Task管理で不満が出てきたら検討。現状 CLAUDE.md ＋ memory で賄えているなら保留で良い。
+  </div>
+  <a class="card-link" href="https://github.com/backnotprop/plannotator" target="_blank">github.com/backnotprop/plannotator ↗</a>
+</div>
+
+<!-- 🚫 罠 -->
+<div class="section-title">
+  🚫 <span>罠</span>
+  <span class="badge badge-gray">1件</span>
+</div>
+
+<div class="card card-gray">
+  <div class="card-title">
+    Microsoft MAI-Base-2 — 2.8兆パラメータ基盤モデル、一般公開は未定
+  </div>
+  <div class="card-desc">
+    Microsoftが10月に事前学習完了を発表したMoE基盤モデル。総2.8兆パラメータ・実効800億規模。ポストトレーニング中で一般公開・APIなし。ベンチマークはMicrosoft自社評価のみ。
+  </div>
+  <div class="card-verdict">
+    → 「MAI Code 2」という名称は現時点で未確認（MAI-Code-1-Flash の後継未発表）。Claude MAX プラン定額運用が安定している今、乗り換え検討は時期尚早。動向注視で十分。
+  </div>
+  <a class="card-link" href="https://www.techrepublic.com/article/news-microsoft-mai-base-2-ai-model-efficiency/" target="_blank">TechRepublic: Microsoft MAI-Base-2 ↗</a>
+</div>
+
+<div class="failed-sources">
+  <strong>取得失敗ソース:</strong>
+  obsidian.md/changelog — ネットワークポリシーでドメイン外のため取得不可（セッションのネットワーク設定に obsidian.md の許可が必要）
+</div>
+
+</body>
+</html>
