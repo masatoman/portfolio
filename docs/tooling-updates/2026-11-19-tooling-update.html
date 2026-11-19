@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-19</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d2e;
+      --border: #2d3148;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1a07;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0a1628;
+      --blue-border: #1e3a5f;
+      --gray: #94a3b8;
+      --gray-bg: #1e2030;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 24px 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 28px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .badge-green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+    .badge-yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+    .badge-blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
+    .badge-gray   { background: var(--gray-bg);   color: var(--gray);   border: 1px solid var(--gray-border); }
+
+    .card {
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      border-left: 3px solid;
+    }
+    .card-green  { background: var(--green-bg);  border-color: var(--green); }
+    .card-yellow { background: var(--yellow-bg); border-color: var(--yellow); }
+    .card-blue   { background: var(--blue-bg);   border-color: var(--blue); }
+    .card-gray   { background: var(--gray-bg);   border-color: var(--gray); }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover { text-decoration: underline; }
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .card-verdict {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--text);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+    .card-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--blue);
+    }
+    .stars {
+      font-size: 0.75rem;
+      color: var(--yellow);
+      font-weight: 600;
+      margin-left: 6px;
+    }
+    .none-note {
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding: 10px 0;
+    }
+    .failed-sources {
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    @media (max-width: 600px) {
+      body { padding: 16px 12px; }
+      .card { padding: 12px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-11-19</h1>
+<div class="meta">
+  取得日: 2026-11-19 (JST 09:00) ／ 対象期間: 2026-11-17〜11-19 ／
+  ソース: Claude Code GitHub Releases・Anthropic News・GitHub Trending・WebSearch (AI coding / automation / 個人開発)
+  ／ 重複除外: 直近3日分 (11/16〜11/18) の掲載済み項目を除外
+</div>
+
+<!-- 🟢 即使う -->
+<div class="section-title">
+  🟢 <span>即使う</span>
+  <span class="badge badge-green">1件</span>
+</div>
+
+<div class="card card-green">
+  <div class="card-title">
+    <a href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener">
+      HKUDS/CLI-Anything — 任意のCLIツールをAIエージェントから使えるラッパー自動生成
+    </a>
+    <span class="stars">★ 59,720 (+389 today)</span>
+  </div>
+  <div class="card-desc">
+    コマンドラインツールのヘルプテキストを読んでAIエージェント向けインターフェースを自動生成するPythonライブラリ。
+    <code>gh</code>/<code>gsutil</code>/<code>bq</code> など既存CLIをエージェントに渡す際の手書きラッパー作業を省略できる。
+    Claude Code の Bash ツール呼び出しを構造化したい場合の補助として使える。
+  </div>
+  <div class="card-verdict">
+    → <code>CLI-Anything('gh issue list')</code> のような形で既存CLIのエージェント呼び出しを即構造化できる。今週試すなら <code>gh</code> + <code>gsutil</code> のラッパー生成から始めるのが一番早い。
+  </div>
+  <a class="card-link" href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener">github.com/HKUDS/CLI-Anything ↗</a>
+</div>
+
+<!-- 💰 課金価値 -->
+<div class="section-title">
+  💰 <span>課金価値</span>
+  <span class="badge badge-blue">0件</span>
+</div>
+<p class="none-note">該当なし（本日の新着に有料ツールの新規リリースなし）</p>
+
+<!-- 🟡 様子見 -->
+<div class="section-title">
+  🟡 <span>様子見</span>
+  <span class="badge badge-yellow">2件</span>
+</div>
+
+<div class="card card-yellow">
+  <div class="card-title">
+    <a href="https://www.anthropic.com/news/anthropic-prices-initial-public-offering" target="_blank" rel="noopener">
+      Anthropic IPO 価格決定 (Nov 18) — 上場で中長期の価格・規約変動リスクが発生
+    </a>
+  </div>
+  <div class="card-desc">
+    AnthropicがClass A普通株の新規上場価格を決定。今すぐMAX定額プランの価格や利用規約が変わるわけではない。
+    ただし上場後は四半期ごとの収益目標が生まれ、価格改定・API利用規約変更が起こりやすい構造になる。
+  </div>
+  <div class="card-verdict">
+    → 今すぐ行動不要。ただし半年〜1年スパンで価格発表を追うルーティンを入れておく価値あり。MAX定額が継続される間は現状運用を維持。
+  </div>
+  <a class="card-link" href="https://www.anthropic.com/news/anthropic-prices-initial-public-offering" target="_blank" rel="noopener">anthropic.com/news ↗</a>
+</div>
+
+<div class="card card-yellow">
+  <div class="card-title">
+    <a href="https://github.com/n8n-io/n8n" target="_blank" rel="noopener">
+      n8n-io/n8n — ネイティブAI統合つきワークフロー自動化が再トレンド入り
+    </a>
+    <span class="stars">★ 211,064 (+325 today)</span>
+  </div>
+  <div class="card-desc">
+    400+インテグレーションを持つOSSワークフロー自動化ツール。最近のアップデートでAIエージェントのノードが本番品質になり、
+    Claude Code と連携したトリガー型自動化（Webhook→LLM→Slack通知等）が組みやすくなっている。
+    セルフホストまたはn8n Cloud（有料）で動かす。
+  </div>
+  <div class="card-verdict">
+    → Claude Code のルーティン範囲（git/Supabase/Vercel操作）で賄えている間は不要。外部サービス連携が10本を超えてきたら n8n に移管を検討する判断基準にする。
+  </div>
+  <a class="card-link" href="https://github.com/n8n-io/n8n" target="_blank" rel="noopener">github.com/n8n-io/n8n ↗</a>
+</div>
+
+<!-- 🚫 罠 -->
+<div class="section-title">
+  🚫 <span>罠</span>
+  <span class="badge badge-gray">1件</span>
+</div>
+
+<div class="card card-gray">
+  <div class="card-title">
+    <a href="https://github.com/cursor/plugins" target="_blank" rel="noopener">
+      cursor/plugins — Cursor公式プラグイン仕様と公式プラグイン集
+    </a>
+    <span class="stars">★ 17,185 (+314 today)</span>
+  </div>
+  <div class="card-desc">
+    Cursorのプラグイン仕様書と公式プラグインのリポジトリ。エディタ拡張エコシステムを整備中。
+    Claude Code との機能重複が大きく、移行コストがかかる。
+  </div>
+  <div class="card-verdict">
+    → Claude Code MAX定額で安定している今、Cursor に乗り換えると月課金が追加でかかり、CLAUDE.md/memory/Skills の資産が使えなくなる。ロックイン先が変わるだけで効率は上がらない。
+  </div>
+  <a class="card-link" href="https://github.com/cursor/plugins" target="_blank" rel="noopener">github.com/cursor/plugins ↗</a>
+</div>
+
+<div class="failed-sources">
+  <strong>取得失敗ソース:</strong>
+  Obsidian changelog (obsidian.md/changelog/) — アクセス不安定のためskip。
+  Claude Code CHANGELOG.md raw — GitHub blob経由では本文取得不可。公式リリース(v2.1.327, Nov 17)はWebSearch経由で確認済み。
+</div>
+
+</body>
+</html>
