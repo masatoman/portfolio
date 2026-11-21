@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-21</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d2e;
+      --border: #2d3148;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1a07;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0a1628;
+      --blue-border: #1e3a5f;
+      --gray: #94a3b8;
+      --gray-bg: #1e2030;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 24px 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta .ipo-note {
+      margin-top: 6px;
+      padding: 6px 10px;
+      background: #1a1d2e;
+      border-left: 2px solid var(--blue);
+      border-radius: 4px;
+      color: var(--muted);
+    }
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 28px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .badge-green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+    .badge-yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+    .badge-blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
+    .badge-gray   { background: var(--gray-bg);   color: var(--gray);   border: 1px solid var(--gray-border); }
+
+    .card {
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      border-left: 3px solid;
+    }
+    .card-green  { background: var(--green-bg);  border-color: var(--green); }
+    .card-yellow { background: var(--yellow-bg); border-color: var(--yellow); }
+    .card-blue   { background: var(--blue-bg);   border-color: var(--blue); }
+    .card-gray   { background: var(--gray-bg);   border-color: var(--gray); }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover { text-decoration: underline; }
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .card-verdict {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--text);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+    .card-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--blue);
+    }
+    .stars {
+      font-size: 0.75rem;
+      color: var(--yellow);
+      font-weight: 600;
+      margin-left: 6px;
+    }
+    .deadline-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 999px;
+      background: #450a0a;
+      color: #f87171;
+      border: 1px solid #7f1d1d;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .none-note {
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding: 10px 0;
+    }
+    .failed-sources {
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    @media (max-width: 600px) {
+      body { padding: 16px 12px; }
+      .card { padding: 12px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-11-21</h1>
+<div class="meta">
+  取得日: 2026-11-21 (JST 09:00) ／ 対象期間: 2026-11-19〜11-21 ／
+  ソース: Claude Code GitHub Releases・Anthropic News・GitHub Trending・WebSearch (AI coding / automation / 個人開発) ／
+  重複除外: 直近3日分 (11/18〜11/20) の掲載済み項目を除外（BugHunter・diagram-design・firecrawl・stitch-skills・openvino・CLI-Anything・superpowers・cursor/plugins・n8n 等）
+  <div class="ipo-note">📢 ニュース: Anthropic IPO が 11/20 にクローズ（$83/株 × 11億2700万株）。Anthropic 自体への変化は今すぐのツール使用に影響しない。MAX プラン定額は継続。</div>
+</div>
+
+<!-- 🟢 即使う -->
+<div class="section-title">
+  🟢 <span>即使う</span>
+  <span class="badge badge-green">3件</span>
+</div>
+
+<div class="card card-green">
+  <div class="card-title">
+    <a href="https://github.com/anthropics/claude-code/releases" target="_blank" rel="noopener">
+      Claude Code v2.1.328〜v2.1.330 — Easelチャートmod追加・長会話フリーズ修正・Auto mode拡張
+    </a>
+  </div>
+  <div class="card-desc">
+    11/19〜20 にリリース。主な変更:
+    <ul style="margin: 6px 0 0 16px; font-size: 0.86rem; color: var(--muted);">
+      <li><strong>v2.1.330:</strong> Easelチャートmod（Pro/Max/Team/Enterprise、macOS・Linux対応）、Enterprise Admin Console サインイン、/rewind のファイル復元バグ修正、長会話コンパクト後のフリーズ修正、ユーザー設定の競合書き込みバグ修正</li>
+      <li><strong>v2.1.329:</strong> Trust dialog hook 警告改善、/tasks 拡張、/teleport 修正</li>
+      <li><strong>v2.1.328:</strong> Bedrock・Foundry 等のプロバイダで Auto mode が動作</li>
+    </ul>
+  </div>
+  <div class="card-verdict">
+    → <code>claude update</code> で即アップデート。Easel mod は今日のセッションからチャートを自動生成できる（工務店向け説明資料での活用可）。長会話フリーズ修正は portfolio の長セッションに直接効く。<code>/rewind</code> のバグ修正は memory 編集時の信頼性向上。
+  </div>
+  <a class="card-link" href="https://github.com/anthropics/claude-code/releases" target="_blank" rel="noopener">github.com/anthropics/claude-code/releases ↗</a>
+</div>
+
+<div class="card card-green">
+  <div class="card-title">
+    <span>⚠️ Fast mode on Opus 4.8 廃止</span>
+    <span class="deadline-badge">期限: 2026-11-30</span>
+  </div>
+  <div class="card-desc">
+    Claude Code の <code>/fast</code> コマンドで Opus 4.8 を高速モードで使っている場合、2026年11月30日に廃止される。公式 CHANGELOG に明記。
+  </div>
+  <div class="card-verdict">
+    → <code>/config</code> を開いて fast mode のフォールバック先を確認。自動化ルーティン（tooling-update-watch 等）が <code>/fast</code> 経由で Opus 4.8 を使っていた場合、12/1 以降に設定ミスで動く可能性がある。今週中に確認・設定変更を完了させる。
+  </div>
+  <a class="card-link" href="https://github.com/anthropics/claude-code/releases" target="_blank" rel="noopener">github.com/anthropics/claude-code/releases ↗</a>
+</div>
+
+<div class="card card-green">
+  <div class="card-title">
+    <a href="https://github.com/mvanhorn/last30days-skill" target="_blank" rel="noopener">
+      mvanhorn/last30days-skill — 任意トピックをReddit/X/YouTube/HN横断で調査・要約するエージェントスキル
+    </a>
+    <span class="stars">★ 71,435 (+681 today)</span>
+  </div>
+  <div class="card-desc">
+    指定したトピックについて Reddit・X・YouTube・Hacker News・Web の5プラットフォームを横断調査し、直近30日の議論と動向を要約して返すスキル。Python製。Claude Code で動作。
+  </div>
+  <div class="card-verdict">
+    → tooling-update-watch ルーティンの補強候補。今の WebSearch より複数プラットフォームの生声（Reddit スレ・HN コメント）を拾えるため、masatoman.net の記事ネタ調査精度が上がる。「工務店 施工管理 DX」をトピックに試すと工務店向け打ち手のヒントになる可能性あり。今週 README を確認してインストール判断。
+  </div>
+  <a class="card-link" href="https://github.com/mvanhorn/last30days-skill" target="_blank" rel="noopener">github.com/mvanhorn/last30days-skill ↗</a>
+</div>
+
+<!-- 💰 課金価値 -->
+<div class="section-title">
+  💰 <span>課金価値</span>
+  <span class="badge badge-blue">0件</span>
+</div>
+<p class="none-note">該当なし（本日の新着に新規有料ツールのリリースなし。Microsoft MAI Code 2 は GitHub Copilot 経由だが Claude MAX 定額を持っていれば追加課金価値薄）</p>
+
+<!-- 🟡 様子見 -->
+<div class="section-title">
+  🟡 <span>様子見</span>
+  <span class="badge badge-yellow">2件</span>
+</div>
+
+<div class="card card-yellow">
+  <div class="card-title">
+    <a href="https://github.com/Tracer-Cloud/opensre" target="_blank" rel="noopener">
+      Tracer-Cloud/opensre — CI/CD 信頼性を高めるオープンソース SRE エージェント
+    </a>
+    <span class="stars">★ 13,601 (+466 today)</span>
+  </div>
+  <div class="card-desc">
+    GitHub Actions や CI/CD パイプラインの障害を自動検出・分析・修正提案するエージェント。Python 製。Vercel + GitHub Actions のデプロイを監視し、ジョブ失敗の原因を自動で特定する設計。
+  </div>
+  <div class="card-verdict">
+    → Vercel へのデプロイが portfolio 開発の主要ボトルネックになってきたら再評価。今は CI/CD 障害が業務を詰まらせるほどの頻度でないため保留。README の「Vercel 連携」セクションだけ目を通しておく。
+  </div>
+  <a class="card-link" href="https://github.com/Tracer-Cloud/opensre" target="_blank" rel="noopener">github.com/Tracer-Cloud/opensre ↗</a>
+</div>
+
+<div class="card card-yellow">
+  <div class="card-title">
+    <a href="https://github.com/zhouxiaoka/autoclip" target="_blank" rel="noopener">
+      zhouxiaoka/autoclip — AI が長動画を自動でショート動画にカット・字幕・サムネ生成するデスクトップツール
+    </a>
+    <span class="stars">★ 12,169 (+979 today)</span>
+  </div>
+  <div class="card-desc">
+    長尺の動画をアップロードすると AI が見どころをカットし、字幕・カバー・キャプションを自動生成してショート動画として書き出すデスクトップアプリ。Python 製。
+  </div>
+  <div class="card-verdict">
+    → 工務店向けデモ動画（現場写真 → 日報生成のスクリーンキャスト等）を量産し始めるタイミングで使える。今はまだ動画コンテンツのワークフローが確立していないので様子見。ヒアリング主軸の 11月末までは動かさない。
+  </div>
+  <a class="card-link" href="https://github.com/zhouxiaoka/autoclip" target="_blank" rel="noopener">github.com/zhouxiaoka/autoclip ↗</a>
+</div>
+
+<!-- 🚫 罠 -->
+<div class="section-title">
+  🚫 <span>罠</span>
+  <span class="badge badge-gray">1件</span>
+</div>
+
+<div class="card card-gray">
+  <div class="card-title">
+    <a href="https://github.com/jingyaogong/minimind" target="_blank" rel="noopener">
+      jingyaogong/minimind — 64M パラメータ LLM をゼロから2時間で学習するフレームワーク
+    </a>
+    <span class="stars">★ 67,676 (+847 today)</span>
+  </div>
+  <div class="card-desc">
+    Python + PyTorch で 64M パラメータの小規模 LLM をゼロから事前学習・微調整できるフレームワーク。教育・実験目的で設計。GPU サーバーへのアクセスが前提。
+  </div>
+  <div class="card-verdict">
+    → Vercel + Supabase + Claude MAX の完結スタックに接点ゼロ。自前 LLM の推論インフラを持たないし持つ計画もない。「2時間で学習」は前提の GPU 環境込みの話で、個人開発者が最初から MAX プランを持っていれば自作 LLM の ROI は出ない。トレンド入りしているが学習教材として読む以上の価値はない。
+  </div>
+  <a class="card-link" href="https://github.com/jingyaogong/minimind" target="_blank" rel="noopener">github.com/jingyaogong/minimind ↗</a>
+</div>
+
+<div class="failed-sources">
+  <strong>取得失敗ソース:</strong>
+  Obsidian changelog (obsidian.md/changelog/) — ネットワークポリシーでドメイン外のため取得不可（継続中）。
+  Claude Code 公式 CHANGELOG.md (GitHub blob) — HTML レンダリングで本文取得不可。GitHub Releases ページ経由で内容確認済み。
+</div>
+
+</body>
+</html>
