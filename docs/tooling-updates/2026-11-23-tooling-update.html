@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-23</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d2e;
+      --border: #2d3148;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1a07;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0a1628;
+      --blue-border: #1e3a5f;
+      --gray: #94a3b8;
+      --gray-bg: #1e2030;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 24px 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .thin-day {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 4px 10px;
+      background: var(--gray-bg);
+      border: 1px solid var(--gray-border);
+      border-radius: 6px;
+      font-size: 0.78rem;
+      color: var(--gray);
+    }
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 28px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .badge-green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+    .badge-yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+    .badge-blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
+    .badge-gray   { background: var(--gray-bg);   color: var(--gray);   border: 1px solid var(--gray-border); }
+
+    .card {
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      border-left: 3px solid;
+    }
+    .card-green  { background: var(--green-bg);  border-color: var(--green); }
+    .card-yellow { background: var(--yellow-bg); border-color: var(--yellow); }
+    .card-blue   { background: var(--blue-bg);   border-color: var(--blue); }
+    .card-gray   { background: var(--gray-bg);   border-color: var(--gray); }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover { text-decoration: underline; }
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .card-verdict {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--text);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+    .card-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--blue);
+    }
+    .stars {
+      font-size: 0.75rem;
+      color: var(--yellow);
+      font-weight: 600;
+      margin-left: 6px;
+    }
+    .reentry-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 1px 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 4px;
+      color: var(--muted);
+      margin-left: 6px;
+      font-weight: 400;
+      font-style: normal;
+    }
+    .none-note {
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding: 10px 0;
+    }
+    .failed-sources {
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    @media (max-width: 600px) {
+      body { padding: 16px 12px; }
+      .card { padding: 12px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-11-23</h1>
+<div class="meta">
+  取得日: 2026-11-23 (JST 09:00) ／ 対象期間: 2026-11-21〜11-23 ／
+  ソース: Claude Code 公式 changelog・Anthropic News・GitHub Trending・WebSearch (AI coding / automation / 個人開発) ／
+  重複除外: 直近3日分 (11/20〜11/22) の掲載済み項目を除外（BugHunter・v2.1.328-330/Easelチャート/Opus4.8廃止・last30days-skill・opensre・autoclip・v2.1.330見落とし補足・LangSmith Tool Gateway・AFFiNE・Replit Missions・app-store-compliance）
+  <div class="thin-day">📉 本日は薄め: Claude Code 新リリースなし（最新 v2.1.330、11/20）。GitHub Trending は先週来の継続組が多い。3日前除外から繰り上がった項目 + 新着を収録。</div>
+</div>
+
+<!-- 🟢 即使う -->
+<div class="section-title">
+  🟢 <span>即使う</span>
+  <span class="badge badge-green">1件</span>
+</div>
+
+<div class="card card-green">
+  <div class="card-title">
+    <a href="https://github.com/cathrynlavery/diagram-design" target="_blank" rel="noopener">
+      cathrynlavery/diagram-design — Claude Code 向けダイアグラム生成スキル（HTML+SVG 自己完結）
+    </a>
+    <span class="stars">★ 70,284 (+518 today)</span>
+    <span class="reentry-badge">3日前除外から繰り上がり・継続トレンド</span>
+  </div>
+  <div class="card-desc">
+    Claude Code（および他の AI コーディングツール）にインストールして使うダイアグラム生成スキル。生成物は外部依存ゼロの自己完結 HTML+SVG ファイル。フロー図・ER 図・シーケンス図などをプロンプト一発で出力できる設計。HTML、70,284 stars。
+  </div>
+  <div class="card-verdict">
+    → CLAUDE.md の構造・portfolio のルーティング依存関係・6経路ヒアリング設計フロー等を視覚化する場面でそのまま使える。<code>claude skill install cathrynlavery/diagram-design</code>（要 README 確認）後、「このヒアリング設計をフロー図にして」とプロンプトするだけ。今週 README を確認してインストール判断。
+  </div>
+  <a class="card-link" href="https://github.com/cathrynlavery/diagram-design" target="_blank" rel="noopener">github.com/cathrynlavery/diagram-design ↗</a>
+</div>
+
+<!-- 💰 課金価値 -->
+<div class="section-title">
+  💰 <span>課金価値</span>
+  <span class="badge badge-blue">0件</span>
+</div>
+<p class="none-note">該当なし（本日の新着範囲に追加課金を正当化できる新規ツールのリリースなし）</p>
+
+<!-- 🟡 様子見 -->
+<div class="section-title">
+  🟡 <span>様子見</span>
+  <span class="badge badge-yellow">2件</span>
+</div>
+
+<div class="card card-yellow">
+  <div class="card-title">
+    <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">
+      obra/superpowers — エージェントスキルフレームワーク兼ソフトウェア開発方法論
+    </a>
+    <span class="stars">★ 324,151 (+788 today)</span>
+    <span class="reentry-badge">3日前除外から繰り上がり・継続トレンド</span>
+  </div>
+  <div class="card-desc">
+    エージェント向けスキルバンドルの設計パターンと開発方法論をまとめた Shell ベースのリポジトリ。324K stars はこの種のツール群の中でも最大規模クラス。スキルの分割粒度・呼び出し設計・エージェントへの権限委譲ルールなどを実例で示している。
+  </div>
+  <div class="card-verdict">
+    → 今すぐインストールより「スキル設計の参照実装」として読むのが先。tooling-update-watch や portfolio の自動化スキルを書き直す際に、スキルの粒度設計でつまずいたらここの実装パターンを参照するとよい。ヒアリング主軸が一段落する 2027 Q1 以降のスキルリファクタリング時に再評価。
+  </div>
+  <a class="card-link" href="https://github.com/obra/superpowers" target="_blank" rel="noopener">github.com/obra/superpowers ↗</a>
+</div>
+
+<div class="card card-yellow">
+  <div class="card-title">
+    <a href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener">
+      HKUDS/CLI-Anything — MCP 非対応ソフトを AI エージェントから CLI 経由で操作可能にするツール
+    </a>
+    <span class="stars">★ 62,771 (+699 today)</span>
+    <span class="reentry-badge">3日前除外から繰り上がり・継続トレンド</span>
+  </div>
+  <div class="card-desc">
+    CLI インターフェースを持つソフトウェアを AI エージェントから呼び出せる形に変換する Python ライブラリ。MCP サーバーが存在しないツール（社内 CLI・レガシーな行政電子申請ツールなど）をエージェントワークフローに組み込む橋渡し的な役割を担う。
+  </div>
+  <div class="card-verdict">
+    → Supabase / Vercel / GitHub などの主要ツールはすでに MCP サーバーが揃っており今すぐの出番は薄い。将来、工務店向け SaaS 開発で MCP 未対応の行政 API や建材メーカー EDI ツールと連携が必要になった時の第一選択肢候補として保留。
+  </div>
+  <a class="card-link" href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener">github.com/HKUDS/CLI-Anything ↗</a>
+</div>
+
+<!-- 🚫 罠 -->
+<div class="section-title">
+  🚫 <span>罠</span>
+  <span class="badge badge-gray">1件</span>
+</div>
+
+<div class="card card-gray">
+  <div class="card-title">
+    <a href="https://itwire.com/business-it-news/enterprise-solutions/microsoft-ships-own-coding-models-with-cyber-rollout-set-for-december" target="_blank" rel="noopener">
+      Microsoft MAI Code 2 &amp; MAI Code 2 Flash — GitHub Copilot 経由で提供、Ignite 11/17 発表
+    </a>
+  </div>
+  <div class="card-desc">
+    Microsoft が Ignite (11/17) で発表した自社製コーディングモデル。MAI Code 2 は精度重視、MAI Code 2 Flash は高頻度・小タスク向け（targeted edits・routine fixes 等）。GitHub Copilot 経由で提供予定。サイバーセキュリティ向けロールアウトは 12 月予定とされている。
+  </div>
+  <div class="card-verdict">
+    → (1) Claude MAX 定額を持っていれば追加課金価値ゼロ。Flash の「高頻度小タスク」は Haiku 5.5 と競合し、切り替えコスト > メリット。(2) GitHub Copilot 経由のため Claude Code のスタックと完全に別軸。(3) 「12 月にサイバー向けロールアウト」は工務店向け SaaS には無関係。動向としては把握しておくが、乗り換えを検討するトリガーはない。
+  </div>
+  <a class="card-link" href="https://itwire.com/business-it-news/enterprise-solutions/microsoft-ships-own-coding-models-with-cyber-rollout-set-for-december" target="_blank" rel="noopener">itwire.com ↗ (MAI Code 2)</a>
+</div>
+
+<!-- 取得失敗ソース -->
+<div class="failed-sources">
+  <strong>取得失敗ソース:</strong>
+  obsidian.md（このリモート実行環境のネットワークポリシーでブロック）、
+  dev.to（同上）。
+  github.com/anthropics/claude-code/blob/main/CHANGELOG.md（GitHub HTML ページのため本文未取得 → WebSearch で代替確認、最新 v2.1.330 / 11/20 で新リリースなし）。
+</div>
+
+</body>
+</html>
