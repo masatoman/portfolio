@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-24</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d2e;
+      --border: #2d3148;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1a07;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0a1628;
+      --blue-border: #1e3a5f;
+      --gray: #94a3b8;
+      --gray-bg: #1e2030;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 24px 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .thin-day {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 4px 10px;
+      background: var(--gray-bg);
+      border: 1px solid var(--gray-border);
+      border-radius: 6px;
+      font-size: 0.78rem;
+      color: var(--gray);
+    }
+    .deadline-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 1px 7px;
+      background: rgba(239,68,68,0.15);
+      border: 1px solid rgba(239,68,68,0.4);
+      border-radius: 4px;
+      color: #f87171;
+      margin-left: 8px;
+      font-weight: 600;
+      font-style: normal;
+    }
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 28px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .badge-green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+    .badge-yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+    .badge-blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
+    .badge-gray   { background: var(--gray-bg);   color: var(--gray);   border: 1px solid var(--gray-border); }
+
+    .card {
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      border-left: 3px solid;
+    }
+    .card-green  { background: var(--green-bg);  border-color: var(--green); }
+    .card-yellow { background: var(--yellow-bg); border-color: var(--yellow); }
+    .card-blue   { background: var(--blue-bg);   border-color: var(--blue); }
+    .card-gray   { background: var(--gray-bg);   border-color: var(--gray); }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover { text-decoration: underline; }
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .card-desc ul {
+      margin: 6px 0 0 16px;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+    .card-verdict {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--text);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+    .card-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--blue);
+    }
+    .none-note {
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding: 10px 0;
+    }
+    .failed-sources {
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    @media (max-width: 600px) {
+      body { padding: 16px 12px; }
+      .card { padding: 12px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-11-24</h1>
+<div class="meta">
+  取得日: 2026-11-24 (JST 09:00) ／ 対象期間: 2026-11-22〜11-24 ／
+  ソース: Claude Code GitHub Releases・Anthropic News・GitHub Trending・WebSearch (AI coding / automation / 個人開発) ／
+  重複除外: 直近3日分 (11/21〜11/23) の掲載済み項目を除外（diagram-design・superpowers・CLI-Anything・MAI Code 2・v2.1.328-330/Easelチャート/Opus4.8廃止・last30days-skill・opensre・autoclip・minimind・LangSmith Tool Gateway・AFFiNE・Replit Missions・app-store-compliance・BugHunter）
+  <div class="thin-day">📌 本日のTOP: Claude Code v2.1.331 (11/23リリース) = MCP30分ハング修正・VS Codeマージ競合解消・cloud session再試行。即 <code>claude update</code> 推奨。</div>
+</div>
+
+<!-- 🟢 即使う -->
+<div class="section-title">
+  🟢 <span>即使う</span>
+  <span class="badge badge-green">1件</span>
+</div>
+
+<div class="card card-green">
+  <div class="card-title">
+    <a href="https://github.com/anthropics/claude-code/releases" target="_blank" rel="noopener">
+      Claude Code v2.1.331 — MCP30分ハング修正・VS Code「競合解消」・cloud session再試行
+    </a>
+    <span class="deadline-badge">要: claude update</span>
+  </div>
+  <div class="card-desc">
+    2026-11-23リリース (Latest)。自動化スクリプトと VS Code 開発フローに直接効く主な変更:
+    <ul>
+      <li><strong>MCP tool call ハング修正:</strong> 一部の malformed レスポンスで最大30分ハングしていたバグを修正。MCP連携ルーティンの安定性が大幅改善。</li>
+      <li><strong>cloud session 再試行:</strong> Claude が思考中に応答が止まった場合、自動で1回再試行するように。長時間ルーティン（tooling-update-watch 等）のタイムアウト失敗が減る。</li>
+      <li><strong>VS Code 新機能:</strong> 「Fix with Claude Code」クイック修正・「Resolve Merge Conflicts」がVS Codeから直接使える。</li>
+      <li><strong>claude doctor 強化:</strong> API 疎通チェックセクションが追加。接続不良のデバッグがコマンド1本で完結。</li>
+      <li><strong>Code Mode 拡張:</strong> Amazon Bedrock・Google Cloud Agent Platform・Microsoft Foundry のターミナルセッションでも使えるように。</li>
+      <li><strong>/rewind バグ修正:</strong> 失敗したリストア後にファイルが削除されるバグを修正。memory 編集時の信頼性向上。</li>
+    </ul>
+  </div>
+  <div class="card-verdict">
+    → <code>claude update</code> で即アップデート。MCP ハング修正は tooling-update-watch ルーティンや portfolio の自動化スクリプトに直接効く（ローカルMCPサーバーへの接続が詰まって止まるケースを防ぐ）。VS Code 「Resolve Merge Conflicts」は PR レビュー時の手作業を Claude Code に委譲できる。<code>claude doctor</code> の API チェックは次回 Supabase / Vercel MCP 疎通確認時に使う。
+  </div>
+  <a class="card-link" href="https://github.com/anthropics/claude-code/releases" target="_blank" rel="noopener">github.com/anthropics/claude-code/releases ↗</a>
+</div>
+
+<!-- 💰 課金価値 -->
+<div class="section-title">
+  💰 <span>課金価値</span>
+  <span class="badge badge-blue">0件</span>
+</div>
+<p class="none-note">該当なし（本日の新着範囲に追加課金を正当化できる新規ツールのリリースなし。MAX プラン定額継続）</p>
+
+<!-- 🟡 様子見 -->
+<div class="section-title">
+  🟡 <span>様子見</span>
+  <span class="badge badge-yellow">0件</span>
+</div>
+<p class="none-note">該当なし（11/22-24 範囲の新着で今すぐ使わないが将来評価すべき候補なし）</p>
+
+<!-- 🚫 罠 -->
+<div class="section-title">
+  🚫 <span>罠</span>
+  <span class="badge badge-gray">1件</span>
+</div>
+
+<div class="card card-gray">
+  <div class="card-title">
+    <a href="https://apidog.com/blog/gemini-4-neon-benchmarks/" target="_blank" rel="noopener">
+      Google Gemini 4 Neon「Artificial Analysis コーディング1位」— ハーネス依存で数字が3倍変わる
+    </a>
+  </div>
+  <div class="card-desc">
+    11/18 リリースのGoogleモデル。Artificial Analysis Coding Agent Indexで58.6（1位）と報告されているが、同じモデルが SWE-sweep ベンチマークでは mini-SWE ハーネスで12.8%、Antigravity ハーネスで39.0%と3倍超の差が出ている。Google社員からも「ベンチマークと実運用の乖離」の声（Bloomberg 報道、Google は否定）。
+  </div>
+  <div class="card-verdict">
+    → MAX プラン定額持ちには乗り換え検討不要。ベンチマーク1位の数字だけ鵜呑みにしない。競合情報として「スキャフォールディング次第でスコアが大きく変わる」という教訓は、工務店向け SaaS のエージェント設計（Claude Code でどのハーネスを使うか）に応用できる。
+  </div>
+  <a class="card-link" href="https://apidog.com/blog/gemini-4-neon-benchmarks/" target="_blank" rel="noopener">apidog.com/blog/gemini-4-neon-benchmarks ↗</a>
+</div>
+
+<div class="failed-sources">
+  <strong>取得状況:</strong>
+  Obsidian changelog — skip（本ルーティン対象外、今回は取得せず）／
+  github.com/anthropics/claude-code/releases — ✅ 取得成功（v2.1.331 確認）／
+  anthropic.com/news — ✅ 取得成功（11/22-24 新規リリースなし、IPO クローズ 11/20）
+</div>
+
+</body>
+</html>
