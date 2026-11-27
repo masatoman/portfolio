@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-27</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d2e;
+      --border: #2d3148;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1a07;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0a1628;
+      --blue-border: #1e3a5f;
+      --gray: #94a3b8;
+      --gray-bg: #1e2030;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 24px 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .top-banner {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 4px 10px;
+      background: var(--yellow-bg);
+      border: 1px solid var(--yellow-border);
+      border-radius: 6px;
+      font-size: 0.78rem;
+      color: var(--yellow);
+    }
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 28px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge {
+      font-size: 0.7rem;
+      padding: 1px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .badge-green  { background: rgba(34,197,94,.15);  color: var(--green); }
+    .badge-yellow { background: rgba(234,179,8,.15);  color: var(--yellow); }
+    .badge-blue   { background: rgba(59,130,246,.15); color: var(--blue); }
+    .badge-gray   { background: rgba(148,163,184,.12); color: var(--gray); }
+    .card {
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      border: 1px solid;
+    }
+    .card-green  { background: var(--green-bg);  border-color: var(--green-border); }
+    .card-yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card-blue   { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .card-gray   { background: var(--gray-bg);   border-color: var(--gray-border); }
+    .card-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-title a { color: inherit; text-decoration: none; }
+    .card-title a:hover { text-decoration: underline; }
+    .stars {
+      font-size: 0.72rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .card-desc ul {
+      padding-left: 18px;
+      margin-top: 4px;
+    }
+    .card-desc li {
+      margin-bottom: 3px;
+    }
+    .card-desc code {
+      font-size: 0.82rem;
+      background: rgba(255,255,255,0.08);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+    .card-verdict {
+      font-size: 0.88rem;
+      font-style: italic;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+    .card-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .card-link:hover { border-bottom-color: var(--muted); }
+    .skip-list {
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 28px;
+    }
+    .skip-list h3 { font-size: 0.85rem; margin-bottom: 6px; color: var(--text); }
+    .skip-list ul { padding-left: 18px; }
+    .skip-list li { margin-bottom: 2px; }
+    .none-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 10px 0 4px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-11-27</h1>
+<div class="meta">
+  取得日: 2026-11-27（JST 09:00）｜対象期間: 直近 1-2 日（2026-11-25〜27）<br>
+  ソース: Claude Code 公式 Changelog / Anthropic News / GitHub Trending / WebSearch 補完<br>
+  重複除外済: Claude Code v2.1.332 全4項目（11/26掲載）・Boxes.dev・firecrawl・stitch-skills・Kiro IDE 1.4.236（11/25掲載）・Claude Code v2.1.331・Gemini 4 Neon（11/24掲載）<br>
+  ネットワーク未到達: obsidian.md・wiretensors.ai・thetoolnerd.com<br>
+  <span class="top-banner">📌 本日: 新規 Claude Code リリースなし (最新: v2.1.332/Nov 25)。様子見2件・罠1件。</span>
+</div>
+
+<!-- 🟢 即使う -->
+<div class="section-title">
+  🟢 <span>即使う</span>
+  <span class="badge badge-green">0件</span>
+</div>
+<p class="none-label">Claude Code の新バージョンなし（最新: v2.1.332 / Nov 25、昨日掲載済み）。Anthropic News の 11/27 スロットは現時点でコンテンツなし。今日の取得範囲に即時適用できる新規アイテムなし。</p>
+
+<!-- 💰 課金価値 -->
+<div class="section-title">
+  💰 <span>課金価値</span>
+  <span class="badge badge-blue">0件</span>
+</div>
+<p class="none-label">今日の取得範囲では有料追加の価値があると判断できる新規アイテムなし。</p>
+
+<!-- 🟡 様子見 -->
+<div class="section-title">
+  🟡 <span>様子見</span>
+  <span class="badge badge-yellow">2件</span>
+</div>
+
+<div class="card card-yellow">
+  <div class="card-title">
+    <a href="https://vibecoding.app/tools/beacon" target="_blank" rel="noopener">
+      Beacon (Asymptote Labs) — Claude Code / Cursor / Codex をまたぐ cross-harness agent memory
+    </a>
+  </div>
+  <div class="card-desc">
+    MIT ライセンス・ローカル無料、クラウド $20/月。Claude Code・Cursor・Codex・Windsurf 等 20 以上のコーディングエージェントで共有できるセッションメモリ層。デバッグ手順・プロジェクト慣習・修正パターンを自動記録し、次のセッションで MCP または Agent Skills 経由で再利用できる。エージェントを切り替えても「あのバグの直し方」「このプロジェクトのお作法」が引き継がれる設計。
+    <ul>
+      <li>ローカル完結で動かす場合は無料（OSS）。クラウド同期が必要なら $20/月。</li>
+      <li>Claude Code との接続は MCP 経由（settings.json に追記するだけ）。</li>
+      <li>先週 dev.to / explainx.ai での言及が増えており、コミュニティ評価が上昇中。</li>
+    </ul>
+  </div>
+  <div class="card-verdict">
+    → portfolio の Supabase/Vercel デバッグ手順や tooling-update-watch の「毎回同じ重複除外ロジック確認」を Beacon に記録しておけば、次セッションで自動参照できる。複数エージェントをまたぐ用途は現状ない（Claude Code 一本）ので恩恵は限定的。試すなら無料ローカル版からで、ヒアリング期（〜11/30）が一段落してから。
+  </div>
+  <a class="card-link" href="https://vibecoding.app/tools/beacon" target="_blank" rel="noopener">vibecoding.app/tools/beacon ↗</a>
+</div>
+
+<div class="card card-yellow">
+  <div class="card-title">
+    <a href="https://vercel.com/blog/eve-is-now-generally-available" target="_blank" rel="noopener">
+      Vercel eve 1.0 GA — "Next.js for agents" 本番向け OSS エージェントフレームワーク
+    </a>
+  </div>
+  <div class="card-desc">
+    Vercel が 2026/06 の Ship カンファレンスで発表し、今月 1.0 GA になったオープンソースフレームワーク（Apache 2.0）。エージェントをディレクトリ構造で定義し、ローカルまたは Vercel 上でデプロイできる。実行は durable workflow（クラッシュ後に自動再開）、isolated sandbox 実行、Human-in-the-loop 承認ゲートをネイティブサポート。
+    <ul>
+      <li>OSS 本体（eve + Workflow SDK）は Apache 2.0 無料。Vercel 上の Workflow 実行・Sandbox 利用は Vercel 課金に乗る。</li>
+      <li>競合は Mastra（マルチプラットフォーム向け）。eve は Vercel 最適化。</li>
+      <li>docs は「Beta」表記が残っており、GA の正式なタイミングは一次確認推奨。</li>
+    </ul>
+  </div>
+  <div class="card-verdict">
+    → portfolio サイトがすでに Vercel ホストなので将来の SaaS エージェント機能と相性は良い。ただし現状 MAX プラン + Claude Code scheduled routine で事足りており、今すぐ乗り換える理由なし。2027 年の MVP 本番稼働フェーズで「Vercel 上にエージェントを常駐させる」設計を検討する時に再評価。今は docs 程度を流し読みしておく。
+  </div>
+  <a class="card-link" href="https://vercel.com/blog/eve-is-now-generally-available" target="_blank" rel="noopener">vercel.com/blog/eve-is-now-generally-available ↗</a>
+</div>
+
+<!-- 🚫 罠 -->
+<div class="section-title">
+  🚫 <span>罠</span>
+  <span class="badge badge-gray">1件</span>
+</div>
+
+<div class="card card-gray">
+  <div class="card-title">
+    <a href="https://github.com/openvinotoolkit/openvino" target="_blank" rel="noopener">
+      openvinotoolkit/openvino — 今日の GitHub Trending 入り (★176 today / 12,817 total)
+    </a>
+    <span class="stars">★ 176 today</span>
+  </div>
+  <div class="card-desc">
+    Intel が開発する AI 推論最適化ツールキット（主に C++）。エッジデバイスや CPU/GPU 上でモデルをデプロイする際のパフォーマンス最適化が目的。今日 Trending 入りしているが理由は不明（論文引用・メディア記事の可能性）。
+  </div>
+  <div class="card-verdict">
+    → masatoman のスタック（Next.js / Supabase / Claude MAX プラン）とは用途が全く噛み合わない。C++ / エッジデプロイ / オンプレ ML 推論が不要なら完全にノイズ。Trending だからといって時間を使わない。
+  </div>
+  <a class="card-link" href="https://github.com/openvinotoolkit/openvino" target="_blank" rel="noopener">github.com/openvinotoolkit/openvino ↗</a>
+</div>
+
+<div class="skip-list">
+  <h3>⚠️ 取得失敗ソース（ネットワーク制限）</h3>
+  <ul>
+    <li>obsidian.md/changelog/ — ENOTFOUND（ドメイン未許可）</li>
+    <li>wiretensors.ai — ENOTFOUND</li>
+    <li>thetoolnerd.com — ENOTFOUND</li>
+  </ul>
+  <br>
+  <h3>重複除外 (直近3日: 11/24〜26)</h3>
+  <ul>
+    <li>Claude Code v2.1.332: MCP Skills Beta / PreSkillShellCommand hook / freeze修正 / computer-use 予約名 / モデルエイリアス再編 / 音声入力タイムアウト延長（11/26掲載）</li>
+    <li>Boxes.dev / firecrawl / google-labs-code/stitch-skills / Kiro IDE 1.4.236（11/25掲載）</li>
+    <li>Claude Code v2.1.331 / Gemini 4 Neon ベンチマーク罠（11/24掲載）</li>
+    <li>GitHub Trending の他リポジトリ: BugHunter・diagram-design・superpowers・autoclip・last30days-skill・CLI-Anything・minimind・opensre・cursor/plugins・firecrawl（いずれも直近3日以内に掲載済み）</li>
+  </ul>
+</div>
+
+</body>
+</html>
