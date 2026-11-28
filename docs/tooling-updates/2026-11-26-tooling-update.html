@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>効率厨A feed 2026-11-26</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d2e;
+      --border: #2d3148;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --green: #22c55e;
+      --green-bg: #052e16;
+      --green-border: #166534;
+      --yellow: #eab308;
+      --yellow-bg: #1c1a07;
+      --yellow-border: #713f12;
+      --blue: #3b82f6;
+      --blue-bg: #0a1628;
+      --blue-border: #1e3a5f;
+      --gray: #94a3b8;
+      --gray-bg: #1e2030;
+      --gray-border: #374151;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 24px 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .top-banner {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 4px 10px;
+      background: var(--green-bg);
+      border: 1px solid var(--green-border);
+      border-radius: 6px;
+      font-size: 0.78rem;
+      color: var(--green);
+    }
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 28px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge {
+      font-size: 0.7rem;
+      padding: 1px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .badge-green  { background: rgba(34,197,94,.15);  color: var(--green); }
+    .badge-yellow { background: rgba(234,179,8,.15);  color: var(--yellow); }
+    .badge-blue   { background: rgba(59,130,246,.15); color: var(--blue); }
+    .badge-gray   { background: rgba(148,163,184,.12); color: var(--gray); }
+    .card {
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      border: 1px solid;
+    }
+    .card-green  { background: var(--green-bg);  border-color: var(--green-border); }
+    .card-yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .card-blue   { background: var(--blue-bg);   border-color: var(--blue-border); }
+    .card-gray   { background: var(--gray-bg);   border-color: var(--gray-border); }
+    .card-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-title a { color: inherit; text-decoration: none; }
+    .card-title a:hover { text-decoration: underline; }
+    .stars {
+      font-size: 0.72rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .card-desc ul {
+      padding-left: 18px;
+      margin-top: 4px;
+    }
+    .card-desc li {
+      margin-bottom: 3px;
+    }
+    .card-desc code {
+      font-size: 0.82rem;
+      background: rgba(255,255,255,0.08);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+    .card-verdict {
+      font-size: 0.88rem;
+      font-style: italic;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+    .card-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .card-link:hover { border-bottom-color: var(--muted); }
+    .skip-list {
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 28px;
+    }
+    .skip-list h3 { font-size: 0.85rem; margin-bottom: 6px; color: var(--text); }
+    .skip-list ul { padding-left: 18px; }
+    .skip-list li { margin-bottom: 2px; }
+    .none-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 10px 0 4px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<h1>効率厨A feed 2026-11-26</h1>
+<div class="meta">
+  取得日: 2026-11-26（JST 09:00）｜対象期間: 直近 1-2 日（2026-11-24〜26）<br>
+  ソース: Claude Code GitHub Releases / Anthropic News / WebSearch 補完 / GitHub Trending<br>
+  重複除外済: Claude Code v2.1.331、Boxes.dev、firecrawl、stitch-skills、Kiro IDE 1.4.236、cursor/plugins（直近 3 日に掲載済み）<br>
+  ネットワーク未到達: obsidian.md、wpnews.pro、emergent.sh、thetoolnerd.com、openai.com<br>
+  <span class="top-banner">📌 本日のTOP: Claude Code v2.1.332 (11/25 リリース) — MCP Skills Beta + hook/freeze 大量修正</span>
+</div>
+
+<!-- 🟢 即使う -->
+<div class="section-title">
+  🟢 <span>即使う</span>
+  <span class="badge badge-green">1件</span>
+</div>
+
+<div class="card card-green">
+  <div class="card-title">
+    <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.332" target="_blank" rel="noopener">
+      Claude Code v2.1.332 — MCP Skills Beta + PreSkillShellCommand hook + freeze 大量修正
+    </a>
+  </div>
+  <div class="card-desc">
+    2026-11-25 リリース。主な変更点:
+    <ul>
+      <li><strong>MCP Skills Beta:</strong> MCP サーバーが提供するスキルが <code>/</code> メニューに <code>server:skill</code> 形式で表示される。stitch-skills 等を入れているなら今日から見える。</li>
+      <li><strong>PreSkillShellCommand hook:</strong> スキル読み込み時の inline shell command を hook で事前フィルタリング可能に。<code>.claude/settings.json</code> に追加するだけ。</li>
+      <li><strong>freeze 大量修正:</strong> hook 大量出力（約 50,000 文字超で自動短縮）・named pipe（20秒でタイムアウト）・MCP server stdout flood・minified CSS の <code>@mention</code> フリーズ を全修正。scheduled routine の安定運用に直結。</li>
+      <li><strong>Task ID 重複バグ修正:</strong> TaskCreate/TaskGet で ID が重複する・削除済みタスクが復活する・完了タスクがブロッカー扱いされる問題を修正。</li>
+      <li><strong>Grep 修正:</strong> <code>-o</code> の末尾空一致ミス・multiline での行番号ズレ・<code>-A/-B</code> が <code>-C=0</code> 併用時に無視される問題を修正。日次フィードの検索系コマンドが今日から正確に動く。</li>
+      <li><strong>MCP task ID 1,024文字対応:</strong> 従来 128文字制限で失敗していた MCP ツール呼び出しが通るようになる。</li>
+      <li><strong>auth 修正:</strong> <code>claude auth login</code> が失敗時に「Login successful.」と誤報せず、exit 1 + ヒントを返す。</li>
+    </ul>
+  </div>
+  <div class="card-verdict">
+    → <code>claude update</code> で即適用。フリーズ修正だけでも今日やる価値あり。MCP Skills Beta は <code>/</code> メニューを開いて <code>server:skill</code> が出るか確認するだけ。PreSkillShellCommand hook は CLAUDE.md や settings.json のカスタム hook 設計に今すぐ組み込める。
+  </div>
+  <a class="card-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.332" target="_blank" rel="noopener">github.com/anthropics/claude-code/releases/tag/v2.1.332 ↗</a>
+</div>
+
+<!-- 💰 課金価値 -->
+<div class="section-title">
+  💰 <span>課金価値</span>
+  <span class="badge badge-blue">0件</span>
+</div>
+<p class="none-label">今日の取得範囲では有料追加の価値があると判断できる新規アイテムなし。</p>
+
+<!-- 🟡 様子見 -->
+<div class="section-title">
+  🟡 <span>様子見</span>
+  <span class="badge badge-yellow">2件</span>
+</div>
+
+<div class="card card-yellow">
+  <div class="card-title">
+    <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.332" target="_blank" rel="noopener">
+      v2.1.332 Changed: Foundry / Agent Platform / Bedrock のモデルエイリアス再編
+    </a>
+  </div>
+  <div class="card-desc">
+    <code>sonnet</code> エイリアスが Agent Platform・Foundry では Sonnet 5.5 を指すように変更。Bedrock では Sonnet 5 に（従来 Haiku 4.5 だったバグ修正）。Foundry のデフォルトモデルも Sonnet 5.5 に変わり、<code>claude-sonnet-5-5</code> のデプロイまたは環境変数 <code>ANTHROPIC_DEFAULT_SONNET_MODEL</code> の設定が推奨される。
+  </div>
+  <div class="card-verdict">
+    → claude.ai MAX プラン定額利用（Foundry/Bedrock 非利用）なら影響なし。ただし API 直叩きや Bedrock 経由の自動化スクリプトで <code>sonnet</code> を文字列指定しているものがあれば、今日から挙動が変わる可能性がある。スクリプト棚卸しを次回作業時に。
+  </div>
+  <a class="card-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.332" target="_blank" rel="noopener">github.com/anthropics/claude-code/releases/tag/v2.1.332 ↗</a>
+</div>
+
+<div class="card card-yellow">
+  <div class="card-title">
+    <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.332" target="_blank" rel="noopener">
+      v2.1.332 Changed: 音声入力 (tap mode) タイムアウト延長 — 15秒→60秒、2分→10分
+    </a>
+  </div>
+  <div class="card-desc">
+    音声入力のマイクオン持続時間が大幅延長。無発話タイムアウトが 15秒から 60秒に、セッション最大時間が 2分から 10分に。未送信テキストが次の tap まで保持されるようになり、長いプロンプトを分割せず音声一発で入力できる。設定不要・更新で自動適用。
+  </div>
+  <div class="card-verdict">
+    → 音声入力を使っているなら今日から恩恵あり（設定不要）。使っていないなら今の段階では見送りでよい。
+  </div>
+  <a class="card-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.332" target="_blank" rel="noopener">github.com/anthropics/claude-code/releases/tag/v2.1.332 ↗</a>
+</div>
+
+<!-- 🚫 罠 -->
+<div class="section-title">
+  🚫 <span>罠</span>
+  <span class="badge badge-gray">1件</span>
+</div>
+
+<div class="card card-gray">
+  <div class="card-title">
+    <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.332" target="_blank" rel="noopener">
+      v2.1.332: <code>computer-use</code> が予約スキル名に — macOS ユーザーは自作スキル名を確認
+    </a>
+  </div>
+  <div class="card-desc">
+    macOS で computer use が有効な場合、<code>computer-use</code> という名前のスキルまたはコマンドは v2.1.332 から起動時に自動ブロックされ、リネームを求める通知が出る。<code>.claude/commands/computer-use.md</code> や <code>.claude/skills/computer-use/</code> が存在すると影響する。
+  </div>
+  <div class="card-verdict">
+    → 更新前に <code>ls .claude/commands/ ~/.claude/commands/</code> で <code>computer-use</code> という名前のファイルがないか確認。あれば別名にリネームしてから <code>claude update</code>。ない（大半のケース）なら無視でよい。
+  </div>
+  <a class="card-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.332" target="_blank" rel="noopener">github.com/anthropics/claude-code/releases/tag/v2.1.332 ↗</a>
+</div>
+
+<div class="skip-list">
+  <h3>⚠️ 取得失敗ソース（ネットワーク制限）</h3>
+  <ul>
+    <li>obsidian.md/changelog/ — ENOTFOUND（ドメイン未許可）</li>
+    <li>wpnews.pro — ENOTFOUND</li>
+    <li>emergent.sh — ENOTFOUND</li>
+    <li>thetoolnerd.com — ENOTFOUND</li>
+    <li>openai.com — ENOTFOUND</li>
+  </ul>
+  <br>
+  <h3>重複除外 (直近3日: 11/23〜25)</h3>
+  <ul>
+    <li>Claude Code v2.1.331 (11/24フィード掲載済み)</li>
+    <li>Boxes.dev、firecrawl/firecrawl、google-labs-code/stitch-skills、Kiro IDE 1.4.236、cursor/plugins（11/25フィード掲載済み）</li>
+    <li>last30days-skill、BugHunter、autoclip、Replit Missions、opensre、app-store-compliance、obra/superpowers、CLI-Anything、diagram-design、minimind（11/23以前の掲載済みリストより）</li>
+  </ul>
+</div>
+
+</body>
+</html>
